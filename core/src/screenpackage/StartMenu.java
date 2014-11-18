@@ -17,7 +17,6 @@ public class StartMenu extends Screen{
 	public void create() {
 		camera = new OrthoCamera();
 		entityManager = new EntityManager();
-		camera.setPosition(0, 0);
 		
 		
 	}  
@@ -39,6 +38,7 @@ public class StartMenu extends Screen{
 	@Override 
 	public void resize(int width, int height) {
 		camera.resize();
+		entityManager.update();
 	}
 
 	@Override
