@@ -15,7 +15,7 @@ public class EntityManager {
 	
 	public EntityManager(){
 		title = new Title(new Vector2(10,h-300), new Vector2(0,0));
-		newgame = new SM_NewGame(new Vector2(310, h-400), new Vector2(0,0));
+		newgame = new SM_NewGame(new Vector2(310, h-450), new Vector2(0,0));
 	}
 	
 	public void update(){
