@@ -10,12 +10,14 @@ public class EntityManager {
 	private final Array<Entity> entities = new Array<Entity>();
 	private final Title title;
 	private SM_NewGame newgame;
+	private SM_LoadGame loadgame;
 	private int h = LocomotionCommotion.HEIGHT;
 	
 	
 	public EntityManager(){
 		title = new Title(new Vector2(10,h-300), new Vector2(0,0));
 		newgame = new SM_NewGame(new Vector2(310, h-450), new Vector2(0,0));
+		loadgame = new SM_LoadGame(new Vector2(309, h-550), new Vector2(0,0));
 	}
 	
 	public void update(){
@@ -23,6 +25,7 @@ public class EntityManager {
 			e.update();
 		title.update();
 		newgame.update();
+		loadgame.update();
 		
 		
 	}
@@ -33,6 +36,7 @@ public class EntityManager {
 		} 
 		title.render(sb); 
 		newgame.render(sb);
+		loadgame.render(sb);
 	}
 	
 	public void addEntity(Entity entity){
