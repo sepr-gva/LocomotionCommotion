@@ -28,7 +28,7 @@ public class EntityManager {
 	public void render(SpriteBatch sb){
 		for (Entity e: entities){
 			e.render(sb);
-		}
+		} 
 		title.render(sb); 
 		newgame.render(sb);
 	}
