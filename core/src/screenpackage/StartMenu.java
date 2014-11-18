@@ -17,6 +17,7 @@ public class StartMenu extends Screen{
 	public void create() {
 		camera = new OrthoCamera();
 		entityManager = new EntityManager();
+		camera.setPosition(0, 0);
 		
 		
 	}  
