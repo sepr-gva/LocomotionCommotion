@@ -27,7 +27,7 @@ public class EntityManager {
 		preferences = new SM_Preferences(new Vector2(309, h-650), new Vector2(0,0));
 		sm_howtoplay = new SM_HowToPlay(new Vector2(300, h-750), new Vector2(0,0));
 		//Lines
-		mainpagelines = new SM_mainpageLines(new Vector2(-385, -1116), new Vector2(0,0));
+		mainpagelines = new SM_mainpageLines(new Vector2(-385, -930), new Vector2(0,0));
 		//pref
 		prefscreen = new PREFSCREEN(new Vector2(-385, -1116), new Vector2(0,0));
 	
