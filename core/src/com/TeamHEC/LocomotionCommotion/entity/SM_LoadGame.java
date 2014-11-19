@@ -14,12 +14,16 @@ public class SM_LoadGame extends Entity{
 	@Override
 	public void update() {
 		pos.add(direction);
-//		if (Gdx.input.isKeyPressed(Keys.A))
-//			setDirection(-300,0);  //Left need to use this when button pressed.
-//		else if (Gdx.input.isKeyPressed(Keys.D))
-//			setDirection(300,0); //right need to use this when button pressed.
-//		else
-//			setDirection(0,0);
+		if (Gdx.input.isKeyPressed(Keys.A))
+			setDirection(-300,0);  //Left need to use this when button pressed.
+		else if (Gdx.input.isKeyPressed(Keys.D))
+			setDirection(300,0); //right need to use this when button pressed.
+		else if (Gdx.input.isKeyPressed(Keys.W))
+			setDirection(0,300); //right need to use this when button pressed.
+		else if (Gdx.input.isKeyPressed(Keys.S))
+			setDirection(0,-300); //right need to use this when button pressed.
+		else
+			setDirection(0,0);
 
 
 }
