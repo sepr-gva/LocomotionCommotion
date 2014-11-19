@@ -15,17 +15,17 @@ public class NewGameScreen extends Entity{
 	public void update() {
 		pos.add(direction); 
 
-		if (Gdx.input.isKeyPressed(Keys.LEFT))
+		if (Gdx.input.isKeyPressed(Keys.A))
 			setDirection(-300,0);  //Left need to use this when button pressed.
-		else if (Gdx.input.isKeyPressed(Keys.RIGHT))
+		else if (Gdx.input.isKeyPressed(Keys.D))
 			setDirection(300,0); //right need to use this when button pressed.
-		else if (Gdx.input.isKeyPressed(Keys.UP))
+		else if (Gdx.input.isKeyPressed(Keys.W))
 			setDirection(0,300); //UP need to use this when button pressed.
-		else if (Gdx.input.isKeyPressed(Keys.DOWN))
+		else if (Gdx.input.isKeyPressed(Keys.S))
 			setDirection(0,-300); //DOWN need to use this when button pressed.
 		else
 			setDirection(0,0);
-		System.out.println("postition:"+pos.x+ "," + pos.y);
+		//System.out.println("postition:"+pos.x+ "," + pos.y);
 	}
 
 

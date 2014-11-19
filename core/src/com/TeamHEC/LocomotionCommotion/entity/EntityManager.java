@@ -34,7 +34,7 @@ public class EntityManager {
 		mainpagelines = new SM_mainpageLines(new Vector2(-385, -930), new Vector2(0,0));
 		//temp
 		prefscreen = new PREFSCREEN(new Vector2(205, 44-h), new Vector2(0,0));
-		newgamescreen = new NewGameScreen(new Vector2(205, 44-h), new Vector2(0,0));
+		newgamescreen = new NewGameScreen(new Vector2(-154, -15+h), new Vector2(0,0));
 	}
 	
 	public void update(){
