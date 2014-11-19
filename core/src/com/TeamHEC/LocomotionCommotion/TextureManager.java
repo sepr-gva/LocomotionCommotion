@@ -15,7 +15,8 @@ public class TextureManager {
 	//Start Menu Lines
 	public static Texture mainpagelines = new Texture(Gdx.files.internal("lines.png"));
 	
-	//PREF SCREEN
+	// tempscreens
 	public static Texture prefscreen = new Texture(Gdx.files.internal("PREFSCREEN.png"));
+	public static Texture newgamescreen = new Texture(Gdx.files.internal("newgamescreen.png"));
 
 }

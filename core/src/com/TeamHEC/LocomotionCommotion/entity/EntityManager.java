@@ -15,7 +15,11 @@ public class EntityManager {
 	private SM_Preferences preferences;
 	private SM_HowToPlay sm_howtoplay;
 	private SM_mainpageLines mainpagelines;
+	//temp
 	private PREFSCREEN prefscreen;
+	private NewGameScreen newgamescreen;
+	
+	
 	private int h = LocomotionCommotion.HEIGHT;
 	
 	
@@ -28,9 +32,9 @@ public class EntityManager {
 		sm_howtoplay = new SM_HowToPlay(new Vector2(300, h-750), new Vector2(0,0));
 		//Lines
 		mainpagelines = new SM_mainpageLines(new Vector2(-385, -930), new Vector2(0,0));
-		//pref
-		prefscreen = new PREFSCREEN(new Vector2(-385, -1116), new Vector2(0,0));
-	
+		//temp
+		prefscreen = new PREFSCREEN(new Vector2(205, 44-h), new Vector2(0,0));
+		newgamescreen = new NewGameScreen(new Vector2(205, 44-h), new Vector2(0,0));
 	}
 	
 	public void update(){
@@ -43,6 +47,7 @@ public class EntityManager {
 		sm_howtoplay.update();
 		mainpagelines.update();
 		prefscreen.update();
+		newgamescreen.update();
 		
 		
 		
@@ -60,6 +65,7 @@ public class EntityManager {
 		loadgame.render(sb);
 		preferences.render(sb);
 		sm_howtoplay.render(sb);
+		newgamescreen.render(sb);
 		
 	}
 	
