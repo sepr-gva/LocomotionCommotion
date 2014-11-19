@@ -47,12 +47,13 @@ public class EntityManager {
 		for (Entity e: entities){
 			e.render(sb);
 		} 
+		mainpagelines.render(sb);
 		title.render(sb); 
 		newgame.render(sb);
 		loadgame.render(sb);
 		preferences.render(sb);
 		sm_howtoplay.render(sb);
-		mainpagelines.render(sb);
+		
 	}
 	
 	public void addEntity(Entity entity){

@@ -26,7 +26,7 @@ public class SM_mainpageLines extends Entity{
 		else
 			setDirection(0,0);
 		
-		System.out.println("postition:"+pos.x+ "," + pos.y);
+		//System.out.println("postition:"+pos.x+ "," + pos.y);
 	}
 }
 
