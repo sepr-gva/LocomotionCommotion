@@ -14,15 +14,19 @@ public class EntityManager {
 	private SM_LoadGame loadgame;
 	private SM_Preferences preferences;
 	private SM_HowToPlay sm_howtoplay;
+	private SM_mainpageLines mainpagelines;
 	private int h = LocomotionCommotion.HEIGHT;
 	
 	
 	public EntityManager(){
+		//Start Menu title and buttons
 		title = new Title(new Vector2(10,h-300), new Vector2(0,0));
 		newgame = new SM_NewGame(new Vector2(310, h-450), new Vector2(0,0));
 		loadgame = new SM_LoadGame(new Vector2(309, h-550), new Vector2(0,0));
 		preferences = new SM_Preferences(new Vector2(309, h-650), new Vector2(0,0));
-		sm_howtoplay = new SM_HowToPlay(new Vector2(309, h-650), new Vector2(0,0));
+		sm_howtoplay = new SM_HowToPlay(new Vector2(300, h-750), new Vector2(0,0));
+		//Lines
+		mainpagelines = new SM_mainpageLines(new Vector2(-385, -1116), new Vector2(0,0));
 	}
 	
 	public void update(){
@@ -33,6 +37,8 @@ public class EntityManager {
 		loadgame.update();
 		preferences.update();
 		sm_howtoplay.update();
+		mainpagelines.update();
+		
 		
 		
 	}
@@ -46,6 +52,7 @@ public class EntityManager {
 		loadgame.render(sb);
 		preferences.render(sb);
 		sm_howtoplay.render(sb);
+		mainpagelines.render(sb);
 	}
 	
 	public void addEntity(Entity entity){
