@@ -9,16 +9,16 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
-class NewGameActor extends Actor {
+class LoadGameActor extends Actor {
 	//Texture
-	Texture newgame = new Texture(Gdx.files.internal("sm_newgame.png"));
-	float actorX = 310, actorY = 600; //Texture pos
+	Texture loadgame = new Texture(Gdx.files.internal("sm_loadgame.png"));
+	float actorX = 310, actorY = 500; //Texture pos
 	
 	public boolean started = false;
 	
 
-	public NewGameActor(){
-		setBounds(actorX,actorY,newgame.getWidth(),newgame.getHeight());
+	public LoadGameActor(){
+		setBounds(actorX,actorY,loadgame.getWidth(),loadgame.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				if (((NewGameActor)event.getTarget()).started == false)
@@ -33,7 +33,7 @@ class NewGameActor extends Actor {
 
 	@Override
 	public void draw(Batch batch, float alpha){
-		batch.draw(newgame,actorX,actorY);
+		batch.draw(loadgame,actorX,actorY);
 	}
 
 	@Override
@@ -55,6 +55,8 @@ class NewGameActor extends Actor {
 	public void render(SpriteBatch sb){
 		
 	}
+	public void update() {
+		 }
 }
 
 

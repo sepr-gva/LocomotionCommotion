@@ -1,22 +1,25 @@
 package screenpackage;
 
+import com.TeamHEC.LocomotionCommotion.Actors.ActorManager;
 import com.TeamHEC.LocomotionCommotion.camera.OrthoCamera;
 import com.TeamHEC.LocomotionCommotion.entity.EntityManager;
-import com.TeamHEC.LocomotionCommotion.entity.SM_NewGame;
-import com.TeamHEC.LocomotionCommotion.entity.Title;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 
 public class StartMenu extends Screen{
 	
 	private OrthoCamera camera;
 	
 	private EntityManager entityManager;
+	
+	private ActorManager actorManager ;
 
 	@Override
 	public void create() {
 		camera = new OrthoCamera();
 		entityManager = new EntityManager();
+		actorManager = new ActorManager();
+		actorManager.create();
+		
 		
 		
 	}  
@@ -25,6 +28,7 @@ public class StartMenu extends Screen{
 	public void update() {
 		camera.update();
 		entityManager.update();
+		//actorManager.update();
 	}
 
 	@Override
@@ -32,6 +36,7 @@ public class StartMenu extends Screen{
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 		entityManager.render(sb );
+		//actorManager.render(sb);
 		sb.end();
 	}
 

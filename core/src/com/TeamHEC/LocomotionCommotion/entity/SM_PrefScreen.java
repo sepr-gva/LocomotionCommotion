@@ -4,7 +4,6 @@ import com.TeamHEC.LocomotionCommotion.TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.math.Vector2;
-import com.sun.org.apache.xpath.internal.axes.SelfIteratorNoPredicate;
 
 public class SM_PrefScreen extends Entity{
 
