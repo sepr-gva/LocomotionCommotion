@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class TempNG extends Actor {
 
 	Texture texture = new Texture(Gdx.files.internal("newgamescreen.png"));
-	float actorX = -1 ,actorY = 1050+50;
+	float actorX = -100 ,actorY = 1050+50;
 	public boolean started = false;
 
 	public TempNG(){
