@@ -32,13 +32,19 @@ public class Game {
 	private Player player1;
 	private Player player2;
 	private int turnCount;
+	private int turnLimit;
 	
 	private Player playerTurn;
 		
 	/**
 	 * Initialises a Game object. This represents one instance of a game.
+	 * @param Player1Name The name of Player1
+	 * @param Player2Name The name of Player2
+	 * @param Player1StationStart Player1 should have selected a station to buy at the beginning of the game. This is their selected Station's object.
+	 * @param Player2StationStart Player2 should have selected a station to buy at the beginning of the game. This is their selected Station's object.
+	 * @param turnLimit The number of turns before the end of the game.
 	 */
-	public Game(String Player1Name, String Player2Name, Station Player1StationStart, Station Player2StationStart)
+	public Game(String Player1Name, String Player2Name, Station Player1StationStart, Station Player2StationStart, int turnLimit)
 	{
 		//Initialise Players
 		HashMap<String, Resource> player1Resources = getBaseResources(Player1StationStart);
@@ -85,6 +91,7 @@ public class Game {
 		
 		gameMap = new WorldMap();		
 		turnCount = 0;
+		this.turnLimit = turnLimit;
 		
 		//Make decision on who goes first
 		
@@ -98,6 +105,9 @@ public class Game {
 		StartTurn();
 	}
 	
+	/*
+	 * Randomly returns either 0 or 1. It's used in determining which player will go first in this game.
+	 */
 	private int flipCoin() {
 		Random coin = new Random();
 		return coin.nextInt(2);
@@ -110,9 +120,15 @@ public class Game {
 	
 	public void StartTurn()
 	{
-		
+		if(turnCount == turnLimit)
+			EndGame();
 	}
 	
+	private void EndGame()
+	{
+		// TODO Auto-generated method stub		
+	}
+
 	public HashMap<String, Resource> getBaseResources(Station station)
 	{
 		//Temporary		
