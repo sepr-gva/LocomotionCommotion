@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class PreferencesActor extends Actor {
 
 	Texture texture = new Texture(Gdx.files.internal("sm_preferences.png"));
-	float actorX = NewGameActor.actorX ,actorY = NewGameActor.actorY-84*2;
+	float actorX = NewGameActor.actorX-10 ,actorY = NewGameActor.actorY-150;
 	public boolean started = false;
 
 	public PreferencesActor(){

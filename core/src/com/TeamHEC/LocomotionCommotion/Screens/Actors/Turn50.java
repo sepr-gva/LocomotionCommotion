@@ -8,17 +8,17 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class NewGameActor extends Actor {
+public class Turn50 extends Actor {
 	
-	Texture texture = new Texture(Gdx.files.internal("sm_newgame.png"));
-	public static float actorX = 400 ,actorY = 445;
+	Texture texture = new Texture(Gdx.files.internal("startmenuButtons/turn50.png"));
+	public static float actorX = 490 ,actorY = 1150+250;
 	public boolean started = false;
 
-	public NewGameActor(){
+	public Turn50(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((NewGameActor)event.getTarget()).started = true;
+				((Turn50)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -33,7 +33,7 @@ public class NewGameActor extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 1150);
+			StartMenu.changeCam(0, 0);
 			started = false;
 			
 			

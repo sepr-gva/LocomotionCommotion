@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class HowToPlayActor extends Actor {
 
 	Texture texture = new Texture(Gdx.files.internal("sm_howtoplay.png"));
-	float actorX = 440 ,actorY = 285;
+	float actorX = NewGameActor.actorX-10 ,actorY = NewGameActor.actorY-220;
 	public boolean started = false;
 
 	public HowToPlayActor(){
