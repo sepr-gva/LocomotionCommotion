@@ -1,58 +1,43 @@
 package com.TeamHEC.LocomotionCommotion;
 
-import screenpackage.ScreenManager;
-import screenpackage.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-
-public class LocomotionCommotion implements ApplicationListener {
-		
-	public static int WIDTH = 1680, HEIGHT = 1050;
-	private SpriteBatch batch;
-
+public class LocomotionCommotion extends Game {
+	public static final String TITLE = "LOCOMOTION COMOTION", VERSION = "0.0.0.1";
 	@Override
-	public void create() {		
-		batch = new SpriteBatch();
-		ScreenManager.setScreen(new StartMenu());
-	}
-
-	@Override
-	public void dispose() {
-		if (ScreenManager.getCurrentScreen() != null)
-			ScreenManager.getCurrentScreen().dispose();
-		batch.dispose();
-	}
-
-	@Override
-	public void render() {		
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		if (ScreenManager.getCurrentScreen() != null)
-			ScreenManager.getCurrentScreen().update();
-
-		if (ScreenManager.getCurrentScreen() != null)
-			ScreenManager.getCurrentScreen().render(batch);
+	public void create() {
+		OrthographicCamera camera = new OrthographicCamera();
+        camera.setToOrtho(true, 1680, 1050); //our res//
+        StartMenu.create();
+		setScreen(new StartMenu()); // Use the StartMenu Screen First
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		if (ScreenManager.getCurrentScreen() != null)
-			ScreenManager.getCurrentScreen().resize(width, height);
+		super.resize(width, height);
+	}
+
+	@Override
+	public void render() {
+		super.render();
 	}
 
 	@Override
 	public void pause() {
-		if (ScreenManager.getCurrentScreen() != null)
-			ScreenManager.getCurrentScreen().pause();
+		super.pause();
 	}
 
 	@Override
 	public void resume() {
-		if (ScreenManager.getCurrentScreen() != null)
-			ScreenManager.getCurrentScreen().resume();
+		super.resume();
 	}
+
+	@Override
+	public void dispose() {
+		super.dispose();
+	}
+		
+
 	}
