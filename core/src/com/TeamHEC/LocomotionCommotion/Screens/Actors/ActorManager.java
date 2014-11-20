@@ -11,19 +11,9 @@ public class ActorManager {
 	private final static Array<Actor> actors = new Array<Actor>();
 	private static NewGameActor newgame;
 	private static LinesActor lines;
+	private static LoadGameActor loadgame;
 	
-	
-	private int h = 1050;
-	
-	
-	public ActorManager(){
-		//Lines
-//		lines = new LinesActor();
-//		actors.add(lines);
-//	
-//		newgame = new NewGameActor();
-//		actors.add(newgame);
-//		
+	public ActorManager(){		
 	}
 	
 	public static void create(Stage stage){
@@ -33,6 +23,10 @@ public class ActorManager {
 			
 				newgame = new NewGameActor();
 				actors.add(newgame);
+				
+				loadgame = new LoadGameActor();
+				actors.add(loadgame);
+				
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
