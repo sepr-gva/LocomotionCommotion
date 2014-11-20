@@ -2,14 +2,14 @@ package com.TeamHEC.LocomotionCommotion;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class LocomotionCommotion extends Game {
+
 	public static final String TITLE = "LOCOMOTION COMOTION", VERSION = "0.0.0.1";
 	@Override
 	public void create() {
-		OrthographicCamera camera = new OrthographicCamera();
-        camera.setToOrtho(true, 1680, 1050); //our res//
         StartMenu.create();
 		setScreen(new StartMenu()); // Use the StartMenu Screen First
 	}
