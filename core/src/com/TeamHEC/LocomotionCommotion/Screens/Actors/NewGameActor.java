@@ -7,18 +7,18 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class LinesActor extends Actor {
+public class NewGameActor extends Actor {
 
-	Texture texture = new Texture(Gdx.files.internal("lines.png"));
-	float actorX = 100 ,actorY = -400;
+	Texture texture = new Texture(Gdx.files.internal("sm_newgame.png"));
+	float actorX = 100 ,actorY = 100;
 	public boolean started = false;
 
-	public LinesActor(){
+	public NewGameActor(){
 		texture.getMinFilter();
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean keyDown (InputEvent event, int keycode) {
-				((LinesActor)event.getTarget()).started = true;
+				((NewGameActor)event.getTarget()).started = true;
 				return true;
 			}
 		});

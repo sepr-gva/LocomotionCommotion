@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
 import com.TeamHEC.LocomotionCommotion.Screens.Actors.LinesActor;
+import com.TeamHEC.LocomotionCommotion.Screens.Actors.NewGameActor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -17,7 +18,10 @@ public class StartMenu implements Screen{
         
         LinesActor lines = new LinesActor();
         lines.setTouchable(Touchable.enabled);
+        NewGameActor newGame = new NewGameActor();
+        newGame.setTouchable(Touchable.enabled);
         stage.addActor(lines);
+        stage.addActor(newGame);
     }
 	
 
