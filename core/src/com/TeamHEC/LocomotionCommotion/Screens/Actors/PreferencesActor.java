@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class PreferencesActor extends Actor {
 
 	Texture texture = new Texture(Gdx.files.internal("sm_preferences.png"));
-	float actorX = 440 ,actorY = 345;
+	float actorX = NewGameActor.actorX ,actorY = NewGameActor.actorY-84*2;
 	public boolean started = false;
 
 	public PreferencesActor(){
@@ -36,5 +36,9 @@ public class PreferencesActor extends Actor {
 			StartMenu.changeCam(0, -1050);
 			started = false;
 		}
+	}
+	
+	public void update(){
+		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 	}
 }
