@@ -10,6 +10,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
+import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 public class Player {
@@ -45,6 +46,7 @@ public class Player {
 		this.stations = stations;
 	}
 	
+	// We don't need these get/setters if they're public:
 	public int getGold()
 	{
 		return gold.getValue();
