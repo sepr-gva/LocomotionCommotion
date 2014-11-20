@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class HowToPlayActor extends Actor {
 
 	Texture texture = new Texture(Gdx.files.internal("sm_howtoplay.png"));
-	float actorX = 450 ,actorY = 435;
+	float actorX = 440 ,actorY = 285;
 	public boolean started = false;
 
 	public HowToPlayActor(){
@@ -33,7 +33,7 @@ public class HowToPlayActor extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 1050);
+			StartMenu.changeCam(-900, 0);
 			started = false;
 		}
 	}

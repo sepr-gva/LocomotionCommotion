@@ -14,6 +14,7 @@ public class ActorManager {
 	private static LoadGameActor loadgame;
 	private static PreferencesActor preferences;
 	private static HowToPlayActor howtoplay;
+	private static TempNG newgamescreen;
 	
 	public ActorManager(){		
 	}
@@ -34,6 +35,9 @@ public class ActorManager {
 				
 				howtoplay = new HowToPlayActor();
 				actors.add(howtoplay);
+				
+				newgamescreen = new TempNG();
+				actors.add(newgamescreen);
 				
 				
 		for (Actor a : actors){

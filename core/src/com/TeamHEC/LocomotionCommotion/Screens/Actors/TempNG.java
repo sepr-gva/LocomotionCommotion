@@ -8,17 +8,17 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class PreferencesActor extends Actor {
+public class TempNG extends Actor {
 
-	Texture texture = new Texture(Gdx.files.internal("sm_preferences.png"));
-	float actorX = 440 ,actorY = 345;
+	Texture texture = new Texture(Gdx.files.internal("newgamescreen.png"));
+	float actorX = -100 ,actorY = 1050+0;
 	public boolean started = false;
 
-	public PreferencesActor(){
+	public TempNG(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((PreferencesActor)event.getTarget()).started = true;
+				((TempNG)event.getTarget()).started = true;
 				return true;
 			}
 		});
