@@ -2,11 +2,10 @@ package com.TeamHEC.LocomotionCommotion.Resource;
 
 public class Carriage extends Resource{
 
-	public final int cost;
+	public final int cost = 20;
 	
-	public Carriage(int value, int cost)
+	public Carriage(int value)
 	{
-		super(value);
-		this.cost = cost;
+		super(value);		
 	}
 }
