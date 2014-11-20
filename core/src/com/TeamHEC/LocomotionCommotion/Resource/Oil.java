@@ -2,8 +2,9 @@ package com.TeamHEC.LocomotionCommotion.Resource;
 
 public class Oil extends Fuel{
 
-	public Oil(int value, int cost)
+	public Oil(int value)
 	{
-		super(value, cost);
+		super(value);
+		cost = 50;
 	}
 }

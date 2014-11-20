@@ -1,9 +1,10 @@
 package com.TeamHEC.LocomotionCommotion.Resource;
 
 public class Electric extends Fuel{
-
-	public Electric(int value, int cost)
+		
+	public Electric(int value)
 	{
-		super(value, cost);
+		super(value);
+		cost = 100;
 	}
 }

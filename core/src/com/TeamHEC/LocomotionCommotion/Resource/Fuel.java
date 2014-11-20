@@ -1,12 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Resource;
 
-public class Fuel extends Resource{
+public abstract class Fuel extends Resource{
 
-	public final int cost;
+	public int cost;
 	
-	public Fuel(int value, int cost)
+	public Fuel(int value)
 	{
-		super(value);
-		this.cost = cost;
+		super(value);		
 	}
 }
