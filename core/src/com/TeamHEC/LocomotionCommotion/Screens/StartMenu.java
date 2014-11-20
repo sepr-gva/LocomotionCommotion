@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
+import com.TeamHEC.LocomotionCommotion.Screens.Actors.ActorManager;
 import com.TeamHEC.LocomotionCommotion.Screens.Actors.LinesActor;
 import com.TeamHEC.LocomotionCommotion.Screens.Actors.NewGameActor;
 import com.badlogic.gdx.Gdx;
@@ -21,16 +22,10 @@ public class StartMenu implements Screen{
 		
 		stage = new Stage();
 		Camera camera = stage.getCamera();
-		camera.translate(0, -100, 0);
+		//camera.translate(0, -100, 0);
 		camera.update();
         Gdx.input.setInputProcessor(stage);
-        
-        LinesActor lines = new LinesActor();
-        lines.setTouchable(Touchable.enabled);
-        NewGameActor newGame = new NewGameActor();
-        newGame.setTouchable(Touchable.enabled);
-        stage.addActor(lines);
-        stage.addActor(newGame);
+        ActorManager.create(stage);
     }
 	
 	public static void changeCam(int x,int y){
