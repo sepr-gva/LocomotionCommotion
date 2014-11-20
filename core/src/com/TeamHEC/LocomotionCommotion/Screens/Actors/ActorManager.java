@@ -12,6 +12,8 @@ public class ActorManager {
 	private static NewGameActor newgame;
 	private static LinesActor lines;
 	private static LoadGameActor loadgame;
+	private static PreferencesActor preferences;
+	private static HowToPlayActor howtoplay;
 	
 	public ActorManager(){		
 	}
@@ -26,6 +28,13 @@ public class ActorManager {
 				
 				loadgame = new LoadGameActor();
 				actors.add(loadgame);
+				
+				preferences = new PreferencesActor();
+				actors.add(preferences);
+				
+				howtoplay = new HowToPlayActor();
+				actors.add(howtoplay);
+				
 				
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);

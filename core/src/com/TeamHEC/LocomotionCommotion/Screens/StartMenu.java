@@ -1,15 +1,12 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
 import com.TeamHEC.LocomotionCommotion.Screens.Actors.ActorManager;
-import com.TeamHEC.LocomotionCommotion.Screens.Actors.LinesActor;
-import com.TeamHEC.LocomotionCommotion.Screens.Actors.NewGameActor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 public class StartMenu implements Screen{ 
 	
