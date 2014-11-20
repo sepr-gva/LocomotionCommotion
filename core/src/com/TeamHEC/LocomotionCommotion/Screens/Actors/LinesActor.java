@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class LinesActor extends Actor {
 
 	Texture texture = new Texture(Gdx.files.internal("lines.png"));
-	float actorX = 400 ,actorY = -900;
+	float actorX = -300 ,actorY = -500;
 	public boolean started = false;
 
 	public LinesActor(){

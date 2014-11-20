@@ -33,7 +33,7 @@ public class LoadGameActor extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(-1650, 0);
+			StartMenu.changeCam(1650, 0);
 			started = false;
 		}
 	}
