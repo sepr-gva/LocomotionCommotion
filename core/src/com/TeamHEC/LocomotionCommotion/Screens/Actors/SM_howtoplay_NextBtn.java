@@ -33,7 +33,7 @@ public class SM_howtoplay_NextBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 950);
+			StartMenu.changeCam(0, 0);
 			started = false;
 		}
 	}
