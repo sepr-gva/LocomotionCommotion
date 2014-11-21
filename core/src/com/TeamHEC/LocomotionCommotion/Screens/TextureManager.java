@@ -22,5 +22,12 @@ public class TextureManager {
 	public static Texture sm_newgame_Turn50Btn = new Texture(Gdx.files.internal("sm_newgame/turn50.png"));
 	public static Texture sm_newgame_Turn100Btn = new Texture(Gdx.files.internal("sm_newgame/turn100.png"));
 	public static Texture sm_newgame_Turn150Btn = new Texture(Gdx.files.internal("sm_newgame/turn150.png"));
+	
+	//StartMenu LoadGame Page
+	public static Texture sm_loadgame_Title = new Texture(Gdx.files.internal("sm_loadgame/loadgametitle.png"));
+	public static Texture sm_loadgame_Examples = new Texture(Gdx.files.internal("sm_loadgame/loadgameexamples.png"));
+	
+	//StartMenu Preferences Page
+	public static Texture sm_preferences_VertLine = new Texture(Gdx.files.internal("sm_preferences/vertline.png"));
 
 }

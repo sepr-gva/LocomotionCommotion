@@ -8,17 +8,17 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class SM_main_LoadGameBtn extends Actor {
+public class SM_preferences_VertLine extends Actor {
 
-	Texture texture = TextureManager.sm_main_loadgamebtn;
-	float actorX = SM_main_NewGameBtn.actorX ,actorY = SM_main_NewGameBtn.actorY-74;
+	Texture texture = TextureManager.sm_preferences_VertLine;
+	float actorX = 500 ,actorY= -950-100;
 	public boolean started = false;
 
-	public SM_main_LoadGameBtn(){
+	public SM_preferences_VertLine(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((SM_main_LoadGameBtn)event.getTarget()).started = true;
+				((SM_preferences_VertLine)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -33,7 +33,7 @@ public class SM_main_LoadGameBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(1250, 0);
+			StartMenu.changeCam(0, 0);
 			started = false;
 		}
 	}

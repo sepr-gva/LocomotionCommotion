@@ -29,6 +29,15 @@ public class ActorManager {
 	private static SM_newgame_Turn100Btn sm_newgame_turn100btn;
 	private static SM_newgame_Turn150Btn sm_newgame_turn150btn;
 	private static SM_newgame_GoBtn sm_newgame_gobtn;
+	
+	//Start Menu LoadGame Page
+	public static SM_loadgame_TitleText sm_loadgame_title;
+	public static SM_loadgame_Examples sm_loadgame_examples;
+	public static SM_loadgame_BackBtn sm_loadgame_backbtn;
+	
+	//Start Menu Preferences Page
+	public static SM_preferences_VertLine sm_preferences_vertline;
+	
 
 
 	public ActorManager(){		
@@ -86,11 +95,25 @@ public class ActorManager {
 
 		sm_newgame_gobtn = new SM_newgame_GoBtn();
 		actors.add(sm_newgame_gobtn);
-
+		
+		//Start Menu LoadGame page
+		sm_loadgame_title = new SM_loadgame_TitleText();
+		actors.add(sm_loadgame_title);
+		
+		sm_loadgame_examples = new SM_loadgame_Examples();
+		actors.add(sm_loadgame_examples);
+		
+		//Start Menu Preferences Page
+		sm_preferences_vertline = new SM_preferences_VertLine();
+		actors.add(sm_preferences_vertline);
+		
+		sm_loadgame_backbtn = new SM_loadgame_BackBtn();
+		actors.add(sm_loadgame_backbtn);
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
 		}
+		
 
 	}
 
