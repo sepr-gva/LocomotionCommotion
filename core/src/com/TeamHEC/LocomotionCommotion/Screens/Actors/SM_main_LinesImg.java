@@ -1,24 +1,24 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class TurnTimeOutBtn extends Actor {
-	
-	Texture texture = new Texture(Gdx.files.internal("startmenuButtons/turnTimeoutBtn.png"));
-	public static float actorX = 400 ,actorY = 1150+530;
+public class SM_main_LinesImg extends Actor {
+
+	Texture texture = TextureManager.sm_main_linesimg;
+	float actorX = -75 ,actorY = -300;
 	public boolean started = false;
 
-	public TurnTimeOutBtn(){
+	public SM_main_LinesImg(){
+		texture.getMinFilter();
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
-			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((TurnTimeOutBtn)event.getTarget()).started = true;
+			public boolean keyDown (InputEvent event, int keycode) {
+				((SM_main_LinesImg)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -33,10 +33,7 @@ public class TurnTimeOutBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 0);
-			started = false;
-			
-			
+			actorX-=30;
 		}
 	}
 }

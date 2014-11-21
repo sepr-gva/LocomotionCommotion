@@ -1,24 +1,24 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class StationDomBtn extends Actor {
-	
-	Texture texture = new Texture(Gdx.files.internal("startmenuButtons/stationDominationBtn.png"));
-	public static float actorX = 660 ,actorY = 1150+530;
+public class SM_newgame_MenuText extends Actor {
+
+	Texture texture = TextureManager.sm_newgame_MenuText;
+	float actorX = 80 ,actorY = 1150+ 250;
 	public boolean started = false;
 
-	public StationDomBtn(){
+	public SM_newgame_MenuText(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((StationDomBtn)event.getTarget()).started = true;
+				((SM_newgame_MenuText)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -35,8 +35,6 @@ public class StationDomBtn extends Actor {
 		if(started){
 			StartMenu.changeCam(0, 0);
 			started = false;
-			
-			
 		}
 	}
 }

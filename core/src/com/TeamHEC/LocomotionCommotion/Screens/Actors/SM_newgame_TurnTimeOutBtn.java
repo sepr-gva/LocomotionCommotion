@@ -1,24 +1,24 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class Turn100 extends Actor {
+public class SM_newgame_TurnTimeOutBtn extends Actor {
 	
-	Texture texture = new Texture(Gdx.files.internal("startmenuButtons/turn100.png"));
-	public static float actorX = 590 ,actorY = 1150+250;
+	Texture texture = TextureManager.sm_newgame_TurnTimeOutBtn;
+	public static float actorX = 400 ,actorY = 1150+530;
 	public boolean started = false;
 
-	public Turn100(){
+	public SM_newgame_TurnTimeOutBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Turn100)event.getTarget()).started = true;
+				((SM_newgame_TurnTimeOutBtn)event.getTarget()).started = true;
 				return true;
 			}
 		});

@@ -1,24 +1,24 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class LoadGameActor extends Actor {
-
-	Texture texture = new Texture(Gdx.files.internal("sm_loadgame.png"));
-	float actorX = NewGameActor.actorX ,actorY = NewGameActor.actorY-74;
+public class SM_newgame_Turn100Btn extends Actor {
+	
+	Texture texture = TextureManager.sm_newgame_Turn100Btn;
+	public static float actorX = 590 ,actorY = 1150+250;
 	public boolean started = false;
 
-	public LoadGameActor(){
+	public SM_newgame_Turn100Btn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((LoadGameActor)event.getTarget()).started = true;
+				((SM_newgame_Turn100Btn)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -33,8 +33,10 @@ public class LoadGameActor extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(1650, 0);
+			StartMenu.changeCam(0, 0);
 			started = false;
+			
+			
 		}
 	}
 }

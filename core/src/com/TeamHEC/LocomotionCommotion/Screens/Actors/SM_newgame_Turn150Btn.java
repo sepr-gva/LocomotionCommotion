@@ -1,24 +1,24 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class TempTextBox1 extends Actor {
+public class SM_newgame_Turn150Btn extends Actor {
 	
-	Texture texture = new Texture(Gdx.files.internal("startmenuButtons/tempTextBox.png"));
-	public static float actorX = 480 ,actorY = 1150+430;
+	Texture texture = TextureManager.sm_newgame_Turn150Btn;
+	public static float actorX = 680 ,actorY = 1150+250;
 	public boolean started = false;
 
-	public TempTextBox1(){
+	public SM_newgame_Turn150Btn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((TempTextBox1)event.getTarget()).started = true;
+				((SM_newgame_Turn150Btn)event.getTarget()).started = true;
 				return true;
 			}
 		});

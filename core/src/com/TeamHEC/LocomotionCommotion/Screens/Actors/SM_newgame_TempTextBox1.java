@@ -1,24 +1,24 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class PreferencesActor extends Actor {
-
-	Texture texture = new Texture(Gdx.files.internal("sm_preferences.png"));
-	float actorX = NewGameActor.actorX-10 ,actorY = NewGameActor.actorY-150;
+public class SM_newgame_TempTextBox1 extends Actor {
+	
+	Texture texture = TextureManager.sm_newgame_TempTextBox;
+	public static float actorX = 480 ,actorY = 1150+430;
 	public boolean started = false;
 
-	public PreferencesActor(){
+	public SM_newgame_TempTextBox1(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((PreferencesActor)event.getTarget()).started = true;
+				((SM_newgame_TempTextBox1)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -33,12 +33,10 @@ public class PreferencesActor extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, -1050);
+			StartMenu.changeCam(0, 0);
 			started = false;
+			
+			
 		}
-	}
-	
-	public void update(){
-		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 	}
 }

@@ -1,24 +1,24 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class BackBtn extends Actor {
-
-	Texture texture = new Texture(Gdx.files.internal("backButton.png"));
-	float actorX = 770 ,actorY = 1350+ 435;
+public class SM_newgame_TempTextBox2 extends Actor {
+	
+	Texture texture = TextureManager.sm_newgame_TempTextBox;
+	public static float actorX = 480 ,actorY = 1150+350;
 	public boolean started = false;
 
-	public BackBtn(){
+	public SM_newgame_TempTextBox2(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((BackBtn)event.getTarget()).started = true;
+				((SM_newgame_TempTextBox2)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -33,8 +33,10 @@ public class BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, -1150);
+			StartMenu.changeCam(0, 0);
 			started = false;
+			
+			
 		}
 	}
 }

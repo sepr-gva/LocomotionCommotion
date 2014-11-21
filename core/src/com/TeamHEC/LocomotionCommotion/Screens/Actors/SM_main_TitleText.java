@@ -1,24 +1,24 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class GoBtn extends Actor {
-	
-	Texture texture = new Texture(Gdx.files.internal("startmenuButtons/goBtn.png"));
-	public static float actorX = -30 ,actorY = 1150+50;
+public class SM_main_TitleText extends Actor {
+
+	Texture texture = TextureManager.sm_main_title;
+	float actorX = 5 ,actorY = 550;
 	public boolean started = false;
 
-	public GoBtn(){
+	public SM_main_TitleText(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((GoBtn)event.getTarget()).started = true;
+				((SM_main_TitleText)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -35,8 +35,6 @@ public class GoBtn extends Actor {
 		if(started){
 			StartMenu.changeCam(0, 0);
 			started = false;
-			
-			
 		}
 	}
 }
