@@ -10,8 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class SM_howtoplay_HomeBtn extends Actor {
 
-	Texture texture = TextureManager.sm_howtoplay_line; // reuse the new game back btn texture
-	float actorX = -1290+ 1010 ,actorY = 10;
+	Texture texture = TextureManager.sm_howtoplay_homebtn; 
+	float actorX = -1290+ 570 ,actorY = 160;
 	public boolean started = false;
 
 	public SM_howtoplay_HomeBtn(){
