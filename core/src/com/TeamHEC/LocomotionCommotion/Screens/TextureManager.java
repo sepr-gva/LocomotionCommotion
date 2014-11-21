@@ -29,5 +29,19 @@ public class TextureManager {
 	
 	//StartMenu Preferences Page
 	public static Texture sm_preferences_VertLine = new Texture(Gdx.files.internal("sm_preferences/vertline.png"));
-
+	public static Texture sm_preferences_Title = new Texture(Gdx.files.internal("sm_preferences/preferencestitle.png"));
+	public static Texture sm_preferences_GameSettingsBtn = new Texture(Gdx.files.internal("sm_preferences/gamesettingsbtn.png"));
+	public static Texture sm_preferences_DisplaySettingsBtn = new Texture(Gdx.files.internal("sm_preferences/displaysettingsbtn.png"));
+	public static Texture sm_preferences_SoundSettingsBtn = new Texture(Gdx.files.internal("sm_preferences/soundsettingsbtn.png"));
+	public static Texture sm_preferences_ControlSettingsBtn = new Texture(Gdx.files.internal("sm_preferences/controlsettingsbtn.png"));
+	
+	
+	//StartMenu HowtoPlayPage
+	public static Texture sm_howtoplay_line = new Texture(Gdx.files.internal("sm_howtoplay/howtoplayline.png"));
+	public static Texture sm_howtoplay_frame = new Texture(Gdx.files.internal("sm_howtoplay/howtoplayframe.png"));
+	public static Texture sm_howtoplay_title = new Texture(Gdx.files.internal("sm_howtoplay/howtoplaytitle.png"));
+	public static Texture sm_howtoplay_nextbtn = new Texture(Gdx.files.internal("sm_howtoplay/nextbtn.png"));
+	public static Texture sm_howtoplay_previousbtn = new Texture(Gdx.files.internal("sm_howtoplay/previousbtn.png"));
+	public static Texture sm_howtoplay_homebtn = new Texture(Gdx.files.internal("sm_howtoplay/homebtn.png"));
+	
 }

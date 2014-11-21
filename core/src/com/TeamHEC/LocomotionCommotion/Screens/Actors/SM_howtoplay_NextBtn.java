@@ -8,17 +8,17 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class SM_preferences_VertLine extends Actor {
+public class SM_howtoplay_NextBtn extends Actor {
 
-	Texture texture = TextureManager.sm_preferences_VertLine;
-	float actorX = 1031 ,actorY= -950-10;
+	Texture texture = TextureManager.sm_howtoplay_line; // reuse the new game back btn texture
+	float actorX = -1290+ 1010 ,actorY = 10;
 	public boolean started = false;
 
-	public SM_preferences_VertLine(){
+	public SM_howtoplay_NextBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((SM_preferences_VertLine)event.getTarget()).started = true;
+				((SM_howtoplay_NextBtn)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -33,7 +33,7 @@ public class SM_preferences_VertLine extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 0);
+			StartMenu.changeCam(0, 950);
 			started = false;
 		}
 	}

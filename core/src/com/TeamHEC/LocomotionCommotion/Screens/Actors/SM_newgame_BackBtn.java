@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_newgame_BackBtn extends Actor {
 
 	Texture texture = TextureManager.sm_newgame_BackBtn;
-	float actorX = 770 ,actorY = 1150+ 635;
+	float actorX = 790 ,actorY = 1050+740;
 	public boolean started = false;
 
 	public SM_newgame_BackBtn(){

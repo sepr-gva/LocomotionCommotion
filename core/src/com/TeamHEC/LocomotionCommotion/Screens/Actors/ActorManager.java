@@ -37,6 +37,21 @@ public class ActorManager {
 	
 	//Start Menu Preferences Page
 	public static SM_preferences_VertLine sm_preferences_vertline;
+	public static SM_preferences_TitleText  sm_preferences_titletext;
+	public static SM_preferences_GameSettingsBtn sm_preferences_gamesettingsbtn;
+	public static SM_preferences_DisplaySettingsBtn sm_preferences_displaysettingsbtn;
+	public static SM_preferences_SoundSettingsBtn sm_preferences_soundsettingsbtn;
+	public static SM_preferences_ControlSettingsBtn sm_preferences_controlsettingsbtn;
+	public static SM_preferences_BackBtn sm_preferences_backbtn;
+	
+	//Start Menu HowtoPlay Page
+	public static SM_howtoplay_LineImg sm_howtoplay_line;
+	public static SM_howtoplay_TitleText sm_howtoplay_title;
+	public static SM_howtoplay_NextBtn sm_howtoplay_nextbtn;
+	public static SM_howtoplay_PreviousBtn sm_howtoplay_previousbtn;
+	public static SM_howtoplay_HomeBtn sm_howtoplay_homebtn;
+	public static SM_howtoplay_FrameImg sm_howtoplay_frame;
+	public static SM_howtoplay_BackBtn sm_howtoplay_backbtn;
 	
 
 
@@ -97,18 +112,62 @@ public class ActorManager {
 		actors.add(sm_newgame_gobtn);
 		
 		//Start Menu LoadGame page
+		
 		sm_loadgame_title = new SM_loadgame_TitleText();
 		actors.add(sm_loadgame_title);
+		
+		sm_loadgame_backbtn = new SM_loadgame_BackBtn();
+		actors.add(sm_loadgame_backbtn);
 		
 		sm_loadgame_examples = new SM_loadgame_Examples();
 		actors.add(sm_loadgame_examples);
 		
 		//Start Menu Preferences Page
+	
 		sm_preferences_vertline = new SM_preferences_VertLine();
 		actors.add(sm_preferences_vertline);
 		
-		sm_loadgame_backbtn = new SM_loadgame_BackBtn();
-		actors.add(sm_loadgame_backbtn);
+		sm_preferences_backbtn = new SM_preferences_BackBtn();
+		actors.add(sm_preferences_backbtn);
+		
+		sm_preferences_titletext = new SM_preferences_TitleText();
+		actors.add(sm_preferences_titletext);
+		
+		sm_preferences_gamesettingsbtn = new SM_preferences_GameSettingsBtn();
+		actors.add(sm_preferences_gamesettingsbtn);
+		
+		sm_preferences_displaysettingsbtn = new SM_preferences_DisplaySettingsBtn();
+		actors.add(sm_preferences_displaysettingsbtn);
+		
+		sm_preferences_soundsettingsbtn = new SM_preferences_SoundSettingsBtn();
+		actors.add(sm_preferences_soundsettingsbtn);
+		
+		sm_preferences_controlsettingsbtn = new SM_preferences_ControlSettingsBtn();
+		actors.add(sm_preferences_controlsettingsbtn);
+		
+		//StartMenu HowtoPlay screen
+		
+		sm_howtoplay_line = new SM_howtoplay_LineImg();
+		actors.add(sm_howtoplay_line);
+		
+		sm_howtoplay_title = new SM_howtoplay_TitleText();
+		actors.add(sm_howtoplay_title);
+		
+		sm_howtoplay_nextbtn = new SM_howtoplay_NextBtn();
+		actors.add(sm_howtoplay_nextbtn);
+		
+		sm_howtoplay_previousbtn = new SM_howtoplay_PreviousBtn();
+		actors.add(sm_howtoplay_previousbtn);
+		
+		sm_howtoplay_homebtn = new SM_howtoplay_HomeBtn();
+		actors.add(sm_howtoplay_homebtn);
+		
+		sm_howtoplay_frame = new SM_howtoplay_FrameImg();
+		actors.add(sm_howtoplay_frame);
+		
+		sm_howtoplay_backbtn = new SM_howtoplay_BackBtn();
+		actors.add(sm_howtoplay_backbtn);
+		
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
