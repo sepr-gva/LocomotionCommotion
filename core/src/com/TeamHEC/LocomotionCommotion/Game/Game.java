@@ -66,8 +66,7 @@ public class Game {
 				(Nuclear) player1Resources.get("nuclear"), 
 				(Oil) player1Resources.get("oil"), 
 				(Carriage) player1Resources.get("carriage"),
-				new ArrayList<Card>(), 
-				new Shop(), 
+				new ArrayList<Card>(), 				 
 				new ArrayList<Goal>(), 
 				new ArrayList<Train>(), 				 
 				Player1Stations);		
@@ -81,8 +80,7 @@ public class Game {
 				(Nuclear) player2Resources.get("nuclear"),
 				(Oil) player2Resources.get("oil"),
 				(Carriage) player2Resources.get("carriage"),
-				new ArrayList<Card>(),
-				new Shop(),
+				new ArrayList<Card>(),	
 				new ArrayList<Goal>(),
 				new ArrayList<Train>(),
 				Player2Stations);
