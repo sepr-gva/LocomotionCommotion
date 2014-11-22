@@ -1,10 +1,10 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
+import com.TeamHEC.LocomotionCommotion.Player.Player;
+
 public class Card {
 	
 	/*
-		Thought process:
-	
 	 1) Associated with player class
 	 	- A player is limited to the amount of cards associated with them
 	 	
@@ -23,11 +23,26 @@ public class Card {
 	
 	private final String cardName;
 	private final String cardDescription;
+	private final int cardValue;
+	private Player owner;
 	
-	public Card(String name, String description)
+	// If created in the shop, the player can be initialised to null:
+	public Card(String name, String description, int value, Player player)
 	{
 		cardName = name;
 		cardDescription = description;
+		owner = player;
+		cardValue = value;
+	}
+		
+	public Player getOwner()
+	{
+		return owner;
+	}
+	
+	public void setOwner(Player owner)
+	{
+		this.owner = owner;
 	}
 	
 	// For the shop:
@@ -39,5 +54,10 @@ public class Card {
 	public String getDescription()
 	{
 		return cardDescription;
+	}
+	
+	public int getValue()
+	{
+		return cardValue;
 	}
 }

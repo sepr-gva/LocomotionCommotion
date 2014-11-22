@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Player;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
@@ -32,7 +33,7 @@ public class Player {
 	public ArrayList<Station> stations;
 	
 	public Player(String playerName, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
-				Carriage carriage, ArrayList<Card> cards, Shop shop, ArrayList<Goal> goals, ArrayList<Train> trains,
+				Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains,
 				ArrayList<Station> stations)
 	{
 		this.playerName = playerName;
@@ -43,7 +44,7 @@ public class Player {
 		this.electric = electric;
 		this.nuclear = nuclear;
 		this.cards = cards;
-		this.shop = shop;
+		this.shop = new Shop(this);
 		this.goals = goals;
 		this.trains = trains;
 		this.carriages = carriage;
@@ -61,13 +62,44 @@ public class Player {
 		gold.setValue(value);
 	}
 	
-	public void accessShop()
+	public void addGold(int value)
 	{
-		
+		gold.setValue(gold.getValue() + value);
 	}
 	
-	public void accessGoals()
+	public void subGold(int value)
 	{
-		
+		gold.setValue(gold.getValue() - value);
 	}
+	
+	// Specific cards should be purchased in the shop
+	// This can be used after completing Goals
+	// (Could be implemented in Goal class)
+	public void purchaseRandomCard()
+	{
+		if(getNumCards() < 3)
+		{
+			Card mCard = CardFactory.getInstance().createCard(); 
+			mCard.setOwner(this);
+			cards.add(mCard);
+		}
+	}
+	
+	// Called when a card is purchased in the shop
+	public void purchaseCard(Card card)
+	{
+		if(getNumCards() < 3)
+		{
+			card.setOwner(this); // Card has association with player
+			cards.add(card); // Adds card to the players list of owned cards
+		}
+	}
+	
+	public int getNumCards()
+	{
+		return cards.size();
+	}
+	
+	public void accessShop(){}
+	public void accessGoals(){}
 }

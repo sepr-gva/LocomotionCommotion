@@ -1,0 +1,18 @@
+package com.TeamHEC.LocomotionCommotion.Card;
+
+public class TeleportCard extends Card{
+
+	/*
+		Teleport a train from one station to another...
+	
+	 Each card needs a implement method but also needs feedback from the UI
+	 so the user can choose a train and a new station...
+	 
+	*/
+	
+	public TeleportCard()
+	{
+		// Name, Description, Value, Owner:
+		super("Teleport", "Teleport a Train from one station to another!", 100, null);
+	}
+}
