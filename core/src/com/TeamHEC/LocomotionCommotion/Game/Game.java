@@ -111,11 +111,22 @@ public class Game {
 		return coin.nextInt(2);
 	}
 
+	/*
+	 * Ends the turn of a player. It will increase the turn count and switch the player's turns.
+	 */
 	public void EndTurn()
 	{
-		 
+		turnCount++;
+		if(playerTurn == player1)
+			playerTurn = player2;
+		else
+			playerTurn = player1;
+		StartTurn();
 	}
 	
+	/*
+	 * Starts a players turn. It will check for the end game condition.
+	 */
 	public void StartTurn()
 	{
 		if(turnCount == turnLimit)
@@ -124,7 +135,7 @@ public class Game {
 	
 	private void EndGame()
 	{
-		// TODO Auto-generated method stub		
+		
 	}
 
 	public HashMap<String, Resource> getBaseResources(Station station)
