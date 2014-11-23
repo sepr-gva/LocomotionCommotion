@@ -2,12 +2,16 @@ package com.TeamHEC.LocomotionCommotion.Player;
 
 import java.util.ArrayList;
 
+
+import java.util.HashMap;
+
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
+import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
@@ -15,6 +19,12 @@ import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+
+/**
+ * 
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ *
+ */
 
 public class Player {
 
@@ -31,6 +41,8 @@ public class Player {
 	public ArrayList<Train> trains;
 	public Carriage carriages;
 	public ArrayList<Station> stations;
+	
+	private HashMap<String, Fuel> playerFuel;
 	
 	public Player(String playerName, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
 				Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains,
@@ -49,9 +61,35 @@ public class Player {
 		this.trains = trains;
 		this.carriages = carriage;
 		this.stations = stations;
+		
+		playerFuel = new HashMap<String, Fuel>();
+		
+		playerFuel.put("Coal", this.coal);
+		playerFuel.put("Electric", this.electric);
+		playerFuel.put("Nuclear", this.nuclear);
+		playerFuel.put("Oil", this.oil);
 	}
 	
-	// We don't need these get/setters if they're public:
+	public int getFuel(String fuelType)
+	{
+		return playerFuel.get(fuelType).getValue();
+	}
+	
+	public void setFuel(String fuelType, int value)
+	{
+		playerFuel.get(fuelType).setValue(value);
+	}
+	
+	public void addFuel(String fuelType, int quantity)
+	{
+		playerFuel.get(fuelType).addValue(quantity);
+	}
+	
+	public void subFuel(String fuelType, int quantity)
+	{
+		playerFuel.get(fuelType).subValue(quantity);
+	}
+
 	public int getGold()
 	{
 		return gold.getValue();
@@ -79,7 +117,7 @@ public class Player {
 	{
 		if(getNumCards() < 3)
 		{
-			Card mCard = CardFactory.getInstance().createCard(); 
+			Card mCard = CardFactory.getInstance().createRandomCard();
 			mCard.setOwner(this);
 			cards.add(mCard);
 		}
@@ -100,6 +138,10 @@ public class Player {
 		return cards.size();
 	}
 	
-	public void accessShop(){}
+	public void accessShop()
+	{
+		shop.openShop();
+	}
+	
 	public void accessGoals(){}
 }

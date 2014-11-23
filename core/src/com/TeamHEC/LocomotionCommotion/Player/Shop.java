@@ -1,11 +1,18 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
-import com.TeamHEC.LocomotionCommotion.Resource.Coal;
-import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
+import com.TeamHEC.LocomotionCommotion.Resource.*;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
+
+/**
+ * 
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ *
+ */
 
 public class Shop {
 	
@@ -16,16 +23,64 @@ public class Shop {
 	*/
 	
 	private ArrayList<Card> cardsForSale = new ArrayList<Card>();
+	
 	private Coal coalForSale;
+	private Electric electricForSale;
+	private Nuclear nuclearForSale;
+	private Oil oilForSale;
+	private Carriage carriageForSale;
+	
+	private HashMap<String, Fuel> fuelSale;
+	
 	private Player customer;
 	
 	public Shop(Player customer)
 	{
 		this.customer = customer;
 		
+		coalForSale = new Coal(500);
+		electricForSale = new Electric(500);
+		nuclearForSale = new Nuclear(500);
+		oilForSale = new Oil(500);
+		carriageForSale = new Carriage(100);
+		
+		fuelSale = new HashMap<String, Fuel>();
+		
+		fuelSale.put("Coal", coalForSale);
+		fuelSale.put("Electric", electricForSale);
+		fuelSale.put("Nuclear", nuclearForSale);
+		fuelSale.put("Oil", oilForSale);
+		
 		// Generated wild cards for sale:
 		for(int i = 0; i < 3; i++)
-			cardsForSale.add(CardFactory.getInstance().createCard());
+			cardsForSale.add(CardFactory.getInstance().createRandomCard());
+	}
+	
+	public void openShop()
+	{
+		// Stuff for setting up UI
+	}
+	
+	// Need validation for price etc..
+	public void buyFuel(String fuelType, int quantity)
+	{
+		Fuel fuel = fuelSale.get(fuelType);
+		customer.addFuel(fuelType, quantity);
+		customer.subGold(fuel.cost * quantity);
+	}
+		
+	public void sellFuel(String fuelType, int quantity)
+	{
+		Fuel fuel = fuelSale.get(fuelType);
+		customer.subFuel(fuelType, quantity);
+		customer.addGold(fuel.cost * quantity);
+	}
+	
+	// Needs Gold validation
+	public void upgradeTrainCarriage(Train train, int quantity)
+	{
+		customer.subGold(carriageForSale.cost * quantity);
+		train.addCarriage(quantity);
 	}
 	
 	// ========== See comments ==============
@@ -41,34 +96,6 @@ public class Shop {
 		// Replenish Shop with another card (needs testing):
 		int cardIndex = cardsForSale.indexOf(card);
 		cardsForSale.remove(card);
-		cardsForSale.add(cardIndex, CardFactory.getInstance().createCard());
-	}
-	
-	
-	// Need validation for price etc..
-	// Surely we can use a superclass somehow?
-	
-	public void sellCoal(int quantity)
-	{
-		customer.coal.subValue(quantity);
-		customer.addGold(customer.coal.cost * quantity);
-	}
-	
-	public void buyCoal(int quantity)
-	{
-		customer.subGold(coalForSale.cost * quantity);
-		customer.coal.addValue(quantity);
-	}
-	
-	public void sellElectric(int quantity)
-	{
-		customer.electric.subValue(quantity);
-		customer.addGold(customer.electric.cost * quantity);
-	}
-	
-	public void buyElectric(int quantity)
-	{
-		customer.subGold(coalForSale.cost * quantity);
-		customer.coal.addValue(quantity);
+		cardsForSale.add(cardIndex, CardFactory.getInstance().createRandomCard());
 	}
 }

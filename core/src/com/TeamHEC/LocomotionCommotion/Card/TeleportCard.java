@@ -1,5 +1,14 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
+import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
+
+/**
+ * 
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ *
+ */
+
 public class TeleportCard extends Card{
 
 	/*
@@ -14,5 +23,20 @@ public class TeleportCard extends Card{
 	{
 		// Name, Description, Value, Owner:
 		super("Teleport", "Teleport a Train from one station to another!", 100, null);
+	}
+	
+	public Train getSelectedTrain()
+	{
+		return null;
+	}
+	
+	public Station getStartStation()
+	{
+		return null;
+	}
+	
+	public Station getSelectedStation()
+	{
+		return null;
 	}
 }

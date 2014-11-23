@@ -1,5 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
+/**
+ * 
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ *
+ */
+
 public class Train {
 	
 	/*
@@ -51,6 +57,11 @@ public class Train {
 	public void setCarriageMod(int carriageLimitMod)
 	{
 		this.carriageLimitMod = carriageLimitMod;
+	}
+	
+	public void addCarriage(int numCarriages)
+	{
+		carriageLimitMod += numCarriages;
 	}
 	
 	public void setInStation(boolean inStation)

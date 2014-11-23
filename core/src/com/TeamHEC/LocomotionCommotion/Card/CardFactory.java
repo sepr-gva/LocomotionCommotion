@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import com.TeamHEC.LocomotionCommotion.Event.EventListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 
+/**
+ * 
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ *
+ */
+
 /*
 - Hard-coded list of card effects, will randomly choose an effect.
 - There will be unique cards associated to special goals.
@@ -29,8 +35,14 @@ public class CardFactory implements EventListener{
 	// list of available cards:
 	public ArrayList<String> cardList = new ArrayList<String>();
 	
+	/* Might change to a dictionary/Hashmap so I can hard code in the
+		the probability of rare cards appearing or assign them to specific goals
+	*/
+	
 	private final String TELEPORT = "Teleport";
 	private final String GOLD_COINS = "100 Gold Coins";
+	
+	// private HashMap<String, Goal> associatedGoal
 	
 	private CardFactory()
 	{
@@ -39,9 +51,13 @@ public class CardFactory implements EventListener{
 	}
 
 	// returns a card from the existing list:
-	public Card createCard()
+	public Card createRandomCard()
 	{
-		String chosenCard = chooseCard();
+		return createCard(cardList.get(getIntBetween(0, cardList.size())));
+	}
+	
+	public Card createCard(String chosenCard)
+	{
 		Card newCard = null;
 		
 		if(chosenCard.equals(TELEPORT))
@@ -51,12 +67,7 @@ public class CardFactory implements EventListener{
 			
 		return newCard;
 	}
-	
-	public String chooseCard()
-	{
-		return cardList.get(getIntBetween(0, cardList.size()));
-	}
-	
+		
 	public int getIntBetween(int low, int high)
 	{
 		return (int)(low + (Math.random() * (high - low)));

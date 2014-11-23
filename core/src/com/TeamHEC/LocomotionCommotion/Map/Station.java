@@ -5,6 +5,12 @@ import javax.sound.sampled.Line;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 
+/**
+ * 
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ *
+ */
+
 public class Station extends MapObj{
 	
 	public Player owner;
@@ -17,9 +23,18 @@ public class Station extends MapObj{
 	private int rentValue;
 	private int rentValueMod;
 	
-	public Station()
+	public Station(Player owner, int baseValue, int valueMod, Fuel fuelType, int baseFuelOut, int fuelOutMod,
+			Line lineType, int rentValue, int rentValueMod)
 	{
-		// Implement soon
+		this.owner = owner;
+		this.baseValue = baseValue;
+		this.valueMod = valueMod;
+		this.fuelType = fuelType;
+		this.baseFuelOut = baseFuelOut;
+		this.fuelOutMod = fuelOutMod;
+		this.lineType = lineType;
+		this.rentValue = rentValue;
+		this.rentValueMod = rentValueMod;
 	}
 	
 	public int getValue()
@@ -37,8 +52,18 @@ public class Station extends MapObj{
 		return rentValue + rentValueMod;
 	}
 	
-	/*
-	 Was going to create a listener for when a station is purchased, so that I
-	 can implement the creation of another WildCard in the CardFactory...
-	 */
+	public Player getOwner()
+	{
+		return owner;
+	}
+	
+	public void setOwner(Player newOwner)
+	{
+		owner = newOwner;
+	}
+	
+	public void setFuelOutMod(int mod)
+	{
+		fuelOutMod = mod;
+	}
 }

@@ -1,5 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
+/**
+ * 
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ *
+ */
+
 public class GoldCard extends Card{
 
 	// This is just an example, we shouldn't really be able to buy this in the shop
