@@ -144,6 +144,8 @@ public class Station extends MapObj{
 	
 	public void purchaseStation(Player player)
 	{		
+		//needs conditions to check station is purchasable
+		//either added here or where purchase station will be called
 		player.subGold(this.getTotalValue());
 		owner = player;
 	}
