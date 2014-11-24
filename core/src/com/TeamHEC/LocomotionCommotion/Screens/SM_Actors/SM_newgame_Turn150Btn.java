@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
+import com.TeamHEC.LocomotionCommotion.Screens.SM_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class SM_newgame_Turn150Btn extends Actor {
 	
-	public static Texture texture = TextureManager.sm_newgame_Turn150_unselected_Btn;
+	public static Texture texture = SM_TextureManager.sm_newgame_Turn150_unselected_Btn;
 	public static float actorX = 680 ,actorY = 1150+250;
 	public boolean started = false;
 
@@ -34,9 +34,9 @@ public class SM_newgame_Turn150Btn extends Actor {
 	public void act(float delta){
 		if(started){
 			StartMenu.turnChoice = 150;
-			SM_newgame_Turn50Btn.texture = TextureManager.sm_newgame_Turn50_unselected_Btn;
-			SM_newgame_Turn100Btn.texture = TextureManager.sm_newgame_Turn100_unselected_Btn;
-			SM_newgame_Turn150Btn.texture = TextureManager.sm_newgame_Turn150Btn;
+			SM_newgame_Turn50Btn.texture = SM_TextureManager.sm_newgame_Turn50_unselected_Btn;
+			SM_newgame_Turn100Btn.texture = SM_TextureManager.sm_newgame_Turn100_unselected_Btn;
+			SM_newgame_Turn150Btn.texture = SM_TextureManager.sm_newgame_Turn150Btn;
 			started = false;
 			
 			

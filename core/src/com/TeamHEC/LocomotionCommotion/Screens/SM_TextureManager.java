@@ -3,7 +3,9 @@ package com.TeamHEC.LocomotionCommotion.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
-public class TextureManager {
+public class SM_TextureManager {
+	
+	//Start Menu
 	//Start Menu Main Page
 	public static  Texture sm_main_title = new Texture(Gdx.files.internal("sm_main/smTitle.png"));
 	public static Texture sm_main_newgamebtn = new Texture(Gdx.files.internal("sm_main/sm_newgame.png"));

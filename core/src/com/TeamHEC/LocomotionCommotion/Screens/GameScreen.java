@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
-import com.TeamHEC.LocomotionCommotion.Screens.SM_Actors.SM_ActorManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;

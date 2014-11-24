@@ -2,7 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
+import com.TeamHEC.LocomotionCommotion.Screens.SM_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class SM_newgame_GoBtn extends Actor {
 	
-	Texture texture = TextureManager.sm_newgame_GoBtn;
+	Texture texture = SM_TextureManager.sm_newgame_GoBtn;
 	public static float actorX = -100 ,actorY = 1150+50;
 	public boolean started = false;
 

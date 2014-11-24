@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
+import com.TeamHEC.LocomotionCommotion.Screens.SM_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class SM_howtoplay_NextBtn extends Actor {
 
-	Texture texture = TextureManager.sm_howtoplay_nextbtn;
+	Texture texture = SM_TextureManager.sm_howtoplay_nextbtn;
 	float actorX = -1290+ 590 ,actorY = 150;
 	public boolean started = false;
 
