@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -10,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class SM_newgame_TurnTimeOutBtn extends Actor {
 	
-	Texture texture = TextureManager.sm_newgame_TurnTimeOutBtn;
+	public static Texture texture = TextureManager.sm_newgameTurnTimeOut_unselected_Btn;
 	public static float actorX = 400 ,actorY = 1150+530;
 	public boolean started = false;
 
@@ -33,7 +32,8 @@ public class SM_newgame_TurnTimeOutBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 0);
+			texture = TextureManager.sm_newgame_TurnTimeOutBtn;
+			SM_newgame_StationDomBtn.texture = TextureManager.sm_newgame_StationDom_unselected_Btn;
 			started = false;
 			
 			

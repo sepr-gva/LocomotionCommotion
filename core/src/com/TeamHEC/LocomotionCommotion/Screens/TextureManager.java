@@ -18,10 +18,15 @@ public class TextureManager {
 	public static Texture sm_newgame_GoBtn = new Texture(Gdx.files.internal("sm_newgame/goBtn.png"));
 	public static Texture sm_newgame_TempTextBox = new Texture(Gdx.files.internal("sm_newgame/tempTextBox.png"));
 	public static Texture sm_newgame_TurnTimeOutBtn = new Texture(Gdx.files.internal("sm_newgame/turnTimeoutBtn.png"));
+	public static Texture sm_newgameTurnTimeOut_unselected_Btn = new Texture(Gdx.files.internal("sm_newgame/turnTimeout_unselected_Btn.png"));
 	public static Texture sm_newgame_StationDomBtn = new Texture(Gdx.files.internal("sm_newgame/stationDominationBtn.png"));
+	public static Texture sm_newgame_StationDom_unselected_Btn = new Texture(Gdx.files.internal("sm_newgame/stationDomination_unselected_Btn.png"));
 	public static Texture sm_newgame_Turn50Btn = new Texture(Gdx.files.internal("sm_newgame/turn50.png"));
 	public static Texture sm_newgame_Turn100Btn = new Texture(Gdx.files.internal("sm_newgame/turn100.png"));
 	public static Texture sm_newgame_Turn150Btn = new Texture(Gdx.files.internal("sm_newgame/turn150.png"));
+	public static Texture sm_newgame_Turn50_unselected_Btn = new Texture(Gdx.files.internal("sm_newgame/turn50_unselected.png"));
+	public static Texture sm_newgame_Turn100_unselected_Btn = new Texture(Gdx.files.internal("sm_newgame/turn100_unselected.png"));
+	public static Texture sm_newgame_Turn150_unselected_Btn = new Texture(Gdx.files.internal("sm_newgame/turn150_unselected.png"));
 	
 	//StartMenu LoadGame Page
 	public static Texture sm_loadgame_Title = new Texture(Gdx.files.internal("sm_loadgame/loadgametitle.png"));
