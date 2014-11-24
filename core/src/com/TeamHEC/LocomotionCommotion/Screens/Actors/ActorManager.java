@@ -4,8 +4,6 @@ package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Array;
 
 public class ActorManager {
@@ -57,10 +55,12 @@ public class ActorManager {
 	
 
 
-	public ActorManager(){		
-	}
+	public ActorManager(){		}
 
 	public static void create(Stage stage){
+		
+		
+		
 		//Start Menu Main Page
 		
 		sm_main_title = new SM_main_TitleText();
@@ -89,12 +89,6 @@ public class ActorManager {
 		sm_newgame_back = new SM_newgame_BackBtn();
 		actors.add(sm_newgame_back);
 		
-//		Skin skin = new Skin();
-//		skin.add("uiskin", "uiskin");
-//		TextField textbox = new TextField("Hello", skin);
-//		textbox.setX(480);
-//		textbox.setY(1150+43);
-//		stage.addActor(textbox);
 		
 		sm_newgame_textbox1 = new SM_newgame_TempTextBox1();
 		actors.add(sm_newgame_textbox1); 
@@ -181,7 +175,7 @@ public class ActorManager {
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
 		}
-		
+			
 
 	}
 
