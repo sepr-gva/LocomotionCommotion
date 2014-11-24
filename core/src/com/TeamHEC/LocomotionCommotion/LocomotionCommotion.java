@@ -36,6 +36,14 @@ public class LocomotionCommotion extends Game {
 		//newGame = new CoreGame(StartMenu.player1name, StartMenu.player2name, null, null, StartMenu.turnChoice);
 
 	}
+	
+	public void setMenuScreen()
+	{
+		setScreen(startMenu);
+		gameScreen.dispose();
+		//newGame = new CoreGame(StartMenu.player1name, StartMenu.player2name, null, null, StartMenu.turnChoice);
+
+	}
 
 	@Override
 	public void resize(int width, int height) {
