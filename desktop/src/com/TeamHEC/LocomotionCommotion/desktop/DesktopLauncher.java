@@ -7,7 +7,7 @@ import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new LocomotionCommotion(), config);
+		new LwjglApplication(LocomotionCommotion.getInstance(), config);
 		config.height= 1050;
 		config.width = 1680;
 	}

@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
-import com.TeamHEC.LocomotionCommotion.Screens.Actors.ActorManager;
+import com.TeamHEC.LocomotionCommotion.Screens.SM_Actors.SM_ActorManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -21,14 +21,16 @@ public class StartMenu implements Screen{
 	public static int turnChoice;
 	
 	
-	
+	/*
+	 * 
+	 */
 	public static void create(){
 		
-		stage = new Stage();
+		stage = new Stage(); 
 		Camera camera = stage.getCamera();
 		//camera.translate(0, -100, 0);
 		camera.update();
-        ActorManager.create(stage);
+        SM_ActorManager.create(stage);
         Gdx.input.setInputProcessor(stage);
         //TextBox
     	Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
@@ -112,10 +114,10 @@ public class StartMenu implements Screen{
 		
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		this.create();
 	}
 	
 	

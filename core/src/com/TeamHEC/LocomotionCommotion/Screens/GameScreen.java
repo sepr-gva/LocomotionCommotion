@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
-import com.TeamHEC.LocomotionCommotion.Screens.Actors.ActorManager;
+import com.TeamHEC.LocomotionCommotion.Screens.SM_Actors.SM_ActorManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -18,7 +18,6 @@ public class GameScreen implements Screen {
 		//camera.translate(0, -100, 0);
 		camera.update();
         Gdx.input.setInputProcessor(stage);		
-        ActorManager.create(stage);
 	}
 
 	@Override
