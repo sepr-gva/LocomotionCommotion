@@ -24,9 +24,6 @@ public class LocomotionCommotion extends Game {
 	public static final String TITLE = "LOCOMOTION COMOTION", VERSION = "0.0.0.1";
 	@Override
 	public void create() {
-		StartMenu.create();
-		GameScreen.create();
-
 		startMenu = new StartMenu();
 		gameScreen = new GameScreen();
 		setScreen(startMenu); // Use the StartMenu Screen First
@@ -35,7 +32,8 @@ public class LocomotionCommotion extends Game {
 	public void setGameScreen()
 	{
 		setScreen(gameScreen);
-		newGame = new CoreGame(StartMenu.player1name, StartMenu.player2name, null, null, StartMenu.turnChoice);
+		startMenu.dispose();
+		//newGame = new CoreGame(StartMenu.player1name, StartMenu.player2name, null, null, StartMenu.turnChoice);
 
 	}
 

@@ -2,7 +2,10 @@ package com.TeamHEC.LocomotionCommotion.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-
+/*
+ * Holds all the textures and file paths for all actors in StartMenu
+ * This means if we need to change a file path you come here.
+ */
 public class SM_TextureManager {
 	
 	//Start Menu

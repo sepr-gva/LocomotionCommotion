@@ -10,7 +10,33 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
-
+/*
+ * StartMenu is the Screen shown at the start of the game (maybe after a splash screen).
+ * It is formatted in a way that the four sub pages are in up,down, left and right directions.
+ * Moving between pages is achieved by changing the orthographic camera.
+ * Start Menu has parameters:
+ * @param	stage - The structure used to implement actors by addActor()
+ * @param	sb - The SpriteBatch, structure needed to display some elements.
+ * @param 	camera - The camera used to display to the user
+ * @param	gameMode - keeps track of game mode selected in new game page
+ * @param	player1name - holds the inputed player1 name given in textfield in new game page
+ * @param	player1name - holds the inputed player2 name given in textfield in new game page
+ * @param	turnChoice	- holds the choice of number of turns in new game page
+ * @param	textbox1	- the TextField used to get the input from user for player1 name
+ * @param	textbox2	- the TextField used to get the input from user for player2 name
+ * @param	skin		- the skin used for textbox's (formating json file)
+ * @param	player1		- the listener for textbox1
+ * @param	player2		- the listener for textbox2
+ * 
+ *@method	create method is used initialize page (called entirely by show) 
+ *@method 	changeCam Method is used to move the camera 
+ *@method 	resize	-updates the viewport of the camera
+ *@method	render	-renders the screen and outputs to the user
+ *
+ *
+ * 
+ * 
+ */
 public class StartMenu implements Screen{ 
 	
 	private static Stage stage;
@@ -19,6 +45,7 @@ public class StartMenu implements Screen{
 	
 	public static String gameMode, player1name, player2name;
 	public static int turnChoice;
+	public static TextField textbox1, textbox2;
 	
 	
 	/*
@@ -28,14 +55,16 @@ public class StartMenu implements Screen{
 		
 		stage = new Stage(); 
 		Camera camera = stage.getCamera();
-		//camera.translate(0, -100, 0);
 		camera.update();
         SM_ActorManager.create(stage);
         Gdx.input.setInputProcessor(stage);
+        
+        
+        
         //TextBox
     	Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
     	
-		TextField textbox1 = new TextField("", skin);
+		textbox1 = new TextField("", skin);
 		skin.getFont("default-font").setScale(1.5f, 1.5f);
 		textbox1.setX(480);
 		textbox1.setY(1150+430);
@@ -49,7 +78,7 @@ public class StartMenu implements Screen{
 			     }};
 		textbox1.setTextFieldListener(player1);
 	 
-		TextField textbox2 = new TextField("", skin);
+		textbox2 = new TextField("", skin);
 		textbox2.setX(480);
 		textbox2.setY(1150+350);
 		textbox2.setSize(430, 60);
@@ -69,12 +98,6 @@ public class StartMenu implements Screen{
 	
 	public static void changeCam(int x,int y){
 		stage.getCamera().translate(x, y, 0);
-		
-		// Matt: Just looking into smooth camera transitions:
-		//Vector3 cameraPos = stage.getCamera().position;
-		//Vector3 target = new Vector3(x, y, 0);
-		//cameraPos.lerp(target, 0.1f);
-		//stage.getCamera().translate(cameraPos);
 	}
 
 	@Override

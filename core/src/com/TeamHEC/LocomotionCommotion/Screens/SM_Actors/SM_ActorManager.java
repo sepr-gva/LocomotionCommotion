@@ -21,8 +21,6 @@ public class SM_ActorManager {
 	//Start Menu NewGame Page
 	private static SM_newgame_MenuText sm_newgame_menutext;
 	private static SM_newgame_BackBtn sm_newgame_back;
-	private static SM_newgame_TempTextBox1 sm_newgame_textbox1;
-	private static SM_newgame_TempTextBox2 sm_newgame_textbox2;
 	private static SM_newgame_TurnTimeOutBtn sm_newgame_turntimeoutbtn;
 	private static SM_newgame_StationDomBtn sm_newgmae_stationdombtn;
 	private static SM_newgame_Turn50Btn sm_newgame_turn50btn;
@@ -89,12 +87,6 @@ public class SM_ActorManager {
 		sm_newgame_back = new SM_newgame_BackBtn();
 		actors.add(sm_newgame_back);
 		
-		
-		sm_newgame_textbox1 = new SM_newgame_TempTextBox1();
-		actors.add(sm_newgame_textbox1); 
-
-		sm_newgame_textbox2 = new SM_newgame_TempTextBox2();
-		actors.add(sm_newgame_textbox2); 
 
 		sm_newgame_turntimeoutbtn = new	SM_newgame_TurnTimeOutBtn();
 		actors.add(sm_newgame_turntimeoutbtn);
@@ -177,10 +169,6 @@ public class SM_ActorManager {
 		}
 			
 
-	}
-
-	public void addActor(Actor actor){
-		actors.add(actor);
 	}
 
 

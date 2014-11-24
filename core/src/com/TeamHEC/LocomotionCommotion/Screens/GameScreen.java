@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
@@ -10,18 +11,26 @@ public class GameScreen implements Screen {
 	private static Stage stage;
 	public static SpriteBatch sb;
 	public Camera camera;
-	
+
 	public static void create(){
 		stage = new Stage();
 		Camera camera = stage.getCamera();
-		//camera.translate(0, -100, 0);
 		camera.update();
-        Gdx.input.setInputProcessor(stage);		
+		Gdx.input.setInputProcessor(stage);		
+		stage.draw();
+
 	}
 
 	@Override
 	public void render(float delta) {
-		
+		stage.getCamera().update();
+
+		Gdx.gl.glClearColor(1,1,1,1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		stage.act(Gdx.graphics.getDeltaTime());
+		stage.draw();
+
 	}
 
 	@Override
@@ -31,32 +40,31 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		this.create();
+
 	}
 
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
-		
+		stage.dispose();
 	}
 
 }

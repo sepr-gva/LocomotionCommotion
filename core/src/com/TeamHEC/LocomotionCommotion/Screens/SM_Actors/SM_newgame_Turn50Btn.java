@@ -1,5 +1,18 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
-
+/*
+ * Button for selecting the number of turns
+ * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
+ * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
+ * @param actorX	The x coordinate of the bottom left corner of the image
+ * @param actorY	The y coordinate of the bottom left corner of the image
+ * @param started	Boolean used to show if an Actor has been interacted with. Used to stop and start interactions.
+ * 
+ * setBounds	This is the bounds for the interaction, we make it the whole image.
+ * addListener	This adds a listener for a particular interaction in this case touchDown (click)
+ * draw			Actor is drawn
+ * act			The action taken if the listener detects interaction
+ * 				Action- changes its imaged to the 'selected' version and changes the other two to 'unselected'
+ */
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.TeamHEC.LocomotionCommotion.Screens.SM_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
