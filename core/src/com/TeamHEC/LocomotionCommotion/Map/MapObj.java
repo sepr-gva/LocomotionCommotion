@@ -6,6 +6,6 @@ import com.badlogic.gdx.utils.Array;
 
 public class MapObj {
 	
-	public Array<Train> trains;
+	public Train[] trains;
 	public Event currentEvent;
 }

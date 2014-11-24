@@ -140,7 +140,7 @@ public class CoreGame {
 	{
 		//Temporary		
 		Gold gold = new Gold(200);
-		gold.subValue(station.getValue());
+		gold.subValue(station.getTotalValue());
 		
 		Carriage carriage = new Carriage(200);
 		Coal coal = new Coal(200);

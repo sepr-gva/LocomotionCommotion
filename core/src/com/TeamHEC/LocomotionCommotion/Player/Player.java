@@ -30,11 +30,11 @@ public class Player {
 
 	public String playerName;
 	public int points;
-	public Gold gold;
-	public Coal coal;
-	public Oil oil;
-	public Electric electric;
-	public Nuclear nuclear;
+	private Gold gold;
+	private Coal coal;
+	private Oil oil;
+	private Electric electric;
+	private Nuclear nuclear;
 	public ArrayList<Card> cards;
 	private Shop shop;
 	public ArrayList<Goal> goals;
@@ -137,6 +137,11 @@ public class Player {
 	{
 		return cards.size();
 	}
+	
+	public int getNumStations()
+	{
+		return stations.size();
+	}	
 	
 	public void accessShop()
 	{
