@@ -67,13 +67,17 @@ public class StartMenu implements Screen{
 	
 	public static void changeCam(int x,int y){
 		stage.getCamera().translate(x, y, 0);
-	
+		
+		// Matt: Just looking into smooth camera transitions:
+		//Vector3 cameraPos = stage.getCamera().position;
+		//Vector3 target = new Vector3(x, y, 0);
+		//cameraPos.lerp(target, 0.1f);
+		//stage.getCamera().translate(cameraPos);
 	}
 
 	@Override
 	public void render(float delta) {
 		stage.getCamera().update();
-		
 		
 		Gdx.gl.glClearColor(1,1,1,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

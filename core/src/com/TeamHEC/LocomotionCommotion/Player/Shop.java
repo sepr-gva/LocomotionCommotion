@@ -18,8 +18,7 @@ public class Shop {
 	
 	/*
 	  The shop can be used to buy more fuel, more trains, upgrade your existing trains and purchase Wildcards in
-	exchange for Gold. You can also sell existing resources in exchange for Gold.
-	
+		exchange for Gold. You can also sell existing resources in exchange for Gold.
 	*/
 	
 	private ArrayList<Card> cardsForSale = new ArrayList<Card>();
@@ -81,6 +80,13 @@ public class Shop {
 	{
 		customer.subGold(carriageForSale.cost * quantity);
 		train.addCarriage(quantity);
+	}
+	
+	public void upgradeTrainType(Train train)
+	{
+		// Not sure quite to do this as they're different classes for each
+		// need to fetch all of the current trains stats and make a new object
+		// replace accordingly in the Player trains list
 	}
 	
 	// ========== See comments ==============
