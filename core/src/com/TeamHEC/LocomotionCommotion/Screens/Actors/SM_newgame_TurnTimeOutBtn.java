@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
+import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -32,6 +33,7 @@ public class SM_newgame_TurnTimeOutBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
+			StartMenu.gameMode = "turntimeout";
 			texture = TextureManager.sm_newgame_TurnTimeOutBtn;
 			SM_newgame_StationDomBtn.texture = TextureManager.sm_newgame_StationDom_unselected_Btn;
 			started = false;

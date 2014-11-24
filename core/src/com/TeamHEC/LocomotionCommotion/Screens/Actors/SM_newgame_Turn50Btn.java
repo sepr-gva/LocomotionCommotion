@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens.Actors;
 
+import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.TeamHEC.LocomotionCommotion.Screens.TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -32,6 +33,7 @@ public class SM_newgame_Turn50Btn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
+			StartMenu.turnChoice = 50;
 			SM_newgame_Turn50Btn.texture = TextureManager.sm_newgame_Turn50Btn;
 			SM_newgame_Turn100Btn.texture = TextureManager.sm_newgame_Turn100_unselected_Btn;
 			SM_newgame_Turn150Btn.texture = TextureManager.sm_newgame_Turn150_unselected_Btn;

@@ -33,7 +33,8 @@ public class SM_newgame_GoBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 0);
+			System.out.println("New Game: "+StartMenu.gameMode+" "+StartMenu.player1name+ " "+ StartMenu.player2name +
+					" "+ StartMenu.turnChoice);
 			started = false;
 			
 			

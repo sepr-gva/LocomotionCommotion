@@ -17,6 +17,10 @@ public class StartMenu implements Screen{
 	public static SpriteBatch sb;
 	public Camera camera;
 	
+	public static String gameMode, player1name, player2name;
+	public static int turnChoice;
+	
+	
 	
 	public static void create(){
 		
@@ -28,31 +32,36 @@ public class StartMenu implements Screen{
         Gdx.input.setInputProcessor(stage);
         //TextBox
     	Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
-		TextField textbox = new TextField("", skin);
-		skin.getFont("default-font").setScale(1.5f, 1.5f);
-		textbox.setX(480);
-		textbox.setY(1150+430);
-		textbox.setSize(430, 60);
-		textbox.setMessageText("Player 1");
-		textbox.setTextFieldListener(new TextFieldListener() {
-			 @Override
-			 public void keyTyped (TextField textbox, char key) {
-			         if (key == '\n') textbox.getOnscreenKeyboard().show(false);
-			     }
-			 });
+    	
 		TextField textbox1 = new TextField("", skin);
+		skin.getFont("default-font").setScale(1.5f, 1.5f);
 		textbox1.setX(480);
-		textbox1.setY(1150+350);
+		textbox1.setY(1150+430);
 		textbox1.setSize(430, 60);
-		textbox1.setMessageText("Player 2");
-		textbox1.setTextFieldListener(new TextFieldListener() {
+		textbox1.setMessageText("Player 1");
+		TextFieldListener player1 = new TextFieldListener() {
 			 @Override
 			 public void keyTyped (TextField textbox1, char key) {
 			         if (key == '\n') textbox1.getOnscreenKeyboard().show(false);
-			     }
-			 });
-		stage.addActor(textbox);
+			         player1name = textbox1.getText();
+			     }};
+		textbox1.setTextFieldListener(player1);
+	 
+		TextField textbox2 = new TextField("", skin);
+		textbox2.setX(480);
+		textbox2.setY(1150+350);
+		textbox2.setSize(430, 60);
+		textbox2.setMessageText("Player 2");
+		TextFieldListener player2 = new TextFieldListener() {
+			 @Override
+			 public void keyTyped (TextField textbox2, char key) {
+			         if (key == '\n') textbox2.getOnscreenKeyboard().show(false);
+			         player2name = textbox2.getText();
+			     }};
+		textbox2.setTextFieldListener(player2);
 		stage.addActor(textbox1);
+		stage.addActor(textbox2);
+		
 
     }
 	
@@ -104,5 +113,7 @@ public class StartMenu implements Screen{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 
 }
