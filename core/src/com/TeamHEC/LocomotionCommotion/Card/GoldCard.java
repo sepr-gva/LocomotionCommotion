@@ -19,7 +19,7 @@ public class GoldCard extends Card{
 	// call the method the same thing in each subclass it might be okay:
 	public void implementCard()
 	{
-		getOwner().setGold(getOwner().getGold() + 100);
+		getOwner().addGold(100);
 		// Need to destroy card instance here or something
 	}
 }

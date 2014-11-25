@@ -5,6 +5,7 @@ import junit.framework.Assert;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
@@ -23,6 +24,9 @@ public class CoreGameTest {
 		String player2Name = "Ben";
 		Station Player1Start = new Station("London", 100, new Coal(100), 100, Line.Red, 100);
 		Station Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, Line.Blue, 200);
+		
+		ArrayList<Station> test = new ArrayList<Station>();
+		
 		int turnLimit = 50;
 		
 		int baseGold = 200;
@@ -49,7 +53,7 @@ public class CoreGameTest {
 		assertTrue("player1's Nuclear was incorrectly set", tester.getPlayer1().getFuel("Nuclear") == baseNuclear);
 		assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear);
 		
-		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().get
+		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().getStations() == ;
 		
 		fail("Not yet implemented");
 	}
