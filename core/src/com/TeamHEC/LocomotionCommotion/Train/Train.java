@@ -1,5 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
+import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
+
 /**
  * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -17,55 +19,76 @@ public class Train {
 	 
 	 Upgrading Trains:
 	 
-	Players will be able to upgrade individual trains with a variety of upgrades such as increasing the carriage limit
-	along with other upgrades that will improve the trains performance, speed and efficiency.
-	 
-	 There are four different types of fuel that have different levels of effectiveness for example a nuclear train will move
-	 further per turn than a coal one.
-	 
-	 Carriage Class
-This is a train upgrade that allows you increase the capacity of your train allowing you to carry more passengers or
-cargo. More carriages are needed to be able to access higher level goals which give better rewards. However there
-is a cost increase in the fuel needed to travel.
+		- increase carriage limit, trains performance, speed and efficiency.
+	 	- Nuclear will move further than coal...
+	 	- More carriages = more fuel...
+	
+	Train:
 
-	Coal 
-	Oil
-	Electric
-	Nuclear
-	 
+	Speed					= --------
+	Number of Carriages		= ---
+	Carriage Capacity		= ------------
+	Fuel Efficiency			= -----
+	
+	You need one power to pull every carriage
+	
+	Fuel Efficiency = amount of fuel charged per carriage
+
 	 */
 	
-	private int baseSpeed, speedMod = 0;
-	private int baseCarriageLimit, carriageLimitMod = 0;
+	private String name;
+	private int baseSpeed, speedMod;
+	private int baseCarriageLimit, carriageLimitMod;
+	private int numOfCarriages;
+	
+	private Fuel fuel;
+	public int fuelPerTurn;
+	
+	// needs to change after upgrades
 	private int value;
 	private boolean inStation;
 	
-	public Train(int baseSpeed, int baseCarriageLimit, int value, boolean inStation)
+	// Need somewhere to store the location of the Train
+	
+	public Train(String name, Fuel fuelType, int baseSpeed, int speedMod, int baseCarriageLimit,
+			int carriageLimitMod, int value, boolean inStation)
 	{
+		this.name = name;
+		this.fuel = fuelType;
+		
 		this.baseSpeed = baseSpeed;
+		this.speedMod = speedMod;
 		this.baseCarriageLimit = baseCarriageLimit;
+		this.carriageLimitMod = carriageLimitMod;
+		this.numOfCarriages = baseCarriageLimit;
 		this.value = value;
 		this.inStation = inStation;
 	}
 	
-	public int getSpeed()
+	public String getName()
 	{
-		return baseSpeed + speedMod;
-	}
-	
-	public int getCarriageNumber()
-	{
-		return baseCarriageLimit + carriageLimitMod;
+		return name;
 	}
 	
 	public int getValue()
 	{
+		// Should calculate after updates are made
 		return value;
 	}
 	
-	public boolean isInStation()
+	public int getSpeed()
 	{
-		return inStation;
+		return baseSpeed + speedMod - numOfCarriages;
+	}
+	
+	public int getPricePerTurn()
+	{
+		return fuel.cost * fuelPerTurn;
+	}
+		
+	public int getCarriageCapacity()
+	{
+		return baseCarriageLimit + carriageLimitMod;
 	}
 	
 	public void setSpeedMod(int speedMod)
@@ -73,18 +96,28 @@ is a cost increase in the fuel needed to travel.
 		this.speedMod = speedMod;
 	}
 	
-	public void setCarriageMod(int carriageLimitMod)
+	public void setFuelPerTurn(int fuelPerTurn)
+	{
+		this.fuelPerTurn = fuelPerTurn;
+	}
+	
+	public void setCarriageLimitMod(int carriageLimitMod)
 	{
 		this.carriageLimitMod = carriageLimitMod;
 	}
 	
-	public void addCarriage(int numCarriages)
+	public void increaseCarriageLimit(int by)
 	{
-		carriageLimitMod += numCarriages;
+		carriageLimitMod += by;
 	}
 	
 	public void setInStation(boolean inStation)
 	{
 		this.inStation = inStation;
+	}
+	
+	public boolean isInStation()
+	{
+		return inStation;
 	}
 }

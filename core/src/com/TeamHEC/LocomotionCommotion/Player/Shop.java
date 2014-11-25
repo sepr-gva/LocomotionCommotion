@@ -49,7 +49,7 @@ public class Shop {
 		fuelSale.put("Electric", electricForSale);
 		fuelSale.put("Nuclear", nuclearForSale);
 		fuelSale.put("Oil", oilForSale);
-		
+				
 		// Generated wild cards for sale:
 		for(int i = 0; i < 3; i++)
 			cardsForSale.add(CardFactory.getInstance().createRandomCard());
@@ -76,10 +76,10 @@ public class Shop {
 	}
 	
 	// Needs Gold validation
-	public void upgradeTrainCarriage(Train train, int quantity)
+	public void upgradeTrainCarriageCapacity(Train train, int quantity)
 	{
 		customer.subGold(carriageForSale.cost * quantity);
-		train.addCarriage(quantity);
+		train.increaseCarriageLimit(quantity);
 	}
 	
 	public void upgradeTrainType(Train train)

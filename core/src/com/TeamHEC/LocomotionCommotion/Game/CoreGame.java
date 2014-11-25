@@ -86,7 +86,7 @@ public class CoreGame {
 		
 		//Initialise Map and other Game Resources
 		
-		gameMap = new WorldMap();		
+		gameMap = WorldMap.getInstance();		
 		turnCount = 0;
 		this.turnLimit = turnLimit;
 		
