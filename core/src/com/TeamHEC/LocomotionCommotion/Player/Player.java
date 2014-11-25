@@ -9,6 +9,7 @@ import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
@@ -41,6 +42,7 @@ public class Player {
 	public ArrayList<Train> trains;
 	public Carriage carriages;
 	public ArrayList<Station> stations;
+	protected ArrayList<PlayerListener> listeners = new ArrayList<PlayerListener>();
 	
 	private HashMap<String, Fuel> playerFuel;
 	
@@ -68,6 +70,11 @@ public class Player {
 		playerFuel.put("Electric", this.electric);
 		playerFuel.put("Nuclear", this.nuclear);
 		playerFuel.put("Oil", this.oil);
+	}
+	
+	public String getPlayerName()
+	{
+		return playerName;
 	}
 	
 	public int getFuel(String fuelType)
@@ -143,10 +150,31 @@ public class Player {
 		return stations.size();
 	}	
 	
+	public void PurchaseStation(Station station)
+	{
+		stations.add(station);
+		this.subGold(station.getTotalValue());
+		for (PlayerListener listener: listeners)
+		{
+			listener.stationPurchased(station);
+		}
+	}
+	
+	public void SellStation(Station station)
+	{
+		stations.remove(station);
+	}
+	
 	public void accessShop()
 	{
 		shop.openShop();
 	}
 	
 	public void accessGoals(){}
+
+	public void addListener(PlayerListener listener)
+	{
+		listeners.add(listener);
+	}
+	
 }
