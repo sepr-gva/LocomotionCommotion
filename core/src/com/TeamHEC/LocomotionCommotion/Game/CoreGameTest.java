@@ -6,16 +6,22 @@ import junit.framework.Assert;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.Test;
 
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
+import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
+import com.TeamHEC.LocomotionCommotion.Resource.Oil;
+import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 public class CoreGameTest {
@@ -28,6 +34,12 @@ public class CoreGameTest {
 	ArrayList<Station> player2StationList;	
 	int turnLimit;
 	CoreGame tester;
+	int baseGold;
+	int baseCarriage;	
+	int baseCoal;
+	int baseOil;
+	int baseElectric;
+	int baseNuclear;
 	
 	public CoreGameTest()
 	{
@@ -41,6 +53,16 @@ public class CoreGameTest {
 		
 		turnLimit = 50;	
 		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
+		player1StationList.add(Player1Start);
+		player2StationList.add(Player2Start);
+		
+		baseGold = 200;
+		baseCarriage = 200;
+		baseCoal = 200;
+		baseOil = 200;
+		baseElectric = 200;
+		baseNuclear = 200;
 	}
 		
 	/**
@@ -88,16 +110,8 @@ public class CoreGameTest {
 	
 	@Test
 	public void testCoreGame() throws Exception {
-		//Setup
-		player1StationList.add(Player1Start);
-		player2StationList.add(Player2Start);
-		
-		int baseGold = 200;
-		int baseCarriage = 200;
-		int baseCoal = 200;
-		int baseOil = 200;
-		int baseElectric = 200;
-		int baseNuclear = 200;
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 		
 		//Good Execution
 		//Execute		
@@ -114,22 +128,27 @@ public class CoreGameTest {
 		assertTrue("player2's Electric was incorrectly set", tester.getPlayer2().getFuel("Electric") == baseElectric);
 		assertTrue("player1's Nuclear was incorrectly set", tester.getPlayer1().getFuel("Nuclear") == baseNuclear);
 		assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear);
-		assertTrue("player1's Nuclear was incorrectly set", tester.getPlayer1().getCarriage() == baseCarriage);
-		assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getCarriage() == baseCarriage);
+		assertTrue("player1's Carriage was incorrectly set", tester.getPlayer1().getCarriage() == baseCarriage);
+		assertTrue("player2's Carriage was incorrectly set", tester.getPlayer2().getCarriage() == baseCarriage);
 				
-		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().getStations() == player1StationList);
-		assertTrue("player2's Station list was incorrectly set", tester.getPlayer2().getStations() == player2StationList);
-		assertTrue("player1's Goal list was incorrectly set", tester.getPlayer1().getGoals() == new ArrayList<Goal>());
-		assertTrue("player1's Train list was incorrectly set", tester.getPlayer1().getTrains() == new ArrayList<Train>());
+		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().getStations().equals(player1StationList));
+		assertTrue("player2's Station list was incorrectly set", tester.getPlayer2().getStations().equals(player2StationList));
+		assertTrue("player1's Goal list was incorrectly set", tester.getPlayer1().getGoals().equals(new ArrayList<Goal>()));
+		assertTrue("player2's Goal list was incorrectly set", tester.getPlayer2().getGoals().equals(new ArrayList<Goal>()));
+		assertTrue("player1's Train list was incorrectly set", tester.getPlayer1().getTrains().equals(new ArrayList<Train>()));
+		assertTrue("player2's Train list was incorrectly set", tester.getPlayer2().getTrains().equals(new ArrayList<Train>()));
 		
 		assertTrue("turnCount was not zero", tester.getTurnCount() == 0);
 		assertTrue("turnLimit was not equal to " + turnLimit, tester.getTurnLimit() == 50);
 		assertTrue("playerTurn was not null", tester.getPlayerTurn() != null);
-		assertTrue("gameMap was not initialsed", (CoreGame) getField(tester, "gameMap") != null);		
+		assertTrue("gameMap was not initialsed", (WorldMap) getField(tester, "gameMap") != null);		
 	}
 	
 	@Test
 	public void testFlipCoin() throws Exception {
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
 		for(int i=0; i<10000; i++)
 		{
 			int x = (Integer) executeMethod(tester, "flipCoin", new Object[] {} );
@@ -139,6 +158,9 @@ public class CoreGameTest {
 
 	@Test
 	public void testEndTurn() {
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
 		//Setup
 		Player initialPlayer = tester.getPlayerTurn();
 		int initialCount = tester.getTurnCount();
@@ -149,44 +171,86 @@ public class CoreGameTest {
 		assertTrue(tester.getTurnCount() == initialCount + 1);
 		tester.EndTurn();
 		assertTrue(initialPlayer.getName() == tester.getPlayerTurn().getName());
-		assertTrue(tester.getTurnCount() == initialCount + 2);	
-		
+		assertTrue(tester.getTurnCount() == initialCount + 2);			
 	}
 
 	@Test
 	public void testStartTurn() {
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testEndGame() {
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
 		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetBaseResources() {
-		fail("Not yet implemented");
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
+		HashMap<String, Resource> checker = tester.getBaseResources(Player1Start);
+		
+		assertTrue("Gold was incorrectly set", checker.get("gold").getValue() == baseGold - Player1Start.getTotalValue());	
+		assertTrue("Carriage was incorrectly set", checker.get("carriage").getValue() == baseCarriage);
+		assertTrue("Coal was incorrectly set", checker.get("coal").getValue() == baseCoal);
+		assertTrue("Oil was incorrectly set", checker.get("oil").getValue() == baseOil);
+		assertTrue("Electric was incorrectly set", checker.get("electric").getValue() == baseElectric);
+		assertTrue("Nuclear was incorrectly set", checker.get("nuclear").getValue() == baseNuclear);
 	}
 
 	@Test
-	public void testGetGameMap() {
-		fail("Not yet implemented");
+	public void testGetGameMap() throws Exception {
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 		
+		assertTrue(tester.getGameMap() == (WorldMap) getField(tester, "gameMap"));
+	}
+	
+	@Test
+	public void testGetPlayer1() throws Exception {
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
+		assertTrue(tester.getPlayer1() == (Player) getField(tester, "player1"));
 	}
 
 	@Test
 	public void testGetPlayer2() throws Exception {
-		fail("Not yet implemented");
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
+		assertTrue(tester.getPlayer2() == (Player) getField(tester, "player2"));
 	}
-
+	
 	@Test
 	public void testGetTurnCount() throws Exception {
-		fail("Not yet implemented");
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
+		assertTrue(tester.getTurnCount() == (Integer) getField(tester, "turnCount"));
 	}
 
 	@Test
 	public void testGetTurnLimit() throws Exception {
-		fail("Not yet implemented");
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
+		assertTrue(tester.getTurnLimit() == (Integer) getField(tester, "turnLimit"));
 	}
-
+	
 	@Test
 	public void testGetPlayerTurn() throws Exception {
-		fail("Not yet implemented");
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		
+		assertTrue(tester.getPlayerTurn() == (Player) getField(tester, "playerTurn"));
 	}
 
 }

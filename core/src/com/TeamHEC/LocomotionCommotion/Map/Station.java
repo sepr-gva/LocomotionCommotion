@@ -43,8 +43,8 @@ public class Station extends MapObj implements PlayerListener{
 		this.lineType = lineType;
 		this.rentValue = rentValue;
 		this.rentValueMod = 0;
-		player1.addListener(this);
-		player2.addListener(this);
+		//player1.addListener(this);
+		//player2.addListener(this);
 	}
 	
 	public String getName()
