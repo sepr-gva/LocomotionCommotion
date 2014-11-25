@@ -10,16 +10,14 @@ public class LocomotionCommotion extends Game {
 	public GameScreen gameScreen;
 	public CoreGame newGame;
 
-
-	public static LocomotionCommotion INSTANCE = new LocomotionCommotion();
+	private static LocomotionCommotion INSTANCE = new LocomotionCommotion();
 
 	public static LocomotionCommotion getInstance()
 	{
 		return INSTANCE;
 	}
 
-	private LocomotionCommotion()
-	{   	}
+	private LocomotionCommotion(){}
 
 	public static final String TITLE = "LOCOMOTION COMOTION", VERSION = "0.0.0.1";
 	@Override
@@ -69,6 +67,4 @@ public class LocomotionCommotion extends Game {
 	public void dispose() {
 		super.dispose();
 	}
-
-
 }
