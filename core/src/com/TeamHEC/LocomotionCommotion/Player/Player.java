@@ -29,7 +29,7 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 public class Player {
 
-	public String playerName;
+	public String name;
 	public int points;
 	private Gold gold;
 	private Coal coal;
@@ -46,11 +46,11 @@ public class Player {
 	
 	private HashMap<String, Fuel> playerFuel;
 	
-	public Player(String playerName, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
+	public Player(String name, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
 				Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains,
 				ArrayList<Station> stations)
 	{
-		this.playerName = playerName;
+		this.name = name;
 		this.points = points;
 		this.gold = gold;
 		this.coal = coal;
@@ -72,9 +72,9 @@ public class Player {
 		playerFuel.put("Oil", this.oil);
 	}
 		
-	public String getPlayerName()
+	public String getName()
 	{
-		return playerName;
+		return name;
 	}
 	
 	//Fuel	
@@ -107,6 +107,11 @@ public class Player {
 	public void subGold(int value)
 	{
 		gold.setValue(gold.getValue() - value);
+	}
+	
+	//Carriages
+	public int getCarriage() {		
+		return carriages.getValue();
 	}
 	
 	//Cards
@@ -194,4 +199,6 @@ public class Player {
 	{
 		listeners.add(listener);
 	}
+
+	
 }

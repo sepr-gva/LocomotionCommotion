@@ -101,7 +101,7 @@ public class CoreGame implements Serializable{
 		StartTurn();
 	}
 	
-	/*
+	/**
 	 * Randomly returns either 0 or 1. It's used in determining which player will go first in this game.
 	 */
 	private int flipCoin() {
@@ -109,7 +109,7 @@ public class CoreGame implements Serializable{
 		return coin.nextInt(2);
 	}
 
-	/*
+	/**
 	 * Ends the turn of a player. It will increase the turn count and switch the player's turns.
 	 */
 	public void EndTurn()
@@ -122,7 +122,7 @@ public class CoreGame implements Serializable{
 		StartTurn();
 	}
 	
-	/*
+	/**
 	 * Starts a players turn. It will check for the end game condition.
 	 */
 	public void StartTurn()
@@ -131,12 +131,15 @@ public class CoreGame implements Serializable{
 			EndGame();
 	}
 	
+	/**
+	 * Ends the current game.
+	 */
 	private void EndGame()
 	{
 		
 	}
 
-	/*
+	/**
 	 * Generates the resources a player will start with based on their start location
 	 * @param station A player's starting location.
 	 */
