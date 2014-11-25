@@ -19,7 +19,7 @@ public class Game_ActorManager {
 
 	public static void create(Stage stage){
 		game_menuobject_topbar = new Game_menuobject_TopBar();
-		actors.add(game_menuobject_topbar);
+		actors.add(game_menuobject_topbar);		
 		
 		game_menuobject_menubtn = new Game_menuobject_MenuBtn();
 		actors.add(game_menuobject_menubtn);
@@ -30,6 +30,16 @@ public class Game_ActorManager {
 		}
 			
 
+	}
+	
+	/*
+	 * Serializes all actors and stores them in an array. This and the Game object
+	 * are then saved and stored to be loaded.
+	 */
+	public static void saveActors()
+	{
+		
+		
 	}
 
 

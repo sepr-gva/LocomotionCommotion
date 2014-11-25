@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_TopBar extends Actor {
+public class Game_menuobject_TopBar extends Actor{
 
 	Texture texture = Game_TextureManager.game_menuobject_topbar; // reuse the new game back btn texture
 	float actorX = -10 ,actorY = 660;

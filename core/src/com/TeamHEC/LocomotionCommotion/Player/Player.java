@@ -23,6 +23,7 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 /**
  * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
+ * @author Callum Hewitt <ch1194@york.ac.uk>
  *
  */
 
@@ -70,16 +71,12 @@ public class Player {
 		playerFuel.put("Oil", this.oil);
 	}
 	
+	//Fuel	
 	public int getFuel(String fuelType)
 	{
 		return playerFuel.get(fuelType).getValue();
 	}
-	
-	public void setFuel(String fuelType, int value)
-	{
-		playerFuel.get(fuelType).setValue(value);
-	}
-	
+
 	public void addFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).addValue(quantity);
@@ -90,16 +87,12 @@ public class Player {
 		playerFuel.get(fuelType).subValue(quantity);
 	}
 
+	//Gold
 	public int getGold()
 	{
 		return gold.getValue();
 	}
-	
-	public void setGold(int value)
-	{
-		gold.setValue(value);
-	}
-	
+
 	public void addGold(int value)
 	{
 		gold.setValue(gold.getValue() + value);
@@ -110,6 +103,7 @@ public class Player {
 		gold.setValue(gold.getValue() - value);
 	}
 	
+	//Cards
 	// Specific cards should be purchased in the shop
 	// This can be used after completing Goals
 	// (Could be implemented in Goal class)
@@ -138,15 +132,40 @@ public class Player {
 		return cards.size();
 	}
 	
+	public ArrayList<Card> getCards()
+	{
+		return cards;
+	}
+	
+	//Stations
 	public int getNumStations()
 	{
 		return stations.size();
 	}	
 	
+	public ArrayList<Station> getStations()
+	{
+		return stations;
+	}
+	
+	//Shop
 	public void accessShop()
 	{
 		shop.openShop();
 	}
-	
+
+	//Goals
 	public void accessGoals(){}
+	
+	public ArrayList<Goal> getGoals()
+	{
+		return goals;
+	}
+	
+	//Trains
+	public ArrayList<Train> getTrains()
+	{
+		return trains;
+	}
 }
+

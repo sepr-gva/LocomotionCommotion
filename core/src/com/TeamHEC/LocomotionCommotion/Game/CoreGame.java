@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -24,15 +25,14 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
  *
  */
 
-public class CoreGame {
+public class CoreGame implements Serializable{
 	
 	//Privates
 	private WorldMap gameMap;
 	private Player player1;
 	private Player player2;
 	private int turnCount;
-	private int turnLimit;
-	
+	private int turnLimit;	
 	private Player playerTurn;
 		
 	/**
@@ -114,7 +114,7 @@ public class CoreGame {
 	 */
 	public void EndTurn()
 	{
-		turnCount++;
+		turnCount = (turnCount + 1);
 		if(playerTurn == player1)
 			playerTurn = player2;
 		else
@@ -127,7 +127,7 @@ public class CoreGame {
 	 */
 	public void StartTurn()
 	{
-		if(turnCount == turnLimit)
+		if(getTurnCount() == getTurnLimit())
 			EndGame();
 	}
 	
@@ -136,6 +136,10 @@ public class CoreGame {
 		
 	}
 
+	/*
+	 * Generates the resources a player will start with based on their start location
+	 * @param station A player's starting location.
+	 */
 	public HashMap<String, Resource> getBaseResources(Station station)
 	{
 		//Temporary		
@@ -159,4 +163,29 @@ public class CoreGame {
 		return dict;		
 	}
 	
+	//getters
+	public WorldMap getGameMap() {
+		return gameMap;
+	}	
+
+	public Player getPlayer1() {
+		return player1;
+	}
+
+	public Player getPlayer2() {
+		return player2;
+	}
+	
+	public int getTurnCount() {
+		return turnCount;
+	}
+
+	public int getTurnLimit() {
+		return turnLimit;
+	}
+
+	public Player getPlayerTurn() {
+		return playerTurn;
+	}
+
 }
