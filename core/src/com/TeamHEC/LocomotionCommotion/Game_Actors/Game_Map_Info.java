@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -25,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_Map_Info extends Actor {
 
 	public static Texture texture = Game_TextureManager.mapInfo; // reuse the new game back btn texture
-	public static float actorX = 850 ,actorY = 60;
+	public static float actorX = (Gdx.graphics.getWidth()-texture.getWidth()) ,actorY = 60;
 	public boolean started = false;
 	
 

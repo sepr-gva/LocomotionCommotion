@@ -114,6 +114,15 @@ public class Game_TicketsManager {
 		}
 		return space;
 	}
+	
+
+	public static void makeVisible(Stage stage){
+		for (Actor a :stage.getActors()){
+			a.setVisible(true);
+			
+		}}
+	
+	
 
 
 }
