@@ -24,6 +24,7 @@ public class Game_TicketsManager {
 	
 	public static boolean open=false;
 	
+	public static int  stagestart, ticketActors;
 
 
 	public Game_TicketsManager(){	}
@@ -76,6 +77,7 @@ public class Game_TicketsManager {
 		actors.add(ticket3);
 	
 		
+		stagestart= stage.getActors().size;
 		for (Actor a : actors){
 			if(open == true){
 				a.setTouchable(Touchable.enabled);
@@ -84,6 +86,7 @@ public class Game_TicketsManager {
 				a.setVisible(false);
 
 			stage.addActor(a);
+			ticketActors ++;
 		}
 		
 			
@@ -116,11 +119,6 @@ public class Game_TicketsManager {
 	}
 	
 
-	public static void makeVisible(Stage stage){
-		for (Actor a :stage.getActors()){
-			a.setVisible(true);
-			
-		}}
 	
 	
 

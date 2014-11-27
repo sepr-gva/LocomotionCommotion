@@ -19,7 +19,9 @@ public class Game_ActorManager {
 	public static Game_menuobject_ResourcesBar game_menuobject_resourcesbar;
 	
 	public static Game_menuobject_TicketToggleBtn game_menuobject_tickettoggle;
-	
+	public static Game_menuobject_EndTurnBtn game_menuobject_endturnbutton;
+	public static Game_menuobject_CornerFrame game_menuobject_cornerframe;
+	public static Game_menuobject_InfoToggleBtn game_menuobject_infobutton;
 	
 	public static int coal, oil, electricy, nuclear;
 
@@ -35,6 +37,7 @@ public class Game_ActorManager {
 		
 		game_menuobject_tickettoggle=new Game_menuobject_TicketToggleBtn();
 		actors.add(game_menuobject_tickettoggle);
+		
 		
 		
 		BitmapFont font = new BitmapFont();
@@ -56,7 +59,14 @@ public class Game_ActorManager {
 		resourcesQuant.setY(20);
 		actors.add(resourcesQuant);
 		
+		game_menuobject_cornerframe=new Game_menuobject_CornerFrame();
+		actors.add(game_menuobject_cornerframe);
 		
+		game_menuobject_endturnbutton=new Game_menuobject_EndTurnBtn();
+		actors.add(game_menuobject_endturnbutton);
+		
+		game_menuobject_infobutton=new Game_menuobject_InfoToggleBtn();
+		actors.add(game_menuobject_infobutton);
 		
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);

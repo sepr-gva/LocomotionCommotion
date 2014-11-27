@@ -13,6 +13,9 @@ public class Game_MapManager {
 	public static Game_Map tempMap;
 	public static Game_Map_Info mapInfo;
 	
+	public static boolean infoVisible= false;
+	public static int  stagestart, ticketActors;
+	
 
 
 	public Game_MapManager(){	}
@@ -21,20 +24,20 @@ public class Game_MapManager {
 		tempMap = new Game_Map();		
 		actors.add(tempMap);
 		
-		mapInfo = new Game_Map_Info();
-		actors.add(mapInfo);
+		
 
 		
 		
-		
+		stagestart= stage.getActors().size;
 		for (Actor a : actors){
-				a.setTouchable(Touchable.enabled);
-				
-
+			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
+			ticketActors ++;
 		}
 		
-			
+		mapInfo = new Game_Map_Info();
+		mapInfo.setVisible(infoVisible);
+		stage.addActor(mapInfo);
 
 	}
 	

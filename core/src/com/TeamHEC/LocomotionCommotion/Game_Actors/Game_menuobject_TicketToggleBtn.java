@@ -51,19 +51,14 @@ public class Game_menuobject_TicketToggleBtn extends Actor {
 			if (Game_TicketsManager.open== false)
 			{
 				Game_TicketsManager.open= true;
-				Game_TicketsManager.makeVisible(GameScreen.getStage());
-			}
+				for(int i=Game_TicketsManager.stagestart; i<=Game_TicketsManager.stagestart +Game_TicketsManager.ticketActors-1;i++){
+					GameScreen.getStage().getActors().get(i).setVisible(true);
+				}			}
 			else
 			{	Game_TicketsManager.open= false;
-				
-				GameScreen.getStage().getActors().get(7).setVisible(false);
-				GameScreen.getStage().getActors().get(8).setVisible(false);
-				GameScreen.getStage().getActors().get(9).setVisible(false);
-				GameScreen.getStage().getActors().get(10).setVisible(false);
-				GameScreen.getStage().getActors().get(11).setVisible(false);
-				GameScreen.getStage().getActors().get(12).setVisible(false);
-				GameScreen.getStage().getActors().get(13).setVisible(false);
-				
+				for(int i=Game_TicketsManager.stagestart; i<=Game_TicketsManager.stagestart +Game_TicketsManager.ticketActors-1;i++){
+					GameScreen.getStage().getActors().get(i).setVisible(false);
+				}
 				
 
 			}

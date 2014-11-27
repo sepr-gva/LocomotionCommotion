@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -22,18 +23,18 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_Map_Info extends Actor {
+public class Game_menuobject_CornerFrame extends Actor {
 
-	public static Texture texture = Game_TextureManager.mapInfo; // reuse the new game back btn texture
-	public static float actorX = 290 ,actorY = 50;
+	public static Texture texture = Game_TextureManager.game_menuobject_cornerframe; // reuse the new game back btn texture
+	public static float actorX = (Gdx.graphics.getWidth()-texture.getWidth()) ,actorY = 40;
 	public boolean started = false;
 	
 
-	public Game_Map_Info(){
+	public Game_menuobject_CornerFrame(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_Map_Info)event.getTarget()).started = true;
+				((Game_menuobject_CornerFrame)event.getTarget()).started = true;
 				return true;
 			}
 		});

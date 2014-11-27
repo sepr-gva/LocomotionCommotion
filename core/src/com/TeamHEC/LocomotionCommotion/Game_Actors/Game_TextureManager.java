@@ -11,7 +11,14 @@ public class Game_TextureManager {
 	//Top Bar
 	public static  Texture game_menuobject_topbar = new Texture(Gdx.files.internal("game_MenuObjects/TopBar.png"));
 	public static  Texture game_menuobject_menubtn = new Texture(Gdx.files.internal("game_MenuObjects/menubtn.png"));
+	
+	//Resources
 	public static  Texture game_menuobject_resourcesbar = new Texture(Gdx.files.internal("game_MenuObjects/resourcesbar.png"));
+	//Bottom right corner
+	public static  Texture game_menuobject_endturnbutton = new Texture(Gdx.files.internal("game_MenuObjects/endTurnBtn.png"));
+	public static  Texture game_menuobject_cornerframe = new Texture(Gdx.files.internal("game_MenuObjects/cornerframe.png"));
+	public static  Texture game_menuobject_infobutton = new Texture(Gdx.files.internal("game_MenuObjects/infobutton.png"));
+	
 	
 	//Ticket on screen menu
 	public static  Texture game_menuobject_ticketbtn = new Texture(Gdx.files.internal("game_MenuObjects/game_tickets/ticketbtn.png"));
