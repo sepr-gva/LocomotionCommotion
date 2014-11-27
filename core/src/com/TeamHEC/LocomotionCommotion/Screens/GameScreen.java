@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TicketsManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ActorManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -19,8 +20,8 @@ public class GameScreen implements Screen {
 		camera.update();
 		Gdx.input.setInputProcessor(stage);	
 		Game_ActorManager.create(stage);
-		stage.draw();
-
+		//Game_TicketsManager.create(stage);
+		
 	}
 
 	@Override
@@ -40,6 +41,7 @@ public class GameScreen implements Screen {
 		stage.getViewport().update(width, height, true);		
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public void show() {
 		this.create();

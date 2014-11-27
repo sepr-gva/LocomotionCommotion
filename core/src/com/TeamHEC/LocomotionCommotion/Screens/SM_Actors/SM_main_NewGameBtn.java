@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.TeamHEC.LocomotionCommotion.Screens.SM_TextureManager;
+import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -27,6 +27,7 @@ public class SM_main_NewGameBtn extends Actor {
 	Texture texture = SM_TextureManager.sm_main_newgamebtn; //Image Used for the New Game button
 	public static float actorX = 400 ,actorY = 459; //Position of bottom left corner
 	public boolean started = false; //
+	int animationTracker;
 
 	public SM_main_NewGameBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
@@ -37,6 +38,8 @@ public class SM_main_NewGameBtn extends Actor {
 			}
 		});
 	}
+	
+
 
 
 	@Override
@@ -48,7 +51,13 @@ public class SM_main_NewGameBtn extends Actor {
 	public void act(float delta){
 		if(started){
 					StartMenu.changeCam(0, 1150);
-			started = false;
+					started = false;
+//					if (animationTracker >= 1150)
+//							started = false;
+//					else
+//						animationTracker = animationTracker + 20;
+					
+				
 			
 			
 		}

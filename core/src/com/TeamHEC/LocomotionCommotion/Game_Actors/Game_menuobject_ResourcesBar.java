@@ -1,7 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.Game_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -24,20 +23,22 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_MenuBtn extends Actor {
+public class Game_menuobject_ResourcesBar extends Actor {
 
-	Texture texture = Game_TextureManager.game_menuobject_menubtn; // reuse the new game back btn texture
-	float actorX = 1200 ,actorY = 700;
+	public static Texture texture = Game_TextureManager.game_menuobject_resourcesbar; // reuse the new game back btn texture
+	public static float actorX = -20 ,actorY = -50;
 	public boolean started = false;
+	
 
-	public Game_menuobject_MenuBtn(){
+	public Game_menuobject_ResourcesBar(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_menuobject_MenuBtn)event.getTarget()).started = true;
+				((Game_menuobject_ResourcesBar)event.getTarget()).started = true;
 				return true;
 			}
 		});
+		
 	}
 
 
@@ -49,9 +50,6 @@ public class Game_menuobject_MenuBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			LocomotionCommotion.getInstance().setMenuScreen();
-			//Game_TicketsManager.open= true;
-			
 			started = false;
 		}
 	}

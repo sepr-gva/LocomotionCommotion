@@ -24,7 +24,9 @@ public class LocomotionCommotion extends Game {
 	public void create() {
 		startMenu = new StartMenu();
 		gameScreen = new GameScreen();
-		setScreen(startMenu); // Use the StartMenu Screen First
+		
+		//TEMP CHANGE WHILE DESIGNING THE GAMESCREEN UI (SHOULD BE startMenu)
+		setScreen(gameScreen); // Use the StartMenu Screen First
 	}
 
 	public void setGameScreen()

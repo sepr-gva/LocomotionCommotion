@@ -60,6 +60,7 @@ public class SM_newgame_BackBtn extends Actor {
 			StartMenu.player1name= null;
 			StartMenu.player2name= null;
 			StartMenu.turnChoice=0;
+			//SM_main_NewGameBtn.resetAnimation() ;
 			
 			
 			
