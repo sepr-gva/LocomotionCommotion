@@ -2,7 +2,6 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
-import com.TeamHEC.LocomotionCommotion.Screens.Game_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -50,7 +49,6 @@ public class Game_menuobject_MenuBtn extends Actor {
 	public void act(float delta){
 		if(started){
 			LocomotionCommotion.getInstance().setMenuScreen();
-			//Game_TicketsManager.open= true;
 			
 			started = false;
 		}

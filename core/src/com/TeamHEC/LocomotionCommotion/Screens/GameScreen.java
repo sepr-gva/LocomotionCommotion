@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_MapManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TicketsManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ActorManager;
 import com.badlogic.gdx.Gdx;
@@ -19,8 +20,9 @@ public class GameScreen implements Screen {
 		Camera camera = stage.getCamera();
 		camera.update();
 		Gdx.input.setInputProcessor(stage);	
+		Game_MapManager.create(stage);
 		Game_ActorManager.create(stage);
-		//Game_TicketsManager.create(stage);
+		Game_TicketsManager.create(stage);
 		
 	}
 
@@ -65,9 +67,13 @@ public class GameScreen implements Screen {
 		// TODO Auto-generated method stub
 
 	}
+	public static void resetStage(){
+		stage.dispose();
+		stage.clear();
+	}
 
 	@Override
-	public void dispose() {
+	public  void dispose() {
 		stage.dispose();
 	}
 

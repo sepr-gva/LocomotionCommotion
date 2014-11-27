@@ -22,18 +22,18 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_ResourcesBar extends Actor {
+public class Game_menuobject_Ticket2 extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_resourcesbar; // reuse the new game back btn texture
-	public static float actorX = -20 ,actorY = -50;
+	public static Texture texture = Game_TextureManager.game_menuobject_ticket; // reuse the new game back btn texture
+	public static float actorX = Game_menuobject_Ticket1.actorX  ,actorY = Game_menuobject_Ticket1.actorY -150;
 	public boolean started = false;
 	
 
-	public Game_menuobject_ResourcesBar(){
+	public Game_menuobject_Ticket2(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_menuobject_ResourcesBar)event.getTarget()).started = true;
+				((Game_menuobject_Ticket2)event.getTarget()).started = true;
 				return true;
 			}
 		});
