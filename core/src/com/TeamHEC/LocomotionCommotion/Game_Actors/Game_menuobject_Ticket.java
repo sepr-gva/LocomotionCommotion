@@ -4,6 +4,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import com.TeamHEC.LocomotionCommotion.Screens.Game_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -23,21 +24,22 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_TopBar extends Actor{
+public class Game_menuobject_Ticket extends Actor {
 
-	Texture texture = Game_TextureManager.game_menuobject_topbar; // reuse the new game back btn texture
-	float actorX = -10 ,actorY = 660;
+	public static Texture texture = Game_TextureManager.game_menuobject_ticket; // reuse the new game back btn texture
+	public static float actorX = 100 ,actorY = 400;
 	public boolean started = false;
 	
 
-	public Game_menuobject_TopBar(){
+	public Game_menuobject_Ticket(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_menuobject_TopBar)event.getTarget()).started = true;
+				((Game_menuobject_Ticket)event.getTarget()).started = true;
 				return true;
 			}
 		});
+		
 	}
 
 

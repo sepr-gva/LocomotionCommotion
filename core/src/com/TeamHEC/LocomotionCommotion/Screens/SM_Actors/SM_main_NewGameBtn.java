@@ -47,10 +47,10 @@ public class SM_main_NewGameBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 1150);
+					StartMenu.changeCam(0, 1150);
 			started = false;
 			
 			
 		}
-	}
+}
 }

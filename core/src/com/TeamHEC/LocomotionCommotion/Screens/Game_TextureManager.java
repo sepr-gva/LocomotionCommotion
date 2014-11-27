@@ -12,5 +12,9 @@ public class Game_TextureManager {
 	public static  Texture game_menuobject_topbar = new Texture(Gdx.files.internal("game_MenuObjects/TopBar.png"));
 	public static  Texture game_menuobject_menubtn = new Texture(Gdx.files.internal("game_MenuObjects/menubtn.png"));
 	
+	//Ticket
+	
+	public static  Texture game_menuobject_ticket = new Texture(Gdx.files.internal("game_MenuObjects/game_tickets/ticket.png"));
+	
 	
 }
