@@ -47,7 +47,7 @@ public class SM_preferences_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 950);
+			StartMenu.changeCam(0, 1200);
 			started = false;
 		}
 	}

@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_loadgame_BackBtn extends Actor {
 
 	Texture texture = SM_TextureManager.sm_newgame_BackBtn; // Reuse Texture the BackButton from new game
-	float actorX = 1250+ 180 ,actorY = 675;
+	float actorX = 1680+180 ,actorY = 850;
 	public boolean started = false;
 
 	public SM_loadgame_BackBtn(){
@@ -47,7 +47,7 @@ public class SM_loadgame_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(-1250, 0);
+			StartMenu.changeCam(-1680, 0);
 			started = false;
 		}
 	}

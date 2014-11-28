@@ -27,7 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_loadgame_Examples extends Actor {
 
 	Texture texture = SM_TextureManager.sm_loadgame_Examples;
-	float actorX = 1250+ 350 ,actorY = 500;
+	float actorX = 1680+ 350 ,actorY = 500;
 	public boolean started = false;
 
 	public SM_loadgame_Examples(){

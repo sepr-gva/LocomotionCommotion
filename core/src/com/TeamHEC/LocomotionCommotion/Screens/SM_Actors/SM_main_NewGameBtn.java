@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_main_NewGameBtn extends Actor {
 	
 	Texture texture = SM_TextureManager.sm_main_newgamebtn; //Image Used for the New Game button
-	public static float actorX = 400 ,actorY = 459; //Position of bottom left corner
+	public static float actorX = 600 ,actorY = 480; //Position of bottom left corner
 	public boolean started = false; //
 	int animationTracker;
 
@@ -50,7 +50,7 @@ public class SM_main_NewGameBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-					StartMenu.changeCam(0, 1150);
+					StartMenu.changeCam(-100,900);
 					started = false;
 //					if (animationTracker >= 1150)
 //							started = false;

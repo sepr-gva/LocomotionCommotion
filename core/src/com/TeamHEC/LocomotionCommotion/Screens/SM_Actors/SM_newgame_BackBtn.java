@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_newgame_BackBtn extends Actor {
 
 	Texture texture = SM_TextureManager.sm_newgame_BackBtn;
-	float actorX = 790 ,actorY = 1050+740;
+	float actorX = 1100 ,actorY = 1050+760;
 	public boolean started = false;
 
 	public SM_newgame_BackBtn(){
@@ -48,7 +48,7 @@ public class SM_newgame_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, -1150);
+			StartMenu.changeCam(100, -900);
 			SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.sm_newgameTurnTimeOut_unselected_Btn;
 			SM_newgame_StationDomBtn.texture =SM_TextureManager.sm_newgame_StationDom_unselected_Btn ;
 			StartMenu.textbox1.setText("");
