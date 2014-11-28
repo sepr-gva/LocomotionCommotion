@@ -49,7 +49,10 @@ public class Game_TicketsManager {
 		//Temp Ticket solution
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-		parameter.size = 15;
+		parameter.size = 16;
+		float textx= Game_menuobject_Ticket1.actorX +10;
+		float texty= Game_menuobject_Ticket1.actorY +83;
+		
 		BitmapFont font = generator.generateFont(parameter); // font size 12 pixels
 		generator.dispose();
 		LabelStyle style = new LabelStyle();
@@ -58,22 +61,22 @@ public class Game_TicketsManager {
 		ticket1 = new Label(null, style);
 		ticket1.setText(ticketMaker("Passenger","50 Points","London","Turn 3", "Athens", " ANY"));
 		ticket1.setColor(0,0,0,1);
-		ticket1.setX(Game_menuobject_Ticket1.actorX +7);
-		ticket1.setY(Game_menuobject_Ticket1.actorY +63);
+		ticket1.setX(textx);
+		ticket1.setY(texty);
 		actors.add(ticket1);
 		
 		ticket2 = new Label(null, style);
 		ticket2.setText(ticketMaker("Cargo","50 Points","Moscow","Turn 3", "Rome", " ANY"));
 		ticket2.setColor(0,0,0,1);
-		ticket2.setX(Game_menuobject_Ticket2.actorX +7);
-		ticket2.setY(Game_menuobject_Ticket2.actorY +64);
+		ticket2.setX(textx);
+		ticket2.setY(texty-200);
 		actors.add(ticket2);
 		
 		ticket3 = new Label(null, style);
 		ticket3.setText(ticketMaker("Passenger","50 Points","Berlin","Turn 6", "Oslo", " ANY"));
 		ticket3.setColor(0,0,0,1);
-		ticket3.setX(Game_menuobject_Ticket3.actorX +7);
-		ticket3.setY(Game_menuobject_Ticket3.actorY +64);
+		ticket3.setX(textx);
+		ticket3.setY(texty-400);
 		actors.add(ticket3);
 	
 		
@@ -111,7 +114,7 @@ public class Game_TicketsManager {
 	}
 	public static String getSpacing(int len){
 		String space="";
-		for (int i=0; i<(17-len)+12; i++){
+		for (int i=0; i<(17-len)+23; i++){
 			space += " ";
 			
 		}

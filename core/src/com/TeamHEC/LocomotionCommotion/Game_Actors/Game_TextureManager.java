@@ -29,5 +29,14 @@ public class Game_TextureManager {
 	public static  Texture tempMap = new Texture(Gdx.files.internal("game_map/map.png"));
 	public static  Texture mapInfo = new Texture(Gdx.files.internal("game_map/mapinfo.png"));
 	
+	//Pause Menu
+	public static  Texture game_pause_blackoutscreen = new Texture(Gdx.files.internal("game_MenuObjects/game_Pausemenu/screen.png"));
+	public static  Texture game_pause_pauselogo = new Texture(Gdx.files.internal("game_MenuObjects/game_Pausemenu/pauselogo.png"));
+	public static  Texture game_pause_resumegame = new Texture(Gdx.files.internal("game_MenuObjects/game_Pausemenu/resumegamebtn.png"));
+	public static  Texture game_pause_loadgame = new Texture(Gdx.files.internal("game_MenuObjects/game_Pausemenu/loadgamebtn.png"));
+	public static  Texture game_pause_settings = new Texture(Gdx.files.internal("game_MenuObjects/game_Pausemenu/settingsbtn.png"));
+	public static  Texture game_pause_mainmenu = new Texture(Gdx.files.internal("game_MenuObjects/game_Pausemenu/mainmenubtn.png"));
+	public static  Texture game_pause_background = new Texture(Gdx.files.internal("game_MenuObjects/game_Pausemenu/pausebackground.png"));
+
 	
 }

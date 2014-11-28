@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_menuobject_Ticket1 extends Actor {
 
 	public static Texture texture = Game_TextureManager.game_menuobject_ticket; // reuse the new game back btn texture
-	public static float actorX = 5 ,actorY = 510;
+	public static float actorX = 5 ,actorY = Game_menuobject_TopBar.actorY-texture.getHeight() -20;
 	public boolean started = false;
 	
 

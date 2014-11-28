@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -23,22 +23,22 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_InfoToggleBtn extends Actor {
+public class Game_pause_MainMenu extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_infobutton; // reuse the new game back btn texture
-	public static float actorX = GameScreen.screenX-310 ,actorY = 63;
+	public static Texture texture = Game_TextureManager.game_pause_mainmenu; // reuse the new game back btn texture
+	public static float actorX = Game_pause_ResumeGame.actorX ,actorY = Game_pause_ResumeGame.actorY-300;
 	public boolean started = false;
+	
 
-
-	public Game_menuobject_InfoToggleBtn(){
+	public Game_pause_MainMenu(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_menuobject_InfoToggleBtn)event.getTarget()).started = true;
+				((Game_pause_MainMenu)event.getTarget()).started = true;
 				return true;
 			}
 		});
-
+		
 	}
 
 
@@ -50,23 +50,8 @@ public class Game_menuobject_InfoToggleBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_MapManager.infoVisible== false)
-			{
-				Game_MapManager.infoVisible= true;
-
-				GameScreen.getStage().getActors().get(Game_MapManager.mapActors).setVisible(true);
-
-			}
-			else
-			{	
-			Game_MapManager.infoVisible= false;
-			GameScreen.getStage().getActors().get(Game_MapManager.mapActors).setVisible(false);
-
-			}
+			LocomotionCommotion.getInstance().setMenuScreen();
 			started = false;
 		}
-
-
-
 	}
 }

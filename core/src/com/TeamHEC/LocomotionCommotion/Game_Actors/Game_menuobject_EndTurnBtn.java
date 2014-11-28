@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -26,7 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_menuobject_EndTurnBtn extends Actor {
 
 	public static Texture texture = Game_TextureManager.game_menuobject_endturnbutton; // reuse the new game back btn texture
-	public static float actorX = (Gdx.graphics.getWidth()-texture.getWidth()) ,actorY = 0;
+	public static float actorX = (GameScreen.screenX-texture.getWidth()) ,actorY = 0;
 	public boolean started = false;
 	
 

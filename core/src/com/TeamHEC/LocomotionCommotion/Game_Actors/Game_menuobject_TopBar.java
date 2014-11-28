@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -24,8 +25,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_TopBar extends Actor{
 
-	Texture texture = Game_TextureManager.game_menuobject_topbar; // reuse the new game back btn texture
-	float actorX = -10 ,actorY = 660;
+	static Texture texture = Game_TextureManager.game_menuobject_topbar; // reuse the new game back btn texture
+	float actorX = -20;
+	public static float actorY = GameScreen.screenY- texture.getHeight() - 40;
 	public boolean started = false;
 	
 

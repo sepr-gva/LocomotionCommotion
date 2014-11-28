@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_menuobject_TicketToggleBtn extends Actor {
 
 	Texture texture = Game_TextureManager.game_menuobject_ticketbtn; // reuse the new game back btn texture
-	float actorX = 10 ,actorY = 690;
+	float actorX = 30 ,actorY = GameScreen.screenY-115;
 	public boolean started = false;
 
 	public Game_menuobject_TicketToggleBtn(){
@@ -52,17 +52,24 @@ public class Game_menuobject_TicketToggleBtn extends Actor {
 			{
 				Game_TicketsManager.open= true;
 				for(int i=Game_TicketsManager.stagestart; i<=Game_TicketsManager.stagestart +Game_TicketsManager.ticketActors-1;i++){
-					GameScreen.getStage().getActors().get(i).setVisible(true);
+					if (i > GameScreen.getStage().getActors().size-1){
+
+					}else
+						GameScreen.getStage().getActors().get(i).setVisible(true);
+
 				}			}
 			else
 			{	Game_TicketsManager.open= false;
-				for(int i=Game_TicketsManager.stagestart; i<=Game_TicketsManager.stagestart +Game_TicketsManager.ticketActors-1;i++){
+			for(int i=Game_TicketsManager.stagestart; i<=Game_TicketsManager.stagestart +Game_TicketsManager.ticketActors-1;i++){
+				if (i > GameScreen.getStage().getActors().size-1){
+
+				}else
 					GameScreen.getStage().getActors().get(i).setVisible(false);
-				}
-				
 
 			}
-		started = false;
+
+			}
+			started = false;
+			}
 		}
 	}
-}

@@ -14,7 +14,7 @@ public class Game_MapManager {
 	public static Game_Map_Info mapInfo;
 	
 	public static boolean infoVisible= false;
-	public static int  stagestart, ticketActors;
+	public static int  stagestart, mapActors;
 	
 
 
@@ -32,7 +32,7 @@ public class Game_MapManager {
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
-			ticketActors ++;
+			mapActors ++;
 		}
 		
 		mapInfo = new Game_Map_Info();

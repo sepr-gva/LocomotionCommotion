@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_menuobject_MenuBtn extends Actor {
 
 	Texture texture = Game_TextureManager.game_menuobject_menubtn; // reuse the new game back btn texture
-	float actorX = 1200 ,actorY = 700;
+	float actorX = GameScreen.screenX-60 ,actorY = GameScreen.screenY-95;
 	public boolean started = false;
 
 	public Game_menuobject_MenuBtn(){
@@ -48,9 +48,28 @@ public class Game_menuobject_MenuBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			LocomotionCommotion.getInstance().setMenuScreen();
-			
+			if (Game_PauseMenuManager.open== false)
+			{
+				Game_PauseMenuManager.open= true;
+				for(int i=Game_PauseMenuManager.stagestart; i<=Game_PauseMenuManager.stagestart +Game_PauseMenuManager.pauseActors-1;i++){
+					if (i > GameScreen.getStage().getActors().size-1){
+
+					}else
+						GameScreen.getStage().getActors().get(i).setVisible(true);
+
+				}			}
+			else
+			{	Game_PauseMenuManager.open= false;
+			for(int i=Game_PauseMenuManager.stagestart; i<=Game_PauseMenuManager.stagestart +Game_PauseMenuManager.pauseActors-1;i++){
+				if (i > GameScreen.getStage().getActors().size-1){
+
+				}else
+					GameScreen.getStage().getActors().get(i).setVisible(false);
+
+			}
+
+			}
 			started = false;
+			}
 		}
-	}
 }

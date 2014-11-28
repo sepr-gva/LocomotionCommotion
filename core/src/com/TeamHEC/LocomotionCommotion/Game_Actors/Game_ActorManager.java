@@ -50,13 +50,13 @@ public class Game_ActorManager {
 		//Resources bar is now connected to variables for easy update of quantities.
 		game_menuobject_resourcesbar = new Game_menuobject_ResourcesBar();
 		actors.add(game_menuobject_resourcesbar);
-		String spacing = "                     ";
+		String spacing = "                              ";
 		resourcesQuant = new Label(null,style);
 		resourcesQuant.setText(coal+spacing+ oil +spacing+electricy+spacing+nuclear);
 		resourcesQuant.setColor(0,0,0,1);
 		resourcesQuant.setScale(0.9f);
 		resourcesQuant.setX(90);
-		resourcesQuant.setY(20);
+		resourcesQuant.setY(40);
 		actors.add(resourcesQuant);
 		
 		game_menuobject_cornerframe=new Game_menuobject_CornerFrame();

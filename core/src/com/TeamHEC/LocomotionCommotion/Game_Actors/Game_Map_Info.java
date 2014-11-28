@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_Map_Info extends Actor {
 
 	public static Texture texture = Game_TextureManager.mapInfo; // reuse the new game back btn texture
-	public static float actorX = 290 ,actorY = 50;
+	public static float actorX = 500 ,actorY = 100;
 	public boolean started = false;
 	
 
