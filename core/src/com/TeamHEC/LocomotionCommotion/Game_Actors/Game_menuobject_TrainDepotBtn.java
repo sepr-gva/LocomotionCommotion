@@ -23,22 +23,20 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_pause_ResumeGame extends Actor {
+public class Game_menuobject_TrainDepotBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_pause_resumegame; // reuse the new game back btn texture
-	public static float actorX = 590 ,actorY = 550;
+	Texture texture = Game_TextureManager.game_traindepot_traindepotbtn; // reuse the new game back btn texture
+	float actorX = GameScreen.screenX-310 ,actorY = 193;
 	public boolean started = false;
-	
 
-	public Game_pause_ResumeGame(){
+	public Game_menuobject_TrainDepotBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_pause_ResumeGame)event.getTarget()).started = true;
+				((Game_menuobject_TrainDepotBtn)event.getTarget()).started = true;
 				return true;
 			}
 		});
-		
 	}
 
 
@@ -50,10 +48,10 @@ public class Game_pause_ResumeGame extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_PauseMenuManager.open== false)
+			if (Game_TrainDepotManager.open== false)
 			{
-				Game_PauseMenuManager.open= true;
-				for(int i=Game_PauseMenuManager.stagestart; i<=Game_PauseMenuManager.stagestart +Game_PauseMenuManager.pauseActors-1;i++){
+				Game_TrainDepotManager.open= true;
+				for(int i=Game_TrainDepotManager.stagestart; i<=Game_TrainDepotManager.stagestart +Game_TrainDepotManager.traindepotActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -61,8 +59,8 @@ public class Game_pause_ResumeGame extends Actor {
 
 				}			}
 			else
-			{	Game_PauseMenuManager.open= false;
-			for(int i=Game_PauseMenuManager.stagestart; i<=Game_PauseMenuManager.stagestart +Game_PauseMenuManager.pauseActors-1;i++){
+			{	Game_TrainDepotManager.open= false;
+			for(int i=Game_TrainDepotManager.stagestart; i<=Game_TrainDepotManager.stagestart +Game_TrainDepotManager.traindepotActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

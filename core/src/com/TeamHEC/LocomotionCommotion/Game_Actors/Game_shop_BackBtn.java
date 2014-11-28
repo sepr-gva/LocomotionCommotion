@@ -23,18 +23,18 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_pause_ResumeGame extends Actor {
+public class Game_shop_BackBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_pause_resumegame; // reuse the new game back btn texture
-	public static float actorX = 590 ,actorY = 550;
+	public static Texture texture = Game_TextureManager.game_shop_backbtn; // reuse the new game back btn texture
+	public static float actorX = 1350 ,actorY = 800;
 	public boolean started = false;
 	
 
-	public Game_pause_ResumeGame(){
+	public Game_shop_BackBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_pause_ResumeGame)event.getTarget()).started = true;
+				((Game_shop_BackBtn)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -50,10 +50,10 @@ public class Game_pause_ResumeGame extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_PauseMenuManager.open== false)
+			if (Game_ShopManager.open== false)
 			{
-				Game_PauseMenuManager.open= true;
-				for(int i=Game_PauseMenuManager.stagestart; i<=Game_PauseMenuManager.stagestart +Game_PauseMenuManager.pauseActors-1;i++){
+				Game_ShopManager.open= true;
+				for(int i=Game_ShopManager.stagestart; i<=Game_ShopManager.stagestart +Game_ShopManager.shopActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -61,8 +61,8 @@ public class Game_pause_ResumeGame extends Actor {
 
 				}			}
 			else
-			{	Game_PauseMenuManager.open= false;
-			for(int i=Game_PauseMenuManager.stagestart; i<=Game_PauseMenuManager.stagestart +Game_PauseMenuManager.pauseActors-1;i++){
+			{	Game_ShopManager.open= false;
+			for(int i=Game_ShopManager.stagestart; i<=Game_ShopManager.stagestart +Game_ShopManager.shopActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

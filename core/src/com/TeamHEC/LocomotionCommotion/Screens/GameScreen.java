@@ -3,7 +3,9 @@ package com.TeamHEC.LocomotionCommotion.Screens;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_MapManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenuManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TicketsManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -11,7 +13,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class GameScreen implements Screen {
 	private static Stage stage;
@@ -41,6 +42,8 @@ public class GameScreen implements Screen {
 		Game_ActorManager.create(getStage());
 		Game_TicketsManager.create(getStage());
 		Game_PauseMenuManager.create(getStage());
+		Game_ShopManager.create(getStage());
+		Game_TrainDepotManager.create(getStage());
 		
 	}
 

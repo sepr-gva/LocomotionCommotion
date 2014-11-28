@@ -23,12 +23,16 @@ public class Game_ActorManager {
 	public static Game_menuobject_CornerFrame game_menuobject_cornerframe;
 	public static Game_menuobject_InfoToggleBtn game_menuobject_infobutton;
 	
+	public static Game_menuobject_ShopBtn game_menuobject_shopbtn;
+	public static Game_menuobject_TrainDepotBtn game_menuobject_traindepotbtn;
+	
 	public static int coal, oil, electricy, nuclear;
 
 
 	public Game_ActorManager(){		}
 
 	public static void create(Stage stage){
+		
 		game_menuobject_topbar = new Game_menuobject_TopBar();
 		actors.add(game_menuobject_topbar);		
 		
@@ -67,6 +71,13 @@ public class Game_ActorManager {
 		
 		game_menuobject_infobutton=new Game_menuobject_InfoToggleBtn();
 		actors.add(game_menuobject_infobutton);
+		
+		
+		game_menuobject_shopbtn = new Game_menuobject_ShopBtn();
+		actors.add(game_menuobject_shopbtn);
+		
+		game_menuobject_traindepotbtn = new Game_menuobject_TrainDepotBtn();
+		actors.add(game_menuobject_traindepotbtn);
 		
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
