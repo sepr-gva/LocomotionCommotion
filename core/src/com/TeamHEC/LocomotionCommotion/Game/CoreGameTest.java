@@ -77,7 +77,7 @@ public class CoreGameTest {
 		// Retrieve the field with the specified name
 		Field f = c.getDeclaredField( name );
 
-		// *MAGIC* make sure the field is accessible, even if it
+		// Make sure the field is accessible, even if it
 		// would be private or protected
 		f.setAccessible( true );
 
@@ -102,7 +102,7 @@ public class CoreGameTest {
 
 		Method m        = c.getDeclaredMethod( name, types );
 
-		// *MAGIC* make sure the method is accessible
+		// Make sure the method is accessible
 		m.setAccessible( true );
 
 		return m.invoke( instance, params );
