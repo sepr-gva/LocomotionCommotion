@@ -186,7 +186,7 @@ public class Player {
 		}
 		for (PlayerListener listener: listeners)
 		{
-			listener.stationPurchased(station);
+			listener.stationPurchased(station, this);
 		}
 	}
 	
