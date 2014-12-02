@@ -31,7 +31,8 @@ public class Game_ActorManager {
 
 	public Game_ActorManager(){		}
 
-	public static void create(Stage stage){
+	public void create(Stage stage){
+		actors.clear();
 		
 		game_menuobject_topbar = new Game_menuobject_TopBar();
 		actors.add(game_menuobject_topbar);		

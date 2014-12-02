@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_MapManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenuManager;
@@ -18,34 +19,37 @@ public class GameScreen implements Screen {
 	private static Stage stage;
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
-	public static int screenX = 1680; //Gdx.graphics.getWidth();
-	public static int screenY = 1050;//Gdx.graphics.getHeight();
+	
 
 	public static void create(){
-//		int x =screenX;
-//		int y= screenY;
-//		OrthographicCamera camera = new OrthographicCamera(x,y);
-//		camera.setToOrtho(false,x,y );
 //		
-//		FitViewport viewp = new FitViewport(x,y,camera);
-//		sb = new SpriteBatch();
-//		setStage(new Stage(viewp, sb)); 
-//		
-//		camera.update();
+		Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 		stage = new Stage(); 
+		
 		Camera camera = stage.getCamera();
-		camera.viewportHeight= screenY;
-		camera.viewportWidth= screenX;
+		camera.viewportHeight= LocomotionCommotion.screenY;
+		camera.viewportWidth= LocomotionCommotion.screenX;
 		camera.update();
 		Gdx.input.setInputProcessor(getStage());	
-		Game_MapManager.create(getStage());
-		Game_ActorManager.create(getStage());
-		Game_TicketsManager.create(getStage());
-		Game_PauseMenuManager.create(getStage());
-		Game_ShopManager.create(getStage());
-		Game_TrainDepotManager.create(getStage());
+		stage.getActors().clear();
+		Game_MapManager mapManger = new Game_MapManager();
+		mapManger.create(getStage());
 		
-	}
+		Game_ActorManager actorManager = new Game_ActorManager();
+		actorManager.create(getStage());
+		
+		Game_TicketsManager ticketManager = new Game_TicketsManager();
+		ticketManager.create(getStage());
+		
+		Game_PauseMenuManager pauseManager= new Game_PauseMenuManager();
+		pauseManager.create(getStage());
+		
+		Game_ShopManager shopManager = new Game_ShopManager();
+		shopManager.create(getStage());
+		
+		Game_TrainDepotManager trainDepotManager = new Game_TrainDepotManager();
+		trainDepotManager.create(getStage());
+		}
 
 	@Override
 	public void render(float delta) {
@@ -62,14 +66,13 @@ public class GameScreen implements Screen {
 	@Override
 	public void resize(int width, int height) {
 		getStage().getViewport().update(width, height, true);	
-		screenX = width;
-		screenY = height;
+		LocomotionCommotion.screenX = width;
+		LocomotionCommotion.screenY = height;
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	public void show() {
-		this.create();
+		GameScreen.create();
 
 	}
 
@@ -96,6 +99,7 @@ public class GameScreen implements Screen {
 	@Override
 	public  void dispose() {
 		getStage().dispose();
+		getStage().getActors().clear();
 	}
 
 	public static Stage getStage() {
@@ -106,4 +110,15 @@ public class GameScreen implements Screen {
 		GameScreen.stage = stage;
 	}
 
+	public void  resetScreen(){
+		Game_MapManager.infoVisible= false;
+		Game_PauseMenuManager.open = false;
+		Game_TicketsManager.open = false;
+		Game_ShopManager.open = false;
+		Game_TrainDepotManager.open = false;
+
+		
+		
+	
+	}
 }

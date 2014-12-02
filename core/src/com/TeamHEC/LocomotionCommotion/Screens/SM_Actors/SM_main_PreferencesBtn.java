@@ -16,7 +16,6 @@ package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
  * 				Action- moves camera down to preferences menu
  */
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.TeamHEC.LocomotionCommotion.Screens.SM_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;

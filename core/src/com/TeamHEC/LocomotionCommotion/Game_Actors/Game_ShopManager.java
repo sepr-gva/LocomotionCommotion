@@ -22,8 +22,10 @@ public class Game_ShopManager {
 
 	public Game_ShopManager(){	}
 		
-	public static void create(Stage stage){
-		
+	public void create(Stage stage){
+		actors.clear();
+		stagestart =0;
+		shopActors=0;
 		game_shop_backdrop = new Game_shop_Backdrop();
 		actors.add(game_shop_backdrop);
 		game_shop_backbtn = new Game_shop_BackBtn();
@@ -46,7 +48,6 @@ public class Game_ShopManager {
 			stage.addActor(a);
 			shopActors ++;
 		}
-		
 			
 
 	}

@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -26,7 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_menuobject_TrainDepotBtn extends Actor {
 
 	Texture texture = Game_TextureManager.game_traindepot_traindepotbtn; // reuse the new game back btn texture
-	float actorX = GameScreen.screenX-310 ,actorY = 193;
+	float actorX = LocomotionCommotion.screenX-310 ,actorY = 193;
 	public boolean started = false;
 
 	public Game_menuobject_TrainDepotBtn(){

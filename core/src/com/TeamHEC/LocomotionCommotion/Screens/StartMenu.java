@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.SM_Actors.SM_ActorManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -46,6 +47,8 @@ public class StartMenu implements Screen{
 	public static String gameMode, player1name, player2name;
 	public static int turnChoice;
 	public static TextField textbox1, textbox2;
+	public static int screenX = 1680; //Gdx.graphics.getWidth();
+	public static int screenY = 1050;//Gdx.graphics.getHeight();
 	
 	
 	/*
@@ -55,13 +58,15 @@ public class StartMenu implements Screen{
 		
 		stage = new Stage(); 
 		Camera camera = stage.getCamera();
+		camera.viewportHeight= screenY;
+		camera.viewportWidth= screenX;
 		camera.update();
         SM_ActorManager.create(stage);
         Gdx.input.setInputProcessor(stage);
         
         
         
-        //TextBox
+        //Text boxes for Player 1 and 2 names
     	Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
     	
 		textbox1 = new TextField("", skin);
@@ -113,7 +118,9 @@ public class StartMenu implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height, true);
+		stage.getViewport().update(width, height, true);	
+		LocomotionCommotion.screenX = width;
+		LocomotionCommotion.screenY = height;
 	}
 
 	@Override

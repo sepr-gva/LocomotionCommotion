@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -26,7 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_menuobject_InfoToggleBtn extends Actor {
 
 	public static Texture texture = Game_TextureManager.game_menuobject_infobutton; // reuse the new game back btn texture
-	public static float actorX = GameScreen.screenX-310 ,actorY = 63;
+	public static float actorX = LocomotionCommotion.screenX-310 ,actorY = 63;
 	public boolean started = false;
 
 
@@ -53,20 +54,28 @@ public class Game_menuobject_InfoToggleBtn extends Actor {
 			if (Game_MapManager.infoVisible== false)
 			{
 				Game_MapManager.infoVisible= true;
+				for(int i=Game_MapManager.stagestart; i<=Game_MapManager.stagestart +Game_MapManager.mapActors-1;i++){
+					if (i > GameScreen.getStage().getActors().size-1){
 
-				GameScreen.getStage().getActors().get(Game_MapManager.mapActors).setVisible(true);
+					}else
+						GameScreen.getStage().getActors().get(i).setVisible(true);
+
+				}			}
+			else
+			{	Game_MapManager.infoVisible= false;
+			for(int i=Game_MapManager.stagestart; i<=Game_MapManager.stagestart +Game_MapManager.mapActors-1;i++){
+				if (i > GameScreen.getStage().getActors().size-1){
+
+				}else
+					GameScreen.getStage().getActors().get(i).setVisible(false);
 
 			}
-			else
-			{	
-			Game_MapManager.infoVisible= false;
-			GameScreen.getStage().getActors().get(Game_MapManager.mapActors).setVisible(false);
 
 			}
 			started = false;
+			}
 		}
 
 
 
 	}
-}

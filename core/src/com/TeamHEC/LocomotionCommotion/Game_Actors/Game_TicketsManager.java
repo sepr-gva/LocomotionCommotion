@@ -29,8 +29,12 @@ public class Game_TicketsManager {
 
 	public Game_TicketsManager(){	}
 		
-	public static void create(Stage stage){
-
+	public void create(Stage stage){
+		
+		actors.clear();
+		stagestart =0;
+		ticketActors=0;
+		
 		game_menuobject_ticketenclosure=new Game_menuobject_ticketenclosure();
 		actors.add(game_menuobject_ticketenclosure);
 		
@@ -92,7 +96,7 @@ public class Game_TicketsManager {
 			ticketActors ++;
 		}
 		
-			
+	
 
 	}
 	

@@ -26,7 +26,10 @@ public class Game_PauseMenuManager {
 
 	public Game_PauseMenuManager(){	}
 		
-	public static void create(Stage stage){
+	public void create(Stage stage){
+		stagestart =0;
+		pauseActors=0;
+		actors.clear();
 		
 		game_pause_blackoutscreen = new Game_pause_BlackoutScreen();
 		actors.add(game_pause_blackoutscreen);

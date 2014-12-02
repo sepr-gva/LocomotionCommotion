@@ -14,7 +14,6 @@ package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
  * 				Action- changes its imaged to the 'selected' version and changes the other two to 'unselected'
  */
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-import com.TeamHEC.LocomotionCommotion.Screens.SM_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;

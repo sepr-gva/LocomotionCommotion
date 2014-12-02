@@ -20,7 +20,11 @@ public class Game_MapManager {
 
 	public Game_MapManager(){	}
 	
-	public static void create(Stage stage){
+	public void create(Stage stage){
+		
+		actors.clear();
+		stagestart =0;
+		mapActors=0;
 		tempMap = new Game_Map();		
 		actors.add(tempMap);
 		
@@ -28,13 +32,13 @@ public class Game_MapManager {
 
 		
 		
-		stagestart= stage.getActors().size;
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
 			mapActors ++;
 		}
 		
+		stagestart= stage.getActors().size;
 		mapInfo = new Game_Map_Info();
 		mapInfo.setVisible(infoVisible);
 		stage.addActor(mapInfo);

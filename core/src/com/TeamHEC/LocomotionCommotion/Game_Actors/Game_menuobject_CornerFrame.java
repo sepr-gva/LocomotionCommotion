@@ -1,8 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.badlogic.gdx.Gdx;
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -27,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_menuobject_CornerFrame extends Actor {
 
 	public static Texture texture = Game_TextureManager.game_menuobject_cornerframe; // reuse the new game back btn texture
-	public static float actorX = (GameScreen.screenX-texture.getWidth()) ,actorY = 14;
+	public static float actorX = (LocomotionCommotion.screenX-texture.getWidth()) ,actorY = 14;
 	public boolean started = false;
 	
 
