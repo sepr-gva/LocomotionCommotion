@@ -28,7 +28,7 @@ public class Station extends MapObj implements PlayerListener{
 	private int rentValueMod;
 	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
 	protected Player player1;//the players station will listen too
-	protected Player player2;//might need name changes later
+	protected Player player2;//will need name changes later
 	
 	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line lineType, int rentValue)
 	{
@@ -56,12 +56,10 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		return baseValue;
 	}
-	
 	public int getValueMod()
 	{
 		return valueMod;
-	}
-	
+	}	
 	public void addValueMod(int add)
 	{
 		valueMod += add;
@@ -69,8 +67,7 @@ public class Station extends MapObj implements PlayerListener{
 	public void subValueMod(int sub)
 	{
 		valueMod -= sub;
-	}
-	
+	}	
 	public int getTotalValue()
 	{
 		return baseValue + valueMod;
@@ -80,17 +77,18 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		return fuelType;
 	}
-	
 	public int getBaseFuelOut()
 	{
 		return baseFuelOut;
 	}
-	
 	public int getFuelOutMod()
 	{
 		return fuelOutMod;
 	}
-	
+	public void setFuelOutMod(int mod)
+	{
+		fuelOutMod = mod;
+	}
 	public void addFuelOutMod(int add)
 	{
 		fuelOutMod += add;
@@ -98,8 +96,7 @@ public class Station extends MapObj implements PlayerListener{
 	public void subFuelOutMod(int sub)
 	{
 		fuelOutMod -= sub;
-	}
-	
+	}	
 	public int getTotalFuelOut()
 	{
 		return baseFuelOut + fuelOutMod;
@@ -109,22 +106,18 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		return rentValue;
 	}
-	
 	public int getRentValueMod()
 	{
 		return rentValueMod;
-	}
-	
+	}	
 	public void addRentValueMod(int add)
 	{
 		rentValueMod += add;
-	}
-	
+	}	
 	public void subRentValueMod(int sub)
 	{
 		rentValueMod-= sub;
 	}
-	
 	public int getTotalRent()
 	{
 		return rentValue + rentValueMod;
@@ -134,15 +127,9 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		return owner;
 	}
-	
 	public void setOwner(Player newOwner)
 	{
 		owner = newOwner;
-	}
-	
-	public void setFuelOutMod(int mod)
-	{
-		fuelOutMod = mod;
 	}
 	
 	public Line getLineType()
@@ -162,13 +149,10 @@ public class Station extends MapObj implements PlayerListener{
 		}
 	}*/
 	
-	
-	
 	public void addListener(StationListener listener)
 	{
 		listeners.add(listener);
 	}
-
 	@Override
 	public void stationPurchased(Station station) 
 	{
