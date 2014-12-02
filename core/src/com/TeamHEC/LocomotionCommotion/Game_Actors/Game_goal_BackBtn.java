@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -23,18 +23,18 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_EndTurnBtn extends Actor {
+public class Game_goal_BackBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_endturnbutton; // reuse the new game back btn texture
-	public static float actorX = (LocomotionCommotion.screenX-texture.getWidth()-15) ,actorY = 15;
+	public static Texture texture = Game_TextureManager.game_shop_backbtn; // reuse the new game back btn texture
+	public static float actorX = 1350 ,actorY = 800;
 	public boolean started = false;
 	
 
-	public Game_menuobject_EndTurnBtn(){
+	public Game_goal_BackBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_menuobject_EndTurnBtn)event.getTarget()).started = true;
+				((Game_goal_BackBtn)event.getTarget()).started = true;
 				return true;
 			}
 		});
@@ -50,7 +50,28 @@ public class Game_menuobject_EndTurnBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
+			if (Game_GoalScreenManager.open== false)
+			{
+				Game_GoalScreenManager.open= true;
+				for(int i=Game_GoalScreenManager.stagestart; i<=Game_GoalScreenManager.stagestart +Game_GoalScreenManager.goalActors-1;i++){
+					if (i > GameScreen.getStage().getActors().size-1){
+
+					}else
+						GameScreen.getStage().getActors().get(i).setVisible(true);
+
+				}			}
+			else
+			{	Game_GoalScreenManager.open= false;
+			for(int i=Game_GoalScreenManager.stagestart; i<=Game_GoalScreenManager.stagestart +Game_GoalScreenManager.goalActors-1;i++){
+				if (i > GameScreen.getStage().getActors().size-1){
+
+				}else
+					GameScreen.getStage().getActors().get(i).setVisible(false);
+
+			}
+
+			}
 			started = false;
+			}
 		}
-	}
 }

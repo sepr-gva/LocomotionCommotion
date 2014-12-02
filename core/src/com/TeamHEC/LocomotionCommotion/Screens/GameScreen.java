@@ -22,6 +22,7 @@ package com.TeamHEC.LocomotionCommotion.Screens;
  */
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_GoalScreenManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_MapManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenuManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
@@ -41,7 +42,7 @@ public class GameScreen implements Screen {
 	private static Stage stage;
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
-	public static int coal, oil, electricy, nuclear,cards,player1score,player2score;
+	public static int coal, oil, electricy, nuclear,cards,player1score=1000,player2score;
 	public static String player1name ="Vladimir", player2name ="Caleb";
 
 	public static void create(){
@@ -51,39 +52,41 @@ public class GameScreen implements Screen {
 		camera.viewportHeight= LocomotionCommotion.screenY;
 		camera.viewportWidth= LocomotionCommotion.screenX;
 		camera.update();
-		
+
 		//Instantiate the Managers
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
 		Game_MapManager mapManger = new Game_MapManager();
 		mapManger.create(getStage());
-		
+
 		Game_ResourcesManager resourceManager = new Game_ResourcesManager();
 		resourceManager.create(getStage());
-		
+
 		Game_menuObjectManager actorManager = new Game_menuObjectManager();
 		actorManager.create(getStage());
-		
+
 		Game_TicketsManager ticketManager = new Game_TicketsManager();
 		ticketManager.create(getStage());
-		
+
 		Game_PauseMenuManager pauseManager= new Game_PauseMenuManager();
 		pauseManager.create(getStage());
-		
+
 		Game_ShopManager shopManager = new Game_ShopManager();
 		shopManager.create(getStage());
-		
+
 		Game_TrainDepotManager trainDepotManager = new Game_TrainDepotManager();
 		trainDepotManager.create(getStage());
-		}
 
+		Game_GoalScreenManager goalScreenManager = new Game_GoalScreenManager();
+		goalScreenManager.create(getStage());
+	}
 	@Override
 	public void render(float delta) {
 		getStage().getCamera().update();
 
 		Gdx.gl.glClearColor(1,1,1,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
 
@@ -143,9 +146,10 @@ public class GameScreen implements Screen {
 		Game_ShopManager.open = false;
 		Game_TrainDepotManager.open = false;
 		Game_ResourcesManager.resourcebarexpanded =false;
+		Game_GoalScreenManager.open= false;
 
-		
-		
-	
+
+
+
 	}
 }

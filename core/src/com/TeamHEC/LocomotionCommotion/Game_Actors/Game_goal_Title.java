@@ -1,7 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -23,18 +22,18 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_EndTurnBtn extends Actor {
+public class Game_goal_Title extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_endturnbutton; // reuse the new game back btn texture
-	public static float actorX = (LocomotionCommotion.screenX-texture.getWidth()-15) ,actorY = 15;
+	public static Texture texture = Game_TextureManager.game_goals_title; // reuse the new game back btn texture
+	public static float actorX = 170 ,actorY = 780;
 	public boolean started = false;
 	
 
-	public Game_menuobject_EndTurnBtn(){
+	public Game_goal_Title(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_menuobject_EndTurnBtn)event.getTarget()).started = true;
+				((Game_goal_Title)event.getTarget()).started = true;
 				return true;
 			}
 		});
