@@ -1,10 +1,16 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
+import java.io.Serializable;
+
 import com.TeamHEC.LocomotionCommotion.Event.Event;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
-public class MapObj {
+public class MapObj implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Train[] trains;
 	public Event currentEvent;
 	

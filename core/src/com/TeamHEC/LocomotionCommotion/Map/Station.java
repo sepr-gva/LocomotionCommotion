@@ -15,6 +15,10 @@ import com.TeamHEC.LocomotionCommotion.Map.Line;
 
 public class Station extends MapObj implements PlayerListener{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private Player owner;
 	private int baseValue;

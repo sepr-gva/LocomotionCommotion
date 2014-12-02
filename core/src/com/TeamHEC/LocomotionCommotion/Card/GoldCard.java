@@ -10,6 +10,11 @@ public class GoldCard extends Card{
 
 	// This is just an example, we shouldn't really be able to buy this in the shop
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public GoldCard()
 	{
 		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null);

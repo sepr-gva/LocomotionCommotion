@@ -19,6 +19,11 @@ public class TeleportCard extends Card{
 	 
 	*/
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public TeleportCard()
 	{
 		// Name, Description, Value, Owner:

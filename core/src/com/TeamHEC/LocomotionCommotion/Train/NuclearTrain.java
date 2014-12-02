@@ -10,6 +10,10 @@ import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 
 public class NuclearTrain extends Train{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int BASE_SPEED = 10;
 	private static final int BASE_CARRIAGE_LIMIT = 5;
 	private static final int VALUE = 750;

@@ -1,5 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
+import java.io.Serializable;
+
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 
 /**
@@ -8,7 +10,7 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
  *
  */
 
-public class Card {
+public class Card implements Serializable {
 	
 	/*
 	 1) Associated with player class
@@ -27,6 +29,10 @@ public class Card {
 	 	A) 	This can be controlled in this class as a super class
 	 */
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final String cardName;
 	private final String cardDescription;
 	private final int cardValue;

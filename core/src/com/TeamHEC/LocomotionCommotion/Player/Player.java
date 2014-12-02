@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -28,8 +29,12 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
  *
  */
 
-public class Player {
+public class Player implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String name;
 	public int points;
 	private Gold gold;

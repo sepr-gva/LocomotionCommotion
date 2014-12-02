@@ -2,6 +2,10 @@ package com.TeamHEC.LocomotionCommotion.Map;
 
 public class Track extends MapObj {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean isJunction;
 	
 	public Track()

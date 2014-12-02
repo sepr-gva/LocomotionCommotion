@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
@@ -17,8 +18,13 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 	- the connection can then be made...
 */
 
-public class WorldMap {
+public class WorldMap implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private final static WorldMap INSTANCE = new WorldMap();
 	public static WorldMap getInstance()
 	{
