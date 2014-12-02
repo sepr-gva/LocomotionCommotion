@@ -1,5 +1,12 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
-
+/*
+ * @author Robert Precious <rp825@york.ac.uk>
+ * 
+ * SM stands for Start Menu 
+ * SM_ActorMangager does what it says on the tin. It instantiates all the actors,
+ * adds then to the actor array which then is gone through
+ * with a for loop adding each into the stage.
+ */
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;

@@ -50,7 +50,6 @@ public class Game_TicketsManager {
 		
 		
 		
-		//Temp Ticket solution
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 16;

@@ -1,12 +1,34 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
+/*
+ * @author Robert Precious <rp825@york.ac.uk>
+ * Game Screen is the Screen that handles everything in the game screen.
+ * First we sort the Camera- create the stage, create the camera and set the dimensions and update
+ * Then we create all the managers- these manage the actors and they are split up in to separate menu sections.
+ * 
+ * @param stage - The stage for the actors.
+ * @param sb - The spritebatch (needed for textbox's etc)
+ * @param camera - the camera
+ * 
+ * we have methods:
+ * create - explained above
+ * render - updates the camera, lets the actors act and draws the screen
+ * resize - updates the screen size when window is resized
+ * show - just calls create.
+ * dispose - disposes of the stage
+ * getStage and setStage - getters and setters for stage
+ * resetScreen- used when reentering the screen- it resets all the settings.
+ * 
+ * 
+ */
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_MapManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenuManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TicketsManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObjectManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -19,23 +41,27 @@ public class GameScreen implements Screen {
 	private static Stage stage;
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
-	
+	public static int coal, oil, electricy, nuclear,cards,player1score,player2score;
+	public static String player1name ="Vladimir", player2name ="Caleb";
 
 	public static void create(){
-//		
-		Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+		//Set up stage camera
 		stage = new Stage(); 
-		
 		Camera camera = stage.getCamera();
 		camera.viewportHeight= LocomotionCommotion.screenY;
 		camera.viewportWidth= LocomotionCommotion.screenX;
 		camera.update();
+		
+		//Instantiate the Managers
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
 		Game_MapManager mapManger = new Game_MapManager();
 		mapManger.create(getStage());
 		
-		Game_ActorManager actorManager = new Game_ActorManager();
+		Game_ResourcesManager resourceManager = new Game_ResourcesManager();
+		resourceManager.create(getStage());
+		
+		Game_menuObjectManager actorManager = new Game_menuObjectManager();
 		actorManager.create(getStage());
 		
 		Game_TicketsManager ticketManager = new Game_TicketsManager();
@@ -116,6 +142,7 @@ public class GameScreen implements Screen {
 		Game_TicketsManager.open = false;
 		Game_ShopManager.open = false;
 		Game_TrainDepotManager.open = false;
+		Game_ResourcesManager.resourcebarexpanded =false;
 
 		
 		
