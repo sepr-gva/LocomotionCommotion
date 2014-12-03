@@ -4,11 +4,12 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 
 /**
  * 
- * @author Matthew Taylor <mjkt500@york.ac.uk>
+ * @author  Robert Precious <rp825@york.ac.uk>
+ * Just making the cards work.
  *
  */
 
-public class GoldCard extends Card{
+public class OilCard extends Card{
 
 	// This is just an example, we shouldn't really be able to buy this in the shop
 	
@@ -17,16 +18,17 @@ public class GoldCard extends Card{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public GoldCard()
+	public OilCard()
 	{
-		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null,Game_TextureManager.game_card_goldcard);
+		super("100 Oil", "Cash in to win 100 Oil", 50, null,Game_TextureManager.game_card_oilcard);
 	}
 	
 	// This might be able to go into the super class somehow, but then again if we
 	// call the method the same thing in each subclass it might be okay:
 	public void implementCard()
 	{
-		getOwner().addGold(100);
+		getOwner().addFuel("Oil", 100);
 		// Need to destroy card instance here or something
 	}
+	
 }

@@ -33,6 +33,9 @@ class ScreenCard extends Actor {
 	@Override
 	public void draw(Batch batch, float alpha){
 			batch.draw(this.texture,actorX,actorY);
+			if (empty)
+				this.setVisible(false);
+				
 	}
 
 	@Override

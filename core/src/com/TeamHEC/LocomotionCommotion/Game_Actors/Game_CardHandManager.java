@@ -1,6 +1,12 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import java.util.ArrayList;
+
+import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Card.CoalCard;
+import com.TeamHEC.LocomotionCommotion.Card.GoldCard;
+import com.TeamHEC.LocomotionCommotion.Card.OilCard;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -29,37 +35,47 @@ public class Game_CardHandManager {
 		actors.clear();
 		stagestart =0;
 		cardActors=0;
-
-		//Card 1
-
-		int x= 1130;
-		int heightY = height;
-		card1= new ScreenCard(Game_TextureManager.game_card_oilcard, x, heightY,false);
+		ArrayList<Card> newcards = new ArrayList<Card>();
+		CoalCard coal = new CoalCard();
+		OilCard oil = new OilCard();
+		GoldCard gold = new GoldCard();
+		newcards.add(coal);
+		newcards.add(coal);
+		newcards.add(gold);
+		newcards.add(oil);
+		newcards.add(gold);
+		newcards.add(oil);
+		newcards.add(coal);
+		
+		
+		Game_card_HandCreator hand = new Game_card_HandCreator(newcards);
+		
+		card1= hand.getNewCards().get(0);
 		actors.add(card1);
 		cards.add(card1);
 
 
-		card2= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,false);
+		card2= hand.getNewCards().get(1);
 		actors.add(card2);
 		cards.add(card2);
 
-		card3= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,false);
+		card3= hand.getNewCards().get(2);
 		actors.add(card3);
 		cards.add(card3);
 
-		card4= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,true);
+		card4= hand.getNewCards().get(3);
 		actors.add(card4);
 		cards.add(card4);
 
-		card5= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,true);
+		card5= hand.getNewCards().get(4);
 		actors.add(card5);
 		cards.add(card5);
 
-		card6= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,true);
+		card6= hand.getNewCards().get(5);
 		actors.add(card6);
 		cards.add(card6);
 
-		card7= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,true);
+		card7=hand.getNewCards().get(6);
 		actors.add(card7);
 		cards.add(card7);
 
