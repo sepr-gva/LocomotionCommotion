@@ -17,7 +17,7 @@ public class GoldCard extends Card{
 
 	public GoldCard()
 	{
-		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null);
+		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null,null);
 	}
 	
 	// This might be able to go into the super class somehow, but then again if we

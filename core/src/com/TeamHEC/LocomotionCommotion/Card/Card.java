@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import java.io.Serializable;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.badlogic.gdx.graphics.Texture;
 
 /**
  * 
@@ -37,14 +38,16 @@ public class Card implements Serializable {
 	private final String cardDescription;
 	private final int cardValue;
 	private Player owner;
+	private Texture cardImage;
 	
 	// If created in the shop, the player can be initialised to null:
-	public Card(String name, String description, int value, Player player)
+	public Card(String name, String description, int value, Player player,Texture image)
 	{
 		cardName = name;
 		cardDescription = description;
 		owner = player;
 		cardValue = value;
+		cardImage = image; // this for implementing the card
 	}
 		
 	public Player getOwner()
@@ -72,4 +75,9 @@ public class Card implements Serializable {
 	{
 		return cardValue;
 	}
+	
+	public Texture getImage(){
+		return cardImage;
+	}
+	
 }

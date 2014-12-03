@@ -27,7 +27,7 @@ public class TeleportCard extends Card{
 	public TeleportCard()
 	{
 		// Name, Description, Value, Owner:
-		super("Teleport", "Teleport a Train from one station to another!", 100, null);
+		super("Teleport", "Teleport a Train from one station to another!", 100, null,null);
 	}
 	
 	public Train getSelectedTrain()

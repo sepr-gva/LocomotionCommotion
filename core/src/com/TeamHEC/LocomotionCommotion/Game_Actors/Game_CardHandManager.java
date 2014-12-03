@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Array;
 public class Game_CardHandManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
-	private final static Array<Card> cards = new Array<Card>();
+	private final static Array<ScreenCard> cards = new Array<ScreenCard>();
 
 
 
@@ -17,9 +17,9 @@ public class Game_CardHandManager {
 
 	public static int  stagestart, cardActors, height=-100;
 
-	public static Card card1, card2, card3, card4, card5, card6,card7;
+	public static ScreenCard card1, card2, card3, card4, card5, card6,card7;
 
-	public static Card selectedCard= null;
+	public static ScreenCard selectedCard= null;
 
 
 	public Game_CardHandManager(){	}
@@ -34,32 +34,32 @@ public class Game_CardHandManager {
 
 		int x= 1130;
 		int heightY = height;
-		card1= new Card(Game_TextureManager.game_card_oilcard, x, heightY);
+		card1= new ScreenCard(Game_TextureManager.game_card_oilcard, x, heightY,false);
 		actors.add(card1);
 		cards.add(card1);
 
 
-		card2= new Card(Game_TextureManager.game_card_oilcard, (x=x-130), heightY);
+		card2= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,false);
 		actors.add(card2);
 		cards.add(card2);
 
-		card3= new Card(Game_TextureManager.game_card_oilcard, (x=x-130), heightY);
+		card3= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,false);
 		actors.add(card3);
 		cards.add(card3);
 
-		card4= new Card(Game_TextureManager.game_card_oilcard, (x=x-130), heightY);
+		card4= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,true);
 		actors.add(card4);
 		cards.add(card4);
 
-		card5= new Card(Game_TextureManager.game_card_oilcard, (x=x-130), heightY);
+		card5= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,true);
 		actors.add(card5);
 		cards.add(card5);
 
-		card6= new Card(Game_TextureManager.game_card_oilcard, (x=x-130), heightY);
+		card6= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,true);
 		actors.add(card6);
 		cards.add(card6);
 
-		card7= new Card(Game_TextureManager.game_card_oilcard, (x=x-130), heightY);
+		card7= new ScreenCard(Game_TextureManager.game_card_oilcard, (x=x-130), heightY,true);
 		actors.add(card7);
 		cards.add(card7);
 
@@ -99,8 +99,7 @@ public class Game_CardHandManager {
 
 	public static void organiseDeck(){
 		if (selectedCard == null){
-			System.out.println("null called");
-			for(Card b : cards)
+			for(ScreenCard b : cards)
 				b.setexpanded(false);
 
 			collapseCards();

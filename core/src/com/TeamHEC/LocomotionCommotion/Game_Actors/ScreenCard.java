@@ -6,13 +6,15 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-class Card extends Actor {
+class ScreenCard extends Actor {
 	boolean started = false;
 	private boolean expanded =false;
 	private Texture texture;
 	private float actorX;
 	private float actorY;
-	public Card(Texture texture, int actorX, int actorY){
+	private boolean empty;
+	public ScreenCard(Texture texture, int actorX, int actorY, boolean empty){
+		this.empty= empty;
 		this.texture = texture; 
 		this.actorX = actorX;
 		this.actorY = actorY;
@@ -20,17 +22,17 @@ class Card extends Actor {
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Card)event.getTarget()).started = true;
+				((ScreenCard)event.getTarget()).started = true;
 				return true;
 			}
 		});
-
+		
 	}
 
 
 	@Override
 	public void draw(Batch batch, float alpha){
-		batch.draw(this.texture,actorX,actorY);
+			batch.draw(this.texture,actorX,actorY);
 	}
 
 	@Override
