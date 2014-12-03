@@ -57,9 +57,6 @@ public class Game_ResourcesManager {
 		game_resources_togglebtn = new Game_resources_ToggleBtn();
 		visibleActors.add(game_resources_togglebtn);
 		
-		game_resources_togglebtn = new Game_resources_ToggleBtn();
-		visibleActors.add(game_resources_togglebtn);
-		
 		game_card_togglebtn = new Game_card_CardToggleBtn();
 		visibleActors.add(game_card_togglebtn);
 		

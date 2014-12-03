@@ -25,8 +25,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_card_CardToggleBtn extends Actor {
 
-	Texture texture = Game_TextureManager.game_menuobject_menubtn; // reuse the new game back btn texture
-	float actorX = 700 ,actorY = 30;
+	Texture texture = Game_TextureManager.game_card_cardtoggle; // reuse the new game back btn texture
+	float actorX = 670 ,actorY = 25;
 	public boolean started = false;
 
 	public Game_card_CardToggleBtn(){
@@ -53,7 +53,7 @@ public class Game_card_CardToggleBtn extends Actor {
 				Game_CardHandManager.open= true;
 				for(int i=Game_CardHandManager.stagestart; i<=Game_CardHandManager.stagestart +Game_CardHandManager.cardActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
-
+					//This is just to avoid range errors
 					}else
 						GameScreen.getStage().getActors().get(i).setVisible(true);
 
@@ -62,14 +62,19 @@ public class Game_card_CardToggleBtn extends Actor {
 			{	Game_CardHandManager.open= false;
 			for(int i=Game_CardHandManager.stagestart; i<=Game_CardHandManager.stagestart +Game_CardHandManager.cardActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
-
+					//This is just to avoid range errors
 				}else
 					GameScreen.getStage().getActors().get(i).setVisible(false);
-
 			}
-
+			Game_CardHandManager.selectedCard=null;
+			Game_CardHandManager.organiseDeck();
 			}
 			started = false;
 		}
+	}
+	
+	public void refreshBounds(){
+		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+	
 	}
 }

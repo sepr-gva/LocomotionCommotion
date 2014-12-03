@@ -51,13 +51,16 @@ public class Game_resources_ToggleBtn extends Actor {
 		if(started){
 			if (Game_ResourcesManager.resourcebarexpanded== false)
 			{	
-			//Move up
+			//Move up button, bar and quantities
 				Game_ResourcesManager.game_resources_togglebtn.actorY+=expandedheight;
 				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 				Game_ResourcesManager.game_menuobject_resourcesbar.actorY+=expandedheight;
 				Game_ResourcesManager.resourcesQuant.setY(Game_ResourcesManager.resourcesQuant.getY()+expandedheight);
-				Game_CardHandManager.height+=expandedheight;
-			//end
+				//move cards up
+				Game_ResourcesManager.game_card_togglebtn.actorY+=expandedheight;
+				Game_ResourcesManager.game_card_togglebtn.refreshBounds();
+				Game_CardHandManager.changeHeight(expandedheight);
+				
 				Game_ResourcesManager.resourcebarexpanded= true;
 				for(int i=Game_ResourcesManager.stagestart; i<=Game_ResourcesManager.stagestart +Game_ResourcesManager.resourceActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
@@ -73,6 +76,12 @@ public class Game_resources_ToggleBtn extends Actor {
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			Game_ResourcesManager.game_menuobject_resourcesbar.actorY-=expandedheight;
 			Game_ResourcesManager.resourcesQuant.setY(Game_ResourcesManager.resourcesQuant.getY()-expandedheight);
+			
+			Game_ResourcesManager.game_card_togglebtn.actorY-=expandedheight;
+			Game_ResourcesManager.game_card_togglebtn.refreshBounds();
+			Game_CardHandManager.selectedCard=null;
+			Game_CardHandManager.organiseDeck();
+			Game_CardHandManager.changeHeight(-expandedheight);
 		//end
 			for(int i=Game_ResourcesManager.stagestart; i<=Game_ResourcesManager.stagestart +Game_ResourcesManager.resourceActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
