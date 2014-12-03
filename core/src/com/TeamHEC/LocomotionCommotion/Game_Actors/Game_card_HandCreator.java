@@ -30,7 +30,6 @@ public class Game_card_HandCreator {
 				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);
 				newCards.add(card1);
 				newCards.addAll(createEmpties());
-				System.out.println(newCards.size());
 				}
 			if(numberOfCards==2){
 				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);

@@ -73,9 +73,6 @@ public class GameScreen implements Screen {
 		Game_menuobject_TicketAManager ticketManager = new Game_menuobject_TicketAManager();
 		ticketManager.create(getStage());
 
-		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
-		pauseManager.create(getStage());
-
 		Game_ShopManager shopManager = new Game_ShopManager();
 		shopManager.create(getStage());
 
@@ -85,6 +82,8 @@ public class GameScreen implements Screen {
 		Game_Goal_AManager goalScreenManager = new Game_Goal_AManager();
 		goalScreenManager.create(getStage());
 		
+		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
+		pauseManager.create(getStage());
 		
 	}
 	@Override
@@ -154,6 +153,7 @@ public class GameScreen implements Screen {
 		Game_TrainDepotManager.open = false;
 		Game_ResourcesManager.resourcebarexpanded =false;
 		Game_Goal_AManager.open= false;
+		Game_CardHandManager.open=false;
 
 
 
