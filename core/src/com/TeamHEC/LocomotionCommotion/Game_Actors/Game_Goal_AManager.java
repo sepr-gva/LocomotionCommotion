@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_GoalScreenManager {
+public class Game_Goal_AManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	
@@ -20,7 +20,7 @@ public class Game_GoalScreenManager {
 	public static int  stagestart, goalActors;
 
 
-	public Game_GoalScreenManager(){	}
+	public Game_Goal_AManager(){	}
 		
 	public void create(Stage stage){
 		actors.clear();

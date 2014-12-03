@@ -23,22 +23,20 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_pause_ResumeGame extends Actor {
+public class Game_card_CardToggleBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_pause_resumegame; // reuse the new game back btn texture
-	public static float actorX = 590 ,actorY = 550;
+	Texture texture = Game_TextureManager.game_menuobject_menubtn; // reuse the new game back btn texture
+	float actorX = 700 ,actorY = 30;
 	public boolean started = false;
-	
 
-	public Game_pause_ResumeGame(){
+	public Game_card_CardToggleBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_pause_ResumeGame)event.getTarget()).started = true;
+				((Game_card_CardToggleBtn)event.getTarget()).started = true;
 				return true;
 			}
 		});
-		
 	}
 
 
@@ -50,10 +48,10 @@ public class Game_pause_ResumeGame extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_Pause_AManager.open== false)
+			if (Game_CardHandManager.open== false)
 			{
-				Game_Pause_AManager.open= true;
-				for(int i=Game_Pause_AManager.stagestart; i<=Game_Pause_AManager.stagestart +Game_Pause_AManager.pauseActors-1;i++){
+				Game_CardHandManager.open= true;
+				for(int i=Game_CardHandManager.stagestart; i<=Game_CardHandManager.stagestart +Game_CardHandManager.cardActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -61,8 +59,8 @@ public class Game_pause_ResumeGame extends Actor {
 
 				}			}
 			else
-			{	Game_Pause_AManager.open= false;
-			for(int i=Game_Pause_AManager.stagestart; i<=Game_Pause_AManager.stagestart +Game_Pause_AManager.pauseActors-1;i++){
+			{	Game_CardHandManager.open= false;
+			for(int i=Game_CardHandManager.stagestart; i<=Game_CardHandManager.stagestart +Game_CardHandManager.cardActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else
@@ -72,6 +70,6 @@ public class Game_pause_ResumeGame extends Actor {
 
 			}
 			started = false;
-			}
 		}
+	}
 }

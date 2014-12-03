@@ -9,8 +9,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(LocomotionCommotion.getInstance(), config);
-		config.height= Gdx.graphics.getHeight();
-		config.width = Gdx.graphics.getWidth();
+		config.height= 1050;
+		config.width = 1680;
 		//config.fullscreen =true;
 		
 	}

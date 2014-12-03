@@ -25,6 +25,7 @@ public class Game_ResourcesManager {
 
 	public static Game_menuobject_ResourcesBar game_menuobject_resourcesbar;
 	public static Game_resources_ToggleBtn game_resources_togglebtn;
+	public static Game_card_CardToggleBtn game_card_togglebtn;
 	public static boolean resourcebarexpanded = false;
 	public static int  stagestart, resourceActors, expandedheight= 40;
 	public static Label  resourcesQuant;
@@ -55,6 +56,12 @@ public class Game_ResourcesManager {
 		
 		game_resources_togglebtn = new Game_resources_ToggleBtn();
 		visibleActors.add(game_resources_togglebtn);
+		
+		game_resources_togglebtn = new Game_resources_ToggleBtn();
+		visibleActors.add(game_resources_togglebtn);
+		
+		game_card_togglebtn = new Game_card_CardToggleBtn();
+		visibleActors.add(game_card_togglebtn);
 		
 		
 		String spacing = "                        ";

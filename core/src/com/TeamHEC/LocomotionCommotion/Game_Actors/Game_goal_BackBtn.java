@@ -50,10 +50,10 @@ public class Game_goal_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_GoalScreenManager.open== false)
+			if (Game_Goal_AManager.open== false)
 			{
-				Game_GoalScreenManager.open= true;
-				for(int i=Game_GoalScreenManager.stagestart; i<=Game_GoalScreenManager.stagestart +Game_GoalScreenManager.goalActors-1;i++){
+				Game_Goal_AManager.open= true;
+				for(int i=Game_Goal_AManager.stagestart; i<=Game_Goal_AManager.stagestart +Game_Goal_AManager.goalActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -61,8 +61,8 @@ public class Game_goal_BackBtn extends Actor {
 
 				}			}
 			else
-			{	Game_GoalScreenManager.open= false;
-			for(int i=Game_GoalScreenManager.stagestart; i<=Game_GoalScreenManager.stagestart +Game_GoalScreenManager.goalActors-1;i++){
+			{	Game_Goal_AManager.open= false;
+			for(int i=Game_Goal_AManager.stagestart; i<=Game_Goal_AManager.stagestart +Game_Goal_AManager.goalActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

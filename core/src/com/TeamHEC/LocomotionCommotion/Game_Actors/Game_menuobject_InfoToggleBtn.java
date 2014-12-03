@@ -51,10 +51,10 @@ public class Game_menuobject_InfoToggleBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_MapManager.infoVisible== false)
+			if (Game_Map_AManager.infoVisible== false)
 			{
-				Game_MapManager.infoVisible= true;
-				for(int i=Game_MapManager.stagestart; i<=Game_MapManager.stagestart +Game_MapManager.mapActors-1;i++){
+				Game_Map_AManager.infoVisible= true;
+				for(int i=Game_Map_AManager.stagestart; i<=Game_Map_AManager.stagestart +Game_Map_AManager.mapActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -62,8 +62,8 @@ public class Game_menuobject_InfoToggleBtn extends Actor {
 
 				}			}
 			else
-			{	Game_MapManager.infoVisible= false;
-			for(int i=Game_MapManager.stagestart; i<=Game_MapManager.stagestart +Game_MapManager.mapActors-1;i++){
+			{	Game_Map_AManager.infoVisible= false;
+			for(int i=Game_Map_AManager.stagestart; i<=Game_Map_AManager.stagestart +Game_Map_AManager.mapActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_menuObjectManager {
+public class Game_menuObject_AManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	
@@ -40,7 +40,7 @@ public class Game_menuObjectManager {
 	
 
 
-	public Game_menuObjectManager(){		}
+	public Game_menuObject_AManager(){		}
 
 	public void create(Stage stage){
 		actors.clear();

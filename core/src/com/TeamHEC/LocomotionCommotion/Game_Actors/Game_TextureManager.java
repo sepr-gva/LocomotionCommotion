@@ -49,4 +49,7 @@ public class Game_TextureManager {
 	//goals
 	public static  Texture game_goals_goalscreenbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/goalScreenBtn.png"));
 	public static  Texture game_goals_title = new Texture(Gdx.files.internal("gameScreen/game_goalScreen/title.png"));
+
+	//Cards
+	public static Texture game_card_oilcard = new Texture(Gdx.files.internal("gameScreen/game_cards/coalCard.png"));
 }

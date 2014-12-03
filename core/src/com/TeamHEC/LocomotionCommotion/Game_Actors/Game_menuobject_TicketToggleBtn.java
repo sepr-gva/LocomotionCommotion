@@ -49,10 +49,10 @@ public class Game_menuobject_TicketToggleBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_TicketsManager.open== false)
+			if (Game_menuobject_TicketAManager.open== false)
 			{
-				Game_TicketsManager.open= true;
-				for(int i=Game_TicketsManager.stagestart; i<=Game_TicketsManager.stagestart +Game_TicketsManager.ticketActors-1;i++){
+				Game_menuobject_TicketAManager.open= true;
+				for(int i=Game_menuobject_TicketAManager.stagestart; i<=Game_menuobject_TicketAManager.stagestart +Game_menuobject_TicketAManager.ticketActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -60,8 +60,8 @@ public class Game_menuobject_TicketToggleBtn extends Actor {
 
 				}			}
 			else
-			{	Game_TicketsManager.open= false;
-			for(int i=Game_TicketsManager.stagestart; i<=Game_TicketsManager.stagestart +Game_TicketsManager.ticketActors-1;i++){
+			{	Game_menuobject_TicketAManager.open= false;
+			for(int i=Game_menuobject_TicketAManager.stagestart; i<=Game_menuobject_TicketAManager.stagestart +Game_menuobject_TicketAManager.ticketActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

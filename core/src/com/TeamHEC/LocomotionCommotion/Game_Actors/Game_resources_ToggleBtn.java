@@ -56,6 +56,7 @@ public class Game_resources_ToggleBtn extends Actor {
 				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 				Game_ResourcesManager.game_menuobject_resourcesbar.actorY+=expandedheight;
 				Game_ResourcesManager.resourcesQuant.setY(Game_ResourcesManager.resourcesQuant.getY()+expandedheight);
+				Game_CardHandManager.height+=expandedheight;
 			//end
 				Game_ResourcesManager.resourcebarexpanded= true;
 				for(int i=Game_ResourcesManager.stagestart; i<=Game_ResourcesManager.stagestart +Game_ResourcesManager.resourceActors-1;i++){
