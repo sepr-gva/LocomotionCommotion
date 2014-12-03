@@ -56,4 +56,5 @@ public class Game_TextureManager {
 	public static Texture game_card_coalcard = new Texture(Gdx.files.internal("gameScreen/game_cards/coalCard.png"));
 	public static Texture game_card_oilcard = new Texture(Gdx.files.internal("gameScreen/game_cards/oilCard.png"));
 	public static Texture game_card_cardtoggle = new Texture(Gdx.files.internal("gameScreen/game_cards/Cardbtn-1.png"));
+	public static Texture game_card_usecardbtn = new Texture(Gdx.files.internal("gameScreen/game_cards/usecardbtn.png"));
 }

@@ -43,8 +43,14 @@ class ScreenCard extends Actor {
 		if(started){
 			if (isExpanded()){
 				this.cardCollapse();
+				Game_CardHandManager.usecardbtn.setVisible(false);
+				
+				
 			}
 			else{
+				Game_CardHandManager.usecardbtn.setVisible(true);
+				Game_card_UseCardBtn.actorX=this.actorX+40;
+				Game_card_UseCardBtn.actorY=this.actorY+550;
 				this.cardExpand();
 			}
 			started = false;

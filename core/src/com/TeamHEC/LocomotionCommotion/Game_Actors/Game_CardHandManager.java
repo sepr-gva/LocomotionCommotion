@@ -26,6 +26,8 @@ public class Game_CardHandManager {
 	public static ScreenCard card1, card2, card3, card4, card5, card6,card7;
 
 	public static ScreenCard selectedCard= null;
+	
+	public static Game_card_UseCardBtn usecardbtn;
 
 
 	public Game_CardHandManager(){	}
@@ -79,7 +81,7 @@ public class Game_CardHandManager {
 		actors.add(card7);
 		cards.add(card7);
 
-
+		
 
 
 		stagestart= stage.getActors().size;
@@ -93,6 +95,9 @@ public class Game_CardHandManager {
 			stage.addActor(a);
 			cardActors ++;
 		}
+		usecardbtn = new Game_card_UseCardBtn();
+		usecardbtn.setVisible(false);
+		stage.addActor(usecardbtn);
 
 
 
