@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.PlayerListener;
@@ -23,14 +24,14 @@ public class Station extends MapObj implements PlayerListener{
 	private Fuel fuelType;
 	private int baseFuelOut;
 	private int fuelOutMod;
-	private Line lineType;
+	private List<Line> lines;
 	private int rentValue;
 	private int rentValueMod;
 	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
 	protected Player player1;//the players station will listen too
 	protected Player player2;//might need name changes later
 	
-	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line lineType, int rentValue)
+	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, List<Line> lines, int rentValue)
 	{
 		this.trains = new Train[5];
 		this.name = name;
@@ -40,7 +41,7 @@ public class Station extends MapObj implements PlayerListener{
 		this.fuelType = fuelType;
 		this.baseFuelOut = baseFuelOut;
 		this.fuelOutMod = 0;
-		this.lineType = lineType;
+		this.lines = lines;
 		this.rentValue = rentValue;
 		this.rentValueMod = 0;
 		//player1.addListener(this);
@@ -145,9 +146,9 @@ public class Station extends MapObj implements PlayerListener{
 		fuelOutMod = mod;
 	}
 	
-	public Line getLineType()
+	public List<Line> getLineTypes()
 	{
-		return lineType;
+		return lines;
 	}
 	
 	/*public void purchaseStation(Player player)
@@ -161,8 +162,6 @@ public class Station extends MapObj implements PlayerListener{
 			listener.ownerChanged(player.getPlayerName());
 		}
 	}*/
-	
-	
 	
 	public void addListener(StationListener listener)
 	{

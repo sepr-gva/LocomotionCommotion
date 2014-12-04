@@ -1,8 +1,9 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Resource.Coal;
+import com.TeamHEC.LocomotionCommotion.Resource.*;
 
 /**
  * 
@@ -16,6 +17,9 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 		remembering to include any junction objects we've already created...
 	- the connection can then be made...
 */
+
+
+// This doesn't work for routing so I'm creating a new implementation
 
 public class WorldMap {
 	
@@ -32,18 +36,17 @@ public class WorldMap {
 	
 	// List of Stations:
 	// String name, int baseValue, Fuel fuelType, int baseFuelOut, Line lineType, int rentValue
-	private static Station EDINBURGH = new Station("Edinburgh", 10, new Coal(500), 10, Line.Black, 10);
-	private static Station YORK = new Station("York", 10, new Coal(500), 10, Line.Black, 10);
+	private static Station EDINBURGH = new Station("Edinburgh", 10, new Coal(500), 10, Arrays.asList(Line.Black), 10);
+	private static Station YORK = new Station("York", 10, new Coal(500), 10, Arrays.asList(Line.Black), 10);
 	
 	private final static Track[] YORK_EDINBURGH = {new Track(), new Track(), junctions[0]};
-	
 	private static final Connection YORK_EDINBURGH_CONNECTION = new Connection(YORK, EDINBURGH, YORK_EDINBURGH);
 	
 	private WorldMap()
 	{
 		connections.put("YORK_EDINBURGH", YORK_EDINBURGH_CONNECTION);
 	}
-	
+		
 	public void moveTrain()
 	{
 		
