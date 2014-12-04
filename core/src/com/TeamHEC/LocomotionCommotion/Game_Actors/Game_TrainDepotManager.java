@@ -24,6 +24,8 @@ public class Game_TrainDepotManager {
 		
 	public void create(Stage stage){
 		actors.clear();
+		stagestart= 0;
+		traindepotActors =0;
 		game_traindepot_backdrop = new Game_traindepot_Backdrop();
 		actors.add(game_traindepot_backdrop);
 		game_traindepot_backbtn = new Game_traindepot_BackBtn();
