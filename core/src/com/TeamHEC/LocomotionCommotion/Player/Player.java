@@ -226,11 +226,37 @@ public class Player implements Serializable {
 	public void lineBonuses()
 	{
 		//bonuses subject to change
-		//for now they only give gold
 		for (int i = 0; i < 6; i++)
 		{
-			this.addGold(10 * lines[i]); //adds 10 gold per station on each line for now
-			//will add more once map is sorted and lines and bonuses are chosen
+			switch(i)
+			{
+				case 0:
+					//red bonus
+					//nested case statements to give specific bonuses?
+					/*
+					switch(lines[i])
+					{
+						case 1:
+							this.addFuel("coal", 50); //will fill in and uncomment once bonuses are decided
+						case 2:
+						case 3:
+						case 4:
+						//case 5: //?
+					}
+					*/
+				case 1:
+					//blue bonus
+				case 2:
+					//green bonus
+				case 3:
+					//yellow bonus
+				case 4:
+					//purple bonus
+				case 5:
+					//black bonus
+				case 6:
+					//brown bonus
+			}
 		}
 	}
 	
