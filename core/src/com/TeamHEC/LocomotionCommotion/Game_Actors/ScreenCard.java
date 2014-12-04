@@ -13,7 +13,9 @@ class ScreenCard extends Actor {
 	private float actorX;
 	private float actorY;
 	private boolean empty;
-	public ScreenCard(Texture texture, int actorX, int actorY, boolean empty){
+	private int slot;
+	public ScreenCard(Texture texture, int actorX, int actorY, boolean empty, int slot){
+		this.slot = slot;
 		this.empty= empty;
 		this.texture = texture; 
 		this.actorX = actorX;
@@ -49,12 +51,12 @@ class ScreenCard extends Actor {
 			}
 			else{
 				Game_CardHandManager.usecardbtn.setVisible(true);
-				Game_CardHandManager.usecardbtn.refreshBounds();
 				Game_card_UseCardBtn.actorX=this.actorX+40;
 				Game_card_UseCardBtn.actorY=this.actorY+550;
-				Game_CardHandManager.selectedCard=this;
-				System.out.println(Game_CardHandManager.selectedCard);
+				Game_CardHandManager.usecardbtn.refreshBounds();
+				Game_CardHandManager.selectedCard=this.getSlot();
 				this.cardExpand();
+				
 			}
 			started = false;
 		}
@@ -74,12 +76,19 @@ class ScreenCard extends Actor {
 	public void setTexture(Texture texture){
 		this.texture = texture;
 	}
+	public Texture getTexture(){
+		return texture;
+	}
+	
+	public int getSlot(){
+		return this.slot;
+	}
 	public void setActorY(float y){
 		this.actorY=y;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());				
 	}
 	public void cardExpand(){
-		Game_CardHandManager.selectedCard=this;
+		Game_CardHandManager.selectedCard=this.getSlot();
 		Game_CardHandManager.organiseDeck();
 		this.actorY+=200;
 		setexpanded(true);
@@ -94,7 +103,7 @@ class ScreenCard extends Actor {
 				this.actorY=-100;
 			setexpanded(false);
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-			Game_CardHandManager.selectedCard=null;
+			Game_CardHandManager.selectedCard=0;
 			Game_CardHandManager.organiseDeck();
 			}
 		else

@@ -61,25 +61,24 @@ public class Game_card_HandCreator {
 		int heightY = -100;
 		int x = 1130;
 		HashMap<String, ScreenCard> cardslots = new HashMap<String, ScreenCard>();
-		cardslots.put("1", card1= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		cardslots.put("1", card1= new ScreenCard(cards.get(0).getImage(),x,heightY,false,1));
 		x-=130;
-		cardslots.put("2", card2= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		cardslots.put("2", card2= new ScreenCard(cards.get(0).getImage(),x,heightY,false,2));
 		x-=130;
-		cardslots.put("3", card3= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		cardslots.put("3", card3= new ScreenCard(cards.get(0).getImage(),x,heightY,false,3));
 		x-=130;
-		cardslots.put("4", card4= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		cardslots.put("4", card4= new ScreenCard(cards.get(0).getImage(),x,heightY,false,4));
 		x-=130;
-		cardslots.put("5", card5= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		cardslots.put("5", card5= new ScreenCard(cards.get(0).getImage(),x,heightY,false,5));
 		x-=130;
-		cardslots.put("6", card6= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		cardslots.put("6", card6= new ScreenCard(cards.get(0).getImage(),x,heightY,false,6));
 		x-=130;
-		cardslots.put("7", card7= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		cardslots.put("7", card7= new ScreenCard(cards.get(0).getImage(),x,heightY,false,7));
 		return cardslots;
 	}
 	
 	
 		public  ArrayList<ScreenCard>  getNewCards(){
-			System.out.println(newCards);
 			return newCards;
 		}
 	

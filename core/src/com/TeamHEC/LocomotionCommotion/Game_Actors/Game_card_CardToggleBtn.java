@@ -66,8 +66,9 @@ public class Game_card_CardToggleBtn extends Actor {
 				}else
 					GameScreen.getStage().getActors().get(i).setVisible(false);
 			}
-			Game_CardHandManager.selectedCard=null;
+			Game_CardHandManager.selectedCard=0;
 			Game_CardHandManager.organiseDeck();
+			Game_CardHandManager.usecardbtn.setVisible(false);
 			}
 			started = false;
 		}

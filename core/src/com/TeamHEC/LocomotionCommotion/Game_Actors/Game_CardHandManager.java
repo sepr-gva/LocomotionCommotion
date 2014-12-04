@@ -7,6 +7,7 @@ import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CoalCard;
 import com.TeamHEC.LocomotionCommotion.Card.GoldCard;
 import com.TeamHEC.LocomotionCommotion.Card.OilCard;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -25,10 +26,13 @@ public class Game_CardHandManager {
 
 	public static ScreenCard card1, card2, card3, card4, card5, card6,card7;
 
-	public static ScreenCard selectedCard= null;
-	
+	public static int selectedCard= 0;
+
 	public static Game_card_UseCardBtn usecardbtn;
 
+	public static ArrayList<ScreenCard> currentHand;
+
+	public static ArrayList<Card> newcards = new ArrayList<Card>();
 
 	public Game_CardHandManager(){	}
 
@@ -37,7 +41,6 @@ public class Game_CardHandManager {
 		actors.clear();
 		stagestart =0;
 		cardActors=0;
-		ArrayList<Card> newcards = new ArrayList<Card>();
 		CoalCard coal = new CoalCard();
 		OilCard oil = new OilCard();
 		GoldCard gold = new GoldCard();
@@ -48,10 +51,64 @@ public class Game_CardHandManager {
 		newcards.add(gold);
 		newcards.add(oil);
 		newcards.add(coal);
-		
-		
+
+
 		Game_card_HandCreator hand = new Game_card_HandCreator(newcards);
+
+		populateHand(hand);
+		currentHand= hand.getNewCards();
+
+
+		stagestart= stage.getActors().size;
+		for (Actor a : actors){
+			if(open == true){
+				a.setTouchable(Touchable.enabled);
+				a.setVisible(true);}
+			else
+				a.setVisible(false);
+
+			stage.addActor(a);
+			cardActors ++;
+		}
+		usecardbtn = new Game_card_UseCardBtn();
+		usecardbtn.setVisible(false);
+		stage.addActor(usecardbtn);
+
+
+
+	}
+	//Do not use
+	public static void changeHand(Stage stage){
+		if (selectedCard!=0)
+				newcards.remove(selectedCard-1);
+		Game_card_HandCreator hand = new Game_card_HandCreator(newcards);
+		actors.clear();
+		cards.clear();
+		populateNewHand(hand);
+		currentHand= hand.getNewCards();
+		for (int i=stagestart;i<cardActors+2 ;i=i+1){
+//			GameScreen.getStage().getActors().removeIndex(i);
+			System.out.println(GameScreen.getStage().getActors().get(i).getX());
+			System.out.println(i);
+		}
+		stagestart= stage.getActors().size;
+		for (Actor a : actors){
+			if(open == true){
+				a.setTouchable(Touchable.enabled);
+				a.setVisible(true);}
+			else
+				a.setVisible(false);
+
+			stage.addActor(a);
+			cardActors ++;
+		}
+		usecardbtn = new Game_card_UseCardBtn();
+		usecardbtn.setVisible(false);
+		stage.addActor(usecardbtn);
 		
+
+	}
+	private static void populateNewHand(Game_card_HandCreator hand){
 		card1= hand.getNewCards().get(0);
 		actors.add(card1);
 		cards.add(card1);
@@ -79,28 +136,39 @@ public class Game_CardHandManager {
 
 		card7=hand.getNewCards().get(6);
 		actors.add(card7);
-		cards.add(card7);
-
+		cards.add(card7);	
 		
+	}
+
+	private static void populateHand(Game_card_HandCreator hand) {
+		card1= hand.getNewCards().get(0);
+		actors.add(card1);
+		cards.add(card1);
 
 
-		stagestart= stage.getActors().size;
-		for (Actor a : actors){
-			if(open == true){
-				a.setTouchable(Touchable.enabled);
-				a.setVisible(true);}
-			else
-				a.setVisible(false);
+		card2= hand.getNewCards().get(1);
+		actors.add(card2);
+		cards.add(card2);
 
-			stage.addActor(a);
-			cardActors ++;
-		}
-		usecardbtn = new Game_card_UseCardBtn();
-		usecardbtn.setVisible(false);
-		stage.addActor(usecardbtn);
+		card3= hand.getNewCards().get(2);
+		actors.add(card3);
+		cards.add(card3);
 
+		card4= hand.getNewCards().get(3);
+		actors.add(card4);
+		cards.add(card4);
 
+		card5= hand.getNewCards().get(4);
+		actors.add(card5);
+		cards.add(card5);
 
+		card6= hand.getNewCards().get(5);
+		actors.add(card6);
+		cards.add(card6);
+
+		card7=hand.getNewCards().get(6);
+		actors.add(card7);
+		cards.add(card7);		
 	}
 
 	/*
@@ -119,7 +187,7 @@ public class Game_CardHandManager {
 	}
 
 	public static void organiseDeck(){
-		if (selectedCard == null){
+		if (selectedCard == 0){
 			for(ScreenCard b : cards)
 				b.setexpanded(false);
 
@@ -132,25 +200,35 @@ public class Game_CardHandManager {
 	}
 
 	public static void collapseCards(){
-		if (card1 != selectedCard)
+		if (card1.getSlot() != selectedCard)
 			card1.cardCollapse();
-		if (card2 != selectedCard)
+		if (card2.getSlot() != selectedCard)
 			card2.cardCollapse();
-		if (card3 != selectedCard)
+		if (card3.getSlot() != selectedCard)
 			card3.cardCollapse();
-		if (card4 != selectedCard)
+		if (card4.getSlot() != selectedCard)
 			card4.cardCollapse();
-		if (card5 != selectedCard)
+		if (card5.getSlot() != selectedCard)
 			card5.cardCollapse();
-		if (card6 != selectedCard)
+		if (card6.getSlot() != selectedCard)
 			card6.cardCollapse();
-		if (card7 != selectedCard)
+		if (card7.getSlot() != selectedCard)
 			card7.cardCollapse();
 
 
 
 	}
+	public static ScreenCard getSelectedCard(){
+		for (ScreenCard c: cards){
+			if(c.getSlot()==selectedCard){
+				return c;
+			}}
+		if (selectedCard == 0){
+			throw new Error("No card selected: This should only be called when use card button is using it! ");
+		}	
 
+		return null;
+	}
 
 
 

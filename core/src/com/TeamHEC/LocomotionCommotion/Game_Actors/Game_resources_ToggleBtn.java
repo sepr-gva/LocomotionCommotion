@@ -64,6 +64,8 @@ public class Game_resources_ToggleBtn extends Actor {
 				Game_CardHandManager.usecardbtn.setVisible(false);
 				
 				
+				
+				
 				Game_ResourcesManager.resourcebarexpanded= true;
 				for(int i=Game_ResourcesManager.stagestart; i<=Game_ResourcesManager.stagestart +Game_ResourcesManager.resourceActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
@@ -83,7 +85,7 @@ public class Game_resources_ToggleBtn extends Actor {
 			
 			Game_ResourcesManager.game_card_togglebtn.actorY-=expandedheight;
 			Game_ResourcesManager.game_card_togglebtn.refreshBounds();
-			Game_CardHandManager.selectedCard=null;
+			Game_CardHandManager.selectedCard=0;
 			Game_CardHandManager.changeHeight(-expandedheight);
 			Game_CardHandManager.organiseDeck();
 		//end
