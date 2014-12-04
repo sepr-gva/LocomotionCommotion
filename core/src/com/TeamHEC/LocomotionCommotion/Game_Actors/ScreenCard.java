@@ -49,8 +49,11 @@ class ScreenCard extends Actor {
 			}
 			else{
 				Game_CardHandManager.usecardbtn.setVisible(true);
+				Game_CardHandManager.usecardbtn.refreshBounds();
 				Game_card_UseCardBtn.actorX=this.actorX+40;
 				Game_card_UseCardBtn.actorY=this.actorY+550;
+				Game_CardHandManager.selectedCard=this;
+				System.out.println(Game_CardHandManager.selectedCard);
 				this.cardExpand();
 			}
 			started = false;
@@ -66,6 +69,10 @@ class ScreenCard extends Actor {
 	public boolean setexpanded(boolean open) {
 		this.expanded = open;
 		return open;
+	}
+	
+	public void setTexture(Texture texture){
+		this.texture = texture;
 	}
 	public void setActorY(float y){
 		this.actorY=y;
@@ -96,5 +103,10 @@ class ScreenCard extends Actor {
 		else
 			this.actorY=-100;}
 			
+	}
+
+
+	public void setEmpty(boolean b) {
+		this.empty=b;
 	}
 }

@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
@@ -16,205 +17,72 @@ public class Game_card_HandCreator {
 		newCards = new ArrayList<ScreenCard>();
 		GameScreen.cards= numberOfCards;
 		if (cards.size()==0){
-			newCards=createEmpties();
+			newCards=createEmpties(cards);
 		}
 		else if(cards.size()>7){
 			System.out.println("Error list has over 7 cards");
 		}
 		else
 		{
-			
-			int heightY = -100;
-			int x = 1130;
-			if(numberOfCards==1){
-				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);
-				newCards.add(card1);
-				newCards.addAll(createEmpties());
-				}
-			if(numberOfCards==2){
-				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);
-				newCards.add(card1);
-				x-=130;
-				card2 = new ScreenCard(cards.get(1).getImage(),x,heightY,false);
-				newCards.add(card2);
-				newCards.addAll(createEmpties());
-				
-				}
-			if(numberOfCards==3){
-				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);
-				newCards.add(card1);
-				x-=130;
-				card2 = new ScreenCard(cards.get(1).getImage(),x,heightY,false);
-				newCards.add(card2);
-				x-=130;
-				card3 = new ScreenCard(cards.get(2).getImage(),x,heightY,false);
-				newCards.add(card3);
-				newCards.addAll(createEmpties());
-				
-				}
-			if(numberOfCards==4){
-				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);
-				newCards.add(card1);
-				x-=130;
-				card2 = new ScreenCard(cards.get(1).getImage(),x,heightY,false);
-				newCards.add(card2);
-				x-=130;
-				card3 = new ScreenCard(cards.get(2).getImage(),x,heightY,false);
-				newCards.add(card3);
-				x-=130;
-				card4 = new ScreenCard(cards.get(3).getImage(),x,heightY,false);
-				newCards.add(card4);
-				newCards.addAll(createEmpties());
-				
-				}
-			if(numberOfCards==5){
-				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);
-				newCards.add(card1);
-				x-=130;
-				card2 = new ScreenCard(cards.get(1).getImage(),x,heightY,false);
-				newCards.add(card2);
-				x-=130;
-				card3 = new ScreenCard(cards.get(2).getImage(),x,heightY,false);
-				newCards.add(card3);
-				x-=130;
-				card4 = new ScreenCard(cards.get(3).getImage(),x,heightY,false);
-				newCards.add(card4);
-				x-=130;
-				card5 = new ScreenCard(cards.get(4).getImage(),x,heightY,false);
-				newCards.add(card5);
-				newCards.addAll(createEmpties());
-				
-				}
-			if(numberOfCards==6){
-				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);
-				newCards.add(card1);
-				x-=130;
-				card2 = new ScreenCard(cards.get(1).getImage(),x,heightY,false);
-				newCards.add(card2);
-				x-=130;
-				card3 = new ScreenCard(cards.get(2).getImage(),x,heightY,false);
-				newCards.add(card3);
-				x-=130;
-				card4 = new ScreenCard(cards.get(3).getImage(),x,heightY,false);
-				newCards.add(card4);
-				x-=130;
-				card5 = new ScreenCard(cards.get(4).getImage(),x,heightY,false);
-				newCards.add(card5);
-				x-=130;
-				card6 = new ScreenCard(cards.get(5).getImage(),x,heightY,false);
-				newCards.add(card6);
-				newCards.addAll(createEmpties());
-				
-				}
-			if(numberOfCards==7){
-				card1 = new ScreenCard(cards.get(0).getImage(),x,heightY,false);
-				newCards.add(card1);
-				x-=130;
-				card2 = new ScreenCard(cards.get(1).getImage(),x,heightY,false);
-				newCards.add(card2);
-				x-=130;
-				card3 = new ScreenCard(cards.get(2).getImage(),x,heightY,false);
-				newCards.add(card3);
-				x-=130;
-				card4 = new ScreenCard(cards.get(3).getImage(),x,heightY,false);
-				newCards.add(card4);
-				x-=130;
-				card5 = new ScreenCard(cards.get(4).getImage(),x,heightY,false);
-				newCards.add(card5);
-				x-=130;
-				card6 = new ScreenCard(cards.get(5).getImage(),x,heightY,false);
-				newCards.add(card6);
-				x-=130;
-				card7 = new ScreenCard(cards.get(6).getImage(),x,heightY,false);
-				newCards.add(card7);
-				
-				}
+			//Create slots
+			HashMap<String, ScreenCard> cardslots = new HashMap<String, ScreenCard>();
+			cardslots = createSlots(cards);
 
-
+			//fill slots
+			for (int i=0;i<numberOfCards;i++){
+				String a = new Integer(i+1).toString();
+				cardslots.get(a).setTexture(cards.get(i).getImage());
+				newCards.add(cardslots.get(a));
+			}
+			//create empty slots
+			for (int i=numberOfCards;i<7;i++){
+				String a = new Integer(i+1).toString();
+				cardslots.get(a).setEmpty(true);
+				newCards.add(cardslots.get(a));
+			}	
 		}
 
 
 
 	}
-	public  ArrayList<ScreenCard>  getNewCards(){
+	private ArrayList<ScreenCard> createEmpties(ArrayList<Card> cards) {
+		HashMap<String, ScreenCard> cardslots = new HashMap<String, ScreenCard>();
+		cardslots = createSlots(cards);
+		
+		for (int i=numberOfCards;i<7;i++){
+			String a = new Integer(i+1).toString();
+			cardslots.get(a).setEmpty(true);
+			newCards.add(cardslots.get(a));
+		}
 		return newCards;
 	}
+	
+	private HashMap<String, ScreenCard> createSlots(ArrayList<Card> cards) {
+		int heightY = -100;
+		int x = 1130;
+		HashMap<String, ScreenCard> cardslots = new HashMap<String, ScreenCard>();
+		cardslots.put("1", card1= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		x-=130;
+		cardslots.put("2", card2= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		x-=130;
+		cardslots.put("3", card3= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		x-=130;
+		cardslots.put("4", card4= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		x-=130;
+		cardslots.put("5", card5= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		x-=130;
+		cardslots.put("6", card6= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		x-=130;
+		cardslots.put("7", card7= new ScreenCard(cards.get(0).getImage(),x,heightY,false));
+		return cardslots;
+	}
+	
+	
+		public  ArrayList<ScreenCard>  getNewCards(){
+			System.out.println(newCards);
+			return newCards;
+		}
+	
 
-	public ArrayList<ScreenCard> createEmpties(){
-		ArrayList<ScreenCard> empties = new ArrayList<ScreenCard>();
-		if(numberOfCards==0){
-			card1 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card1);
-			card2 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card2);
-			card3 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card3);
-			card4 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card4);
-			card5 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card5);
-			card6 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card6);
-			card7 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card7);
-		}
-		if(numberOfCards==1){
-			card2 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card2);
-			card3 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card3);
-			card4 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card4);
-			card5 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card5);
-			card6 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card6);
-			card7 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card7);
-		}
-		if(numberOfCards==2){
-			card3 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card3);
-			card4 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card4);
-			card5 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card5);
-			card6 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card6);
-			card7 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card7);
-		}
-		if(numberOfCards==3){
-			card4 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card4);
-			card5 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card5);
-			card6 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card6);
-			card7 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card7);
-		}
-		if(numberOfCards==4){
-			card5 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card5);
-			card6 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card6);
-			card7 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card7);
-		}
-		if(numberOfCards==5){
-			card6 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card6);
-			card7 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card7);
-		}
-		if(numberOfCards==6){
-			card7 = new ScreenCard(Game_TextureManager.game_card_cardtoggle,0,0,true);
-			empties.add(card7);
-		}
-		
-		return empties;
 
 	}
-
-}
