@@ -47,7 +47,7 @@ public class Player implements Serializable {
 	public ArrayList<Train> trains;
 	public Carriage carriages;
 	public ArrayList<Station> stations;
-	public int[] lines = new int[6];
+	public int[] lines = new int[7];
 	protected ArrayList<PlayerListener> listeners = new ArrayList<PlayerListener>();
 	
 	private HashMap<String, Fuel> playerFuel;
@@ -187,6 +187,8 @@ public class Player implements Serializable {
 			lines[4] += 1;
 		case Black:
 			lines[5] += 1;
+		case Brown:
+			lines[6] += 1;
 		}
 		for (PlayerListener listener: listeners)
 		{
@@ -212,8 +214,11 @@ public class Player implements Serializable {
 			lines[4] -= 1;
 		case Black:
 			lines[5] -= 1;
+		case Brown:
+			lines[6] -= 1;
 		}
 		this.addGold((int)(station.getTotalValue() * 0.7));
+		station.setOwner(null);
 		stations.remove(station);
 		
 	}

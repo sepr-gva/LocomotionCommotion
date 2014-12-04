@@ -4,7 +4,8 @@ public enum Line {
 		Red,
 		Blue,
 		Green,
-		Yellow,
+		Yellow, 
 		Purple,
-		Black
+		Black,
+		Brown
 }
