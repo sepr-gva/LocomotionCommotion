@@ -21,12 +21,24 @@ class ScreenCard extends Actor {
 		this.actorX = actorX;
 		this.actorY = actorY;
 
-		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+		setBounds(actorX,actorY+200,texture.getWidth(),texture.getHeight()+200);
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				((ScreenCard)event.getTarget()).started = true;
 				return true;
 			}
+		});
+		addListener(new InputListener(){
+			public void enter(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
+				((ScreenCard)event.getTarget()).started = true;
+			}
+		
+		});
+		addListener(new InputListener(){
+			public void exit(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
+				((ScreenCard)event.getTarget()).started = true;
+			}
+		
 		});
 		
 	}
@@ -46,6 +58,7 @@ class ScreenCard extends Actor {
 			if (isExpanded()){
 				this.cardCollapse();
 				Game_CardHandManager.usecardbtn.setVisible(false);
+				Game_CardHandManager.usecardbtn.refreshBounds();
 				
 				
 			}

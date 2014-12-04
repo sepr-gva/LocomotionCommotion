@@ -39,6 +39,7 @@ public class Game_CardHandManager {
 	public void create(Stage stage){
 
 		actors.clear();
+		newcards.clear();
 		stagestart =0;
 		cardActors=0;
 		CoalCard coal = new CoalCard();
@@ -140,7 +141,10 @@ public class Game_CardHandManager {
 		
 	}
 
+	
 	private static void populateHand(Game_card_HandCreator hand) {
+		if (hand.getNewCards().size()==0)
+			throw new Error("my error");
 		card1= hand.getNewCards().get(0);
 		actors.add(card1);
 		cards.add(card1);
