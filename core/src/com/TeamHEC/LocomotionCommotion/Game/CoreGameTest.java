@@ -6,6 +6,7 @@ import junit.framework.Assert;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.junit.Test;
@@ -45,8 +46,8 @@ public class CoreGameTest {
 	{
 		player1Name = "Alice";
 		player2Name = "Ben";
-		Player1Start = new Station("London", 100, new Coal(100), 100, Line.Red, 100);
-		Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, Line.Blue, 200);	
+		Player1Start = new Station("London", 100, new Coal(100), 100, Arrays.asList(Line.Red), 100);
+		Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, Arrays.asList(Line.Blue), 200);	
 		
 		player1StationList = new ArrayList<Station>();
 		player2StationList = new ArrayList<Station>();		
