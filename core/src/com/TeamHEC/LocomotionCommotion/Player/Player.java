@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -27,8 +28,12 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
  *
  */
 
-public class Player {
+public class Player implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String name;
 	public int points;
 	private Gold gold;
@@ -42,6 +47,7 @@ public class Player {
 	public ArrayList<Train> trains;
 	public Carriage carriages;
 	public ArrayList<Station> stations;
+	public int[] lines = new int[6];
 	protected ArrayList<PlayerListener> listeners = new ArrayList<PlayerListener>();
 	
 	private HashMap<String, Fuel> playerFuel;
@@ -63,6 +69,10 @@ public class Player {
 		this.trains = trains;
 		this.carriages = carriage;
 		this.stations = stations;
+		for (int i = 0; i<6;i++)
+		{
+			this.lines[i] = 0;
+		}
 		
 		playerFuel = new HashMap<String, Fuel>();
 		
@@ -159,19 +169,64 @@ public class Player {
 		return stations;
 	}
 	
-	public void PurchaseStation(Station station)
+	public void purchaseStation(Station station)
 	{
 		stations.add(station);
 		this.subGold(station.getTotalValue());
+		switch(station.getLineType())
+		{ //keeps track of how many of a line the player owns
+		case Red:
+			lines[0] += 1;			
+		case Blue:
+			lines[1] += 1;
+		case Green:
+			lines[2] += 1;
+		case Yellow:
+			lines[3] += 1;
+		case Purple: 
+			lines[4] += 1;
+		case Black:
+			lines[5] += 1;
+		}
 		for (PlayerListener listener: listeners)
 		{
-			listener.stationPurchased(station);
+			listener.stationPurchased(station, this);
 		}
 	}
 	
-	public void SellStation(Station station)
+	
+	
+	public void sellStation(Station station)
 	{
+		switch(station.getLineType())
+		{ //keeps track of how many of a line the player owns
+		case Red:
+			lines[0] -= 1;			
+		case Blue:
+			lines[1] -= 1;
+		case Green:
+			lines[2] -= 1;
+		case Yellow:
+			lines[3] -= 1;
+		case Purple: 
+			lines[4] -= 1;
+		case Black:
+			lines[5] -= 1;
+		}
+		this.addGold((int)(station.getTotalValue() * 0.7));
 		stations.remove(station);
+		
+	}
+	
+	public void lineBonuses()
+	{
+		//bonuses subject to change
+		//for now they only give gold
+		for (int i = 0; i < 6; i++)
+		{
+			this.addGold(10 * lines[i]); //adds 10 gold per station on each line for now
+			//will add more once map is sorted and lines and bonuses are chosen
+		}
 	}
 	
 	//Shop
@@ -198,7 +253,5 @@ public class Player {
 	public void addListener(PlayerListener listener)
 	{
 		listeners.add(listener);
-	}
-
-	
+	}	
 }

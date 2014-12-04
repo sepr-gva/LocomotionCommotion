@@ -19,10 +19,15 @@ public class TeleportCard extends Card{
 	 
 	*/
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public TeleportCard()
 	{
 		// Name, Description, Value, Owner:
-		super("Teleport", "Teleport a Train from one station to another!", 100, null);
+		super("Teleport", "Teleport a Train from one station to another!", 100, null,null);
 	}
 	
 	public Train getSelectedTrain()

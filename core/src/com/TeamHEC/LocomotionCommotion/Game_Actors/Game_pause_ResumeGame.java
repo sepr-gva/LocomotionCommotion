@@ -50,10 +50,10 @@ public class Game_pause_ResumeGame extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_PauseMenuManager.open== false)
+			if (Game_Pause_AManager.open== false)
 			{
-				Game_PauseMenuManager.open= true;
-				for(int i=Game_PauseMenuManager.stagestart; i<=Game_PauseMenuManager.stagestart +Game_PauseMenuManager.pauseActors-1;i++){
+				Game_Pause_AManager.open= true;
+				for(int i=Game_Pause_AManager.stagestart; i<=Game_Pause_AManager.stagestart +Game_Pause_AManager.pauseActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -61,8 +61,8 @@ public class Game_pause_ResumeGame extends Actor {
 
 				}			}
 			else
-			{	Game_PauseMenuManager.open= false;
-			for(int i=Game_PauseMenuManager.stagestart; i<=Game_PauseMenuManager.stagestart +Game_PauseMenuManager.pauseActors-1;i++){
+			{	Game_Pause_AManager.open= false;
+			for(int i=Game_Pause_AManager.stagestart; i<=Game_Pause_AManager.stagestart +Game_Pause_AManager.pauseActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

@@ -1,6 +1,9 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
+import java.io.Serializable;
+
 import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.badlogic.gdx.graphics.Texture;
 
 /**
  * 
@@ -8,7 +11,7 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
  *
  */
 
-public class Card {
+public class Card implements Serializable {
 	
 	/*
 	 1) Associated with player class
@@ -27,18 +30,24 @@ public class Card {
 	 	A) 	This can be controlled in this class as a super class
 	 */
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final String cardName;
 	private final String cardDescription;
 	private final int cardValue;
 	private Player owner;
+	private Texture cardImage;
 	
 	// If created in the shop, the player can be initialised to null:
-	public Card(String name, String description, int value, Player player)
+	public Card(String name, String description, int value, Player player,Texture image)
 	{
 		cardName = name;
 		cardDescription = description;
 		owner = player;
 		cardValue = value;
+		cardImage = image; // this for implementing the card
 	}
 		
 	public Player getOwner()
@@ -66,4 +75,9 @@ public class Card {
 	{
 		return cardValue;
 	}
+	
+	public Texture getImage(){
+		return cardImage;
+	}
+	
 }

@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
 import java.util.Arrays;
+import java.io.Serializable;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Resource.*;
@@ -21,8 +22,10 @@ import com.TeamHEC.LocomotionCommotion.Resource.*;
 
 // This doesn't work for routing so I'm creating a new implementation
 
-public class WorldMap {
+public class WorldMap implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	private final static WorldMap INSTANCE = new WorldMap();
 	public static WorldMap getInstance()
 	{

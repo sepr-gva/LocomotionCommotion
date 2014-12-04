@@ -10,6 +10,10 @@ import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 
 public class OilTrain extends Train{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int BASE_SPEED = 3;
 	private static final int BASE_CARRIAGE_LIMIT = 2;
 	private static final int VALUE = 350;

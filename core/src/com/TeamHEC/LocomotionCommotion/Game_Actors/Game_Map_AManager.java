@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_MapManager {
+public class Game_Map_AManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	
@@ -18,7 +18,7 @@ public class Game_MapManager {
 	
 
 
-	public Game_MapManager(){	}
+	public Game_Map_AManager(){	}
 	
 	public void create(Stage stage){
 		

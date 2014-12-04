@@ -1,6 +1,13 @@
 package com.TeamHEC.LocomotionCommotion.Event;
 
-public class Event {
+import java.io.Serializable;
+
+public class Event implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	// need to design event listener architecture.
 	

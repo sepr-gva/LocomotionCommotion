@@ -46,5 +46,15 @@ public class Game_TextureManager {
 	//train depot
 	public static  Texture game_traindepot_title = new Texture(Gdx.files.internal("gameScreen/game_traindepot/title.png"));
 	public static  Texture game_traindepot_traindepotbtn = new Texture(Gdx.files.internal("gameScreen/game_traindepot/traindepotbtn.png"));
-	
+	//goals
+	public static  Texture game_goals_goalscreenbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/goalScreenBtn.png"));
+	public static  Texture game_goals_newgoals= new Texture(Gdx.files.internal("gameScreen/game_goalScreen/newgoals.png"));
+	public static  Texture game_goals_backdrop = new Texture(Gdx.files.internal("gameScreen/game_goalScreen/screen.png"));
+
+	//Cards
+	public static Texture game_card_goldcard = new Texture(Gdx.files.internal("gameScreen/game_cards/goldCard.png"));
+	public static Texture game_card_coalcard = new Texture(Gdx.files.internal("gameScreen/game_cards/coalCard.png"));
+	public static Texture game_card_oilcard = new Texture(Gdx.files.internal("gameScreen/game_cards/oilCard.png"));
+	public static Texture game_card_cardtoggle = new Texture(Gdx.files.internal("gameScreen/game_cards/Cardbtn-1.png"));
+	public static Texture game_card_usecardbtn = new Texture(Gdx.files.internal("gameScreen/game_cards/usecardbtn.png"));
 }

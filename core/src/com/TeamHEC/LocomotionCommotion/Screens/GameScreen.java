@@ -22,13 +22,15 @@ package com.TeamHEC.LocomotionCommotion.Screens;
  */
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_MapManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenuManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHandManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_AManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_AManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Pause_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TicketsManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObjectManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuobject_TicketAManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -41,7 +43,7 @@ public class GameScreen implements Screen {
 	private static Stage stage;
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
-	public static int coal, oil, electricy, nuclear,cards,player1score,player2score;
+	public static int coal, oil, electricy, nuclear,cards,player1score=1000,player2score;
 	public static String player1name ="Vladimir", player2name ="Caleb";
 
 	public static void create(){
@@ -51,39 +53,46 @@ public class GameScreen implements Screen {
 		camera.viewportHeight= LocomotionCommotion.screenY;
 		camera.viewportWidth= LocomotionCommotion.screenX;
 		camera.update();
-		
+
 		//Instantiate the Managers
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
-		Game_MapManager mapManger = new Game_MapManager();
+		
+		Game_Map_AManager mapManger = new Game_Map_AManager();
 		mapManger.create(getStage());
 		
+		Game_CardHandManager cardHandManager = new Game_CardHandManager();
+		cardHandManager.create(getStage());
+
 		Game_ResourcesManager resourceManager = new Game_ResourcesManager();
 		resourceManager.create(getStage());
-		
-		Game_menuObjectManager actorManager = new Game_menuObjectManager();
+
+		Game_menuObject_AManager actorManager = new Game_menuObject_AManager();
 		actorManager.create(getStage());
-		
-		Game_TicketsManager ticketManager = new Game_TicketsManager();
+
+		Game_menuobject_TicketAManager ticketManager = new Game_menuobject_TicketAManager();
 		ticketManager.create(getStage());
-		
-		Game_PauseMenuManager pauseManager= new Game_PauseMenuManager();
-		pauseManager.create(getStage());
-		
+
 		Game_ShopManager shopManager = new Game_ShopManager();
 		shopManager.create(getStage());
-		
+
 		Game_TrainDepotManager trainDepotManager = new Game_TrainDepotManager();
 		trainDepotManager.create(getStage());
-		}
 
+		Game_Goal_AManager goalScreenManager = new Game_Goal_AManager();
+		goalScreenManager.create(getStage());
+		
+		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
+		pauseManager.create(getStage());
+		
+	}
 	@Override
 	public void render(float delta) {
 		getStage().getCamera().update();
 
 		Gdx.gl.glClearColor(1,1,1,1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
+
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
 
@@ -137,15 +146,17 @@ public class GameScreen implements Screen {
 	}
 
 	public void  resetScreen(){
-		Game_MapManager.infoVisible= false;
-		Game_PauseMenuManager.open = false;
-		Game_TicketsManager.open = false;
+		Game_Map_AManager.infoVisible= false;
+		Game_Pause_AManager.open = false;
+		Game_menuobject_TicketAManager.open = false;
 		Game_ShopManager.open = false;
 		Game_TrainDepotManager.open = false;
 		Game_ResourcesManager.resourcebarexpanded =false;
+		Game_Goal_AManager.open= false;
+		Game_CardHandManager.open=false;
 
-		
-		
-	
+
+
+
 	}
 }

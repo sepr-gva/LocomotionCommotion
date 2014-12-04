@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_PauseMenuManager {
+public class Game_Pause_AManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	
@@ -24,7 +24,7 @@ public class Game_PauseMenuManager {
 	public static int  stagestart, pauseActors;
 
 
-	public Game_PauseMenuManager(){	}
+	public Game_Pause_AManager(){	}
 		
 	public void create(Stage stage){
 		stagestart =0;

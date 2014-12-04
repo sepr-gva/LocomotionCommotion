@@ -18,7 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_menuObjectManager {
+public class Game_menuObject_AManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	
@@ -34,11 +34,13 @@ public class Game_menuObjectManager {
 	
 	public static Game_menuobject_ShopBtn game_menuobject_shopbtn;
 	public static Game_menuobject_TrainDepotBtn game_menuobject_traindepotbtn;
+	
+	public static Game_menuobjects_GoalScreenBtn game_menuobject_goalscreenbtn;
 	public static Label playerScore;
 	
 
 
-	public Game_menuObjectManager(){		}
+	public Game_menuObject_AManager(){		}
 
 	public void create(Stage stage){
 		actors.clear();
@@ -87,6 +89,9 @@ public class Game_menuObjectManager {
 		
 		game_menuobject_traindepotbtn = new Game_menuobject_TrainDepotBtn();
 		actors.add(game_menuobject_traindepotbtn);
+		
+		game_menuobject_goalscreenbtn = new Game_menuobjects_GoalScreenBtn();
+		actors.add(game_menuobject_goalscreenbtn);
 		
 		actors.add(playerScore);
 		

@@ -1,14 +1,12 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.PlayerListener;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
-
 /**
  * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -17,6 +15,7 @@ import com.TeamHEC.LocomotionCommotion.Map.Line;
 
 public class Station extends MapObj implements PlayerListener{
 	
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private Player owner;
 	private int baseValue;
@@ -24,14 +23,14 @@ public class Station extends MapObj implements PlayerListener{
 	private Fuel fuelType;
 	private int baseFuelOut;
 	private int fuelOutMod;
-	private List<Line> lines;
+	private Line line;
 	private int rentValue;
 	private int rentValueMod;
 	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
 	protected Player player1;//the players station will listen too
-	protected Player player2;//might need name changes later
+	protected Player player2;//will need name changes later
 	
-	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, List<Line> lines, int rentValue)
+	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line line, int rentValue)
 	{
 		this.trains = new Train[5];
 		this.name = name;
@@ -41,7 +40,7 @@ public class Station extends MapObj implements PlayerListener{
 		this.fuelType = fuelType;
 		this.baseFuelOut = baseFuelOut;
 		this.fuelOutMod = 0;
-		this.lines = lines;
+		this.line = line;
 		this.rentValue = rentValue;
 		this.rentValueMod = 0;
 		//player1.addListener(this);
@@ -57,12 +56,10 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		return baseValue;
 	}
-	
 	public int getValueMod()
 	{
 		return valueMod;
-	}
-	
+	}	
 	public void addValueMod(int add)
 	{
 		valueMod += add;
@@ -70,8 +67,7 @@ public class Station extends MapObj implements PlayerListener{
 	public void subValueMod(int sub)
 	{
 		valueMod -= sub;
-	}
-	
+	}	
 	public int getTotalValue()
 	{
 		return baseValue + valueMod;
@@ -81,17 +77,18 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		return fuelType;
 	}
-	
 	public int getBaseFuelOut()
 	{
 		return baseFuelOut;
 	}
-	
 	public int getFuelOutMod()
 	{
 		return fuelOutMod;
 	}
-	
+	public void setFuelOutMod(int mod)
+	{
+		fuelOutMod = mod;
+	}
 	public void addFuelOutMod(int add)
 	{
 		fuelOutMod += add;
@@ -99,8 +96,7 @@ public class Station extends MapObj implements PlayerListener{
 	public void subFuelOutMod(int sub)
 	{
 		fuelOutMod -= sub;
-	}
-	
+	}	
 	public int getTotalFuelOut()
 	{
 		return baseFuelOut + fuelOutMod;
@@ -110,22 +106,18 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		return rentValue;
 	}
-	
 	public int getRentValueMod()
 	{
 		return rentValueMod;
-	}
-	
+	}	
 	public void addRentValueMod(int add)
 	{
 		rentValueMod += add;
-	}
-	
+	}	
 	public void subRentValueMod(int sub)
 	{
 		rentValueMod-= sub;
 	}
-	
 	public int getTotalRent()
 	{
 		return rentValue + rentValueMod;
@@ -135,20 +127,14 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		return owner;
 	}
-	
 	public void setOwner(Player newOwner)
 	{
 		owner = newOwner;
 	}
 	
-	public void setFuelOutMod(int mod)
+	public Line getLineType()
 	{
-		fuelOutMod = mod;
-	}
-	
-	public List<Line> getLineTypes()
-	{
-		return lines;
+		return line;
 	}
 	
 	/*public void purchaseStation(Player player)
@@ -167,13 +153,12 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		listeners.add(listener);
 	}
-
 	@Override
-	public void stationPurchased(Station station) 
+	public void stationPurchased(Station station, Player player) 
 	{
 		if (station==this)
 		{
-			//set owner to purchasing player(the active player)
+			this.setOwner(player);
 		}
 	}
 }

@@ -1,5 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.Game;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +30,10 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 public class CoreGame implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Privates
 	private WorldMap gameMap;
 	private Player player1;
@@ -191,4 +198,28 @@ public class CoreGame implements Serializable{
 		return playerTurn;
 	}
 
+	/**
+	 * Launches a save dialog asking the user to specify a save game location and serializes the game object to that location
+	 * @param testCase Is this operation a test? If so it will skip the dialog section.
+	 */
+	public void saveGame(String gameName)
+	{
+		try
+		{
+			File saveLocation = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "LocomotionCommotion" + System.getProperty("file.separator") + gameName + ".ser"); 
+			saveLocation.getParentFile().mkdirs();
+			saveLocation.createNewFile();			
+			FileOutputStream fout = new FileOutputStream(saveLocation);
+			
+			ObjectOutputStream oos = new ObjectOutputStream(fout);
+			oos.writeObject(this);
+			oos.close();
+			fout.close();
+			System.out.println("Done");			
+		}
+		catch (Exception ex)
+		{
+			ex.printStackTrace();
+		}
+	}	
 }

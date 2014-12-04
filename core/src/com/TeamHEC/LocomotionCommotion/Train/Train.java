@@ -1,5 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
+import java.io.Serializable;
+
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 
 /**
@@ -8,7 +10,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
  *
  */
 
-public class Train {
+public class Train implements Serializable{
 	
 	/*
 	 Train is an object that the player moves around the map to complete goals.
@@ -36,6 +38,10 @@ public class Train {
 
 	 */
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private int baseSpeed, speedMod;
 	private int baseCarriageLimit, carriageLimitMod;

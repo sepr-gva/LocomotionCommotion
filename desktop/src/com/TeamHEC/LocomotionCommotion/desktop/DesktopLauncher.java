@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.desktop;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
@@ -10,5 +11,7 @@ public class DesktopLauncher {
 		new LwjglApplication(LocomotionCommotion.getInstance(), config);
 		config.height= 1050;
 		config.width = 1680;
+		//config.fullscreen =true;
+		
 	}
 }

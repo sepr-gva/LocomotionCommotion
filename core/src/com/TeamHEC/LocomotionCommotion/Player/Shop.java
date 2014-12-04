@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,13 +15,18 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
  *
  */
 
-public class Shop {
+public class Shop implements Serializable {
 	
 	/*
 	  The shop can be used to buy more fuel, more trains, upgrade your existing trains and purchase Wildcards in
 		exchange for Gold. You can also sell existing resources in exchange for Gold.
 	*/
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private ArrayList<Card> cardsForSale = new ArrayList<Card>();
 	
 	private Coal coalForSale;

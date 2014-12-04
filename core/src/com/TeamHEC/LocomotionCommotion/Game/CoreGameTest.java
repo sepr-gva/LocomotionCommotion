@@ -1,12 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Game;
 
 import static org.junit.Assert.*;
-import junit.framework.Assert;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import org.junit.Test;
@@ -16,12 +15,8 @@ import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
-import com.TeamHEC.LocomotionCommotion.Resource.Electric;
-import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
-import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
@@ -46,14 +41,13 @@ public class CoreGameTest {
 	{
 		player1Name = "Alice";
 		player2Name = "Ben";
-		Player1Start = new Station("London", 100, new Coal(100), 100, Arrays.asList(Line.Red), 100);
-		Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, Arrays.asList(Line.Blue), 200);	
+		Player1Start = new Station("London", 100, new Coal(100), 100, Line.Red, 100);
+		Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, Line.Blue, 200);	
 		
 		player1StationList = new ArrayList<Station>();
 		player2StationList = new ArrayList<Station>();		
 		
 		turnLimit = 50;	
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 		
 		player1StationList.add(Player1Start);
 		player2StationList.add(Player2Start);
@@ -252,6 +246,29 @@ public class CoreGameTest {
 		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 		
 		assertTrue(tester.getPlayerTurn() == (Player) getField(tester, "playerTurn"));
+	}
+
+	@Test
+	public void testSaveGame() throws Exception {
+		//Reset
+		String error = "";
+		boolean success = false;
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		try
+		{
+			tester.saveGame("myGame");
+			success = true;
+		}
+		catch (Exception ex)
+		{
+			success = false;
+			error = ex.getMessage();
+		}
+		
+		assertTrue("saveGame did not execute successfully. " + error, success);		
+		
+		File f = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "LocomotionCommotion" + System.getProperty("file.separator") + "myGame" + ".ser");
+		assertTrue("The expected file did not exist",f.exists());
 	}
 
 }
