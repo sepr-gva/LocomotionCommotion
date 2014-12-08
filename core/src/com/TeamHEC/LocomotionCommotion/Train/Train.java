@@ -1,7 +1,9 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 
 /**
@@ -38,9 +40,6 @@ public class Train implements Serializable{
 
 	 */
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String name;
 	private int baseSpeed, speedMod;
@@ -53,6 +52,8 @@ public class Train implements Serializable{
 	// needs to change after upgrades
 	private int value;
 	private boolean inStation;
+	
+	private ArrayList<Connection> route = new ArrayList<Connection>();
 	
 	// Need somewhere to store the location of the Train
 	
@@ -125,5 +126,27 @@ public class Train implements Serializable{
 	public boolean isInStation()
 	{
 		return inStation;
+	}
+	
+	// Route stuff:
+	public void addRouteConnection(Connection connection)
+	{
+		route.add(connection);
+	}
+	
+	// Removes last connection in list:
+	public void removeRouteConnection()
+	{
+		route.remove(route.get(route.size()));
+	}
+	
+	public float getRouteLength()
+	{
+		float length = 0;
+		for(int i = 0; i < route.size(); i++)
+		{
+			length += route.get(i).getLength();
+		}
+		return length;
 	}
 }

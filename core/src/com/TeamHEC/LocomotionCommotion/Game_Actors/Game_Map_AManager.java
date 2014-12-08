@@ -16,8 +16,6 @@ public class Game_Map_AManager {
 	public static boolean infoVisible= false;
 	public static int  stagestart, mapActors;
 	
-
-
 	public Game_Map_AManager(){	}
 	
 	public void create(Stage stage){
@@ -27,10 +25,6 @@ public class Game_Map_AManager {
 		mapActors=0;
 		tempMap = new Game_Map();		
 		actors.add(tempMap);
-		
-		
-
-		
 		
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
@@ -42,15 +36,11 @@ public class Game_Map_AManager {
 		mapInfo = new Game_Map_Info();
 		mapInfo.setVisible(infoVisible);
 		stage.addActor(mapInfo);
-
 	}
 	
 	/*
 	 * Serializes all actors and stores them in an array. This and the Game object
 	 * are then saved and stored to be loaded.
 	 */
-	
-
-
 }
 

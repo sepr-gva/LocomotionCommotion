@@ -1,25 +1,37 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 public class Connection{
 	
-	public Station stationStart, endStation;
-	public Track[] tracks;
-	
-	public Connection(Station startStation, Station endStation, Track[] tracks)
+	private MapObj startMapObj, endMapObj;
+	private float length;
+
+	public Connection(MapObj startMapObj, MapObj endMapObj)
 	{
-		this.stationStart = startStation;
-		this.endStation = endStation;
-		this.tracks = tracks;
+		this.startMapObj = startMapObj;
+		this.endMapObj = endMapObj;
+		
+		float dX =  Math.abs(startMapObj.x - endMapObj.x);
+		float dY =  Math.abs(startMapObj.y - endMapObj.y);
+		length = (float) Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
 	}
 	
-	// Dunno if we need this:
-	public void reverseConnection()
+	public float getLength()
 	{
-		Track[] reverseTrack = tracks.clone();
-		Collections.reverse(Arrays.asList(reverseTrack));
-		// Station temp = 
+		return length;
+	}
+	
+	public void setLength(float length)
+	{
+		this.length = length;
+	}
+	
+	public MapObj getStartMapObj()
+	{
+		return startMapObj;
+	}
+	
+	public MapObj getDestination()
+	{
+		return endMapObj;
 	}
 }

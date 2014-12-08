@@ -28,6 +28,7 @@ public class Game_TextureManager {
 	//Map
 	public static  Texture tempMap = new Texture(Gdx.files.internal("gameScreen/game_map/map.png"));
 	public static  Texture mapInfo = new Texture(Gdx.files.internal("gameScreen/game_map/mapinfo.png"));
+	public static Texture mapBlip = new Texture(Gdx.files.internal("gameScreen/game_map/mapBlip.png"));
 	
 	//Pause Menu
 	public static  Texture game_pause_blackoutscreen = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/screen.png"));
