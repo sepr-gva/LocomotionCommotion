@@ -260,6 +260,15 @@ public class Player implements Serializable {
 		}
 	}
 	
+	public void stationRewards()
+	{
+		for (int i = 0; i < stations.size(); i++)
+		{
+			Station currentStation = stations.get(i);
+			this.addFuel(currentStation.getFuelType().toString(), currentStation.getTotalFuelOut());
+		}
+	}
+	
 	//Shop
 	public void accessShop()
 	{

@@ -59,7 +59,7 @@ public class WorldMap implements Serializable{
 		// Creates a connection instance for each:
 		
 		createConnections(REYKJAVIK, new MapObj[]{OSLO, DUBLIN});
-		createConnections(DUBLIN, new MapObj[]{REYKJAVIK, DUBLIN, LONDON});
+		createConnections(DUBLIN, new MapObj[]{REYKJAVIK, AMSTERDAM, LONDON});
 		createConnections(LONDON, new MapObj[]{DUBLIN, PARIS});
 		createConnections(PARIS, new MapObj[]{LONDON, MONACO, MADRID, junction[0]});
 		createConnections(MADRID, new MapObj[]{PARIS, MONACO, LISBON});

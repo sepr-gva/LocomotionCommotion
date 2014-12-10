@@ -7,5 +7,5 @@ public enum Line {
 		Yellow, 
 		Purple,
 		Black,
-		Brown
+		Brown		
 }
