@@ -7,7 +7,6 @@ import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CoalCard;
 import com.TeamHEC.LocomotionCommotion.Card.GoldCard;
 import com.TeamHEC.LocomotionCommotion.Card.OilCard;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -27,6 +26,7 @@ public class Game_CardHandManager {
 	public static ScreenCard card1, card2, card3, card4, card5, card6,card7;
 
 	public static int selectedCard= 0;
+	public static int numberofcards;
 
 	public static Game_card_UseCardBtn usecardbtn;
 
@@ -53,7 +53,7 @@ public class Game_CardHandManager {
 		newcards.add(oil);
 		newcards.add(coal);
 
-
+		numberofcards= newcards.size();
 		Game_card_HandCreator hand = new Game_card_HandCreator(newcards);
 
 		populateHand(hand);
@@ -78,70 +78,46 @@ public class Game_CardHandManager {
 
 
 	}
-	//Do not use
-	public static void changeHand(Stage stage){
-		if (selectedCard!=0)
-				newcards.remove(selectedCard-1);
-		Game_card_HandCreator hand = new Game_card_HandCreator(newcards);
-		actors.clear();
-		cards.clear();
-		populateNewHand(hand);
-		currentHand= hand.getNewCards();
-		for (int i=stagestart;i<cardActors+2 ;i=i+1){
-//			GameScreen.getStage().getActors().removeIndex(i);
-			System.out.println(GameScreen.getStage().getActors().get(i).getX());
-			System.out.println(i);
-		}
-		stagestart= stage.getActors().size;
-		for (Actor a : actors){
-			if(open == true){
-				a.setTouchable(Touchable.enabled);
-				a.setVisible(true);}
-			else
-				a.setVisible(false);
 
-			stage.addActor(a);
-			cardActors ++;
+	public static void useCard(int cardNum){
+		if (cardNum !=0){
+			//READY FOR IMPLEMENTING CARD - NEEDS AN OWNER (A PLAYER TO ADD THE RESOURCES TO)
+			cards.get(cardNum-1).getCard().implementCard();
+			Game_ResourcesManager.refreshResources();
+			if (cardNum!=numberofcards){
+				for(int i=cardNum-1;i<numberofcards-1;i++){
+					cards.get(i).setTexture(cards.get(i+1).getTexture());
+					cards.get(i).setSlot(i+1);
+					cards.get(i).setCard(cards.get(i+1).getCard());
+					
+				}
+			}
+
+			selectedCard = 0;
+			cards.get(numberofcards-1).setEmpty(true);
+			cards.get(numberofcards-1).setVisible(false);
+			numberofcards-=1;
+			organiseDeck();
+			Game_CardHandManager.usecardbtn.setVisible(false);
 		}
-		usecardbtn = new Game_card_UseCardBtn();
-		usecardbtn.setVisible(false);
-		stage.addActor(usecardbtn);
-		
+
 
 	}
-	private static void populateNewHand(Game_card_HandCreator hand){
-		card1= hand.getNewCards().get(0);
-		actors.add(card1);
-		cards.add(card1);
-
-
-		card2= hand.getNewCards().get(1);
-		actors.add(card2);
-		cards.add(card2);
-
-		card3= hand.getNewCards().get(2);
-		actors.add(card3);
-		cards.add(card3);
-
-		card4= hand.getNewCards().get(3);
-		actors.add(card4);
-		cards.add(card4);
-
-		card5= hand.getNewCards().get(4);
-		actors.add(card5);
-		cards.add(card5);
-
-		card6= hand.getNewCards().get(5);
-		actors.add(card6);
-		cards.add(card6);
-
-		card7=hand.getNewCards().get(6);
-		actors.add(card7);
-		cards.add(card7);	
-		
-	}
-
 	
+	public static void addCard(Card newCard){
+		if(numberofcards<7){
+			cards.get(numberofcards).setTexture(newCard.getImage());
+			cards.get(numberofcards).setSlot(numberofcards+1);
+			cards.get(numberofcards).setEmpty(false);
+			cards.get(numberofcards).setVisible(true);
+			cards.get(numberofcards).setCard(newCard);
+			
+			numberofcards+=1;
+		}
+	}
+
+
+
 	private static void populateHand(Game_card_HandCreator hand) {
 		if (hand.getNewCards().size()==0)
 			throw new Error("my error");
@@ -227,6 +203,7 @@ public class Game_CardHandManager {
 			if(c.getSlot()==selectedCard){
 				return c;
 			}}
+
 		if (selectedCard == 0){
 			throw new Error("No card selected: This should only be called when use card button is using it! ");
 		}	

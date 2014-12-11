@@ -48,9 +48,8 @@ public class Game_card_UseCardBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			//if (Game_CardHandManager.selectedCard!=0)
-				//Game_CardHandManager.changeHand(GameScreen.getStage());
-			//	Game_CardHandManager.usecardbtn.setVisible(false);
+			System.out.println(Game_CardHandManager.selectedCard);
+			Game_CardHandManager.useCard(Game_CardHandManager.selectedCard);
 			started= false;
 			}
 	}

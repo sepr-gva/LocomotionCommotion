@@ -16,6 +16,7 @@ public class Game_card_HandCreator {
 		numberOfCards = cards.size();
 		newCards = new ArrayList<ScreenCard>();
 		GameScreen.cards= numberOfCards;
+		
 		if (cards.size()==0){
 			newCards=createEmpties(cards);
 		}
@@ -32,6 +33,7 @@ public class Game_card_HandCreator {
 			for (int i=0;i<numberOfCards;i++){
 				String a = new Integer(i+1).toString();
 				cardslots.get(a).setTexture(cards.get(i).getImage());
+				cardslots.get(a).setCard(cards.get(i));
 				newCards.add(cardslots.get(a));
 			}
 			//create empty slots

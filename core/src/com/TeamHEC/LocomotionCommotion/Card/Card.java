@@ -79,5 +79,10 @@ public class Card implements Serializable {
 	public Texture getImage(){
 		return cardImage;
 	}
+
+	public void implementCard() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

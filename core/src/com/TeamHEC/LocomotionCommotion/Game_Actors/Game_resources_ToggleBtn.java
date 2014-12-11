@@ -55,7 +55,7 @@ public class Game_resources_ToggleBtn extends Actor {
 				Game_ResourcesManager.game_resources_togglebtn.actorY+=expandedheight;
 				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 				Game_ResourcesManager.game_menuobject_resourcesbar.actorY+=expandedheight;
-				Game_ResourcesManager.resourcesQuant.setY(Game_ResourcesManager.resourcesQuant.getY()+expandedheight);
+				Game_ResourcesManager.setResourcesHeight(Game_ResourcesManager.cardQuant.getY()+expandedheight);
 				//move cards up
 				Game_ResourcesManager.game_card_togglebtn.actorY+=expandedheight;
 				Game_ResourcesManager.game_card_togglebtn.refreshBounds();
@@ -81,7 +81,7 @@ public class Game_resources_ToggleBtn extends Actor {
 			Game_ResourcesManager.game_resources_togglebtn.actorY-=expandedheight;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			Game_ResourcesManager.game_menuobject_resourcesbar.actorY-=expandedheight;
-			Game_ResourcesManager.resourcesQuant.setY(Game_ResourcesManager.resourcesQuant.getY()-expandedheight);
+			Game_ResourcesManager.setResourcesHeight(Game_ResourcesManager.cardQuant.getY()-expandedheight);
 			
 			Game_ResourcesManager.game_card_togglebtn.actorY-=expandedheight;
 			Game_ResourcesManager.game_card_togglebtn.refreshBounds();

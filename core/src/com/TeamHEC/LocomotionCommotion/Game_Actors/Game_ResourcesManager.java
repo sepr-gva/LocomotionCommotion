@@ -28,7 +28,7 @@ public class Game_ResourcesManager {
 	public static Game_card_CardToggleBtn game_card_togglebtn;
 	public static boolean resourcebarexpanded = false;
 	public static int  stagestart, resourceActors, expandedheight= 40;
-	public static Label  resourcesQuant;
+	public static Label  coalQuant, oilQuant, electricityQuant, nuclearQuant, cardQuant;
 	
 	
 	public Game_ResourcesManager(){		}
@@ -59,17 +59,42 @@ public class Game_ResourcesManager {
 		
 		game_card_togglebtn = new Game_card_CardToggleBtn();
 		visibleActors.add(game_card_togglebtn);
+
+
 		
 		
-		String spacing = "                        ";
-		//String spacing1 = "                     ";
-		resourcesQuant = new Label(null,style);
-		resourcesQuant.setText(GameScreen.coal+spacing+ GameScreen.oil +spacing+GameScreen.electricy+spacing+GameScreen.nuclear
-				+spacing+spacing+GameScreen.cards);
-		resourcesQuant.setColor(0,0,0,1);
-		resourcesQuant.setX(130);
-		resourcesQuant.setY(expandedheight);
-		visibleActors.add(resourcesQuant);
+		coalQuant= new Label(null,style);
+		coalQuant.setX(130);
+		coalQuant.setY(expandedheight);
+		coalQuant.setColor(0,0,0,1);
+		
+		
+		oilQuant= new Label(null,style);
+		oilQuant.setX(240);
+		oilQuant.setY(expandedheight);
+		oilQuant.setColor(0,0,0,1);
+
+		electricityQuant= new Label(null,style);
+		electricityQuant.setX(380);
+		electricityQuant.setY(expandedheight);
+		electricityQuant.setColor(0,0,0,1);
+		
+		nuclearQuant= new Label(null,style);
+		nuclearQuant.setX(520);
+		nuclearQuant.setY(expandedheight);
+		nuclearQuant.setColor(0,0,0,1);
+		
+		cardQuant= new Label(null,style);
+		cardQuant.setX(920);
+		cardQuant.setY(expandedheight);
+		cardQuant.setColor(0,0,0,1);
+		refreshResources();
+		
+		visibleActors.add(coalQuant);
+		visibleActors.add(oilQuant);
+		visibleActors.add(electricityQuant);
+		visibleActors.add(nuclearQuant);
+		visibleActors.add(cardQuant);
 		
 		for (Actor a : visibleActors){
 			a.setTouchable(Touchable.enabled);
@@ -89,6 +114,23 @@ public class Game_ResourcesManager {
 
 	}
 	
+	public static void refreshResources(){
+		coalQuant.setText(""+GameScreen.coal);
+		oilQuant.setText(""+GameScreen.oil);
+		electricityQuant.setText(""+GameScreen.electricity);
+		nuclearQuant.setText(""+GameScreen.nuclear);
+		cardQuant.setText(""+GameScreen.cards);
+	}
+	
+	public static void setResourcesHeight(float height){
+		coalQuant.setY(height);
+		oilQuant.setY(height);
+		electricityQuant.setY(height);
+		nuclearQuant.setY(height);
+		cardQuant.setY(height);
+	}
+	
+	
 	/*
 	 * Serializes all actors and stores them in an array. This and the Game object
 	 * are then saved and stored to be loaded.
@@ -98,6 +140,7 @@ public class Game_ResourcesManager {
 		
 		
 	}
+	
 
 
 }

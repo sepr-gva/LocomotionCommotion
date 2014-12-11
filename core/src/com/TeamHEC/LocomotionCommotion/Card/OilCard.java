@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 
 /**
  * 
@@ -27,7 +28,8 @@ public class OilCard extends Card{
 	// call the method the same thing in each subclass it might be okay:
 	public void implementCard()
 	{
-		getOwner().addFuel("Oil", 100);
+		//getOwner().addFuel("Oil", 100);
+		GameScreen.oil+=100;
 		// Need to destroy card instance here or something
 	}
 	

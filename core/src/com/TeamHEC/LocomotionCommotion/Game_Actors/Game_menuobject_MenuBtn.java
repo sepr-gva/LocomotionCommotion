@@ -68,8 +68,11 @@ public class Game_menuobject_MenuBtn extends Actor {
 					GameScreen.getStage().getActors().get(i).setVisible(false);
 
 			}
-
-			}
+			
+		}
+//			//NEW CARD PROTOTYPING
+//			OilCard newcard = new OilCard();
+//			Game_CardHandManager.addCard(newcard);
 			started = false;
 			}
 		}

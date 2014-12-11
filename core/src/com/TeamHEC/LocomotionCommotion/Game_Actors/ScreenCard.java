@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -14,6 +15,8 @@ class ScreenCard extends Actor {
 	private float actorY;
 	private boolean empty;
 	private int slot;
+	private Card card;
+	
 	public ScreenCard(Texture texture, int actorX, int actorY, boolean empty, int slot){
 		this.slot = slot;
 		this.empty= empty;
@@ -21,34 +24,37 @@ class ScreenCard extends Actor {
 		this.actorX = actorX;
 		this.actorY = actorY;
 
-		setBounds(actorX,actorY+200,texture.getWidth(),texture.getHeight()+200);
+		setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				((ScreenCard)event.getTarget()).started = true;
 				return true;
 			}
 		});
-		addListener(new InputListener(){
-			public void enter(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
-				((ScreenCard)event.getTarget()).started = true;
-			}
 		
-		});
-		addListener(new InputListener(){
-			public void exit(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
-				((ScreenCard)event.getTarget()).started = true;
-			}
-		
-		});
+		//UNCOMMENT THIS TO ALLOW MOUSE OVER (VERY BUGGY)
+//		addListener(new InputListener(){
+//			public void enter(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
+//				((ScreenCard)event.getTarget()).started = true;
+//			}
+//		
+//		});
+//		addListener(new InputListener(){
+//			public void exit(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
+//				((ScreenCard)event.getTarget()).started = true;
+//			}
+//		
+//		});
 		
 	}
 
 
 	@Override
 	public void draw(Batch batch, float alpha){
-			batch.draw(this.texture,actorX,actorY);
 			if (empty)
 				this.setVisible(false);
+			else
+				batch.draw(this.texture,actorX,actorY);
 				
 	}
 
@@ -58,19 +64,19 @@ class ScreenCard extends Actor {
 			if (isExpanded()){
 				this.cardCollapse();
 				Game_CardHandManager.usecardbtn.setVisible(false);
-				Game_CardHandManager.usecardbtn.refreshBounds();
-				
+				Game_CardHandManager.selectedCard=0;
 				
 			}
 			else{
+				Game_CardHandManager.selectedCard=this.getSlot();
 				Game_CardHandManager.usecardbtn.setVisible(true);
 				Game_card_UseCardBtn.actorX=this.actorX+40;
 				Game_card_UseCardBtn.actorY=this.actorY+550;
-				Game_CardHandManager.usecardbtn.refreshBounds();
-				Game_CardHandManager.selectedCard=this.getSlot();
 				this.cardExpand();
 				
 			}
+			setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
+			Game_CardHandManager.usecardbtn.refreshBounds();
 			started = false;
 		}
 	}
@@ -86,6 +92,12 @@ class ScreenCard extends Actor {
 		return open;
 	}
 	
+	public void setCard(Card card){
+		this.card = card;
+	}
+	public Card getCard(){
+		return this.card;
+	}
 	public void setTexture(Texture texture){
 		this.texture = texture;
 	}
@@ -100,14 +112,14 @@ class ScreenCard extends Actor {
 		this.actorY=y;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());				
 	}
+	
 	public void cardExpand(){
-		Game_CardHandManager.selectedCard=this.getSlot();
 		Game_CardHandManager.organiseDeck();
 		this.actorY+=200;
 		setexpanded(true);
-		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-
+		setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
 	}
+	
 	public void cardCollapse(){
 		if (expanded){
 			if (Game_ResourcesManager.resourcebarexpanded)
@@ -115,8 +127,7 @@ class ScreenCard extends Actor {
 			else
 				this.actorY=-100;
 			setexpanded(false);
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-			Game_CardHandManager.selectedCard=0;
+			setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
 			Game_CardHandManager.organiseDeck();
 			}
 		else
@@ -130,5 +141,10 @@ class ScreenCard extends Actor {
 
 	public void setEmpty(boolean b) {
 		this.empty=b;
+	}
+
+
+	public void setSlot(int slot) {
+		this.slot= slot;
 	}
 }
