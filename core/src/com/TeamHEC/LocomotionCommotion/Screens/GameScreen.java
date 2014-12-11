@@ -153,7 +153,10 @@ public class GameScreen implements Screen {
 		Game_TrainDepotManager.open = false;
 		Game_ResourcesManager.resourcebarexpanded =false;
 		Game_Goal_AManager.open= false;
+		
+		//CARDS
 		Game_CardHandManager.open=false;
+		Game_CardHandManager.cards.clear();;
 
 
 

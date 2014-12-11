@@ -7,6 +7,7 @@ import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CoalCard;
 import com.TeamHEC.LocomotionCommotion.Card.GoldCard;
 import com.TeamHEC.LocomotionCommotion.Card.OilCard;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -15,7 +16,7 @@ import com.badlogic.gdx.utils.Array;
 public class Game_CardHandManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
-	private final static Array<ScreenCard> cards = new Array<ScreenCard>();
+	public  static Array<ScreenCard> cards = new Array<ScreenCard>();
 
 
 
@@ -84,7 +85,8 @@ public class Game_CardHandManager {
 			//READY FOR IMPLEMENTING CARD - NEEDS AN OWNER (A PLAYER TO ADD THE RESOURCES TO)
 			cards.get(cardNum-1).getCard().implementCard();
 			Game_ResourcesManager.refreshResources();
-			if (cardNum!=numberofcards){
+			System.out.println("pass-"+cardNum+" "+numberofcards+cards);
+			if (cardNum<numberofcards){
 				for(int i=cardNum-1;i<numberofcards-1;i++){
 					cards.get(i).setTexture(cards.get(i+1).getTexture());
 					cards.get(i).setSlot(i+1);
@@ -97,6 +99,8 @@ public class Game_CardHandManager {
 			cards.get(numberofcards-1).setEmpty(true);
 			cards.get(numberofcards-1).setVisible(false);
 			numberofcards-=1;
+			GameScreen.cards-=1;
+			Game_ResourcesManager.refreshResources();
 			organiseDeck();
 			Game_CardHandManager.usecardbtn.setVisible(false);
 		}
@@ -113,6 +117,8 @@ public class Game_CardHandManager {
 			cards.get(numberofcards).setCard(newCard);
 			
 			numberofcards+=1;
+			GameScreen.cards+=1;
+			Game_ResourcesManager.refreshResources();
 		}
 	}
 
