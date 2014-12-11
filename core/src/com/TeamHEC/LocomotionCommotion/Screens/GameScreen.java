@@ -30,7 +30,7 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuobject_TicketAManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goals_Player1Goals;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -70,9 +70,6 @@ public class GameScreen implements Screen {
 		Game_menuObject_AManager actorManager = new Game_menuObject_AManager();
 		actorManager.create(getStage());
 
-		Game_menuobject_TicketAManager ticketManager = new Game_menuobject_TicketAManager();
-		ticketManager.create(getStage());
-
 		Game_ShopManager shopManager = new Game_ShopManager();
 		shopManager.create(getStage());
 
@@ -81,6 +78,9 @@ public class GameScreen implements Screen {
 
 		Game_Goal_AManager goalScreenManager = new Game_Goal_AManager();
 		goalScreenManager.create(getStage());
+		
+		Game_goals_Player1Goals ticketManager = new Game_goals_Player1Goals();
+		ticketManager.create(getStage());
 		
 		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
 		pauseManager.create(getStage());
@@ -148,7 +148,7 @@ public class GameScreen implements Screen {
 	public void  resetScreen(){
 		Game_Map_AManager.infoVisible= false;
 		Game_Pause_AManager.open = false;
-		Game_menuobject_TicketAManager.open = false;
+		Game_goals_Player1Goals.open = false;
 		Game_ShopManager.open = false;
 		Game_TrainDepotManager.open = false;
 		Game_ResourcesManager.resourcebarexpanded =false;

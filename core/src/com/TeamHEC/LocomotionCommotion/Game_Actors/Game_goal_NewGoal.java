@@ -56,7 +56,9 @@ public class Game_goal_NewGoal extends Actor {
 			started = false;
 		}
 	}
-
+	public boolean isEmpty(){
+		return this.empty;
+	}
 	public void setEmpty(Boolean empty){
 		this.empty=empty;
 		if (this.empty)
@@ -75,5 +77,18 @@ public class Game_goal_NewGoal extends Actor {
 	}
 	public  Goal getGoal(){
 		return this.goal;
+	}
+	
+	public void setX(float x){
+		this.actorX = x;
+	}
+	public void setY(float y){
+		this.actorY = y;
+	}
+	public float getX(){
+		return this.actorX;
+	}
+	public float getY(){
+		return this.actorY;
 	}
 }

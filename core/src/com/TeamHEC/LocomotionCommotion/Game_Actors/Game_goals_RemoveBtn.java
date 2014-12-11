@@ -1,8 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -24,20 +22,25 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_TicketToggleBtn extends Actor {
+public class Game_goals_RemoveBtn extends Actor {
 
-	Texture texture = Game_TextureManager.game_menuobject_ticketbtn; // reuse the new game back btn texture
-	float actorX = 30 ,actorY = LocomotionCommotion.screenY-115;
+	public static Texture texture = Game_TextureManager.game_menuobject_removegoalbtn; // reuse the new game back btn texture
+	public  float actorX  ,actorY ;
 	public boolean started = false;
+	public int index;
 
-	public Game_menuobject_TicketToggleBtn(){
+	public Game_goals_RemoveBtn(int index){
+		this.index=index;
+		this.actorX=250;
+		this.actorY=470;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_menuobject_TicketToggleBtn)event.getTarget()).started = true;
+				((Game_goals_RemoveBtn)event.getTarget()).started = true;
 				return true;
 			}
 		});
+
 	}
 
 
@@ -49,30 +52,26 @@ public class Game_menuobject_TicketToggleBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_goals_Player1Goals.open== false)
-			{
-				Game_goals_Player1Goals.open= true;
-				for(int i=Game_goals_Player1Goals.stagestart; i<=Game_goals_Player1Goals.stagestart +Game_goals_Player1Goals.ticketActors-1;i++){
-					if (i > GameScreen.getStage().getActors().size-1){
-
-					}else
-						GameScreen.getStage().getActors().get(i).setVisible(true);
-
-				}			}
-			else
-			{	Game_goals_Player1Goals.open= false;
-			for(int i=Game_goals_Player1Goals.stagestart; i<=Game_goals_Player1Goals.stagestart +Game_goals_Player1Goals.ticketActors-1;i++){
-				if (i > GameScreen.getStage().getActors().size-1){
-
-				}else
-					GameScreen.getStage().getActors().get(i).setVisible(false);
-
-			}
-
-			}
+			Game_goals_Player1Goals.removeGoal(index);
+			System.out.println(""+index);
 			started = false;
 			}
 		}
 
+	public  void setY(float y){
+		System.out.println("set"+ y);
+		this.actorY= y;
+	}
+	public  void setX(float x){
+		this.actorY= x;
+	}
+	@Override
+	public  float getY(){
+		System.out.println("get");
+		return this.actorY;
+	}
+	public  float getX(){
+		return this.actorX;
+	}
 
 	}

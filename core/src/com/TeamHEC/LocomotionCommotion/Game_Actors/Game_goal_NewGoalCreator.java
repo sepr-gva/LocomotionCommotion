@@ -39,7 +39,6 @@ public class Game_goal_NewGoalCreator {
 				goalslots.get(a).setGoal(newgoals.get(i));
 				goalslots.get(a).setEmpty(false);
 				createdGoals.add(goalslots.get(a));
-				System.out.println(createdGoals);
 			}
 			//create empty slots
 			for (int i=numberofNewGoals;i<9;i++){

@@ -53,6 +53,7 @@ public class Game_goal_BackBtn extends Actor {
 			if (Game_Goal_AManager.open== false)
 			{
 				Game_Goal_AManager.open= true;
+				Game_goals_Player1Goals.goalMenuOpen();
 				for(int i=Game_Goal_AManager.stagestart; i<=Game_Goal_AManager.stagestart +Game_Goal_AManager.goalActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
@@ -62,6 +63,7 @@ public class Game_goal_BackBtn extends Actor {
 				}			}
 			else
 			{	Game_Goal_AManager.open= false;
+			Game_goals_Player1Goals.goalMenuClose();
 			for(int i=Game_Goal_AManager.stagestart; i<=Game_Goal_AManager.stagestart +Game_Goal_AManager.goalActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 

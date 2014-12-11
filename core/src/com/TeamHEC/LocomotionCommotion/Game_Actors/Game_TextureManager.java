@@ -25,6 +25,8 @@ public class Game_TextureManager {
 	public static  Texture game_menuobject_ticket = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/ticket.png"));
 	public static  Texture game_menuobject_emptyticket = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/emptyticket.png"));
 	public static  Texture game_menuobject_ticketenclosure = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/ticketenclosure.png"));
+	public static  Texture game_menuobject_removegoalbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/removebtn.png"));
+	
 	
 	//Map
 	public static  Texture tempMap = new Texture(Gdx.files.internal("gameScreen/game_map/map.png"));
