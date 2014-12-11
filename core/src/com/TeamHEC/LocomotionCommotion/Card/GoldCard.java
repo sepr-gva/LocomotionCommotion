@@ -28,7 +28,7 @@ public class GoldCard extends Card{
 	public void implementCard()
 	{
 		//getOwner().addGold(100);
-		//GameScreen.gold+=100;
+		GameScreen.gold+=100;
 		// Need to destroy card instance here or something
 	}
 }

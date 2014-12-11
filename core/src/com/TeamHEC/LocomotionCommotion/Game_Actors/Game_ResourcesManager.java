@@ -28,7 +28,7 @@ public class Game_ResourcesManager {
 	public static Game_card_CardToggleBtn game_card_togglebtn;
 	public static boolean resourcebarexpanded = false;
 	public static int  stagestart, resourceActors, expandedheight= 40;
-	public static Label  coalQuant, oilQuant, electricityQuant, nuclearQuant, cardQuant;
+	public static Label  goldQuant, coalQuant, oilQuant, electricityQuant, nuclearQuant, cardQuant;
 	
 	
 	public Game_ResourcesManager(){		}
@@ -62,25 +62,29 @@ public class Game_ResourcesManager {
 
 
 		
+		goldQuant= new Label(null,style);
+		goldQuant.setX(100);
+		goldQuant.setY(expandedheight);
+		goldQuant.setColor(0,0,0,1);
 		
 		coalQuant= new Label(null,style);
-		coalQuant.setX(130);
+		coalQuant.setX(240);
 		coalQuant.setY(expandedheight);
 		coalQuant.setColor(0,0,0,1);
 		
 		
 		oilQuant= new Label(null,style);
-		oilQuant.setX(240);
+		oilQuant.setX(350);
 		oilQuant.setY(expandedheight);
 		oilQuant.setColor(0,0,0,1);
 
 		electricityQuant= new Label(null,style);
-		electricityQuant.setX(380);
+		electricityQuant.setX(450);
 		electricityQuant.setY(expandedheight);
 		electricityQuant.setColor(0,0,0,1);
 		
 		nuclearQuant= new Label(null,style);
-		nuclearQuant.setX(520);
+		nuclearQuant.setX(590);
 		nuclearQuant.setY(expandedheight);
 		nuclearQuant.setColor(0,0,0,1);
 		
@@ -88,8 +92,10 @@ public class Game_ResourcesManager {
 		cardQuant.setX(920);
 		cardQuant.setY(expandedheight);
 		cardQuant.setColor(0,0,0,1);
+		
 		refreshResources();
 		
+		visibleActors.add(goldQuant);
 		visibleActors.add(coalQuant);
 		visibleActors.add(oilQuant);
 		visibleActors.add(electricityQuant);
@@ -115,6 +121,7 @@ public class Game_ResourcesManager {
 	}
 	
 	public static void refreshResources(){
+		goldQuant.setText(""+GameScreen.gold);
 		coalQuant.setText(""+GameScreen.coal);
 		oilQuant.setText(""+GameScreen.oil);
 		electricityQuant.setText(""+GameScreen.electricity);
@@ -123,6 +130,7 @@ public class Game_ResourcesManager {
 	}
 	
 	public static void setResourcesHeight(float height){
+		goldQuant.setY(height);
 		coalQuant.setY(height);
 		oilQuant.setY(height);
 		electricityQuant.setY(height);

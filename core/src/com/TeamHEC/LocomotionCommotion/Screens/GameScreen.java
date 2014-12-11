@@ -43,7 +43,7 @@ public class GameScreen implements Screen {
 	private static Stage stage;
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
-	public static int coal, oil, electricity, nuclear,cards,player1score=1000,player2score;
+	public static int coal, oil, electricity, nuclear,cards, player1score=1000, player2score, gold = 1000;
 	public static String player1name ="Vladimir", player2name ="Caleb";
 
 	public static void create(){

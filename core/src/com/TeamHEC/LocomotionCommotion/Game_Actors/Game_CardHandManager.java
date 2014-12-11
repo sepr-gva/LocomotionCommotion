@@ -85,7 +85,6 @@ public class Game_CardHandManager {
 			//READY FOR IMPLEMENTING CARD - NEEDS AN OWNER (A PLAYER TO ADD THE RESOURCES TO)
 			cards.get(cardNum-1).getCard().implementCard();
 			Game_ResourcesManager.refreshResources();
-			System.out.println("pass-"+cardNum+" "+numberofcards+cards);
 			if (cardNum<numberofcards){
 				for(int i=cardNum-1;i<numberofcards-1;i++){
 					cards.get(i).setTexture(cards.get(i+1).getTexture());

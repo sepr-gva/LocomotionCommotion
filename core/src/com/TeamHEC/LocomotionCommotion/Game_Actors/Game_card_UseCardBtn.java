@@ -48,7 +48,6 @@ public class Game_card_UseCardBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			System.out.println(Game_CardHandManager.selectedCard);
 			Game_CardHandManager.useCard(Game_CardHandManager.selectedCard);
 			started= false;
 			}
