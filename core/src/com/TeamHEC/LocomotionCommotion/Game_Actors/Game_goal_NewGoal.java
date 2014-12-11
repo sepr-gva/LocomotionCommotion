@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -12,12 +13,21 @@ public class Game_goal_NewGoal extends Actor {
 	private float actorX;
 	private float actorY;
 	private boolean empty;
-	public Game_goal_NewGoal( int actorY, int actorX, boolean empty){
+	private Goal goal;
+	
+	public Game_goal_NewGoal( int actorY, int actorX, boolean empty, Goal goal){
+		this.goal = goal;
 		this.empty= empty;
-		if (empty)
-			this.texture = Game_TextureManager.game_menuobject_ticket;
+		if (this.empty)
+			this.texture = Game_TextureManager.game_menuobject_emptyticket;
 		else
-			this.texture = Game_TextureManager.game_menuobject_ticket;
+		{
+			if (this.goal.isSpecial()==false)
+				this.texture = Game_TextureManager.game_menuobject_ticket;
+			else
+				this.texture = Game_TextureManager.game_menuobject_ticket;
+			
+		}
 			
 		this.actorX = actorX;
 		this.actorY = actorY;
@@ -47,5 +57,23 @@ public class Game_goal_NewGoal extends Actor {
 		}
 	}
 
-
+	public void setEmpty(Boolean empty){
+		this.empty=empty;
+		if (this.empty)
+			this.texture = Game_TextureManager.game_menuobject_emptyticket;
+		else
+		{
+			if (this.goal.isSpecial()==false)
+				this.texture = Game_TextureManager.game_menuobject_ticket;
+			else
+				this.texture = Game_TextureManager.game_menuobject_ticket;
+			
+		}
+	}
+	public void setGoal(Goal goal){
+		this.goal= goal;
+	}
+	public  Goal getGoal(){
+		return this.goal;
+	}
 }

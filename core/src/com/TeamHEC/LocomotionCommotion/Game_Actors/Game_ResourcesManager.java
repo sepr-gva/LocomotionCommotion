@@ -48,7 +48,6 @@ public class Game_ResourcesManager {
 		LabelStyle style = new LabelStyle();
 		style.font = font;
 	
-		//End
 		
 		//Resources bar is now connected to variables for easy update of quantities.
 		game_menuobject_resourcesbar = new Game_menuobject_ResourcesBar();
@@ -62,7 +61,7 @@ public class Game_ResourcesManager {
 
 
 		
-		goldQuant= new Label(null,style);
+		goldQuant= new Label(null, style);
 		goldQuant.setX(100);
 		goldQuant.setY(expandedheight);
 		goldQuant.setColor(0,0,0,1);
