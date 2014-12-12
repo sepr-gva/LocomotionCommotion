@@ -1,6 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -22,7 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 
 public class SM_newgame_GoBtn extends Actor {
-	
+
 	Texture texture = SM_TextureManager.sm_newgame_GoBtn;
 	public static float actorX = -100 ,actorY = 1150+50;
 	public boolean started = false;
@@ -48,11 +50,16 @@ public class SM_newgame_GoBtn extends Actor {
 		if(started){
 			//System.out.println("New Game: "+StartMenu.gameMode+" "+StartMenu.player1name+ " "+ StartMenu.player2name +
 			//" "+ StartMenu.turnChoice);
+			GameScreen.player1name=StartMenu.player1name;
+			GameScreen.player2name=StartMenu.player2name;
+			GameScreen.gameMode=StartMenu.gameMode;
+			GameScreen.turns=StartMenu.turnChoice;
+
 			LocomotionCommotion.getInstance().setGameScreen();
-			
+
 			started = false;
-			
-			
+
+
 		}
 	}
 }

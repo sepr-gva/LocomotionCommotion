@@ -22,6 +22,7 @@ package com.TeamHEC.LocomotionCommotion.Screens;
  */
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHandManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_AManager;
@@ -40,11 +41,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class GameScreen implements Screen {
+	public static CoreGame game;
 	private static Stage stage;
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
+	public static String player1name , player2name, gameMode ;
+	public static int turns;
+
 	public static int coal, oil, electricity, nuclear,cards, player1score=1000, player2score, gold = 1000;
-	public static String player1name ="Vladimir", player2name ="Caleb";
 
 	public static void create(){
 		//Set up stage camera
@@ -85,6 +89,9 @@ public class GameScreen implements Screen {
 		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
 		pauseManager.create(getStage());
 		
+		
+		//Create the game
+		//game = new CoreGame(player1name, player1name, null, null, turns);
 	}
 	@Override
 	public void render(float delta) {

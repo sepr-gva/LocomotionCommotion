@@ -221,6 +221,7 @@ public class Game_goals_Player1Goals {
 			removebuttons.get(a).setX(250);
 			removebuttons.get(a).setY(870-(200*i));
 			removebuttons.get(a).setVisible(false);
+			removebuttons.get(a).resetButtons();
 
 		}
 		game_menuobject_ticketenclosure.setVisible(false);
@@ -229,14 +230,20 @@ public class Game_goals_Player1Goals {
 
 
 	}
-	public static void removeGoal(int goal){
+	public static void removeGoal(int goal){		
 		if(goal==1){
 			ticketLabels.get("1").setText(ticketLabels.get("2").getText());
+			removebuttons.get("1").setUndo(removebuttons.get("2").getUndo());
+			removebuttons.get("1").setnewgoalindex(removebuttons.get("2").getnewgoalindex());
 			ticketLabels.get("2").setText(ticketLabels.get("3").getText());
+			removebuttons.get("2").setUndo(removebuttons.get("3").getUndo());
+			removebuttons.get("2").setnewgoalindex(removebuttons.get("3").getnewgoalindex());
+			
 			if (addGoals.get("2").isEmpty()){
 				ticketLabels.get("1").setText("");
 				addGoals.get("1").setEmpty(true);
 				removebuttons.get("1").setVisible(false);
+				removebuttons.get("1").resetButtons();
 				}
 			
 			if (addGoals.get("3").isEmpty()){
@@ -249,16 +256,23 @@ public class Game_goals_Player1Goals {
 		}
 		if (goal ==2){
 			ticketLabels.get("2").setText(ticketLabels.get("3").getText());
+			removebuttons.get("2").setUndo(removebuttons.get("3").getUndo());
+			removebuttons.get("2").setnewgoalindex(removebuttons.get("3").getnewgoalindex());
+
 			if (addGoals.get("3").isEmpty()){
 				ticketLabels.get("2").setText("");
 				addGoals.get("2").setEmpty(true);
 				removebuttons.get("2").setVisible(false);
+				removebuttons.get("2").resetButtons();
 			}
 		}
 		ticketLabels.get("3").setText("");
 		addGoals.get("3").setEmpty(true);
 		removebuttons.get("3").setVisible(false);
+		removebuttons.get("3").resetButtons();
 		numberofOwnedGoals-=1;
+		if (numberofOwnedGoals<0)
+			numberofOwnedGoals=0;
 	}
 
 	public static boolean addGoal(Game_goal_NewGoal newgoal){
@@ -275,11 +289,24 @@ public class Game_goals_Player1Goals {
 					newgoal.getGoal().getFStation(), 
 					newgoal.getGoal().getRoute())
 					);
+			addGoals.get(a).setGoal(newgoal.getGoal());
 			addGoals.get(a).setEmpty(false);
 			removebuttons.get(a).setVisible(true);
+			removebuttons.get(a).setRedoBtn();
+			removebuttons.get(a).setnewgoalindex(newgoal.getIndex());
 			numberofOwnedGoals+=1;
 			return true;
 		}
+	}
+
+	public static void resetGoal(int index) {
+		String a = new Integer(index).toString();
+		String b = new Integer(removebuttons.get(a).getnewgoalindex()).toString();
+		Game_Goal_AManager.goalLabels.get(b).setText(ticketLabels.get(a).getText());
+		Game_Goal_AManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(addGoals.get(a).getGoal());
+		Game_Goal_AManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setEmpty(false);
+		removeGoal(removebuttons.get(a).index);
+		
 	}
 
 

@@ -24,19 +24,29 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_goals_RemoveBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_removegoalbtn; // reuse the new game back btn texture
+	public Texture texture ; // reuse the new game back btn texture
 	public  float actorX  ,actorY ;
-	public boolean started = false;
-	public int index;
+	public boolean started = false, undostart= false,undo;
+	public int index, newgoalindex;
+	
 
 	public Game_goals_RemoveBtn(int index){
 		this.index=index;
 		this.actorX=250;
 		this.actorY=470;
+		this.undo = false;
+		this.newgoalindex=0;
+		this.texture=Game_TextureManager.game_menuobject_removegoalbtn;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				((Game_goals_RemoveBtn)event.getTarget()).started = true;
+				return true;
+			}
+		});
+		addListener(new InputListener(){
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				((Game_goals_RemoveBtn)event.getTarget()).undostart = true;
 				return true;
 			}
 		});
@@ -51,11 +61,21 @@ public class Game_goals_RemoveBtn extends Actor {
 
 	@Override
 	public void act(float delta){
+		if (undo){
+			if(undostart){
+				Game_goals_Player1Goals.resetGoal(index);
+				undostart=false;
+			}
+		}
+		else
+		{
 		if(started){
 			
 			Game_goals_Player1Goals.removeGoal(index);
 			started = false;
+			undostart = false;
 			}
+		}
 		}
 
 	public  void setY(float y){
@@ -71,9 +91,31 @@ public class Game_goals_RemoveBtn extends Actor {
 	public  float getX(){
 		return this.actorX;
 	}
+	public boolean getUndo(){
+		return this.undo;
+	}
+	public void setUndo(boolean b){
+		this.undo=b;
+	}
+	public int getnewgoalindex(){
+		return this.newgoalindex;
+	}
+	public void setnewgoalindex(int i){
+		this.newgoalindex=i;
+	}
 	public void refreshBounds(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 
+	}
+	public void resetButtons(){
+		this.undo=false;
+		this.texture=Game_TextureManager.game_menuobject_removegoalbtn;
+	}
+
+
+	public void setRedoBtn() {
+		this.undo=true;
+		this.texture=Game_TextureManager.game_menuobject_redobtn;
 	}
 
 	}

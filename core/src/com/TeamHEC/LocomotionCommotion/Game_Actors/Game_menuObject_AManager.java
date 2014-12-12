@@ -56,6 +56,10 @@ public class Game_menuObject_AManager {
 		
 		playerScore = new Label(null, style);
 		playerScore.setColor(0,0,0,1);
+//		playerScore.setText(GameScreen.game.getPlayer1()+"    " + GameScreen.game.getPlayer1().points +
+//				"     SCORE     "+ GameScreen.game.getPlayer2()+"     "+GameScreen.game.getPlayer2().points );
+
+				
 		playerScore.setText(GameScreen.player1name+"    " + GameScreen.player1score +
 							"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.player2name );
 		playerScore.setX(600);

@@ -20,7 +20,7 @@ public class Game_Goal_AManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> subactors = new Array<Actor>();
-	private static ArrayList<Game_goal_NewGoal> createdGoals;
+	public static ArrayList<Game_goal_NewGoal> createdGoals;
 	private static ArrayList<Goal> goals;
 	public static HashMap<String,Goal> newgoals ;
 	public static HashMap<String, Label> goalLabels ;

@@ -50,6 +50,7 @@ public class Game_TextureManager {
 	public static  Texture game_menuobject_emptyticket = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/emptyticket.png"));
 	public static  Texture game_menuobject_ticketenclosure = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/ticketenclosure.png"));
 	public static  Texture game_menuobject_removegoalbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/removebtn.png"));
+	public static  Texture game_menuobject_redobtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/redobtn.png"));
 	public static  Texture game_menuobject_addgoalbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/addgoalbtn.png"));
 	
 	public static  Texture game_goals_goalscreenbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/goalScreenBtn.png"));
