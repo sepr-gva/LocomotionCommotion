@@ -52,26 +52,28 @@ public class Game_goals_RemoveBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
+			
 			Game_goals_Player1Goals.removeGoal(index);
-			System.out.println(""+index);
 			started = false;
 			}
 		}
 
 	public  void setY(float y){
-		System.out.println("set"+ y);
 		this.actorY= y;
 	}
 	public  void setX(float x){
-		this.actorY= x;
+		this.actorX= x;
 	}
 	@Override
 	public  float getY(){
-		System.out.println("get");
 		return this.actorY;
 	}
 	public  float getX(){
 		return this.actorX;
+	}
+	public void refreshBounds(){
+		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+
 	}
 
 	}

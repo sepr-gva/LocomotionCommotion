@@ -18,9 +18,12 @@ import com.badlogic.gdx.utils.Array;
 public class Game_goals_Player1Goals {
 
 	private final static Array<Actor> actors = new Array<Actor>();
+	private final static Array<Actor> subactors = new Array<Actor>();
 
 	public static HashMap<String,Goal> player1goals ;
 	public static HashMap<String,Game_goal_NewGoal> addGoals;
+	private static HashMap<String, Game_goals_RemoveBtn> removebuttons ;
+	private static  HashMap<String, Label> ticketLabels ;
 
 	public static Game_goal_NewGoal newgoal1, newgoal2, newgoal3;
 
@@ -35,7 +38,7 @@ public class Game_goals_Player1Goals {
 
 	public static boolean open=false;
 
-	public static int  stagestart, ticketActors;
+	public static int  stagestart, ticketActors, numberofOwnedGoals;
 
 
 	public Game_goals_Player1Goals(){	}
@@ -43,6 +46,9 @@ public class Game_goals_Player1Goals {
 	public void create(Stage stage){
 
 		actors.clear();
+		subactors.clear();
+		
+		
 		stagestart =0;
 		ticketActors=0;
 
@@ -54,11 +60,13 @@ public class Game_goals_Player1Goals {
 
 		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
 		Goal goal2 = new Goal("Madrid", "Moscow", false, 500, 0, "Passenger","Any");
-		//Goal goal3 = new Goal("Berlin", "Olso", false, 50, 0, "Passenger","Any");
+		Goal goal3 = new Goal("Berlin", "Olso", false, 50, 0, "Passenger","Any");
 		player1goals.put("1", goal1);
 		player1goals.put("2", goal2);
-		//player1goals.put("3", goal3);
+		player1goals.put("3", goal3);
 
+		numberofOwnedGoals=player1goals.size();
+		
 		newgoal1= new Game_goal_NewGoal(Gdx.graphics.getHeight()-290,5,true,null);
 		newgoal2= new Game_goal_NewGoal(Gdx.graphics.getHeight()-490,5,true,null);
 		newgoal3= new Game_goal_NewGoal(Gdx.graphics.getHeight()-690,5,true,null);
@@ -69,7 +77,7 @@ public class Game_goals_Player1Goals {
 
 
 
-
+		//Label Styling
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 17;
@@ -78,45 +86,46 @@ public class Game_goals_Player1Goals {
 		generator.dispose();
 		style = new LabelStyle();
 		style.font = font;
-		HashMap<String, Label> ticketLabels = new HashMap<String, Label>();
+		//Ticket Labels
+		ticketLabels = new HashMap<String, Label>();
 		ticketLabels.put("1", ticket1= new Label(null,style));
 		ticketLabels.put("2", ticket2= new Label(null,style));
 		ticketLabels.put("3", ticket3= new Label(null,style));
-		HashMap<String, Game_goals_RemoveBtn> removebuttons = new HashMap<String, Game_goals_RemoveBtn>();
+		//Remove Buttons
+		removebuttons = new HashMap<String, Game_goals_RemoveBtn>();
 		removebuttons.put("1", removebtn1 = new Game_goals_RemoveBtn(1));
 		removebuttons.put("2", removebtn2 = new Game_goals_RemoveBtn(2));
 		removebuttons.put("3", removebtn3 = new Game_goals_RemoveBtn(3));
 		for (int i=0; i<3; i++){
 			String a = new Integer(i+1).toString();
 			removebuttons.get(a).setVisible(false);
-			System.out.println(removebuttons.get(a).index);
-			
+
 		}
 		float tickety= 795, buttony = 870;
-		
+
 		for (int i=0; i<player1goals.size();i++){
 			String a = new Integer(i+1).toString();
-			
+
 			addGoals.get(a).setGoal(player1goals.get(a));
 			addGoals.get(a).setEmpty(false);
-			
+
 			ticketLabels.get(a).setColor(0,0,0,1);
 			ticketLabels.get(a).setX(15);
 			ticketLabels.get(a).setY(tickety);
 			tickety-=200;
 			ticketLabels.get(a).setText(ticketMaker(	addGoals.get(a).getGoal().getCarriagetype(),
-												addGoals.get(a).getGoal().getrewards(),
-												addGoals.get(a).getGoal().getSStation(),
-												addGoals.get(a).getGoal().getstartdate(), 
-												addGoals.get(a).getGoal().getFStation(), 
-												addGoals.get(a).getGoal().getRoute()));
-			System.out.println(""+buttony);
+					addGoals.get(a).getGoal().getrewards(),
+					addGoals.get(a).getGoal().getSStation(),
+					addGoals.get(a).getGoal().getstartdate(), 
+					addGoals.get(a).getGoal().getFStation(), 
+					addGoals.get(a).getGoal().getRoute())
+					);
 			removebuttons.get(a).setX(250);
 			removebuttons.get(a).setY(buttony);
 			buttony-=200;
 			removebuttons.get(a).setVisible(true);
 		}
-		
+
 
 
 
@@ -127,12 +136,12 @@ public class Game_goals_Player1Goals {
 		actors.add(ticket1);
 		actors.add(ticket2);
 		actors.add(ticket3);
-		actors.add(removebtn1);
-		actors.add(removebtn2);
-		actors.add(removebtn3);
+		subactors.add(removebtn1);
+		subactors.add(removebtn2);
+		subactors.add(removebtn3);
 
 
-		
+
 
 
 		stagestart= stage.getActors().size;
@@ -142,10 +151,16 @@ public class Game_goals_Player1Goals {
 				a.setVisible(true);}
 			else
 				a.setVisible(false);
-
 			stage.addActor(a);
 			ticketActors ++;
 		}
+		for (Actor b : subactors){
+			b.setTouchable(Touchable.enabled);
+			b.setVisible(false);
+
+			stage.addActor(b);
+		}
+
 
 
 
@@ -153,64 +168,89 @@ public class Game_goals_Player1Goals {
 
 
 
-		/*
-		 * Serializes all actors and stores them in an array. This and the Game object
-		 * are then saved and stored to be loaded.
-		 */
-		public static String ticketMaker(String type, int  reward, String from, int startdate, String dest, String route){
-			String output;
-			output ="";
+	/*
+	 * Serializes all actors and stores them in an array. This and the Game object
+	 * are then saved and stored to be loaded.
+	 */
+	public static String ticketMaker(String type, int  reward, String from, int startdate, String dest, String route){
+		String output;
+		output ="";
 
-			output += type + getSpacing(type.length()) + reward; 
-			output += "\n\n";
-			output += from + getSpacing(from.length()) + startdate; 
-			output += "\n\n";
-			output += dest + getSpacing(dest.length()) + route;
-			return output;
+		output += type + getSpacing(type.length()) + reward; 
+		output += "\n\n";
+		output += from + getSpacing(from.length()) + startdate; 
+		output += "\n\n";
+		output += dest + getSpacing(dest.length()) + route;
+		return output;
 
-		}
-		public static String getSpacing(int len){
-			String space="";
-			for (int i=0; i<(17-len)+23; i++){
-				space += " ";
-
-			}
-			return space;
-		}
-
-		public static void goalMenuOpen() {
-			for (Actor a: actors){
-				a.setVisible(true);
-				a.setX(a.getX()+150);
-				a.setY(a.getY()-200);
-			}
-			game_menuobject_ticketenclosure.setVisible(false);
-			Game_menuObject_AManager.game_menuobject_tickettoggle.setVisible(false);
-
+	}
+	public static String getSpacing(int len){
+		String space="";
+		for (int i=0; i<(17-len)+23; i++){
+			space += " ";
 
 		}
-		public static void goalMenuClose() {
-			for (Actor a: actors){
-				a.setVisible(false);
-				a.setX(a.getX()-150);
-				a.setY(a.getY()+200);
-			}
-			game_menuobject_ticketenclosure.setVisible(false);
-			Game_menuObject_AManager.game_menuobject_tickettoggle.setVisible(true);
+		return space;
+	}
 
-
-
+	public static void goalMenuOpen() {
+		for (Actor a: actors){
+			a.setVisible(true);
+			a.setX(a.getX()+150);
+			a.setY(a.getY()-200);
 		}
-		public static void removeGoal(int goal){
-			String a = new Integer(goal).toString();
-			addGoals.get(a).setEmpty(true);
-			addGoals.get(a).setVisible(false);
+		game_menuobject_ticketenclosure.setVisible(false);
+		Game_menuObject_AManager.game_menuobject_tickettoggle.setVisible(false);
+		for (int i=0;i<numberofOwnedGoals; i++){
+			String a = new Integer(i+1).toString();
+			System.out.println(removebuttons);
+			removebuttons.get(a).setX(250+150);
+			removebuttons.get(a).setY(870-200-(200*i));
+			removebuttons.get(a).setVisible(true);
+			removebuttons.get(a).refreshBounds();;
 			
 		}
 
 
+	}
+	public static void goalMenuClose() {
+		for (Actor a: actors){
+			a.setVisible(false);
+			a.setX(a.getX()-150);
+			a.setY(a.getY()+200);
+		}
+		for (int i=0;i<3; i++){
+			String a = new Integer(i+1).toString();
+			removebuttons.get(a).setX(250);
+			removebuttons.get(a).setY(870-(200*i));
+			removebuttons.get(a).setVisible(false);
+
+		}
+		game_menuobject_ticketenclosure.setVisible(false);
+		Game_menuObject_AManager.game_menuobject_tickettoggle.setVisible(true);
 
 
 
 	}
+	public static void removeGoal(int goal){
+		for (int i=goal; i<3;i++){
+			String a = new Integer(i).toString();
+			String b = new Integer(goal+1).toString();
+			ticketLabels.get(a).setText(ticketLabels.get(b).getText());
+		}
+		String c = new Integer(numberofOwnedGoals).toString();
+		ticketLabels.get(c).setText("");
+		addGoals.get(c).setEmpty(true);
+		removebuttons.get(c).setVisible(false);
+		numberofOwnedGoals-=1;
+		
+		
+
+	}
+
+
+
+
+
+}
 
