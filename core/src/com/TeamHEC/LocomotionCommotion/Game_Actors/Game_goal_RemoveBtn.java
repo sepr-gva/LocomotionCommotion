@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_goals_RemoveBtn extends Actor {
+public class Game_goal_RemoveBtn extends Actor {
 
 	public Texture texture ; // reuse the new game back btn texture
 	public  float actorX  ,actorY ;
@@ -30,7 +30,7 @@ public class Game_goals_RemoveBtn extends Actor {
 	public int index, newgoalindex;
 	
 
-	public Game_goals_RemoveBtn(int index){
+	public Game_goal_RemoveBtn(int index){
 		this.index=index;
 		this.actorX=250;
 		this.actorY=470;
@@ -40,13 +40,13 @@ public class Game_goals_RemoveBtn extends Actor {
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_goals_RemoveBtn)event.getTarget()).started = true;
+				((Game_goal_RemoveBtn)event.getTarget()).started = true;
 				return true;
 			}
 		});
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_goals_RemoveBtn)event.getTarget()).undostart = true;
+				((Game_goal_RemoveBtn)event.getTarget()).undostart = true;
 				return true;
 			}
 		});
@@ -63,7 +63,7 @@ public class Game_goals_RemoveBtn extends Actor {
 	public void act(float delta){
 		if (undo){
 			if(undostart){
-				Game_goals_Player1Goals.resetGoal(index);
+				Game_goal_PlayerGoals.resetGoal(index);
 				undostart=false;
 			}
 		}
@@ -71,7 +71,7 @@ public class Game_goals_RemoveBtn extends Actor {
 		{
 		if(started){
 			
-			Game_goals_Player1Goals.removeGoal(index);
+			Game_goal_PlayerGoals.removeGoal(index);
 			started = false;
 			undostart = false;
 			}

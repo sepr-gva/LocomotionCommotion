@@ -49,10 +49,10 @@ public class Game_menuobject_TicketToggleBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_goals_Player1Goals.open== false)
+			if (Game_goal_PlayerGoals.open== false)
 			{
-				Game_goals_Player1Goals.open= true;
-				for(int i=Game_goals_Player1Goals.stagestart; i<=Game_goals_Player1Goals.stagestart +Game_goals_Player1Goals.ticketActors-1;i++){
+				Game_goal_PlayerGoals.open= true;
+				for(int i=Game_goal_PlayerGoals.stagestart; i<=Game_goal_PlayerGoals.stagestart +Game_goal_PlayerGoals.ticketActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -60,8 +60,8 @@ public class Game_menuobject_TicketToggleBtn extends Actor {
 
 				}			}
 			else
-			{	Game_goals_Player1Goals.open= false;
-			for(int i=Game_goals_Player1Goals.stagestart; i<=Game_goals_Player1Goals.stagestart +Game_goals_Player1Goals.ticketActors-1;i++){
+			{	Game_goal_PlayerGoals.open= false;
+			for(int i=Game_goal_PlayerGoals.stagestart; i<=Game_goal_PlayerGoals.stagestart +Game_goal_PlayerGoals.ticketActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

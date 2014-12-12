@@ -14,17 +14,22 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * @param actorX	The x coordinate of the bottom left corner of the image
  * @param actorY	The y coordinate of the bottom left corner of the image
  * @param started	Boolean used to show if an Actor has been interacted with. Used to stop and start interactions.
+ * @param touchedDown	Boolean used to show if an Actor has been interacted with. Used to stop and start interactions.
  * 
  * setBounds	This is the bounds for the interaction, we make it the whole image.
  * addListener	This adds a listener for a particular interaction in this case touchDown (click)
  * draw			Actor is drawn
  * act			The action taken if the listener detects interaction
- * 				Action- None
+ * 				Action- Calls add goal which add the selected goal to the players goals
+ * 
+ * Other Notes:
+ * 				There are 2  listeners here one for mouse over because when you moused over with just the listener from the goals it read it as exiting when entering the addgoalbtn
+ * 				touchedDown handles the action.
  */
 
 public class Game_goal_AddGoalBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_addgoalbtn; // reuse the new game back btn texture
+	public static Texture texture = Game_TextureManager.game_menuobject_addgoalbtn;
 	public  float actorX  ,actorY ;
 	public boolean started = false;
 	public boolean touchedDown = false;
@@ -33,6 +38,7 @@ public class Game_goal_AddGoalBtn extends Actor {
 		this.actorX=720;
 		this.actorY=575;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+		
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				((Game_goal_AddGoalBtn)event.getTarget()).touchedDown = true;
@@ -45,12 +51,7 @@ public class Game_goal_AddGoalBtn extends Actor {
 			}
 
 		});
-
-
-
 	}
-
-
 	@Override
 	public void draw(Batch batch, float alpha){
 		batch.draw(texture,actorX,actorY);
@@ -63,11 +64,11 @@ public class Game_goal_AddGoalBtn extends Actor {
 			started = false;
 		}
 	if(touchedDown){
-		if (Game_goals_Player1Goals.addGoal(Game_Goal_AManager.selectedGoal)){
-			Game_Goal_AManager.selectedGoal.setEmpty(true);	
-			String a = new Integer(Game_Goal_AManager.selectedGoal.getIndex()).toString();
-			Game_Goal_AManager.goalLabels.get(a).setText("");;
-			this.setVisible(false);
+		if (Game_goal_PlayerGoals.addGoal(Game_Goal_GoalScreenManager.selectedGoal)){ 				//If the addGoal function returns true 
+			Game_Goal_GoalScreenManager.selectedGoal.setEmpty(true);								//Sets the slot from which the goal is added to empty
+			String a = new Integer(Game_Goal_GoalScreenManager.selectedGoal.getIndex()).toString();	//turns the goal index int to a string
+			Game_Goal_GoalScreenManager.goalLabels.get(a).setText("");;								//clears the label (text on the ticket)
+			this.setVisible(false);																	//Hides the AddGoal Buttons
 			
 		}
 			

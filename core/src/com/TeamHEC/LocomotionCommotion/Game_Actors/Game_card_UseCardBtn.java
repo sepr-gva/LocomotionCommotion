@@ -19,18 +19,20 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * addListener	This adds a listener for a particular interaction in this case touchDown (click)
  * draw			Actor is drawn
  * act			The action taken if the listener detects interaction
- * 				Action- None
+ * refreshbounds 	resets the action area
+ * 				Action- calls usecard method in CardHandManager
  */
 
 public class Game_card_UseCardBtn extends Actor {
 
-	static Texture texture = Game_TextureManager.game_card_usecardbtn; // reuse the new game back btn texture
+	static Texture texture = Game_TextureManager.game_card_usecardbtn; 
 	static float actorX = 1170;
 	static float actorY = 450;
 	public boolean started = false;
 
 	public Game_card_UseCardBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+		
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				((Game_card_UseCardBtn)event.getTarget()).started = true;
@@ -48,7 +50,7 @@ public class Game_card_UseCardBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			Game_CardHandManager.useCard(Game_CardHandManager.selectedCard);
+			Game_CardHandManager.useCard(Game_CardHandManager.selectedCard); //gets the selected card and sends it to the useCard method.
 			started= false;
 			}
 	}

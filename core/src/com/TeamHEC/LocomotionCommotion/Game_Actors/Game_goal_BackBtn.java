@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 /*
  * @author Robert Precious <rp825@york.ac.uk>
  * 
+ * This class holds the actor of the Back button. When clicked it finds the stagestart and the number of goalActors, finds them in the stage and hides them.
+ * 
  * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
  * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
  * @param actorX	The x coordinate of the bottom left corner of the image
@@ -20,12 +22,12 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * addListener	This adds a listener for a particular interaction in this case touchDown (click)
  * draw			Actor is drawn
  * act			The action taken if the listener detects interaction
- * 				Action- None
+ * 				Action- Closes the GoalScreen
  */
 
 public class Game_goal_BackBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_shop_backbtn; // reuse the new game back btn texture
+	public static Texture texture = Game_TextureManager.game_shop_backbtn; 
 	public static float actorX = 1350 ,actorY = 830;
 	public boolean started = false;
 	
@@ -50,11 +52,11 @@ public class Game_goal_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_Goal_AManager.open== false)
+			if (Game_Goal_GoalScreenManager.open== false)
 			{
-				Game_Goal_AManager.open= true;
-				Game_goals_Player1Goals.goalMenuOpen();
-				for(int i=Game_Goal_AManager.stagestart; i<=Game_Goal_AManager.stagestart +Game_Goal_AManager.goalActors-1;i++){
+				Game_Goal_GoalScreenManager.open= true;
+				Game_goal_PlayerGoals.goalMenuOpen();
+				for(int i=Game_Goal_GoalScreenManager.stagestart; i<=Game_Goal_GoalScreenManager.stagestart +Game_Goal_GoalScreenManager.goalActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -62,9 +64,9 @@ public class Game_goal_BackBtn extends Actor {
 
 				}			}
 			else
-			{	Game_Goal_AManager.open= false;
-			Game_goals_Player1Goals.goalMenuClose();
-			for(int i=Game_Goal_AManager.stagestart; i<=Game_Goal_AManager.stagestart +Game_Goal_AManager.goalActors-1;i++){
+			{	Game_Goal_GoalScreenManager.open= false;
+			Game_goal_PlayerGoals.goalMenuClose();
+			for(int i=Game_Goal_GoalScreenManager.stagestart; i<=Game_Goal_GoalScreenManager.stagestart +Game_Goal_GoalScreenManager.goalActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

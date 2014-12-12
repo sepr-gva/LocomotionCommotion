@@ -1,5 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
-
+/*
+ * @author Robert Precious <rp825@york.ac.uk>
+ * 
+ * This class is a Manager for all the Goal Actors (excluding the the side menu of goals which is Managed by PlayerGaals)
+ * Calls the goalcreator to turn an array of Goal to the UI goals
+ * 
+ */
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,43 +22,50 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_Goal_AManager {
-
+public class Game_Goal_GoalScreenManager {
+	//Arrays
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> subactors = new Array<Actor>();
+	//ArrayLists
 	public static ArrayList<Game_goal_NewGoal> createdGoals;
 	private static ArrayList<Goal> goals;
+	//HashMaps
 	public static HashMap<String,Goal> newgoals ;
 	public static HashMap<String, Label> goalLabels ;
-
+	//Actors
 	public static Game_goal_Backdrop Game_goal_Backdrop;
 	public static Game_goal_AddGoalBtn Game_goal_addgoalbtn;
 	public static Game_goal_BackBtn game_goal_backbtn;
 	public static Game_goal_NewGoal newgoal1, newgoal2,newgoal3,newgoal4,newgoal5,newgoal6,newgoal7,newgoal8,newgoal9, selectedGoal;
-
+	//Ints
+	public static int  stagestart, goalActors;
 	public static int row1 = 580, row2 = row1-220, row3 = row2-220;
 	public static int col1 = 670, col2 = col1+320, col3 = col2+320;
+	//Label and LabelStyle
+	public static Label gLabel1,gLabel2,gLabel3,gLabel4,gLabel5,gLabel6,gLabel7,gLabel8,gLabel9;
 	public static LabelStyle style;
-
+	//Booleans
 	public static boolean open=false;
 
-	public static int  stagestart, goalActors;
-
-	public static Label gLabel1,gLabel2,gLabel3,gLabel4,gLabel5,gLabel6,gLabel7,gLabel8,gLabel9;
 
 
-	public Game_Goal_AManager(){	}
+
+	public Game_Goal_GoalScreenManager(){	}
 
 	public void create(Stage stage){
+		//reset Array for newGame
 		actors.clear();
+		//Reset Actor ranging values
 		stagestart =0;
 		goalActors=0;
-		selectedGoal = new Game_goal_NewGoal(0, 0, true, null);
+		
+		//Actors
 		Game_goal_Backdrop = new Game_goal_Backdrop();
 		actors.add(Game_goal_Backdrop);
 		game_goal_backbtn = new Game_goal_BackBtn();
 		actors.add(game_goal_backbtn);
 		
+		//TEMP GOALS
 		goals = new ArrayList<Goal>();
 		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
 		goals.add(goal1);
@@ -60,8 +73,10 @@ public class Game_Goal_AManager {
 		goals.add(goal2);
 		Goal goal3 = new Goal("Berln", "Moscow", false, 200, 0, "Cargo","Any");
 		goals.add(goal3);
-		Game_goal_NewGoalCreator goalcreator= new Game_goal_NewGoalCreator(goals);
-		createdGoals = goalcreator.getGoals();
+		//TEMP GOALS
+		
+		Game_goal_NewGoalCreator goalcreator= new Game_goal_NewGoalCreator(goals); //Call goal creator
+		createdGoals = goalcreator.getGoals();	//set createdGoals to the result of the goal creator
 		
 
 
@@ -76,7 +91,8 @@ public class Game_Goal_AManager {
 		style.font = font;
 
 		//end
-
+		
+		//Assign new goals to the actors
 		newgoal1 = createdGoals.get(0);
 		actors.add(newgoal1);
 		newgoal2 = createdGoals.get(1);
@@ -98,13 +114,14 @@ public class Game_Goal_AManager {
 		newgoal9 = createdGoals.get(8);
 		actors.add(newgoal9);
 		
+		//Add the addgoalbtn actor to sub actors
 		Game_goal_addgoalbtn = new Game_goal_AddGoalBtn();
 		subactors.add(Game_goal_addgoalbtn);
 		
 
-		goalLabels = createLabels();
-		goalLabels=createGoalLabels(goalLabels);
-		addLabelstoStage();
+		goalLabels = createLabels();				//createLabels
+		goalLabels=createGoalLabels(goalLabels);	//Set the properties of the Labels using the goal information
+		addLabelstoStage();							//Call function to add labels to stage
 		
 		
 
@@ -123,6 +140,7 @@ public class Game_Goal_AManager {
 			stage.addActor(a);
 			goalActors ++;
 		}
+		//Used for other actors we dont want to show straight away
 		for (Actor a : subactors){
 				a.setTouchable(Touchable.enabled);
 				a.setVisible(false);
@@ -132,8 +150,8 @@ public class Game_Goal_AManager {
 
 	}
 
-
 	public static  HashMap<String, Label> createLabels(){
+//Create the Labels in a Hashmap and run through them
 		HashMap<String, Label> goals = new HashMap<String, Label>();
 		
 		goals.put("1", gLabel1= new Label(null,style));
@@ -184,8 +202,12 @@ public class Game_Goal_AManager {
 		int  numberofNewGoals = goals.size();
 		for (int i=0;i<numberofNewGoals;i++){
 			String a = new Integer(i+1).toString();
-			newgoalLabels.get(a).setText(ticketMaker(createdGoals.get(i).getGoal().getCarriagetype(),createdGoals.get(i).getGoal().getrewards(),createdGoals.get(i).getGoal().getSStation(),
-									createdGoals.get(i).getGoal().getstartdate(), createdGoals.get(i).getGoal().getFStation(), createdGoals.get(i).getGoal().getRoute()));
+			newgoalLabels.get(a).setText(ticketMaker(	createdGoals.get(i).getGoal().getCarriagetype(),
+														createdGoals.get(i).getGoal().getrewards(),
+														createdGoals.get(i).getGoal().getSStation(),
+														createdGoals.get(i).getGoal().getstartdate(), 
+														createdGoals.get(i).getGoal().getFStation(), 
+														createdGoals.get(i).getGoal().getRoute()));
 		}
 		for (int i=numberofNewGoals;i<9;i++){
 			String a = new Integer(i+1).toString();

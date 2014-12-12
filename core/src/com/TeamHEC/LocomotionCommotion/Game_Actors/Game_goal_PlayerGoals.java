@@ -15,14 +15,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_goals_Player1Goals {
+public class Game_goal_PlayerGoals {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> subactors = new Array<Actor>();
 
 	public static HashMap<String,Goal> player1goals ;
 	public static HashMap<String,Game_goal_NewGoal> addGoals;
-	private static HashMap<String, Game_goals_RemoveBtn> removebuttons ;
+	private static HashMap<String, Game_goal_RemoveBtn> removebuttons ;
 	private static  HashMap<String, Label> ticketLabels ;
 
 	public static Game_goal_NewGoal newgoal1, newgoal2, newgoal3;
@@ -32,14 +32,14 @@ public class Game_goals_Player1Goals {
 
 
 	public static Game_menuobject_ticketenclosure game_menuobject_ticketenclosure;
-	public static Game_goals_RemoveBtn removebtn1,removebtn2,removebtn3;
+	public static Game_goal_RemoveBtn removebtn1,removebtn2,removebtn3;
 
 	public static boolean open=false;
 
 	public static int  stagestart, ticketActors, numberofOwnedGoals;
 
 
-	public Game_goals_Player1Goals(){	}
+	public Game_goal_PlayerGoals(){	}
 
 	public void create(Stage stage){
 
@@ -90,10 +90,10 @@ public class Game_goals_Player1Goals {
 		ticketLabels.put("2", ticket2= new Label(null,style));
 		ticketLabels.put("3", ticket3= new Label(null,style));
 		//Remove Buttons
-		removebuttons = new HashMap<String, Game_goals_RemoveBtn>();
-		removebuttons.put("1", removebtn1 = new Game_goals_RemoveBtn(1));
-		removebuttons.put("2", removebtn2 = new Game_goals_RemoveBtn(2));
-		removebuttons.put("3", removebtn3 = new Game_goals_RemoveBtn(3));
+		removebuttons = new HashMap<String, Game_goal_RemoveBtn>();
+		removebuttons.put("1", removebtn1 = new Game_goal_RemoveBtn(1));
+		removebuttons.put("2", removebtn2 = new Game_goal_RemoveBtn(2));
+		removebuttons.put("3", removebtn3 = new Game_goal_RemoveBtn(3));
 		for (int i=0; i<3; i++){
 			String a = new Integer(i+1).toString();
 			removebuttons.get(a).setVisible(false);
@@ -302,9 +302,9 @@ public class Game_goals_Player1Goals {
 	public static void resetGoal(int index) {
 		String a = new Integer(index).toString();
 		String b = new Integer(removebuttons.get(a).getnewgoalindex()).toString();
-		Game_Goal_AManager.goalLabels.get(b).setText(ticketLabels.get(a).getText());
-		Game_Goal_AManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(addGoals.get(a).getGoal());
-		Game_Goal_AManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setEmpty(false);
+		Game_Goal_GoalScreenManager.goalLabels.get(b).setText(ticketLabels.get(a).getText());
+		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(addGoals.get(a).getGoal());
+		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setEmpty(false);
 		removeGoal(removebuttons.get(a).index);
 		
 	}

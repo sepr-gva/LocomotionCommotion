@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 /*
  * @author Robert Precious <rp825@york.ac.uk>
+ * This the transparent backing of the menu.
  * 
  * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
  * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)

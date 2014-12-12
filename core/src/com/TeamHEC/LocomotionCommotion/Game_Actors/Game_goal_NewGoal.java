@@ -1,5 +1,20 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
-
+/*
+ * @author Robert Precious <rp825@york.ac.uk>
+ * This the transparent backing of the menu.
+ * 
+ * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
+ * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
+ * @param actorX	The x coordinate of the bottom left corner of the image
+ * @param actorY	The y coordinate of the bottom left corner of the image
+ * @param started	Boolean used to show if an Actor has been interacted with. Used to stop and start interactions.
+ * 
+ * setBounds	This is the bounds for the interaction, we make it the whole image.
+ * addListener	This adds a listener for a particular interaction in this case touchDown (click)
+ * draw			Actor is drawn
+ * act			The action taken if the listener detects interaction
+ * 				Action- None
+ */
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -75,16 +90,16 @@ public class Game_goal_NewGoal extends Actor {
 			else
 			{
 				if  (this.btnvisible){
-					Game_Goal_AManager.Game_goal_addgoalbtn.setVisible(false);
+					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setVisible(false);
 					this.btnvisible=false;
 				}
 				else
 				{
-					Game_Goal_AManager.selectedGoal=this;
-					Game_Goal_AManager.Game_goal_addgoalbtn.setX(actorX+60);
-					Game_Goal_AManager.Game_goal_addgoalbtn.setY(actorY+75);
-					Game_Goal_AManager.Game_goal_addgoalbtn.setVisible(true);
-					Game_Goal_AManager.Game_goal_addgoalbtn.refreshBounds();
+					Game_Goal_GoalScreenManager.selectedGoal=this;
+					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setX(actorX+60);
+					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setY(actorY+75);
+					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setVisible(true);
+					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.refreshBounds();
 					this.btnvisible=true;
 				}
 			}

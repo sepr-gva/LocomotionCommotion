@@ -49,11 +49,11 @@ public class Game_menuobjects_GoalScreenBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_Goal_AManager.open== false)
+			if (Game_Goal_GoalScreenManager.open== false)
 			{
-				Game_Goal_AManager.open= true;
-				Game_goals_Player1Goals.goalMenuOpen();
-				for(int i=Game_Goal_AManager.stagestart; i<=Game_Goal_AManager.stagestart +Game_Goal_AManager.goalActors-1;i++){
+				Game_Goal_GoalScreenManager.open= true;
+				Game_goal_PlayerGoals.goalMenuOpen();
+				for(int i=Game_Goal_GoalScreenManager.stagestart; i<=Game_Goal_GoalScreenManager.stagestart +Game_Goal_GoalScreenManager.goalActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -61,9 +61,9 @@ public class Game_menuobjects_GoalScreenBtn extends Actor {
 
 				}			}
 			else
-			{	Game_Goal_AManager.open= false;
-			Game_goals_Player1Goals.goalMenuClose();
-			for(int i=Game_Goal_AManager.stagestart; i<=Game_Goal_AManager.stagestart +Game_Goal_AManager.goalActors-1;i++){
+			{	Game_Goal_GoalScreenManager.open= false;
+			Game_goal_PlayerGoals.goalMenuClose();
+			for(int i=Game_Goal_GoalScreenManager.stagestart; i<=Game_Goal_GoalScreenManager.stagestart +Game_Goal_GoalScreenManager.goalActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

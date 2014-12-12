@@ -24,14 +24,14 @@ package com.TeamHEC.LocomotionCommotion.Screens;
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHandManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_AManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_GoalScreenManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Pause_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goals_Player1Goals;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -80,10 +80,10 @@ public class GameScreen implements Screen {
 		Game_TrainDepotManager trainDepotManager = new Game_TrainDepotManager();
 		trainDepotManager.create(getStage());
 
-		Game_Goal_AManager goalScreenManager = new Game_Goal_AManager();
+		Game_Goal_GoalScreenManager goalScreenManager = new Game_Goal_GoalScreenManager();
 		goalScreenManager.create(getStage());
 		
-		Game_goals_Player1Goals ticketManager = new Game_goals_Player1Goals();
+		Game_goal_PlayerGoals ticketManager = new Game_goal_PlayerGoals();
 		ticketManager.create(getStage());
 		
 		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
@@ -155,11 +155,11 @@ public class GameScreen implements Screen {
 	public void  resetScreen(){
 		Game_Map_AManager.infoVisible= false;
 		Game_Pause_AManager.open = false;
-		Game_goals_Player1Goals.open = false;
+		Game_goal_PlayerGoals.open = false;
 		Game_ShopManager.open = false;
 		Game_TrainDepotManager.open = false;
 		Game_ResourcesManager.resourcebarexpanded =false;
-		Game_Goal_AManager.open= false;
+		Game_Goal_GoalScreenManager.open= false;
 		
 		//CARDS
 		Game_CardHandManager.open=false;
