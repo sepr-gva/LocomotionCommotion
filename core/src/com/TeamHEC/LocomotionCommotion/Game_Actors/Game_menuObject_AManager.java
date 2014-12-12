@@ -24,7 +24,6 @@ public class Game_menuObject_AManager {
 	
 	public static Game_menuobject_TopBar game_menuobject_topbar;
 	public static Game_menuobject_MenuBtn game_menuobject_menubtn;
-	public static Game_menuobject_Ticket1 game_menuobject_ticket;
 	public static Game_menuobject_ResourcesBar game_menuobject_resourcesbar;
 	
 	public static Game_menuobject_TicketToggleBtn game_menuobject_tickettoggle;

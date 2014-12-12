@@ -19,12 +19,16 @@ import com.badlogic.gdx.utils.Array;
 public class Game_Goal_AManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
+	private final static Array<Actor> subactors = new Array<Actor>();
 	private static ArrayList<Game_goal_NewGoal> createdGoals;
 	private static ArrayList<Goal> goals;
+	public static HashMap<String,Goal> newgoals ;
+	public static HashMap<String, Label> goalLabels ;
 
 	public static Game_goal_Backdrop Game_goal_Backdrop;
+	public static Game_goal_AddGoalBtn Game_goal_addgoalbtn;
 	public static Game_goal_BackBtn game_goal_backbtn;
-	public static Game_goal_NewGoal newgoal1, newgoal2,newgoal3,newgoal4,newgoal5,newgoal6,newgoal7,newgoal8,newgoal9;
+	public static Game_goal_NewGoal newgoal1, newgoal2,newgoal3,newgoal4,newgoal5,newgoal6,newgoal7,newgoal8,newgoal9, selectedGoal;
 
 	public static int row1 = 580, row2 = row1-220, row3 = row2-220;
 	public static int col1 = 670, col2 = col1+320, col3 = col2+320;
@@ -43,6 +47,7 @@ public class Game_Goal_AManager {
 		actors.clear();
 		stagestart =0;
 		goalActors=0;
+		selectedGoal = new Game_goal_NewGoal(0, 0, true, null);
 		Game_goal_Backdrop = new Game_goal_Backdrop();
 		actors.add(Game_goal_Backdrop);
 		game_goal_backbtn = new Game_goal_BackBtn();
@@ -51,8 +56,10 @@ public class Game_Goal_AManager {
 		goals = new ArrayList<Goal>();
 		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
 		goals.add(goal1);
-		Goal goal2 = new Goal("London", "Paris", false, 200, 0, "Passenger","Any");
+		Goal goal2 = new Goal("Lisbon", "Helsinki", false, 200, 0, "Cargo","Any");
 		goals.add(goal2);
+		Goal goal3 = new Goal("Berln", "Moscow", false, 200, 0, "Cargo","Any");
+		goals.add(goal3);
 		Game_goal_NewGoalCreator goalcreator= new Game_goal_NewGoalCreator(goals);
 		createdGoals = goalcreator.getGoals();
 		
@@ -90,9 +97,13 @@ public class Game_Goal_AManager {
 		actors.add(newgoal8);
 		newgoal9 = createdGoals.get(8);
 		actors.add(newgoal9);
+		
+		Game_goal_addgoalbtn = new Game_goal_AddGoalBtn();
+		subactors.add(Game_goal_addgoalbtn);
+		
 
-		HashMap<String, Label> goalLabels = createLabels();
-		createGoalLabels(goalLabels);
+		goalLabels = createLabels();
+		goalLabels=createGoalLabels(goalLabels);
 		addLabelstoStage();
 		
 		
@@ -111,6 +122,11 @@ public class Game_Goal_AManager {
 
 			stage.addActor(a);
 			goalActors ++;
+		}
+		for (Actor a : subactors){
+				a.setTouchable(Touchable.enabled);
+				a.setVisible(false);
+			stage.addActor(a);
 		}
 
 
@@ -164,7 +180,7 @@ public class Game_Goal_AManager {
 
 	}
 
-	public static void createGoalLabels(HashMap<String, Label> newgoalLabels){
+	public static  HashMap<String, Label> createGoalLabels(HashMap<String, Label> newgoalLabels){
 		int  numberofNewGoals = goals.size();
 		for (int i=0;i<numberofNewGoals;i++){
 			String a = new Integer(i+1).toString();
@@ -175,7 +191,7 @@ public class Game_Goal_AManager {
 			String a = new Integer(i+1).toString();
 			newgoalLabels.get(a).setText("");
 		}
-		
+		return newgoalLabels;
 
 	}
 	

@@ -10,7 +10,8 @@ public class Game_goal_NewGoalCreator {
 	public ArrayList<Goal> newgoals;
 	public static Game_goal_NewGoal newgoal1, newgoal2, newgoal3,
 	newgoal4, newgoal5, newgoal6,
-	newgoal7, newgoal8, newgoal9;
+	newgoal7, newgoal8, newgoal9
+	;
 	public static int numberofNewGoals;
 	public int row1 = 500, row2 = row1-220, row3 = row2-220;
 	public int col1 = 660, col2 = col1+320, col3 = col2+320;
@@ -38,6 +39,7 @@ public class Game_goal_NewGoalCreator {
 				String a = new Integer(i+1).toString();
 				goalslots.get(a).setGoal(newgoals.get(i));
 				goalslots.get(a).setEmpty(false);
+				goalslots.get(a).setIndex(i+1);
 				createdGoals.add(goalslots.get(a));
 			}
 			//create empty slots

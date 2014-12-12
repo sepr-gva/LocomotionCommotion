@@ -30,8 +30,6 @@ public class Game_goals_Player1Goals {
 	public Label ticket1, ticket2, ticket3;
 	public LabelStyle style;
 
-	public float textx= Game_menuobject_Ticket1.actorX +10;
-	public float texty= Game_menuobject_Ticket1.actorY +83;
 
 	public static Game_menuobject_ticketenclosure game_menuobject_ticketenclosure;
 	public static Game_goals_RemoveBtn removebtn1,removebtn2,removebtn3;
@@ -47,8 +45,8 @@ public class Game_goals_Player1Goals {
 
 		actors.clear();
 		subactors.clear();
-		
-		
+
+
 		stagestart =0;
 		ticketActors=0;
 
@@ -66,7 +64,7 @@ public class Game_goals_Player1Goals {
 		player1goals.put("3", goal3);
 
 		numberofOwnedGoals=player1goals.size();
-		
+
 		newgoal1= new Game_goal_NewGoal(Gdx.graphics.getHeight()-290,5,true,null);
 		newgoal2= new Game_goal_NewGoal(Gdx.graphics.getHeight()-490,5,true,null);
 		newgoal3= new Game_goal_NewGoal(Gdx.graphics.getHeight()-690,5,true,null);
@@ -203,12 +201,11 @@ public class Game_goals_Player1Goals {
 		Game_menuObject_AManager.game_menuobject_tickettoggle.setVisible(false);
 		for (int i=0;i<numberofOwnedGoals; i++){
 			String a = new Integer(i+1).toString();
-			System.out.println(removebuttons);
 			removebuttons.get(a).setX(250+150);
 			removebuttons.get(a).setY(870-200-(200*i));
 			removebuttons.get(a).setVisible(true);
 			removebuttons.get(a).refreshBounds();;
-			
+
 		}
 
 
@@ -233,21 +230,57 @@ public class Game_goals_Player1Goals {
 
 	}
 	public static void removeGoal(int goal){
-		for (int i=goal; i<3;i++){
-			String a = new Integer(i).toString();
-			String b = new Integer(goal+1).toString();
-			ticketLabels.get(a).setText(ticketLabels.get(b).getText());
-		}
-		String c = new Integer(numberofOwnedGoals).toString();
-		ticketLabels.get(c).setText("");
-		addGoals.get(c).setEmpty(true);
-		removebuttons.get(c).setVisible(false);
-		numberofOwnedGoals-=1;
-		
-		
+		if(goal==1){
+			ticketLabels.get("1").setText(ticketLabels.get("2").getText());
+			ticketLabels.get("2").setText(ticketLabels.get("3").getText());
+			if (addGoals.get("2").isEmpty()){
+				ticketLabels.get("1").setText("");
+				addGoals.get("1").setEmpty(true);
+				removebuttons.get("1").setVisible(false);
+				}
+			
+			if (addGoals.get("3").isEmpty()){
+				ticketLabels.get("2").setText("");
+				addGoals.get("2").setEmpty(true);
+				removebuttons.get("2").setVisible(false);
+			}
 
+			
+		}
+		if (goal ==2){
+			ticketLabels.get("2").setText(ticketLabels.get("3").getText());
+			if (addGoals.get("3").isEmpty()){
+				ticketLabels.get("2").setText("");
+				addGoals.get("2").setEmpty(true);
+				removebuttons.get("2").setVisible(false);
+			}
+		}
+		ticketLabels.get("3").setText("");
+		addGoals.get("3").setEmpty(true);
+		removebuttons.get("3").setVisible(false);
+		numberofOwnedGoals-=1;
 	}
 
+	public static boolean addGoal(Game_goal_NewGoal newgoal){
+		if (numberofOwnedGoals>2){
+			return false;
+		}
+		else
+		{
+			String a = new Integer(numberofOwnedGoals+1).toString();
+			ticketLabels.get(a).setText(ticketMaker(newgoal.getGoal().getCarriagetype(),
+					newgoal.getGoal().getrewards(),
+					newgoal.getGoal().getSStation(),
+					newgoal.getGoal().getstartdate(), 
+					newgoal.getGoal().getFStation(), 
+					newgoal.getGoal().getRoute())
+					);
+			addGoals.get(a).setEmpty(false);
+			removebuttons.get(a).setVisible(true);
+			numberofOwnedGoals+=1;
+			return true;
+		}
+	}
 
 
 

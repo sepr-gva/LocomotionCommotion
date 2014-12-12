@@ -22,22 +22,32 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_menuobject_Ticket2 extends Actor {
+public class Game_goal_AddGoalBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_ticket; // reuse the new game back btn texture
-	public static float actorX = Game_menuobject_Ticket1.actorX  ,actorY = Game_menuobject_Ticket1.actorY -200;
+	public static Texture texture = Game_TextureManager.game_menuobject_addgoalbtn; // reuse the new game back btn texture
+	public  float actorX  ,actorY ;
 	public boolean started = false;
-	
+	public boolean touchedDown = false;
 
-	public Game_menuobject_Ticket2(){
+	public Game_goal_AddGoalBtn(){
+		this.actorX=720;
+		this.actorY=575;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_menuobject_Ticket2)event.getTarget()).started = true;
+				((Game_goal_AddGoalBtn)event.getTarget()).touchedDown = true;
 				return true;
 			}
 		});
-		
+		addListener(new InputListener(){
+			public void enter(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
+				((Game_goal_AddGoalBtn)event.getTarget()).started = true;
+			}
+
+		});
+
+
+
 	}
 
 
@@ -49,7 +59,38 @@ public class Game_menuobject_Ticket2 extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
+			this.setVisible(true);
 			started = false;
 		}
+	if(touchedDown){
+		if (Game_goals_Player1Goals.addGoal(Game_Goal_AManager.selectedGoal)){
+			Game_Goal_AManager.selectedGoal.setEmpty(true);	
+			String a = new Integer(Game_Goal_AManager.selectedGoal.getIndex()).toString();
+			Game_Goal_AManager.goalLabels.get(a).setText("");;
+			this.setVisible(false);
+			
+		}
+			
+			touchedDown=false;
+		}
 	}
+
+	public  void setY(float y){
+		this.actorY= y;
+	}
+	public  void setX(float x){
+		this.actorX= x;
+	}
+	@Override
+	public  float getY(){
+		return this.actorY;
+	}
+	public  float getX(){
+		return this.actorX;
+	}
+	public void refreshBounds(){
+		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+
+	}
+
 }
