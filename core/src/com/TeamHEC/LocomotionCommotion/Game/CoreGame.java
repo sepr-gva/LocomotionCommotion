@@ -173,7 +173,7 @@ public class CoreGame implements Serializable{
 		
 		return dict;		
 	}
-	// }}
+	// }} Turn System
 	
 	// {{ Getters
 	public WorldMap getGameMap() {
@@ -202,6 +202,7 @@ public class CoreGame implements Serializable{
 	// }} Getters
 	
 	// {{ Load and Save Game Methods
+	
 	public String saveGameJSON(String gameName)
 	{
 		String finalJson = "{\n";
@@ -271,21 +272,10 @@ public class CoreGame implements Serializable{
 		}
 		return finalJson = finalJson + "]\n";
 	}
-	
-	public String savePlayerTrainJSON(Player player)
-	{
-		String finalJson = "{\n";
-		return finalJson = finalJson + "}\n";
-	}
-	
-	public String savePlayerStationJSON(Player player)
-	{
-		String finalJson = "{\n";
-		return finalJson = finalJson + "}\n";
-	}
+
 	
 	
-	// }}
+	// }} Player Saving
 	
 	// {{ Map Saving
 	public String saveMapJSON()
@@ -311,15 +301,15 @@ public class CoreGame implements Serializable{
 		String finalJson = "{\n";
 		return finalJson = finalJson + "}\n";
 	}
-	// }}
-	
+	// }} Map Saving
+		
 	public String saveCardScreenCardsJSON()
 	{
 		String finalJson = "{\n \"temporaryValue\": \"dumbCards\"";		
 		return finalJson = finalJson + "}\n";
 	}
 	
-	// }}
+	// }} Load and Save Game Methods
 	/**
 	 * Launches a save dialog asking the user to specify a save game location and serializes the game object to that location
 	 * @param testCase Is this operation a test? If so it will skip the dialog section.
