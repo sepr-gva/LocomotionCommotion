@@ -108,6 +108,7 @@ public class CoreGame implements Serializable{
 		StartTurn();
 	}
 	
+	// {{ Turn System
 	/**
 	 * Randomly returns either 0 or 1. It's used in determining which player will go first in this game.
 	 */
@@ -172,8 +173,9 @@ public class CoreGame implements Serializable{
 		
 		return dict;		
 	}
+	// }}
 	
-	//getters
+	// {{ Getters
 	public WorldMap getGameMap() {
 		return gameMap;
 	}	
@@ -197,7 +199,104 @@ public class CoreGame implements Serializable{
 	public Player getPlayerTurn() {
 		return playerTurn;
 	}
-
+	// }} Getters
+	
+	// {{ Load and Save Game Methods
+	public String saveGameJSON(String gameName)
+	{
+		String finalJson = "{\n";
+		finalJson += "\"playerTurn:\" " + playerTurn.name + ",\n";
+		finalJson += "\"turnCount:\" " + turnCount + ",\n";
+		finalJson += "\"map:\" " + saveMapJSON() + ",\n";
+		finalJson += "\"cardScreenCards:\" " + saveCardScreenCardsJSON() + ",\n";
+		finalJson += "\"player1:\" " + savePlayerJSON(player1) + ",\n";
+		finalJson += "\"player2:\" " + savePlayerJSON(player2) + ",\n";		
+		finalJson += "\"worldMap:\" " + saveMapJSON() + ",\n";		
+		return finalJson = finalJson + "}\n";
+	}
+	
+	// {{ Player Saving
+	public String savePlayerJSON(Player player)
+	{
+		String finalJson = "{\n";
+		finalJson += "\"resources:\" " + savePlayerResourceJSON(player) + ",\n";
+		return finalJson = finalJson + "}\n";
+	}
+	
+	public String savePlayerResourceJSON(Player player)
+	{
+		String finalJson = "{\n";
+		finalJson += "\"gold: \" " + player.getGold() + ",\n";
+		finalJson += "\"coal: \" " + player.getFuel("Coal") + ",\n";
+		finalJson += "\"electric: \" " + player.getFuel("Electric") + ",\n";
+		finalJson += "\"oil: \" " + player.getFuel("Oil") + ",\n";
+		finalJson += "\"nuclear: \" " + player.getFuel("Nuclear") + ",\n";
+		finalJson += "\"carriage: \" " + player.getCarriage() + ",\n";
+		finalJson += "\"card: \" " + savePlayerCardJSON(player) + ",\n";
+		finalJson += "\"goal: \" " + savePlayerGoalJSON(player) + ",\n";		
+		return finalJson = finalJson + "}\n";
+	}
+	
+	public String savePlayerCardJSON(Player player)
+	{
+		String finalJson = "{\n";
+		return finalJson = finalJson + "}\n";
+	}
+	
+	public String savePlayerGoalJSON(Player player)
+	{
+		String finalJson = "{\n";
+		return finalJson = finalJson + "}\n";
+	}
+	
+	public String savePlayerTrainJSON(Player player)
+	{
+		String finalJson = "{\n";
+		return finalJson = finalJson + "}\n";
+	}
+	
+	public String savePlayerStationJSON(Player player)
+	{
+		String finalJson = "{\n";
+		return finalJson = finalJson + "}\n";
+	}
+	
+	
+	// }}
+	
+	// {{ Map Saving
+	public String saveMapJSON()
+	{
+		String finalJson = "{\n";
+		return finalJson = finalJson + "}\n";
+	}
+	
+	public String saveMapStationJson()
+	{
+		String finalJson = "{\n";
+		return finalJson = finalJson + "}\n";
+	}
+	
+	public String saveMapTrainJson()
+	{
+		String finalJson = "{\n";
+		return finalJson = finalJson + "}\n";
+	}
+	
+	public String saveMapConnectionsJSON()
+	{
+		String finalJson = "{\n";
+		return finalJson = finalJson + "}\n";
+	}
+	// }}
+	
+	public String saveCardScreenCardsJSON()
+	{
+		String finalJson = "{\n \"temporaryValue\": \"dumbCards\"";		
+		return finalJson = finalJson + "}\n";
+	}
+	
+	// }}
 	/**
 	 * Launches a save dialog asking the user to specify a save game location and serializes the game object to that location
 	 * @param testCase Is this operation a test? If so it will skip the dialog section.

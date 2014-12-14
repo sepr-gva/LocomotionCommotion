@@ -65,6 +65,7 @@ public class CoreGameTest {
 	 * specified by passing the name.  The value will be returned, even if the
 	 * field would have private or protected access.
 	 */
+	@SuppressWarnings("rawtypes")
 	private Object getField( Object instance, String name ) throws Exception
 	{
 		Class c = instance.getClass();
@@ -85,6 +86,7 @@ public class CoreGameTest {
 	 * the method are specified.  The method will be executed and the value
 	 * of it returned, even if the method would have private or protected access.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private Object executeMethod( Object instance, String name, Object[] params ) throws Exception
 	{
 		Class c 	= instance.getClass();
