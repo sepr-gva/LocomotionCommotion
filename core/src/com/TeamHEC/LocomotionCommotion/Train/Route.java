@@ -88,9 +88,18 @@ public class Route {
 		else
 		{
 			float diff = Math.abs(connectionTravelled + moveBy - connectionLength);
+			currentMapObj = route.get(routeIndex).getDestination();
+			
 			routeIndex++;
 			connectionTravelled = 0;
-			update(diff);
+			if(routeIndex < route.size())
+			{
+				update(diff);
+			}
+			else
+			{
+				// ROUTE FINISHED
+			}
 		}
 	}
 }
