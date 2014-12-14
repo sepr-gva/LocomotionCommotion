@@ -18,9 +18,10 @@ public class NuclearTrain extends Train{
 	private static final int BASE_CARRIAGE_LIMIT = 5;
 	private static final int VALUE = 750;
 
-	public NuclearTrain(int speedMod, int carriageLimitMod, boolean inStation)
+	public NuclearTrain(int speedMod, int carriageLimitMod, boolean inStation, Route route)
 	{
-		super("Atom Bomb", new Nuclear(200), BASE_SPEED, speedMod, BASE_CARRIAGE_LIMIT, carriageLimitMod, VALUE, inStation);
+		super("Atom Bomb", new Nuclear(200), BASE_SPEED, speedMod, BASE_CARRIAGE_LIMIT, carriageLimitMod, VALUE, inStation,
+				route);
 		fuelPerTurn = 50;
 	}
 }

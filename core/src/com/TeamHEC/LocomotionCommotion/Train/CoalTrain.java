@@ -18,9 +18,10 @@ public class CoalTrain extends Train {
 	private static final int BASE_CARRIAGE_LIMIT = 1;
 	private static final int VALUE = 200;
 		
-	public CoalTrain(int speedMod, int carriageLimitMod, boolean inStation)
+	public CoalTrain(int speedMod, int carriageLimitMod, boolean inStation, Route route)
 	{
-		super("Steam Machine", new Coal(200), BASE_SPEED, speedMod, BASE_CARRIAGE_LIMIT, carriageLimitMod, VALUE, inStation);
+		super("Steam Machine", new Coal(200), BASE_SPEED, speedMod, BASE_CARRIAGE_LIMIT, carriageLimitMod, VALUE, inStation, 
+				route);
 		fuelPerTurn = 10;
 	}
 }

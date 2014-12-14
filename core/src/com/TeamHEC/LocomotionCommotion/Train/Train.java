@@ -1,9 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
-import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 
 /**
@@ -41,6 +39,7 @@ public class Train implements Serializable{
 	 */
 	
 	private static final long serialVersionUID = 1L;
+	
 	private String name;
 	private int baseSpeed, speedMod;
 	private int baseCarriageLimit, carriageLimitMod;
@@ -49,16 +48,13 @@ public class Train implements Serializable{
 	private Fuel fuel;
 	public int fuelPerTurn;
 	
-	// needs to change after upgrades
-	private int value;
+	private int value; // needs to change after upgrades?
 	private boolean inStation;
 	
-	private ArrayList<Connection> route = new ArrayList<Connection>();
-	
-	// Need somewhere to store the location of the Train
+	public final Route route;
 	
 	public Train(String name, Fuel fuelType, int baseSpeed, int speedMod, int baseCarriageLimit,
-			int carriageLimitMod, int value, boolean inStation)
+			int carriageLimitMod, int value, boolean inStation, Route route)
 	{
 		this.name = name;
 		this.fuel = fuelType;
@@ -70,6 +66,7 @@ public class Train implements Serializable{
 		this.numOfCarriages = baseCarriageLimit;
 		this.value = value;
 		this.inStation = inStation;
+		this.route = route;
 	}
 	
 	public String getName()
@@ -126,27 +123,10 @@ public class Train implements Serializable{
 	public boolean isInStation()
 	{
 		return inStation;
-	}
+	}	
 	
-	// Route stuff:
-	public void addRouteConnection(Connection connection)
+	public void moveTrain()
 	{
-		route.add(connection);
-	}
-	
-	// Removes last connection in list:
-	public void removeRouteConnection()
-	{
-		route.remove(route.get(route.size()));
-	}
-	
-	public float getRouteLength()
-	{
-		float length = 0;
-		for(int i = 0; i < route.size(); i++)
-		{
-			length += route.get(i).getLength();
-		}
-		return length;
+		route.update(getSpeed());
 	}
 }
