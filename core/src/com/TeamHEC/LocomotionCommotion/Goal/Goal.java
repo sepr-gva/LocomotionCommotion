@@ -4,43 +4,43 @@ package com.TeamHEC.LocomotionCommotion.Goal;
 public  class Goal  {
 
 	//Variables
-	private String SStation;
-	private String FStation;
-	private boolean Special;
-	private int Reward;
-	private int Startdate;
-	private String Carriagetype, route;
+	private String sStation;
+	private String fStation;
+	private boolean special;
+	private int reward;
+	private int startDate;
+	private String carriageType, route;
 
 	//Constructor
-	public Goal(String Startstation,String FinalStation, Boolean special, int rewards, int startdate, String ctype, String route) {
-		this.SStation = Startstation;
-		this.FStation = FinalStation;
-		this.Special = special; 
-		this.Reward = rewards;
-		this.Startdate = startdate;
-		this.Carriagetype = ctype;
+	public Goal(String startStation,String finalStation, Boolean special, int reward, int startDate, String cType, String route) {
+		this.sStation = startStation;
+		this.fStation = finalStation;
+		this.special = special; 
+		this.reward = reward;
+		this.startDate = startDate;
+		this.carriageType = cType;
 		this.route = route;
 	}
-	public String getCarriagetype(){
-		return this.Carriagetype;
+	public String getCarriageType(){
+		return this.carriageType;
 	}
-	public int getstartdate(){
-		return this.Startdate;
+	public int getStartDate(){
+		return this.startDate;
 	}
 	public boolean isSpecial(){
-		return this.Special;
+		return this.special;
 	}
-	public int getrewards(){
-		return this.Reward;
+	public int getReward(){
+		return this.reward;
 	}
 
 	//Accessors/Mutators
 	public String getSStation(){
-		return this.SStation;
+		return this.sStation;
 	}
 
 	public String getFStation(){
-		return this.FStation;
+		return this.fStation;
 	}
 	public String getRoute(){
 		return this.route;
