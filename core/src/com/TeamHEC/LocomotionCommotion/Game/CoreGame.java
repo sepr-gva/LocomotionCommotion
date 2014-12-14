@@ -205,7 +205,7 @@ public class CoreGame implements Serializable{
 	public String saveGameJSON(String gameName)
 	{
 		String finalJson = "{\n";
-		finalJson += "\"playerTurn:\" " + playerTurn.name + ",\n";
+		finalJson += "\"playerTurn:\" \"" + playerTurn.name + "\",\n";
 		finalJson += "\"turnCount:\" " + turnCount + ",\n";
 		finalJson += "\"map:\" " + saveMapJSON() + ",\n";
 		finalJson += "\"cardScreenCards:\" " + saveCardScreenCardsJSON() + ",\n";
@@ -231,22 +231,43 @@ public class CoreGame implements Serializable{
 		finalJson += "\"electric: \" " + player.getFuel("Electric") + ",\n";
 		finalJson += "\"oil: \" " + player.getFuel("Oil") + ",\n";
 		finalJson += "\"nuclear: \" " + player.getFuel("Nuclear") + ",\n";
-		finalJson += "\"carriage: \" " + player.getCarriage() + ",\n";
-		finalJson += "\"card: \" " + savePlayerCardJSON(player) + ",\n";
-		finalJson += "\"goal: \" " + savePlayerGoalJSON(player) + ",\n";		
+		finalJson += "\"carriages: \" " + player.getCarriage() + ",\n";
+		finalJson += "\"cards: \" " + savePlayerCardJSON(player) + ",\n";
+		finalJson += "\"goals: \" " + savePlayerGoalJSON(player) + ",\n";		
 		return finalJson = finalJson + "}\n";
 	}
 	
 	public String savePlayerCardJSON(Player player)
 	{
-		String finalJson = "{\n";
-		return finalJson = finalJson + "}\n";
+		String finalJson = "[\n";
+		Card[] cards = player.getCards().toArray(new Card[player.getCards().size()]);
+		for (int i = 0; i < cards.length; i++) {
+			Card card = cards[i];
+			finalJson +=
+					"{\ncardName: \"" + card.getName() + "\",\n" +
+					"cardDescription: \"" + card.getDescription() + "\",\n" +
+					"owner: \"" + card.getOwner().getName() + "\",\n" +
+					"cardValue: " + card.getValue() + ",\n},";
+		}
+		return finalJson = finalJson + "]\n";
 	}
 	
 	public String savePlayerGoalJSON(Player player)
 	{
 		String finalJson = "{\n";
-		return finalJson = finalJson + "}\n";
+		Goal[] goals = player.getGoals().toArray(new Goal[player.getGoals().size()]);
+		for (int i = 0; i < goals.length; i++) {
+			Goal goal = goals[i];
+			finalJson +=
+					"{\nsStation: " + goal.getSStation() + ",\n" +
+					"fStation: " + goal.getFStation() + ",\n" +
+					"special: " + goal.isSpecial() + ",\n" +
+					"reward: " + goal.getReward() + ",\n" + 
+					"startDate: " + goal.getStartDate() + ",\n" +
+					"carriageType: " + goal.getCarriageType() + ",\n" + 
+					"route: " + goal.getRoute() + "\n}," ;
+		}
+		return finalJson = finalJson + "]\n";
 	}
 	
 	public String savePlayerTrainJSON(Player player)
