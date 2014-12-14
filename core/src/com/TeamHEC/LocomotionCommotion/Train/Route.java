@@ -89,6 +89,7 @@ public class Route {
 		{
 			float diff = Math.abs(connectionTravelled + moveBy - connectionLength);
 			routeIndex++;
+			connectionTravelled = 0;
 			update(diff);
 		}
 	}
