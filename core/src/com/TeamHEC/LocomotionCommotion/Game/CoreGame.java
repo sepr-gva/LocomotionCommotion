@@ -219,8 +219,10 @@ public class CoreGame implements Serializable{
 	public String savePlayerJSON(Player player)
 	{
 		String finalJson = "{\n";
+		finalJson += "\"playerName:\" " + player.getName() + ",\n";
+		finalJson += "\"points:\" " + player.points + ",\n";
 		finalJson += "\"resources:\" " + savePlayerResourceJSON(player) + ",\n";
-		return finalJson = finalJson + "}\n";
+		return finalJson = finalJson + "\n}";
 	}
 	
 	public String savePlayerResourceJSON(Player player)
@@ -259,13 +261,13 @@ public class CoreGame implements Serializable{
 		for (int i = 0; i < goals.length; i++) {
 			Goal goal = goals[i];
 			finalJson +=
-					"{\nsStation: " + goal.getSStation() + ",\n" +
-					"fStation: " + goal.getFStation() + ",\n" +
+					"{\nsStation: \"" + goal.getSStation() + "\",\n" +
+					"fStation: \"" + goal.getFStation() + "\",\n" +
 					"special: " + goal.isSpecial() + ",\n" +
 					"reward: " + goal.getReward() + ",\n" + 
 					"startDate: " + goal.getStartDate() + ",\n" +
-					"carriageType: " + goal.getCarriageType() + ",\n" + 
-					"route: " + goal.getRoute() + "\n}," ;
+					"carriageType: \"" + goal.getCarriageType() + "\",\n" + 
+					"route: \"" + goal.getRoute() + "\"\n}," ;
 		}
 		return finalJson = finalJson + "]\n";
 	}
