@@ -25,7 +25,7 @@ import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHandManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_GoalScreenManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_AManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Pause_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
@@ -62,7 +62,7 @@ public class GameScreen implements Screen {
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
 		
-		Game_Map_AManager mapManger = new Game_Map_AManager();
+		Game_Map_Manager mapManger = new Game_Map_Manager();
 		mapManger.create(getStage());
 		
 		Game_CardHandManager cardHandManager = new Game_CardHandManager();
@@ -153,7 +153,7 @@ public class GameScreen implements Screen {
 	}
 
 	public void  resetScreen(){
-		Game_Map_AManager.infoVisible= false;
+		Game_Map_Manager.infoVisible= false;
 		Game_Pause_AManager.open = false;
 		Game_goal_PlayerGoals.open = false;
 		Game_ShopManager.open = false;

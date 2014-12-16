@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_shop_BackBtn extends Actor {
 
 	public static Texture texture = Game_TextureManager.game_shop_backbtn; // reuse the new game back btn texture
-	public static float actorX = 1350 ,actorY = 800;
+	public static float actorX = 1350 ,actorY = 820;
 	public boolean started = false;
 	
 

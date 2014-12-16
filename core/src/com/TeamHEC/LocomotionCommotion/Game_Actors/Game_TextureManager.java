@@ -63,4 +63,14 @@ public class Game_TextureManager {
 	public static Texture game_card_oilcard = new Texture(Gdx.files.internal("gameScreen/game_cards/oilCard.png"));
 	public static Texture game_card_cardtoggle = new Texture(Gdx.files.internal("gameScreen/game_cards/Cardbtn-1.png"));
 	public static Texture game_card_usecardbtn = new Texture(Gdx.files.internal("gameScreen/game_cards/usecardbtn.png"));
+	
+	
+	//SHOP
+	public static Texture game_shop_coalitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_coal.png"));
+	public static Texture game_shop_oilitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_oil.png"));
+	public static Texture game_shop_electricityitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_electricity.png"));
+	public static Texture game_shop_nuclearitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_nuclear.png"));
+	public static Texture game_shop_addbtn = new Texture(Gdx.files.internal("gameScreen/game_shop/addbutton.png"));
+	public static Texture game_shop_minusbtn = new Texture(Gdx.files.internal("gameScreen/game_shop/minusbutton.png"));
+	public static Texture game_shop_buybtn = new Texture(Gdx.files.internal("gameScreen/game_shop/buybtn.png"));
 }
