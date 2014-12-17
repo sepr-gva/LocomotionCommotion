@@ -19,7 +19,9 @@ import com.badlogic.gdx.utils.StringBuilder;
 public class Game_shop_oil {
 	ArrayList<Actor> actors ;
 	public static Label quantityLabel,costLabel, goldLabel;
-	public int quantity, cost, posx=700, posy=450;
+	public int quantity, cost;
+	public static int posx=700;
+	public static int posy=470;
 	public static LabelStyle style;
 	public Game_shop_oil(){
 		this.actors = new ArrayList<Actor>();
@@ -70,6 +72,7 @@ public class Game_shop_oil {
 		costLabel.setText(l);
 		quantityLabel.setText(l);
 	}
+	
 	
 
 	public class OilItem extends Actor{
@@ -170,8 +173,8 @@ public class Game_shop_oil {
 		}
 	}
 	
-	public class BuyButton extends Actor{
-		Texture texture = Game_TextureManager.game_shop_buybtn; // reuse the new game back btn texture
+	public static class BuyButton extends Actor{
+		public static Texture texture = Game_TextureManager.game_shop_buybtn; // reuse the new game back btn texture
 		float actorX = posx+75 ,actorY = posy+20;
 		boolean started = false;
 
@@ -196,16 +199,34 @@ public class Game_shop_oil {
 		@Override
 		public void act(float delta){
 			if(started){
-				int goldcost = strToInt(costLabel.getText());
-				int oil = strToInt(quantityLabel.getText());
-				if (goldcost <= GameScreen.gold){
-					GameScreen.gold -= goldcost;
-					GameScreen.oil += oil;
-					Game_ResourcesManager.refreshResources();
-					Game_ShopManager.refreshgold(GameScreen.gold);
+				if (Game_shop_startpage.buy){
+					int goldcost = strToInt(costLabel.getText());
+					int oil = strToInt(quantityLabel.getText());
+					if (goldcost <= GameScreen.gold){
+						GameScreen.gold -= goldcost;
+						GameScreen.oil += oil;
+						Game_ResourcesManager.refreshResources();
+						Game_ShopManager.refreshgold(GameScreen.gold);
+					}
+				}
+				if (Game_shop_startpage.sell){
+					int goldcost = strToInt(costLabel.getText());
+					int oil = strToInt(quantityLabel.getText());
+					if (oil <= GameScreen.oil){
+						GameScreen.gold += goldcost;
+						GameScreen.oil -= oil;
+						Game_ResourcesManager.refreshResources();
+						Game_ShopManager.refreshgold(GameScreen.gold);
+					}
 				}
 				started = false;
 			}
+		}
+		public static void changeTexture(){
+			if (Game_shop_startpage.buy==true)
+				texture=Game_TextureManager.game_shop_buybtn;
+			if (Game_shop_startpage.sell==true)
+				texture=Game_TextureManager.game_shop_sellbtn;
 		}
 	}
 

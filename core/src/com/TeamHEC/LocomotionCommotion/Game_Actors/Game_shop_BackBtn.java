@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_shop_BackBtn extends Actor {
 
 	public static Texture texture = Game_TextureManager.game_shop_backbtn; // reuse the new game back btn texture
-	public static float actorX = 1350 ,actorY = 820;
+	public static float actorX = 1350 ,actorY = 860;
 	public boolean started = false;
 	
 
@@ -50,10 +50,10 @@ public class Game_shop_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_ShopManager.open== false)
+			if (Game_ShopManager.start== false)
 			{
-				Game_ShopManager.open= true;
-				for(int i=Game_ShopManager.stagestart; i<=Game_ShopManager.stagestart +Game_ShopManager.shopActors-1;i++){
+				Game_ShopManager.start= true;
+				for(int i=Game_ShopManager.startstagestart; i<=Game_ShopManager.startstagestart +Game_ShopManager.startscreenActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -61,8 +61,8 @@ public class Game_shop_BackBtn extends Actor {
 
 				}			}
 			else
-			{	Game_ShopManager.open= false;
-			for(int i=Game_ShopManager.stagestart; i<=Game_ShopManager.stagestart +Game_ShopManager.shopActors-1;i++){
+			{	Game_ShopManager.start= false;
+			for(int i=Game_ShopManager.startstagestart; i<=Game_ShopManager.startstagestart +Game_ShopManager.startscreenActors-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else
@@ -72,6 +72,8 @@ public class Game_shop_BackBtn extends Actor {
 
 			}
 			started = false;
-			}
 		}
+
+	
+	}
 }

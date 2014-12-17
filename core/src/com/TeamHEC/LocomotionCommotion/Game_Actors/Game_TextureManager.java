@@ -66,11 +66,21 @@ public class Game_TextureManager {
 	
 	
 	//SHOP
+	public static Texture game_shop_startscreen = new Texture(Gdx.files.internal("gameScreen/game_shop/startpage.png"));
+	public static Texture game_shop_startbuy = new Texture(Gdx.files.internal("gameScreen/game_shop/startBuy.png"));
+	public static Texture game_shop_startsell = new Texture(Gdx.files.internal("gameScreen/game_shop/startSell.png"));
+	public static Texture game_shop_starttrain = new Texture(Gdx.files.internal("gameScreen/game_shop/startTrains.png"));
+	
 	public static Texture game_shop_coalitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_coal.png"));
 	public static Texture game_shop_oilitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_oil.png"));
 	public static Texture game_shop_electricityitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_electricity.png"));
 	public static Texture game_shop_nuclearitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_nuclear.png"));
+	public static Texture game_shop_carditem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_card.png"));
+	public static Texture game_shop_trainitem = new Texture(Gdx.files.internal("gameScreen/game_shop/item_train.png"));
+	
 	public static Texture game_shop_addbtn = new Texture(Gdx.files.internal("gameScreen/game_shop/addbutton.png"));
 	public static Texture game_shop_minusbtn = new Texture(Gdx.files.internal("gameScreen/game_shop/minusbutton.png"));
 	public static Texture game_shop_buybtn = new Texture(Gdx.files.internal("gameScreen/game_shop/buybtn.png"));
+	public static Texture game_shop_sellbtn = new Texture(Gdx.files.internal("gameScreen/game_shop/sellbtn.png"));
+	public static Texture game_shop_blankbuybtn = new Texture(Gdx.files.internal("gameScreen/game_shop/blankbuybtn.png"));
 }

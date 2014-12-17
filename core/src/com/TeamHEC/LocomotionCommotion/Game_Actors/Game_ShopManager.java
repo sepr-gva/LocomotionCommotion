@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.Array;
 public class Game_ShopManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
+	private final static Array<Actor> startactors = new Array<Actor>();
 
 	public static Game_shop_Backdrop game_shop_backdrop;
 	public static Game_shop_BackBtn game_shop_backbtn;
@@ -24,14 +25,19 @@ public class Game_ShopManager {
 	public static Game_shop_oil oilitem;
 	public static Game_shop_electricity electricityitem;
 	public static Game_shop_nuclear nuclearitem;
+	public static Game_shop_card carditem;
+	public static Game_shop_train trainitem;
+	public static Game_shop_startpage startpage;
 	
-	public static Label goldLabel;
+	public static Label goldLabel, titleLabel;
 	public static LabelStyle style;
 
 
 	public static boolean open=false;
+	public static boolean start=true;
 
 	public static int  stagestart, shopActors;
+	public static int  startstagestart, startscreenActors;
 
 
 	public Game_ShopManager(){	}
@@ -41,6 +47,9 @@ public class Game_ShopManager {
 		actors.clear();
 		stagestart =0;
 		shopActors=0;
+		startstagestart=0;
+		startscreenActors=0;
+		
 		
 		game_shop_backdrop = new Game_shop_Backdrop();
 		actors.add(game_shop_backdrop);
@@ -54,7 +63,10 @@ public class Game_ShopManager {
 		oilitem = new Game_shop_oil();
 		electricityitem = new Game_shop_electricity();
 		nuclearitem = new Game_shop_nuclear();
-		//Stuff for Labels
+		carditem = new Game_shop_card();
+		trainitem = new Game_shop_train();
+		startpage = new Game_shop_startpage();
+		//Stuff for Labels for gold
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 50;
@@ -71,7 +83,26 @@ public class Game_ShopManager {
 		goldLabel.setColor(0,0,0,1);
 		goldLabel.setText(""+GameScreen.gold);
 		
+		//Stuff for Labels for gold
+				generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
+				parameter = new FreeTypeFontParameter();
+				parameter.size = 80;
+
+				font = generator.generateFont(parameter); 
+				generator.dispose();
+				style = new LabelStyle();
+				style.font = font;
+
+				//end
+		titleLabel= new Label(null,style);
+		titleLabel.setX(380);
+		titleLabel.setY(880);
+		titleLabel.setColor(0,0,0,1);
+		titleLabel.setText("");
+		
 		actors.add(Game_ShopManager.goldLabel);
+		actors.add(Game_ShopManager.titleLabel);
+		
 		for(Actor a : oilitem.getActors()){
 			actors.add(a);
 		}
@@ -83,6 +114,15 @@ public class Game_ShopManager {
 		}
 		for(Actor a : nuclearitem.getActors()){
 			actors.add(a);
+		}
+		for(Actor a : carditem.getActors()){
+			actors.add(a);
+		}
+		for(Actor a : trainitem.getActors()){
+			actors.add(a);
+		}
+		for(Actor a : startpage.getActors()){
+			startactors.add(a);
 		}
 
 
@@ -99,6 +139,18 @@ public class Game_ShopManager {
 				a.setVisible(false);
 
 			stage.addActor(a);
+			shopActors ++;
+		}
+		startstagestart= stage.getActors().size;
+		for (Actor a : startactors){
+			if(open == true){
+				a.setTouchable(Touchable.enabled);
+				a.setVisible(true);}
+			else
+				a.setVisible(false);
+
+			stage.addActor(a);
+			startscreenActors ++;
 			shopActors ++;
 		}
 
