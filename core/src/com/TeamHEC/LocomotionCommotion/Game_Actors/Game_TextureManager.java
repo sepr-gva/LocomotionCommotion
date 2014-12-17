@@ -18,9 +18,7 @@ public class Game_TextureManager {
 	public static  Texture game_menuobject_endturnbutton = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/endTurnBtn.png"));
 	public static  Texture game_menuobject_cornerframe = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/cornerframe.png"));
 	public static  Texture game_menuobject_infobutton = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/infobutton.png"));
-	
-	
-	
+		
 	//Map
 	public static  Texture tempMap = new Texture(Gdx.files.internal("gameScreen/game_map/map.png"));
 	public static  Texture mapInfo = new Texture(Gdx.files.internal("gameScreen/game_map/mapinfo.png"));
@@ -63,8 +61,7 @@ public class Game_TextureManager {
 	public static Texture game_card_oilcard = new Texture(Gdx.files.internal("gameScreen/game_cards/oilCard.png"));
 	public static Texture game_card_cardtoggle = new Texture(Gdx.files.internal("gameScreen/game_cards/Cardbtn-1.png"));
 	public static Texture game_card_usecardbtn = new Texture(Gdx.files.internal("gameScreen/game_cards/usecardbtn.png"));
-	
-	
+		
 	//SHOP
 	public static Texture game_shop_startscreen = new Texture(Gdx.files.internal("gameScreen/game_shop/startpage.png"));
 	public static Texture game_shop_startbuy = new Texture(Gdx.files.internal("gameScreen/game_shop/startBuy.png"));

@@ -278,18 +278,31 @@ public class CoreGame implements Serializable{
 	public String saveMapJSON()
 	{
 		String finalJson = "{\n";
+		finalJson += "\"station\": " + saveMapStationJSON() + "\",\n";
+		finalJson += "\"connection\": " + saveMapStationJSON() + "\",\n";
+		finalJson += "\"train\": " + saveMapStationJSON() + "\",\n";
 		return finalJson = finalJson + "}\n";
 	}
 	
-	public String saveMapStationJson()
+	public String saveMapStationJSON()
 	{
 		String finalJson = "{\n";
+		Station[] stations = gameMap.stationsList.toArray(new Station[gameMap.stationsList.size()]);
+		for (int i = 0; i < stations.length; i++) {
+			Station station = stations[i];
+			finalJson +=
+					"{\n\"name\": \"" + station.getName() + "\",\n" +
+					"\"owner\": \"" + station.getOwner() + "\",\n" +
+					"\"valueMod\": " + station.getValueMod() + ",\n" +
+					"\"fuelOutMod\": " + station.getFuelOutMod() + ",\n" + 
+					"\"rentValueMod\": " + station.getRentValueMod() + ",\n}";
+		}
 		return finalJson = finalJson + "}\n";
 	}
 	
-	public String saveMapTrainJson()
+	public String saveMapTrainJSON()
 	{
-		String finalJson = "{\n";
+		String finalJson = "{\n";		
 		return finalJson = finalJson + "}\n";
 	}
 	

@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Resource.*;
 
@@ -46,8 +47,32 @@ public class WorldMap implements Serializable{
 	private final Station BERLIN = new Station("Berlin", 10, new Oil(500), 10, Line.Black, 10);
 	private final Station BERN = new Station("Bern", 10, new Oil(500), 10, Line.Black, 10);
 	
-	// Specifify coordinates of each junction here:
+	// Specify coordinates of each junction here:
 	private final Junction[] junction = new Junction[]{new Junction(1.5f, 1.5f), new Junction(1.5f, 1.5f)};
+	
+	//CALLUM NEEDS A COPY OF ALL THE STATIONS SO HE MADE THIS SO HE CAN ACCESS THEM
+	public ArrayList<Station> stationsList = new ArrayList<Station>() {{ 
+	add(LONDON);
+	add(PARIS);
+	add(REYKJAVIK);
+	add(DUBLIN);
+	add(AMSTERDAM);
+	add(OSLO);
+	add(STOCKHOLM);
+	add(HELSINKI);
+	add(VILNUIS);
+	add(MOSCOW);
+	add(WARSAW);
+	add(PRAGUE);
+	add(VIENNA);
+	add(ROME);
+	add(MADRID);
+	add(LISBON);
+	add(MONACO);
+	add(ATHENS);
+	add(BERLIN);
+	add(BERN);
+	 }};
 	
 	private WorldMap()
 	{
@@ -76,6 +101,7 @@ public class WorldMap implements Serializable{
 		createConnections(ROME, new MapObj[]{LISBON, BERN, ATHENS});
 		createConnections(MONACO, new MapObj[]{MADRID, PARIS, BERN});
 		createConnections(BERN, new MapObj[]{MONACO, junction[0], PRAGUE});
+	
 	}
 	
 	// could go in constructor instead..
