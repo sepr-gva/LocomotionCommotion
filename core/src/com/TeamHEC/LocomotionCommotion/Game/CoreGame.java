@@ -153,7 +153,6 @@ public class CoreGame implements Serializable{
 	 */
 	public HashMap<String, Resource> getBaseResources(Station station)
 	{
-		//Temporary		
 		Gold gold = new Gold(200);
 		gold.subValue(station.getTotalValue());
 		
@@ -173,6 +172,7 @@ public class CoreGame implements Serializable{
 		
 		return dict;		
 	}
+	
 	// }} Turn System
 	
 	// {{ Getters
@@ -206,13 +206,12 @@ public class CoreGame implements Serializable{
 	public String saveGameJSON(String gameName)
 	{
 		String finalJson = "{\n";
-		finalJson += "\"playerTurn:\" \"" + playerTurn.name + "\",\n";
-		finalJson += "\"turnCount:\" " + turnCount + ",\n";
-		finalJson += "\"map:\" " + saveMapJSON() + ",\n";
-		finalJson += "\"cardScreenCards:\" " + saveCardScreenCardsJSON() + ",\n";
-		finalJson += "\"player1:\" " + savePlayerJSON(player1) + ",\n";
-		finalJson += "\"player2:\" " + savePlayerJSON(player2) + ",\n";		
-		finalJson += "\"worldMap:\" " + saveMapJSON() + ",\n";		
+		finalJson += "\"playerTurn\": \"" + playerTurn.name + "\",\n";
+		finalJson += "\"turnCount\": " + turnCount + ",\n";
+		finalJson += "\"map\": " + saveMapJSON() + ",\n";
+		finalJson += "\"cardScreenCards\": " + saveCardScreenCardsJSON() + ",\n";
+		finalJson += "\"player1\": " + savePlayerJSON(player1) + ",\n";
+		finalJson += "\"player2\": " + savePlayerJSON(player2) + ",\n";		
 		return finalJson = finalJson + "}\n";
 	}
 	
@@ -220,23 +219,23 @@ public class CoreGame implements Serializable{
 	public String savePlayerJSON(Player player)
 	{
 		String finalJson = "{\n";
-		finalJson += "\"playerName:\" " + player.getName() + ",\n";
-		finalJson += "\"points:\" " + player.points + ",\n";
-		finalJson += "\"resources:\" " + savePlayerResourceJSON(player) + ",\n";
+		finalJson += "\"playerName\": \"" + player.getName() + "\",\n";
+		finalJson += "\"points\": " + player.points + ",\n";
+		finalJson += "\"resources\": " + savePlayerResourceJSON(player) + ",\n";
 		return finalJson = finalJson + "\n}";
 	}
 	
 	public String savePlayerResourceJSON(Player player)
 	{
 		String finalJson = "{\n";
-		finalJson += "\"gold: \" " + player.getGold() + ",\n";
-		finalJson += "\"coal: \" " + player.getFuel("Coal") + ",\n";
-		finalJson += "\"electric: \" " + player.getFuel("Electric") + ",\n";
-		finalJson += "\"oil: \" " + player.getFuel("Oil") + ",\n";
-		finalJson += "\"nuclear: \" " + player.getFuel("Nuclear") + ",\n";
-		finalJson += "\"carriages: \" " + player.getCarriage() + ",\n";
-		finalJson += "\"cards: \" " + savePlayerCardJSON(player) + ",\n";
-		finalJson += "\"goals: \" " + savePlayerGoalJSON(player) + ",\n";		
+		finalJson += "\"gold\": " + player.getGold() + ",\n";
+		finalJson += "\"coal\": " + player.getFuel("Coal") + ",\n";
+		finalJson += "\"electric\": " + player.getFuel("Electric") + ",\n";
+		finalJson += "\"oil\": " + player.getFuel("Oil") + ",\n";
+		finalJson += "\"nuclear\": " + player.getFuel("Nuclear") + ",\n";
+		finalJson += "\"carriages\": " + player.getCarriage() + ",\n";
+		finalJson += "\"cards\": " + savePlayerCardJSON(player) + ",\n";
+		finalJson += "\"goals\": " + savePlayerGoalJSON(player) + ",\n";		
 		return finalJson = finalJson + "}\n";
 	}
 	
@@ -247,10 +246,10 @@ public class CoreGame implements Serializable{
 		for (int i = 0; i < cards.length; i++) {
 			Card card = cards[i];
 			finalJson +=
-					"{\ncardName: \"" + card.getName() + "\",\n" +
-					"cardDescription: \"" + card.getDescription() + "\",\n" +
-					"owner: \"" + card.getOwner().getName() + "\",\n" +
-					"cardValue: " + card.getValue() + ",\n},";
+					"{\ncardName\": \"" + card.getName() + "\",\n" +
+					"\"cardDescription\": \"" + card.getDescription() + "\",\n" +
+					"\"owner\": \"" + card.getOwner().getName() + "\",\n" +
+					"\"cardValue\": " + card.getValue() + ",\n},";
 		}
 		return finalJson = finalJson + "]\n";
 	}
@@ -262,18 +261,16 @@ public class CoreGame implements Serializable{
 		for (int i = 0; i < goals.length; i++) {
 			Goal goal = goals[i];
 			finalJson +=
-					"{\nsStation: \"" + goal.getSStation() + "\",\n" +
-					"fStation: \"" + goal.getFStation() + "\",\n" +
-					"special: " + goal.isSpecial() + ",\n" +
-					"reward: " + goal.getReward() + ",\n" + 
-					"startDate: " + goal.getStartDate() + ",\n" +
-					"carriageType: \"" + goal.getCarriageType() + "\",\n" + 
-					"route: \"" + goal.getRoute() + "\"\n}," ;
+					"{\n\"sStation\": \"" + goal.getSStation() + "\",\n" +
+					"\"fStation\": \"" + goal.getFStation() + "\",\n" +
+					"\"special\": " + goal.isSpecial() + ",\n" +
+					"\"reward\": " + goal.getReward() + ",\n" + 
+					"\"startDate\": " + goal.getStartDate() + ",\n" +
+					"\"carriageType\": \"" + goal.getCarriageType() + "\",\n" + 
+					"\"route\": \"" + goal.getRoute() + "\"\n}," ;
 		}
 		return finalJson = finalJson + "]\n";
 	}
-
-	
 	
 	// }} Player Saving
 	
@@ -303,13 +300,17 @@ public class CoreGame implements Serializable{
 	}
 	// }} Map Saving
 		
+	// {{ Other Saving
 	public String saveCardScreenCardsJSON()
 	{
-		String finalJson = "{\n \"temporaryValue\": \"dumbCards\"";		
+		String finalJson = "{\n \"temporaryValue\"\":dumbCards\"";		
 		return finalJson = finalJson + "}\n";
 	}
+	// }} Other Saving
 	
 	// }} Load and Save Game Methods
+	
+	
 	/**
 	 * Launches a save dialog asking the user to specify a save game location and serializes the game object to that location
 	 * @param testCase Is this operation a test? If so it will skip the dialog section.

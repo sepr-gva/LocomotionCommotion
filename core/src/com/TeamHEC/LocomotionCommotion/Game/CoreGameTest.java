@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Game;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -19,6 +20,12 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+
+/**
+ * 
+ * @author Callum Hewitt <ch1194@york.ac.uk>
+ *
+ */
 
 public class CoreGameTest {
 	
@@ -59,7 +66,9 @@ public class CoreGameTest {
 		baseElectric = 200;
 		baseNuclear = 200;
 	}
-		
+	
+	// {{ Private Accessors
+	
 	/**
 	 * Gets the field value from an instance.  The field we wish to retrieve is
 	 * specified by passing the name.  The value will be returned, even if the
@@ -104,6 +113,8 @@ public class CoreGameTest {
 
 		return m.invoke( instance, params );
 	}
+	
+	// }} Private Accessors
 	
 	@Test
 	public void testCoreGame() throws Exception {
@@ -271,6 +282,17 @@ public class CoreGameTest {
 		
 		File f = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "LocomotionCommotion" + System.getProperty("file.separator") + "myGame" + ".ser");
 		assertTrue("The expected file did not exist",f.exists());
+	}
+
+	@Test
+	public void testSaveGameJSON() throws Exception {
+		//Reset
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		String output = tester.saveGameJSON("ThisGameName");
+		PrintWriter writer = new PrintWriter("C:/Desktop/JSONTester.txt", "UTF-8");
+		writer.println(output);
+		writer.close();
+		
 	}
 
 }
