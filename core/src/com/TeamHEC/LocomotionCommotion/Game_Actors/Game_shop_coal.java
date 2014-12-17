@@ -19,7 +19,9 @@ import com.badlogic.gdx.utils.StringBuilder;
 public class Game_shop_coal {
 	ArrayList<Actor> actors ;
 	public static Label quantityLabel,costLabel, goldLabel;
-	public int quantity, cost, posx=300, posy=450;
+	public int quantity, cost;
+	public static int posx=300;
+	public static int posy=470;
 	public static LabelStyle style;
 	public Game_shop_coal(){
 		this.actors = new ArrayList<Actor>();
@@ -43,34 +45,34 @@ public class Game_shop_coal {
 		style.font = font;
 
 		//end
-		
+
 		quantity =100;
-		
+
 		quantityLabel= new Label(null,style);
 		quantityLabel.setX(posx+ 145);
 		quantityLabel.setY(posy +90);
 		quantityLabel.setColor(0,0,0,1);
 		quantityLabel.setText("100");
-		
+
 		costLabel= new Label(null,style);
 		costLabel.setX(posx+ 160);
 		costLabel.setY(posy +43);
 		costLabel.setColor(0,0,0,1);
 		costLabel.setText("100");
-		
+
 		actors.add(quantityLabel);
 		actors.add(costLabel);
 
 
 	}
-	
+
 	public static void increase(int i){
 		int quant = strToInt(costLabel.getText());
 		String l = new Integer(quant + i).toString();
 		costLabel.setText(l);
 		quantityLabel.setText(l);
 	}
-	
+
 
 	public class CoalItem extends Actor{
 		Texture texture = Game_TextureManager.game_shop_coalitem; // reuse the new game back btn texture
@@ -169,9 +171,9 @@ public class Game_shop_coal {
 			}
 		}
 	}
-	
-	public class BuyButton extends Actor{
-		Texture texture = Game_TextureManager.game_shop_buybtn; // reuse the new game back btn texture
+
+	public static class BuyButton extends Actor{
+		private static Texture texture = Game_TextureManager.game_shop_buybtn; // reuse the new game back btn texture
 		float actorX = posx+75 ,actorY = posy+20;
 		boolean started = false;
 
@@ -196,45 +198,63 @@ public class Game_shop_coal {
 		@Override
 		public void act(float delta){
 			if(started){
-				int goldcost = strToInt(costLabel.getText());
-				int coal = strToInt(quantityLabel.getText());
-				if (goldcost <= GameScreen.gold){
-					GameScreen.gold -= goldcost;
-					GameScreen.coal += coal;
-					Game_ResourcesManager.refreshResources();
-					Game_ShopManager.refreshgold(GameScreen.gold);
+				if (Game_shop_startpage.buy){
+					int goldcost = strToInt(costLabel.getText());
+					int coal = strToInt(quantityLabel.getText());
+					if (goldcost <= GameScreen.gold){
+						GameScreen.gold -= goldcost;
+						GameScreen.coal += coal;
+						Game_ResourcesManager.refreshResources();
+						Game_ShopManager.refreshgold(GameScreen.gold);
+					}
+				}
+				if (Game_shop_startpage.sell){
+					int goldcost = strToInt(costLabel.getText());
+					int coal = strToInt(quantityLabel.getText());
+					if (coal <= GameScreen.coal){
+						GameScreen.gold += goldcost;
+						GameScreen.coal -= coal;
+						Game_ResourcesManager.refreshResources();
+						Game_ShopManager.refreshgold(GameScreen.gold);
+					}
 				}
 				started = false;
 			}
+		}
+		public static void changeTexture(){
+			if (Game_shop_startpage.buy==true)
+				texture=Game_TextureManager.game_shop_buybtn;
+			if (Game_shop_startpage.sell==true)
+				texture=Game_TextureManager.game_shop_sellbtn;
 		}
 	}
 
 	public ArrayList<Actor> getActors() {
 		return this.actors;
 	}
-	
+
 	public static int strToInt( StringBuilder stringBuilder ){
-	    int i = 0;
-	    int num = 0;
-	    boolean isNeg = false;
+		int i = 0;
+		int num = 0;
+		boolean isNeg = false;
 
-	    //Check for negative sign; if it's there, set the isNeg flag
-	    if (stringBuilder.charAt(0) == '-') {
-	        isNeg = true;
-	        i = 1;
-	    }
+		//Check for negative sign; if it's there, set the isNeg flag
+		if (stringBuilder.charAt(0) == '-') {
+			isNeg = true;
+			i = 1;
+		}
 
-	    //Process each character of the string;
-	    while( i < stringBuilder.length()) {
-	        num *= 10;
-	        num += stringBuilder.charAt(i++) - '0'; //Minus the ASCII code of '0' to get the value of the charAt(i++).
-	    }
+		//Process each character of the string;
+		while( i < stringBuilder.length()) {
+			num *= 10;
+			num += stringBuilder.charAt(i++) - '0'; //Minus the ASCII code of '0' to get the value of the charAt(i++).
+		}
 
-	    if (isNeg)
-	        num = -num;
-	    return num;
+		if (isNeg)
+			num = -num;
+		return num;
 	}
-	
-	
+
+
 
 }
