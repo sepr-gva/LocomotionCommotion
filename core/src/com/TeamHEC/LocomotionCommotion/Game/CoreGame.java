@@ -222,6 +222,7 @@ public class CoreGame implements Serializable{
 		finalJson += "\"playerName\": \"" + player.getName() + "\",\n";
 		finalJson += "\"points\": " + player.points + ",\n";
 		finalJson += "\"resources\": " + savePlayerResourceJSON(player) + ",\n";
+		//finalJson += "\"trains\": " + savePlayerTrainJSON(player) + ",\n";
 		return finalJson = finalJson + "\n}";
 	}
 	
@@ -272,6 +273,24 @@ public class CoreGame implements Serializable{
 		return finalJson = finalJson + "]\n";
 	}
 	
+	/*public String savePlayerTrainJSON(Player player)
+	{
+		String finalJson = "{\n";
+		Train[] trains = player.trains.toArray(new Train[player.trains.size()]);
+		for (int i = 0; i < trains.length; i++) {
+			Train train = trains[i];
+			finalJson += //name fuel speedMod carriageLimitMod numberOfCarriages value inStation route
+					"{\n\"name\": \"" + train.getName() + "\",\n" +
+					"\"trainType\": \"" + train.getFuelType() + "\",\n" +
+					"\"speedMod\": \"" + train.getSpeedMod() + "\",\n" +
+					"\"carriageLimitMod\": " + train.getCarriageLimitMod() + ",\n" +
+					"\"numOfCarriages\": " + train.getCarriageNumber() + ",\n" + 
+					"\"value\": " + train.getValue() + ",\n" + 
+					"\"inStation\": " + train.isInStation() + ",\n}";
+		return finalJson = finalJson + "}\n";
+	}*/
+	
+	
 	// }} Player Saving
 	
 	// {{ Map Saving
@@ -279,8 +298,6 @@ public class CoreGame implements Serializable{
 	{
 		String finalJson = "{\n";
 		finalJson += "\"station\": " + saveMapStationJSON() + "\",\n";
-		finalJson += "\"connection\": " + saveMapStationJSON() + "\",\n";
-		finalJson += "\"train\": " + saveMapStationJSON() + "\",\n";
 		return finalJson = finalJson + "}\n";
 	}
 	
@@ -298,13 +315,7 @@ public class CoreGame implements Serializable{
 					"\"rentValueMod\": " + station.getRentValueMod() + ",\n}";
 		}
 		return finalJson = finalJson + "}\n";
-	}
-	
-	public String saveMapTrainJSON()
-	{
-		String finalJson = "{\n";		
-		return finalJson = finalJson + "}\n";
-	}
+	}	
 	
 	public String saveMapConnectionsJSON()
 	{
@@ -322,7 +333,6 @@ public class CoreGame implements Serializable{
 	// }} Other Saving
 	
 	// }} Load and Save Game Methods
-	
 	
 	/**
 	 * Launches a save dialog asking the user to specify a save game location and serializes the game object to that location

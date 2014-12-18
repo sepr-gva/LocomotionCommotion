@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Train;
 import java.io.Serializable;
 
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
+import com.sun.xml.internal.ws.org.objectweb.asm.Type;
 
 /**
  * 
@@ -93,6 +94,11 @@ public class Train implements Serializable{
 	public int getCarriageCapacity()
 	{
 		return baseCarriageLimit + carriageLimitMod;
+	}
+	
+	public String getFuelType()
+	{
+		return fuel.getClass().getName();				
 	}
 	
 	public void setSpeedMod(int speedMod)

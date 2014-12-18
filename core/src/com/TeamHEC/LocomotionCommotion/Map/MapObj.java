@@ -24,7 +24,7 @@ public class MapObj implements Serializable{
 	public MapObj()
 	{
 		trains = new Train[3];
-		currentEvent = new Event();
+		currentEvent = new Event(); 
 	}
 	
 	public void showBlip()
