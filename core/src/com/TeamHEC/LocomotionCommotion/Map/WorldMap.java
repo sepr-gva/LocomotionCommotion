@@ -51,7 +51,10 @@ public class WorldMap implements Serializable{
 	private final Junction[] junction = new Junction[]{new Junction(1.5f, 1.5f), new Junction(1.5f, 1.5f)};
 	
 	//CALLUM NEEDS A COPY OF ALL THE STATIONS SO HE MADE THIS SO HE CAN ACCESS THEM
-	public ArrayList<Station> stationsList = new ArrayList<Station>() {{ 
+	public ArrayList<Station> stationsList = new ArrayList<Station>() {	 		 
+		private static final long serialVersionUID = 1L;
+
+	{ 
 	add(LONDON);
 	add(PARIS);
 	add(REYKJAVIK);
