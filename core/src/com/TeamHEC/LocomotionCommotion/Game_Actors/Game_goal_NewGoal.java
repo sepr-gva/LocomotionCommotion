@@ -7,7 +7,12 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
  * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
  * @param actorX	The x coordinate of the bottom left corner of the image
  * @param actorY	The y coordinate of the bottom left corner of the image
- * @param started	Boolean used to show if an Actor has been interacted with. Used to stop and start interactions.
+ * @param started	Boolean used to show if an Actor has been moused over. Used to stop and start interactions.
+ * @param touchDown	Boolean used to show if an Actor has been clicked. Used to stop and start interactions.
+ * @param empty		Boolean for if the goal is empty (blank- without goal)
+ * @param btnvisible Boolean for if the addGoalButton is visible 
+ * @param goal		Goal is the goal object that the ticket represents.
+ * @param index		index is a marker for which ticket it is in the grid.
  * 
  * setBounds	This is the bounds for the interaction, we make it the whole image.
  * addListener	This adds a listener for a particular interaction in this case touchDown (click)
@@ -36,6 +41,8 @@ public class Game_goal_NewGoal extends Actor {
 		this.goal = goal;
 		this.empty= empty;
 		this.index =0;
+		
+		//This block decides what type of ticket to display empty, standard or special
 		if (this.empty)
 			this.texture = Game_TextureManager.game_menuobject_emptyticket;
 		else
@@ -50,20 +57,23 @@ public class Game_goal_NewGoal extends Actor {
 		this.actorX = actorX;
 		this.actorY = actorY;
 		this.btnvisible=false;
-
+		
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+		//Mouse click listener - not used yet
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				((Game_goal_NewGoal)event.getTarget()).touchedDown = true;
 				return true;
 			}
 		});
+		//Mouse enter listener
 		addListener(new InputListener(){
 			public void enter(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
 				((Game_goal_NewGoal)event.getTarget()).started = true;
 			}
 
 		});
+		//Mouse exit listener
 		addListener(new InputListener(){
 			public void exit(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
 				((Game_goal_NewGoal)event.getTarget()).started = true;
@@ -77,8 +87,6 @@ public class Game_goal_NewGoal extends Actor {
 	@Override
 	public void draw(Batch batch, float alpha){
 		batch.draw(this.texture,actorX,actorY);
-
-
 	}
 
 	@Override
@@ -94,7 +102,7 @@ public class Game_goal_NewGoal extends Actor {
 					this.btnvisible=false;
 				}
 				else
-				{
+				{	//Makes the addgoalbtn visible to user on the selected goal
 					Game_Goal_GoalScreenManager.selectedGoal=this;
 					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setX(actorX+60);
 					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setY(actorY+75);
@@ -105,15 +113,18 @@ public class Game_goal_NewGoal extends Actor {
 			}
 			started = false;
 		}
-	
+
 	}
 
 
 	public boolean isEmpty(){
 		return this.empty;
 	}
+	
 	public void setEmpty(Boolean empty){
 		this.empty=empty;
+		
+		//Change the ticket type
 		if (this.empty)
 			this.texture = Game_TextureManager.game_menuobject_emptyticket;
 		else
@@ -125,6 +136,9 @@ public class Game_goal_NewGoal extends Actor {
 
 		}
 	}
+	
+	
+	//Getters and Setters for goal, actor x, actor y and index
 	public void setGoal(Goal goal){
 		this.goal= goal;
 	}

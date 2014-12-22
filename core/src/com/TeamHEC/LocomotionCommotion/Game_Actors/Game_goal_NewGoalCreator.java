@@ -1,5 +1,15 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
-
+/*
+ *  @author Robert Precious <rp825@york.ac.uk>
+ *  This Class creates the grid of new goals from a arraylist of newgoals.
+ *  
+ *  @param createdGoals	-The result of the class, the list of new goals
+ *  @param newgoals	- The goal objects where we get the information for the new goals
+ *  @param newgoal1-9	-Slots for the goals
+ *  @param numberofNewGoals	-count of the goals passed to the class
+ *  @param row1-3	-y positions of each row
+ *  @param col1-3	-x positions of each column
+ */
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,24 +19,25 @@ public class Game_goal_NewGoalCreator {
 	public static ArrayList<Game_goal_NewGoal> createdGoals;
 	public ArrayList<Goal> newgoals;
 	public static Game_goal_NewGoal newgoal1, newgoal2, newgoal3,
-	newgoal4, newgoal5, newgoal6,
-	newgoal7, newgoal8, newgoal9
-	;
+									newgoal4, newgoal5, newgoal6,
+									newgoal7, newgoal8, newgoal9;
+	
 	public static int numberofNewGoals;
 	public int row1 = 500, row2 = row1-220, row3 = row2-220;
 	public int col1 = 660, col2 = col1+320, col3 = col2+320;
 
 	public Game_goal_NewGoalCreator(ArrayList<Goal> newgoals){
 		this.newgoals = newgoals;
-
+		//get the number of goals passed
 		numberofNewGoals = newgoals.size();
+		//Initialize createGoals 
 		createdGoals = new ArrayList<Game_goal_NewGoal>();
 
-		if (numberofNewGoals==0){
+		if (numberofNewGoals==0){	//If no goals passed just create 9 empty tickets
 			createdGoals = createEmpties(newgoals);
 		}
 		else if(numberofNewGoals>9){
-			System.out.println("Error list has over 9 goals");
+			throw new Error("Error list has over 9 goals"); //if more than 9 tickets passed throw error
 		}
 		else
 		{
@@ -51,9 +62,10 @@ public class Game_goal_NewGoalCreator {
 		}
 
 	}
+	
 	private ArrayList<Game_goal_NewGoal> createEmpties(ArrayList<Goal> newgoals) {
-		ArrayList<Game_goal_NewGoal> empties = new ArrayList< Game_goal_NewGoal>();
-		HashMap<String, Game_goal_NewGoal> goalslots = new HashMap<String, Game_goal_NewGoal>();
+		ArrayList<Game_goal_NewGoal> 		empties = new ArrayList< Game_goal_NewGoal>();
+		HashMap<String, Game_goal_NewGoal> 	goalslots = new HashMap<String, Game_goal_NewGoal>();
 		
 		goalslots = createSlots();
 

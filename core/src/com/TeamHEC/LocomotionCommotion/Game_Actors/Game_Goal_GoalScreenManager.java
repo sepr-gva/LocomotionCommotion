@@ -58,13 +58,13 @@ public class Game_Goal_GoalScreenManager {
 		//Reset Actor ranging values
 		stagestart =0;
 		goalActors=0;
-		
+
 		//Actors
 		Game_goal_Backdrop = new Game_goal_Backdrop();
 		actors.add(Game_goal_Backdrop);
 		game_goal_backbtn = new Game_goal_BackBtn();
 		actors.add(game_goal_backbtn);
-		
+
 		//TEMP GOALS
 		goals = new ArrayList<Goal>();
 		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
@@ -74,10 +74,10 @@ public class Game_Goal_GoalScreenManager {
 		Goal goal3 = new Goal("Berln", "Moscow", false, 200, 0, "Cargo","Any");
 		goals.add(goal3);
 		//TEMP GOALS
-		
+
 		Game_goal_NewGoalCreator goalcreator= new Game_goal_NewGoalCreator(goals); //Call goal creator
 		createdGoals = goalcreator.getGoals();	//set createdGoals to the result of the goal creator
-		
+
 
 
 		//Stuff for Labels
@@ -91,7 +91,7 @@ public class Game_Goal_GoalScreenManager {
 		style.font = font;
 
 		//end
-		
+
 		//Assign new goals to the actors
 		newgoal1 = createdGoals.get(0);
 		actors.add(newgoal1);
@@ -113,22 +113,16 @@ public class Game_Goal_GoalScreenManager {
 		actors.add(newgoal8);
 		newgoal9 = createdGoals.get(8);
 		actors.add(newgoal9);
-		
+
 		//Add the addgoalbtn actor to sub actors
 		Game_goal_addgoalbtn = new Game_goal_AddGoalBtn();
 		subactors.add(Game_goal_addgoalbtn);
-		
 
 		goalLabels = createLabels();				//createLabels
 		goalLabels=createGoalLabels(goalLabels);	//Set the properties of the Labels using the goal information
 		addLabelstoStage();							//Call function to add labels to stage
-		
-		
 
-
-
-
-
+		//Adds the actors to the stage
 		stagestart= stage.getActors().size;
 		for (Actor a : actors){
 			if(open == true){
@@ -140,20 +134,20 @@ public class Game_Goal_GoalScreenManager {
 			stage.addActor(a);
 			goalActors ++;
 		}
-		//Used for other actors we dont want to show straight away
+		//Used for other actors we don't want to show straight away
 		for (Actor a : subactors){
-				a.setTouchable(Touchable.enabled);
-				a.setVisible(false);
+			a.setTouchable(Touchable.enabled);
+			a.setVisible(false);
 			stage.addActor(a);
 		}
 
 
 	}
-
+	//Creates the blank label objects
 	public static  HashMap<String, Label> createLabels(){
-//Create the Labels in a Hashmap and run through them
+		//Create the Labels in a Hashmap and run through them
 		HashMap<String, Label> goals = new HashMap<String, Label>();
-		
+
 		goals.put("1", gLabel1= new Label(null,style));
 		goals.put("2", gLabel2= new Label(null,style));
 		goals.put("3", gLabel3= new Label(null,style));
@@ -169,21 +163,21 @@ public class Game_Goal_GoalScreenManager {
 		for(int g=0;g<9;g++){
 			String a = new Integer(g+1).toString();
 			goals.get(a).setColor(0,0,0,1);
-			
+
 			if(col==1)
 				goals.get(a).setX(col1);
 			if(col==2)
 				goals.get(a).setX(col2);
 			if(col==3)
 				goals.get(a).setX(col3);
-			
+
 			if(row==1)
 				goals.get(a).setY(row1);
 			if(row==2)
 				goals.get(a).setY(row2);
 			if(row==3)
 				goals.get(a).setY(row3);
-			
+
 			//Next Row
 			if (col==3){
 				col=1;
@@ -198,16 +192,17 @@ public class Game_Goal_GoalScreenManager {
 
 	}
 
+	//Creates the goal labels - sets the text of the blank labels to the goal information
 	public static  HashMap<String, Label> createGoalLabels(HashMap<String, Label> newgoalLabels){
 		int  numberofNewGoals = goals.size();
 		for (int i=0;i<numberofNewGoals;i++){
 			String a = new Integer(i+1).toString();
 			newgoalLabels.get(a).setText(ticketMaker(	createdGoals.get(i).getGoal().getCarriageType(),
-														createdGoals.get(i).getGoal().getReward(),
-														createdGoals.get(i).getGoal().getSStation(),
-														createdGoals.get(i).getGoal().getStartDate(), 
-														createdGoals.get(i).getGoal().getFStation(), 
-														createdGoals.get(i).getGoal().getRoute()));
+					createdGoals.get(i).getGoal().getReward(),
+					createdGoals.get(i).getGoal().getSStation(),
+					createdGoals.get(i).getGoal().getStartDate(), 
+					createdGoals.get(i).getGoal().getFStation(), 
+					createdGoals.get(i).getGoal().getRoute()));
 		}
 		for (int i=numberofNewGoals;i<9;i++){
 			String a = new Integer(i+1).toString();
@@ -216,7 +211,8 @@ public class Game_Goal_GoalScreenManager {
 		return newgoalLabels;
 
 	}
-	
+
+	//Adds all labels to stage
 	public static void addLabelstoStage(){
 		actors.add(gLabel1);
 		actors.add(gLabel2);
@@ -227,9 +223,10 @@ public class Game_Goal_GoalScreenManager {
 		actors.add(gLabel7);
 		actors.add(gLabel8);
 		actors.add(gLabel9);
-		
-		
+
+
 	}
+	//Creates the string that make up the ticket information
 	public static String ticketMaker(String type, int  reward, String from, int startdate, String dest, String route){
 		String output;
 		output ="";
@@ -242,6 +239,7 @@ public class Game_Goal_GoalScreenManager {
 		return output;
 
 	}
+	//Adds spacing for Labels
 	public static String getSpacing(int len){
 		String space="";
 		for (int i=0; i<(17-len)+22; i++){

@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 /*
  * @author Robert Precious <rp825@york.ac.uk>
  * 
+ * This button is replicated for all 3 "owned" goals
  * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
  * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
  * @param actorX	The x coordinate of the bottom left corner of the image
@@ -19,12 +20,12 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * addListener	This adds a listener for a particular interaction in this case touchDown (click)
  * draw			Actor is drawn
  * act			The action taken if the listener detects interaction
- * 				Action- None
+ * 				Action- 
  */
 
 public class Game_goal_RemoveBtn extends Actor {
 
-	public Texture texture ; // reuse the new game back btn texture
+	public Texture texture ;  
 	public  float actorX  ,actorY ;
 	public boolean started = false, undostart= false,undo;
 	public int index, newgoalindex;
@@ -65,6 +66,7 @@ public class Game_goal_RemoveBtn extends Actor {
 			if(undostart){
 				Game_goal_PlayerGoals.resetGoal(index);
 				undostart=false;
+				started=false;
 			}
 		}
 		else
@@ -96,6 +98,9 @@ public class Game_goal_RemoveBtn extends Actor {
 	}
 	public void setUndo(boolean b){
 		this.undo=b;
+		if (undo){
+			this.texture=Game_TextureManager.game_menuobject_redobtn;
+		}
 	}
 	public int getnewgoalindex(){
 		return this.newgoalindex;
