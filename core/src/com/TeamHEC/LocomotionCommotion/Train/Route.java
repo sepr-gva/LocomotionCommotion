@@ -9,16 +9,15 @@ import com.badlogic.gdx.math.Vector2;
 public class Route {
 	
 	/*
+	  	## READ ME ##
+		https://drive.google.com/file/d/0B-ZG2Demzd4tc0JTbWxOS0FVd0E/view?usp=sharing
+	 
 		A route is an array of Connection objects which all in turn have length
 		and a vector for their direction.
 		
 		Using the train speed, we can progress through the connections by tracking
 		how far through each connection we are compared to the length and updating the
 		index of the route array if we overflow that connection by moving onto the next.
-		
-		## READ ME ##
-		https://drive.google.com/file/d/0B-ZG2Demzd4tc0JTbWxOS0FVd0E/view?usp=sharing
-		
 	*/
 	
 	private ArrayList<Connection> route = new ArrayList<Connection>();
@@ -111,6 +110,7 @@ public class Route {
 			else
 			{
 				// ROUTE FINISHED
+				// Check if task complete?
 			}
 		}
 	}
