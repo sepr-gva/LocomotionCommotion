@@ -8,19 +8,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Route {
 	
-	/*
-		A route is an array of Connection objects which all in turn have length
-		and a vector for their direction.
-		
-		Using the train speed, we can progress through the connections by tracking
-		how far through each connection we are compared to the length and updating the
-		index of the route array if we overflow that connection by moving onto the next.
-		
-		## READ ME ##
-		https://drive.google.com/file/d/0B-ZG2Demzd4tc0JTbWxOS0FVd0E/view?usp=sharing
-		
-	*/
-	
 	private ArrayList<Connection> route = new ArrayList<Connection>();
 	
 	// Progress through route ArrayList
@@ -48,19 +35,17 @@ public class Route {
 			return route.get(route.size()).getDestination().connections;
 	}
 
-	// Adds a connection to the route
 	public void addConnection(Connection connection)
 	{
 		route.add(connection);
 	}
 
-	// Removes the last connection in the route
 	public void removeConnection()
 	{
 		route.remove(route.size());
 	}
 	
-	public Vector2 getTrainPos()
+	public Vector2 getTrainVector()
 	{
 		if(route.isEmpty())
 		{
@@ -70,8 +55,11 @@ public class Route {
 		{
 			Vector2 vect = route.get(routeIndex).getVector();
 			
-			// Scales the vector by the distance travelled:
-			vect.scl(connectionTravelled);			
+			// Normalises the Vector to get direction and scales it by distance travelled:
+			
+			vect.nor();
+			vect.scl(connectionTravelled);
+			
 			return vect;
 		}
 	}
