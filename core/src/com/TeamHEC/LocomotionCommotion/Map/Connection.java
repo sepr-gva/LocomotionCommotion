@@ -16,9 +16,11 @@ public class Connection{
 		
 		float dX =  startMapObj.x - endMapObj.x;
 		float dY =  startMapObj.y - endMapObj.y;
-		vector = new Vector2(dX, dY);
 		
-		length = (float) Math.sqrt(Math.pow(dX, 2) + Math.pow(dY, 2));
+		// Creates a vector so we can find the length and normalise for direction:
+		vector = new Vector2(dX, dY);
+		length = vector.len();
+		vector.nor();
 	}
 	
 	public float getLength()
