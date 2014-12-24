@@ -41,6 +41,7 @@ public class CardFactory implements EventListener{
 	
 	private final String TELEPORT = "Teleport";
 	private final String GOLD_COINS = "100 Gold Coins";
+	private final String GO_FASTER_STRIPES = "Go Faster Striples";
 	
 	// private HashMap<String, Goal> associatedGoal
 	
@@ -48,6 +49,7 @@ public class CardFactory implements EventListener{
 	{
 		cardList.add(TELEPORT);
 		cardList.add(GOLD_COINS);
+		cardList.add(GO_FASTER_STRIPES);
 	}
 
 	// returns a card from the existing list:
@@ -64,6 +66,8 @@ public class CardFactory implements EventListener{
 			newCard = new TeleportCard();
 		else if(chosenCard.equals(GOLD_COINS))
 			newCard = new GoldCard();
+		else if(chosenCard.equals(GO_FASTER_STRIPES))
+			newCard = new GoFasterStripes();
 			
 		return newCard;
 	}

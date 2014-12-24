@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 
@@ -13,9 +14,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 public class Train implements Serializable{
 	
 	/*
-	 Train is an object that the player moves around the map to complete goals.
-	 A train has different types; coal, oil,electricity and nuclear all of which
-	 use their respective fuels. A train can be upgraded to go faster, be protected
+	 A train can be upgraded to go faster, be protected
 	 against obstacles and other novel upgrades that affect the performance of the
 	 object in game.
 	 
@@ -27,23 +26,20 @@ public class Train implements Serializable{
 	
 	Train:
 
-	Speed					= --------
+	Speed					= ---
 	Number of Carriages		= ---
 	Carriage Capacity		= ------------
 	Fuel Efficiency			= -----
 	
 	You need one power to pull every carriage
-	
 	Fuel Efficiency = amount of fuel charged per carriage
-
 	 */
 	
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
 	private int baseSpeed, speedMod;
-	private int baseCarriageLimit, carriageLimitMod;
-	private int numOfCarriages;
+	private int numOfCarriages, baseCarriageLimit, carriageLimitMod;
 	
 	private Fuel fuel;
 	public int fuelPerTurn;
@@ -52,6 +48,8 @@ public class Train implements Serializable{
 	private boolean inStation;
 	
 	public final Route route;
+	
+	private ArrayList<TrainUpgrade> upgrades = new ArrayList<TrainUpgrade>();
 	
 	public Train(String name, Fuel fuelType, int baseSpeed, int speedMod, int baseCarriageLimit,
 			int carriageLimitMod, int value, boolean inStation, Route route)
@@ -69,6 +67,8 @@ public class Train implements Serializable{
 		this.route = route;
 	}
 	
+	// =========== Getters ===========
+	
 	public String getName()
 	{
 		return name;
@@ -76,7 +76,6 @@ public class Train implements Serializable{
 	
 	public int getValue()
 	{
-		// Should calculate after updates are made
 		return value;
 	}
 	
@@ -84,7 +83,7 @@ public class Train implements Serializable{
 	{
 		return baseSpeed + speedMod - numOfCarriages;
 	}
-	
+		
 	public int getPricePerTurn()
 	{
 		return fuel.cost * fuelPerTurn;
@@ -99,6 +98,8 @@ public class Train implements Serializable{
 	{
 		return fuel.getClass().getName();				
 	}
+	
+	// =========== Setters ===========
 	
 	public void setSpeedMod(int speedMod)
 	{
@@ -120,10 +121,22 @@ public class Train implements Serializable{
 		carriageLimitMod += by;
 	}
 	
+	public void increaseSpeedMod(int by)
+	{
+		speedMod += by;
+	}
+	
+	public void decreaseFuelPerTurn(int by)
+	{
+		fuelPerTurn -= by;
+	}
+	
 	public void setInStation(boolean inStation)
 	{
 		this.inStation = inStation;
 	}
+	
+	// =========== Train Operations ===========
 	
 	public boolean isInStation()
 	{
@@ -133,5 +146,17 @@ public class Train implements Serializable{
 	public void moveTrain()
 	{
 		route.update(getSpeed());
+	}
+	
+	public void addUpgrade(TrainUpgrade upgrade)
+	{
+		upgrade.addUpgrade();
+		upgrades.add(upgrade);
+	}
+	
+	public void removeUpgrade(TrainUpgrade upgrade)
+	{
+		upgrade.undoUpgrade();
+		upgrades.remove(upgrade);
 	}
 }

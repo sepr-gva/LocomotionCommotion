@@ -13,27 +13,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Card implements Serializable {
 	
-	/*
-	 1) Associated with player class
-	 	- A player is limited to the amount of cards associated with them
-	 	
-	 	A) Implemented within player class
-	 	
-	 2) Each card has an effect on the game and can only be used once so can interact
-	 with a wide range of other classes.
-	 
-	 	A) So this can be a super class and we'll create subclasses for each card type
-	 	
-	 3) Once used, the instance of the card class will be collected as there is no need to record cards
-	 that have been played.
-	 
-	 	A) 	This can be controlled in this class as a super class
-	 */
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
 	private final String cardName;
 	private final String cardDescription;
 	private final int cardValue;
@@ -41,7 +22,7 @@ public class Card implements Serializable {
 	private Texture cardImage;
 	
 	// If created in the shop, the player can be initialised to null:
-	public Card(String name, String description, int value, Player player,Texture image)
+	public Card(String name, String description, int value, Player player, Texture image)
 	{
 		cardName = name;
 		cardDescription = description;
@@ -80,9 +61,14 @@ public class Card implements Serializable {
 		return cardImage;
 	}
 
-	public void implementCard() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void implementCard(){}
 	
+	public void sellCard()
+	{
+		getOwner().addGold(cardValue);
+		getOwner().getCards().remove(this);
+		setOwner(null);
+		
+		// Something else to dispose of the card
+	}
 }

@@ -11,23 +11,17 @@ import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 
 public class GoldCard extends Card{
 
-	// This is just an example, we shouldn't really be able to buy this in the shop
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public GoldCard()
 	{
-		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null,Game_TextureManager.game_card_goldcard);
+		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null, Game_TextureManager.game_card_goldcard);
 	}
 	
-	// This might be able to go into the super class somehow, but then again if we
-	// call the method the same thing in each subclass it might be okay:
+	@Override
 	public void implementCard()
 	{
-		//getOwner().addGold(100);
+		getOwner().addGold(100);
 		GameScreen.gold+=100;
 		// Need to destroy card instance here or something
 	}

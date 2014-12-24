@@ -11,13 +11,6 @@ public class Route {
 	/*
 	  	## READ ME ##
 		https://drive.google.com/file/d/0B-ZG2Demzd4tc0JTbWxOS0FVd0E/view?usp=sharing
-	 
-		A route is an array of Connection objects which all in turn have length
-		and a vector for their direction.
-		
-		Using the train speed, we can progress through the connections by tracking
-		how far through each connection we are compared to the length and updating the
-		index of the route array if we overflow that connection by moving onto the next.
 	*/
 	
 	private ArrayList<Connection> route = new ArrayList<Connection>();
@@ -31,6 +24,45 @@ public class Route {
 	public Route(MapObj startingPos)
 	{
 		currentMapObj = startingPos;
+		routeIndex = 0;
+		connectionTravelled = 0;
+	}
+	
+	public Route(MapObj startingPos, int routeIndex, float connectionTravelled)
+	{
+		currentMapObj = startingPos;
+		this.routeIndex = routeIndex;
+		this.connectionTravelled = connectionTravelled;
+	}
+	
+	public ArrayList<Connection> getRoute()
+	{
+		return route;
+	}
+	
+	public int getRouteIndex()
+	{
+		return routeIndex;
+	}
+	
+	public float getConnectionTravelled()
+	{
+		return connectionTravelled;
+	}
+	
+	public void setRouteIndex(int index)
+	{
+		routeIndex = index;
+	}
+	
+	public void setConnectionedTravelled(float travelled)
+	{
+		connectionTravelled = travelled;
+	}
+	
+	public void setCurrentMapObj(MapObj current)
+	{
+		currentMapObj = current;
 	}
 	
 	/*
@@ -59,6 +91,7 @@ public class Route {
 		route.remove(route.size());
 	}
 	
+	// Returns a Vector of the trains position
 	public Vector2 getTrainPos()
 	{
 		if(route.isEmpty())
@@ -75,10 +108,24 @@ public class Route {
 		}
 	}
 	
+	// Returns the total length of the route from start to end
 	public float getTotalLength()
 	{
 		float length = 0;
 		for(int i = 0; i < route.size(); i++)
+		{
+			length += route.get(i).getLength();
+		}
+		return length;
+	}
+	
+	//  Returns the length remaining in the route
+	public float getLengthRemaining()
+	{
+		float currentLength = route.get(routeIndex).getLength(); 
+		float length = currentLength - connectionTravelled;
+
+		for(int i = routeIndex + 1; i < route.size(); i++)
 		{
 			length += route.get(i).getLength();
 		}

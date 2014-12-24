@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
+import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
