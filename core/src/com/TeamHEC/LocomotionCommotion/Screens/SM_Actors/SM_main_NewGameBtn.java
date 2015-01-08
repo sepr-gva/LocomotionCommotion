@@ -26,7 +26,7 @@ public class SM_main_NewGameBtn extends Actor {
 	Texture texture = SM_TextureManager.sm_main_newgamebtn; //Image Used for the New Game button
 	public static float actorX = 600 ,actorY = 480; //Position of bottom left corner
 	public boolean started = false; //
-	int animationTracker;
+	int animationTracker1,animationTracker2;
 
 	public SM_main_NewGameBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
@@ -49,13 +49,21 @@ public class SM_main_NewGameBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-					StartMenu.changeCam(-100,900);
-					started = false;
-//					if (animationTracker >= 1150)
-//							started = false;
-//					else
-//						animationTracker = animationTracker + 20;
 					
+					if (animationTracker1<900){
+						StartMenu.changeCam(0,10);
+						animationTracker1+=10;
+					}
+					else{
+						if(animationTracker2<100){
+							StartMenu.changeCam(-10,0);
+							animationTracker2+=10;
+						}
+						else{
+							started = false;
+							animationTracker2=0;
+						}
+					}
 				
 			
 			
