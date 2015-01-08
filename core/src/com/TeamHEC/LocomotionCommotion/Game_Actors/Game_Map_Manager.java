@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -30,6 +31,11 @@ public class Game_Map_Manager {
 		map = new Map();		
 		actors.add(map);
 	
+		
+		for(int i = 0; i < WorldMap.getInstance().stationsList.size(); i++)
+		{
+			actors.add(WorldMap.getInstance().stationsList.get(i).getActor());
+		}
 		
 		stagestart= stage.getActors().size;
 		for (Actor a : actors){

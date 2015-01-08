@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_Map_Station extends Actor{
+	
 	public Texture texture;
 	public float actorX, actorY;
 	public boolean started = false;
@@ -37,11 +38,5 @@ public class Game_Map_Station extends Actor{
 			if(started){
 				started = false;
 			}
-
-		
-
 	}
-		
-	
-
 }

@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Map;
+	package com.TeamHEC.LocomotionCommotion.Map;
 
 import java.util.ArrayList;
 
@@ -30,8 +30,10 @@ public class Station extends MapObj implements PlayerListener{
 	protected Player player1;//the players station will listen too
 	protected Player player2;//will need name changes later, not sure this listener stuff is still gonna be used
 	
-	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line[] line, int rentValue)
+	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
+		super(x, y);
+		
 		this.trains = new Train[5];
 		this.name = name;
 		this.owner = null;

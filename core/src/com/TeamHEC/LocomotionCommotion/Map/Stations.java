@@ -5,7 +5,7 @@ public enum Stations {
 	OSLO,
 	STOCKHOLM,
 	HELSINKI,
-	VILNUIS,
+	VILNIUS,
 	MOSCOW,
 	DUBLIN,
 	LONDON,

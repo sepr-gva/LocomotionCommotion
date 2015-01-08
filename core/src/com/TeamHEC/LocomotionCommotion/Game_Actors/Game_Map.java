@@ -25,11 +25,12 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_Map extends Actor {
 
 	public static Texture texture = Game_TextureManager.tempMap; // reuse the new game back btn texture
-	public static float actorX =100 ,actorY = 60;
+	public static float actorX = 100 ,actorY = 60;
 	public boolean started = false;
 	
-
 	public Game_Map(){
+		
+		/*
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -37,7 +38,7 @@ public class Game_Map extends Actor {
 				return true;
 			}
 		});
-		
+		*/
 	}
 
 

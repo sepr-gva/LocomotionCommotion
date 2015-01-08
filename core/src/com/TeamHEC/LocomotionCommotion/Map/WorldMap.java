@@ -22,35 +22,35 @@ public class WorldMap implements Serializable{
 	}
 	
 	// List of Stations:
-	// String name, int baseValue, Fuel fuelType, int baseFuelOut, Line lineType, int rentValue
+	// String name, int baseValue, Fuel fuelType, int baseFuelOut, Line lineType, int rentValue, xcoordinate and ycoordinate
 	
 	// NEEDS UPDATING WITH FUEL AND VALUE ETC!
 	//Line colour takes an array of 3 colours, if a station needs less than 3 set the first one(s) to the colour you want and repeat the last unique colour
 	//e.g. for a station on a black and blue line the second and third slots of the array must be the same (order of colours is otherwise irrelevant)
 	
-	private final Station LONDON = new Station("London", 10, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 10);
-	private final Station PARIS = new Station("Paris", 10, new Electric(500), 10, new Line[]{Line.Yellow, Line.Black, Line.Black}, 10);
-	private final Station REYKJAVIK = new Station("Reykjavik", 10, new Electric(500), 10, new Line[]{Line.Blue, Line.Black, Line.Black}, 10);
-	private final Station DUBLIN = new Station("Dublin", 10, new Coal(500), 10, new Line[]{Line.Orange, Line.Black, Line.Black}, 10);
-	private final Station AMSTERDAM = new Station("Amsterdam", 10, new Coal(500), 10, new Line[]{Line.Orange, Line.Orange, Line.Orange}, 10);
-	private final Station OSLO = new Station("Oslo", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Blue, Line.Blue}, 10);
-	private final Station STOCKHOLM = new Station("Stockholm", 10, new Oil(500), 10, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 10);
-	private final Station HELSINKI = new Station("Helsinki", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Blue, Line.Blue}, 10);
-	private final Station VILNIUS = new Station("Vilnuis", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Brown, Line.Brown}, 10);
-	private final Station MOSCOW = new Station("Moscow", 10, new Oil(500), 10, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 10);
-	private final Station WARSAW = new Station("Warsaw", 10, new Oil(500), 10, new Line[]{Line.Red, Line.Orange, Line.Orange}, 10);
-	private final Station PRAGUE = new Station("Prague", 10, new Oil(500), 10, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 10);
-	private final Station VIENNA = new Station("Vienna", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Brown, Line.Brown}, 10);
-	private final Station ROME = new Station("Rome", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Green, Line.Green}, 10);
-	private final Station MADRID = new Station("Madrid", 10, new Oil(500), 10, new Line[]{Line.Yellow, Line.Orange, Line.Orange}, 10);
-	private final Station LISBON = new Station("Lisbon", 10, new Oil(500), 10, new Line[]{Line.Yellow, Line.Green, Line.Green}, 10);
-	private final Station MONACO = new Station("Monaco", 10, new Oil(500), 10, new Line[]{Line.Black, Line.Orange, Line.Orange}, 10);
-	private final Station ATHENS = new Station("Athens", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Green, Line.Green}, 10);
-	private final Station BERLIN = new Station("Berlin", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Red, Line.Red}, 10);
-	private final Station BERN = new Station("Bern", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Orange, Line.Orange}, 10);
+	private final Station AMSTERDAM = new Station("Amsterdam", 10, new Coal(500), 10, new Line[]{Line.Orange, Line.Orange, Line.Orange}, 10, 615f, 560f);
+	private final Station ATHENS = new Station("Athens", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Green, Line.Green}, 10,  1121f, 170f);
+	private final Station BERLIN = new Station("Berlin", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Red, Line.Red}, 10, 731f, 560f);
+	private final Station BERN = new Station("Bern", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Orange, Line.Orange}, 10, 731f, 300f);
+	private final Station DUBLIN = new Station("Dublin", 10, new Coal(500), 10, new Line[]{Line.Orange, Line.Black, Line.Black}, 10, 471f, 560f);
+	private final Station HELSINKI = new Station("Helsinki", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Blue, Line.Blue}, 10, 1121f, 820f);
+	private final Station LISBON = new Station("Lisbon", 10, new Oil(500), 10, new Line[]{Line.Yellow, Line.Green, Line.Green}, 10, 341f, 170f);
+	private final Station LONDON = new Station("London", 10, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 10, 471f, 430f);
+	private final Station MADRID = new Station("Madrid", 10, new Oil(500), 10, new Line[]{Line.Yellow, Line.Orange, Line.Orange}, 10, 471f, 300f);
+	private final Station MONACO = new Station("Monaco", 10, new Oil(500), 10, new Line[]{Line.Black, Line.Orange, Line.Orange}, 10, 601f, 300f);
+	private final Station MOSCOW = new Station("Moscow", 10, new Oil(500), 10, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 10, 1381f, 560f);
+	private final Station OSLO = new Station("Oslo", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Blue, Line.Blue}, 10, 731f, 820f);
+	private final Station PARIS = new Station("Paris", 10, new Electric(500), 10, new Line[]{Line.Yellow, Line.Black, Line.Black}, 10, 601f, 430f);
+	private final Station PRAGUE = new Station("Prague", 10, new Oil(500), 10, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 10, 861f, 430f);
+	private final Station REYKJAVIK = new Station("Reykjavik", 10, new Electric(500), 10, new Line[]{Line.Blue, Line.Black, Line.Black}, 10, 211f, 820f);
+	private final Station ROME = new Station("Rome", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Green, Line.Green}, 10, 861f, 170f);
+	private final Station STOCKHOLM = new Station("Stockholm", 10, new Oil(500), 10, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 10, 861f, 820f);
+	private final Station VIENNA = new Station("Vienna", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Brown, Line.Brown}, 10, 991f, 300f);
+	private final Station VILNIUS = new Station("Vilnuis", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Brown, Line.Brown}, 10, 1121f, 690f);
+	private final Station WARSAW = new Station("Warsaw", 10, new Oil(500), 10, new Line[]{Line.Red, Line.Orange, Line.Orange}, 10, 861f, 560f);
 	
 	// Specify coordinates of each junction here:
-	private final Junction[] junction = new Junction[]{new Junction(1.5f, 1.5f), new Junction(1.5f, 1.5f)};
+	private final Junction[] junction = new Junction[]{new Junction(731f, 430f), new Junction(991f, 560f)};
 	
 	//CALLUM NEEDS A COPY OF ALL THE STATIONS SO HE MADE THIS SO HE CAN ACCESS THEM
 	public ArrayList<Station> stationsList = new ArrayList<Station>() {	 		 
@@ -81,31 +81,14 @@ public class WorldMap implements Serializable{
 	
 	private WorldMap()
 	{
-		// Set Station positions (could go in constructor of station tbh)
-		stationPos(AMSTERDAM, 620f, 1300f);
-		stationPos(ATHENS, 1140f, 400f);
-		stationPos(BERLIN, 750f, 1300f);
-		stationPos(BERN, 750f, 1300f);
-		stationPos(DUBLIN, 490f, 1300f);
-		stationPos(HELSINKI, 1140f, 1900f);
-		stationPos(LISBON, 360f, 400f);
-		stationPos(LONDON, 490f, 1000f);
-		stationPos(MADRID, 490f, 700f);
-		stationPos(MONACO, 620, 700f);
-		stationPos(MOSCOW, 1400f, 1300f);
+		
+		/*
 		stationPos(OSLO, 750f, 1900f);
 		stationPos(PARIS, 620f, 1000f);
 		stationPos(PRAGUE, 880f, 1000f);
-		stationPos(REYKJAVIK, 230f, 1900f);
-		stationPos(ROME, 880f, 400f);
-		stationPos(STOCKHOLM, 880f, 1900f);
-		stationPos(VIENNA, 1010f, 700f);
-		stationPos(VILNIUS, 1140f, 1600f);
-		stationPos(WARSAW, 800f, 1300f);
-		
-		junctionPos(junction[0], 750f, 1000f);
-		junctionPos(junction[1], 1010f, 1300f);
-		
+		stationPos(REYKJAVIK, 215f, 820f); // 230 1900
+	
+		*/
 		// Creates a connection instance for each:
 		
 		createConnections(REYKJAVIK, new MapObj[]{OSLO, DUBLIN});
@@ -126,19 +109,6 @@ public class WorldMap implements Serializable{
 		createConnections(ROME, new MapObj[]{LISBON, BERN, ATHENS});
 		createConnections(MONACO, new MapObj[]{MADRID, PARIS, BERN});
 		createConnections(BERN, new MapObj[]{MONACO, junction[0], PRAGUE});
-	}
-	
-	// could go in constructor instead..
-	public void stationPos(Station station, float x, float y)
-	{
-		station.x = x;
-		station.y = y;
-	}
-	
-	public void junctionPos(Junction junction, float x, float y)
-	{
-		junction.x = x;
-		junction.y = y;
 	}
 	
 	/*
