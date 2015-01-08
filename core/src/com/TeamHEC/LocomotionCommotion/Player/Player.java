@@ -47,7 +47,7 @@ public class Player implements Serializable {
 	public ArrayList<Train> trains;
 	public Carriage carriages;
 	public ArrayList<Station> stations;
-	public int[] lines = new int[7];
+	public int[] lines = new int[8];
 	protected ArrayList<PlayerListener> listeners = new ArrayList<PlayerListener>();
 	
 	private HashMap<String, Fuel> playerFuel;
@@ -173,22 +173,34 @@ public class Player implements Serializable {
 	{
 		stations.add(station);
 		this.subGold(station.getTotalValue());
-		switch(station.getLineType())
-		{ //keeps track of how many of a line the player owns
-		case Red:
-			lines[0] += 1;			
-		case Blue:
-			lines[1] += 1;
-		case Green:
-			lines[2] += 1;
-		case Yellow:
-			lines[3] += 1;
-		case Purple: 
-			lines[4] += 1;
-		case Black:
-			lines[5] += 1;
-		case Brown:
-			lines[6] += 1;
+		for (int i=0; i<3; i++)
+		{	
+			if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
+				//Line is an array of 3 line colours, this loop will add the first line colour
+				//then if a station is on another line of a different colour it will add that
+				//hence when i > 0 (checking the second colour) AND is a different colour to the previous colour
+				//add that colour to the players lines
+			{
+				switch(station.getLineType()[i])
+				{ //keeps track of how many of a line the player owns
+				case Red:
+					lines[0] += 1;			
+				case Blue:
+					lines[1] += 1;
+				case Green:
+					lines[2] += 1;
+				case Yellow:
+					lines[3] += 1;
+				case Purple: 
+					lines[4] += 1;
+				case Black:
+					lines[5] += 1;
+				case Brown:
+					lines[6] += 1;
+				case Orange:
+					lines[7] += 1;
+				}
+			}
 		}
 		for (PlayerListener listener: listeners)
 		{
@@ -200,22 +212,31 @@ public class Player implements Serializable {
 	
 	public void sellStation(Station station)
 	{
-		switch(station.getLineType())
-		{ //keeps track of how many of a line the player owns
-		case Red:
-			lines[0] -= 1;			
-		case Blue:
-			lines[1] -= 1;
-		case Green:
-			lines[2] -= 1;
-		case Yellow:
-			lines[3] -= 1;
-		case Purple: 
-			lines[4] -= 1;
-		case Black:
-			lines[5] -= 1;
-		case Brown:
-			lines[6] -= 1;
+		for (int i=0; i<3; i++)
+		{	
+			if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
+			{
+				//same method as in purchase station
+				switch(station.getLineType()[i])
+				{ //keeps track of how many of a line the player owns
+				case Red:
+					lines[0] -= 1;			
+				case Blue:
+					lines[1] -= 1;
+				case Green:
+					lines[2] -= 1;
+				case Yellow:
+					lines[3] -= 1;
+				case Purple: 
+					lines[4] -= 1;
+				case Black:
+					lines[5] -= 1;
+				case Brown:
+					lines[6] -= 1;
+				case Orange:
+					lines[7] -= 1;
+				}
+			}
 		}
 		this.addGold((int)(station.getTotalValue() * 0.7));
 		station.setOwner(null);
@@ -256,6 +277,8 @@ public class Player implements Serializable {
 					//black bonus
 				case 6:
 					//brown bonus
+				case 7:
+					//orange bonus
 			}
 		}
 	}
