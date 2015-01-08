@@ -29,6 +29,7 @@ public class Game_Map_Manager {
 		mapActors=0;
 		map = new Map();		
 		actors.add(map);
+	
 		
 		stagestart= stage.getActors().size;
 		for (Actor a : actors){
@@ -54,7 +55,7 @@ public class Game_Map_Manager {
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-					((Game_Map)event.getTarget()).started = true;
+					((Map)event.getTarget()).started = true;
 					return true;
 				}
 			});
