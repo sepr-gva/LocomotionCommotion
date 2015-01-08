@@ -23,14 +23,14 @@ public class Station extends MapObj implements PlayerListener{
 	private Fuel fuelType;
 	private int baseFuelOut;
 	private int fuelOutMod;
-	private Line line = null;//max number of lines on one station is 3, alter if this changes
+	private Line[] line = null;//max number of lines on one station is 3, alter if this changes
 	private int rentValue;
 	private int rentValueMod;
 	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
 	protected Player player1;//the players station will listen too
 	protected Player player2;//will need name changes later, not sure this listener stuff is still gonna be used
 	
-	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line line, int rentValue)
+	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line[] line, int rentValue)
 	{
 		this.trains = new Train[5];
 		this.name = name;
@@ -132,7 +132,7 @@ public class Station extends MapObj implements PlayerListener{
 		owner = newOwner;
 	}
 	
-	public Line getLineType()
+	public Line[] getLineType()
 	{
 			return line;
 	}
