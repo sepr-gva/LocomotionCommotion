@@ -34,7 +34,7 @@ public class WorldMap implements Serializable{
 	private final Station OSLO = new Station("Oslo", 10, new Oil(500), 10, Line.Black, 10);
 	private final Station STOCKHOLM = new Station("Stockholm", 10, new Oil(500), 10, Line.Black, 10);
 	private final Station HELSINKI = new Station("Helsinki", 10, new Oil(500), 10, Line.Black, 10);
-	private final Station VILNUIS = new Station("Vilnuis", 10, new Oil(500), 10, Line.Black, 10);
+	private final Station VILNIUS = new Station("Vilnuis", 10, new Oil(500), 10, Line.Black, 10);
 	private final Station MOSCOW = new Station("Moscow", 10, new Oil(500), 10, Line.Black, 10);
 	private final Station WARSAW = new Station("Warsaw", 10, new Oil(500), 10, Line.Black, 10);
 	private final Station PRAGUE = new Station("Prague", 10, new Oil(500), 10, Line.Black, 10);
@@ -63,7 +63,7 @@ public class WorldMap implements Serializable{
 	add(OSLO);
 	add(STOCKHOLM);
 	add(HELSINKI);
-	add(VILNUIS);
+	add(VILNIUS);
 	add(MOSCOW);
 	add(WARSAW);
 	add(PRAGUE);
@@ -80,9 +80,29 @@ public class WorldMap implements Serializable{
 	private WorldMap()
 	{
 		// Set Station positions (could go in constructor of station tbh)
-		stationPos(LONDON, 1.5f, 1.5f);
-		stationPos(REYKJAVIK, 1.5f, 1.5f);
-		// and so on....
+		stationPos(AMSTERDAM, 620f, 1300f);
+		stationPos(ATHENS, 1140f, 400f);
+		stationPos(BERLIN, 750f, 1300f);
+		stationPos(BERN, 750f, 1300f);
+		stationPos(DUBLIN, 490f, 1300f);
+		stationPos(HELSINKI, 1140f, 1900f);
+		stationPos(LISBON, 360f, 400f);
+		stationPos(LONDON, 490f, 1000f);
+		stationPos(MADRID, 490f, 700f);
+		stationPos(MONACO, 620, 700f);
+		stationPos(MOSCOW, 1400f, 1300f);
+		stationPos(OSLO, 750f, 1900f);
+		stationPos(PARIS, 620f, 1000f);
+		stationPos(PRAGUE, 880f, 1000f);
+		stationPos(REYKJAVIK, 230f, 1900f);
+		stationPos(ROME, 880f, 400f);
+		stationPos(STOCKHOLM, 880f, 1900f);
+		stationPos(VIENNA, 1010f, 700f);
+		stationPos(VILNIUS, 1140f, 1600f);
+		stationPos(WARSAW, 800f, 1300f);
+		
+		junctionPos(junction[0], 750f, 1000f);
+		junctionPos(junction[1], 1010f, 1300f);
 		
 		// Creates a connection instance for each:
 		
@@ -97,14 +117,13 @@ public class WorldMap implements Serializable{
 		createConnections(OSLO, new MapObj[]{STOCKHOLM, REYKJAVIK, BERLIN});
 		createConnections(WARSAW, new MapObj[]{BERLIN, STOCKHOLM, junction[1], PRAGUE});
 		createConnections(STOCKHOLM, new MapObj[]{OSLO, WARSAW, HELSINKI});
-		createConnections(HELSINKI, new MapObj[]{STOCKHOLM, VILNUIS, MOSCOW});
+		createConnections(HELSINKI, new MapObj[]{STOCKHOLM, VILNIUS, MOSCOW});
 		createConnections(MOSCOW, new MapObj[]{HELSINKI, junction[1]});
 		createConnections(PRAGUE, new MapObj[]{WARSAW, junction[0], junction[1], BERN, VIENNA});
 		createConnections(VIENNA, new MapObj[]{PRAGUE, ATHENS});
 		createConnections(ROME, new MapObj[]{LISBON, BERN, ATHENS});
 		createConnections(MONACO, new MapObj[]{MADRID, PARIS, BERN});
 		createConnections(BERN, new MapObj[]{MONACO, junction[0], PRAGUE});
-	
 	}
 	
 	// could go in constructor instead..
@@ -112,6 +131,12 @@ public class WorldMap implements Serializable{
 	{
 		station.x = x;
 		station.y = y;
+	}
+	
+	public void junctionPos(Junction junction, float x, float y)
+	{
+		junction.x = x;
+		junction.y = y;
 	}
 	
 	/*
