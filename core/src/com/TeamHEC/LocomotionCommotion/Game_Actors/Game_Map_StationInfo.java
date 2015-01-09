@@ -22,22 +22,30 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * 				Action- None
  */
 
-public class Game_Map_Info extends Actor {
+public class Game_Map_StationInfo extends Actor {
 
-	public static Texture texture = Game_TextureManager.mapInfo; 
-	public static float actorX = 500 ,actorY = 100;
-	public boolean started = false;
-	
+	public static Texture texture = Game_Map_TextureManager.stationInfo;
+	public  float actorX = 0 ,actorY = 0;
+	public boolean started = false, highlighted=false, exit =false;
 
-	public Game_Map_Info(){
+
+	public Game_Map_StationInfo(){
+		this.actorX=0;
+		this.actorY=0;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
-			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_Map_Info)event.getTarget()).started = true;
-				return true;
+			public void enter(InputEvent event, float x, float y, int pointer, Actor Game_Map_StationInfo) {
+				((Game_Map_StationInfo)event.getTarget()).started = true;
 			}
+
 		});
-		
+		addListener(new InputListener(){
+			public void exit(InputEvent event, float x, float y, int pointer, Actor Game_Map_StationInfo) {
+				((Game_Map_StationInfo)event.getTarget()).exit = true;
+			}
+
+		});
+
 	}
 
 
@@ -49,7 +57,31 @@ public class Game_Map_Info extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
+
+			Game_Map_Manager.selectedStation.setStarted(true);
+
 			started = false;
 		}
+
+	}
+	public float getX (){
+		return this.actorX;
+	}
+	public void setX(float x){
+		this.actorX = x;
+
+	}
+	public float getY(){
+		return this.actorY;
+	}
+	public void setY(float y){
+		this.actorY = y;
+
+	}
+
+
+	public void refreshBounds(){
+		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+
 	}
 }

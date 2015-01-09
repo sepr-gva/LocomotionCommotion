@@ -3,24 +3,36 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 public class Game_Map_Manager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
+	private final static Array<Actor> infoactors = new Array<Actor>();
 
 	public static Map map;
 	public static Game_Map_Info mapInfo;
+	public static Game_Map_StationInfo stationInfo;
 
 	public static boolean infoVisible= false;
 	public static int  stagestart, mapActors, stationTracker, numberOfStations;
+	public static Label stationLabelFuel,stationLabelName, stationLabelCost;
+	public LabelStyle style;
+	public static Game_Map_Station selectedStation;
 
 	public Game_Map_Manager(){	}
 
@@ -41,9 +53,56 @@ public class Game_Map_Manager {
 			numberOfStations++;
 		}
 
-		stagestart= stage.getActors().size;
+		stationInfo = new Game_Map_StationInfo();
+		infoactors.add(stationInfo);
+
+		//Stuff for Labels
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
+		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+		parameter.size = 23;
+
+		BitmapFont font = generator.generateFont(parameter); 
+		generator.dispose();
+		style = new LabelStyle();
+		style.font = font;
+		//end
+		
+		stationLabelName = new Label(null, style);
+		stationLabelFuel = new Label(null, style);
+		stationLabelCost = new Label(null, style);
+		
+		stationLabelName.setText("LONDON");
+		stationLabelName.setAlignment(Align.center);		
+		stationLabelName.setColor(1,1,1,1);
+		stationLabelName.setX(Game_Map_Manager.stationInfo.getX()+100);
+		stationLabelName.setY(Game_Map_Manager.stationInfo.getY()+142);
+		
+		stationLabelFuel.setText("Type x 100");
+		stationLabelFuel.setAlignment(Align.center);		
+		stationLabelFuel.setColor(0,0,0,1);
+		stationLabelFuel.setX(Game_Map_Manager.stationInfo.getX()+100);
+		stationLabelFuel.setY(Game_Map_Manager.stationInfo.getY()+100);
+		
+		stationLabelCost.setText("5 star");
+		stationLabelCost.setAlignment(Align.center);		
+		stationLabelCost.setColor(0,0,0,1);
+		stationLabelCost.setX(Game_Map_Manager.stationInfo.getX()+100);
+		stationLabelCost.setY(Game_Map_Manager.stationInfo.getY()+60);
+		
+		infoactors.add(stationLabelName);
+		infoactors.add(stationLabelFuel);
+		infoactors.add(stationLabelCost);
+		
+
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
+			stage.addActor(a);
+		}
+		
+		stagestart= stage.getActors().size;
+		for (Actor a : infoactors){
+			a.setTouchable(Touchable.enabled);
+			a.setVisible(false);
 			stage.addActor(a);
 			mapActors ++;
 		}
@@ -68,7 +127,22 @@ public class Game_Map_Manager {
 		}
 	}
 
-	public class Map extends Actor {
+	public static void moveInfoBox(float x,float y){
+		Game_Map_Manager.stationInfo.setX(x);
+		Game_Map_Manager.stationInfo.setY(y);
+		Game_Map_Manager.stationInfo.refreshBounds();
+		
+		stationLabelName.setX(x+100);
+		stationLabelName.setY(y+142);
+		
+		stationLabelFuel.setX(x+100);
+		stationLabelFuel.setY(y+100);
+		
+		stationLabelCost.setX(x+100);
+		stationLabelCost.setY(y+60);
+	}
+	
+ 	public class Map extends Actor {
 
 		public Texture texture = Game_Map_TextureManager.map;
 		public float actorX =100;
