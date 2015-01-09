@@ -7,10 +7,10 @@ import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 
 public class TrainTest {
 
-	CoalTrain coalTrain = new CoalTrain(1,2,true, new Route(new MapObj()));
-	OilTrain oilTrain = new OilTrain(1,2,true, new Route(new MapObj()));
-	ElectricTrain electricTrain = new ElectricTrain(1,2,true, new Route(new MapObj()));
-	NuclearTrain nuclearTrain = new NuclearTrain(1,2,true, new Route(new MapObj()));
+	CoalTrain coalTrain = new CoalTrain(1,2,true, new Route(new MapObj(0, 0)));
+	OilTrain oilTrain = new OilTrain(1,2,true, new Route(new MapObj(0, 0)));
+	ElectricTrain electricTrain = new ElectricTrain(1,2,true, new Route(new MapObj(0, 0)));
+	NuclearTrain nuclearTrain = new NuclearTrain(1,2,true, new Route(new MapObj(0, 0)));
 			
 	@Test
 	public void testTrain() throws Exception {
@@ -45,10 +45,10 @@ public class TrainTest {
 	@Test
 	public void testGetFuelType() throws Exception {
 		//reset
-		coalTrain = new CoalTrain(1,2,true, new Route(new MapObj()));
-		oilTrain = new OilTrain(1,2,true, new Route(new MapObj()));
-		electricTrain = new ElectricTrain(1,2,true, new Route(new MapObj()));
-		nuclearTrain = new NuclearTrain(1,2,true, new Route(new MapObj()));
+		coalTrain = new CoalTrain(1,2,true, new Route(new MapObj(0, 0)));
+		oilTrain = new OilTrain(1,2,true, new Route(new MapObj(0, 0)));
+		electricTrain = new ElectricTrain(1,2,true, new Route(new MapObj(0, 0)));
+		nuclearTrain = new NuclearTrain(1,2,true, new Route(new MapObj(0, 0)));
 		
 		//execute
 		Assert.assertTrue(coalTrain.getFuelType() == "Coal");

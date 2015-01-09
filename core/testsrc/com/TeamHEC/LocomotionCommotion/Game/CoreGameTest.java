@@ -47,10 +47,15 @@ public class CoreGameTest {
 	
 	public CoreGameTest()
 	{
+		Line[] line1 = new Line[3];
+		Line[] line2 = new Line[3];
+		line1[1] = Line.Red;
+		line2[1] = Line.Green;
+		
 		player1Name = "Alice";
 		player2Name = "Ben";
-		Player1Start = new Station("London", 100, new Coal(100), 100, Line.Red, 100);
-		Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, Line.Blue, 200);	
+		Player1Start = new Station("London", 100, new Coal(100), 100, line1, 100, 0.01f, 0.01f);
+		Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, line2, 200, 0.01f, 0.01f);	
 		
 		player1StationList = new ArrayList<Station>();
 		player2StationList = new ArrayList<Station>();		
