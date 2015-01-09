@@ -28,26 +28,27 @@ public class WorldMap implements Serializable{
 	//Line colour takes an array of 3 colours, if a station needs less than 3 set the first one(s) to the colour you want and repeat the last unique colour
 	//e.g. for a station on a black and blue line the second and third slots of the array must be the same (order of colours is otherwise irrelevant)
 	
-	private final Station AMSTERDAM = new Station("Amsterdam", 10, new Coal(500), 10, new Line[]{Line.Orange, Line.Orange, Line.Orange}, 10, 615f, 560f);
-	private final Station ATHENS = new Station("Athens", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Green, Line.Green}, 10,  1121f, 170f);
-	private final Station BERLIN = new Station("Berlin", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Red, Line.Red}, 10, 731f, 560f);
-	private final Station BERN = new Station("Bern", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Orange, Line.Orange}, 10, 731f, 300f);
+	private final Station AMSTERDAM = new Station("Amsterdam", 10, new Electric(500), 10, new Line[]{Line.Orange, Line.Orange, Line.Orange}, 10, 615f, 560f);
+	private final Station ATHENS = new Station("Athens", 10, new Coal(500), 10, new Line[]{Line.Brown, Line.Green, Line.Green}, 10,  1121f, 170f);
+	private final Station BERLIN = new Station("Berlin", 10, new Nuclear(500), 10, new Line[]{Line.Purple, Line.Red, Line.Red}, 10, 731f, 560f);
+	private final Station BERN = new Station("Bern", 10, new Nuclear(500), 10, new Line[]{Line.Purple, Line.Orange, Line.Orange}, 10, 731f, 300f);
 	private final Station DUBLIN = new Station("Dublin", 10, new Coal(500), 10, new Line[]{Line.Orange, Line.Black, Line.Black}, 10, 471f, 560f);
 	private final Station HELSINKI = new Station("Helsinki", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Blue, Line.Blue}, 10, 1121f, 820f);
-	private final Station LISBON = new Station("Lisbon", 10, new Oil(500), 10, new Line[]{Line.Yellow, Line.Green, Line.Green}, 10, 341f, 170f);
+	private final Station LISBON = new Station("Lisbon", 10, new Electric(500), 10, new Line[]{Line.Yellow, Line.Green, Line.Green}, 10, 341f, 170f);
 	private final Station LONDON = new Station("London", 10, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 10, 471f, 430f);
-	private final Station MADRID = new Station("Madrid", 10, new Oil(500), 10, new Line[]{Line.Yellow, Line.Orange, Line.Orange}, 10, 471f, 300f);
-	private final Station MONACO = new Station("Monaco", 10, new Oil(500), 10, new Line[]{Line.Black, Line.Orange, Line.Orange}, 10, 601f, 300f);
-	private final Station MOSCOW = new Station("Moscow", 10, new Oil(500), 10, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 10, 1381f, 560f);
+	private final Station MADRID = new Station("Madrid", 10, new Electric(500), 10, new Line[]{Line.Yellow, Line.Orange, Line.Orange}, 10, 471f, 300f);
+	//Gold is not currently accpeted as a fuel type for station output so for now Monaco gives nuclear
+	private final Station MONACO = new Station("Monaco", 10, new Nuclear(500), 10, new Line[]{Line.Black, Line.Orange, Line.Orange}, 10, 601f, 300f);
+	private final Station MOSCOW = new Station("Moscow", 10, new Nuclear(500), 10, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 10, 1381f, 560f);
 	private final Station OSLO = new Station("Oslo", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Blue, Line.Blue}, 10, 731f, 820f);
 	private final Station PARIS = new Station("Paris", 10, new Electric(500), 10, new Line[]{Line.Yellow, Line.Black, Line.Black}, 10, 601f, 430f);
 	private final Station PRAGUE = new Station("Prague", 10, new Oil(500), 10, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 10, 861f, 430f);
 	private final Station REYKJAVIK = new Station("Reykjavik", 10, new Electric(500), 10, new Line[]{Line.Blue, Line.Black, Line.Black}, 10, 211f, 820f);
-	private final Station ROME = new Station("Rome", 10, new Oil(500), 10, new Line[]{Line.Purple, Line.Green, Line.Green}, 10, 861f, 170f);
+	private final Station ROME = new Station("Rome", 10, new Coal(500), 10, new Line[]{Line.Purple, Line.Green, Line.Green}, 10, 861f, 170f);
 	private final Station STOCKHOLM = new Station("Stockholm", 10, new Oil(500), 10, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 10, 861f, 820f);
 	private final Station VIENNA = new Station("Vienna", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Brown, Line.Brown}, 10, 991f, 300f);
 	private final Station VILNIUS = new Station("Vilnuis", 10, new Oil(500), 10, new Line[]{Line.Brown, Line.Brown, Line.Brown}, 10, 1121f, 690f);
-	private final Station WARSAW = new Station("Warsaw", 10, new Oil(500), 10, new Line[]{Line.Red, Line.Orange, Line.Orange}, 10, 861f, 560f);
+	private final Station WARSAW = new Station("Warsaw", 10, new Coal(500), 10, new Line[]{Line.Red, Line.Orange, Line.Orange}, 10, 861f, 560f);
 	
 	// Specify coordinates of each junction here:
 	private final Junction[] junction = new Junction[]{new Junction(731f, 430f), new Junction(991f, 560f)};
