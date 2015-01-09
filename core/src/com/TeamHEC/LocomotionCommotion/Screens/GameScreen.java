@@ -54,8 +54,8 @@ public class GameScreen implements Screen {
 		//Set up stage camera
 		stage = new Stage(); 
 		Camera camera = stage.getCamera();
-		camera.viewportHeight= LocomotionCommotion.screenY;
-		camera.viewportWidth= LocomotionCommotion.screenX;
+		camera.viewportHeight= Gdx.graphics.getHeight();
+		camera.viewportWidth= Gdx.graphics.getWidth();
 		camera.update();
 
 		//Instantiate the Managers

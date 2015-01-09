@@ -5,7 +5,6 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
  * 
  */
 
-import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -63,7 +62,7 @@ public class Game_menuObject_AManager {
 		playerScore.setText(GameScreen.player1name+"    " + GameScreen.player1score +
 							"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.player2name );
 		playerScore.setX(600);
-		playerScore.setY(LocomotionCommotion.screenY-90);
+		playerScore.setY(Gdx.graphics.getHeight()- playerScore.getHeight() -45);
 		
 		
 		game_menuobject_topbar = new Game_menuobject_TopBar();

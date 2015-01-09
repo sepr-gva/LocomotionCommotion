@@ -40,8 +40,6 @@ public class LocomotionCommotion extends Game {
 		gameScreen = null;
 		gameScreen = new GameScreen();
 		GameScreen.create();
-		screenX = 1680;
-		screenY = 1050;
 		gameScreen.resetScreen();
 		Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 		setScreen(gameScreen);

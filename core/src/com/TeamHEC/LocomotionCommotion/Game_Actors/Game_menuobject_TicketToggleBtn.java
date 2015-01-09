@@ -1,8 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -26,8 +26,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_TicketToggleBtn extends Actor {
 
-	Texture texture = Game_TextureManager.game_menuobject_ticketbtn; // reuse the new game back btn texture
-	float actorX = 30 ,actorY = LocomotionCommotion.screenY-115;
+	Texture texture = Game_TextureManager.game_menuobject_ticketbtn; 
+	float actorX = 30 ,actorY = Gdx.graphics.getHeight()- texture.getHeight() -15;
 	public boolean started = false;
 
 	public Game_menuobject_TicketToggleBtn(){

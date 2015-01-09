@@ -27,6 +27,7 @@ public class SM_newgame_BackBtn extends Actor {
 	Texture texture = SM_TextureManager.sm_newgame_BackBtn;
 	float actorX = 1100 ,actorY = 1050+760;
 	public boolean started = false;
+	int animationTracker1,animationTracker2;
 
 	public SM_newgame_BackBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
@@ -47,23 +48,39 @@ public class SM_newgame_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(100, -900);
-			SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.sm_newgameTurnTimeOut_unselected_Btn;
-			SM_newgame_StationDomBtn.texture =SM_TextureManager.sm_newgame_StationDom_unselected_Btn ;
-			StartMenu.textbox1.setText("");
-			StartMenu.textbox2.setText("");
-			SM_newgame_Turn50Btn.texture = SM_TextureManager.sm_newgame_Turn50_unselected_Btn;
-			SM_newgame_Turn100Btn.texture = SM_TextureManager.sm_newgame_Turn100_unselected_Btn;
-			SM_newgame_Turn150Btn.texture = SM_TextureManager.sm_newgame_Turn150_unselected_Btn;
-			StartMenu.gameMode=null;
-			StartMenu.player1name= null;
-			StartMenu.player2name= null;
-			StartMenu.turnChoice=0;
-			//SM_main_NewGameBtn.resetAnimation() ;
 			
-			
-			
-			started = false;
+			if (animationTracker1<90){
+				StartMenu.changeCam(15,0);
+				animationTracker1+=15;
+			}
+			else{
+				if(animationTracker2<950){
+					StartMenu.changeCam(0,-15);
+					animationTracker2+=15;
+				}
+				else{
+					resetNewGameScreen();
+					started = false;
+					animationTracker1=0;
+					animationTracker2=0;
+				}
+			}
 		}
+		
+			
+	}
+	
+	public void resetNewGameScreen(){
+		SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.sm_newgameTurnTimeOut_unselected_Btn;
+		SM_newgame_StationDomBtn.texture =SM_TextureManager.sm_newgame_StationDom_unselected_Btn ;
+		StartMenu.textbox1.setText("");
+		StartMenu.textbox2.setText("");
+		SM_newgame_Turn50Btn.texture = SM_TextureManager.sm_newgame_Turn50_unselected_Btn;
+		SM_newgame_Turn100Btn.texture = SM_TextureManager.sm_newgame_Turn100_unselected_Btn;
+		SM_newgame_Turn150Btn.texture = SM_TextureManager.sm_newgame_Turn150_unselected_Btn;
+		StartMenu.gameMode=null;
+		StartMenu.player1name= null;
+		StartMenu.player2name= null;
+		StartMenu.turnChoice=0;
 	}
 }

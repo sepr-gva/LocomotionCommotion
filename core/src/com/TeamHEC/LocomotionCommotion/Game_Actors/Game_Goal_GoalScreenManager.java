@@ -10,6 +10,9 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_AddGoalBtn;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_BackBtn;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_Backdrop;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

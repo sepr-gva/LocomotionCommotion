@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import java.util.HashMap;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RemoveBtn;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

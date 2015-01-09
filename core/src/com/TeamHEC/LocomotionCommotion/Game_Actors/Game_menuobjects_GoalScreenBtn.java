@@ -1,8 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
-import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -27,7 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_menuobjects_GoalScreenBtn extends Actor {
 
 	Texture texture = Game_TextureManager.game_goals_goalscreenbtn; // reuse the new game back btn texture
-	float actorX = 110 ,actorY = LocomotionCommotion.screenY-110;
+	float actorX = 110 ,actorY = Gdx.graphics.getHeight()- texture.getHeight() -25;
 	public boolean started = false;
 
 	public Game_menuobjects_GoalScreenBtn(){

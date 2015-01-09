@@ -50,17 +50,18 @@ public class SM_main_NewGameBtn extends Actor {
 	public void act(float delta){
 		if(started){
 					
-					if (animationTracker1<900){
-						StartMenu.changeCam(0,10);
-						animationTracker1+=10;
+					if (animationTracker1<950){
+						StartMenu.changeCam(0,15);
+						animationTracker1+=15;
 					}
 					else{
-						if(animationTracker2<100){
-							StartMenu.changeCam(-10,0);
-							animationTracker2+=10;
+						if(animationTracker2<90){
+							StartMenu.changeCam(-15,0);
+							animationTracker2+=15;
 						}
 						else{
 							started = false;
+							animationTracker1=0;
 							animationTracker2=0;
 						}
 					}
