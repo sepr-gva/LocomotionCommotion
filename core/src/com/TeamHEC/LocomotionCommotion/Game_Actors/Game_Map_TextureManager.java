@@ -11,6 +11,7 @@ public class Game_Map_TextureManager {
 	public static Texture map = new Texture(Gdx.files.internal("gameScreen/game_map/map.png"));
 	public static Texture mapInfo = new Texture(Gdx.files.internal("gameScreen/game_map/mapinfo.png"));
 	public static Texture station = new Texture(Gdx.files.internal("gameScreen/game_map/station.png"));
+	public static Texture stationx2 = new Texture(Gdx.files.internal("gameScreen/game_map/Stop.png"));
 
 
 }
