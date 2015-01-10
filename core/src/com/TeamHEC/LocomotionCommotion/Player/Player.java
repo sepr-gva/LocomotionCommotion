@@ -102,7 +102,7 @@ public class Player implements Serializable {
 	{
 		playerFuel.get(fuelType).subValue(quantity);
 	}
-
+	
 	//Gold
 	public int getGold()
 	{

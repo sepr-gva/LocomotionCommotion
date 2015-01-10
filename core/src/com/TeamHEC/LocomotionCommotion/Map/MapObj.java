@@ -5,9 +5,7 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Event.Event;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
-import com.badlogic.gdx.graphics.Texture;
 
 public class MapObj implements Serializable{
 	
@@ -15,8 +13,6 @@ public class MapObj implements Serializable{
 	public Train[] trains;
 	public Event currentEvent;
 	
-	// could use this somehow for selecting MapObjs?
-	private Texture blipImage = Game_TextureManager.mapBlip;
 	private Game_Map_Station actor;
 	
 	public ArrayList<Connection> connections = new ArrayList<Connection>();
@@ -39,16 +35,6 @@ public class MapObj implements Serializable{
 		return actor;
 	}
 	
-	public void showBlip()
-	{
-		// texture. add ?
-	}
-	
-	public void hideBlip()
-	{
-		// Texture.remove ?
-	}
-		
 	public Train[] getTrains()
 	{
 		return trains;
@@ -57,5 +43,16 @@ public class MapObj implements Serializable{
 	public Event getEvent()
 	{
 		return currentEvent;
+	}
+	
+	// Overridden methods in subclass station:
+	public String getName()
+	{
+		return "Overriden by Station";
+	}
+	
+	public int getTotalRent()
+	{
+		return -1;
 	}
 }

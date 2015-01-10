@@ -82,14 +82,6 @@ public class WorldMap implements Serializable{
 	
 	private WorldMap()
 	{
-		
-		/*
-		stationPos(OSLO, 750f, 1900f);
-		stationPos(PARIS, 620f, 1000f);
-		stationPos(PRAGUE, 880f, 1000f);
-		stationPos(REYKJAVIK, 215f, 820f); // 230 1900
-	
-		*/
 		// Creates a connection instance for each:
 		
 		createConnections(REYKJAVIK, new MapObj[]{OSLO, DUBLIN});
@@ -122,14 +114,6 @@ public class WorldMap implements Serializable{
 		for(int i = 0; i < connection.length; i++)
 		{
 			mapObj.connections.add(new Connection(mapObj, connection[i]));
-		}
-	}
-	
-	public void addAdjacencyMarkers(MapObj mapObj)
-	{
-		for(Connection i: mapObj.connections)
-		{
-			i.getDestination().showBlip();
 		}
 	}
 }

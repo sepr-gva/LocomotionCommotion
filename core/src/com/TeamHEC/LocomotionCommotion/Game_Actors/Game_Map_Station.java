@@ -13,9 +13,13 @@ public class Game_Map_Station extends Actor{
 	public Texture texture;
 	public float actorX, actorY;
 	public boolean started, highlighted;
+	
+	public MapObj station;
 
-	public  Game_Map_Station (MapObj station, float actorX, float actorY ){
+	public  Game_Map_Station (MapObj station, float actorX, float actorY )
+	{
 		this.texture = Game_Map_TextureManager.station;
+		this.station = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
 		this.highlighted = false;
@@ -95,6 +99,10 @@ public class Game_Map_Station extends Actor{
 			}
 			else
 			{
+				// Sets the labels to info from each station:
+				Game_Map_Manager.stationLabelName.setText(station.getName());
+				Game_Map_Manager.stationLabelCost.setText(String.format("%d", station.getTotalRent()));
+				
 				GameScreen.getStage().getActors().get(i).setVisible(true);
 				Game_Map_Manager.moveInfoBox(this.actorX-180, this.actorY-80);
 			}

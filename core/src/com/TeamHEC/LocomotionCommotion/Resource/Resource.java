@@ -44,7 +44,4 @@ public class Resource implements Serializable{
 	{
 		this.value = this.value + addResource.getValue();
 	}
-	// surely we don't need both addValue and subValue methods? just use setValue?
-	
-	// Callum: It makes life easier when using the class and doesn't take much to do. 
 }

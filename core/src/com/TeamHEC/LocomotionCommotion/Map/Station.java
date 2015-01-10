@@ -49,6 +49,7 @@ public class Station extends MapObj implements PlayerListener{
 		//player2.addListener(this);
 	}
 	
+	@Override
 	public String getName()
 	{
 		return name;
