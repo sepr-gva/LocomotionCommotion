@@ -32,7 +32,7 @@ public class Station extends MapObj implements PlayerListener{
 	
 	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
-		super(x, y);
+		super(x, y, true);
 		
 		this.trains = new Train[5];
 		this.name = name;
@@ -82,6 +82,7 @@ public class Station extends MapObj implements PlayerListener{
 		return baseValue + valueMod;
 	}
 	
+	@Override
 	public Fuel getFuelType()
 	{
 		return fuelType;

@@ -29,7 +29,7 @@ public class Game_Map_Manager {
 	public static Game_Map_StationInfo stationInfo;
 
 	public static boolean infoVisible= false;
-	public static int  stagestart, mapActors, stationTracker, numberOfStations;
+	public static int  stagestart, mapActors, stationTracker, numberOfStations, junctionTracker, numberOfJunctions = 2;
 	public static Label stationLabelFuel,stationLabelName, stationLabelCost;
 	public LabelStyle style;
 	public static Game_Map_Station selectedStation;
@@ -43,6 +43,7 @@ public class Game_Map_Manager {
 		mapActors=0;
 		stationTracker=0;
 		numberOfStations=0;
+		
 		map = new Map();		
 		actors.add(map);
 
@@ -52,7 +53,13 @@ public class Game_Map_Manager {
 			actors.add(WorldMap.getInstance().stationsList.get(i).getActor());
 			numberOfStations++;
 		}
-
+		
+		junctionTracker =stage.getActors().size;
+		for(int i = 0; i < WorldMap.getInstance().junction.length; i++)
+		{
+			actors.add(WorldMap.getInstance().junction[i].getActor());
+		}
+		
 		stationInfo = new Game_Map_StationInfo();
 		infoactors.add(stationInfo);
 
