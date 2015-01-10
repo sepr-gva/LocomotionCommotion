@@ -2,28 +2,19 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class Game_Map_Station extends Actor{
-
-	public Texture texture;
-	public float actorX, actorY;
-	public boolean started, highlighted;
-	
-	public MapObj station;
+public class Game_Map_Station extends Game_Map_MapObj{
 
 	public  Game_Map_Station (MapObj station, float actorX, float actorY )
 	{
 		this.texture = Game_Map_TextureManager.station;
-		this.station = station;
+		this.mapObj = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
-		this.highlighted = false;
-		this.started = false;
+	
 
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		//Mouse click listener - not used yet
@@ -45,11 +36,6 @@ public class Game_Map_Station extends Actor{
 //			}
 //
 //		});
-	}
-
-	@Override
-	public void draw(Batch batch, float alpha){
-		batch.draw(this.texture,actorX,actorY);
 	}
 
 	@Override
@@ -100,9 +86,9 @@ public class Game_Map_Station extends Actor{
 			else
 			{
 				// Sets the labels to info from each station:
-				Game_Map_Manager.stationLabelName.setText(station.getName());
-				Game_Map_Manager.stationLabelCost.setText(String.format("%d", station.getTotalRent()));
-				Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", station.getFuelType().getValue(), station.getFuelString()));
+				Game_Map_Manager.stationLabelName.setText(mapObj.getName());
+				Game_Map_Manager.stationLabelCost.setText(String.format("%d", mapObj.getTotalRent()));
+				Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", mapObj.getFuelType().getValue(), mapObj.getFuelString()));
 				
 				GameScreen.getStage().getActors().get(i).setVisible(true);
 				Game_Map_Manager.moveInfoBox(this.actorX-180, this.actorY-80);

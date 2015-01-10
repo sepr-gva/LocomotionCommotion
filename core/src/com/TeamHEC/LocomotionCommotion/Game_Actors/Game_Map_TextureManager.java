@@ -14,4 +14,5 @@ public class Game_Map_TextureManager {
 	public static Texture stationx2 = new Texture(Gdx.files.internal("gameScreen/game_map/Stop.png"));
 	public static Texture stationInfo = new Texture(Gdx.files.internal("gameScreen/game_map/stationInfoframe.png"));
 	public static Texture junction = new Texture(Gdx.files.internal("gameScreen/game_map/junction.png"));
+	public static Texture junctionx2 = new Texture(Gdx.files.internal("gameScreen/game_map/junction2.png"));
 }
