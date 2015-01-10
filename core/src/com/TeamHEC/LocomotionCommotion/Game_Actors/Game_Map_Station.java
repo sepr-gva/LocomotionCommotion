@@ -102,6 +102,7 @@ public class Game_Map_Station extends Actor{
 				// Sets the labels to info from each station:
 				Game_Map_Manager.stationLabelName.setText(station.getName());
 				Game_Map_Manager.stationLabelCost.setText(String.format("%d", station.getTotalRent()));
+				Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", station.getFuelType().getValue(), station.getFuelString()));
 				
 				GameScreen.getStage().getActors().get(i).setVisible(true);
 				Game_Map_Manager.moveInfoBox(this.actorX-180, this.actorY-80);

@@ -55,6 +55,12 @@ public class Station extends MapObj implements PlayerListener{
 		return name;
 	}
 	
+	@Override
+	public String getFuelString()
+	{
+		return fuelType.getType();
+	}
+	
 	public int getBaseValue()
 	{
 		return baseValue;
@@ -121,6 +127,8 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		rentValueMod-= sub;
 	}
+	
+	@Override
 	public int getTotalRent()
 	{
 		return rentValue + rentValueMod;

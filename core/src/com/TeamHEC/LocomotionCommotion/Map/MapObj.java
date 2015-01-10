@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Event.Event;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
+import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 public class MapObj implements Serializable{
@@ -45,7 +46,8 @@ public class MapObj implements Serializable{
 		return currentEvent;
 	}
 	
-	// Overridden methods in subclass station:
+	// ==========  Methods overridden in station =============
+	
 	public String getName()
 	{
 		return "Overriden by Station";
@@ -54,5 +56,15 @@ public class MapObj implements Serializable{
 	public int getTotalRent()
 	{
 		return -1;
+	}
+	
+	public String getFuelString()
+	{
+		return null;
+	}
+	
+	public Fuel getFuelType()
+	{
+		return null;
 	}
 }
