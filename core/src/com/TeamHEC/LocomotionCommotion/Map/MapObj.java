@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Event.Event;
+
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Junction;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_MapObj;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
@@ -17,8 +18,8 @@ public class MapObj implements Serializable{
 	public Event currentEvent;
 	
 	// could use this somehow for selecting MapObjs?
-	//private Texture blipImage = Game_TextureManager.mapBlip; "Commented out by callum as it is not used"
 	private Game_Map_MapObj actor;
+	//private Texture blipImage = Game_TextureManager.mapBlip; "commented by Callum. Not used"
 	
 	public ArrayList<Connection> connections = new ArrayList<Connection>();
 	

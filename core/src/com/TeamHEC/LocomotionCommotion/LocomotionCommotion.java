@@ -21,7 +21,8 @@ public class LocomotionCommotion extends Game {
 	{
 		return INSTANCE;
 	}
-		
+	
+	
 	private LocomotionCommotion(){}
 
 	public static final String TITLE = "LOCOMOTION COMOTION", VERSION = "0.0.0.1";
