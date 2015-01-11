@@ -2,6 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -94,7 +95,7 @@ public class Game_Map_Manager {
 		stationLabelFuel.setX(Game_Map_Manager.stationInfo.getX()+100);
 		stationLabelFuel.setY(Game_Map_Manager.stationInfo.getY()+100);
 		
-		stationLabelCost.setText("5 star");
+		stationLabelCost.setText("");
 		stationLabelCost.setAlignment(Align.center);		
 		stationLabelCost.setColor(0,0,0,1);
 		stationLabelCost.setX(Game_Map_Manager.stationInfo.getX()+100);
@@ -109,7 +110,6 @@ public class Game_Map_Manager {
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
 		}
-		System.out.println(infoactors.size);
 		stagestart= stage.getActors().size;
 		for (Actor a : infoactors){
 			a.setTouchable(Touchable.enabled);
@@ -123,7 +123,7 @@ public class Game_Map_Manager {
 		stage.addActor(mapInfo);
 	}
 
-	/*
+	
 	public static void resetStations(){
 		for(int i=Game_Map_Manager.stationTracker; i<=Game_Map_Manager.stationTracker +Game_Map_Manager.numberOfStations-1;i++)	//All the stations on the stage
 		{ 	
@@ -138,7 +138,7 @@ public class Game_Map_Manager {
 			}
 		}
 	}
-	*/
+	
 
 	public static void moveInfoBox(float x,float y){
 		showInfoBox();

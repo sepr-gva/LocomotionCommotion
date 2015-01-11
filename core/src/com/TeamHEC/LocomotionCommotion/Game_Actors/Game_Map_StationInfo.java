@@ -49,12 +49,7 @@ public class Game_Map_StationInfo extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-<<<<<<< Updated upstream
 
-		//	Game_Map_Manager.selectedStation.setStarted(true);
-=======
-			System.out.println(Game_Map_Manager.mapActors);
->>>>>>> Stashed changes
 			started = false;
 		}
 

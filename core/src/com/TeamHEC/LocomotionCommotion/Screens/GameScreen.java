@@ -32,11 +32,9 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
-<<<<<<< Updated upstream
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
-=======
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
->>>>>>> Stashed changes
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -97,10 +95,7 @@ public class GameScreen implements Screen {
 		
 		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
 		pauseManager.create(getStage());
-<<<<<<< Updated upstream
-		
-=======
->>>>>>> Stashed changes
+
 		//Create the game
 		game = new CoreGame(StartMenu.player1name, StartMenu.player2name, WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1), StartMenu.turnChoice);
 	}

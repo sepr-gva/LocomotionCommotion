@@ -5,20 +5,12 @@ import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-<<<<<<< Updated upstream
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_Map_Station extends Game_Map_MapObj implements StationListener {
-=======
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class Game_Map_Station extends Game_Map_MapObj{
 	public boolean owned;
->>>>>>> Stashed changes
 
 	public  Game_Map_Station (MapObj station, float actorX, float actorY)
 	{
@@ -26,36 +18,21 @@ public class Game_Map_Station extends Game_Map_MapObj{
 		this.mapObj = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
-<<<<<<< Updated upstream
 		
 		station.register(this);
-=======
 		this.owned = false;
->>>>>>> Stashed changes
 	
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-<<<<<<< Updated upstream
 
 		// Shows station info box on click:
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				//((Game_Map_Station)event.getTarget()).showInfoBox();
+				((Game_Map_Station)event.getTarget()).started = true;
 				return true;
 			}
 		});
 		
-		addListener(new InputListener(){
-			public void enter(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
-				((Game_Map_Station)event.getTarget()).toggleHighlight(true);
-			}
-
-		});
-		addListener(new InputListener(){
-			public void exit(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
-				((Game_Map_Station)event.getTarget()).toggleHighlight(false);
-			}
-
-		});
+	
 	}
 	
 	public void toggleHighlight(boolean highlighted)
@@ -76,43 +53,7 @@ public class Game_Map_Station extends Game_Map_MapObj{
 		}
 	}
 	
-	public void showInfoBox(){
-		for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++)	
-		{ 	
-			if (i > GameScreen.getStage().getActors().size-1){
-			}
-			else
-			{
-				// Sets the labels to info from each station:
-				Game_Map_Manager.stationLabelName.setText(mapObj.getName());
-				Game_Map_Manager.stationLabelCost.setText(String.format("%d", mapObj.getTotalRent()));
-				Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", mapObj.getFuelType().getValue(), mapObj.getFuelString()));
-				
-				GameScreen.getStage().getActors().get(i).setVisible(true);
-				Game_Map_Manager.moveInfoBox(this.actorX-180, this.actorY-80);
-			}
-		}		
-	}
-	
-	public void hideInfoBox(){
-		for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++)	
-		{ 	
-			if (i > GameScreen.getStage().getActors().size-1){
-			}
-			else
-			{
-				GameScreen.getStage().getActors().get(i).setVisible(false);
-			}
-		}		
-	}
-	
-	@Override
-	public void act(float delta){
-		if(started)
-		{
-			started = false;
-		}
-	}
+
 
 	@Override
 	public void ownerChanged(Station station, Player player) {
@@ -129,17 +70,10 @@ public class Game_Map_Station extends Game_Map_MapObj{
 		{
 			this.texture = Game_Map_TextureManager.p2Station;
 		}
-=======
-		addListener(new InputListener(){
-			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_Map_Station)event.getTarget()).started=true;
-				return true;
-			}
-		});
->>>>>>> Stashed changes
+	
 	}
 
-	/*
+	
 	@Override
 	public void act(float delta){
 		if(started){
@@ -183,13 +117,7 @@ public class Game_Map_Station extends Game_Map_MapObj{
 
 		}
 	}
-<<<<<<< Updated upstream
 
-	public void setStarted(Boolean b){
-		this.started =b;
-	}
-	*/
-=======
 	public void showInfoBox(){
 		for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++)	
 		{ 	
@@ -223,5 +151,4 @@ public class Game_Map_Station extends Game_Map_MapObj{
 		this.owned =b;
 	}
 	
->>>>>>> Stashed changes
 }
