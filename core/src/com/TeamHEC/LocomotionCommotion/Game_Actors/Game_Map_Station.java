@@ -14,10 +14,10 @@ public class Game_Map_Station extends Actor{
 	public float actorX, actorY;
 	public boolean started, highlighted;
 
-	public  Game_Map_Station (MapObj station, float actorX, float actorY ){
+	public  Game_Map_Station (MapObj station, float actorX, float actorY ){		
 		this.texture = Game_Map_TextureManager.station;
 		this.actorX = actorX;
-		this.actorY = actorY;
+		this.actorY = actorY;		
 		this.highlighted = false;
 		this.started = false;
 
