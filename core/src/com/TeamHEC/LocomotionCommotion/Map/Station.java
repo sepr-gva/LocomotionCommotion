@@ -7,6 +7,7 @@ import com.TeamHEC.LocomotionCommotion.Player.PlayerListener;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
+
 /**
  * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -26,9 +27,6 @@ public class Station extends MapObj implements PlayerListener{
 	private Line[] line = null;//max number of lines on one station is 3, alter if this changes
 	private int rentValue;
 	private int rentValueMod;
-	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
-	protected Player player1;//the players station will listen too
-	protected Player player2;//will need name changes later, not sure this listener stuff is still gonna be used
 	
 	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
@@ -45,17 +43,16 @@ public class Station extends MapObj implements PlayerListener{
 		this.line = line;
 		this.rentValue = rentValue;
 		this.rentValueMod = 0;
+		
 		//player1.addListener(this);
 		//player2.addListener(this);
 	}
 	
-	@Override
 	public String getName()
 	{
 		return name;
 	}
 	
-	@Override
 	public String getFuelString()
 	{
 		return fuelType.getType();
@@ -82,7 +79,6 @@ public class Station extends MapObj implements PlayerListener{
 		return baseValue + valueMod;
 	}
 	
-	@Override
 	public Fuel getFuelType()
 	{
 		return fuelType;
@@ -129,7 +125,6 @@ public class Station extends MapObj implements PlayerListener{
 		rentValueMod-= sub;
 	}
 	
-	@Override
 	public int getTotalRent()
 	{
 		return rentValue + rentValueMod;
@@ -156,26 +151,30 @@ public class Station extends MapObj implements PlayerListener{
 		
 		//player.subGold(this.getTotalValue());
 		
-		owner = player;
-		for (StationListener listener : listeners) 
-		{
-			listener.ownerChanged(player.getName());
-		}
+		setOwner(player);
+		notifyStationPurchased(this, player);
 	}
 	
-	public void addListener(StationListener listener)
+	
+	@Override
+	public void register(StationListener newListener)
 	{
-		listeners.add(listener);
+		if(newListener != null)
+			listeners.add(newListener);
 	}
 	
 	@Override
-	public void stationPurchased(Station station, Player player) 
+	public void unregister(StationListener s)
 	{
-		System.out.println(String.format("%s bought station: %s", player.getName(), station.getName()));
-		if (station==this)
+		listeners.remove(listeners.indexOf(s));
+	}
+	
+	@Override
+	public void notifyStationPurchased(Station station, Player player) 
+	{
+		for(StationListener listener: listeners)
 		{
-			this.setOwner(player);
+			listener.ownerChanged(station, player);
 		}
 	}
 }
-

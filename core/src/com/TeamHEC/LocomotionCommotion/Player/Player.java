@@ -28,7 +28,7 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
  *
  */
 
-public class Player implements Serializable {
+public class Player implements Serializable{
 
 	/**
 	 * 
@@ -51,6 +51,8 @@ public class Player implements Serializable {
 	protected ArrayList<PlayerListener> listeners = new ArrayList<PlayerListener>();
 	
 	private HashMap<String, Fuel> playerFuel;
+	
+	public boolean isPlayer1;
 	
 	public Player(String name, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
 				Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains,
@@ -202,13 +204,8 @@ public class Player implements Serializable {
 				}
 			}
 		}
-		for (PlayerListener listener: listeners)
-		{
-			listener.stationPurchased(station, this);
-		}
+		station.purchaseStation(this);
 	}
-	
-	
 	
 	public void sellStation(Station station)
 	{
@@ -241,7 +238,7 @@ public class Player implements Serializable {
 		this.addGold((int)(station.getTotalValue() * 0.7));
 		station.setOwner(null);
 		stations.remove(station);
-		
+		station.purchaseStation(null);
 	}
 	
 	public void lineBonuses()
@@ -311,10 +308,4 @@ public class Player implements Serializable {
 	{
 		return trains;
 	}
-	
-	//Listener
-	public void addListener(PlayerListener listener)
-	{
-		listeners.add(listener);
-	}	
 }

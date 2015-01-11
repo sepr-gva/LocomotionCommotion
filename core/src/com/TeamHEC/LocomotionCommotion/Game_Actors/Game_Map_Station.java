@@ -1,13 +1,15 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
+import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class Game_Map_Station extends Game_Map_MapObj{
+public class Game_Map_Station extends Game_Map_MapObj implements StationListener {
 
 	public Game_Map_Station(MapObj station, float actorX, float actorY)
 	{
@@ -15,7 +17,9 @@ public class Game_Map_Station extends Game_Map_MapObj{
 		this.mapObj = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
-	
+		
+		station.register(this);
+		
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 
 		// Shows station info box on click:
@@ -40,6 +44,7 @@ public class Game_Map_Station extends Game_Map_MapObj{
 		});
 	}
 	
+	// Needs changing - working on listeners:
 	public void setOwnerTexture(Player player)
 	{
 		if(player == null)
@@ -109,7 +114,16 @@ public class Game_Map_Station extends Game_Map_MapObj{
 			started = false;
 		}
 	}
-	
+
+	@Override
+	public void ownerChanged(Station station, Player player) {
+		// TODO Auto-generated method stub
+		toggleHighlight(true);
+		
+		//if(player.get)
+		// toggle textures
+	}
+
 	/*
 	@Override
 	public void act(float delta){

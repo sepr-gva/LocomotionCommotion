@@ -7,10 +7,10 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_Map_Junction extends Game_Map_MapObj{
 	
-	public  Game_Map_Junction (MapObj station, float actorX, float actorY )
+	public  Game_Map_Junction (MapObj junction, float actorX, float actorY )
 	{
 		this.texture = Game_Map_TextureManager.junction;
-		this.mapObj = station;
+		this.mapObj = junction;
 		this.actorX = actorX;
 		this.actorY = actorY;
 

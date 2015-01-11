@@ -16,5 +16,4 @@ public class Game_Map_MapObj extends Actor{
 	public void draw(Batch batch, float alpha){
 		batch.draw(this.texture,actorX,actorY);
 	}
-
 }
