@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Event.Event;
-
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Junction;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_MapObj;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
@@ -79,4 +78,6 @@ public class MapObj implements Serializable{
 	{
 		return null;
 	}
+	
+	public void register(StationListener newListener){}
 }

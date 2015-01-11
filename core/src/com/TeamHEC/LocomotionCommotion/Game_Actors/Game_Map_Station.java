@@ -18,6 +18,8 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		this.mapObj = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
+		
+		station.register(this);
 	
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 
@@ -42,22 +44,6 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 
 		});
 	}
-	
-	// Needs changing - working on listeners:
-	/*
-	public void setOwnerTexture(Player player)
-	{
-		if(player == null)
-			texture = Game_Map_TextureManager.station;
-		else if(player.equals(GameScreen.game.getPlayer1()))
-		{
-			texture = Game_Map_TextureManager.station;
-		}
-		else
-		{
-			texture = Game_Map_TextureManager.station;
-		}
-	}*/
 	
 	public void toggleHighlight(boolean highlighted)
 	{
@@ -120,8 +106,16 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		// TODO Auto-generated method stub
 		toggleHighlight(true);
 		
-		//if(player.get)
-		// toggle textures
+		if(player == null)
+			texture = Game_Map_TextureManager.station;
+		else if(player.isPlayer1)
+		{
+			this.texture = Game_Map_TextureManager.p1Station;
+		}
+		else
+		{
+			this.texture = Game_Map_TextureManager.p2Station;
+		}
 	}
 
 	/*

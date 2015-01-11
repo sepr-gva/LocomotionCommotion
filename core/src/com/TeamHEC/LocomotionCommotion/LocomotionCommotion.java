@@ -1,7 +1,6 @@
 package com.TeamHEC.LocomotionCommotion;
 
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
-import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.badlogic.gdx.Game;
@@ -52,9 +51,6 @@ public class LocomotionCommotion extends Game {
 		Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 		startMenu = new StartMenu();
 		setScreen(startMenu);
-		
-		newGame = new CoreGame(StartMenu.player1name, StartMenu.player2name, WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1), StartMenu.turnChoice);
-
 	}
 
 	@Override

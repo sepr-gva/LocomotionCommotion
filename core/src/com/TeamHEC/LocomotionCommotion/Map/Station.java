@@ -1,6 +1,4 @@
-	package com.TeamHEC.LocomotionCommotion.Map;
-
-import java.util.ArrayList;
+package com.TeamHEC.LocomotionCommotion.Map;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.PlayerListener;
@@ -43,9 +41,6 @@ public class Station extends MapObj implements PlayerListener{
 		this.line = line;
 		this.rentValue = rentValue;
 		this.rentValueMod = 0;
-		
-		//player1.addListener(this);
-		//player2.addListener(this);
 	}
 	
 	public String getName()
