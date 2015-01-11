@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class Game_TextureManager {
 	
+	public Game_TextureManager(){};
+	
 	//Top Bar
 	public static  Texture game_menuobject_topbar = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/TopBar.png"));
 	public static  Texture game_menuobject_menubtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/menubtn.png"));

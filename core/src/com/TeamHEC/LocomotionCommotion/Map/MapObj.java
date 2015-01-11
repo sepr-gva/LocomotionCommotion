@@ -5,9 +5,7 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Event.Event;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
-import com.badlogic.gdx.graphics.Texture;
 
 public class MapObj implements Serializable{
 	
@@ -16,7 +14,7 @@ public class MapObj implements Serializable{
 	public Event currentEvent;
 	
 	// could use this somehow for selecting MapObjs?
-	private Texture blipImage = Game_TextureManager.mapBlip;
+	//private Texture blipImage = Game_TextureManager.mapBlip; "Commented out by callum as it is not used"
 	private Game_Map_Station actor;
 	
 	public ArrayList<Connection> connections = new ArrayList<Connection>();

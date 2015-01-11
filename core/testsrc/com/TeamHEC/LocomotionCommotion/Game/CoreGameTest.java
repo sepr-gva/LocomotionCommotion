@@ -1,5 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game;
 
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import java.io.File;
@@ -9,8 +11,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.junit.Test;
-
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
@@ -47,6 +48,7 @@ public class CoreGameTest {
 	
 	public CoreGameTest()
 	{
+		LocomotionCommotion.getInstance().create();
 		Line[] line1 = new Line[3];
 		Line[] line2 = new Line[3];
 		line1[1] = Line.Red;
@@ -128,7 +130,7 @@ public class CoreGameTest {
 		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 		
 		//Good Execution
-		//Execute		
+		//Execute	
 		assertTrue("player1Name was incorrectly set", tester.getPlayer1().name == player1Name);
 		assertTrue("player2Name was incorrectly set", tester.getPlayer2().name == player2Name);
 		
