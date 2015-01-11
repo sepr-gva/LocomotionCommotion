@@ -5,21 +5,20 @@ import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_Map_Station extends Game_Map_MapObj implements StationListener {
 
-	public Game_Map_Station(MapObj station, float actorX, float actorY)
+	public  Game_Map_Station (MapObj station, float actorX, float actorY)
 	{
 		this.texture = Game_Map_TextureManager.station;
 		this.mapObj = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
-		
-		station.register(this);
-		
+	
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 
 		// Shows station info box on click:
@@ -45,6 +44,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	}
 	
 	// Needs changing - working on listeners:
+	/*
 	public void setOwnerTexture(Player player)
 	{
 		if(player == null)
@@ -57,7 +57,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		{
 			texture = Game_Map_TextureManager.station;
 		}
-	}
+	}*/
 	
 	public void toggleHighlight(boolean highlighted)
 	{

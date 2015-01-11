@@ -14,6 +14,6 @@ public class Game_Map_MapObj extends Actor{
 	
 	@Override
 	public void draw(Batch batch, float alpha){
-		batch.draw(this.texture,actorX,actorY);
+		batch.draw(this.texture, actorX, actorY);
 	}
 }
