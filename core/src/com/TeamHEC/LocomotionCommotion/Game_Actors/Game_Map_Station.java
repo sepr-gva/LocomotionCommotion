@@ -14,12 +14,11 @@ public class Game_Map_Station extends Game_Map_MapObj{
 	public float actorX, actorY;
 	public boolean started, highlighted;
 
-	public Game_Map_Station(MapObj station, float actorX, float actorY)
-	{
+	public  Game_Map_Station (MapObj station, float actorX, float actorY ){
 		this.texture = Game_Map_TextureManager.station;
 		this.mapObj = station;
 		this.actorX = actorX;
-		this.actorY = actorY;		
+		this.actorY = actorY;
 		this.highlighted = false;
 		this.started = false;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
