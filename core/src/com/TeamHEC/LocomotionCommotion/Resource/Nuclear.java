@@ -9,7 +9,7 @@ public class Nuclear extends Fuel{
 
 	public Nuclear(int value)
 	{
-		super(value);
+		super(value, "Nuclear");
 		cost = 200;
 	}
 }

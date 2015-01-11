@@ -10,6 +10,6 @@ public class Carriage extends Resource{
 	
 	public Carriage(int value)
 	{
-		super(value);		
+		super(value, "Carriage");		
 	}
 }

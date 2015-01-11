@@ -42,8 +42,6 @@ public class LocomotionCommotion extends Game {
 		gameScreen.resetScreen();
 		Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 		setScreen(gameScreen);
-		//newGame = new CoreGame(StartMenu.player1name, StartMenu.player2name, null, null, StartMenu.turnChoice);
-
 	}
 	
 	public void setMenuScreen()

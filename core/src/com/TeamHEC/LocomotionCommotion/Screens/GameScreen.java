@@ -32,6 +32,7 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -48,7 +49,7 @@ public class GameScreen implements Screen {
 	public static String player1name , player2name, gameMode ;
 	public static int turns;
 
-	public static int coal, oil, electricity, nuclear,cards, player1score=1000, player2score, gold = 1000;
+	public static int coal, oil, electricity, nuclear,cards, player1score = 0, player2score = 0, gold = 1000;
 
 	public static void create(){
 		//Set up stage camera
@@ -89,9 +90,8 @@ public class GameScreen implements Screen {
 		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
 		pauseManager.create(getStage());
 		
-		
 		//Create the game
-		//game = new CoreGame(player1name, player1name, null, null, turns);
+		game = new CoreGame(StartMenu.player1name, StartMenu.player2name, WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1), StartMenu.turnChoice);
 	}
 	@Override
 	public void render(float delta) {

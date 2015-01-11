@@ -32,7 +32,7 @@ public class Station extends MapObj implements PlayerListener{
 	
 	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
-		super(x, y);
+		super(x, y, true);
 		
 		this.trains = new Train[5];
 		this.name = name;
@@ -49,9 +49,16 @@ public class Station extends MapObj implements PlayerListener{
 		//player2.addListener(this);
 	}
 	
+	@Override
 	public String getName()
 	{
 		return name;
+	}
+	
+	@Override
+	public String getFuelString()
+	{
+		return fuelType.getType();
 	}
 	
 	public int getBaseValue()
@@ -75,6 +82,7 @@ public class Station extends MapObj implements PlayerListener{
 		return baseValue + valueMod;
 	}
 	
+	@Override
 	public Fuel getFuelType()
 	{
 		return fuelType;
@@ -120,6 +128,8 @@ public class Station extends MapObj implements PlayerListener{
 	{
 		rentValueMod-= sub;
 	}
+	
+	@Override
 	public int getTotalRent()
 	{
 		return rentValue + rentValueMod;
@@ -139,25 +149,29 @@ public class Station extends MapObj implements PlayerListener{
 			return line;
 	}
 	
-	/*public void purchaseStation(Player player)
+	public void purchaseStation(Player player)
 	{		
 		//needs conditions to check station is purchasable
 		//either added here or where purchase station will be called
-		player.subGold(this.getTotalValue());
+		
+		//player.subGold(this.getTotalValue());
+		
 		owner = player;
 		for (StationListener listener : listeners) 
 		{
-			listener.ownerChanged(player.getPlayerName());
+			listener.ownerChanged(player.getName());
 		}
-	}*/
+	}
 	
 	public void addListener(StationListener listener)
 	{
 		listeners.add(listener);
 	}
+	
 	@Override
 	public void stationPurchased(Station station, Player player) 
 	{
+		System.out.println(String.format("%s bought station: %s", player.getName(), station.getName()));
 		if (station==this)
 		{
 			this.setOwner(player);

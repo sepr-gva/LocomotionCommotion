@@ -6,6 +6,6 @@ public class Junction extends MapObj {
 
 	public Junction(float xPos, float yPos)
 	{
-		super(xPos, yPos);
+		super(xPos, yPos, false);
 	}
 }

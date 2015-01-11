@@ -4,7 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Event.Event;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Junction;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_MapObj;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
+import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 public class MapObj implements Serializable{
@@ -15,13 +18,13 @@ public class MapObj implements Serializable{
 	
 	// could use this somehow for selecting MapObjs?
 	//private Texture blipImage = Game_TextureManager.mapBlip; "Commented out by callum as it is not used"
-	private Game_Map_Station actor;
+	private Game_Map_MapObj actor;
 	
 	public ArrayList<Connection> connections = new ArrayList<Connection>();
 	
 	public float x, y;
 	
-	public MapObj(float x, float y)
+	public MapObj(float x, float y, boolean isStation)
 	{
 		this.x = x;
 		this.y = y;
@@ -29,24 +32,17 @@ public class MapObj implements Serializable{
 		trains = new Train[3];
 		currentEvent = new Event(); 
 		
-		actor = new Game_Map_Station(this, x, y); // REK = 215, 820
+		if(isStation)
+			actor = new Game_Map_Station(this, x, y);
+		else
+			actor = new Game_Map_Junction(this, x, y);
 	}
 	
-	public Game_Map_Station getActor()
+	public Game_Map_MapObj getActor()
 	{
 		return actor;
 	}
 	
-	public void showBlip()
-	{
-		// texture. add ?
-	}
-	
-	public void hideBlip()
-	{
-		// Texture.remove ?
-	}
-		
 	public Train[] getTrains()
 	{
 		return trains;
@@ -55,5 +51,27 @@ public class MapObj implements Serializable{
 	public Event getEvent()
 	{
 		return currentEvent;
+	}
+	
+	// ==========  Methods overridden in station =============
+	
+	public String getName()
+	{
+		return "Overriden by Station";
+	}
+	
+	public int getTotalRent()
+	{
+		return -1;
+	}
+	
+	public String getFuelString()
+	{
+		return null;
+	}
+	
+	public Fuel getFuelType()
+	{
+		return null;
 	}
 }

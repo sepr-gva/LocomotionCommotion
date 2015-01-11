@@ -9,7 +9,7 @@ public class Oil extends Fuel{
 
 	public Oil(int value)
 	{
-		super(value);
+		super(value, "Oil");
 		cost = 50;
 	}
 }

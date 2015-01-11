@@ -9,15 +9,22 @@ public class Resource implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private int value;
+	private String type;
 	
-	public Resource(int value)
+	public Resource(int value, String type)
 	{
 		this.value = value;
+		this.type = type;
 	}
 	
 	public int getValue()
 	{
 		return value;
+	}
+	
+	public String getType()
+	{
+		return type;
 	}
 	
 	public void setValue(int value)
@@ -44,7 +51,4 @@ public class Resource implements Serializable{
 	{
 		this.value = this.value + addResource.getValue();
 	}
-	// surely we don't need both addValue and subValue methods? just use setValue?
-	
-	// Callum: It makes life easier when using the class and doesn't take much to do. 
 }

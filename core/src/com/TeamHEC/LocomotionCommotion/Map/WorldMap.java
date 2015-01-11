@@ -51,45 +51,37 @@ public class WorldMap implements Serializable{
 	private final Station WARSAW = new Station("Warsaw", 10, new Coal(500), 10, new Line[]{Line.Red, Line.Orange, Line.Orange}, 10, 861f, 560f);
 	
 	// Specify coordinates of each junction here:
-	private final Junction[] junction = new Junction[]{new Junction(731f, 430f), new Junction(991f, 560f)};
+	public final Junction[] junction = new Junction[]{new Junction(731f, 430f), new Junction(991f, 560f)};
 	
 	//CALLUM NEEDS A COPY OF ALL THE STATIONS SO HE MADE THIS SO HE CAN ACCESS THEM
 	public ArrayList<Station> stationsList = new ArrayList<Station>() {	 		 
 		private static final long serialVersionUID = 1L;
 
 	{ 
-	add(LONDON);
-	add(PARIS);
-	add(REYKJAVIK);
-	add(DUBLIN);
-	add(AMSTERDAM);
-	add(OSLO);
-	add(STOCKHOLM);
-	add(HELSINKI);
-	add(VILNIUS);
-	add(MOSCOW);
-	add(WARSAW);
-	add(PRAGUE);
-	add(VIENNA);
-	add(ROME);
-	add(MADRID);
-	add(LISBON);
-	add(MONACO);
-	add(ATHENS);
-	add(BERLIN);
-	add(BERN);
+		add(LONDON);
+		add(PARIS);
+		add(REYKJAVIK);
+		add(DUBLIN);
+		add(AMSTERDAM);
+		add(OSLO);
+		add(STOCKHOLM);
+		add(HELSINKI);
+		add(VILNIUS);
+		add(MOSCOW);
+		add(WARSAW);
+		add(PRAGUE);
+		add(VIENNA);
+		add(ROME);
+		add(MADRID);
+		add(LISBON);
+		add(MONACO);
+		add(ATHENS);
+		add(BERLIN);
+		add(BERN);
 	 }};
 	
 	private WorldMap()
 	{
-		
-		/*
-		stationPos(OSLO, 750f, 1900f);
-		stationPos(PARIS, 620f, 1000f);
-		stationPos(PRAGUE, 880f, 1000f);
-		stationPos(REYKJAVIK, 215f, 820f); // 230 1900
-	
-		*/
 		// Creates a connection instance for each:
 		
 		createConnections(REYKJAVIK, new MapObj[]{OSLO, DUBLIN});
@@ -122,14 +114,6 @@ public class WorldMap implements Serializable{
 		for(int i = 0; i < connection.length; i++)
 		{
 			mapObj.connections.add(new Connection(mapObj, connection[i]));
-		}
-	}
-	
-	public void addAdjacencyMarkers(MapObj mapObj)
-	{
-		for(Connection i: mapObj.connections)
-		{
-			i.getDestination().showBlip();
 		}
 	}
 }

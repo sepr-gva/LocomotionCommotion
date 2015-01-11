@@ -132,6 +132,17 @@ public class Route {
 		return length;
 	}
 	
+	public boolean inStation()
+	{
+		Connection currentConnection = route.get(routeIndex);
+		float connectionLength = currentConnection.getLength();
+		
+		if(connectionTravelled == 0 || connectionTravelled == connectionLength)
+			return true;
+		else
+			return false;
+	}
+	
 	/*
 	  	Haven't tested it yet but it should progress the train along the
 	  	connections in route and how far it's along that connection
