@@ -58,12 +58,9 @@ public class CoreGame implements Serializable{
 				
 		ArrayList<Station> Player1Stations = new ArrayList<Station>();
 		Player1Stations.add(Player1StationStart);
-		Player1StationStart.purchaseStation(player1);
 		
 		ArrayList<Station> Player2Stations = new ArrayList<Station>();
 		Player2Stations.add(Player2StationStart);
-		Player2StationStart.purchaseStation(player2);
-		
 		
 		player1 = new Player(
 				Player1Name,
@@ -92,6 +89,13 @@ public class CoreGame implements Serializable{
 				new ArrayList<Goal>(),
 				new ArrayList<Train>(),
 				Player2Stations);
+		
+		player1.isPlayer1 = true;
+		player2.isPlayer1 = false;
+		
+		// Purchases the stations so the listener fires:
+		Player1StationStart.purchaseStation(player1);
+		Player2StationStart.purchaseStation(player2);
 		
 		//Initialise Map and other Game Resources
 		
