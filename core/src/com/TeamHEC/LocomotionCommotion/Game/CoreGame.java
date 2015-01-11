@@ -58,9 +58,11 @@ public class CoreGame implements Serializable{
 				
 		ArrayList<Station> Player1Stations = new ArrayList<Station>();
 		Player1Stations.add(Player1StationStart);
+		Player1StationStart.purchaseStation(player1);
 		
 		ArrayList<Station> Player2Stations = new ArrayList<Station>();
 		Player2Stations.add(Player2StationStart);
+		Player2StationStart.purchaseStation(player2);
 		
 		
 		player1 = new Player(
@@ -137,6 +139,11 @@ public class CoreGame implements Serializable{
 	{
 		if(getTurnCount() == getTurnLimit())
 			EndGame();
+		else
+		{
+			// Proceed with the turn:
+			
+		}
 	}
 	
 	/**
@@ -154,7 +161,9 @@ public class CoreGame implements Serializable{
 	public HashMap<String, Resource> getBaseResources(Station station)
 	{
 		Gold gold = new Gold(200);
-		gold.subValue(station.getTotalValue());
+		
+		// NEED TO CHOOSE STATION FIRST!
+		//gold.subValue(station.getTotalValue());
 		
 		Carriage carriage = new Carriage(200);
 		Coal coal = new Coal(200);

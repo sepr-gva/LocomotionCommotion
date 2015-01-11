@@ -24,7 +24,7 @@ public class Game_Map_Junction extends Game_Map_MapObj{
 		});
 		addListener(new InputListener(){
 			public void enter(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
-				//((Game_Map_Junction)event.getTarget()).highlighted = true;
+			
 				((Game_Map_Junction)event.getTarget()).texture = Game_Map_TextureManager.junctionx2;
 				((Game_Map_Junction)event.getTarget()).actorX-=2.5;
 				((Game_Map_Junction)event.getTarget()).actorY-=2.5;
@@ -33,7 +33,6 @@ public class Game_Map_Junction extends Game_Map_MapObj{
 		});
 		addListener(new InputListener(){
 			public void exit(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
-				//((Game_Map_Junction)event.getTarget()).highlighted = false;
 				
 				((Game_Map_Junction)event.getTarget()).texture = Game_Map_TextureManager.junction;
 				((Game_Map_Junction)event.getTarget()).actorX+=2.5;

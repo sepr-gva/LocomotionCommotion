@@ -2,7 +2,6 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -119,6 +118,7 @@ public class Game_Map_Manager {
 		stage.addActor(mapInfo);
 	}
 
+	/*
 	public static void resetStations(){
 		for(int i=Game_Map_Manager.stationTracker; i<=Game_Map_Manager.stationTracker +Game_Map_Manager.numberOfStations-1;i++)	//All the stations on the stage
 		{ 	
@@ -133,6 +133,7 @@ public class Game_Map_Manager {
 			}
 		}
 	}
+	*/
 
 	public static void moveInfoBox(float x,float y){
 		Game_Map_Manager.stationInfo.setX(x);
@@ -168,7 +169,6 @@ public class Game_Map_Manager {
 
 		}
 
-
 		@Override
 		public void draw(Batch batch, float alpha){
 			batch.draw(texture,actorX,actorY);
@@ -188,6 +188,3 @@ public class Game_Map_Manager {
  * Serializes all actors and stores them in an array. This and the Game object
  * are then saved and stored to be loaded.
  */
-
-
-

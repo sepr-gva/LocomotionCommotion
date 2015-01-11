@@ -149,25 +149,29 @@ public class Station extends MapObj implements PlayerListener{
 			return line;
 	}
 	
-	/*public void purchaseStation(Player player)
+	public void purchaseStation(Player player)
 	{		
 		//needs conditions to check station is purchasable
 		//either added here or where purchase station will be called
-		player.subGold(this.getTotalValue());
+		
+		//player.subGold(this.getTotalValue());
+		
 		owner = player;
 		for (StationListener listener : listeners) 
 		{
-			listener.ownerChanged(player.getPlayerName());
+			listener.ownerChanged(player.getName());
 		}
-	}*/
+	}
 	
 	public void addListener(StationListener listener)
 	{
 		listeners.add(listener);
 	}
+	
 	@Override
 	public void stationPurchased(Station station, Player player) 
 	{
+		System.out.println(String.format("%s bought station: %s", player.getName(), station.getName()));
 		if (station==this)
 		{
 			this.setOwner(player);

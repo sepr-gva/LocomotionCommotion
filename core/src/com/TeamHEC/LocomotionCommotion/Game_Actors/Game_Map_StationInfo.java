@@ -58,8 +58,7 @@ public class Game_Map_StationInfo extends Actor {
 	public void act(float delta){
 		if(started){
 
-			Game_Map_Manager.selectedStation.setStarted(true);
-
+		//	Game_Map_Manager.selectedStation.setStarted(true);
 			started = false;
 		}
 
@@ -78,7 +77,6 @@ public class Game_Map_StationInfo extends Actor {
 		this.actorY = y;
 
 	}
-
 
 	public void refreshBounds(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
