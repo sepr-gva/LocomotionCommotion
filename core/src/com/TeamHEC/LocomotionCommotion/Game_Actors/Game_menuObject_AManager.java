@@ -36,6 +36,8 @@ public class Game_menuObject_AManager {
 	public static Game_menuobjects_GoalScreenBtn game_menuobject_goalscreenbtn;
 	public static Label playerScore;
 	
+	public static int menuobjectsStageStart, menuobjectsStageEnd;
+	
 
 
 	public Game_menuObject_AManager(){		}
@@ -97,10 +99,13 @@ public class Game_menuObject_AManager {
 		
 		actors.add(playerScore);
 		
-		
+		menuobjectsStageStart = stage.getActors().size;
+		menuobjectsStageEnd = menuobjectsStageStart;
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
+			a.setVisible(false);
 			stage.addActor(a);
+			menuobjectsStageEnd++;
 		}
 		
 			

@@ -16,12 +16,12 @@ public class Game_Map_Junction extends Game_Map_MapObj{
 
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		//Mouse click listener - not used yet
-		addListener(new InputListener(){
-			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_Map_Junction)event.getTarget()).started = true;
-				return true;
-			}
-		});
+//		addListener(new InputListener(){
+//			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+//				((Game_Map_Junction)event.getTarget()).started = true;
+//				return true;
+//			}
+//		});
 		addListener(new InputListener(){
 			public void enter(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
 			

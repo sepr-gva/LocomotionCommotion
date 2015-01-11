@@ -67,7 +67,7 @@ public class Game_resources_ToggleBtn extends Actor {
 				
 				
 				Game_ResourcesManager.resourcebarexpanded= true;
-				for(int i=Game_ResourcesManager.stagestart; i<=Game_ResourcesManager.stagestart +Game_ResourcesManager.resourceActors-1;i++){
+				for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -89,7 +89,7 @@ public class Game_resources_ToggleBtn extends Actor {
 			Game_CardHandManager.changeHeight(-expandedheight);
 			Game_CardHandManager.organiseDeck();
 		//end
-			for(int i=Game_ResourcesManager.stagestart; i<=Game_ResourcesManager.stagestart +Game_ResourcesManager.resourceActors-1;i++){
+			for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

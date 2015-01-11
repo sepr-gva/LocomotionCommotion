@@ -12,7 +12,12 @@ public class Game_Map_TextureManager{
 	public static Texture mapInfo = new Texture(Gdx.files.internal("gameScreen/game_map/mapinfo.png"));
 	public static Texture station = new Texture(Gdx.files.internal("gameScreen/game_map/station.png"));
 	public static Texture stationx2 = new Texture(Gdx.files.internal("gameScreen/game_map/Stop.png"));
+	public static Texture stationp1 = new Texture(Gdx.files.internal("gameScreen/game_map/p1station.png"));
+	public static Texture stationp2 = new Texture(Gdx.files.internal("gameScreen/game_map/p2station.png"));
+
+
 	public static Texture stationInfo = new Texture(Gdx.files.internal("gameScreen/game_map/stationInfoframe.png"));
+	public static Texture stationSelect = new Texture(Gdx.files.internal("gameScreen/game_map/stationSelectBtn.png"));
 	public static Texture junction = new Texture(Gdx.files.internal("gameScreen/game_map/junction.png"));
 	public static Texture junctionx2 = new Texture(Gdx.files.internal("gameScreen/game_map/junction2.png"));
 	

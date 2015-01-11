@@ -26,6 +26,7 @@ public class Game_Map_Manager {
 	public static Map map;
 	public static Game_Map_Info mapInfo;
 	public static Game_Map_StationInfo stationInfo;
+	public static Game_Map_StationSelectBtn stationSelect;
 
 	public static boolean infoVisible= false;
 	public static int  stagestart, mapActors, stationTracker, numberOfStations, junctionTracker, numberOfJunctions = 2;
@@ -38,6 +39,8 @@ public class Game_Map_Manager {
 	public void create(Stage stage){
 
 		actors.clear();
+		infoactors.clear();
+		resetMap();
 		stagestart =0;
 		mapActors=0;
 		stationTracker=0;
@@ -61,6 +64,8 @@ public class Game_Map_Manager {
 		
 		stationInfo = new Game_Map_StationInfo();
 		infoactors.add(stationInfo);
+		stationSelect = new Game_Map_StationSelectBtn();
+		infoactors.add(stationSelect);
 
 		//Stuff for Labels
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
@@ -104,7 +109,7 @@ public class Game_Map_Manager {
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
 		}
-		
+		System.out.println(infoactors.size);
 		stagestart= stage.getActors().size;
 		for (Actor a : infoactors){
 			a.setTouchable(Touchable.enabled);
@@ -136,9 +141,13 @@ public class Game_Map_Manager {
 	*/
 
 	public static void moveInfoBox(float x,float y){
+		showInfoBox();
 		Game_Map_Manager.stationInfo.setX(x);
 		Game_Map_Manager.stationInfo.setY(y);
 		Game_Map_Manager.stationInfo.refreshBounds();
+		Game_Map_Manager.stationSelect.setX(x+20);
+		Game_Map_Manager.stationSelect.setY(y+10);
+		Game_Map_Manager.stationSelect.refreshBounds();
 		
 		stationLabelName.setX(x+100);
 		stationLabelName.setY(y+142);
@@ -148,6 +157,44 @@ public class Game_Map_Manager {
 		
 		stationLabelCost.setX(x+100);
 		stationLabelCost.setY(y+60);
+	}
+	
+	public static void hideInfoBox(){
+		Game_Map_Manager.stationInfo.setVisible(false);
+		Game_Map_Manager.stationSelect.setVisible(false);
+		
+		stationLabelName.setVisible(false);
+		
+		stationLabelFuel.setVisible(false);
+		
+		stationLabelCost.setVisible(false);
+	}
+	
+	public static void showInfoBox(){
+		Game_Map_Manager.stationInfo.setVisible(true);
+		Game_Map_Manager.stationSelect.setVisible(true);
+		
+		stationLabelName.setVisible(true);
+		
+		stationLabelFuel.setVisible(true);
+		
+		stationLabelCost.setVisible(true);
+	}
+	
+	public static void resetMap(){
+		for(int i=Game_Map_Manager.stationTracker; i<=Game_Map_Manager.stationTracker +Game_Map_Manager.numberOfStations-1;i++)	//All the stations on the stage
+		{ 	
+			if (i > GameScreen.getStage().getActors().size-1)
+			{//This is just to avoid range errors
+			}
+			else{
+				if (GameScreen.getStage().getActors().get(i).getClass() == Game_Map_Station.class){
+					((Game_Map_Station) GameScreen.getStage().getActors().get(i)).setOwned(false);
+					((Game_Map_Station) GameScreen.getStage().getActors().get(i)).resetHighlight();
+
+				}
+			}
+		}
 	}
 	
  	public class Map extends Actor {

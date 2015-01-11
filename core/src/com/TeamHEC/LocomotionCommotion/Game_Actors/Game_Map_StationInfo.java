@@ -34,20 +34,12 @@ public class Game_Map_StationInfo extends Actor {
 		this.actorY=0;
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
-			public void enter(InputEvent event, float x, float y, int pointer, Actor Game_Map_StationInfo) {
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 				((Game_Map_StationInfo)event.getTarget()).started = true;
+				return true;
 			}
-
 		});
-		addListener(new InputListener(){
-			public void exit(InputEvent event, float x, float y, int pointer, Actor Game_Map_StationInfo) {
-				((Game_Map_StationInfo)event.getTarget()).exit = true;
-			}
-
-		});
-
 	}
-
 
 	@Override
 	public void draw(Batch batch, float alpha){
@@ -57,8 +49,12 @@ public class Game_Map_StationInfo extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
+<<<<<<< Updated upstream
 
 		//	Game_Map_Manager.selectedStation.setStarted(true);
+=======
+			System.out.println(Game_Map_Manager.mapActors);
+>>>>>>> Stashed changes
 			started = false;
 		}
 

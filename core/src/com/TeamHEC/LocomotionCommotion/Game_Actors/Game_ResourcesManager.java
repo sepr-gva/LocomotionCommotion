@@ -20,14 +20,13 @@ import com.badlogic.gdx.utils.Array;
 public class Game_ResourcesManager {
 
 	private final static Array<Actor> visibleActors = new Array<Actor>();
-	private final static Array<Actor> invisibleActors = new Array<Actor>();
 	
 
 	public static Game_menuobject_ResourcesBar game_menuobject_resourcesbar;
 	public static Game_resources_ToggleBtn game_resources_togglebtn;
 	public static Game_card_CardToggleBtn game_card_togglebtn;
 	public static boolean resourcebarexpanded = false;
-	public static int  stagestart, resourceActors, expandedheight= 40;
+	public static int  resourcesStageStart, resourcesStageEnd, expandedheight= 40;
 	public static Label  goldQuant, coalQuant, oilQuant, electricityQuant, nuclearQuant, cardQuant;
 	
 	
@@ -35,8 +34,8 @@ public class Game_ResourcesManager {
 
 	public void create(Stage stage){
 		visibleActors.clear();
-		stagestart=0;
-		resourceActors =0;
+		resourcesStageStart=0;
+		resourcesStageEnd =0;
 		
 		
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
@@ -101,19 +100,15 @@ public class Game_ResourcesManager {
 		visibleActors.add(nuclearQuant);
 		visibleActors.add(cardQuant);
 		
+		resourcesStageStart= stage.getActors().size;
 		for (Actor a : visibleActors){
 			a.setTouchable(Touchable.enabled);
+			a.setVisible(true);
 			stage.addActor(a);
-			resourceActors ++;
+			resourcesStageEnd ++;
 		}
 		
-		stagestart= stage.getActors().size;
-		for (Actor a : invisibleActors){
-			a.setTouchable(Touchable.enabled);
-			a.setVisible(false);;
-			stage.addActor(a);
-			resourceActors ++;
-		}
+		
 		
 			
 

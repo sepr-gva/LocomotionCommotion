@@ -79,4 +79,5 @@ public class Game_TextureManager {
 	public static Texture game_shop_buybtn = new Texture(Gdx.files.internal("gameScreen/game_shop/buybtn.png"));
 	public static Texture game_shop_sellbtn = new Texture(Gdx.files.internal("gameScreen/game_shop/sellbtn.png"));
 	public static Texture game_shop_blankbuybtn = new Texture(Gdx.files.internal("gameScreen/game_shop/blankbuybtn.png"));
-}
+
+	}
