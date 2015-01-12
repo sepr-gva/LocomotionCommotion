@@ -144,6 +144,17 @@ public class Route {
 	}
 	
 	/*
+	public Station getStation()
+	{
+		if(inStation())
+		{
+			if(connectionTravelled == 0)
+				return route.get(routeIndex).getStartMapObj();
+		}
+	}
+	*/
+	
+	/*
 	  	Haven't tested it yet but it should progress the train along the
 	  	connections in route and how far it's along that connection
 	*/

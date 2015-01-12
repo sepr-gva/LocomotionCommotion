@@ -20,6 +20,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.CoalTrain;
 import com.TeamHEC.LocomotionCommotion.Train.ElectricTrain;
 import com.TeamHEC.LocomotionCommotion.Train.NuclearTrain;
@@ -138,6 +139,8 @@ public class CoreGame implements Serializable{
 			train = new OilTrain(0, 0, true, new Route(startStation));
 			
 		player.trains.add(train);
+		
+		GameScreen.getStage().getActors().add(train.trainActor);
 	}
 	
 	

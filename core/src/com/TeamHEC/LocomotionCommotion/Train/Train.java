@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Train;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Train;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 
 /**
@@ -49,6 +50,8 @@ public class Train implements Serializable{
 	
 	public final Route route;
 	
+	public Game_Map_Train trainActor;
+	
 	private ArrayList<TrainUpgrade> upgrades = new ArrayList<TrainUpgrade>();
 	
 	public Train(String name, Fuel fuelType, int baseSpeed, int speedMod, int baseCarriageLimit,
@@ -65,6 +68,8 @@ public class Train implements Serializable{
 		this.value = value;
 		this.inStation = inStation;
 		this.route = route;
+		
+		trainActor = new Game_Map_Train(this);
 	}
 	
 	// =========== Getters ===========
