@@ -37,8 +37,7 @@ public class WorldMap implements Serializable{
 	private final Station LISBON = new Station("Lisbon", 850, new Electric(500), 10, new Line[]{Line.Yellow, Line.Green, Line.Green}, 10, 341f, 170f);
 	private final Station LONDON = new Station("London", 850, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 10, 471f, 430f);
 	private final Station MADRID = new Station("Madrid", 900, new Electric(500), 10, new Line[]{Line.Yellow, Line.Orange, Line.Orange}, 10, 471f, 300f);
-	//Gold is not currently accpeted as a fuel type for station output so for now Monaco gives nuclear
-	private final Station MONACO = new Station("Monaco", 900, new Nuclear(500), 10, new Line[]{Line.Black, Line.Orange, Line.Orange}, 10, 601f, 300f);
+	private final Station MONACO = new Station("Monaco", 900, new Gold(500), 10, new Line[]{Line.Black, Line.Orange, Line.Orange}, 10, 601f, 300f);
 	private final Station MOSCOW = new Station("Moscow", 850, new Nuclear(500), 10, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 10, 1381f, 560f);
 	private final Station OSLO = new Station("Oslo", 900, new Oil(500), 10, new Line[]{Line.Purple, Line.Blue, Line.Blue}, 10, 731f, 820f);
 	private final Station PARIS = new Station("Paris", 950, new Electric(500), 10, new Line[]{Line.Yellow, Line.Black, Line.Black}, 10, 601f, 430f);

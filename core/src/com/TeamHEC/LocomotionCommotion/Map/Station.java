@@ -2,6 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Map;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.PlayerListener;
+import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
@@ -20,14 +21,14 @@ public class Station extends MapObj implements PlayerListener{
 	private Player owner;
 	private int baseValue;
 	private int valueMod;
-	private Fuel fuelType;
-	private int baseFuelOut;
-	private int fuelOutMod;
+	private Resource resourceType;
+	private int baseResourceOut;
+	private int resourceOutMod;
 	private Line[] line = null;//max number of lines on one station is 3, alter if this changes
 	private int rentValue;
 	private int rentValueMod;
 	
-	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
+	public Station(String name, int baseValue, Resource resourceType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
 		super(x, y);
 		
@@ -38,9 +39,9 @@ public class Station extends MapObj implements PlayerListener{
 		this.owner = null;
 		this.baseValue = baseValue;
 		this.valueMod = 0;
-		this.fuelType = fuelType;
-		this.baseFuelOut = baseFuelOut;
-		this.fuelOutMod = 0;
+		this.resourceType = resourceType;
+		this.baseResourceOut = baseFuelOut;
+		this.resourceOutMod = 0;
 		this.line = line;
 		this.rentValue = rentValue;
 		this.rentValueMod = 0;
@@ -51,9 +52,9 @@ public class Station extends MapObj implements PlayerListener{
 		return name;
 	}
 	
-	public String getFuelString()
+	public String getResourceString()
 	{
-		return fuelType.getType();
+		return resourceType.getType();
 	}
 	
 	public int getBaseValue()
@@ -77,33 +78,33 @@ public class Station extends MapObj implements PlayerListener{
 		return baseValue + valueMod;
 	}
 	
-	public Fuel getFuelType()
+	public Resource getResourceType()
 	{
-		return fuelType;
+		return resourceType;
 	}
-	public int getBaseFuelOut()
+	public int getBaseResourceOut()
 	{
-		return baseFuelOut;
+		return baseResourceOut;
 	}
-	public int getFuelOutMod()
+	public int getResourceOutMod()
 	{
-		return fuelOutMod;
+		return resourceOutMod;
 	}
-	public void setFuelOutMod(int mod)
+	public void setResourceOutMod(int mod)
 	{
-		fuelOutMod = mod;
+		resourceOutMod = mod;
 	}
-	public void addFuelOutMod(int add)
+	public void addResourceOutMod(int add)
 	{
-		fuelOutMod += add;
+		resourceOutMod += add;
 	}
-	public void subFuelOutMod(int sub)
+	public void subResourceOutMod(int sub)
 	{
-		fuelOutMod -= sub;
+		resourceOutMod -= sub;
 	}	
-	public int getTotalFuelOut()
+	public int getTotalResourceOut()
 	{
-		return baseFuelOut + fuelOutMod;
+		return baseResourceOut + resourceOutMod;
 	}
 	
 	public int getRentValue()
