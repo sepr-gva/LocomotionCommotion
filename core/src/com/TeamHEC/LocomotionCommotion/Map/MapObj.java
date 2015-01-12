@@ -24,6 +24,8 @@ public class MapObj implements Serializable{
 	
 	protected Player player1;//the players station will listen too
 	protected Player player2;//will need name changes later, not sure this listener stuff is still gonna be used
+	
+	public Station stationObj;
 		
 	public MapObj(float x, float y)
 	{
