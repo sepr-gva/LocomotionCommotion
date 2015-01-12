@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_EndTurnBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_endturnbutton; // reuse the new game back btn texture
+	public static Texture texture = Game_TextureManager.getInstance().game_menuobject_endturnbutton; // reuse the new game back btn texture
 	public static float actorX = (LocomotionCommotion.screenX-texture.getWidth()-15) ,actorY = 15;
 	public boolean started = false;
 	

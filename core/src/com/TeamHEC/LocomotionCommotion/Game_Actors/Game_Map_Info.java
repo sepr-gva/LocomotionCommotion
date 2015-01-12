@@ -24,7 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_Map_Info extends Actor {
 
-	public static Texture texture = Game_TextureManager.mapInfo; 
+	public static Texture texture = Game_TextureManager.getInstance().mapInfo; 
 	public static float actorX = 500 ,actorY = 100;
 	public boolean started = false;
 	

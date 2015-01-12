@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_TicketToggleBtn extends Actor {
 
-	Texture texture = Game_TextureManager.game_menuobject_ticketbtn; 
+	Texture texture = Game_TextureManager.getInstance().game_menuobject_ticketbtn; 
 	float actorX = 30 ,actorY = Gdx.graphics.getHeight()- texture.getHeight() -15;
 	public boolean started = false;
 

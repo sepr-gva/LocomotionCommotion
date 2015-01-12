@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_card_UseCardBtn extends Actor {
 
-	static Texture texture = Game_TextureManager.game_card_usecardbtn; 
+	static Texture texture = Game_TextureManager.getInstance().game_card_usecardbtn; 
 	static float actorX = 1170;
 	static float actorY = 450;
 	public boolean started = false;

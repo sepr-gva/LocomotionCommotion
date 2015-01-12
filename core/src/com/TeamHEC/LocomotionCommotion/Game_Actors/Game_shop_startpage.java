@@ -60,7 +60,7 @@ public class Game_shop_startpage {
 	
 	
 	public class ShopScreen extends Actor{
-		Texture texture = Game_TextureManager.game_shop_startscreen; 
+		Texture texture = Game_TextureManager.getInstance().game_shop_startscreen; 
 		float actorX = 45 ,actorY = 9;
 		boolean started = false;
 
@@ -91,7 +91,7 @@ public class Game_shop_startpage {
 	}
 
 	public class ShopBackBtn extends Actor{
-		Texture texture = Game_TextureManager.game_shop_backbtn; 
+		Texture texture = Game_TextureManager.getInstance().game_shop_backbtn; 
 		public float actorX = 1350 ,actorY = 860;
 		boolean started = false;
 
@@ -146,7 +146,7 @@ public class Game_shop_startpage {
 	}
 
 	public class ShopBuyBtn extends Actor{
-		Texture texture = Game_TextureManager.game_shop_startbuy; 
+		Texture texture = Game_TextureManager.getInstance().game_shop_startbuy; 
 		float actorX = 250 ,actorY = 350;
 		boolean started = false;
 
@@ -201,7 +201,7 @@ public class Game_shop_startpage {
 	}
 
 	public class ShopSellBtn extends Actor{
-		Texture texture = Game_TextureManager.game_shop_startsell; 
+		Texture texture = Game_TextureManager.getInstance().game_shop_startsell; 
 		float actorX = 650 ,actorY = 350;
 		boolean started = false;
 
@@ -256,7 +256,7 @@ public class Game_shop_startpage {
 	}
 
 	public class ShopTrainBtn extends Actor{
-		Texture texture = Game_TextureManager.game_shop_starttrain; 
+		Texture texture = Game_TextureManager.getInstance().game_shop_starttrain; 
 		float actorX = 1050 ,actorY = 350;
 		boolean started = false;
 

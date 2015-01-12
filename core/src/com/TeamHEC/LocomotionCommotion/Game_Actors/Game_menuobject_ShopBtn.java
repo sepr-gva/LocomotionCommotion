@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_ShopBtn extends Actor {
 
-	Texture texture = Game_TextureManager.game_shop_shopbtn; // reuse the new game back btn texture
+	Texture texture = Game_TextureManager.getInstance().game_shop_shopbtn; // reuse the new game back btn texture
 	float actorX = LocomotionCommotion.screenX-310 ,actorY = 125;
 	public boolean started = false;
 

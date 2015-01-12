@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobjects_GoalScreenBtn extends Actor {
 
-	Texture texture = Game_TextureManager.game_goals_goalscreenbtn; // reuse the new game back btn texture
+	Texture texture = Game_TextureManager.getInstance().game_goals_goalscreenbtn; // reuse the new game back btn texture
 	float actorX = 110 ,actorY = Gdx.graphics.getHeight()- texture.getHeight() -25;
 	public boolean started = false;
 

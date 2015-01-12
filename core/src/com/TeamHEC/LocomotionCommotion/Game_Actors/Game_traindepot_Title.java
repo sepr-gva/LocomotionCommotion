@@ -24,7 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_traindepot_Title extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_traindepot_title; // reuse the new game back btn texture
+	public static Texture texture = Game_TextureManager.getInstance().game_traindepot_title; // reuse the new game back btn texture
 	public static float actorX = 170 ,actorY = 780;
 	public boolean started = false;
 	

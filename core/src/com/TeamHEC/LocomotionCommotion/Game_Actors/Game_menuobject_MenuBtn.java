@@ -27,7 +27,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_MenuBtn extends Actor {
 
-	Texture texture = Game_TextureManager.game_menuobject_menubtn; // reuse the new game back btn texture
+	Texture texture = Game_TextureManager.getInstance().game_menuobject_menubtn; // reuse the new game back btn texture
 	float actorX = LocomotionCommotion.screenX-60 ,actorY = Gdx.graphics.getHeight()- texture.getHeight() - 30;
 	public boolean started = false;
 

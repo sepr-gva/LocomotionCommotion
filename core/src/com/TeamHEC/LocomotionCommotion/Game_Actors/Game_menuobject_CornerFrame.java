@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_CornerFrame extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_cornerframe; // reuse the new game back btn texture
+	public static Texture texture = Game_TextureManager.getInstance().game_menuobject_cornerframe; // reuse the new game back btn texture
 	public static float actorX = (LocomotionCommotion.screenX-texture.getWidth()) ,actorY = 14;
 	public boolean started = false;
 	

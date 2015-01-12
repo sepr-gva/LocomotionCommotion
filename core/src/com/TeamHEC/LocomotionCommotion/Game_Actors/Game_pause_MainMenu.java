@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_pause_MainMenu extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_pause_mainmenu; // reuse the new game back btn texture
+	public static Texture texture = Game_TextureManager.getInstance().game_pause_mainmenu; // reuse the new game back btn texture
 	public static float actorX = Game_pause_ResumeGame.actorX ,actorY = Game_pause_ResumeGame.actorY-300;
 	public boolean started = false;
 	

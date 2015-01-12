@@ -15,7 +15,7 @@ public class GoldCard extends Card{
 
 	public GoldCard()
 	{
-		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null, Game_TextureManager.game_card_goldcard);
+		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null, Game_TextureManager.getInstance().game_card_goldcard);
 	}
 	
 	@Override

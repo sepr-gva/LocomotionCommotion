@@ -57,7 +57,7 @@ public class Game_shop_train {
 	
 
 	public class TrainItem extends Actor{
-		Texture texture = Game_TextureManager.game_shop_trainitem; // reuse the new game back btn texture
+		Texture texture = Game_TextureManager.getInstance().game_shop_trainitem; // reuse the new game back btn texture
 		float actorX = posx ,actorY = posy;
 		boolean started = false;
 
@@ -89,7 +89,7 @@ public class Game_shop_train {
 
 
 	public class BuyButton extends Actor{
-		Texture texture = Game_TextureManager.game_shop_blankbuybtn; // reuse the new game back btn texture
+		Texture texture = Game_TextureManager.getInstance().game_shop_blankbuybtn; // reuse the new game back btn texture
 		float actorX = posx+75 ,actorY = posy+20;
 		boolean started = false;
 

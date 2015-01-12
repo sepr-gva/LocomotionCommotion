@@ -76,7 +76,7 @@ public class Game_shop_oil {
 	
 
 	public class OilItem extends Actor{
-		Texture texture = Game_TextureManager.game_shop_oilitem; // reuse the new game back btn texture
+		Texture texture = Game_TextureManager.getInstance().game_shop_oilitem; // reuse the new game back btn texture
 		float actorX = posx ,actorY = posy;
 		boolean started = false;
 
@@ -107,7 +107,7 @@ public class Game_shop_oil {
 	}
 
 	public class AddButton extends Actor{
-		Texture texture = Game_TextureManager.game_shop_addbtn; // reuse the new game back btn texture
+		Texture texture = Game_TextureManager.getInstance().game_shop_addbtn; // reuse the new game back btn texture
 		float actorX = posx+75 ,actorY = posy+42;
 		boolean started = false;
 
@@ -140,7 +140,7 @@ public class Game_shop_oil {
 	}
 
 	public class MinusButton extends Actor{
-		Texture texture = Game_TextureManager.game_shop_minusbtn; // reuse the new game back btn texture
+		Texture texture = Game_TextureManager.getInstance().game_shop_minusbtn; // reuse the new game back btn texture
 		float actorX = posx+220 ,actorY = posy+48;
 		boolean started = false;
 
@@ -174,7 +174,7 @@ public class Game_shop_oil {
 	}
 	
 	public static class BuyButton extends Actor{
-		public static Texture texture = Game_TextureManager.game_shop_buybtn; // reuse the new game back btn texture
+		public static Texture texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
 		float actorX = posx+75 ,actorY = posy+20;
 		boolean started = false;
 
@@ -224,9 +224,9 @@ public class Game_shop_oil {
 		}
 		public static void changeTexture(){
 			if (Game_shop_startpage.buy==true)
-				texture=Game_TextureManager.game_shop_buybtn;
+				texture=Game_TextureManager.getInstance().game_shop_buybtn;
 			if (Game_shop_startpage.sell==true)
-				texture=Game_TextureManager.game_shop_sellbtn;
+				texture=Game_TextureManager.getInstance().game_shop_sellbtn;
 		}
 	}
 

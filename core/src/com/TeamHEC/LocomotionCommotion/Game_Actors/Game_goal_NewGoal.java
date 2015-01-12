@@ -44,13 +44,13 @@ public class Game_goal_NewGoal extends Actor {
 		
 		//This block decides what type of ticket to display empty, standard or special
 		if (this.empty)
-			this.texture = Game_TextureManager.game_menuobject_emptyticket;
+			this.texture = Game_TextureManager.getInstance().game_menuobject_emptyticket;
 		else
 		{
 			if (this.goal.isSpecial()==false)
-				this.texture = Game_TextureManager.game_menuobject_ticket;
+				this.texture = Game_TextureManager.getInstance().game_menuobject_ticket;
 			else
-				this.texture = Game_TextureManager.game_menuobject_ticket;
+				this.texture = Game_TextureManager.getInstance().game_menuobject_ticket;
 
 		}
 
@@ -126,13 +126,13 @@ public class Game_goal_NewGoal extends Actor {
 		
 		//Change the ticket type
 		if (this.empty)
-			this.texture = Game_TextureManager.game_menuobject_emptyticket;
+			this.texture = Game_TextureManager.getInstance().game_menuobject_emptyticket;
 		else
 		{
 			if (this.goal.isSpecial()==false)
-				this.texture = Game_TextureManager.game_menuobject_ticket;
+				this.texture = Game_TextureManager.getInstance().game_menuobject_ticket;
 			else
-				this.texture = Game_TextureManager.game_menuobject_ticket;
+				this.texture = Game_TextureManager.getInstance().game_menuobject_ticket;
 
 		}
 	}

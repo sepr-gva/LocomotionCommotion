@@ -16,7 +16,7 @@ public class OilCard extends Card{
 
 	public OilCard()
 	{
-		super("100 Oil", "Cash in to win 100 Oil", 50, null, Game_TextureManager.game_card_oilcard);
+		super("100 Oil", "Cash in to win 100 Oil", 50, null, Game_TextureManager.getInstance().game_card_oilcard);
 	}
 	
 	public void implementCard()

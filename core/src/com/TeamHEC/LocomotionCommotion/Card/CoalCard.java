@@ -16,7 +16,7 @@ public class CoalCard extends Card{
 
 	public CoalCard()
 	{
-		super("100 Coal", "Cash in to win 100 Coal", 50, null, Game_TextureManager.game_card_coalcard);
+		super("100 Coal", "Cash in to win 100 Coal", 50, null, Game_TextureManager.getInstance().game_card_coalcard);
 	}
 	
 	@Override

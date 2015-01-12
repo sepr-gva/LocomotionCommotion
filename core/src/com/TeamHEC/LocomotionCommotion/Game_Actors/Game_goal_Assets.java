@@ -31,7 +31,7 @@ public class Game_goal_Assets {
 		 * 				touchedDown handles the action.
 		 */
 
-		public static Texture texture = Game_TextureManager.game_menuobject_addgoalbtn;
+		public static Texture texture = Game_TextureManager.getInstance().game_menuobject_addgoalbtn;
 		public  float actorX  ,actorY ;
 		public boolean started = false;
 		public boolean touchedDown = false;
@@ -117,7 +117,7 @@ public class Game_goal_Assets {
 		 * 				Action- Closes the GoalScreen
 		 */
 
-		public static Texture texture = Game_TextureManager.game_shop_backbtn; 
+		public static Texture texture = Game_TextureManager.getInstance().game_shop_backbtn; 
 		public static float actorX = 1350 ,actorY = 830;
 		public boolean started = false;
 
@@ -188,7 +188,7 @@ public class Game_goal_Assets {
 		 * 				Action- None
 		 */
 
-		public static Texture texture = Game_TextureManager.game_goals_backdrop; 
+		public static Texture texture = Game_TextureManager.getInstance().game_goals_backdrop; 
 		public static float actorX = -30 ,actorY = -30;
 		public boolean started = false;
 		
@@ -248,7 +248,7 @@ public class Game_goal_Assets {
 			this.actorY=470;
 			this.undo = false;
 			this.newgoalindex=0;
-			this.texture=Game_TextureManager.game_menuobject_removegoalbtn;
+			this.texture=Game_TextureManager.getInstance().game_menuobject_removegoalbtn;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -310,7 +310,7 @@ public class Game_goal_Assets {
 		public void setUndo(boolean b){
 			this.undo=b;
 			if (undo){
-				this.texture=Game_TextureManager.game_menuobject_redobtn;
+				this.texture=Game_TextureManager.getInstance().game_menuobject_redobtn;
 			}
 		}
 		public int getnewgoalindex(){
@@ -325,13 +325,13 @@ public class Game_goal_Assets {
 		}
 		public void resetButtons(){
 			this.undo=false;
-			this.texture=Game_TextureManager.game_menuobject_removegoalbtn;
+			this.texture=Game_TextureManager.getInstance().game_menuobject_removegoalbtn;
 		}
 
 
 		public void setRedoBtn() {
 			this.undo=true;
-			this.texture=Game_TextureManager.game_menuobject_redobtn;
+			this.texture=Game_TextureManager.getInstance().game_menuobject_redobtn;
 		}
 
 		}

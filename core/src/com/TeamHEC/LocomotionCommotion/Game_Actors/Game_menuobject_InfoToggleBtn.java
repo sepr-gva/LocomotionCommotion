@@ -26,7 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_InfoToggleBtn extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_infobutton; // reuse the new game back btn texture
+	public static Texture texture = Game_TextureManager.getInstance().game_menuobject_infobutton; // reuse the new game back btn texture
 	public static float actorX = LocomotionCommotion.screenX-310 ,actorY = 63;
 	public boolean started = false;
 

@@ -24,7 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_menuobject_ResourcesBar extends Actor {
 
-	public static Texture texture = Game_TextureManager.game_menuobject_resourcesbar; // reuse the new game back btn texture
+	public static Texture texture = Game_TextureManager.getInstance().game_menuobject_resourcesbar; // reuse the new game back btn texture
 	public static float actorX = -13;
 	public float actorY = -175;
 	public boolean started = false;
