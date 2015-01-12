@@ -60,7 +60,7 @@ public class Game_Map_StationSelectBtn extends Game_Map_MapObj {
 				{
 					// Sets texture (could be done via listener?)
 					
-					selectedStation.texture = Game_Map_TextureManager.stationp1;
+					selectedStation.texture = Game_Map_TextureManager.p1Station;
 					selectedStation.setOwned(true);
 					Game_Map_Manager.hideInfoBox();
 					
@@ -75,7 +75,7 @@ public class Game_Map_StationSelectBtn extends Game_Map_MapObj {
 				}
 				else
 				{
-					selectedStation.texture=Game_Map_TextureManager.stationp2;
+					selectedStation.texture=Game_Map_TextureManager.p2Station;
 					selectedStation.setOwned(true);
 					Game_Map_Manager.hideInfoBox();
 					
