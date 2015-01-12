@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_howtoplay_FrameImg extends Actor {
 
-	Texture texture = SM_TextureManager.sm_howtoplay_frame; 
+	Texture texture = SM_TextureManager.getInstance().sm_howtoplay_frame; 
 	float actorX = -1290+ 240 ,actorY = 220;
 	public boolean started = false;
 

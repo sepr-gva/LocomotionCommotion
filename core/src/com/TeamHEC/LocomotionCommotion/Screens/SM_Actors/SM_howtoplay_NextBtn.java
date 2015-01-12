@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_howtoplay_NextBtn extends Actor {
 
-	Texture texture = SM_TextureManager.sm_howtoplay_nextbtn;
+	Texture texture = SM_TextureManager.getInstance().sm_howtoplay_nextbtn;
 	float actorX = -1290+ 590 ,actorY = 150;
 	public boolean started = false;
 

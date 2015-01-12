@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_howtoplay_LineImg extends Actor {
 
-	Texture texture = SM_TextureManager.sm_howtoplay_line; 
+	Texture texture = SM_TextureManager.getInstance().sm_howtoplay_line; 
 	float actorX = -1290+ 1030 ,actorY = 150;
 	public boolean started = false;
 

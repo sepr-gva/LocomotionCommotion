@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_newgame_TurnTimeOutBtn extends Actor {
 	
-	public static Texture texture = SM_TextureManager.sm_newgameTurnTimeOut_unselected_Btn;
+	public static Texture texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
 	public static float actorX = 400 ,actorY = 1150+530;
 	public boolean started = false;
 
@@ -46,8 +46,8 @@ public class SM_newgame_TurnTimeOutBtn extends Actor {
 	public void act(float delta){
 		if(started){
 			StartMenu.gameMode = "turntimeout";
-			texture = SM_TextureManager.sm_newgame_TurnTimeOutBtn;
-			SM_newgame_StationDomBtn.texture = SM_TextureManager.sm_newgame_StationDom_unselected_Btn;
+			texture = SM_TextureManager.getInstance().sm_newgame_TurnTimeOutBtn;
+			SM_newgame_StationDomBtn.texture = SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn;
 			started = false;
 			
 			

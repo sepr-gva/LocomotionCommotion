@@ -24,7 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_main_LoadGameBtn extends Actor {
 
-	Texture texture = SM_TextureManager.sm_main_loadgamebtn;
+	Texture texture = SM_TextureManager.getInstance().sm_main_loadgamebtn;
 	float actorX = SM_main_NewGameBtn.actorX ,actorY = SM_main_NewGameBtn.actorY-74;
 	public boolean started = false;
 	int animationTracker1,animationTracker2,animationTracker3;

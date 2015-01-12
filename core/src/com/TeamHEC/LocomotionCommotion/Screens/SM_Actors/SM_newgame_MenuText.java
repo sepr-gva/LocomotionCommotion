@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  * */
 public class SM_newgame_MenuText extends Actor {
 
-	Texture texture = SM_TextureManager.sm_newgame_MenuText;
+	Texture texture = SM_TextureManager.getInstance().sm_newgame_MenuText;
 	float actorX = 80 ,actorY = 1150+ 250;
 	public boolean started = false;
 

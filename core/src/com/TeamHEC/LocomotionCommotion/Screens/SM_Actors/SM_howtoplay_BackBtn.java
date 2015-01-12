@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_howtoplay_BackBtn extends Actor {
 
-	Texture texture = SM_TextureManager.sm_newgame_BackBtn; // reuse the new game back btn texture
+	Texture texture = SM_TextureManager.getInstance().sm_newgame_BackBtn; // reuse the new game back btn texture
 	float actorX = -1290+ 1000 ,actorY = 625;
 	public boolean started = false;
 

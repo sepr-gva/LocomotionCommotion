@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_preferences_ControlSettingsBtn extends Actor {
 
-	Texture texture = SM_TextureManager.sm_preferences_ControlSettingsBtn;
+	Texture texture = SM_TextureManager.getInstance().sm_preferences_ControlSettingsBtn;
 	float actorX =  500-80 ,actorY= SM_preferences_GameSettingsBtn.actorY-300;
 	public boolean started = false;
 

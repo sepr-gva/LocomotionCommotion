@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_main_NewGameBtn extends Actor {
 	
-	Texture texture = SM_TextureManager.sm_main_newgamebtn; //Image Used for the New Game button
+	Texture texture = SM_TextureManager.getInstance().sm_main_newgamebtn; //Image Used for the New Game button
 	public static float actorX = 600 ,actorY = 480; //Position of bottom left corner
 	public boolean started = false; //
 	int animationTracker1,animationTracker2;

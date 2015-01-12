@@ -24,7 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_newgame_BackBtn extends Actor {
 
-	Texture texture = SM_TextureManager.sm_newgame_BackBtn;
+	Texture texture = SM_TextureManager.getInstance().sm_newgame_BackBtn;
 	float actorX = 1150 ,actorY = 1050+750;
 	public boolean started = false;
 	int animationTracker1,animationTracker2;
@@ -71,13 +71,13 @@ public class SM_newgame_BackBtn extends Actor {
 	}
 	
 	public void resetNewGameScreen(){
-		SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.sm_newgameTurnTimeOut_unselected_Btn;
-		SM_newgame_StationDomBtn.texture =SM_TextureManager.sm_newgame_StationDom_unselected_Btn ;
+		SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
+		SM_newgame_StationDomBtn.texture =SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn ;
 		StartMenu.textbox1.setText("");
 		StartMenu.textbox2.setText("");
-		SM_newgame_Turn50Btn.texture = SM_TextureManager.sm_newgame_Turn50_unselected_Btn;
-		SM_newgame_Turn100Btn.texture = SM_TextureManager.sm_newgame_Turn100_unselected_Btn;
-		SM_newgame_Turn150Btn.texture = SM_TextureManager.sm_newgame_Turn150_unselected_Btn;
+		SM_newgame_Turn50Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
+		SM_newgame_Turn100Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
+		SM_newgame_Turn150Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
 		StartMenu.gameMode=null;
 		StartMenu.player1name= null;
 		StartMenu.player2name= null;

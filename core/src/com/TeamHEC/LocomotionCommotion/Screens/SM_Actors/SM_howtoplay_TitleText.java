@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_howtoplay_TitleText extends Actor {
 
-	Texture texture = SM_TextureManager.sm_howtoplay_title;
+	Texture texture = SM_TextureManager.getInstance().sm_howtoplay_title;
 	float actorX = -1290+ 350 ,actorY = 650;
 	public boolean started = false;
 

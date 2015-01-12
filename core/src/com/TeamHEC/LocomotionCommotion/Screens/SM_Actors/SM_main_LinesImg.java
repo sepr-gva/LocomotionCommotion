@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
  */
 public class SM_main_LinesImg extends Actor {
 
-	Texture texture = SM_TextureManager.sm_main_linesimg;
+	Texture texture = SM_TextureManager.getInstance().sm_main_linesimg;
 	float actorX = -229 ,actorY = -145;
 	public boolean started = false;
 
