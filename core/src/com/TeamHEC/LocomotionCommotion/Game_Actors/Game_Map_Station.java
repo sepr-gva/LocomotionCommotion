@@ -111,7 +111,8 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		if(owned){
 			
 		}
-		else if (highlighted){
+		else if (highlighted)
+		{
 			this.texture=Game_Map_TextureManager.station;
 			this.actorX+=2.5;
 			this.actorY+=2.5;
