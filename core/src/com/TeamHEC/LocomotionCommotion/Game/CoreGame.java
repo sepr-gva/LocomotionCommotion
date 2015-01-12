@@ -125,7 +125,7 @@ public class CoreGame implements Serializable{
 	
 	private void createFirstTrain(Player player, Station startStation)
 	{
-		String fuelType = startStation.getFuelString();
+		String fuelType = startStation.getResourceString();
 		Train train = null;
 		
 		if(fuelType.equals("Coal"))
@@ -351,7 +351,7 @@ public class CoreGame implements Serializable{
 					"{\n\"name\": \"" + station.getName() + "\",\n" +
 					"\"owner\": \"" + station.getOwner() + "\",\n" +
 					"\"valueMod\": " + station.getValueMod() + ",\n" +
-					"\"fuelOutMod\": " + station.getFuelOutMod() + ",\n" + 
+					"\"fuelOutMod\": " + station.getResourceOutMod() + ",\n" + 
 					"\"rentValueMod\": " + station.getRentValueMod() + ",\n}";
 		}
 		return finalJson = finalJson + "}\n";
