@@ -27,6 +27,7 @@ public class SM_main_LoadGameBtn extends Actor {
 	Texture texture = SM_TextureManager.sm_main_loadgamebtn;
 	float actorX = SM_main_NewGameBtn.actorX ,actorY = SM_main_NewGameBtn.actorY-74;
 	public boolean started = false;
+	int animationTracker1,animationTracker2,animationTracker3;
 
 	public SM_main_LoadGameBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
@@ -47,8 +48,29 @@ public class SM_main_LoadGameBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(1680, 0);
-			started = false;
+			if (animationTracker1<1680/2){
+				StartMenu.changeCam(15,0);
+				animationTracker1+=15;
+			}
+			else{
+				if(animationTracker2<90){
+					StartMenu.changeCam(0,10);
+					animationTracker2+=10;
+				}
+				else{
+					if (animationTracker3<1680/2){
+						StartMenu.changeCam(15,0);
+						animationTracker3+=15;
+					}
+					else{
+						started = false;
+						animationTracker1=0;
+						animationTracker2=0;
+						animationTracker3=0;
+					}
+				}
+
+			}
 		}
 	}
 }

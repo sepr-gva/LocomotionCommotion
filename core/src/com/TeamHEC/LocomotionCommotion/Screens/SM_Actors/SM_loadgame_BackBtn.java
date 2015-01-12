@@ -26,6 +26,7 @@ public class SM_loadgame_BackBtn extends Actor {
 	Texture texture = SM_TextureManager.sm_newgame_BackBtn; // Reuse Texture the BackButton from new game
 	float actorX = 1680+180 ,actorY = 850;
 	public boolean started = false;
+	int animationTracker1,animationTracker2,animationTracker3;
 
 	public SM_loadgame_BackBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
@@ -46,8 +47,29 @@ public class SM_loadgame_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(-1680, 0);
-			started = false;
+			if (animationTracker1<1680/2){
+				StartMenu.changeCam(-15,0);
+				animationTracker1+=15;
+			}
+			else{
+				if(animationTracker2<90){
+					StartMenu.changeCam(0,-10);
+					animationTracker2+=10;
+				}
+				else{
+					if (animationTracker3<1680/2){
+						StartMenu.changeCam(-15,0);
+						animationTracker3+=15;
+					}
+					else{
+						started = false;
+						animationTracker1=0;
+						animationTracker2=0;
+						animationTracker3=0;
+					}
+				}
+
+			}
 		}
 	}
 }

@@ -112,6 +112,20 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		}
 	}
 
+	public void resetHighlight(){
+		if(owned){
+			
+		}
+		else if (highlighted)
+		{
+			this.texture=Game_Map_TextureManager.station;
+			this.actorX+=2.5;
+			this.actorY+=2.5;
+			this.highlighted = false;
+		}
+
+	}
+
 	public void showInfoBox(){
 		for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++)	
 		{ 	
