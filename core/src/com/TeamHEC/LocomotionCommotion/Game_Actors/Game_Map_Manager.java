@@ -65,8 +65,11 @@ public class Game_Map_Manager {
 		
 		stationInfo = new Game_Map_StationInfo();
 		infoactors.add(stationInfo);
+		
+		//=========================================================
 		stationSelect = new Game_Map_StationSelectBtn();
 		infoactors.add(stationSelect);
+		//=========================================================
 
 		//Stuff for Labels
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));

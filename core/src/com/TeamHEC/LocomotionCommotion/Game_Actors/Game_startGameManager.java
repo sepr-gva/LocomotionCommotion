@@ -78,11 +78,4 @@ public class Game_startGameManager {
 		player1= true;
 		inProgress = true;
 	}
-
-
-
-
-
-
-
 }

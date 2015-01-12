@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Game_Map_MapObj extends Actor{
 	
-	public Texture texture;
+	public Texture texture, toggleTexture1, toggleTexture2;
 	public float actorX, actorY;
 	public boolean started = false, highlighted = false;
 	public MapObj mapObj;

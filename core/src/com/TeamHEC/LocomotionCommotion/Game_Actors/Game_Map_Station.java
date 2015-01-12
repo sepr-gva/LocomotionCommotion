@@ -4,6 +4,7 @@ import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -15,6 +16,8 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	public  Game_Map_Station (MapObj station, float actorX, float actorY)
 	{
 		this.texture = Game_Map_TextureManager.station;
+		this.toggleTexture1 = Game_Map_TextureManager.station;
+		this.toggleTexture2 = Game_Map_TextureManager.stationx2;
 		this.mapObj = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
@@ -31,49 +34,63 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 				return true;
 			}
 		});
-		
-	
+		addListener(new InputListener(){
+			public void enter(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
+				((Game_Map_Station)event.getTarget()).toggleHighlight(true);
+			}
+
+		});
+		addListener(new InputListener(){
+			public void exit(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
+				((Game_Map_Station)event.getTarget()).toggleHighlight(false);
+			}
+
+		});
 	}
 	
 	public void toggleHighlight(boolean highlighted)
 	{
 		if(highlighted)
 		{
-			showInfoBox();
-			texture = Game_Map_TextureManager.stationx2;
+			//showInfoBox();
+			texture = toggleTexture2;
 			actorX -= 2.5;
 			actorY -= 2.5;
 		}
 		else
 		{
-			hideInfoBox();
-			texture = Game_Map_TextureManager.station;
+			//hideInfoBox();
+			texture = toggleTexture1;
 			actorX += 2.5;
 			actorY += 2.5;
 		}
 	}
-	
-
 
 	@Override
-	public void ownerChanged(Station station, Player player) {
-		// TODO Auto-generated method stub
-		toggleHighlight(true);
-		
+	public void ownerChanged(Station station, Player player)
+	{
 		if(player == null)
+		{
 			texture = Game_Map_TextureManager.station;
+			toggleTexture1 = Game_Map_TextureManager.station;
+			toggleTexture2 = Game_Map_TextureManager.stationx2;
+		}
+			
 		else if(player.isPlayer1)
 		{
-			this.texture = Game_Map_TextureManager.p1Station;
+			texture = Game_Map_TextureManager.p1Station;
+			toggleTexture1 = Game_Map_TextureManager.p1Station;
+			toggleTexture2 = Game_Map_TextureManager.p1Stationx2;
 		}
 		else
 		{
-			this.texture = Game_Map_TextureManager.p2Station;
+			texture = Game_Map_TextureManager.p2Station;
+			toggleTexture1 = Game_Map_TextureManager.p2Station;
+			toggleTexture2 = Game_Map_TextureManager.p2Stationx2;
 		}
 	
 	}
 
-	
 	@Override
 	public void act(float delta){
 		if(started){
