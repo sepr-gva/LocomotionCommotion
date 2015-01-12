@@ -34,8 +34,6 @@ public class Game_Map_Manager {
 	public static Label stationLabelFuel,stationLabelName, stationLabelCost;
 	public LabelStyle style;
 	
-//	public static Game_Map_Station selectedStation;
-
 	public Game_Map_Manager(){	}
 
 	public void create(Stage stage){
@@ -151,9 +149,7 @@ public class Game_Map_Manager {
 		Game_Map_Manager.stationSelect.setVisible(false);
 		
 		stationLabelName.setVisible(false);
-		
 		stationLabelFuel.setVisible(false);
-		
 		stationLabelCost.setVisible(false);
 	}
 	
@@ -162,9 +158,7 @@ public class Game_Map_Manager {
 		Game_Map_Manager.stationSelect.setVisible(true);
 		
 		stationLabelName.setVisible(true);
-		
 		stationLabelFuel.setVisible(true);
-		
 		stationLabelCost.setVisible(true);
 	}
 	

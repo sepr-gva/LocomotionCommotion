@@ -20,6 +20,11 @@ import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
+import com.TeamHEC.LocomotionCommotion.Train.CoalTrain;
+import com.TeamHEC.LocomotionCommotion.Train.ElectricTrain;
+import com.TeamHEC.LocomotionCommotion.Train.NuclearTrain;
+import com.TeamHEC.LocomotionCommotion.Train.OilTrain;
+import com.TeamHEC.LocomotionCommotion.Train.Route;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 /**
@@ -97,6 +102,10 @@ public class CoreGame implements Serializable{
 		Player1StationStart.purchaseStation(player1);
 		Player2StationStart.purchaseStation(player2);
 		
+		// Create players First Train depending on the station selected:
+		createFirstTrain(player1, Player1StationStart);
+		createFirstTrain(player2, Player2StationStart);
+		
 		//Initialise Map and other Game Resources
 		
 		gameMap = WorldMap.getInstance();		
@@ -113,6 +122,24 @@ public class CoreGame implements Serializable{
 		//Start Game
 		StartTurn();
 	}
+	
+	private void createFirstTrain(Player player, Station startStation)
+	{
+		String fuelType = startStation.getFuelString();
+		Train train = null;
+		
+		if(fuelType.equals("Coal"))
+			train = new CoalTrain(0, 0, true, new Route(startStation));
+		else if(fuelType.equals("Nuclear"))
+			train = new NuclearTrain(0, 0, true, new Route(startStation));
+		else if(fuelType.equals("Electric"))
+			train = new ElectricTrain(0, 0, true, new Route(startStation));
+		else if(fuelType.equals("Oil"))
+			train = new OilTrain(0, 0, true, new Route(startStation));
+			
+		player.trains.add(train);
+	}
+	
 	
 	// {{ Turn System
 	/**
