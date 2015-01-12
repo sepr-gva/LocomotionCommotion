@@ -15,9 +15,9 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 
 	public Game_Map_Station(Station station, float actorX, float actorY)
 	{
-		this.texture = Game_Map_TextureManager.station;
-		this.toggleTexture1 = Game_Map_TextureManager.station;
-		this.toggleTexture2 = Game_Map_TextureManager.stationx2;
+		this.texture = Game_Map_TextureManager.getInstance().station;
+		this.toggleTexture1 = Game_Map_TextureManager.getInstance().station;
+		this.toggleTexture2 = Game_Map_TextureManager.getInstance().stationx2;
 		this.station = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
@@ -74,22 +74,22 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	{
 		if(player == null)
 		{
-			texture = Game_Map_TextureManager.station;
-			toggleTexture1 = Game_Map_TextureManager.station;
-			toggleTexture2 = Game_Map_TextureManager.stationx2;
+			texture = Game_Map_TextureManager.getInstance().station;
+			toggleTexture1 = Game_Map_TextureManager.getInstance().station;
+			toggleTexture2 = Game_Map_TextureManager.getInstance().stationx2;
 		}
 			
 		else if(player.isPlayer1)
 		{
-			texture = Game_Map_TextureManager.p1Station;
-			toggleTexture1 = Game_Map_TextureManager.p1Station;
-			toggleTexture2 = Game_Map_TextureManager.p1Stationx2;
+			texture = Game_Map_TextureManager.getInstance().p1Station;
+			toggleTexture1 = Game_Map_TextureManager.getInstance().p1Station;
+			toggleTexture2 = Game_Map_TextureManager.getInstance().p1Stationx2;
 		}
 		else
 		{
-			texture = Game_Map_TextureManager.p2Station;
-			toggleTexture1 = Game_Map_TextureManager.p2Station;
-			toggleTexture2 = Game_Map_TextureManager.p2Stationx2;
+			texture = Game_Map_TextureManager.getInstance().p2Station;
+			toggleTexture1 = Game_Map_TextureManager.getInstance().p2Station;
+			toggleTexture2 = Game_Map_TextureManager.getInstance().p2Stationx2;
 		}
 	
 	}
@@ -118,7 +118,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		}
 		else if (highlighted)
 		{
-			this.texture=Game_Map_TextureManager.station;
+			this.texture= Game_Map_TextureManager.getInstance().station;
 			this.actorX+=2.5;
 			this.actorY+=2.5;
 			this.highlighted = false;

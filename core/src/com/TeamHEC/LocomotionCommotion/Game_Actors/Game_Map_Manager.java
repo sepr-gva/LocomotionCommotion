@@ -178,7 +178,7 @@ public class Game_Map_Manager {
 	
  	public class Map extends Actor {
 
-		public Texture texture = Game_Map_TextureManager.map;
+		public Texture texture = Game_Map_TextureManager.getInstance().map;
 		public float actorX =100;
 		public float actorY = 60;
 		public boolean started = false;
