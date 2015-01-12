@@ -28,7 +28,6 @@ public class Game_Map_StationInfo extends Actor {
 	public  float actorX = 0 ,actorY = 0;
 	public boolean started = false, highlighted=false, exit =false;
 
-
 	public Game_Map_StationInfo(){
 		this.actorX=0;
 		this.actorY=0;

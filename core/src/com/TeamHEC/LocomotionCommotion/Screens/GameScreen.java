@@ -32,9 +32,8 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
-import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
-
+import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -95,10 +94,13 @@ public class GameScreen implements Screen {
 		
 		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
 		pauseManager.create(getStage());
-
-		//Create the game
-		game = new CoreGame(StartMenu.player1name, StartMenu.player2name, WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1), StartMenu.turnChoice);
 	}
+	
+	public static void createCoreGame(Station p1Station, Station p2Station)
+	{
+		game = new CoreGame(StartMenu.player1name, StartMenu.player2name, p1Station, p2Station, StartMenu.turnChoice);
+	}
+	
 	@Override
 	public void render(float delta) {
 		getStage().getCamera().update();

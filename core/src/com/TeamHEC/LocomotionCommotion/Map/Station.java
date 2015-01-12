@@ -4,6 +4,7 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.PlayerListener;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 
 /**
@@ -28,7 +29,9 @@ public class Station extends MapObj implements PlayerListener{
 	
 	public Station(String name, int baseValue, Fuel fuelType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
-		super(x, y, true);
+		super(x, y);
+		
+		actor = new Game_Map_Station(this, x, y);
 		
 		this.trains = new Train[5];
 		this.name = name;

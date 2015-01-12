@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
@@ -12,13 +11,14 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Game_Map_Station extends Game_Map_MapObj implements StationListener {
 
 	public boolean owned;
+	private Station station;
 
-	public  Game_Map_Station (MapObj station, float actorX, float actorY)
+	public Game_Map_Station(Station station, float actorX, float actorY)
 	{
 		this.texture = Game_Map_TextureManager.station;
 		this.toggleTexture1 = Game_Map_TextureManager.station;
 		this.toggleTexture2 = Game_Map_TextureManager.stationx2;
-		this.mapObj = station;
+		this.station = station;
 		this.actorX = actorX;
 		this.actorY = actorY;
 		
@@ -52,20 +52,23 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	{
 		if(highlighted)
 		{
-			//showInfoBox();
 			texture = toggleTexture2;
 			actorX -= 2.5;
 			actorY -= 2.5;
 		}
 		else
 		{
-			//hideInfoBox();
 			texture = toggleTexture1;
 			actorX += 2.5;
 			actorY += 2.5;
 		}
 	}
-
+	
+	public Station getStation()
+	{
+		return station;
+	}
+	
 	@Override
 	public void ownerChanged(Station station, Player player)
 	{
@@ -94,44 +97,18 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	@Override
 	public void act(float delta){
 		if(started){
-			if(this.highlighted==false){
-				Game_Map_Manager.resetStations();
-				toggleHighlight();
+			if(this.highlighted==false)
+			{	
+				toggleHighlight(false);
 				showInfoBox();
-				Game_Map_Manager.selectedStation=this;
+				Game_Map_StationSelectBtn.selectedStation = this;
 			}
-			else{
-				toggleHighlight();
+			else
+			{
+				toggleHighlight(true);
 				hideInfoBox();
 			}
 			started = false;
-		}
-	}
-	public void resetHighlight(){
-		if(owned){
-			
-		}
-		else if (highlighted){
-			this.texture=Game_Map_TextureManager.station;
-			this.actorX+=2.5;
-			this.actorY+=2.5;
-			this.highlighted = false;
-		}
-
-	}
-	public void toggleHighlight(){
-		if (this.highlighted){
-			this.texture=Game_Map_TextureManager.station;
-			this.actorX+=2.5;
-			this.actorY+=2.5;
-			this.highlighted = false;
-		}
-		else{
-			this.texture=Game_Map_TextureManager.stationx2;
-			this.actorX-=2.5;
-			this.actorY-=2.5;
-			this.highlighted = true;
-
 		}
 	}
 
@@ -143,9 +120,9 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			else
 			{
 				// Sets the labels to info from each station:
-				Game_Map_Manager.stationLabelName.setText(mapObj.getName());
-				Game_Map_Manager.stationLabelCost.setText(String.format("%d", mapObj.getTotalRent()));
-				Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", mapObj.getFuelType().getValue(), mapObj.getFuelString()));
+				Game_Map_Manager.stationLabelName.setText(station.getName());
+				Game_Map_Manager.stationLabelCost.setText(String.format("%d", station.getTotalRent()));
+				Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", station.getFuelType().getValue(), station.getFuelString()));
 				
 				GameScreen.getStage().getActors().get(i).setVisible(true);
 				Game_Map_Manager.moveInfoBox(this.actorX-180, this.actorY-80);

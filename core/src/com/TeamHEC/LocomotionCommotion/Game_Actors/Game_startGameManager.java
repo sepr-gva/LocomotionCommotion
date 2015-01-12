@@ -21,9 +21,10 @@ public class Game_startGameManager {
 	public static Label selectLabel;
 	public static boolean player1 = true, inProgress = true;
 
-	public Game_startGameManager(){	}
+	public Game_startGameManager(){}
 
-	public void create(Stage stage){
+	public void create(Stage stage)
+	{
 		actors.clear();
 		stagestart =0;
 		startGameActors=0;
@@ -40,7 +41,7 @@ public class Game_startGameManager {
 		style.font = font;
 
 		selectLabel = new Label(null, style);
-		selectLabel.setText(GameScreen.player1name+"  please select your start station!");
+		selectLabel.setText(GameScreen.player1name + " please select your start station!");
 		selectLabel.setColor(0,0,0,1);
 		selectLabel.setAlignment(Align.center);
 		selectLabel.setX(800);
@@ -66,9 +67,7 @@ public class Game_startGameManager {
 			}
 			else
 				GameScreen.getStage().getActors().get(i).setVisible(true);
-		}			
-
-				
+		}					
 	}
 	
 	public static void reset(){

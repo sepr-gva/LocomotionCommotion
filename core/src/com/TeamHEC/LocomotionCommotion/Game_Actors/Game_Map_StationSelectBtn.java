@@ -1,13 +1,12 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
-
+import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+
 /*
  * @author Robert Precious <rp825@york.ac.uk>
  * 
@@ -24,17 +23,20 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
  * 				Action- None
  */
 
-public class Game_Map_StationSelectBtn extends Actor {
+public class Game_Map_StationSelectBtn extends Game_Map_MapObj {
 
-	public static Texture texture = Game_Map_TextureManager.stationSelect;
-	public  float actorX = 0 ,actorY = 0;
-	public boolean started = false, highlighted=false, exit =false;
-	Game_Map_Station tempPlayer1Station;
+	public boolean exit = false;
 
+	// Used to hold player1s selection:
+	public static Game_Map_Station selectedStation, selectedP1;
+	private static Station tempP1Station;
 
-	public Game_Map_StationSelectBtn(){
+	public Game_Map_StationSelectBtn()
+	{
 		this.actorX=0;
 		this.actorY=0;
+		this.texture = Game_Map_TextureManager.stationSelect;
+			
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -43,7 +45,7 @@ public class Game_Map_StationSelectBtn extends Actor {
 			}
 		});
 	}
-
+		
 	@Override
 	public void draw(Batch batch, float alpha){
 		batch.draw(texture,actorX,actorY);
@@ -52,28 +54,39 @@ public class Game_Map_StationSelectBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_startGameManager.inProgress){
-				if (Game_startGameManager.player1){
-					Game_Map_Manager.selectedStation.texture=Game_Map_TextureManager.stationp1;
-					Game_Map_Manager.selectedStation.setOwned(true);
+			if(Game_startGameManager.inProgress)
+			{
+				if(Game_startGameManager.player1)
+				{
+					// Sets texture (could be done via listener?)
+					
+					selectedStation.texture = Game_Map_TextureManager.stationp1;
+					selectedStation.setOwned(true);
 					Game_Map_Manager.hideInfoBox();
-					tempPlayer1Station=Game_Map_Manager.selectedStation;
-					Game_Map_Manager.selectedStation.setTouchable(Touchable.disabled);
-					Game_Map_Manager.selectedStation=null;
-					Game_startGameManager.selectLabel.setText(GameScreen.player2name+"  please select your start station!");
-					Game_startGameManager.player1=false;
+					
+					tempP1Station = selectedStation.getStation();
+					
+					selectedStation.setTouchable(Touchable.disabled);
+					selectedP1 = selectedStation;
+					selectedStation = null;
+					
+					Game_startGameManager.selectLabel.setText(GameScreen.player2name + " please select your start station!");
+					Game_startGameManager.player1 = false;
 				}
 				else
 				{
-					Game_Map_Manager.selectedStation.texture=Game_Map_TextureManager.stationp2;
-					Game_Map_Manager.selectedStation.setOwned(true);
+					selectedStation.texture=Game_Map_TextureManager.stationp2;
+					selectedStation.setOwned(true);
 					Game_Map_Manager.hideInfoBox();
-					tempPlayer1Station.setTouchable(Touchable.enabled);
-					Game_startGameManager.selectLabel.setVisible(false);
-					Game_startGameManager.startGame();
-					Game_startGameManager.inProgress=false;
-
 					
+					selectedP1.setTouchable(Touchable.enabled);
+					
+					Game_startGameManager.selectLabel.setVisible(false);
+					
+					Game_startGameManager.startGame();
+					Game_startGameManager.inProgress = false;
+					
+					GameScreen.createCoreGame(tempP1Station, selectedStation.getStation());
 				}
 			}
 		}

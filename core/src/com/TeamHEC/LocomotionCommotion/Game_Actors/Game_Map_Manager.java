@@ -33,7 +33,8 @@ public class Game_Map_Manager {
 	public static int  stagestart, mapActors, stationTracker, numberOfStations, junctionTracker, numberOfJunctions = 2;
 	public static Label stationLabelFuel,stationLabelName, stationLabelCost;
 	public LabelStyle style;
-	public static Game_Map_Station selectedStation;
+	
+//	public static Game_Map_Station selectedStation;
 
 	public Game_Map_Manager(){	}
 
@@ -126,23 +127,6 @@ public class Game_Map_Manager {
 		stage.addActor(mapInfo);
 	}
 
-	
-	public static void resetStations(){
-		for(int i=Game_Map_Manager.stationTracker; i<=Game_Map_Manager.stationTracker +Game_Map_Manager.numberOfStations-1;i++)	//All the stations on the stage
-		{ 	
-			if (i > GameScreen.getStage().getActors().size-1)
-			{//This is just to avoid range errors
-			}
-			else{
-				if (GameScreen.getStage().getActors().get(i).getClass() == Game_Map_Station.class){
-					((Game_Map_Station) GameScreen.getStage().getActors().get(i)).resetHighlight();
-
-				}
-			}
-		}
-	}
-	
-
 	public static void moveInfoBox(float x,float y){
 		showInfoBox();
 		Game_Map_Manager.stationInfo.setX(x);
@@ -193,8 +177,6 @@ public class Game_Map_Manager {
 			else{
 				if (GameScreen.getStage().getActors().get(i).getClass() == Game_Map_Station.class){
 					((Game_Map_Station) GameScreen.getStage().getActors().get(i)).setOwned(false);
-					((Game_Map_Station) GameScreen.getStage().getActors().get(i)).resetHighlight();
-
 				}
 			}
 		}
@@ -207,7 +189,6 @@ public class Game_Map_Manager {
 		public float actorY = 60;
 		public boolean started = false;
 
-
 		public Map(){
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
@@ -216,7 +197,6 @@ public class Game_Map_Manager {
 					return true;
 				}
 			});
-
 		}
 
 		@Override
@@ -232,9 +212,3 @@ public class Game_Map_Manager {
 		}
 	}
 }
-
-
-/*
- * Serializes all actors and stores them in an array. This and the Game object
- * are then saved and stored to be loaded.
- */
