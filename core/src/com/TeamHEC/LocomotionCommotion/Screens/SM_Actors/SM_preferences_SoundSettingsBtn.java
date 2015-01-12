@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_preferences_SoundSettingsBtn extends Actor {
 
 	Texture texture = SM_TextureManager.sm_preferences_SoundSettingsBtn;
-	float actorX = 500- 35,actorY= SM_preferences_GameSettingsBtn.actorY-190;
+	float actorX = SM_ActorManager.sm_preferences_gamesettingsbtn.actorX-37 ,actorY= SM_ActorManager.sm_preferences_gamesettingsbtn.actorY-175;
 	public boolean started = false;
 
 	public SM_preferences_SoundSettingsBtn(){

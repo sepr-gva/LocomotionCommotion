@@ -54,12 +54,26 @@ public class SM_newgame_GoBtn extends Actor {
 			GameScreen.player2name=StartMenu.player2name;
 			GameScreen.gameMode=StartMenu.gameMode;
 			GameScreen.turns=StartMenu.turnChoice;
-
+			resetNewGameScreen();
 			LocomotionCommotion.getInstance().setGameScreen();
-
+			
 			started = false;
 
 
 		}
+	}
+	
+	public void resetNewGameScreen(){
+		SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.sm_newgameTurnTimeOut_unselected_Btn;
+		SM_newgame_StationDomBtn.texture =SM_TextureManager.sm_newgame_StationDom_unselected_Btn ;
+		StartMenu.textbox1.setText("");
+		StartMenu.textbox2.setText("");
+		SM_newgame_Turn50Btn.texture = SM_TextureManager.sm_newgame_Turn50_unselected_Btn;
+		SM_newgame_Turn100Btn.texture = SM_TextureManager.sm_newgame_Turn100_unselected_Btn;
+		SM_newgame_Turn150Btn.texture = SM_TextureManager.sm_newgame_Turn150_unselected_Btn;
+		StartMenu.gameMode=null;
+		StartMenu.player1name= null;
+		StartMenu.player2name= null;
+		StartMenu.turnChoice=0;
 	}
 }

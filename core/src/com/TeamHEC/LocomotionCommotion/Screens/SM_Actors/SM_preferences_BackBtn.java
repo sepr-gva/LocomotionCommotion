@@ -24,8 +24,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_preferences_BackBtn extends Actor {
 
 	Texture texture = SM_TextureManager.sm_newgame_BackBtn; // reuse the new game back btn texture
-	float actorX = 1010 ,actorY = -950+ 660;
+	float actorX = 1390 ,actorY = -900+ 745;
 	public boolean started = false;
+	int animationTracker1,animationTracker2,animationTracker3;
 
 	public SM_preferences_BackBtn(){
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
@@ -46,8 +47,30 @@ public class SM_preferences_BackBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 1200);
-			started = false;
+			if (animationTracker1<510){
+				StartMenu.changeCam(30,0);
+				animationTracker1+=30;
+			}
+			else{
+				if(animationTracker2<1000){
+					StartMenu.changeCam(0,30);
+					animationTracker2+=30;
+				}
+				else
+				{
+					if(animationTracker3<900)
+					{
+						StartMenu.changeCam(-30,0);
+						animationTracker3 +=30;
+					}else{
+						started = false;
+						animationTracker1=0;
+						animationTracker2=0;
+						animationTracker3=0;
+					}
+				}
+			}
+
 		}
 	}
 }
