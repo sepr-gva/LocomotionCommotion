@@ -20,6 +20,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.Train.Route;
 
 /**
  * 
@@ -241,7 +242,23 @@ public class Player implements Serializable{
 		station.purchaseStation(null);
 	}
 	
-	public void lineBonuses()
+	public void stationTax()
+	{
+		for (int i=0; i < trains.size(); i++)
+		{
+			Route trainRoute = trains.get(i).getRoute();
+			if (trainRoute.inStation())
+			{
+				Station currentStation = trainRoute.getStation();
+				if (currentStation.getOwner() != this && currentStation.getOwner() == null)
+				{
+					this.subGold(currentStation.getTotalRent());
+				}
+			}
+		}
+	}
+	
+	private void lineBonuses()
 	{
 		//bonuses subject to change
 		for (int i = 0; i < 6; i++)
@@ -287,7 +304,10 @@ public class Player implements Serializable{
 			Station currentStation = stations.get(i);
 			this.addFuel(currentStation.getResourceType().toString(), currentStation.getTotalResourceOut());
 		}
+		lineBonuses();
 	}
+	
+	
 	
 	//Shop
 	public void accessShop()

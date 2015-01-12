@@ -99,9 +99,8 @@ public class CoreGame implements Serializable{
 		player1.isPlayer1 = true;
 		player2.isPlayer1 = false;
 		
-		// Purchases the stations so the listener fires:
-		Player1StationStart.purchaseStation(player1);
-		Player2StationStart.purchaseStation(player2);
+		player1.purchaseStation(Player1StationStart);
+		player2.purchaseStation(Player2StationStart);
 		
 		// Create players First Train depending on the station selected:
 		createFirstTrain(player1, Player1StationStart);
@@ -159,6 +158,7 @@ public class CoreGame implements Serializable{
 	 */
 	public void EndTurn()
 	{
+		playerTurn.stationTax();
 		turnCount = (turnCount + 1);
 		if(playerTurn == player1)
 			playerTurn = player2;
@@ -177,7 +177,7 @@ public class CoreGame implements Serializable{
 		else
 		{
 			// Proceed with the turn:
-			
+			//playerTurn.stationRewards();
 		}
 	}
 	
