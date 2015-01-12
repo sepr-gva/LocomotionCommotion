@@ -13,7 +13,7 @@ public class Game_Map_Train extends Actor{
 	public Game_Map_Train(Train train)
 	{
 		this.train = train;
-		texture = Game_Map_TextureManager.p1Train;
+		texture = Game_Map_TextureManager.getInstance().p1Train;
 		
 		System.out.println(String.format("%f and %f", train.route.getTrainPos().x, train.route.getTrainPos().y));
 	}
