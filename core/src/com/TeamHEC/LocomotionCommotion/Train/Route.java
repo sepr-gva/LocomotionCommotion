@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
+import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.badlogic.gdx.math.Vector2;
 
 public class Route {
@@ -143,16 +144,19 @@ public class Route {
 			return false;
 	}
 	
-	/*
 	public Station getStation()
 	{
 		if(inStation())
 		{
+			float connectionLength = route.get(routeIndex).getLength();
+			
 			if(connectionTravelled == 0)
-				return route.get(routeIndex).getStartMapObj();
+				return route.get(routeIndex).getStartMapObj().stationObj;
+			else if(connectionTravelled == connectionLength)
+				return route.get(routeIndex).getDestination().stationObj;
 		}
+		return null;
 	}
-	*/
 	
 	/*
 	  	Haven't tested it yet but it should progress the train along the
