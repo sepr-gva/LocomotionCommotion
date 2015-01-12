@@ -189,7 +189,7 @@ public class Game_goal_Assets {
 		 */
 
 		public static Texture texture = Game_TextureManager.getInstance().game_goals_backdrop; 
-		public static float actorX = -30 ,actorY = -30;
+		public static float actorX = -1 ,actorY = -85;
 		public boolean started = false;
 		
 

@@ -56,7 +56,8 @@ public class Game_ResourcesManager {
 		visibleActors.add(game_resources_togglebtn);
 		
 		game_card_togglebtn = new Game_card_CardToggleBtn();
-		visibleActors.add(game_card_togglebtn);
+		game_card_togglebtn.setVisible(false);
+		stage.getActors().add(game_card_togglebtn);
 
 
 		
@@ -98,6 +99,7 @@ public class Game_ResourcesManager {
 		visibleActors.add(oilQuant);
 		visibleActors.add(electricityQuant);
 		visibleActors.add(nuclearQuant);
+		
 		visibleActors.add(cardQuant);
 		
 		resourcesStageStart= stage.getActors().size;

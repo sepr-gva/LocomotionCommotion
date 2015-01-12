@@ -67,7 +67,8 @@ public class Game_startGameManager {
 			}
 			else
 				GameScreen.getStage().getActors().get(i).setVisible(true);
-		}					
+		}	
+		Game_ResourcesManager.game_card_togglebtn.setVisible(true);
 	}
 	
 	public static void reset(){
