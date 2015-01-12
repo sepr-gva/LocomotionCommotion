@@ -62,6 +62,8 @@ public class Game_Map_Manager {
 			actors.add(WorldMap.getInstance().junction[i].getActor());
 		}
 		
+		// Add train stuff
+		
 		stationInfo = new Game_Map_StationInfo();
 		infoactors.add(stationInfo);
 		

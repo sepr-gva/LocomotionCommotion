@@ -56,6 +56,10 @@ public class Game_Map_StationSelectBtn extends Game_Map_MapObj {
 		if(started){
 			if(Game_startGameManager.inProgress)
 			{
+				
+				selectedStation.actorX -= 2.5;
+				selectedStation.actorY -= 2.5;
+				
 				if(Game_startGameManager.player1)
 				{
 					// Sets texture (could be done via listener?)

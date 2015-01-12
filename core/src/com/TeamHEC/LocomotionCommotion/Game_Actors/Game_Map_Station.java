@@ -53,14 +53,20 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		if(highlighted)
 		{
 			texture = toggleTexture2;
-			actorX -= 2.5;
-			actorY -= 2.5;
+			if(!started)
+			{
+				actorX -= 2.5;
+				actorY -= 2.5;
+			}
 		}
 		else
 		{
 			texture = toggleTexture1;
-			actorX += 2.5;
-			actorY += 2.5;
+			if(!started)
+			{
+				actorX += 2.5;
+				actorY += 2.5;
+			}
 		}
 	}
 	
