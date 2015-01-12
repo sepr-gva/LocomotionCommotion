@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_preferences_TitleText extends Actor {
 
 	Texture texture = SM_TextureManager.getInstance().sm_preferences_Title;
-	float actorX =  150 ,actorY= -950+620;
+	float actorX = 500 ,actorY= -900+720;
 	public boolean started = false;
 
 	public SM_preferences_TitleText(){

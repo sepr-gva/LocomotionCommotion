@@ -22,7 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_preferences_VertLine extends Actor {
 
 	Texture texture = SM_TextureManager.getInstance().sm_preferences_VertLine;
-	float actorX = 1031 ,actorY= -950-10;
+	float actorX = 1420 ,actorY= -900+72;
 	public boolean started = false;
 
 	public SM_preferences_VertLine(){
