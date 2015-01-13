@@ -1,19 +1,17 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Player.PlayerListener;
+import com.TeamHEC.LocomotionCommotion.Player.StationStatus;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 
 /**
- * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
- *
  */
 
-public class Station extends MapObj implements PlayerListener{
+public class Station extends MapObj implements StationStatus{
 	
 	private static final long serialVersionUID = 1L;
 	private String name;

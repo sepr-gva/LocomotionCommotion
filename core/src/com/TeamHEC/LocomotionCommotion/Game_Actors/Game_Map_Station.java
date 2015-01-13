@@ -164,5 +164,4 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	public void setOwned(Boolean b){
 		this.owned =b;
 	}
-	
 }

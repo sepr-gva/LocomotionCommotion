@@ -19,6 +19,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
+import com.TeamHEC.LocomotionCommotion.Train.RouteListener;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.Route;
 
@@ -29,7 +30,7 @@ import com.TeamHEC.LocomotionCommotion.Train.Route;
  *
  */
 
-public class Player implements Serializable{
+public class Player implements Serializable, RouteListener{
 
 	/**
 	 * 
@@ -49,7 +50,7 @@ public class Player implements Serializable{
 	public Carriage carriages;
 	public ArrayList<Station> stations;
 	public int[] lines = new int[8];
-	protected ArrayList<PlayerListener> listeners = new ArrayList<PlayerListener>();
+	protected ArrayList<StationStatus> listeners = new ArrayList<StationStatus>();
 	
 	private HashMap<String, Fuel> playerFuel;
 	
@@ -83,6 +84,12 @@ public class Player implements Serializable{
 		playerFuel.put("Electric", this.electric);
 		playerFuel.put("Nuclear", this.nuclear);
 		playerFuel.put("Oil", this.oil);
+		
+		// Registers listeners for Routes:
+		for(int i = 0; i < trains.size(); i++)
+		{
+			trains.get(i).route.register(this);
+		}
 	}
 		
 	public String getName()
@@ -240,6 +247,18 @@ public class Player implements Serializable{
 		station.setOwner(null);
 		stations.remove(station);
 		station.purchaseStation(null);
+	}
+	
+	@Override
+	public void stationPassed(Station station) {
+		// TODO Auto-generated method stub
+		
+		// STATION TAX V2
+		if(station.getOwner() != this && station.getOwner() != null)
+		{
+			this.subGold(station.getTotalRent());
+		}
+		
 	}
 	
 	public void stationTax()
