@@ -1,7 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.StartScreen;
-import com.TeamHEC.LocomotionCommotion.Screens.SM_Actors.StartMenu.SM_ActorManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -24,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_preferences_ControlSettingsBtn extends Actor {
 
 	Texture texture = SM_TextureManager.getInstance().sm_preferences_ControlSettingsBtn;
-	float actorX = SM_ActorManager.sm_preferences_gamesettingsbtn.actorX-80 ,actorY= SM_ActorManager.sm_preferences_gamesettingsbtn.actorY-300;
+	float actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-80 ,actorY= StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorY-300;
 	public boolean started = false;
 
 	public SM_preferences_ControlSettingsBtn(){
