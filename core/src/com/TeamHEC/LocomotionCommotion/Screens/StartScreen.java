@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
-import com.TeamHEC.LocomotionCommotion.Screens.SM_Actors.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Screens.StartMenu.StartMenu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
