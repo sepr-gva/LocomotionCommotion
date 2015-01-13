@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Game_Map_Train extends Actor{
 	
 	private Train train;
-	private Texture texture;
+	private Texture texture, toggleTexture1, toggleTexture2;
 	
 	public Game_Map_Train(Train train)
 	{

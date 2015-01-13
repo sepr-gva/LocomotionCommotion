@@ -7,7 +7,7 @@ import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.badlogic.gdx.math.Vector2;
 
-public class Route {
+public class Route implements RouteStatus{
 	
 	/*
 	  	## READ ME ##
@@ -21,6 +21,8 @@ public class Route {
 	private float connectionTravelled = 0;
 	
 	private MapObj currentMapObj;
+	
+	protected ArrayList<RouteListener> listeners = new ArrayList<RouteListener>();
 	
 	public Route(MapObj startingPos)
 	{
@@ -176,6 +178,8 @@ public class Route {
 			
 			routeIndex++;
 			connectionTravelled = 0;
+			notifyStationPassed();
+			
 			if(routeIndex < route.size())
 			{
 				update(diff);
@@ -185,6 +189,29 @@ public class Route {
 				// ROUTE FINISHED
 				// Check if task complete?
 			}
+		}
+	}
+
+	@Override
+	public void register(RouteListener newListener)
+	{
+		if(newListener != null)
+			listeners.add(newListener);
+	}
+
+	@Override
+	public void unregister(RouteListener r)
+	{
+		listeners.remove(listeners.indexOf(r));
+	}
+
+	@Override
+	public void notifyStationPassed()
+	{
+		for(RouteListener listener: listeners)
+		{
+			if(currentMapObj.stationObj != null)
+				listener.stationPassed(currentMapObj.stationObj);
 		}
 	}
 }
