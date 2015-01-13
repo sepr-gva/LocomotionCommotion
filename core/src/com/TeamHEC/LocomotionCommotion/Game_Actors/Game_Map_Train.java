@@ -15,7 +15,11 @@ public class Game_Map_Train extends Actor{
 		this.train = train;
 		texture = Game_Map_TextureManager.getInstance().p1Train;
 		
-		System.out.println(String.format("%f and %f", train.route.getTrainPos().x, train.route.getTrainPos().y));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+			
+		train.route.update(70);
 	}
 	
 	@Override

@@ -140,8 +140,8 @@ public class CoreGame implements Serializable{
 			train = new OilTrain(0, 0, true, new Route(startStation));
 			
 		player.trains.add(train);
-		GameScreen.getStage().getActors().add(train.trainActor);
-		train.trainActor.setZIndex(1);
+		GameScreen.getStage().getActors().add(train.getActor());
+		train.getActor().setZIndex(1);
 	}
 	
 	// {{ Turn System

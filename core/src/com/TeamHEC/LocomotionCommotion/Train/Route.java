@@ -58,7 +58,7 @@ public class Route implements RouteStatus{
 		routeIndex = index;
 	}
 	
-	public void setConnectionedTravelled(float travelled)
+	public void setConnectionTravelled(float travelled)
 	{
 		connectionTravelled = travelled;
 	}
@@ -79,7 +79,7 @@ public class Route implements RouteStatus{
 			return currentMapObj.connections;
 		}
 		else
-			return route.get(route.size()).getDestination().connections;
+			return route.get(route.size()-1).getDestination().connections;
 	}
 
 	// Adds a connection to the route
@@ -103,11 +103,20 @@ public class Route implements RouteStatus{
 		}
 		else
 		{
-			Vector2 vect = route.get(routeIndex).getVector();
+			MapObj startMapObj = route.get(routeIndex).getStartMapObj();
 			
-			// Scales the vector by the distance travelled:
-			vect.scl(connectionTravelled);			
-			return vect;
+			Vector2 pos = new Vector2(startMapObj.x, startMapObj.y);
+			Vector2 vect = route.get(routeIndex).getVector().cpy();
+			
+		//	System.out.println(String.format("vectX %f vectY %f", vect.x, vect.y));
+			
+			vect.scl(connectionTravelled);
+			
+		//	System.out.println(String.format("scaled: vectX %f vectY %f", vect.x, vect.y));
+			
+			pos.add(vect);
+					
+			return pos;
 		}
 	}
 	
@@ -167,6 +176,7 @@ public class Route implements RouteStatus{
 	public void update(float moveBy)
 	{
 		float connectionLength = route.get(routeIndex).getLength();
+		
 		if(connectionTravelled + moveBy < connectionLength)
 		{
 			connectionTravelled += moveBy;
@@ -187,7 +197,7 @@ public class Route implements RouteStatus{
 			else
 			{
 				// ROUTE FINISHED
-				// Check if task complete?
+				routeIndex--;
 			}
 		}
 	}

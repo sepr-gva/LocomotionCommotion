@@ -14,11 +14,12 @@ public class Connection{
 		this.startMapObj = startMapObj;
 		this.endMapObj = endMapObj;
 		
-		float dX =  startMapObj.x - endMapObj.x;
-		float dY =  startMapObj.y - endMapObj.y;
+		float dX =  endMapObj.x - startMapObj.x;
+		float dY =  endMapObj.y - startMapObj.y;
 		
 		// Creates a vector so we can find the length and normalise for direction:
 		vector = new Vector2(dX, dY);
+		
 		length = vector.len();
 		vector.nor();
 	}

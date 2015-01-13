@@ -40,7 +40,7 @@ public class TeleportCard extends Card{
 		
 		train.route.getRoute().clear();
 		train.route.setRouteIndex(0);
-		train.route.setConnectionedTravelled(0);
+		train.route.setConnectionTravelled(0);
 		
 		train.route.setCurrentMapObj(chosenLocation);
 	}

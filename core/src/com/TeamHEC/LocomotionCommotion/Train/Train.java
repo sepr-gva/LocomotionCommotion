@@ -49,8 +49,7 @@ public class Train implements Serializable{
 	private boolean inStation;
 	
 	public final Route route;
-	
-	public Game_Map_Train trainActor;
+	private Game_Map_Train trainActor;
 	
 	private ArrayList<TrainUpgrade> upgrades = new ArrayList<TrainUpgrade>();
 	
@@ -73,6 +72,11 @@ public class Train implements Serializable{
 	}
 	
 	// =========== Getters ===========
+	
+	public Game_Map_Train getActor()
+	{
+		return trainActor;
+	}
 	
 	public String getName()
 	{
