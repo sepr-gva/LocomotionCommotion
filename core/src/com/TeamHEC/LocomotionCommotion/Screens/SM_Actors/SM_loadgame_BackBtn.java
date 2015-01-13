@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Screens.StartScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -48,12 +48,12 @@ public class SM_loadgame_BackBtn extends Actor {
 	public void act(float delta){
 		if(started){
 			if (animationTracker1<50){
-				StartMenu.changeCam(0,-10);
+				StartScreen.changeCam(0,-10);
 				animationTracker1+=15;
 			}
 			else{
 				if(animationTracker2<1680){
-					StartMenu.changeCam(-15,0);
+					StartScreen.changeCam(-15,0);
 					animationTracker2+=15;
 				}
 

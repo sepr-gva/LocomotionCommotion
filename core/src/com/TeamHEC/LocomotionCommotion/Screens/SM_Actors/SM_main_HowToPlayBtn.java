@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Screens.StartScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -47,7 +47,7 @@ public class SM_main_HowToPlayBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(-1500, 0);
+			StartScreen.changeCam(-1500, 0);
 			started = false;
 		}
 	}

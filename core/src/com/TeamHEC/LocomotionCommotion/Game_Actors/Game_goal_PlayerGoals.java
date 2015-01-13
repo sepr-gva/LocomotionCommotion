@@ -52,19 +52,20 @@ public class Game_goal_PlayerGoals {
 
 		game_menuobject_ticketenclosure=new Game_menuobject_ticketenclosure();
 		actors.add(game_menuobject_ticketenclosure);
-		//Temp Goals
+
+
 		player1goals = new HashMap<String,Goal>();
 		ownedGoals = new HashMap<String,Game_goal_NewGoal>();
+		//Temp Goals
+		//		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
+		//		Goal goal2 = new Goal("Madrid", "Moscow", false, 500, 0, "Passenger","Any");
+		//		Goal goal3 = new Goal("Berlin", "Olso", false, 50, 0, "Passenger","Any");
+		//		
+		//		player1goals.put("1", goal1);
+		//		player1goals.put("2", goal2);
+		//		player1goals.put("3", goal3);
+		//		//Temp end
 
-		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
-		Goal goal2 = new Goal("Madrid", "Moscow", false, 500, 0, "Passenger","Any");
-		Goal goal3 = new Goal("Berlin", "Olso", false, 50, 0, "Passenger","Any");
-		
-		player1goals.put("1", goal1);
-		player1goals.put("2", goal2);
-		player1goals.put("3", goal3);
-		//Temp end
-		
 		numberofOwnedGoals=player1goals.size();
 
 		newgoal1= new Game_goal_NewGoal(Gdx.graphics.getHeight()-290,5,true,null);
@@ -101,7 +102,7 @@ public class Game_goal_PlayerGoals {
 			removebuttons.get(a).setVisible(false);
 
 		}
-		float tickety= 795, buttony = 870;
+		float tickety= 845, buttony = 870;
 
 		for (int i=0; i<player1goals.size();i++){
 			String a = new Integer(i+1).toString();
@@ -188,17 +189,21 @@ public class Game_goal_PlayerGoals {
 	}
 
 	public static void goalMenuOpen() {
+
+		//Move Tickets
 		for (Actor a: actors){
 			a.setVisible(true);
 			a.setX(a.getX()+150);
 			a.setY(a.getY()-200);
 		}
+		//Hide goal side menu
 		game_menuobject_ticketenclosure.setVisible(false);
 		Game_menuObject_AManager.game_menuobject_tickettoggle.setVisible(false);
+		//Put the remove Buttons in the correct place
 		for (int i=0;i<numberofOwnedGoals; i++){
 			String a = new Integer(i+1).toString();
 			removebuttons.get(a).setX(250+150);
-			removebuttons.get(a).setY(870-200-(200*i));
+			removebuttons.get(a).setY(925-200-(200*i));
 			removebuttons.get(a).setVisible(true);
 			removebuttons.get(a).refreshBounds();;
 
@@ -232,26 +237,26 @@ public class Game_goal_PlayerGoals {
 			ownedGoals.get("1").setGoal(ownedGoals.get("2").getGoal());
 			removebuttons.get("1").setUndo(removebuttons.get("2").getUndo());
 			removebuttons.get("1").setnewgoalindex(removebuttons.get("2").getnewgoalindex());
-			
+
 			ticketLabels.get("2").setText(ticketLabels.get("3").getText());
 			ownedGoals.get("2").setGoal(ownedGoals.get("3").getGoal());
 			removebuttons.get("2").setUndo(removebuttons.get("3").getUndo());
 			removebuttons.get("2").setnewgoalindex(removebuttons.get("3").getnewgoalindex());
-			
+
 			if (ownedGoals.get("2").isEmpty()){
 				ticketLabels.get("1").setText("");
 				ownedGoals.get("1").setEmpty(true);
 				removebuttons.get("1").setVisible(false);
 				removebuttons.get("1").resetButtons();
-				}
-			
+			}
+
 			if (ownedGoals.get("3").isEmpty()){
 				ticketLabels.get("2").setText("");
 				ownedGoals.get("2").setEmpty(true);
 				removebuttons.get("2").setVisible(false);
 			}
 
-			
+
 		}
 		if (goal ==2){
 			ownedGoals.get("2").setGoal(ownedGoals.get("3").getGoal());
@@ -271,9 +276,9 @@ public class Game_goal_PlayerGoals {
 		ownedGoals.get("3").setEmpty(true);
 		removebuttons.get("3").setVisible(false);
 		removebuttons.get("3").resetButtons();
-		
+
 		numberofOwnedGoals-=1;
-		
+
 		if (numberofOwnedGoals==0)
 			numberofOwnedGoals=0;
 	}
@@ -297,7 +302,7 @@ public class Game_goal_PlayerGoals {
 			removebuttons.get(a).setVisible(true);
 			removebuttons.get(a).setRedoBtn();
 			removebuttons.get(a).setnewgoalindex(newgoal.getIndex());
-			
+
 			System.out.println(outputOwnedGoals());
 			numberofOwnedGoals+=1;
 			return true;
@@ -311,10 +316,10 @@ public class Game_goal_PlayerGoals {
 		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(ownedGoals.get(a).getGoal());
 		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setEmpty(false);
 		removeGoal(removebuttons.get(a).index);
-		
-		
+
+
 	}
-	
+
 	public static String outputOwnedGoals(){
 		String output;
 		output="";
@@ -325,7 +330,7 @@ public class Game_goal_PlayerGoals {
 			}
 		}
 		return output;
-		
+
 	}
 
 

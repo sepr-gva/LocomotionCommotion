@@ -15,7 +15,7 @@ package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
  * act			The action taken if the listener detects interaction
  * 				Action- moves camera down to preferences menu
  */
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Screens.StartScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -49,19 +49,19 @@ public class SM_main_PreferencesBtn extends Actor {
 	public void act(float delta){
 		if(started){
 			if (animationTracker1<900){
-				StartMenu.changeCam(30,0);
+				StartScreen.changeCam(30,0);
 				animationTracker1+=30;
 			}
 			else{
 				if(animationTracker2<1000){
-					StartMenu.changeCam(0,-30);
+					StartScreen.changeCam(0,-30);
 					animationTracker2+=30;
 				}
 				else
 				{
 					if(animationTracker3<500)
 					{
-						StartMenu.changeCam(-30,0);
+						StartScreen.changeCam(-30,0);
 						animationTracker3 +=30;
 					}else{
 						started = false;

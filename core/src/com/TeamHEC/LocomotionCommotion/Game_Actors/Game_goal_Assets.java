@@ -189,12 +189,12 @@ public class Game_goal_Assets {
 		 */
 
 		public static Texture texture = Game_TextureManager.getInstance().game_goals_backdrop; 
-		public static float actorX1 = -1 ,actorY = -85;
+		public static float actorX = -1 ,actorY = -35;
 		public boolean started = false;
 		
 
 		public Game_goal_Backdrop(){
-			setBounds(actorX1,actorY,texture.getWidth(),texture.getHeight());
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_goal_Backdrop)event.getTarget()).started = true;
@@ -207,7 +207,7 @@ public class Game_goal_Assets {
 
 		@Override
 		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX1,actorY);
+			batch.draw(texture,actorX,actorY);
 		}
 
 		@Override

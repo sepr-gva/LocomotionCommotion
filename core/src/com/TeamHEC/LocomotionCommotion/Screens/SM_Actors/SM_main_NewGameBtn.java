@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Screens.StartScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -51,12 +51,12 @@ public class SM_main_NewGameBtn extends Actor {
 		if(started){
 					
 					if (animationTracker1<950){
-						StartMenu.changeCam(0,15);
+						StartScreen.changeCam(0,15);
 						animationTracker1+=15;
 					}
 					else{
 						if(animationTracker2<90){
-							StartMenu.changeCam(-15,0);
+							StartScreen.changeCam(-15,0);
 							animationTracker2+=15;
 						}
 						else{

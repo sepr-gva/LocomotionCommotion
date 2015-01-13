@@ -13,7 +13,6 @@ package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
  * act			The action taken if the listener detects interaction
  * 				Action- changes its imaged to the 'selected' version and changes the other two to 'unselected'
  */
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;

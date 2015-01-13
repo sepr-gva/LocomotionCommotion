@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Screens.StartScreen;
+import com.TeamHEC.LocomotionCommotion.Screens.SM_Actors.StartMenu.SM_ActorManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -24,7 +25,7 @@ public class SM_preferences_DisplaySettingsBtn extends Actor {
 
 
 	Texture texture = SM_TextureManager.getInstance().sm_preferences_DisplaySettingsBtn;
-	float actorX = SM_ActorManager.sm_preferences_gamesettingsbtn.actorX-37 ,actorY= SM_ActorManager.sm_preferences_gamesettingsbtn.actorY-100;
+	float actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-37 ,actorY= StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorY-100;
 	public boolean started = false;
 
 	public SM_preferences_DisplaySettingsBtn(){
@@ -46,7 +47,7 @@ public class SM_preferences_DisplaySettingsBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 0);
+			StartScreen.changeCam(0, 0);
 			started = false;
 		}
 	}

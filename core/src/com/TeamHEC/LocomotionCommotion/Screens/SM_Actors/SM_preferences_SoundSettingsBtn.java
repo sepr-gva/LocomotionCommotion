@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Screens.StartScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -23,7 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class SM_preferences_SoundSettingsBtn extends Actor {
 
 	Texture texture = SM_TextureManager.getInstance().sm_preferences_SoundSettingsBtn;
-    float actorX = SM_ActorManager.sm_preferences_gamesettingsbtn.actorX-37 ,actorY= SM_ActorManager.sm_preferences_gamesettingsbtn.actorY-175;
+    float actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-37 ,actorY= StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorY-175;
 	public boolean started = false;
 
 	public SM_preferences_SoundSettingsBtn(){
@@ -45,7 +45,7 @@ public class SM_preferences_SoundSettingsBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			StartMenu.changeCam(0, 0);
+			StartScreen.changeCam(0, 0);
 			started = false;
 		}
 	}

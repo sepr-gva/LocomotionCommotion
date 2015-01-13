@@ -98,7 +98,7 @@ public class GameScreen implements Screen {
 	
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
-		game = new CoreGame(StartMenu.player1name, StartMenu.player2name, p1Station, p2Station, StartMenu.turnChoice);
+		game = new CoreGame(StartScreen.player1name, StartScreen.player2name, p1Station, p2Station, StartScreen.turnChoice);
 	}
 	
 	@Override
