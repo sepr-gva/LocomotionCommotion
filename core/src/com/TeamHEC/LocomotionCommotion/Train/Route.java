@@ -22,6 +22,8 @@ public class Route implements RouteStatus{
 	
 	private MapObj currentMapObj;
 	
+	private boolean isComplete = false;
+	
 	protected ArrayList<RouteListener> listeners = new ArrayList<RouteListener>();
 	
 	public Route(MapObj startingPos)
@@ -46,6 +48,11 @@ public class Route implements RouteStatus{
 	public int getRouteIndex()
 	{
 		return routeIndex;
+	}
+	
+	public boolean isComplete()
+	{
+		return isComplete;
 	}
 	
 	public float getConnectionTravelled()
@@ -198,6 +205,7 @@ public class Route implements RouteStatus{
 			{
 				// ROUTE FINISHED
 				routeIndex--;
+				isComplete = true;
 			}
 		}
 	}

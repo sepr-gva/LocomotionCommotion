@@ -18,8 +18,31 @@ public class Game_Map_Train extends Actor{
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-			
-		train.route.update(70);
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(1));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(1));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(1));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(1));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(1));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(1));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+	}
+	
+	@Override
+	public void act(float delta){
+		if(!train.route.isComplete())
+		{
+			train.route.update(2);
+		}
 	}
 	
 	@Override
