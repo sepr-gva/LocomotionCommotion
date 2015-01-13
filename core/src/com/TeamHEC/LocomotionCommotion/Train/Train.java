@@ -104,6 +104,11 @@ public class Train implements Serializable{
 		return fuel.getClass().getName();				
 	}
 	
+	public Route getRoute()
+	{
+		return route;
+	}
+	
 	// =========== Setters ===========
 	
 	public void setSpeedMod(int speedMod)
