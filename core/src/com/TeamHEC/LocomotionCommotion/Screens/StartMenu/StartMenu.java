@@ -233,7 +233,7 @@ public class StartMenu {
 
 	}
 
-	public  class StartMenuActor extends Actor{
+	public static class StartMenuActor extends Actor{
 		public Texture texture;
 		float actorX, actorY;
 		boolean started = false;
@@ -264,7 +264,7 @@ public class StartMenu {
 
 
 	// New Game Button
-	public class SM_main_NewGameBtn extends StartMenuActor {
+	public static class SM_main_NewGameBtn extends StartMenuActor {
 		int animationTracker1,animationTracker2;
 		public SM_main_NewGameBtn(){
 			actorX=600;
@@ -414,7 +414,7 @@ public class StartMenu {
 
 
 	//NewGame: Back Button
-	public class SM_newgame_BackBtn extends StartMenuActor {
+	public static class SM_newgame_BackBtn extends StartMenuActor {
 		int animationTracker1,animationTracker2;
 		public SM_newgame_BackBtn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_BackBtn;
@@ -454,13 +454,13 @@ public class StartMenu {
 		}
 
 		public void resetNewGameScreen(){
-			SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
-			SM_newgame_StationDomBtn.texture =SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn ;
+			StartMenu.actorManager.sm_newgame_turntimeoutbtn.texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
+			StartMenu.actorManager.sm_newgmae_stationdombtn.texture =SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn ;
 			StartMenu.textbox1.setText("");
 			StartMenu.textbox2.setText("");
-			SM_newgame_Turn50Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
-			SM_newgame_Turn100Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
-			SM_newgame_Turn150Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
+			StartMenu.actorManager.sm_newgame_turn50btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
+			StartMenu.actorManager.sm_newgame_turn100btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
+			StartMenu.actorManager.sm_newgame_turn150btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
 			StartMenu.gameMode=null;
 			StartMenu.player1name= null;
 			StartMenu.player2name= null;
@@ -470,11 +470,11 @@ public class StartMenu {
 
 	//NewGame: Game Mode Choices
 	//Turn Timeout
-	public class SM_newgame_TurnTimeOutBtn extends StartMenuActor {
+	public static class SM_newgame_TurnTimeOutBtn extends StartMenuActor {
 		public SM_newgame_TurnTimeOutBtn(){
-			texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
-			actorX = 400 ;
-			actorY = 1150+530;
+			this.texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
+			this.actorX = 400 ;
+			this.actorY = 1150+530;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -487,7 +487,7 @@ public class StartMenu {
 			if(started){
 				StartMenu.gameMode = "turntimeout";
 				texture = SM_TextureManager.getInstance().sm_newgame_TurnTimeOutBtn;
-				SM_newgame_StationDomBtn.setTexture(SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn);
+				StartMenu.actorManager.sm_newgmae_stationdombtn.setTexture(SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn);
 				started = false;
 
 
@@ -495,7 +495,7 @@ public class StartMenu {
 		}
 	}
 	//Station Domination
-	public class SM_newgame_StationDomBtn extends StartMenuActor {
+	public static class SM_newgame_StationDomBtn extends StartMenuActor {
 		public SM_newgame_StationDomBtn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn;
 			actorX = 660 ;
@@ -512,7 +512,7 @@ public class StartMenu {
 			if(started){
 				StartMenu.gameMode = "stationdomination";
 				texture = SM_TextureManager.getInstance().sm_newgame_StationDomBtn;
-				SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
+				StartMenu.actorManager.sm_newgame_turntimeoutbtn.texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
 				started = false;
 
 
@@ -521,7 +521,7 @@ public class StartMenu {
 	}
 
 	//NewGame : Go Button
-	public class SM_newgame_GoBtn extends StartMenuActor {
+	public static class SM_newgame_GoBtn extends StartMenuActor {
 		public SM_newgame_GoBtn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_GoBtn;
 			actorX = -100 ;
@@ -552,13 +552,13 @@ public class StartMenu {
 		}
 
 		public void resetNewGameScreen(){
-			SM_newgame_TurnTimeOutBtn.texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
-			SM_newgame_StationDomBtn.texture =SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn ;
+			StartMenu.actorManager.sm_newgame_turntimeoutbtn.texture = SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn;
+			StartMenu.actorManager.sm_newgmae_stationdombtn.texture =SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn ;
 			StartMenu.textbox1.setText("");
 			StartMenu.textbox2.setText("");
-			SM_newgame_Turn50Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
-			SM_newgame_Turn100Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
-			SM_newgame_Turn150Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
+			StartMenu.actorManager.sm_newgame_turn50btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
+			StartMenu.actorManager.sm_newgame_turn100btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
+			StartMenu.actorManager.sm_newgame_turn150btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
 			StartMenu.gameMode=null;
 			StartMenu.player1name= null;
 			StartMenu.player2name= null;
@@ -568,7 +568,7 @@ public class StartMenu {
 
 	//NewGame Turn choices
 	//50 Turns
-	public class SM_newgame_Turn50Btn extends StartMenuActor {
+	public static class SM_newgame_Turn50Btn extends StartMenuActor {
 		public SM_newgame_Turn50Btn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
 			actorX = 490 ;
@@ -584,9 +584,9 @@ public class StartMenu {
 		public void act(float delta){
 			if(started){
 				StartMenu.turnChoice = 50;
-				SM_newgame_Turn50Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50Btn;
-				SM_newgame_Turn100Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
-				SM_newgame_Turn150Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
+				StartMenu.actorManager.sm_newgame_turn50btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50Btn;
+				StartMenu.actorManager.sm_newgame_turn100btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
+				StartMenu.actorManager.sm_newgame_turn150btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
 				started = false;
 
 
@@ -594,7 +594,7 @@ public class StartMenu {
 		}
 	}
 	//100 Turns
-	public class SM_newgame_Turn100Btn extends StartMenuActor {
+	public static class SM_newgame_Turn100Btn extends StartMenuActor {
 		public SM_newgame_Turn100Btn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
 			actorX = 590 ;
@@ -610,9 +610,9 @@ public class StartMenu {
 		public void act(float delta){
 			if(started){
 				StartMenu.turnChoice = 100;
-				SM_newgame_Turn50Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
-				SM_newgame_Turn100Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100Btn;
-				SM_newgame_Turn150Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
+				StartMenu.actorManager.sm_newgame_turn50btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
+				StartMenu.actorManager.sm_newgame_turn100btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100Btn;
+				StartMenu.actorManager.sm_newgame_turn150btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
 				started = false;
 
 
@@ -620,7 +620,7 @@ public class StartMenu {
 		}
 	}
 	//150 Turns
-	public class SM_newgame_Turn150Btn extends StartMenuActor {
+	public static class SM_newgame_Turn150Btn extends StartMenuActor {
 		public SM_newgame_Turn150Btn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn;
 			actorX = 680 ;
@@ -636,9 +636,9 @@ public class StartMenu {
 		public void act(float delta){
 			if(started){
 				StartMenu.turnChoice = 150;
-				SM_newgame_Turn50Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
-				SM_newgame_Turn100Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
-				SM_newgame_Turn150Btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150Btn;
+				StartMenu.actorManager.sm_newgame_turn50btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn;
+				StartMenu.actorManager.sm_newgame_turn100btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn;
+				StartMenu.actorManager.sm_newgame_turn150btn.texture = SM_TextureManager.getInstance().sm_newgame_Turn150Btn;
 				started = false;
 
 
@@ -651,7 +651,7 @@ public class StartMenu {
 
 
 	//LoadGame BackBtn
-	public class SM_loadgame_BackBtn extends StartMenuActor {
+	public static class SM_loadgame_BackBtn extends StartMenuActor {
 		int animationTracker1,animationTracker2;
 		public SM_loadgame_BackBtn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_BackBtn; // Reuse Texture the BackButton from new game
@@ -692,7 +692,7 @@ public class StartMenu {
 	//PREFRENCES ACTORS---------------------------------------------------------------------------------
 
 	//Preferences: Back Button
-	public class SM_preferences_BackBtn extends StartMenuActor {
+	public static class SM_preferences_BackBtn extends StartMenuActor {
 		int animationTracker1,animationTracker2,animationTracker3;
 		public SM_preferences_BackBtn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_BackBtn; // reuse the new game back btn texture
@@ -737,7 +737,7 @@ public class StartMenu {
 	}
 
 	//Preferences: Game Settings
-	public class SM_preferences_GameSettingsBtn extends StartMenuActor {
+	public static class SM_preferences_GameSettingsBtn extends StartMenuActor {
 		public SM_preferences_GameSettingsBtn(){
 			texture = SM_TextureManager.getInstance().sm_preferences_GameSettingsBtn;
 			actorX = 890;
@@ -767,7 +767,7 @@ public class StartMenu {
 	}
 
 	//Preferences: Display Settings
-	public class SM_preferences_DisplaySettingsBtn extends StartMenuActor {
+	public static class SM_preferences_DisplaySettingsBtn extends StartMenuActor {
 		public SM_preferences_DisplaySettingsBtn(){
 			texture = SM_TextureManager.getInstance().sm_preferences_DisplaySettingsBtn;
 			actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-37 ;
@@ -789,7 +789,7 @@ public class StartMenu {
 	}
 
 	//Preferences: Sound Settings
-	public class SM_preferences_SoundSettingsBtn extends StartMenuActor {
+	public static class SM_preferences_SoundSettingsBtn extends StartMenuActor {
 		public SM_preferences_SoundSettingsBtn(){
 			texture = SM_TextureManager.getInstance().sm_preferences_SoundSettingsBtn;
 			actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-37 ;
@@ -811,7 +811,7 @@ public class StartMenu {
 	}
 
 	//Preferences: Control Settings
-	public class SM_preferences_ControlSettingsBtn extends StartMenuActor {
+	public static class SM_preferences_ControlSettingsBtn extends StartMenuActor {
 		public SM_preferences_ControlSettingsBtn(){
 			texture = SM_TextureManager.getInstance().sm_preferences_ControlSettingsBtn;
 			actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-80 ;
@@ -835,7 +835,7 @@ public class StartMenu {
 	//HOW TO PLAY ACTORS -------------------------------------------------------------------------------
 
 	//How to play: Home
-	public class SM_howtoplay_HomeBtn extends StartMenuActor {
+	public static class SM_howtoplay_HomeBtn extends StartMenuActor {
 		public SM_howtoplay_HomeBtn(){
 			texture = SM_TextureManager.getInstance().sm_howtoplay_homebtn; 
 			actorX = -1290+ 570 ;
@@ -856,7 +856,7 @@ public class StartMenu {
 		}
 	}
 	//How to play: Next
-	public class SM_howtoplay_NextBtn extends StartMenuActor {
+	public static class SM_howtoplay_NextBtn extends StartMenuActor {
 		public SM_howtoplay_NextBtn(){
 			texture = SM_TextureManager.getInstance().sm_howtoplay_nextbtn;
 			 actorX = -1290+ 590 ;
@@ -877,7 +877,7 @@ public class StartMenu {
 		}
 	}
 	//How to play: Previous
-	public class SM_howtoplay_PreviousBtn extends StartMenuActor {
+	public static class SM_howtoplay_PreviousBtn extends StartMenuActor {
 		public SM_howtoplay_PreviousBtn(){
 			texture = SM_TextureManager.getInstance().sm_howtoplay_previousbtn; 
 			actorX = -1290+ 460 ;
@@ -899,10 +899,11 @@ public class StartMenu {
 	}
 
 	//How to play: Back
-	public class SM_howtoplay_BackBtn extends StartMenuActor {
+	public static class SM_howtoplay_BackBtn extends StartMenuActor {
 		public SM_howtoplay_BackBtn(){
 			texture = SM_TextureManager.getInstance().sm_newgame_BackBtn; // reuse the new game back btn texture
-			float actorX = -1290+ 1000 ,actorY = 625;
+			actorX = -1290+ 1000 ;
+			actorY = 625;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
