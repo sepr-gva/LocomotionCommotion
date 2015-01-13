@@ -69,6 +69,7 @@ public class Game_startGameManager {
 				GameScreen.getStage().getActors().get(i).setVisible(true);
 		}	
 		Game_ResourcesManager.game_card_togglebtn.setVisible(true);
+		Game_ResourcesManager.cardQuant.setVisible(true);
 	}
 	
 	public static void reset(){

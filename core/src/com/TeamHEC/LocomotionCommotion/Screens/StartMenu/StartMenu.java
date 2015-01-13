@@ -1,5 +1,32 @@
 package com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
-
+/*
+ * @author Robert Precious <rp825@york.ac.uk>
+ * 
+ * Start Menu is in charge of everything that happens in the Start Menu.
+ * Start Menu is all on one plane and we move the camera up, down, left and right using the changeCamera() method.
+ * There are two types of objects in Start Menu Actors and Images; I have made the distinction using two super classes
+ * StartMenuImage and StartMenuActor. These super classes run the draw method needed for any object to render and take 
+ * the x and y coordinates and a texture(Image); 
+ * 
+ * StartMenu Class consists of three main parts also.
+ * 1.Create Text boxes
+ * 		This creates the text fields needed in NewGame menu 
+ * 2. StartMenuActorManager
+ * 		Start Menu Manager first initialises all the Objects, then adds them to the stage.
+ * 3. The Object Classes.
+ * 		The classes of the objects. Within these classes are the x and y coordinates if you need to move objects
+ * 		and act methods for the objects. This is the code executed if an action is placed on the object.
+ * 
+ * @param actorManager	the class which handles creation of all objects in the start menu
+ * @param gameMode
+ * @param player1name
+ * @param player2name
+ * @param turnChoice
+ * @param textbox1
+ * @param textbox2
+ * @param skin
+ * 
+ */
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
@@ -18,14 +45,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;
 import com.badlogic.gdx.utils.Array;
 
 public class StartMenu {
-	public static SM_ActorManager actorManager;
+	public static StartMenuActorManager actorManager;
 	public static String gameMode, player1name, player2name;
 	public static int turnChoice;
 	public static TextField textbox1, textbox2;
 
 	public static void create(Stage stage) {
 		//Create ActorManager- A Class that groups all actors Instantiates them and adds them to the Stage
-		actorManager = new SM_ActorManager();
+		actorManager = new StartMenuActorManager();
 		actorManager.create(stage);
 		createNewGameTextBoxes(stage);
 
@@ -43,11 +70,11 @@ public class StartMenu {
 		textbox1.setSize(430, 60);
 		textbox1.setMessageText("Player 1");
 		TextFieldListener player1 = new TextFieldListener() {
-			@Override
 			public void keyTyped (TextField textbox1, char key) {
 				if (key == '\n') textbox1.getOnscreenKeyboard().show(false);
 				player1name = textbox1.getText();
 			}};
+			
 			textbox1.setTextFieldListener(player1);
 
 			textbox2 = new TextField("", skin);
@@ -56,7 +83,6 @@ public class StartMenu {
 			textbox2.setSize(430, 60);
 			textbox2.setMessageText("Player 2");
 			TextFieldListener player2 = new TextFieldListener() {
-				@Override
 				public void keyTyped (TextField textbox2, char key) {
 					if (key == '\n') textbox2.getOnscreenKeyboard().show(false);
 					player2name = textbox2.getText();
@@ -68,12 +94,12 @@ public class StartMenu {
 
 
 	//ACTOR MANAGER 
-	public static class SM_ActorManager {
+	public static class StartMenuActorManager {
 
 		public static Array<Actor> actors = new Array<Actor>();
 		//Start Menu Main Page
-		public MenuImage sm_main_title;
-		public MenuImage sm_main_lines;
+		public StartMenuImage sm_main_title;
+		public StartMenuImage sm_main_lines;
 		public SM_main_NewGameBtn sm_main_newgamebtn;
 		public SM_main_LoadGameBtn sm_main_loadgamebtn;
 		public SM_main_PreferencesBtn sm_main_preferences;
@@ -81,7 +107,7 @@ public class StartMenu {
 
 
 		//Start Menu NewGame Page
-		public MenuImage sm_newgame_menutext;
+		public StartMenuImage sm_newgame_menutext;
 		public SM_newgame_BackBtn sm_newgame_back;
 		public SM_newgame_TurnTimeOutBtn sm_newgame_turntimeoutbtn;
 		public SM_newgame_StationDomBtn sm_newgmae_stationdombtn;
@@ -91,13 +117,13 @@ public class StartMenu {
 		public SM_newgame_GoBtn sm_newgame_gobtn;
 
 		//Start Menu LoadGame Page
-		public MenuImage sm_loadgame_title;
-		public MenuImage sm_loadgame_examples;
+		public StartMenuImage sm_loadgame_title;
+		public StartMenuImage sm_loadgame_examples;
 		public SM_loadgame_BackBtn sm_loadgame_backbtn;
 
 		//Start Menu Preferences Page
-		public MenuImage sm_preferences_vertline;
-		public MenuImage  sm_preferences_titletext;
+		public StartMenuImage sm_preferences_vertline;
+		public StartMenuImage  sm_preferences_titletext;
 		public SM_preferences_GameSettingsBtn sm_preferences_gamesettingsbtn;
 		public SM_preferences_DisplaySettingsBtn sm_preferences_displaysettingsbtn;
 		public SM_preferences_SoundSettingsBtn sm_preferences_soundsettingsbtn;
@@ -105,12 +131,12 @@ public class StartMenu {
 		public SM_preferences_BackBtn sm_preferences_backbtn;
 
 		//Start Menu HowtoPlay Page
-		public MenuImage sm_howtoplay_line;
-		public MenuImage sm_howtoplay_title;
+		public StartMenuImage sm_howtoplay_line;
+		public StartMenuImage sm_howtoplay_title;
 		public SM_howtoplay_NextBtn sm_howtoplay_nextbtn;
 		public SM_howtoplay_PreviousBtn sm_howtoplay_previousbtn;
 		public SM_howtoplay_HomeBtn sm_howtoplay_homebtn;
-		public MenuImage sm_howtoplay_frame;
+		public StartMenuImage sm_howtoplay_frame;
 		public SM_howtoplay_BackBtn sm_howtoplay_backbtn;
 
 		public void create(Stage stage){
@@ -119,10 +145,10 @@ public class StartMenu {
 
 			//Start Menu Main Page
 
-			sm_main_title = new MenuImage(6, 650, SM_TextureManager.getInstance().sm_main_title);
+			sm_main_title = new StartMenuImage(6, 650, SM_TextureManager.getInstance().sm_main_title);
 			actors.add(sm_main_title);
 
-			sm_main_lines = new MenuImage(-229,-145, SM_TextureManager.getInstance().sm_main_linesimg);
+			sm_main_lines = new StartMenuImage(-229,-145, SM_TextureManager.getInstance().sm_main_linesimg);
 			actors.add(sm_main_lines);
 
 			sm_main_newgamebtn = new SM_main_NewGameBtn();
@@ -139,7 +165,7 @@ public class StartMenu {
 
 
 			// Start MenuNewGame Page
-			sm_newgame_menutext =  new MenuImage(80,1150+250, SM_TextureManager.getInstance().sm_newgame_MenuText);
+			sm_newgame_menutext =  new StartMenuImage(80,1150+250, SM_TextureManager.getInstance().sm_newgame_MenuText);
 			actors.add(sm_newgame_menutext);
 
 			sm_newgame_back = new SM_newgame_BackBtn();
@@ -166,24 +192,24 @@ public class StartMenu {
 
 			//Start Menu LoadGame page
 
-			sm_loadgame_title = new MenuImage(1680+350,665, SM_TextureManager.getInstance().sm_loadgame_Title);
+			sm_loadgame_title = new StartMenuImage(1680+350,665, SM_TextureManager.getInstance().sm_loadgame_Title);
 			actors.add(sm_loadgame_title);
 
 			sm_loadgame_backbtn = new SM_loadgame_BackBtn();
 			actors.add(sm_loadgame_backbtn);
 
-			sm_loadgame_examples = new MenuImage(1680+350,500, SM_TextureManager.getInstance().sm_loadgame_Examples);
+			sm_loadgame_examples = new StartMenuImage(1680+350,500, SM_TextureManager.getInstance().sm_loadgame_Examples);
 			actors.add(sm_loadgame_examples);
 
 			//Start Menu Preferences Page
 
-			sm_preferences_vertline = new MenuImage(1420,-900+72, SM_TextureManager.getInstance().sm_preferences_VertLine);
+			sm_preferences_vertline = new StartMenuImage(1420,-900+72, SM_TextureManager.getInstance().sm_preferences_VertLine);
 			actors.add(sm_preferences_vertline);
 
 			sm_preferences_backbtn = new SM_preferences_BackBtn();
 			actors.add(sm_preferences_backbtn);
 
-			sm_preferences_titletext = new MenuImage(500,-900+720, SM_TextureManager.getInstance().sm_preferences_Title);
+			sm_preferences_titletext = new StartMenuImage(500,-900+720, SM_TextureManager.getInstance().sm_preferences_Title);
 			actors.add(sm_preferences_titletext);
 
 			sm_preferences_gamesettingsbtn = new SM_preferences_GameSettingsBtn();
@@ -200,10 +226,10 @@ public class StartMenu {
 
 			//StartMenu HowtoPlay screen
 
-			sm_howtoplay_line = new MenuImage(-1290+1030,150, SM_TextureManager.getInstance().sm_howtoplay_line);
+			sm_howtoplay_line = new StartMenuImage(-1290+1030,150, SM_TextureManager.getInstance().sm_howtoplay_line);
 			actors.add(sm_howtoplay_line);
 
-			sm_howtoplay_title = new MenuImage(-1290+350,650, SM_TextureManager.getInstance().sm_howtoplay_title);
+			sm_howtoplay_title = new StartMenuImage(-1290+350,650, SM_TextureManager.getInstance().sm_howtoplay_title);
 			actors.add(sm_howtoplay_title);
 
 			sm_howtoplay_nextbtn = new SM_howtoplay_NextBtn();
@@ -215,7 +241,7 @@ public class StartMenu {
 			sm_howtoplay_homebtn = new SM_howtoplay_HomeBtn();
 			actors.add(sm_howtoplay_homebtn);
 
-			sm_howtoplay_frame = new MenuImage(-1290+240,220, SM_TextureManager.getInstance().sm_howtoplay_frame);
+			sm_howtoplay_frame = new StartMenuImage(-1290+240,220, SM_TextureManager.getInstance().sm_howtoplay_frame);
 			actors.add(sm_howtoplay_frame);
 
 			sm_howtoplay_backbtn = new SM_howtoplay_BackBtn();
@@ -233,6 +259,7 @@ public class StartMenu {
 
 	}
 
+	//Super Classes
 	public static class StartMenuActor extends Actor{
 		public Texture texture;
 		float actorX, actorY;
@@ -249,8 +276,8 @@ public class StartMenu {
 	}
 
 
-	public static class MenuImage extends StartMenuActor{		
-		public MenuImage(float x, float y, Texture t)
+	public static class StartMenuImage extends StartMenuActor{		
+		public StartMenuImage(float x, float y, Texture t)
 		{
 			actorX = x;
 			actorY = y;
@@ -859,8 +886,8 @@ public class StartMenu {
 	public static class SM_howtoplay_NextBtn extends StartMenuActor {
 		public SM_howtoplay_NextBtn(){
 			texture = SM_TextureManager.getInstance().sm_howtoplay_nextbtn;
-			 actorX = -1290+ 590 ;
-			 actorY = 150;
+			actorX = -1290+ 590 ;
+			actorY = 150;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -920,11 +947,3 @@ public class StartMenu {
 		}
 	}
 }
-
-
-
-
-
-
-
-

@@ -55,12 +55,7 @@ public class Game_ResourcesManager {
 		game_resources_togglebtn = new Game_resources_ToggleBtn();
 		visibleActors.add(game_resources_togglebtn);
 		
-		game_card_togglebtn = new Game_card_CardToggleBtn();
-		game_card_togglebtn.setVisible(false);
-		stage.getActors().add(game_card_togglebtn);
-
-
-		
+				
 		goldQuant= new Label(null, style);
 		goldQuant.setX(100);
 		goldQuant.setY(expandedheight);
@@ -100,7 +95,7 @@ public class Game_ResourcesManager {
 		visibleActors.add(electricityQuant);
 		visibleActors.add(nuclearQuant);
 		
-		visibleActors.add(cardQuant);
+		
 		
 		resourcesStageStart= stage.getActors().size;
 		for (Actor a : visibleActors){
@@ -109,6 +104,11 @@ public class Game_ResourcesManager {
 			stage.addActor(a);
 			resourcesStageEnd ++;
 		}
+		game_card_togglebtn = new Game_card_CardToggleBtn();
+		game_card_togglebtn.setVisible(false);
+		stage.addActor(game_card_togglebtn);
+		cardQuant.setVisible(false);
+		stage.addActor(cardQuant);
 		
 		
 		

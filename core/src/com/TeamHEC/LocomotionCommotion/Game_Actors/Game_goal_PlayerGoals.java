@@ -21,12 +21,12 @@ public class Game_goal_PlayerGoals {
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> subactors = new Array<Actor>();
 
-	public static 	HashMap<String,Goal> player1goals ;
-	public static 	HashMap<String,Game_goal_NewGoal> ownedGoals;
+	public static 	HashMap<String,Goal> playerGoals ;
+	public static 	HashMap<String,Game_goal_PlayerGoalActors> playerGoalActors;
 	private static 	HashMap<String, Game_goal_RemoveBtn> removebuttons ;
 	private static 	HashMap<String, Label> ticketLabels ;
 
-	public static Game_goal_NewGoal newgoal1, newgoal2, newgoal3;
+	public static Game_goal_PlayerGoalActors newgoal1, newgoal2, newgoal3;
 
 	public Label ticket1, ticket2, ticket3;
 	public LabelStyle style;
@@ -38,6 +38,7 @@ public class Game_goal_PlayerGoals {
 	public static boolean open=false;
 
 	public static int  stagestart, ticketActors, numberofOwnedGoals;
+	
 
 
 	public Game_goal_PlayerGoals(){	}
@@ -54,27 +55,20 @@ public class Game_goal_PlayerGoals {
 		actors.add(game_menuobject_ticketenclosure);
 
 
-		player1goals = new HashMap<String,Goal>();
-		ownedGoals = new HashMap<String,Game_goal_NewGoal>();
-		//Temp Goals
-		//		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
-		//		Goal goal2 = new Goal("Madrid", "Moscow", false, 500, 0, "Passenger","Any");
-		//		Goal goal3 = new Goal("Berlin", "Olso", false, 50, 0, "Passenger","Any");
-		//		
-		//		player1goals.put("1", goal1);
-		//		player1goals.put("2", goal2);
-		//		player1goals.put("3", goal3);
-		//		//Temp end
+		playerGoals = new HashMap<String,Goal>();
+		playerGoalActors = new HashMap<String,Game_goal_PlayerGoalActors>();
 
-		numberofOwnedGoals=player1goals.size();
+			
 
-		newgoal1= new Game_goal_NewGoal(Gdx.graphics.getHeight()-290,5,true,null);
-		newgoal2= new Game_goal_NewGoal(Gdx.graphics.getHeight()-490,5,true,null);
-		newgoal3= new Game_goal_NewGoal(Gdx.graphics.getHeight()-690,5,true,null);
+		numberofOwnedGoals=playerGoals.size();
 
-		ownedGoals.put("1", newgoal1);
-		ownedGoals.put("2", newgoal2);
-		ownedGoals.put("3", newgoal3);
+		newgoal1= new Game_goal_PlayerGoalActors(Gdx.graphics.getHeight()-290,5,true,null);
+		newgoal2= new Game_goal_PlayerGoalActors(Gdx.graphics.getHeight()-490,5,true,null);
+		newgoal3= new Game_goal_PlayerGoalActors(Gdx.graphics.getHeight()-690,5,true,null);
+
+		playerGoalActors.put("1", newgoal1);
+		playerGoalActors.put("2", newgoal2);
+		playerGoalActors.put("3", newgoal3);
 
 
 
@@ -104,22 +98,22 @@ public class Game_goal_PlayerGoals {
 		}
 		float tickety= 845, buttony = 870;
 
-		for (int i=0; i<player1goals.size();i++){
+		for (int i=0; i<playerGoals.size();i++){
 			String a = new Integer(i+1).toString();
 
-			ownedGoals.get(a).setGoal(player1goals.get(a));
-			ownedGoals.get(a).setEmpty(false);
+			playerGoalActors.get(a).setGoal(playerGoals.get(a));
+			playerGoalActors.get(a).setEmpty(false);
 
 			ticketLabels.get(a).setColor(0,0,0,1);
 			ticketLabels.get(a).setX(15);
 			ticketLabels.get(a).setY(tickety);
 			tickety-=200;
-			ticketLabels.get(a).setText(ticketMaker(	ownedGoals.get(a).getGoal().getCarriageType(),
-					ownedGoals.get(a).getGoal().getReward(),
-					ownedGoals.get(a).getGoal().getSStation(),
-					ownedGoals.get(a).getGoal().getStartDate(), 
-					ownedGoals.get(a).getGoal().getFStation(), 
-					ownedGoals.get(a).getGoal().getRoute())
+			ticketLabels.get(a).setText(ticketMaker(	playerGoalActors.get(a).getGoal().getCarriageType(),
+					playerGoalActors.get(a).getGoal().getReward(),
+					playerGoalActors.get(a).getGoal().getSStation(),
+					playerGoalActors.get(a).getGoal().getStartDate(), 
+					playerGoalActors.get(a).getGoal().getFStation(), 
+					playerGoalActors.get(a).getGoal().getRoute())
 					);
 			removebuttons.get(a).setX(250);
 			removebuttons.get(a).setY(buttony);
@@ -234,46 +228,46 @@ public class Game_goal_PlayerGoals {
 	public static void removeGoal(int goal){		
 		if(goal==1){
 			ticketLabels.get("1").setText(ticketLabels.get("2").getText());
-			ownedGoals.get("1").setGoal(ownedGoals.get("2").getGoal());
+			playerGoalActors.get("1").setGoal(playerGoalActors.get("2").getGoal());
 			removebuttons.get("1").setUndo(removebuttons.get("2").getUndo());
 			removebuttons.get("1").setnewgoalindex(removebuttons.get("2").getnewgoalindex());
 
 			ticketLabels.get("2").setText(ticketLabels.get("3").getText());
-			ownedGoals.get("2").setGoal(ownedGoals.get("3").getGoal());
+			playerGoalActors.get("2").setGoal(playerGoalActors.get("3").getGoal());
 			removebuttons.get("2").setUndo(removebuttons.get("3").getUndo());
 			removebuttons.get("2").setnewgoalindex(removebuttons.get("3").getnewgoalindex());
 
-			if (ownedGoals.get("2").isEmpty()){
+			if (playerGoalActors.get("2").isEmpty()){
 				ticketLabels.get("1").setText("");
-				ownedGoals.get("1").setEmpty(true);
+				playerGoalActors.get("1").setEmpty(true);
 				removebuttons.get("1").setVisible(false);
 				removebuttons.get("1").resetButtons();
 			}
 
-			if (ownedGoals.get("3").isEmpty()){
+			if (playerGoalActors.get("3").isEmpty()){
 				ticketLabels.get("2").setText("");
-				ownedGoals.get("2").setEmpty(true);
+				playerGoalActors.get("2").setEmpty(true);
 				removebuttons.get("2").setVisible(false);
 			}
 
 
 		}
 		if (goal ==2){
-			ownedGoals.get("2").setGoal(ownedGoals.get("3").getGoal());
+			playerGoalActors.get("2").setGoal(playerGoalActors.get("3").getGoal());
 			ticketLabels.get("2").setText(ticketLabels.get("3").getText());
 			removebuttons.get("2").setUndo(removebuttons.get("3").getUndo());
 			removebuttons.get("2").setUndo(removebuttons.get("3").getUndo());
 			removebuttons.get("2").setnewgoalindex(removebuttons.get("3").getnewgoalindex());
 
-			if (ownedGoals.get("3").isEmpty()){
+			if (playerGoalActors.get("3").isEmpty()){
 				ticketLabels.get("2").setText("");
-				ownedGoals.get("2").setEmpty(true);
+				playerGoalActors.get("2").setEmpty(true);
 				removebuttons.get("2").setVisible(false);
 				removebuttons.get("2").resetButtons();
 			}
 		}
 		ticketLabels.get("3").setText("");
-		ownedGoals.get("3").setEmpty(true);
+		playerGoalActors.get("3").setEmpty(true);
 		removebuttons.get("3").setVisible(false);
 		removebuttons.get("3").resetButtons();
 
@@ -283,7 +277,7 @@ public class Game_goal_PlayerGoals {
 			numberofOwnedGoals=0;
 	}
 
-	public static boolean addGoal(Game_goal_NewGoal newgoal){
+	public static boolean addGoal(Game_goal_PlayerGoalActors newgoal){
 		if (numberofOwnedGoals>2){
 			return false;
 		}
@@ -297,14 +291,18 @@ public class Game_goal_PlayerGoals {
 					newgoal.getGoal().getFStation(), 
 					newgoal.getGoal().getRoute())
 					);
-			ownedGoals.get(a).setGoal(newgoal.getGoal());
-			ownedGoals.get(a).setEmpty(false);
+			ticketLabels.get(a).setY(400);
+			
+			playerGoalActors.get(a).setGoal(newgoal.getGoal());
+			playerGoalActors.get(a).setEmpty(false);
 			removebuttons.get(a).setVisible(true);
 			removebuttons.get(a).setRedoBtn();
 			removebuttons.get(a).setnewgoalindex(newgoal.getIndex());
 
 			System.out.println(outputOwnedGoals());
 			numberofOwnedGoals+=1;
+			
+			System.out.println(ticketLabels.get(a).isVisible());
 			return true;
 		}
 	}
@@ -313,7 +311,7 @@ public class Game_goal_PlayerGoals {
 		String a = new Integer(index).toString();
 		String b = new Integer(removebuttons.get(a).getnewgoalindex()).toString();
 		Game_Goal_GoalScreenManager.goalLabels.get(b).setText(ticketLabels.get(a).getText());
-		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(ownedGoals.get(a).getGoal());
+		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(playerGoalActors.get(a).getGoal());
 		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setEmpty(false);
 		removeGoal(removebuttons.get(a).index);
 
@@ -325,8 +323,8 @@ public class Game_goal_PlayerGoals {
 		output="";
 		for (int i=0;i<3;i++){
 			String a = new Integer(i+1).toString();
-			if (ownedGoals.get(a).isEmpty()==false){
-				output+= ownedGoals.get(a).getGoal().getSStation()+ " ";
+			if (playerGoalActors.get(a).isEmpty()==false){
+				output+= playerGoalActors.get(a).getGoal().getSStation()+ " ";
 			}
 		}
 		return output;
