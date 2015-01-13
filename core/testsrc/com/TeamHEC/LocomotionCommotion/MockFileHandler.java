@@ -8,7 +8,7 @@ import com.badlogic.gdx.files.FileHandle;
 
 
 public class MockFileHandler implements Files {
-
+	
 	@Override
 	public FileHandle getFileHandle(String path, FileType type) {
 		throw new NotImplementedException();
@@ -21,8 +21,7 @@ public class MockFileHandler implements Files {
 
 	@Override
 	public FileHandle internal(String path) {
-		System.out.println(System.getProperty("user.dir") + path);
-		return new LwjglFileHandle(path, Files.FileType.Internal);
+		return new LwjglFileHandle("assets/" + path, Files.FileType.Internal);
 	}
 
 	@Override

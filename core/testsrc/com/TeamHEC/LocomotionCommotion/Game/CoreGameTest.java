@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.MockFileHandler;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
@@ -22,9 +23,10 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
-
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.backends.lwjgl.LwjglFiles;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.utils.GdxNativesLoader;
 
 /**
  * 
@@ -50,8 +52,12 @@ public class CoreGameTest {
 	int baseNuclear;
 	
 	public CoreGameTest()
-	{
+	{		
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		new LwjglApplication(LocomotionCommotion.getInstance(), config);
 		Gdx.files = new MockFileHandler();
+		System.out.println(Gdx.files.internal("gameScreen/game_map/map.png").file().getAbsolutePath());
+		GdxNativesLoader.load();
 		
 		Line[] line1 = new Line[3];
 		Line[] line2 = new Line[3];
