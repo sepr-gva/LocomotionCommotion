@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Screens.SM_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 /*

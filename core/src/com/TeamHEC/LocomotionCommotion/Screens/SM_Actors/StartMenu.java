@@ -880,9 +880,376 @@ public class StartMenu {
 
 	}
 	
-	//Preferences
-	//Preferences
+	//Preferences: Back Button
+	public static class SM_preferences_BackBtn extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_newgame_BackBtn; // reuse the new game back btn texture
+		float actorX = 1390 ,actorY = -900+ 745;
+		public boolean started = false;
+		int animationTracker1,animationTracker2,animationTracker3;
+
+		public SM_preferences_BackBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_preferences_BackBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				if (animationTracker1<510){
+					StartScreen.changeCam(30,0);
+					animationTracker1+=30;
+				}
+				else{
+					if(animationTracker2<1000){
+						StartScreen.changeCam(0,30);
+						animationTracker2+=30;
+					}
+					else
+					{
+						if(animationTracker3<900)
+						{
+							StartScreen.changeCam(-30,0);
+							animationTracker3 +=30;
+						}else{
+							started = false;
+							animationTracker1=0;
+							animationTracker2=0;
+							animationTracker3=0;
+						}
+					}
+				}
+
+			}
+		}
+	}
+	
+	//Preferences: Game Settings
+	public static class SM_preferences_GameSettingsBtn extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_preferences_GameSettingsBtn;
+		float actorX = 890;
+		float actorY= -900+550;
+		public boolean started = false;
+
+		public SM_preferences_GameSettingsBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_preferences_GameSettingsBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(0, 0);
+				started = false;
+			}
+		}
+	}
+	
+	//Preferences: Display Settings
+	public static class SM_preferences_DisplaySettingsBtn extends Actor {
+
+
+		Texture texture = SM_TextureManager.getInstance().sm_preferences_DisplaySettingsBtn;
+		float actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-37 ,actorY= StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorY-100;
+		public boolean started = false;
+
+		public SM_preferences_DisplaySettingsBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_preferences_DisplaySettingsBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(0, 0);
+				started = false;
+			}
+		}
+	}
+	
+	//Preferences: Sound Settings
+	public static class SM_preferences_SoundSettingsBtn extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_preferences_SoundSettingsBtn;
+	    float actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-37 ,actorY= StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorY-175;
+		public boolean started = false;
+
+		public SM_preferences_SoundSettingsBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_preferences_SoundSettingsBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(0, 0);
+				started = false;
+			}
+		}
+	}
+	
+	//Preferences: Control Settings
+	public static class SM_preferences_ControlSettingsBtn extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_preferences_ControlSettingsBtn;
+		float actorX = StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorX-80 ,actorY= StartMenu.actorManager.sm_preferences_gamesettingsbtn.actorY-300;
+		public boolean started = false;
+
+		public SM_preferences_ControlSettingsBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_preferences_ControlSettingsBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(0, 0);
+				started = false;
+			}
+		}
+	}
+	
 	//HOW TO PLAY ACTORS -------------------------------------------------------------------------------
+	//How to play: Title
+	public static class SM_howtoplay_TitleText extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_howtoplay_title;
+		float actorX = -1290+ 350 ,actorY = 650;
+		public boolean started = false;
+
+		public SM_howtoplay_TitleText(){
+		
+		}
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+	}
+	//How to play: Frame
+	public static class SM_howtoplay_FrameImg extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_howtoplay_frame; 
+		float actorX = -1290+ 240 ,actorY = 220;
+		public boolean started = false;
+
+		public SM_howtoplay_FrameImg(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_howtoplay_FrameImg)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(0, 0);
+				started = false;
+			}
+		}
+	}
+	//How to play: Home
+	public static class SM_howtoplay_HomeBtn extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_howtoplay_homebtn; 
+		float actorX = -1290+ 570 ,actorY = 160;
+		public boolean started = false;
+
+		public SM_howtoplay_HomeBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_howtoplay_HomeBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(0, 0);
+				started = false;
+			}
+		}
+	}
+	//How to play: Next
+	public static class SM_howtoplay_NextBtn extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_howtoplay_nextbtn;
+		float actorX = -1290+ 590 ,actorY = 150;
+		public boolean started = false;
+
+		public SM_howtoplay_NextBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_howtoplay_NextBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(0, 0);
+				started = false;
+			}
+		}
+	}
+	//How to play: Previous
+	public static class SM_howtoplay_PreviousBtn extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_howtoplay_previousbtn; 
+		float actorX = -1290+ 460 ,actorY = 150;
+		public boolean started = false;
+
+		public SM_howtoplay_PreviousBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_howtoplay_PreviousBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(0, 0);
+				started = false;
+			}
+		}
+	}
+	//How to play: LineImage
+	public static class SM_howtoplay_LineImg extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_howtoplay_line; 
+		float actorX = -1290+ 1030 ,actorY = 150;
+		public boolean started = false;
+		public SM_howtoplay_LineImg(){
+			
+		}
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+	}
+	//How to play: Back
+	public static class SM_howtoplay_BackBtn extends Actor {
+
+		Texture texture = SM_TextureManager.getInstance().sm_newgame_BackBtn; // reuse the new game back btn texture
+		float actorX = -1290+ 1000 ,actorY = 625;
+		public boolean started = false;
+
+		public SM_howtoplay_BackBtn(){
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((SM_howtoplay_BackBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				StartScreen.changeCam(1250, 0);
+				started = false;
+			}
+		}
+	}
 }
 
 
