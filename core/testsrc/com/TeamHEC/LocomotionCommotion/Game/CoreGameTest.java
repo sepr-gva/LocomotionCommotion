@@ -11,6 +11,7 @@ import java.util.HashMap;
 
 import org.junit.Test;
 
+import com.TeamHEC.LocomotionCommotion.MockFileHandler;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
@@ -21,6 +22,9 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.lwjgl.LwjglFiles;
 
 /**
  * 
@@ -47,6 +51,8 @@ public class CoreGameTest {
 	
 	public CoreGameTest()
 	{
+		Gdx.files = new MockFileHandler();
+		
 		Line[] line1 = new Line[3];
 		Line[] line2 = new Line[3];
 		line1[1] = Line.Red;
