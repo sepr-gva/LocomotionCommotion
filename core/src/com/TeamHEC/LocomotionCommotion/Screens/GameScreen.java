@@ -26,7 +26,7 @@ import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHandManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_GoalScreenManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Pause_AManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
@@ -93,8 +93,8 @@ public class GameScreen implements Screen {
 		Game_startGameManager startgameManager = new Game_startGameManager();
 		startgameManager.create(getStage());
 		
-		Game_Pause_AManager pauseManager= new Game_Pause_AManager();
-		pauseManager.create(getStage());
+		Game_PauseMenu pauseMenu= new Game_PauseMenu();
+		pauseMenu.create(getStage());
 	}
 	
 	public static void createCoreGame(Station p1Station, Station p2Station)
@@ -163,7 +163,7 @@ public class GameScreen implements Screen {
 
 	public void  resetScreen(){
 		Game_Map_Manager.infoVisible= false;
-		Game_Pause_AManager.open = false;
+		Game_PauseMenu.actorManager.open = false;
 		Game_goal_PlayerGoals.open = false;
 		Game_ShopManager.open = false;
 		Game_TrainDepotManager.open = false;

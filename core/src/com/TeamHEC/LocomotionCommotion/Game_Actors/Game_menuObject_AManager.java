@@ -62,7 +62,8 @@ public class Game_menuObject_AManager {
 
 				
 		playerScore.setText(GameScreen.player1name+"    " + GameScreen.player1score +
-							"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.player2name );
+							"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.player2name
+							+"                      "+ GameScreen.player1name+" it's your turn ");
 		playerScore.setX(600);
 		playerScore.setY(Gdx.graphics.getHeight()- playerScore.getHeight() -45);
 		
