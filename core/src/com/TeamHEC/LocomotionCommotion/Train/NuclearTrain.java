@@ -15,7 +15,7 @@ public class NuclearTrain extends Train{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int BASE_SPEED = 19;
+	private static final int BASE_SPEED = 8;
 	private static final int BASE_CARRIAGE_LIMIT = 5;
 	private static final int VALUE = 750;
 

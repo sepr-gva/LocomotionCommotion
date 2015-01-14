@@ -10,7 +10,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 public class ElectricTrain extends Train{
 	
 	private static final long serialVersionUID = 1L;
-	private static final int BASE_SPEED = 15;
+	private static final int BASE_SPEED = 6;
 	private static final int BASE_CARRIAGE_LIMIT = 3;
 	private static final int VALUE = 500;
 

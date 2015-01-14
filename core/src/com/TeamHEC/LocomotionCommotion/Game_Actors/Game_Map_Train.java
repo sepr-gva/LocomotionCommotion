@@ -87,7 +87,8 @@ public class Game_Map_Train extends Actor{
 	
 	@Override
 	public void draw(Batch batch, float alpha){
-		batch.draw(this.texture, train.route.getTrainPos().x + offset, train.route.getTrainPos().y + offset);
+		setBounds(train.route.getTrainPos().x + offset, train.route.getTrainPos().y + offset, texture.getWidth(),texture.getHeight());
+		batch.draw(texture, train.route.getTrainPos().x + offset, train.route.getTrainPos().y + offset);
 	}
 	
 }

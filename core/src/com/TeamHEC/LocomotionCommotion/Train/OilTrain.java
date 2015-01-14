@@ -15,7 +15,7 @@ public class OilTrain extends Train{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int BASE_SPEED = 13;
+	private static final int BASE_SPEED = 5;
 	private static final int BASE_CARRIAGE_LIMIT = 2;
 	private static final int VALUE = 350;
 
