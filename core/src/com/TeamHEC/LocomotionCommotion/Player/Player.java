@@ -21,20 +21,14 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Train.RouteListener;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
-import com.TeamHEC.LocomotionCommotion.Train.Route;
 
 /**
- * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  * @author Callum Hewitt <ch1194@york.ac.uk>
- *
  */
 
 public class Player implements Serializable, RouteListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public String name;
 	public int points;
@@ -50,7 +44,6 @@ public class Player implements Serializable, RouteListener{
 	public Carriage carriages;
 	public ArrayList<Station> stations;
 	public int[] lines = new int[8];
-	protected ArrayList<StationStatus> listeners = new ArrayList<StationStatus>();
 	
 	private HashMap<String, Fuel> playerFuel;
 	
@@ -273,28 +266,12 @@ public class Player implements Serializable, RouteListener{
 	public void stationPassed(Station station) {
 		// TODO Auto-generated method stub
 		
-		// STATION TAX V2
+		// STATION TAX:
 		if(station.getOwner() != this && station.getOwner() != null)
 		{
 			this.subGold(station.getTotalRent());
 		}
 		
-	}
-	
-	public void stationTax()
-	{
-		for (int i=0; i < trains.size(); i++)
-		{
-			Route trainRoute = trains.get(i).getRoute();
-			if (trainRoute.inStation())
-			{
-				Station currentStation = trainRoute.getStation();
-				if (currentStation.getOwner() != this && currentStation.getOwner() == null)
-				{
-					this.subGold(currentStation.getTotalRent());
-				}
-			}
-		}
 	}
 	
 	private void lineBonuses()

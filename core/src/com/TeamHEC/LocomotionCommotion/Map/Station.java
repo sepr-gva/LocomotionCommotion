@@ -1,7 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
+import java.util.ArrayList;
+
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Player.StationStatus;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
@@ -11,7 +12,7 @@ import com.TeamHEC.LocomotionCommotion.Map.Line;
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  */
 
-public class Station extends MapObj implements StationStatus{
+public class Station extends MapObj{
 	
 	private static final long serialVersionUID = 1L;
 	private String name;
@@ -25,12 +26,13 @@ public class Station extends MapObj implements StationStatus{
 	private int rentValue;
 	private int rentValueMod;
 	
+	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
+	
 	public Station(String name, int baseValue, Resource resourceType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
 		super(x, y);
 		
 		actor = new Game_Map_Station(this, x, y);
-		stationObj = this;
 		
 		this.trains = new Train[5];
 		this.name = name;
@@ -43,6 +45,11 @@ public class Station extends MapObj implements StationStatus{
 		this.line = line;
 		this.rentValue = rentValue;
 		this.rentValueMod = 0;
+	}
+	
+	public Station getStation()
+	{
+		return this;
 	}
 	
 	public String getName()
@@ -152,21 +159,17 @@ public class Station extends MapObj implements StationStatus{
 		notifyStationPurchased(this, player);
 	}
 	
-	
-	@Override
 	public void register(StationListener newListener)
 	{
 		if(newListener != null)
 			listeners.add(newListener);
 	}
 	
-	@Override
 	public void unregister(StationListener s)
 	{
 		listeners.remove(listeners.indexOf(s));
 	}
 	
-	@Override
 	public void notifyStationPurchased(Station station, Player player) 
 	{
 		for(StationListener listener: listeners)

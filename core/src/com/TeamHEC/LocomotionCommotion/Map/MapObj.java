@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Event.Event;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_MapObj;
-import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 public class MapObj implements Serializable{
@@ -19,14 +18,7 @@ public class MapObj implements Serializable{
 	public ArrayList<Connection> connections = new ArrayList<Connection>();
 	
 	public float x, y;
-	
-	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
-	
-	protected Player player1;//the players station will listen too
-	protected Player player2;//will need name changes later, not sure this listener stuff is still gonna be used
-	
-	public Station stationObj;
-		
+			
 	public MapObj(float x, float y)
 	{
 		this.x = x;
@@ -34,6 +26,12 @@ public class MapObj implements Serializable{
 		
 		trains = new Train[3];
 		currentEvent = new Event(); 
+	}
+	
+	// Overridden by Station:
+	public Station getStation()
+	{
+		return null;
 	}
 	
 	public Game_Map_MapObj getActor()

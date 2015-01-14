@@ -129,15 +129,15 @@ public class CoreGame implements Serializable{
 		Train train = null;
 		
 		if(fuelType.equals("Coal"))
-			train = new CoalTrain(0, 0, true, new Route(startStation));
+			train = new CoalTrain(0, 0, true, new Route(startStation), player);
 		else if(fuelType.equals("Nuclear"))
-			train = new NuclearTrain(0, 0, true, new Route(startStation));
+			train = new NuclearTrain(0, 0, true, new Route(startStation), player);
 		else if(fuelType.equals("Electric"))
-			train = new ElectricTrain(0, 0, true, new Route(startStation));
+			train = new ElectricTrain(0, 0, true, new Route(startStation), player);
 		else if(fuelType.equals("Oil"))
-			train = new OilTrain(0, 0, true, new Route(startStation));
+			train = new OilTrain(0, 0, true, new Route(startStation), player);
 		else
-			train = new OilTrain(0, 0, true, new Route(startStation));
+			train = new OilTrain(0, 0, true, new Route(startStation), player);
 			
 		player.trains.add(train);
 		GameScreen.getStage().getActors().add(train.getActor());
@@ -158,7 +158,6 @@ public class CoreGame implements Serializable{
 	 */
 	public void EndTurn()
 	{
-		playerTurn.stationTax();
 		turnCount = (turnCount + 1);
 		if(playerTurn == player1)
 			playerTurn = player2;

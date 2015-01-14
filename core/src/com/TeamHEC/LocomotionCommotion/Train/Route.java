@@ -7,7 +7,7 @@ import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.badlogic.gdx.math.Vector2;
 
-public class Route implements RouteStatus{
+public class Route{
 	
 	/*
 	  	## READ ME ##
@@ -169,9 +169,9 @@ public class Route implements RouteStatus{
 			float connectionLength = route.get(routeIndex).getLength();
 			
 			if(connectionTravelled == 0)
-				return route.get(routeIndex).getStartMapObj().stationObj;
+				return route.get(routeIndex).getStartMapObj().getStation();
 			else if(connectionTravelled == connectionLength)
-				return route.get(routeIndex).getDestination().stationObj;
+				return route.get(routeIndex).getDestination().getStation();
 		}
 		return null;
 	}
@@ -210,26 +210,24 @@ public class Route implements RouteStatus{
 		}
 	}
 
-	@Override
+	// Implementing RouteListener stuff:
 	public void register(RouteListener newListener)
 	{
 		if(newListener != null)
 			listeners.add(newListener);
 	}
 
-	@Override
 	public void unregister(RouteListener r)
 	{
 		listeners.remove(listeners.indexOf(r));
 	}
 
-	@Override
 	public void notifyStationPassed()
 	{
 		for(RouteListener listener: listeners)
 		{
-			if(currentMapObj.stationObj != null)
-				listener.stationPassed(currentMapObj.stationObj);
+			if(currentMapObj.getStation() != null)
+				listener.stationPassed(currentMapObj.getStation());
 		}
 	}
 }
