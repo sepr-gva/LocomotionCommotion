@@ -183,7 +183,7 @@ public class Player implements Serializable, RouteListener{
 	{
 		stations.add(station);
 		this.subGold(station.getTotalValue());
-		for (int i=0; i<3; i++)
+		for (int i=0; i<station.getLineType().length; i++)
 		{	
 			if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
 				//Line is an array of 3 line colours, this loop will add the first line colour
@@ -194,21 +194,31 @@ public class Player implements Serializable, RouteListener{
 				switch(station.getLineType()[i])
 				{ //keeps track of how many of a line the player owns
 				case Red:
-					lines[0] += 1;			
+					lines[0] += 1;	
+					break;
 				case Blue:
 					lines[1] += 1;
+					break;
 				case Green:
 					lines[2] += 1;
+					break;
 				case Yellow:
 					lines[3] += 1;
+					break;
 				case Purple: 
 					lines[4] += 1;
+					break;
 				case Black:
 					lines[5] += 1;
+					break;
 				case Brown:
 					lines[6] += 1;
+					break;
 				case Orange:
 					lines[7] += 1;
+					break;
+				default:
+					throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
 				}
 			}
 		}
@@ -226,20 +236,30 @@ public class Player implements Serializable, RouteListener{
 				{ //keeps track of how many of a line the player owns
 				case Red:
 					lines[0] -= 1;			
+					break;
 				case Blue:
 					lines[1] -= 1;
+					break;
 				case Green:
 					lines[2] -= 1;
+					break;
 				case Yellow:
 					lines[3] -= 1;
+					break;
 				case Purple: 
 					lines[4] -= 1;
+					break;
 				case Black:
 					lines[5] -= 1;
+					break;
 				case Brown:
 					lines[6] -= 1;
+					break;
 				case Orange:
 					lines[7] -= 1;
+					break;
+				default:
+					throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
 				}
 			}
 		}
