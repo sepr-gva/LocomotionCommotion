@@ -79,20 +79,20 @@ public class Game_ScreenMenu {
 			game_menuobject_topbar = new Game_Asset(-20, Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_menuobject_topbar.getHeight() +10,
 					Game_TextureManager.getInstance().game_menuobject_topbar );
 			actors.add(game_menuobject_topbar);	
-			
+
 			game_menuobject_cornerframe=new Game_Asset((LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_cornerframe.getWidth()),14
 					,Game_TextureManager.getInstance().game_menuobject_cornerframe);
 			actors.add(game_menuobject_cornerframe);
 
 			game_menuobject_menubtn = new Game_menuobject_MenuBtn();
 			actors.add(game_menuobject_menubtn);
-			
+
 			//Add the enclosure straight in as is not visible at start
 			game_menuobject_ticketenclosure=new Game_Asset(-1,game_menuobject_topbar.actorY-Game_TextureManager.getInstance().game_menuobject_ticketenclosure.getHeight()
-												,Game_TextureManager.getInstance().game_menuobject_ticketenclosure);
+					,Game_TextureManager.getInstance().game_menuobject_ticketenclosure);
 			game_menuobject_ticketenclosure.setVisible(false);
 			stage.addActor(game_menuobject_ticketenclosure);
-			
+
 			game_menuobject_tickettoggle=new Game_menuobject_TicketToggleBtn();
 			actors.add(game_menuobject_tickettoggle);
 
@@ -121,8 +121,8 @@ public class Game_ScreenMenu {
 				a.setVisible(false);
 				stage.addActor(a);
 			}
-		
-		
+
+
 
 
 		}
@@ -185,26 +185,13 @@ public class Game_ScreenMenu {
 		}
 		public void act(float delta){
 			if(started){
-				if (Game_Map_Manager.infoVisible== false)
-				{
+				if (Game_Map_Manager.infoVisible){
+					Game_Map_Manager.mapInfo.setVisible(false);
+					Game_Map_Manager.infoVisible= false;
+
+				}else{
+					Game_Map_Manager.mapInfo.setVisible(true);
 					Game_Map_Manager.infoVisible= true;
-					for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++){
-						if (i > GameScreen.getStage().getActors().size-1){
-
-						}else
-							GameScreen.getStage().getActors().get(i).setVisible(true);
-
-					}			}
-				else
-				{	Game_Map_Manager.infoVisible= false;
-				for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++){
-					if (i > GameScreen.getStage().getActors().size-1){
-
-					}else
-						GameScreen.getStage().getActors().get(i).setVisible(false);
-
-				}
-
 				}
 				started = false;
 			}
@@ -328,7 +315,7 @@ public class Game_ScreenMenu {
 
 					}
 					Game_ScreenMenu.actorManager.game_menuobject_ticketenclosure.setVisible(true);
-					}
+				}
 				else
 				{	Game_goal_PlayerGoals.open= false;
 				for(int i=Game_goal_PlayerGoals.stagestart; i<=Game_goal_PlayerGoals.stagestart +Game_goal_PlayerGoals.ticketActors-1;i++){
@@ -346,7 +333,7 @@ public class Game_ScreenMenu {
 
 
 	}
-	
+
 	//GoalScreenButton
 	public static class Game_menuobjects_GoalScreenBtn extends Game_Actor {
 		public Game_menuobjects_GoalScreenBtn(){
@@ -387,8 +374,8 @@ public class Game_ScreenMenu {
 
 				}
 				started = false;
-				}
 			}
+		}
 	}
 	//TrainDeptButton
 	public static class Game_menuobject_TrainDepotBtn extends Game_Actor {
@@ -429,8 +416,8 @@ public class Game_ScreenMenu {
 
 				}
 				started = false;
-				}
 			}
+		}
 	}
 	//Resources toggle button
 	public static class Game_resources_ToggleBtn extends Game_Actor {
@@ -452,7 +439,7 @@ public class Game_ScreenMenu {
 			if(started){
 				if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded== false)
 				{	
-				//Move up button, bar and quantities
+					//Move up button, bar and quantities
 					Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.actorY+=expandedheight;
 					setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 					Game_ScreenMenu.resourceActorManager.game_menuobject_resourcesbar.actorY+=expandedheight;
@@ -463,10 +450,10 @@ public class Game_ScreenMenu {
 					Game_CardHand.actorManager.organiseDeck();
 					Game_CardHand.actorManager.changeHeight(expandedheight);
 					Game_CardHand.actorManager.usecardbtn.setVisible(false);
-					
-					
-					
-					
+
+
+
+
 					Game_ScreenMenu.resourceActorManager.resourcebarexpanded= true;
 					for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
 						if (i > GameScreen.getStage().getActors().size-1){
@@ -483,13 +470,13 @@ public class Game_ScreenMenu {
 				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 				Game_ScreenMenu.resourceActorManager.game_menuobject_resourcesbar.actorY-=expandedheight;
 				Game_ResourcesManager.setResourcesHeight(Game_ScreenMenu.resourceActorManager.cardQuant.getY()-expandedheight);
-				
+
 				Game_ScreenMenu.resourceActorManager.game_card_togglebtn.actorY-=expandedheight;
 				Game_ScreenMenu.resourceActorManager.game_card_togglebtn.refreshBounds();
 				Game_CardHand.actorManager.selectedCard=0;
 				Game_CardHand.actorManager.changeHeight(-expandedheight);
 				Game_CardHand.actorManager.organiseDeck();
-			//end
+				//end
 				for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
@@ -507,7 +494,7 @@ public class Game_ScreenMenu {
 	public static class Game_ResourcesManager {
 
 		private final static Array<Actor> visibleActors = new Array<Actor>();
-		
+
 
 		public Game_Asset game_menuobject_resourcesbar;
 		public Game_resources_ToggleBtn game_resources_togglebtn;
@@ -518,45 +505,45 @@ public class Game_ScreenMenu {
 
 
 		public Label cardQuant;
-		
-		
+
+
 		public Game_ResourcesManager(){		}
 
 		public void create(Stage stage){
 			visibleActors.clear();
 			resourcesStageStart=0;
 			resourcesStageEnd =0;
-			
-			
+
+
 			FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 			FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 			parameter.size = 19;
-			
+
 			BitmapFont font = generator.generateFont(parameter); // font size 12 pixels
 			generator.dispose();
 			LabelStyle style = new LabelStyle();
 			style.font = font;
-		
-			
+
+
 			//Resources bar is now connected to variables for easy update of quantities.
 			game_menuobject_resourcesbar = new Game_Asset(-13,-175,Game_TextureManager.getInstance().game_menuobject_resourcesbar);
 			visibleActors.add(game_menuobject_resourcesbar);
-			
+
 			game_resources_togglebtn = new Game_resources_ToggleBtn();
 			visibleActors.add(game_resources_togglebtn);
-			
-					
+
+
 			goldQuant= new Label(null, style);
 			goldQuant.setX(100);
 			goldQuant.setY(expandedheight);
 			goldQuant.setColor(0,0,0,1);
-			
+
 			coalQuant= new Label(null,style);
 			coalQuant.setX(240);
 			coalQuant.setY(expandedheight);
 			coalQuant.setColor(0,0,0,1);
-			
-			
+
+
 			oilQuant= new Label(null,style);
 			oilQuant.setX(350);
 			oilQuant.setY(expandedheight);
@@ -566,27 +553,27 @@ public class Game_ScreenMenu {
 			electricityQuant.setX(450);
 			electricityQuant.setY(expandedheight);
 			electricityQuant.setColor(0,0,0,1);
-			
+
 			nuclearQuant= new Label(null,style);
 			nuclearQuant.setX(590);
 			nuclearQuant.setY(expandedheight);
 			nuclearQuant.setColor(0,0,0,1);
-			
+
 			cardQuant= new Label(null,style);
 			cardQuant.setX(920);
 			cardQuant.setY(expandedheight);
 			cardQuant.setColor(0,0,0,1);
-			
+
 			refreshResources();
-			
+
 			visibleActors.add(goldQuant);
 			visibleActors.add(coalQuant);
 			visibleActors.add(oilQuant);
 			visibleActors.add(electricityQuant);
 			visibleActors.add(nuclearQuant);
-			
-			
-			
+
+
+
 			resourcesStageStart= stage.getActors().size;
 			for (Actor a : visibleActors){
 				a.setTouchable(Touchable.enabled);
@@ -599,13 +586,13 @@ public class Game_ScreenMenu {
 			stage.addActor(game_card_togglebtn);
 			cardQuant.setVisible(false);
 			stage.addActor(cardQuant);
-			
-			
-			
-				
+
+
+
+
 
 		}
-		
+
 		public void refreshResources(){
 			goldQuant.setText(""+GameScreen.gold);
 			coalQuant.setText(""+GameScreen.coal);
@@ -614,7 +601,7 @@ public class Game_ScreenMenu {
 			nuclearQuant.setText(""+GameScreen.nuclear);
 			Game_ScreenMenu.resourceActorManager.cardQuant.setText(""+GameScreen.cards);
 		}
-		
+
 		public static void setResourcesHeight(float height){
 			goldQuant.setY(height);
 			coalQuant.setY(height);
@@ -623,22 +610,22 @@ public class Game_ScreenMenu {
 			nuclearQuant.setY(height);
 			Game_ScreenMenu.resourceActorManager.cardQuant.setY(height);
 		}
-		
-		
+
+
 		/*
 		 * Serializes all actors and stores them in an array. This and the Game object
 		 * are then saved and stored to be loaded.
 		 */
 		public static void saveActors()
 		{
-			
-			
+
+
 		}
-		
+
 
 
 	}
-//Card Toggle Button
+	//Card Toggle Button
 	public static class Game_card_CardToggleBtn extends Game_Actor {
 		/*
 		 * @author Robert Precious <rp825@york.ac.uk>

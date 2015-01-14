@@ -93,7 +93,7 @@ public class Game_goal_PlayerGoals {
 			removebuttons.get(a).setVisible(false);
 
 		}
-		float tickety= 845, buttony = 870;
+		float tickety= 845, buttony = 725;
 
 		for (int i=0; i<playerGoals.size();i++){
 			String a = new Integer(i+1).toString();
@@ -117,6 +117,17 @@ public class Game_goal_PlayerGoals {
 			buttony-=200;
 			removebuttons.get(a).setVisible(true);
 		}
+		for (int i=playerGoals.size();i<3;i++){
+			String a = new Integer(i+1).toString();
+			ticketLabels.get(a).setColor(0,0,0,1);
+			ticketLabels.get(a).setX(15);
+			ticketLabels.get(a).setY(tickety);
+			tickety-=200;
+			ticketLabels.get(a).setText("");
+			removebuttons.get(a).setX(400);
+			removebuttons.get(a).setY(buttony);
+			buttony-=200;
+			}
 
 
 
@@ -288,7 +299,7 @@ public class Game_goal_PlayerGoals {
 					newgoal.getGoal().getFStation(), 
 					newgoal.getGoal().getRoute())
 					);
-			ticketLabels.get(a).setY(400);
+			ticketLabels.get(a).setColor(0,0,0,1);
 			
 			playerGoalActors.get(a).setGoal(newgoal.getGoal());
 			playerGoalActors.get(a).setEmpty(false);
@@ -296,10 +307,9 @@ public class Game_goal_PlayerGoals {
 			removebuttons.get(a).setRedoBtn();
 			removebuttons.get(a).setnewgoalindex(newgoal.getIndex());
 
-			System.out.println(outputOwnedGoals());
+			
 			numberofOwnedGoals+=1;
 			
-			System.out.println(ticketLabels.get(a).isVisible());
 			return true;
 		}
 	}

@@ -1,7 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -9,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_goal_Assets {
 
-	public static class Game_goal_AddGoalBtn extends Actor {
+	public static class Game_goal_AddGoalBtn extends Game_Actor {
 		/*
 		 * @author Robert Precious <rp825@york.ac.uk>
 		 * 
@@ -31,14 +30,11 @@ public class Game_goal_Assets {
 		 * 				touchedDown handles the action.
 		 */
 
-		public static Texture texture = Game_TextureManager.getInstance().game_menuobject_addgoalbtn;
-		public  float actorX  ,actorY ;
-		public boolean started = false;
 		public boolean touchedDown = false;
-
 		public Game_goal_AddGoalBtn(){
 			this.actorX=720;
 			this.actorY=575;
+			texture = Game_TextureManager.getInstance().game_menuobject_addgoalbtn;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 
 			addListener(new InputListener(){
@@ -54,12 +50,6 @@ public class Game_goal_Assets {
 
 			});
 		}
-		@Override
-		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX,actorY);
-		}
-
-		@Override
 		public void act(float delta){
 			if(started){
 				this.setVisible(true);
@@ -98,7 +88,7 @@ public class Game_goal_Assets {
 
 	}
 
-	public static class Game_goal_BackBtn extends Actor {
+	public static class Game_goal_BackBtn extends Game_Actor {
 		/*
 		 * @author Robert Precious <rp825@york.ac.uk>
 		 * 
@@ -116,13 +106,10 @@ public class Game_goal_Assets {
 		 * act			The action taken if the listener detects interaction
 		 * 				Action- Closes the GoalScreen
 		 */
-
-		public static Texture texture = Game_TextureManager.getInstance().game_shop_backbtn; 
-		public static float actorX = 1350 ,actorY = 830;
-		public boolean started = false;
-
-
 		public Game_goal_BackBtn(){
+			texture = Game_TextureManager.getInstance().game_shop_backbtn; 
+			actorX = 1350;
+			actorY = 880;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -132,14 +119,6 @@ public class Game_goal_Assets {
 			});
 
 		}
-
-
-		@Override
-		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX,actorY);
-		}
-
-		@Override
 		public void act(float delta){
 			if(started){
 				if (Game_Goal_GoalScreenManager.open== false)
@@ -170,7 +149,7 @@ public class Game_goal_Assets {
 		}
 	}
 
-	public static class Game_goal_Backdrop extends Actor {
+	public static class Game_goal_Backdrop extends Game_Actor {
 		/*
 		 * @author Robert Precious <rp825@york.ac.uk>
 		 * This the transparent backing of the menu.
@@ -187,13 +166,10 @@ public class Game_goal_Assets {
 		 * act			The action taken if the listener detects interaction
 		 * 				Action- None
 		 */
-
-		public static Texture texture = Game_TextureManager.getInstance().game_goals_backdrop; 
-		public static float actorX = -1 ,actorY = -35;
-		public boolean started = false;
-		
-
 		public Game_goal_Backdrop(){
+			texture = Game_TextureManager.getInstance().game_goals_backdrop; 
+			actorX = -1 ;
+			actorY = -35;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -201,7 +177,7 @@ public class Game_goal_Assets {
 					return true;
 				}
 			});
-			
+
 		}
 
 
@@ -218,7 +194,7 @@ public class Game_goal_Assets {
 		}
 	}
 
-	public static class Game_goal_RemoveBtn extends Actor {
+	public static class Game_goal_RemoveBtn extends Game_Actor {
 		/*
 		 * @author Robert Precious <rp825@york.ac.uk>
 		 * 
@@ -236,12 +212,8 @@ public class Game_goal_Assets {
 		 * 				Action- 
 		 */
 
-		public Texture texture ;  
-		public  float actorX  ,actorY ;
 		public boolean started = false, undostart= false,undo;
 		public int index, newgoalindex;
-		
-
 		public Game_goal_RemoveBtn(int index){
 			this.index=index;
 			this.actorX=250;
@@ -265,13 +237,6 @@ public class Game_goal_Assets {
 
 		}
 
-
-		@Override
-		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX,actorY);
-		}
-
-		@Override
 		public void act(float delta){
 			if (undo){
 				if(undostart){
@@ -282,14 +247,14 @@ public class Game_goal_Assets {
 			}
 			else
 			{
-			if(started){
-				
-				Game_goal_PlayerGoals.removeGoal(index);
-				started = false;
-				undostart = false;
+				if(started){
+
+					Game_goal_PlayerGoals.removeGoal(index);
+					started = false;
+					undostart = false;
 				}
 			}
-			}
+		}
 
 		public  void setY(float y){
 			this.actorY= y;
@@ -334,7 +299,7 @@ public class Game_goal_Assets {
 			this.texture=Game_TextureManager.getInstance().game_menuobject_redobtn;
 		}
 
-		}
+	}
 
 
 
