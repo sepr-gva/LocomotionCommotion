@@ -49,10 +49,10 @@ public class Game_menuobject_ShopBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_ShopManager.open== false)
+			if (Game_Shop.actorManager.open== false)
 			{
-				Game_ShopManager.open= true;
-				for(int i=Game_ShopManager.stagestart; i<=Game_ShopManager.stagestart +Game_ShopManager.shopActors-1;i++){
+				Game_Shop.actorManager.open= true;
+				for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd(); i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -60,8 +60,8 @@ public class Game_menuobject_ShopBtn extends Actor {
 
 				}			}
 			else
-			{	Game_ShopManager.open= false;
-			for(int i=Game_ShopManager.stagestart; i<=Game_ShopManager.stagestart +Game_ShopManager.shopActors-1;i++){
+			{	Game_Shop.actorManager.open= false;
+			for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd(); i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else

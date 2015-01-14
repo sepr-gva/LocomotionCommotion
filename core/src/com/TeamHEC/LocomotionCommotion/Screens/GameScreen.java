@@ -28,7 +28,7 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_GoalScreenManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ShopManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
@@ -77,8 +77,8 @@ public class GameScreen implements Screen {
 		Game_menuObject_AManager actorManager = new Game_menuObject_AManager();
 		actorManager.create(getStage());
 
-		Game_ShopManager shopManager = new Game_ShopManager();
-		shopManager.create(getStage());
+		Game_Shop shop = new Game_Shop();
+		shop.create(getStage());
 
 		Game_TrainDepotManager trainDepotManager = new Game_TrainDepotManager();
 		trainDepotManager.create(getStage());
@@ -165,7 +165,7 @@ public class GameScreen implements Screen {
 		Game_Map_Manager.infoVisible= false;
 		Game_PauseMenu.actorManager.open = false;
 		Game_goal_PlayerGoals.open = false;
-		Game_ShopManager.open = false;
+		Game_Shop.actorManager.open = false;
 		Game_TrainDepotManager.open = false;
 		Game_ResourcesManager.resourcebarexpanded =false;
 		Game_Goal_GoalScreenManager.open= false;

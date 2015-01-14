@@ -205,14 +205,6 @@ public class Game_PauseMenu {
 			});
 			
 		}
-
-
-		@Override
-		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX,actorY);
-		}
-
-		@Override
 		public void act(float delta){
 			if(started){
 				started = false;
@@ -234,14 +226,6 @@ public class Game_PauseMenu {
 			});
 			
 		}
-
-
-		@Override
-		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX,actorY);
-		}
-
-		@Override
 		public void act(float delta){
 			if(started){
 				LocomotionCommotion.getInstance().setMenuScreen();
