@@ -162,7 +162,7 @@ class Game_card_Card extends Actor {
 		sets the expanded boolean, refreshes the action area and calls organiseDeck OR just resets the height when the resource bar changes.*/
 	public void cardCollapse(){
 		if (expanded){
-			if (Game_ResourcesManager.resourcebarexpanded)
+			if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded)
 				this.actorY=80;
 			else
 				this.actorY=-100;
@@ -171,7 +171,7 @@ class Game_card_Card extends Actor {
 			Game_CardHandManager.organiseDeck();
 			}
 		else
-		{if (Game_ResourcesManager.resourcebarexpanded)
+		{if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded)
 			this.actorY=80;
 		else
 			this.actorY=-100;}

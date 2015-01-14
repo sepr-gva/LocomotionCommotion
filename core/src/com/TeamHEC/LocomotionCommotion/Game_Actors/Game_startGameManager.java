@@ -60,7 +60,7 @@ public class Game_startGameManager {
 
 	public static void startGame(){
 	
-		for(int i=Game_menuObject_AManager.menuobjectsStageStart; i<=Game_menuObject_AManager.menuobjectsStageEnd-1;i++)	
+		for(int i=Game_ScreenMenu.actorManager.getStageStart(); i<=Game_ScreenMenu.actorManager.getStageEnd();i++)	
 		{ 	
 			if (i > GameScreen.getStage().getActors().size-1)
 			{//This is just to avoid range errors
@@ -68,8 +68,8 @@ public class Game_startGameManager {
 			else
 				GameScreen.getStage().getActors().get(i).setVisible(true);
 		}	
-		Game_ResourcesManager.game_card_togglebtn.setVisible(true);
-		Game_ResourcesManager.cardQuant.setVisible(true);
+		Game_ScreenMenu.resourceActorManager.game_card_togglebtn.setVisible(true);
+		Game_ScreenMenu.resourceActorManager.cardQuant.setVisible(true);
 	}
 	
 	public static void reset(){

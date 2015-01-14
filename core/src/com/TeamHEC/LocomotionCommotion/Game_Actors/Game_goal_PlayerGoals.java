@@ -32,7 +32,6 @@ public class Game_goal_PlayerGoals {
 	public LabelStyle style;
 
 
-	public static Game_menuobject_ticketenclosure game_menuobject_ticketenclosure;
 	public static Game_goal_RemoveBtn removebtn1,removebtn2,removebtn3;
 
 	public static boolean open=false;
@@ -51,8 +50,6 @@ public class Game_goal_PlayerGoals {
 		stagestart =0;
 		ticketActors=0;
 
-		game_menuobject_ticketenclosure=new Game_menuobject_ticketenclosure();
-		actors.add(game_menuobject_ticketenclosure);
 
 
 		playerGoals = new HashMap<String,Goal>();
@@ -191,8 +188,8 @@ public class Game_goal_PlayerGoals {
 			a.setY(a.getY()-200);
 		}
 		//Hide goal side menu
-		game_menuobject_ticketenclosure.setVisible(false);
-		Game_menuObject_AManager.game_menuobject_tickettoggle.setVisible(false);
+		Game_ScreenMenu.actorManager.game_menuobject_ticketenclosure.setVisible(false);
+		Game_ScreenMenu.actorManager.game_menuobject_tickettoggle.setVisible(false);
 		//Put the remove Buttons in the correct place
 		for (int i=0;i<numberofOwnedGoals; i++){
 			String a = new Integer(i+1).toString();
@@ -219,8 +216,8 @@ public class Game_goal_PlayerGoals {
 			removebuttons.get(a).resetButtons();
 
 		}
-		game_menuobject_ticketenclosure.setVisible(false);
-		Game_menuObject_AManager.game_menuobject_tickettoggle.setVisible(true);
+		Game_ScreenMenu.actorManager.game_menuobject_ticketenclosure.setVisible(false);
+		Game_ScreenMenu.actorManager.game_menuobject_tickettoggle.setVisible(true);
 
 
 

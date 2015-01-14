@@ -103,7 +103,7 @@ public class Game_CardHandManager {
 	public static void useCard(int cardNum){						//Method useCard lets the player use their card.
 		if (cardNum !=0){												//if the the number of card is not 0
 			cards.get(cardNum-1).getCard().implementCard();				//Implement the card object
-			Game_ResourcesManager.refreshResources();					//refresh the labels showing the resources
+			Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels showing the resources
 			if (cardNum<numberofcards){									//Shuffle the cards up
 				for(int i=cardNum-1;i<numberofcards-1;i++){
 					cards.get(i).setTexture(cards.get(i+1).getTexture());
@@ -118,7 +118,7 @@ public class Game_CardHandManager {
 			cards.get(numberofcards-1).setVisible(false);
 			numberofcards-=1;											//decrement card number
 			GameScreen.cards-=1;										
-			Game_ResourcesManager.refreshResources();
+			Game_ScreenMenu.resourceActorManager.refreshResources();
 			organiseDeck();
 			Game_CardHandManager.usecardbtn.setVisible(false);			//hide the use card button
 		}
@@ -136,7 +136,7 @@ public class Game_CardHandManager {
 			
 			numberofcards+=1;											//increment the number of cards
 			GameScreen.cards+=1;										//update the cards value for display
-			Game_ResourcesManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
+			Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 		}
 	}
 

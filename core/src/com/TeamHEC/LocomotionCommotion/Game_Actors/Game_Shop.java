@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -34,9 +33,9 @@ public class Game_Shop {
 		private final static Array<Actor> actors = new Array<Actor>();
 		private final static Array<Actor> startactors = new Array<Actor>();
 
-		public ShopImage game_shop_backdrop;
+		public Game_Asset game_shop_backdrop;
 		public Game_shop_BackBtn game_shop_backbtn;
-		public ShopImage game_shop_title;
+		public Game_Asset game_shop_title;
 		public Game_shop_coal coalitem;
 		public Game_shop_oil oilitem;
 		public Game_shop_electricity electricityitem;
@@ -68,11 +67,11 @@ public class Game_Shop {
 			startScreenStageEnd=0;
 
 
-			game_shop_backdrop = new ShopImage(-1,-20,Game_TextureManager.getInstance().game_shop_backdrop);
+			game_shop_backdrop = new Game_Asset(-1,-20,Game_TextureManager.getInstance().game_shop_backdrop);
 			actors.add(game_shop_backdrop);
 			game_shop_backbtn = new Game_shop_BackBtn();
 			actors.add(game_shop_backbtn);
-			game_shop_title = new ShopImage(170,820,Game_TextureManager.getInstance().game_shop_title);
+			game_shop_title = new Game_Asset(170,820,Game_TextureManager.getInstance().game_shop_title);
 			actors.add(game_shop_title);
 
 			coalitem = new Game_shop_coal();
@@ -195,33 +194,6 @@ public class Game_Shop {
 	}
 	
 
-	//Super Classes
-	public static class ShopActor extends Actor{
-		public Texture texture;
-		float actorX, actorY;
-		boolean started = false;
-
-		public void draw(Batch batch, float alpha){
-			batch.draw(texture, actorX, actorY);
-		}
-
-		public void setTexture(Texture t){
-			this.texture=t;
-		}
-		public Texture getTexture(){
-			return this.texture;
-		}
-	}
-
-	public static class ShopImage extends ShopActor{		
-		public ShopImage(float x, float y, Texture t)
-		{
-			this.actorX = x;
-			this.actorY = y;
-			texture = t;
-		}
-
-	}
 	public static int strToInt( StringBuilder stringBuilder ){
 		int i = 0;
 		int num = 0;
@@ -246,7 +218,7 @@ public class Game_Shop {
 
 	//SHOP Actors
 	//Back Button
-	public static class Game_shop_BackBtn extends ShopActor {
+	public static class Game_shop_BackBtn extends Game_Actor {
 		public Game_shop_BackBtn(){
 			texture = Game_TextureManager.getInstance().game_shop_backbtn; 
 			actorX = 1350 ;
@@ -307,7 +279,7 @@ public class Game_Shop {
 
 		public ShopHomeScreen(){
 			this.actors = new ArrayList<Actor>();
-			ShopImage shopscreen = new ShopImage(45, 9, Game_TextureManager.getInstance().game_shop_startscreen);
+			Game_Asset shopscreen = new Game_Asset(45, 9, Game_TextureManager.getInstance().game_shop_startscreen);
 			this.actors.add(shopscreen);
 			ShopBackBtn back = new ShopBackBtn();
 			this.actors.add(back);
@@ -352,7 +324,7 @@ public class Game_Shop {
 
 		//Home Screen Actors------------------------------
 		//Back Button
-		public class ShopBackBtn extends ShopActor{
+		public class ShopBackBtn extends Game_Actor{
 			public ShopBackBtn(){
 				texture = Game_TextureManager.getInstance().game_shop_backbtn; 
 				actorX = 1350 ;
@@ -397,7 +369,7 @@ public class Game_Shop {
 			}
 		}
 		//Buy Menu Button
-		public class ShopBuyBtn extends ShopActor{
+		public class ShopBuyBtn extends Game_Actor{
 			public ShopBuyBtn(){
 				texture = Game_TextureManager.getInstance().game_shop_startbuy; 
 				actorX = 250 ;
@@ -442,7 +414,7 @@ public class Game_Shop {
 			}
 		}
 		//Sell Menu Button
-		public class ShopSellBtn extends ShopActor{
+		public class ShopSellBtn extends Game_Actor{
 			public ShopSellBtn(){
 				texture = Game_TextureManager.getInstance().game_shop_startsell; 
 				actorX = 650 ;
@@ -487,7 +459,7 @@ public class Game_Shop {
 			}
 		}
 		//Train Menu Button
-		public class ShopTrainBtn extends ShopActor{
+		public class ShopTrainBtn extends Game_Actor{
 			public ShopTrainBtn(){
 				texture = Game_TextureManager.getInstance().game_shop_starttrain; 
 				actorX = 1050 ;
@@ -521,7 +493,7 @@ public class Game_Shop {
 		public Game_shop_card(){
 			this.actors = new ArrayList<Actor>();
 
-			ShopImage cardItem = new ShopImage(posx,posy,Game_TextureManager.getInstance().game_shop_carditem);
+			Game_Asset cardItem = new Game_Asset(posx,posy,Game_TextureManager.getInstance().game_shop_carditem);
 			buyButton = new BuyButton();
 
 			actors.add(cardItem);
@@ -552,7 +524,7 @@ public class Game_Shop {
 
 		}
 
-		public static class BuyButton extends ShopActor{
+		public static class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; 
 				actorX = posx+75 ;
@@ -597,7 +569,7 @@ public class Game_Shop {
 		BuyButton buyButton;
 		public Game_shop_coal(){
 			this.actors = new ArrayList<Actor>();
-			ShopImage coalitem = new ShopImage(posx,posy,Game_TextureManager.getInstance().game_shop_coalitem);
+			Game_Asset coalitem = new Game_Asset(posx,posy,Game_TextureManager.getInstance().game_shop_coalitem);
 			AddButton add = new AddButton();
 			MinusButton minus = new MinusButton();
 			buyButton = new BuyButton();
@@ -647,7 +619,7 @@ public class Game_Shop {
 
 		//Coal Item Actors
 		//Increase (add) Button
-		public class AddButton extends ShopActor{
+		public class AddButton extends Game_Actor{
 			public AddButton(){
 				texture = Game_TextureManager.getInstance().game_shop_addbtn; 
 				actorX = posx+75 ;
@@ -670,7 +642,7 @@ public class Game_Shop {
 			}
 		}
 		//Decrease (minus) Button
-		public class MinusButton extends ShopActor{
+		public class MinusButton extends Game_Actor{
 			public MinusButton(){
 				texture = Game_TextureManager.getInstance().game_shop_minusbtn; 
 				actorX = posx+220 ;
@@ -694,7 +666,7 @@ public class Game_Shop {
 			}
 		}
 		//Buy Coal Button
-		public class BuyButton extends ShopActor{
+		public class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
 				actorX = posx+75 ;
@@ -716,7 +688,7 @@ public class Game_Shop {
 						if (goldcost <= GameScreen.gold){
 							GameScreen.gold -= goldcost;
 							GameScreen.coal += coal;
-							Game_ResourcesManager.refreshResources();
+							Game_ScreenMenu.resourceActorManager.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.gold);
 						}
 					}
@@ -726,7 +698,7 @@ public class Game_Shop {
 						if (coal <= GameScreen.coal){
 							GameScreen.gold += goldcost;
 							GameScreen.coal -= coal;
-							Game_ResourcesManager.refreshResources();
+							Game_ScreenMenu.resourceActorManager.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.gold);
 						}
 					}
@@ -757,7 +729,7 @@ public class Game_Shop {
 		BuyButton buyButton;
 		public Game_shop_oil(){
 			this.actors = new ArrayList<Actor>();
-			ShopImage coalitem = new ShopImage(posx, posy,Game_TextureManager.getInstance().game_shop_oilitem);
+			Game_Asset coalitem = new Game_Asset(posx, posy,Game_TextureManager.getInstance().game_shop_oilitem);
 			AddButton add = new AddButton();
 			MinusButton minus = new MinusButton();
 			buyButton = new BuyButton();
@@ -806,7 +778,7 @@ public class Game_Shop {
 		}
 
 
-		public class AddButton extends ShopActor{
+		public class AddButton extends Game_Actor{
 			public AddButton(){
 				texture = Game_TextureManager.getInstance().game_shop_addbtn; 
 				actorX = posx+75 ;
@@ -829,7 +801,7 @@ public class Game_Shop {
 			}
 		}
 
-		public class MinusButton extends ShopActor{
+		public class MinusButton extends Game_Actor{
 			public MinusButton(){
 				texture = Game_TextureManager.getInstance().game_shop_minusbtn; // reuse the new game back btn texture
 				actorX = posx+220 ;
@@ -853,7 +825,7 @@ public class Game_Shop {
 			}
 		}
 
-		public static class BuyButton extends ShopActor{
+		public static class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
 				actorX = posx+75 ;
@@ -876,7 +848,7 @@ public class Game_Shop {
 						if (goldcost <= GameScreen.gold){
 							GameScreen.gold -= goldcost;
 							GameScreen.oil += oil;
-							Game_ResourcesManager.refreshResources();
+							Game_ScreenMenu.resourceActorManager.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.gold);
 						}
 					}
@@ -886,7 +858,7 @@ public class Game_Shop {
 						if (oil <= GameScreen.oil){
 							GameScreen.gold += goldcost;
 							GameScreen.oil -= oil;
-							Game_ResourcesManager.refreshResources();
+							Game_ScreenMenu.resourceActorManager.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.gold);
 						}
 					}
@@ -918,7 +890,7 @@ public class Game_Shop {
 		BuyButton buyButton;
 		public Game_shop_electricity(){
 			this.actors = new ArrayList<Actor>();
-			ShopImage coalitem = new ShopImage(posx,posy,Game_TextureManager.getInstance().game_shop_electricityitem);
+			Game_Asset coalitem = new Game_Asset(posx,posy,Game_TextureManager.getInstance().game_shop_electricityitem);
 			AddButton add = new AddButton();
 			MinusButton minus = new MinusButton();
 			buyButton = new BuyButton();
@@ -966,7 +938,7 @@ public class Game_Shop {
 			quantityLabel.setText(l);
 		}
 
-		public class AddButton extends ShopActor{
+		public class AddButton extends Game_Actor{
 			public AddButton(){
 				texture = Game_TextureManager.getInstance().game_shop_addbtn; // reuse the new game back btn texture
 				actorX = posx+75 ;
@@ -989,7 +961,7 @@ public class Game_Shop {
 			}
 		}
 
-		public class MinusButton extends ShopActor{
+		public class MinusButton extends Game_Actor{
 			public MinusButton(){
 				texture = Game_TextureManager.getInstance().game_shop_minusbtn; // reuse the new game back btn texture
 				actorX = posx+220 ;
@@ -1013,7 +985,7 @@ public class Game_Shop {
 			}
 		}
 
-		public static class BuyButton extends ShopActor{
+		public static class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
 				actorX = posx+75 ;
@@ -1035,7 +1007,7 @@ public class Game_Shop {
 						if (goldcost <= GameScreen.gold){
 							GameScreen.gold -= goldcost;
 							GameScreen.electricity += electricity;
-							Game_ResourcesManager.refreshResources();
+							Game_ScreenMenu.resourceActorManager.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.gold);
 						}
 					}
@@ -1045,7 +1017,7 @@ public class Game_Shop {
 						if (electricity <= GameScreen.electricity){
 							GameScreen.gold += goldcost;
 							GameScreen.electricity -= electricity;
-							Game_ResourcesManager.refreshResources();
+							Game_ScreenMenu.resourceActorManager.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.gold);
 						}
 					}
@@ -1082,7 +1054,7 @@ public class Game_Shop {
 		BuyButton buyButton;
 		public Game_shop_nuclear(){
 			this.actors = new ArrayList<Actor>();
-			ShopImage coalitem = new ShopImage(posx,posy,Game_TextureManager.getInstance().game_shop_nuclearitem);
+			Game_Asset coalitem = new Game_Asset(posx,posy,Game_TextureManager.getInstance().game_shop_nuclearitem);
 			AddButton add = new AddButton();
 			MinusButton minus = new MinusButton();
 			buyButton = new BuyButton();
@@ -1131,7 +1103,7 @@ public class Game_Shop {
 		}
 
 
-		public class AddButton extends ShopActor{
+		public class AddButton extends Game_Actor{
 			public AddButton(){
 				texture = Game_TextureManager.getInstance().game_shop_addbtn; // reuse the new game back btn texture
 				actorX = posx+75 ;
@@ -1154,7 +1126,7 @@ public class Game_Shop {
 			}
 		}
 
-		public class MinusButton extends ShopActor{
+		public class MinusButton extends Game_Actor{
 			public MinusButton(){
 				texture = Game_TextureManager.getInstance().game_shop_minusbtn; // reuse the new game back btn texture
 				actorX = posx+220 ;
@@ -1178,7 +1150,7 @@ public class Game_Shop {
 			}
 		}
 
-		public static class BuyButton extends ShopActor{
+		public static class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
 				actorX = posx+75 ;
@@ -1200,7 +1172,7 @@ public class Game_Shop {
 						if (goldcost <= GameScreen.gold){
 							GameScreen.gold -= goldcost;
 							GameScreen.nuclear += nuclear;
-							Game_ResourcesManager.refreshResources();
+							Game_ScreenMenu.resourceActorManager.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.gold);
 						}
 					}
@@ -1210,7 +1182,7 @@ public class Game_Shop {
 						if (nuclear <= GameScreen.nuclear){
 							GameScreen.gold += goldcost;
 							GameScreen.nuclear -= nuclear;
-							Game_ResourcesManager.refreshResources();
+							Game_ScreenMenu.resourceActorManager.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.gold);
 						}
 					}
@@ -1245,7 +1217,7 @@ public class Game_Shop {
 		BuyButton buyButton;
 		public Game_shop_train(){
 			this.actors = new ArrayList<Actor>();
-			ShopImage trainItem = new ShopImage(posx,posy,Game_TextureManager.getInstance().game_shop_trainitem);
+			Game_Asset trainItem = new Game_Asset(posx,posy,Game_TextureManager.getInstance().game_shop_trainitem);
 			buyButton = new BuyButton();
 			actors.add(trainItem);
 			actors.add(buyButton);
@@ -1277,7 +1249,7 @@ public class Game_Shop {
 
 		}
 
-		public class BuyButton extends ShopActor{
+		public class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_blankbuybtn; // reuse the new game back btn texture
 				actorX = posx+75 ;

@@ -27,12 +27,10 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHandManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_GoalScreenManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenu;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepot;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu.StartMenu;
@@ -72,10 +70,7 @@ public class GameScreen implements Screen {
 		Game_CardHandManager cardHandManager = new Game_CardHandManager();
 		cardHandManager.create(getStage());
 
-		Game_ResourcesManager resourceManager = new Game_ResourcesManager();
-		resourceManager.create(getStage());
-
-		Game_menuObject_AManager actorManager = new Game_menuObject_AManager();
+		Game_ScreenMenu actorManager = new Game_ScreenMenu();
 		actorManager.create(getStage());
 
 
@@ -168,8 +163,8 @@ public class GameScreen implements Screen {
 		Game_PauseMenu.actorManager.open = false;
 		Game_goal_PlayerGoals.open = false;
 		Game_Shop.actorManager.open = false;
-		Game_TrainDepotManager.open = false;
-		Game_ResourcesManager.resourcebarexpanded =false;
+		Game_TrainDepot.actorManager.open = false;
+		Game_ScreenMenu.resourceActorManager.resourcebarexpanded =false;
 		Game_Goal_GoalScreenManager.open= false;
 		
 		//CARDS
