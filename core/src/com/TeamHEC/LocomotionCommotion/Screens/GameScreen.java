@@ -29,6 +29,7 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ResourcesManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepot;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepotManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_menuObject_AManager;
@@ -77,11 +78,9 @@ public class GameScreen implements Screen {
 		Game_menuObject_AManager actorManager = new Game_menuObject_AManager();
 		actorManager.create(getStage());
 
-		Game_Shop shop = new Game_Shop();
-		shop.create(getStage());
 
-		Game_TrainDepotManager trainDepotManager = new Game_TrainDepotManager();
-		trainDepotManager.create(getStage());
+		Game_TrainDepot trainDepot = new Game_TrainDepot();
+		trainDepot.create(getStage());
 
 		Game_Goal_GoalScreenManager goalScreenManager = new Game_Goal_GoalScreenManager();
 		goalScreenManager.create(getStage());
@@ -92,6 +91,9 @@ public class GameScreen implements Screen {
 		
 		Game_startGameManager startgameManager = new Game_startGameManager();
 		startgameManager.create(getStage());
+		
+		Game_Shop shop = new Game_Shop();
+		shop.create(getStage());
 		
 		Game_PauseMenu pauseMenu= new Game_PauseMenu();
 		pauseMenu.create(getStage());

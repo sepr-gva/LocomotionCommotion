@@ -49,10 +49,10 @@ public class Game_menuobject_TrainDepotBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_TrainDepotManager.open== false)
+			if (Game_TrainDepot.actorManager.open== false)
 			{
-				Game_TrainDepotManager.open= true;
-				for(int i=Game_TrainDepotManager.stagestart; i<=Game_TrainDepotManager.stagestart +Game_TrainDepotManager.traindepotActors-1;i++){
+				Game_TrainDepot.actorManager.open= true;
+				for(int i=Game_TrainDepot.actorManager.getStageStart(); i<=Game_TrainDepot.actorManager.getStageEnd();i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -60,8 +60,8 @@ public class Game_menuobject_TrainDepotBtn extends Actor {
 
 				}			}
 			else
-			{	Game_TrainDepotManager.open= false;
-			for(int i=Game_TrainDepotManager.stagestart; i<=Game_TrainDepotManager.stagestart +Game_TrainDepotManager.traindepotActors-1;i++){
+			{	Game_TrainDepot.actorManager.open= false;
+			for(int i=Game_TrainDepot.actorManager.getStageStart(); i<=Game_TrainDepot.actorManager.getStageEnd();i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else
