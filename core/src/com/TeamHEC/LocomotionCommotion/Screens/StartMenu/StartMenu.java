@@ -260,6 +260,15 @@ public class StartMenu {
 	}
 
 	//Super Classes
+	public static class StartMenuImage extends StartMenuActor{		
+		public StartMenuImage(float x, float y, Texture t)
+		{
+			actorX = x;
+			actorY = y;
+			texture = t;
+		}
+	}
+	
 	public static class StartMenuActor extends Actor{
 		public Texture texture;
 		float actorX, actorY;
@@ -275,25 +284,21 @@ public class StartMenu {
 		}
 	}
 
-
-	public static class StartMenuImage extends StartMenuActor{		
-		public StartMenuImage(float x, float y, Texture t)
-		{
-			actorX = x;
-			actorY = y;
-			texture = t;
-		}
-
-	}
-
-	//MAIN MENU ACTORS---------------------------------------------------------------------------------
-
-
-
 	// New Game Button
 	public static class SM_main_NewGameBtn extends StartMenuActor {
 		int animationTracker1,animationTracker2;
 		public SM_main_NewGameBtn(){
+			
+			StartMenuActor test = new StartMenuActor(){
+				
+				@Override
+				public void setTexture(Texture t)
+				{
+					system.
+				}
+				
+			};
+			
 			actorX=600;
 			actorY=480;
 			texture = SM_TextureManager.getInstance().sm_main_newgamebtn;

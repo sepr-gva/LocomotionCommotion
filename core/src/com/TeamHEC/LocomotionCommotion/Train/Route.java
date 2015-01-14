@@ -114,15 +114,10 @@ public class Route{
 			
 			Vector2 pos = new Vector2(startMapObj.x, startMapObj.y);
 			Vector2 vect = route.get(routeIndex).getVector().cpy();
-			
-		//	System.out.println(String.format("vectX %f vectY %f", vect.x, vect.y));
-			
+				
 			vect.scl(connectionTravelled);
-			
-		//	System.out.println(String.format("scaled: vectX %f vectY %f", vect.x, vect.y));
-			
 			pos.add(vect);
-					
+
 			return pos;
 		}
 	}
@@ -176,18 +171,12 @@ public class Route{
 		return null;
 	}
 	
-	/*
-	  	Haven't tested it yet but it should progress the train along the
-	  	connections in route and how far it's along that connection
-	*/
 	public void update(float moveBy)
 	{
 		float connectionLength = route.get(routeIndex).getLength();
 		
 		if(connectionTravelled + moveBy < connectionLength)
-		{
 			connectionTravelled += moveBy;
-		}
 		else
 		{
 			float diff = Math.abs(connectionTravelled + moveBy - connectionLength);
@@ -198,13 +187,12 @@ public class Route{
 			notifyStationPassed();
 			
 			if(routeIndex < route.size())
-			{
 				update(diff);
-			}
 			else
 			{
 				// ROUTE FINISHED
-				routeIndex--;
+				route.clear();
+				routeIndex = 0;
 				isComplete = true;
 			}
 		}

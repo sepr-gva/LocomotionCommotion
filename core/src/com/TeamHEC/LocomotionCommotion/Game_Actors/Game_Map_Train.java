@@ -29,6 +29,13 @@ public class Game_Map_Train extends Actor{
 		texture = toggleTexture1;
 		
 		addListener(new InputListener(){
+			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+				((Game_Map_Train)event.getTarget()).clickedTrain();
+				return true;
+			}
+		});
+		
+		addListener(new InputListener(){
 			public void enter(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
 				((Game_Map_Train)event.getTarget()).toggleHighlight(true);
 			}
@@ -42,25 +49,24 @@ public class Game_Map_Train extends Actor{
 		});
 		
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(1));
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(1));
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		train.route.addConnection(train.route.getAdjacentConnections().get(1));
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(1));
 		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train.route.addConnection(train.route.getAdjacentConnections().get(1));
+	}
+	
+	public void clickedTrain()
+	{
+		
 	}
 	
 	public void toggleHighlight(boolean highlighted)

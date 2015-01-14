@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Resource.*;
-
 /**
  * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -52,7 +51,6 @@ public class WorldMap implements Serializable{
 	// Specify coordinates of each junction here:
 	public final Junction[] junction = new Junction[]{new Junction(731f, 430f), new Junction(991f, 560f)};
 	
-	//CALLUM NEEDS A COPY OF ALL THE STATIONS SO HE MADE THIS SO HE CAN ACCESS THEM
 	public ArrayList<Station> stationsList = new ArrayList<Station>() {	 		 
 		private static final long serialVersionUID = 1L;
 
@@ -107,11 +105,6 @@ public class WorldMap implements Serializable{
 		createConnections(ATHENS, new MapObj[]{ROME, VIENNA});
 	}
 	
-	/*
-		-Every MapObj (Station/Junction) has an ArrayList of connections
-		-Every connection has a length which is calculated using coordinates set above
-		-You can add a connection to a specific Train route using Train.addRouteConnection...
-	*/
 	public void createConnections(MapObj mapObj, MapObj[] connection)
 	{
 		for(int i = 0; i < connection.length; i++)
