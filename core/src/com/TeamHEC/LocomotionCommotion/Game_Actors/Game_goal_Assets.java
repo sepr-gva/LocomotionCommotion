@@ -1,6 +1,10 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import java.util.ArrayList;
+
+import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -303,6 +307,38 @@ public class Game_goal_Assets {
 
 	}
 
+	public static class Game_goal_RefreshGoals extends Game_Actor{
+		public Game_goal_RefreshGoals(){
+			actorX=Gdx.graphics.getWidth()-100;
+			actorY=Gdx.graphics.getHeight()-250;
+			texture=Game_TextureManager.getInstance().game_menuobject_redobtn;
+			
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((Game_goal_RefreshGoals)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+		
 
+		public void act(float delta){
+			if (started){
+				//TEMP GOALS
+				ArrayList<Goal> goals = new ArrayList<Goal>();
+				Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
+				goals.add(goal1);
+				Goal goal2 = new Goal("Lisbon", "Helsinki", false, 200, 0, "Cargo","Any");
+				goals.add(goal2);
+				Goal goal3 = new Goal("Berln", "Moscow", false, 200, 0, "Cargo","Any");
+				goals.add(goal3);
+		//TEMP GOALS
+				Game_Goal_GoalScreenManager.AddGoalToScreen(goals);
+				started=false;
+
+			}
+		}
+	}
 
 }

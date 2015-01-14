@@ -276,6 +276,7 @@ public class Game_goal_PlayerGoals {
 		removebuttons.get("3").resetButtons();
 
 		numberofOwnedGoals-=1;
+		
 
 		if (numberofOwnedGoals==0)
 			numberofOwnedGoals=0;
@@ -305,7 +306,7 @@ public class Game_goal_PlayerGoals {
 
 			
 			numberofOwnedGoals+=1;
-			
+			Game_Goal_GoalScreenManager.numberofGoalsOnScreen--;
 			return true;
 		}
 	}
@@ -317,6 +318,7 @@ public class Game_goal_PlayerGoals {
 		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(playerGoalActors.get(a).getGoal());
 		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setEmpty(false);
 		removeGoal(removebuttons.get(a).index);
+		Game_Goal_GoalScreenManager.numberofGoalsOnScreen++;
 
 
 	}

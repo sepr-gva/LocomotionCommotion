@@ -13,6 +13,7 @@ import java.util.HashMap;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_AddGoalBtn;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_BackBtn;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_Backdrop;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RefreshGoals;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -40,6 +41,7 @@ public class Game_Goal_GoalScreenManager {
 	public static Game_goal_AddGoalBtn Game_goal_addgoalbtn;
 	public static Game_goal_BackBtn game_goal_backbtn;
 	public static Game_goal_PlayerGoalActors newgoal1, newgoal2,newgoal3,newgoal4,newgoal5,newgoal6,newgoal7,newgoal8,newgoal9, selectedGoal;
+	public static Game_goal_RefreshGoals refreshGoals; 
 	//Ints
 	public static int  stagestart, goalActors;
 	public static int row1 = 580, row2 = row1-220, row3 = row2-220;
@@ -49,6 +51,8 @@ public class Game_Goal_GoalScreenManager {
 	public static LabelStyle style;
 	//Booleans
 	public static boolean open=false;
+	
+	public static int numberofGoalsOnScreen;
 
 
 
@@ -61,22 +65,25 @@ public class Game_Goal_GoalScreenManager {
 		//Reset Actor ranging values
 		stagestart =0;
 		goalActors=0;
+		numberofGoalsOnScreen=0;
 
 		//Actors
 		Game_goal_Backdrop = new Game_goal_Backdrop();
 		actors.add(Game_goal_Backdrop);
 		game_goal_backbtn = new Game_goal_BackBtn();
 		actors.add(game_goal_backbtn);
+		refreshGoals = new Game_goal_RefreshGoals();
+		actors.add(refreshGoals);
 
-		//TEMP GOALS
-		goals = new ArrayList<Goal>();
-		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
-		goals.add(goal1);
-		Goal goal2 = new Goal("Lisbon", "Helsinki", false, 200, 0, "Cargo","Any");
-		goals.add(goal2);
-		Goal goal3 = new Goal("Berln", "Moscow", false, 200, 0, "Cargo","Any");
-		goals.add(goal3);
-		//TEMP GOALS
+//		//TEMP GOALS
+//		goals = new ArrayList<Goal>();
+//		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
+//		goals.add(goal1);
+//		Goal goal2 = new Goal("Lisbon", "Helsinki", false, 200, 0, "Cargo","Any");
+//		goals.add(goal2);
+//		Goal goal3 = new Goal("Berln", "Moscow", false, 200, 0, "Cargo","Any");
+//		goals.add(goal3);
+//		//TEMP GOALS
 
 		Game_goal_NewGoalCreator goalcreator= new Game_goal_NewGoalCreator(goals); //Call goal creator
 		createdGoals = goalcreator.getGoals();	//set createdGoals to the result of the goal creator
@@ -197,7 +204,12 @@ public class Game_Goal_GoalScreenManager {
 
 	//Creates the goal labels - sets the text of the blank labels to the goal information
 	public static  HashMap<String, Label> createGoalLabels(HashMap<String, Label> newgoalLabels){
-		int  numberofNewGoals = goals.size();
+		int  numberofNewGoals;
+		if (goals==null){
+			numberofNewGoals=0;
+		}
+		else
+			numberofNewGoals= goals.size();
 		for (int i=0;i<numberofNewGoals;i++){
 			String a = new Integer(i+1).toString();
 			newgoalLabels.get(a).setText(ticketMaker(	createdGoals.get(i).getGoal().getCarriageType(),
@@ -206,6 +218,7 @@ public class Game_Goal_GoalScreenManager {
 					createdGoals.get(i).getGoal().getStartDate(), 
 					createdGoals.get(i).getGoal().getFStation(), 
 					createdGoals.get(i).getGoal().getRoute()));
+			numberofGoalsOnScreen++;
 		}
 		for (int i=numberofNewGoals;i<9;i++){
 			String a = new Integer(i+1).toString();
@@ -250,6 +263,67 @@ public class Game_Goal_GoalScreenManager {
 
 		}
 		return space;
+	}
+	
+	public static void AddGoalToScreen(ArrayList<Goal> goals){
+		createNewGoalLabels1(goalLabels,goals);
+	}
+	public static  void createNewGoalLabels(HashMap<String, Label> newgoalLabels,ArrayList<Goal> goals){
+		int goalsbeforeadd= numberofGoalsOnScreen;
+		for (int i=0;i<goals.size();i++){
+			if (numberofGoalsOnScreen==9){
+				break;
+			}
+			String a = new Integer(numberofGoalsOnScreen+1).toString();
+		
+				
+			newgoalLabels.get(a).setText(ticketMaker(	goals.get(i).getCarriageType(),
+					goals.get(i).getReward(),
+					goals.get(i).getSStation(),
+					goals.get(i).getStartDate(), 
+					goals.get(i).getFStation(), 
+					goals.get(i).getRoute()));
+			createdGoals.get(goalsbeforeadd+i).setGoal(goals.get(i));
+			createdGoals.get(goalsbeforeadd+i).setEmpty(false);
+			createdGoals.get(goalsbeforeadd+i).setIndex(goalsbeforeadd+i+1);
+			numberofGoalsOnScreen++;
+		}
+	
+
+	}
+	public static  void createNewGoalLabels1(HashMap<String, Label> newgoalLabels,ArrayList<Goal> goals){
+		for (int i=0;i<goals.size();i++){
+			if (numberofGoalsOnScreen==9){
+				break;
+			}
+			int emptyspace= findEmptySpace(newgoalLabels);
+			String a = new Integer(emptyspace+1).toString();
+			System.out.println(emptyspace);	
+			
+			newgoalLabels.get(a).setText(ticketMaker(	goals.get(i).getCarriageType(),
+					goals.get(i).getReward(),
+					goals.get(i).getSStation(),
+					goals.get(i).getStartDate(), 
+					goals.get(i).getFStation(), 
+					goals.get(i).getRoute()));
+			createdGoals.get(emptyspace).setGoal(goals.get(i));
+			createdGoals.get(emptyspace).setEmpty(false);
+			createdGoals.get(emptyspace).setIndex(emptyspace+1);
+			numberofGoalsOnScreen++;
+		}
+	
+
+	}
+	public static int findEmptySpace(HashMap<String, Label> newgoalLabels){
+		for (int i=0;i<9;i++){
+			String a = new Integer(i+1).toString();
+			if( newgoalLabels.get(a).getText().length==0){
+				return i;
+				
+			}
+		}
+		return 0;
+		
 	}
 
 	/*

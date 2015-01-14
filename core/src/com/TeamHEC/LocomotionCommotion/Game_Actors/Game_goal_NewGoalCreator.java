@@ -29,7 +29,10 @@ public class Game_goal_NewGoalCreator {
 	public Game_goal_NewGoalCreator(ArrayList<Goal> newgoals){
 		this.newgoals = newgoals;
 		//get the number of goals passed
-		numberofNewGoals = newgoals.size();
+		if (newgoals!=null)
+			numberofNewGoals = newgoals.size();
+		else
+			numberofNewGoals = 0;
 		//Initialize createGoals 
 		createdGoals = new ArrayList<Game_goal_PlayerGoalActors>();
 
