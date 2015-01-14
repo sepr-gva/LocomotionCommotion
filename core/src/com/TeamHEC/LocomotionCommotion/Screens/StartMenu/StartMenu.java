@@ -289,16 +289,6 @@ public class StartMenu {
 		int animationTracker1,animationTracker2;
 		public SM_main_NewGameBtn(){
 			
-			StartMenuActor test = new StartMenuActor(){
-				
-				@Override
-				public void setTexture(Texture t)
-				{
-					system.
-				}
-				
-			};
-			
 			actorX=600;
 			actorY=480;
 			texture = SM_TextureManager.getInstance().sm_main_newgamebtn;
