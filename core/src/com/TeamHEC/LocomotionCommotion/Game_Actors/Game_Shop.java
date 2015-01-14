@@ -2,6 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Card.OilCard;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -540,7 +541,8 @@ public class Game_Shop {
 			}
 			public void act(float delta){
 				if(started){
-
+					OilCard card = new OilCard();
+					Game_CardHand.actorManager.addCard(card);
 				}
 				started = false;
 			}

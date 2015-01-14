@@ -277,6 +277,8 @@ public class Game_goal_Assets {
 			if (undo){
 				this.texture=Game_TextureManager.getInstance().game_menuobject_redobtn;
 			}
+			else
+				this.texture=Game_TextureManager.getInstance().game_menuobject_removegoalbtn;
 		}
 		public int getnewgoalindex(){
 			return this.newgoalindex;

@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Card.CoalCard;
-import com.TeamHEC.LocomotionCommotion.Card.GoldCard;
-import com.TeamHEC.LocomotionCommotion.Card.OilCard;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -72,18 +69,18 @@ public class Game_CardHand {
 			stagestart =0;
 			cardActors=0;
 
-			//TEMP CARDS- Cards need to come from the player.
-			CoalCard coal = new CoalCard();
-			OilCard oil = new OilCard();
-			GoldCard gold = new GoldCard();
-			newcards.add(coal);
-			newcards.add(coal);
-			newcards.add(gold);
-			newcards.add(oil);
-			newcards.add(gold);
-			newcards.add(oil);
-			newcards.add(coal);
-			//TEMP CARDS
+//			//TEMP CARDS- Cards need to come from the player.
+//			CoalCard coal = new CoalCard();
+//			OilCard oil = new OilCard();
+//			GoldCard gold = new GoldCard();
+//			newcards.add(coal);
+//			newcards.add(coal);
+//			newcards.add(gold);
+//			newcards.add(oil);
+//			newcards.add(gold);
+//			newcards.add(oil);
+//			newcards.add(coal);
+//			//TEMP CARDS
 
 			numberofcards= newcards.size();
 			Game_card_HandCreator hand = new Game_card_HandCreator(newcards);
@@ -137,17 +134,16 @@ public class Game_CardHand {
 
 		}
 
-		public static void addCard(Card newCard){
+		public void addCard(Card newCard){
 			//Method adds card to the hand if not already full
 			int numberofcards=Game_CardHand.actorManager.numberofcards;
 			if(numberofcards<7){
 				Game_CardHand.actorManager.cards.get(numberofcards).setTexture(newCard.getImage());	//sets the image
 				Game_CardHand.actorManager.cards.get(numberofcards).setSlot(numberofcards+1);			//sets the slot
 				Game_CardHand.actorManager.cards.get(numberofcards).setEmpty(false);					//sets the empty boolean to false
-				Game_CardHand.actorManager.cards.get(numberofcards).setVisible(true);					//makes the card visible
 				Game_CardHand.actorManager.cards.get(numberofcards).setCard(newCard);					//give the actor the card object
-
-				numberofcards+=1;											//increment the number of cards
+				Game_CardHand.actorManager.cards.get(numberofcards).refreshBounds();		
+				Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
 				GameScreen.cards+=1;										//update the cards value for display
 				Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 			}
@@ -267,9 +263,13 @@ public class Game_CardHand {
 		public  Game_card_Card(Texture texture, int actorX, int actorY, boolean empty, int slot){
 			this.slot = slot;
 			this.empty= empty;
-			this.texture = texture; 
+			if (texture==null){
+				this.texture = Game_TextureManager.getInstance().game_card_cardtoggle;//just a filler to avoid errors
+			}else
+				this.texture = texture; 
 			this.actorX = actorX;
 			this.actorY = actorY;
+			
 
 			setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
 			
@@ -294,6 +294,12 @@ public class Game_CardHand {
 			
 			});
 			*/
+		}
+
+
+		public void refreshBounds() {
+			setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
+			
 		}
 
 
@@ -477,19 +483,19 @@ public class Game_CardHand {
 			int heightY = -100;
 			int x = 1130;
 			HashMap<String, Game_card_Card> cardslots = new HashMap<String, Game_card_Card>();
-			cardslots.put("1", card1= new Game_card_Card(cards.get(0).getImage(),x,heightY,false,1));
+			cardslots.put("1", card1= new Game_card_Card(null,x,heightY,false,1));
 			x-=130;																				 //Move card across to make them overlay on each other
-			cardslots.put("2", card2= new Game_card_Card(cards.get(0).getImage(),x,heightY,false,2));
+			cardslots.put("2", card2= new Game_card_Card(null,x,heightY,false,2));
 			x-=130;
-			cardslots.put("3", card3= new Game_card_Card(cards.get(0).getImage(),x,heightY,false,3));
+			cardslots.put("3", card3= new Game_card_Card(null,x,heightY,false,3));
 			x-=130;
-			cardslots.put("4", card4= new Game_card_Card(cards.get(0).getImage(),x,heightY,false,4));
+			cardslots.put("4", card4= new Game_card_Card(null,x,heightY,false,4));
 			x-=130;
-			cardslots.put("5", card5= new Game_card_Card(cards.get(0).getImage(),x,heightY,false,5));
+			cardslots.put("5", card5= new Game_card_Card(null,x,heightY,false,5));
 			x-=130;
-			cardslots.put("6", card6= new Game_card_Card(cards.get(0).getImage(),x,heightY,false,6));
+			cardslots.put("6", card6= new Game_card_Card(null,x,heightY,false,6));
 			x-=130;
-			cardslots.put("7", card7= new Game_card_Card(cards.get(0).getImage(),x,heightY,false,7));
+			cardslots.put("7", card7= new Game_card_Card(null,x,heightY,false,7));
 			return cardslots;
 		}
 		

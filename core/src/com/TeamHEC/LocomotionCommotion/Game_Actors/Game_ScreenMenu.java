@@ -33,7 +33,7 @@ public class Game_ScreenMenu {
 		public  Game_menuobject_MenuBtn game_menuobject_menubtn;
 
 		public  Game_menuobject_TicketToggleBtn game_menuobject_tickettoggle;
-		public Game_Asset game_menuobject_ticketenclosure;
+		public 	Game_Asset game_menuobject_ticketenclosure;
 		public  Game_menuobject_EndTurnBtn game_menuobject_endturnbutton;
 		public  Game_Asset game_menuobject_cornerframe;
 		public  Game_menuobject_InfoToggleBtn game_menuobject_infobutton;
@@ -75,7 +75,8 @@ public class Game_ScreenMenu {
 			playerScore.setX(600);
 			playerScore.setY(Gdx.graphics.getHeight()- playerScore.getHeight() -45);
 
-
+			
+			
 			game_menuobject_topbar = new Game_Asset(-20, Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_menuobject_topbar.getHeight() +10,
 					Game_TextureManager.getInstance().game_menuobject_topbar );
 			actors.add(game_menuobject_topbar);	
@@ -86,12 +87,9 @@ public class Game_ScreenMenu {
 
 			game_menuobject_menubtn = new Game_menuobject_MenuBtn();
 			actors.add(game_menuobject_menubtn);
+			
 
-			//Add the enclosure straight in as is not visible at start
-			game_menuobject_ticketenclosure=new Game_Asset(-1,game_menuobject_topbar.actorY-Game_TextureManager.getInstance().game_menuobject_ticketenclosure.getHeight()
-					,Game_TextureManager.getInstance().game_menuobject_ticketenclosure);
-			game_menuobject_ticketenclosure.setVisible(false);
-			stage.addActor(game_menuobject_ticketenclosure);
+			
 
 			game_menuobject_tickettoggle=new Game_menuobject_TicketToggleBtn();
 			actors.add(game_menuobject_tickettoggle);
@@ -121,6 +119,11 @@ public class Game_ScreenMenu {
 				a.setVisible(false);
 				stage.addActor(a);
 			}
+			//Add the enclosure straight in as is not visible at start
+			game_menuobject_ticketenclosure=new Game_Asset(-1,Gdx.graphics.getHeight()-Game_TextureManager.getInstance().game_menuobject_ticketenclosure.getHeight()-82
+					,Game_TextureManager.getInstance().game_menuobject_ticketenclosure);
+			game_menuobject_ticketenclosure.setVisible(false);
+			stage.addActor(game_menuobject_ticketenclosure);
 
 
 
@@ -362,14 +365,16 @@ public class Game_ScreenMenu {
 
 					}			}
 				else
-				{	Game_Goal_GoalScreenManager.open= false;
+				{	
+				Game_Goal_GoalScreenManager.open= false;
 				Game_goal_PlayerGoals.goalMenuClose();
+				
 				for(int i=Game_Goal_GoalScreenManager.stagestart; i<=Game_Goal_GoalScreenManager.stagestart +Game_Goal_GoalScreenManager.goalActors-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
 						GameScreen.getStage().getActors().get(i).setVisible(false);
-
+					
 				}
 
 				}

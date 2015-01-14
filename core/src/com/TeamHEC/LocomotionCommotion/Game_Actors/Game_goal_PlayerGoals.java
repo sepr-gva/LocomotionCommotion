@@ -204,8 +204,6 @@ public class Game_goal_PlayerGoals {
 		//Put the remove Buttons in the correct place
 		for (int i=0;i<numberofOwnedGoals; i++){
 			String a = new Integer(i+1).toString();
-			removebuttons.get(a).setX(250+150);
-			removebuttons.get(a).setY(925-200-(200*i));
 			removebuttons.get(a).setVisible(true);
 			removebuttons.get(a).refreshBounds();;
 
@@ -221,10 +219,8 @@ public class Game_goal_PlayerGoals {
 		}
 		for (int i=0;i<3; i++){
 			String a = new Integer(i+1).toString();
-			removebuttons.get(a).setX(250);
-			removebuttons.get(a).setY(870-(200*i));
 			removebuttons.get(a).setVisible(false);
-			removebuttons.get(a).resetButtons();
+			removebuttons.get(a).setUndo(false);
 
 		}
 		Game_ScreenMenu.actorManager.game_menuobject_ticketenclosure.setVisible(false);
