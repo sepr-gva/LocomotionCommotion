@@ -50,10 +50,10 @@ public class Game_menuobject_MenuBtn extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (Game_Pause_AManager.open== false)
+			if (Game_PauseMenu.actorManager.open== false)
 			{
-				Game_Pause_AManager.open= true;
-				for(int i=Game_Pause_AManager.stagestart; i<=Game_Pause_AManager.stagestart +Game_Pause_AManager.pauseActors-1;i++){
+				Game_PauseMenu.actorManager.open= true;
+				for(int i=Game_PauseMenu.actorManager.getStageStart(); i<=Game_PauseMenu.actorManager.getStageEnd();i++){
 					if (i > GameScreen.getStage().getActors().size-1){
 
 					}else
@@ -61,8 +61,8 @@ public class Game_menuobject_MenuBtn extends Actor {
 
 				}			}
 			else
-			{	Game_Pause_AManager.open= false;
-			for(int i=Game_Pause_AManager.stagestart; i<=Game_Pause_AManager.stagestart +Game_Pause_AManager.pauseActors-1;i++){
+			{	Game_PauseMenu.actorManager.open= false;
+			for(int i=Game_PauseMenu.actorManager.getStageStart(); i<=Game_PauseMenu.actorManager.getStageEnd();i++){
 				if (i > GameScreen.getStage().getActors().size-1){
 
 				}else
