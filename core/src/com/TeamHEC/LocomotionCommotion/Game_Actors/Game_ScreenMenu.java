@@ -253,7 +253,7 @@ public class Game_ScreenMenu {
 				}
 				//				//NEW CARD PROTOTYPING
 				//				OilCard newcard = new OilCard();
-				//				Game_CardHandManager.addCard(newcard);
+				//				Game_CardHand.actorManager.addCard(newcard);
 				started = false;
 			}
 		}
@@ -460,9 +460,9 @@ public class Game_ScreenMenu {
 					//move cards up
 					Game_ScreenMenu.resourceActorManager.game_card_togglebtn.actorY+=expandedheight;
 					Game_ScreenMenu.resourceActorManager.game_card_togglebtn.refreshBounds();
-					Game_CardHandManager.organiseDeck();
-					Game_CardHandManager.changeHeight(expandedheight);
-					Game_CardHandManager.usecardbtn.setVisible(false);
+					Game_CardHand.actorManager.organiseDeck();
+					Game_CardHand.actorManager.changeHeight(expandedheight);
+					Game_CardHand.actorManager.usecardbtn.setVisible(false);
 					
 					
 					
@@ -477,7 +477,7 @@ public class Game_ScreenMenu {
 					}			}
 				else
 				{	Game_ScreenMenu.resourceActorManager.resourcebarexpanded= false;
-				Game_CardHandManager.usecardbtn.setVisible(false);
+				Game_CardHand.actorManager.usecardbtn.setVisible(false);
 				//Move up
 				Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.actorY-=expandedheight;
 				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
@@ -486,9 +486,9 @@ public class Game_ScreenMenu {
 				
 				Game_ScreenMenu.resourceActorManager.game_card_togglebtn.actorY-=expandedheight;
 				Game_ScreenMenu.resourceActorManager.game_card_togglebtn.refreshBounds();
-				Game_CardHandManager.selectedCard=0;
-				Game_CardHandManager.changeHeight(-expandedheight);
-				Game_CardHandManager.organiseDeck();
+				Game_CardHand.actorManager.selectedCard=0;
+				Game_CardHand.actorManager.changeHeight(-expandedheight);
+				Game_CardHand.actorManager.organiseDeck();
 			//end
 				for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
 					if (i > GameScreen.getStage().getActors().size-1){
@@ -638,7 +638,78 @@ public class Game_ScreenMenu {
 
 
 	}
+//Card Toggle Button
+	public static class Game_card_CardToggleBtn extends Game_Actor {
+		/*
+		 * @author Robert Precious <rp825@york.ac.uk>
+		 * 
+		 * This is a class for a button that toggles whether or not you can see the hand of cards
+		 * 
+		 * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
+		 * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
+		 * @param actorX	The x coordinate of the bottom left corner of the image
+		 * @param actorY	The y coordinate of the bottom left corner of the image
+		 * @param started	Boolean used to show if an Actor has been interacted with. Used to stop and start interactions.
+		 * @param open		This holds the boolean for whether or not the hand of cards is visible or hidden.
+		 * 
+		 * setBounds	This is the bounds for the interaction, we make it the whole image.
+		 * addListener	This adds a listener for a particular interaction in this case touchDown (click)
+		 * draw			Actor is drawn
+		 * act			The action taken if the listener detects interaction
+		 * 				Action- finds the range of actors within cards and either shows them if they are hidden or hides them if they're visible.
+		 */
+		public Game_card_CardToggleBtn(){
+			texture = Game_TextureManager.getInstance().game_card_cardtoggle; // reuse the new game back btn texture
+			actorX = 670 ;
+			actorY = 25;
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((Game_card_CardToggleBtn)event.getTarget()).started = true;
+					return true;
+				}
+			});
+		}
+		public void act(float delta){
+			if(started){
+				if (Game_CardHand.actorManager.open== false)
+				{
+					Game_CardHand.actorManager.open= true; //set hand as open (visible)
+					for(int i=Game_CardHand.actorManager.stagestart; i<=Game_CardHand.actorManager.stagestart +Game_CardHand.actorManager.cardActors-1;i++)	//Range of Card Actors
+					{ 	
+						if (i > GameScreen.getStage().getActors().size-1)
+						{//This is just to avoid range errors
+						}
+						else
+							GameScreen.getStage().getActors().get(i).setVisible(true); //Make Card Actors Visible
+					}			
+				}
+				else
+				{	
+					Game_CardHand.actorManager.open= false; //set hand as closed (hidden)
+					for(int i=Game_CardHand.actorManager.stagestart; i<=Game_CardHand.actorManager.stagestart +Game_CardHand.actorManager.cardActors-1;i++) //Range of Card Actors
+					{		
+						if (i > GameScreen.getStage().getActors().size-1)
+						{//This is just to avoid range errors
+						}
+						else
+							GameScreen.getStage().getActors().get(i).setVisible(false); //Make Card Actors Hidden
+					}
 
+					Game_CardHand.actorManager.selectedCard=0;	// 0 means that no card is selected 
+					Game_CardHand.actorManager.organiseDeck(); 	//call OrganiseDeck - see Game_CardHand.organiseDeck() documentation
+					Game_CardHand.actorManager.usecardbtn.setVisible(false);	//hide the usecard button
+				}
+				started = false; //Ends the action
+			}
+		}
+
+		public void refreshBounds(){
+			//Used when button moves to make sure that the action area is where the image is
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+
+		}
+	}
 
 
 

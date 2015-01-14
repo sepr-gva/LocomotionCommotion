@@ -23,7 +23,7 @@ package com.TeamHEC.LocomotionCommotion.Screens;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHandManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_GoalScreenManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenu;
@@ -67,8 +67,8 @@ public class GameScreen implements Screen {
 		Game_Map_Manager mapManger = new Game_Map_Manager();
 		mapManger.create(getStage());
 		
-		Game_CardHandManager cardHandManager = new Game_CardHandManager();
-		cardHandManager.create(getStage());
+		Game_CardHand cardHand = new Game_CardHand();
+		cardHand.create(getStage());
 
 		Game_ScreenMenu actorManager = new Game_ScreenMenu();
 		actorManager.create(getStage());
@@ -168,8 +168,8 @@ public class GameScreen implements Screen {
 		Game_Goal_GoalScreenManager.open= false;
 		
 		//CARDS
-		Game_CardHandManager.open=false;
-		Game_CardHandManager.cards.clear();;
+		Game_CardHand.actorManager.open=false;
+		Game_CardHand.actorManager.cards.clear();;
 		
 		//Map
 		Game_startGameManager.reset();
