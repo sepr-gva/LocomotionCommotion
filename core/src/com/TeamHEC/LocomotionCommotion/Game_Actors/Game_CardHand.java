@@ -69,19 +69,6 @@ public class Game_CardHand {
 			stagestart =0;
 			cardActors=0;
 
-//			//TEMP CARDS- Cards need to come from the player.
-//			CoalCard coal = new CoalCard();
-//			OilCard oil = new OilCard();
-//			GoldCard gold = new GoldCard();
-//			newcards.add(coal);
-//			newcards.add(coal);
-//			newcards.add(gold);
-//			newcards.add(oil);
-//			newcards.add(gold);
-//			newcards.add(oil);
-//			newcards.add(coal);
-//			//TEMP CARDS
-
 			numberofcards= newcards.size();
 			Game_card_HandCreator hand = new Game_card_HandCreator(newcards);
 
@@ -553,8 +540,4 @@ public class Game_CardHand {
 		}
 
 	}
-	
-	
-
-
 }

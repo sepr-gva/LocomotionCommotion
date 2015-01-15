@@ -33,7 +33,7 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepot;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
+import com.TeamHEC.LocomotionCommotion.Scene.StartScene;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -51,6 +51,8 @@ public class GameScreen implements Screen {
 	public static int turns;
 
 	public static int coal, oil, electricity, nuclear,cards, player1score = 0, player2score = 0, gold = 1000;
+	
+	public static Game_Map_Manager mapManager;
 
 	public static void create(){
 		//Set up stage camera
@@ -64,8 +66,8 @@ public class GameScreen implements Screen {
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
 		
-		Game_Map_Manager mapManger = new Game_Map_Manager();
-		mapManger.create(getStage());
+		mapManager = new Game_Map_Manager();
+		mapManager.create(getStage());
 		
 		Game_CardHand cardHand = new Game_CardHand();
 		cardHand.create(getStage());
@@ -96,8 +98,7 @@ public class GameScreen implements Screen {
 	
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
-		game = new CoreGame(SceneManager.getInstance().startScene.player1name, SceneManager.getInstance().startScene.player2name,
-				p1Station, p2Station, SceneManager.getInstance().startScene.turnChoice);
+		game = new CoreGame(StartScene.player1name, StartScene.player2name, p1Station, p2Station, StartScene.turnChoice);
 	}
 	
 	@Override

@@ -102,7 +102,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			{	
 				toggleHighlight(false);
 				showInfoBox();
-				Game_Map_StationSelectBtn.selectedStation = this;
+				Game_Map_StationBtn.selectedStation = this;
 			}
 			else
 			{

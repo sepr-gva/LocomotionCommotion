@@ -1,17 +1,13 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
-
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -24,11 +20,12 @@ public class Game_Map_Manager {
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> infoactors = new Array<Actor>();
 
-	public static Map map;
+	public static Sprite map;
 	public static Game_Map_Info mapInfo;
-	public static Game_Map_StationInfo stationInfo;
-	public static Game_Map_StationSelectBtn stationSelect;
-
+	
+	public static Sprite stationInfo;
+	public static Game_Map_StationBtn stationSelect;
+	
 	public static boolean infoVisible= false;
 	public static int  stagestart, mapActors, stationTracker, numberOfStations, junctionTracker, numberOfJunctions = 2;
 	public static Label stationLabelFuel,stationLabelName, stationLabelCost;
@@ -45,8 +42,8 @@ public class Game_Map_Manager {
 		mapActors=0;
 		stationTracker=0;
 		numberOfStations=0;
-		
-		map = new Map();		
+			
+		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
 
 		stationTracker=stage.getActors().size;
@@ -64,11 +61,12 @@ public class Game_Map_Manager {
 		
 		// Add train stuff
 		
-		stationInfo = new Game_Map_StationInfo();
+		stationInfo = new Sprite(0, 0, Game_Map_TextureManager.getInstance().stationInfo);
 		infoactors.add(stationInfo);
 		
 		//=========================================================
-		stationSelect = new Game_Map_StationSelectBtn();
+	
+		stationSelect = new Game_Map_StationBtn(0, 0, Game_Map_TextureManager.getInstance().stationSelect);
 		infoactors.add(stationSelect);
 		//=========================================================
 
@@ -90,20 +88,20 @@ public class Game_Map_Manager {
 		stationLabelName.setText("LONDON");
 		stationLabelName.setAlignment(Align.center);		
 		stationLabelName.setColor(1,1,1,1);
-		stationLabelName.setX(Game_Map_Manager.stationInfo.getX()+100);
-		stationLabelName.setY(Game_Map_Manager.stationInfo.getY()+142);
+		stationLabelName.setX(stationInfo.getX()+100);
+		stationLabelName.setY(stationInfo.getY()+142);
 		
 		stationLabelFuel.setText("Type x 100");
 		stationLabelFuel.setAlignment(Align.center);		
 		stationLabelFuel.setColor(0,0,0,1);
-		stationLabelFuel.setX(Game_Map_Manager.stationInfo.getX()+100);
-		stationLabelFuel.setY(Game_Map_Manager.stationInfo.getY()+100);
+		stationLabelFuel.setX(stationInfo.getX()+100);
+		stationLabelFuel.setY(stationInfo.getY()+100);
 		
 		stationLabelCost.setText("");
 		stationLabelCost.setAlignment(Align.center);		
 		stationLabelCost.setColor(0,0,0,1);
-		stationLabelCost.setX(Game_Map_Manager.stationInfo.getX()+100);
-		stationLabelCost.setY(Game_Map_Manager.stationInfo.getY()+60);
+		stationLabelCost.setX(stationInfo.getX()+100);
+		stationLabelCost.setY(stationInfo.getY()+60);
 		
 		infoactors.add(stationLabelName);
 		infoactors.add(stationLabelFuel);
@@ -129,9 +127,9 @@ public class Game_Map_Manager {
 
 	public static void moveInfoBox(float x,float y){
 		showInfoBox();
-		Game_Map_Manager.stationInfo.setX(x);
-		Game_Map_Manager.stationInfo.setY(y);
-		Game_Map_Manager.stationInfo.refreshBounds();
+		stationInfo.setX(x);
+		stationInfo.setY(y);
+		stationInfo.refreshBounds();
 		Game_Map_Manager.stationSelect.setX(x+20);
 		Game_Map_Manager.stationSelect.setY(y+10);
 		Game_Map_Manager.stationSelect.refreshBounds();
@@ -147,7 +145,7 @@ public class Game_Map_Manager {
 	}
 	
 	public static void hideInfoBox(){
-		Game_Map_Manager.stationInfo.setVisible(false);
+		stationInfo.setVisible(false);
 		Game_Map_Manager.stationSelect.setVisible(false);
 		
 		stationLabelName.setVisible(false);
@@ -156,7 +154,7 @@ public class Game_Map_Manager {
 	}
 	
 	public static void showInfoBox(){
-		Game_Map_Manager.stationInfo.setVisible(true);
+		stationInfo.setVisible(true);
 		Game_Map_Manager.stationSelect.setVisible(true);
 		
 		stationLabelName.setVisible(true);
@@ -174,36 +172,6 @@ public class Game_Map_Manager {
 				if (GameScreen.getStage().getActors().get(i).getClass() == Game_Map_Station.class){
 					((Game_Map_Station) GameScreen.getStage().getActors().get(i)).setOwned(false);
 				}
-			}
-		}
-	}
-	
- 	public class Map extends Actor {
-
-		public Texture texture = Game_Map_TextureManager.getInstance().map;
-		public float actorX =100;
-		public float actorY = 60;
-		public boolean started = false;
-
-		public Map(){
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-			addListener(new InputListener(){
-				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-					((Map)event.getTarget()).started = true;
-					return true;
-				}
-			});
-		}
-
-		@Override
-		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX,actorY);
-		}
-
-		@Override
-		public void act(float delta){
-			if(started){
-				started = false;
 			}
 		}
 	}

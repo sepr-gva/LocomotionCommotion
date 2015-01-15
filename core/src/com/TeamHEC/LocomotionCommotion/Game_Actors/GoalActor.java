@@ -111,8 +111,8 @@ public class GoalActor extends Actor {
 					else
 					{	
 						Game_goal_PlayerGoals.planRouteBtn.setVisible(true);
-						Game_goal_PlayerGoals.planRouteBtn.setActorX(this.getX()+60);
-						Game_goal_PlayerGoals.planRouteBtn.setActorY(this.getY()+75);
+						Game_goal_PlayerGoals.planRouteBtn.setX(this.getX()+60);
+						Game_goal_PlayerGoals.planRouteBtn.setY(this.getY()+75);
 						Game_goal_PlayerGoals.planRouteBtn.refreshBounds();
 						this.setPlanRouteButtonVisible(true);
 					}
