@@ -7,6 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class SpriteButton extends Sprite{
 
+	/**
+	 * A sprite which can be clicked on. The onClicked method can be overwritten
+	 * using anonymous Java Classes
+	 * @param x xPosition on screen
+	 * @param y yPosition on screen
+	 * @param texture Image texture to use
+	 */
 	public SpriteButton(float x, float y, Texture texture)
 	{
 		super(x, y, texture);
@@ -23,19 +30,34 @@ public class SpriteButton extends Sprite{
 			public void enter(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
 				((SpriteButton)event.getTarget()).onMouseEnter();
 			}
-
+		});
+		
+		addListener(new InputListener(){
+			public void exit(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
+				((SpriteButton)event.getTarget()).onMouseExit();
+			}
 		});
 	}
 	
+	/**
+	 * Called whenever the Sprite is clicked on. Overwritten using anonymous classes,
+	 */
 	protected void onClicked()
 	{
 		// Overwrite me
 	}
-	
+	/**
+	 * Called upon the mouse hovering over the sprite. Overwritten using anonymous classes.
+	 */
 	protected void onMouseEnter()
 	{
 		// Overwrite me
 	}
-
-	
+	/**
+	 * Called upon a mouse leaving an image region. Overwritten using anonymous classes
+	 */
+	protected void onMouseExit()
+	{
+		// Overwrite me
+	}
 }

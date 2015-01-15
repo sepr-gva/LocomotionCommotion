@@ -26,13 +26,22 @@ public class Route{
 	
 	protected ArrayList<RouteListener> listeners = new ArrayList<RouteListener>();
 	
+	/**
+	 * Creates an arrayList of connections (a route) for tge train to eventually follow
+	 * @param startingPos the starting position of the route
+	 */
 	public Route(MapObj startingPos)
 	{
 		currentMapObj = startingPos;
 		routeIndex = 0;
 		connectionTravelled = 0;
 	}
-	
+	/**
+	 * Used to reload an existing route
+	 * @param startingPos Initial starting poiut of the route
+	 * @param routeIndex The index used to track progress through an array of connections
+	 * @param connectionTravelled The distance travelled through that connection 
+	 */
 	public Route(MapObj startingPos, int routeIndex, float connectionTravelled)
 	{
 		currentMapObj = startingPos;
@@ -40,11 +49,17 @@ public class Route{
 		this.connectionTravelled = connectionTravelled;
 	}
 	
+	/**
+	 * @return An Arraylist of connections within the route
+	 */
 	public ArrayList<Connection> getRoute()
 	{
 		return route;
 	}
 	
+	/**
+	 * @return The current position of the train within the connections ArrayList
+	 */
 	public int getRouteIndex()
 	{
 		return routeIndex;
@@ -55,30 +70,43 @@ public class Route{
 		return isComplete;
 	}
 	
+	/**
+	 * @return The amount a train has progress through the current connection in a route
+	 */
 	public float getConnectionTravelled()
 	{
 		return connectionTravelled;
 	}
 	
+	/**
+	 * Can be used to change the position of the train within the route
+	 * @param index the index of the connection to move the train to
+	 */
 	public void setRouteIndex(int index)
 	{
 		routeIndex = index;
 	}
-	
+	/**
+	 * Can be used to change the position of the train within the route
+	 * @param The position of the train in the current connection
+	 */
 	public void setConnectionTravelled(float travelled)
 	{
 		connectionTravelled = travelled;
 	}
 	
+	/**
+	 * The currentMapObj the train is positioned at
+	 */
 	public void setCurrentMapObj(MapObj current)
 	{
 		currentMapObj = current;
 	}
 	
-	/*
-	 	If a route hasn't been created, this method returns adjacent connections to the startingPos
-	 	of the train or the connections at the end of the current planned route
-	*/
+	/**
+	 * Can be used to see which  adjacent connections are available to add to an existing route
+	 * @return an ArrayList of adjacent connections to the latest connection in the route.
+	 */
 	public ArrayList<Connection> getAdjacentConnections()
 	{
 		if(route.isEmpty())
@@ -89,19 +117,30 @@ public class Route{
 			return route.get(route.size()-1).getDestination().connections;
 	}
 
-	// Adds a connection to the route
+	/**
+	 * Adds a new connection to the end of the route.
+	 * Usually one of the connections return from getAdjacentConnections()
+	 * @param connection The connection to be added
+	 */
 	public void addConnection(Connection connection)
 	{
 		route.add(connection);
 	}
 
-	// Removes the last connection in the route
+	/**
+	 * Removes the latest connection from the route.
+	 * Used to undo latest addition.
+	 */
 	public void removeConnection()
 	{
 		route.remove(route.size());
 	}
 	
-	// Returns a Vector of the trains position
+	/**
+	 * Returns Vector2 containing x and y position of the Train in the Route. Calculated using
+	 * the route index and connectionTravelled by scaling the direction vector within a connection
+	 * @return a Vector containing the coordinates of the Train on the map
+	 */
 	public Vector2 getTrainPos()
 	{
 		if(route.isEmpty())
@@ -122,7 +161,9 @@ public class Route{
 		}
 	}
 	
-	// Returns the total length of the route from start to end
+	/**
+	 * @return The length of the route from start to end
+	 */
 	public float getTotalLength()
 	{
 		float length = 0;
@@ -133,7 +174,9 @@ public class Route{
 		return length;
 	}
 	
-	//  Returns the length remaining in the route
+	/**
+	 * @return The length of the route remaining
+	 */
 	public float getLengthRemaining()
 	{
 		float currentLength = route.get(routeIndex).getLength(); 
@@ -146,6 +189,9 @@ public class Route{
 		return length;
 	}
 	
+	/**
+	 * @return if the train is currently in a station
+	 */
 	public boolean inStation()
 	{
 		Connection currentConnection = route.get(routeIndex);
@@ -157,6 +203,9 @@ public class Route{
 			return false;
 	}
 	
+	/**
+	 * @return The station instance of the station the Train is in. Null if between stations
+	 */
 	public Station getStation()
 	{
 		if(inStation())
@@ -171,6 +220,10 @@ public class Route{
 		return null;
 	}
 	
+	/**
+	 * Progressed a train in the route by certain amount - normally it's speed
+	 * @param moveBy how much to progress the Train through the route by
+	 */
 	public void update(float moveBy)
 	{
 		float connectionLength = route.get(routeIndex).getLength();
@@ -198,18 +251,26 @@ public class Route{
 		}
 	}
 
-	// Implementing RouteListener stuff:
+	/**
+	 * Adds an object to the listener array
+	 */
 	public void register(RouteListener newListener)
 	{
 		if(newListener != null)
 			listeners.add(newListener);
 	}
-
+	/**
+	 * Removes an object from the Listener array
+	 */
 	public void unregister(RouteListener r)
 	{
 		listeners.remove(listeners.indexOf(r));
 	}
 
+	/**
+	 * Notifies all listeners that a station has been passed by a train while completely it's route.
+	 * Can be used to tax trains for passing rival stations
+	 */
 	public void notifyStationPassed()
 	{
 		for(RouteListener listener: listeners)

@@ -23,10 +23,10 @@ public class WorldMap implements Serializable{
 	// List of Stations:
 	// String name, int baseValue, Fuel fuelType, int baseFuelOut, Line lineType, int rentValue, xcoordinate and ycoordinate
 	
-	// NEEDS UPDATING WITH FUEL AND VALUE ETC!
 	//Line colour takes an array of 3 colours, if a station needs less than 3 set the first one(s) to the colour you want and repeat the last unique colour
 	//e.g. for a station on a black and blue line the second and third slots of the array must be the same (order of colours is otherwise irrelevant)
 	
+
 	private final Station AMSTERDAM = new Station("Amsterdam", 850, new Electric(500), 10, new Line[]{Line.Orange, Line.Orange, Line.Orange}, 50, 615f, 560f);
 	private final Station ATHENS = new Station("Athens", 850, new Coal(500), 10, new Line[]{Line.Brown, Line.Green, Line.Green}, 50,  1121f, 170f);
 	private final Station BERLIN = new Station("Berlin", 950, new Nuclear(500), 10, new Line[]{Line.Purple, Line.Red, Line.Red}, 50, 731f, 560f);
@@ -105,6 +105,11 @@ public class WorldMap implements Serializable{
 		createConnections(ATHENS, new MapObj[]{ROME, VIENNA});
 	}
 	
+	/**
+	 * Initialised the connections Arraylist in each MapObj with their adjacent stations
+	 * @param mapObj the initial starting MapObj
+	 * @param connection All it's adjacent MapObjs
+	 */
 	public void createConnections(MapObj mapObj, MapObj[] connection)
 	{
 		for(int i = 0; i < connection.length; i++)

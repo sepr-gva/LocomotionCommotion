@@ -18,7 +18,12 @@ public class MapObj implements Serializable{
 	public ArrayList<Connection> connections = new ArrayList<Connection>();
 	
 	public float x, y;
-			
+	
+	/**
+	 * Every Station and Junction on the map
+	 * @param x xPosition on map
+	 * @param y yPosition on map
+	 */
 	public MapObj(float x, float y)
 	{
 		this.x = x;
@@ -28,12 +33,17 @@ public class MapObj implements Serializable{
 		currentEvent = new Event(); 
 	}
 	
-	// Overridden by Station:
+	/**
+	 * @return returns null if not a station, or is overwritten by Station subclass
+	 */
 	public Station getStation()
 	{
 		return null;
 	}
-	
+	/**
+	 * 
+	 * @return The Actor (UI element) associated with the MapObj
+	 */
 	public Game_Map_MapObj getActor()
 	{
 		return actor;

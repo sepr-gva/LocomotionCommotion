@@ -9,6 +9,12 @@ public class Connection{
 	
 	private Vector2 vector;
 
+	/**
+	 * A connection between two adjacent MapObjs in the Map.
+	 * Defubes the distance between them (length0 and direction (vector) 
+	 * @param startMapObj Where the connection begins
+	 * @param endMapObj Where the connection ends
+	 */
 	public Connection(MapObj startMapObj, MapObj endMapObj)
 	{
 		this.startMapObj = startMapObj;
@@ -24,26 +30,32 @@ public class Connection{
 		vector.nor();
 	}
 	
+	/**
+	 * @return the length between the start and end of a connection
+	 */
 	public float getLength()
 	{
 		return length;
 	}
 	
-	public void setLength(float length)
-	{
-		this.length = length;
-	}
-	
+	/**
+	 * @return A normalised vector of the direction needed to reach the end of the connection
+	 */
 	public Vector2 getVector()
 	{
 		return vector;
 	}
 	
+	/**
+	 * @return the start of a connection
+	 */
 	public MapObj getStartMapObj()
 	{
 		return startMapObj;
 	}
-	
+	/**
+	 * @return the destination of a connection
+	 */
 	public MapObj getDestination()
 	{
 		return endMapObj;

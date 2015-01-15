@@ -12,6 +12,12 @@ public class Sprite extends Actor{
 	
 	public boolean started = false;
 	
+	/**
+	 * Creates a Sprite which can be drawn to a stage
+	 * @param x xPosition on screen
+	 * @param y yPosition on screen
+	 * @param texture The image texture used
+	 */
 	public Sprite(float x, float y, Texture texture)
 	{
 		actorX = x;
@@ -41,6 +47,9 @@ public class Sprite extends Actor{
 		batch.draw(actorTexture, actorX, actorY);
 	}
 	
+	/**
+	 * Sets the touchable region for clicking on a Sprite to it's position
+	 */
 	public void refreshBounds()
 	{
 		setBounds(actorX, actorY, actorTexture.getWidth(), actorTexture.getHeight());

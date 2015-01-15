@@ -56,6 +56,17 @@ public class Train implements Serializable{
 	
 	private ArrayList<TrainUpgrade> upgrades = new ArrayList<TrainUpgrade>();
 	
+	/**
+	 * The superclass of Train types, Creates a Train for player.
+	 * @param fuelType Type of fuel the train consumes
+	 * @param speedMod Any speed modifications made to the train
+	 * @param baseCarriageLimit
+	 * @param carriageLimitMod Any carriage upgrades made to the train
+	 * @param value The price of the train
+	 * @param inStation whether the train is currently in a station
+	 * @param route The route the train is currently using
+	 * @param owner The owner of the train
+	 */
 	public Train(String name, Fuel fuelType, int baseSpeed, int speedMod, int baseCarriageLimit,
 			int carriageLimitMod, int value, boolean inStation, Route route, Player owner)
 	{
@@ -72,11 +83,14 @@ public class Train implements Serializable{
 		this.route = route;
 		this.owner = owner;
 		
+		// The UI blip for each train
 		trainActor = new Game_Map_Train(this);
 	}
 	
 	// =========== Getters ===========
-	
+	/**
+	 * @return The Actor (UI Elelemt) for the train
+	 */
 	public Game_Map_Train getActor()
 	{
 		return trainActor;
@@ -166,17 +180,27 @@ public class Train implements Serializable{
 		return inStation;
 	}	
 	
+	/**
+	 * Moves the train through it's route using it's speed
+	 */
 	public void moveTrain()
 	{
 		route.update(getSpeed());
 	}
 	
+	/**
+	 * Adds an upgrade to the current train:
+	 * @param upgrade The upgrade to be added
+	 */
 	public void addUpgrade(TrainUpgrade upgrade)
 	{
 		upgrade.addUpgrade();
 		upgrades.add(upgrade);
 	}
-	
+	/**
+	 * Removes an upgrade from a train
+	 * @param upgrade the upgrade to be removed
+	 */
 	public void removeUpgrade(TrainUpgrade upgrade)
 	{
 		upgrade.undoUpgrade();
