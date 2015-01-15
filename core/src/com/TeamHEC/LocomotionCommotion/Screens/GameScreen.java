@@ -175,9 +175,5 @@ public class GameScreen implements Screen {
 		//Map
 		Game_startGameManager.reset();
 		Game_Map_Manager.resetMap();
-
-
-
-
 	}
 }
