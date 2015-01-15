@@ -144,7 +144,11 @@ public class CoreGameTest {
 		
 		assertTrue("player1's Gold was incorrectly set", tester.getPlayer1().getGold() == baseGold - Player1Start.getTotalValue());	
 		assertTrue("player2's Gold was incorrectly set", tester.getPlayer2().getGold() == baseGold - Player2Start.getTotalValue());	
-		assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal);
+		if(tester.getPlayerTurn() == tester.getPlayer2())		
+			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal);
+		else
+			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal);
+			
 		assertTrue("player2's Coal was incorrectly set", tester.getPlayer2().getFuel("Coal") == baseCoal);
 		assertTrue("player1's Oil was incorrectly set", tester.getPlayer1().getFuel("Oil") == baseOil);
 		assertTrue("player2's Oil was incorrectly set", tester.getPlayer2().getFuel("Oil") == baseOil);
