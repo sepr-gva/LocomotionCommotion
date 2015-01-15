@@ -1,19 +1,19 @@
 package com.TeamHEC.LocomotionCommotion;
 
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
+import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.TeamHEC.LocomotionCommotion.Screens.StartScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
 public class LocomotionCommotion extends Game {
-	public StartScreen startMenu;
+	
 	public GameScreen gameScreen;
 	public CoreGame newGame;
 
-	public static int screenX = 1680; //Gdx.graphics.getWidth();
-	public static int screenY = 1050;//Gdx.graphics.getHeight();
+	public static int screenX = 1680;
+	public static int screenY = 1050;
 	
 	private static LocomotionCommotion INSTANCE = new LocomotionCommotion();
 
@@ -22,35 +22,35 @@ public class LocomotionCommotion extends Game {
 		return INSTANCE;
 	}
 	
-	
 	private LocomotionCommotion(){}
-
 	public static final String TITLE = "LOCOMOTION COMOTION", VERSION = "0.0.0.1";
+	
 	@Override
 	public void create() {
-		startMenu = new StartScreen();
 		gameScreen = new GameScreen();
-		//TEMP CHANGE WHILE DESIGNING THE GAMESCREEN UI (SHOULD BE startMenu)
-		setScreen(gameScreen); // Use the StartMenu Screen First
+		
+		//setScreen(gameScreen); // Use the StartMenu Screen First
+		setScreen(SceneManager.getInstance().startScene);
 	}
 
 	public void setGameScreen()
 	{
-		startMenu.dispose();
+		SceneManager.getInstance().startScene.dispose();
 		gameScreen = null;
 		gameScreen = new GameScreen();
 		GameScreen.create();
 		gameScreen.resetScreen();
-		Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
 		setScreen(gameScreen);
 	}
 	
 	public void setMenuScreen()
 	{
 		gameScreen.dispose();
-		Gdx.graphics.getGL20().glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
-		startMenu = new StartScreen();
-		setScreen(startMenu);
+		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
+		
+		SceneManager.getInstance().startScene.addToStage();
+		setScreen(SceneManager.getInstance().startScene);
 	}
 
 	@Override

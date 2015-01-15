@@ -33,7 +33,7 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepot;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu.StartMenu;
+import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -96,7 +96,8 @@ public class GameScreen implements Screen {
 	
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
-		game = new CoreGame(StartMenu.player1name, StartMenu.player2name, p1Station, p2Station, StartMenu.turnChoice);
+		game = new CoreGame(SceneManager.getInstance().startScene.player1name, SceneManager.getInstance().startScene.player2name,
+				p1Station, p2Station, SceneManager.getInstance().startScene.turnChoice);
 	}
 	
 	@Override
