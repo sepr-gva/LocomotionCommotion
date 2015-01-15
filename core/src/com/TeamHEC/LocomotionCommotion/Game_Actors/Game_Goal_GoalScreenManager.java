@@ -31,7 +31,7 @@ public class Game_Goal_GoalScreenManager {
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> subactors = new Array<Actor>();
 	//ArrayLists
-	public static ArrayList<Game_goal_PlayerGoalActors> createdGoals;
+	public static ArrayList<GoalActor> createdGoals;
 	private static ArrayList<Goal> goals;
 	//HashMaps
 	public static HashMap<String,Goal> newgoals ;
@@ -40,7 +40,7 @@ public class Game_Goal_GoalScreenManager {
 	public static Game_goal_Backdrop Game_goal_Backdrop;
 	public static Game_goal_AddGoalBtn Game_goal_addgoalbtn;
 	public static Game_goal_BackBtn game_goal_backbtn;
-	public static Game_goal_PlayerGoalActors newgoal1, newgoal2,newgoal3,newgoal4,newgoal5,newgoal6,newgoal7,newgoal8,newgoal9, selectedGoal;
+	public static GoalActor newgoal1, newgoal2,newgoal3,newgoal4,newgoal5,newgoal6,newgoal7,newgoal8,newgoal9, selectedGoal;
 	public static Game_goal_RefreshGoals refreshGoals; 
 	//Ints
 	public static int  stagestart, goalActors;

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RemoveBtn;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -22,11 +23,11 @@ public class Game_goal_PlayerGoals {
 	private final static Array<Actor> subactors = new Array<Actor>();
 
 	public static 	HashMap<String,Goal> playerGoals ;
-	public static 	HashMap<String,Game_goal_PlayerGoalActors> playerGoalActors;
+	public static 	HashMap<String,GoalActor> playerGoalActors;
 	private static 	HashMap<String, Game_goal_RemoveBtn> removebuttons ;
 	private static 	HashMap<String, Label> ticketLabels ;
 
-	public static Game_goal_PlayerGoalActors newgoal1, newgoal2, newgoal3;
+	public static GoalActor newgoal1, newgoal2, newgoal3;
 
 	public Label ticket1, ticket2, ticket3;
 	public LabelStyle style;
@@ -37,7 +38,8 @@ public class Game_goal_PlayerGoals {
 	public static boolean open=false;
 
 	public static int  stagestart, ticketActors, numberofOwnedGoals;
-	
+
+	public static SpriteButton planRouteBtn;
 
 
 	public Game_goal_PlayerGoals(){	}
@@ -53,19 +55,47 @@ public class Game_goal_PlayerGoals {
 
 
 		playerGoals = new HashMap<String,Goal>();
-		playerGoalActors = new HashMap<String,Game_goal_PlayerGoalActors>();
+		playerGoalActors = new HashMap<String,GoalActor>();
 
-			
+
 
 		numberofOwnedGoals=playerGoals.size();
 
-		newgoal1= new Game_goal_PlayerGoalActors(Gdx.graphics.getHeight()-290,5,true,null);
-		newgoal2= new Game_goal_PlayerGoalActors(Gdx.graphics.getHeight()-490,5,true,null);
-		newgoal3= new Game_goal_PlayerGoalActors(Gdx.graphics.getHeight()-690,5,true,null);
+		newgoal1= new GoalActor(Gdx.graphics.getHeight()-290,5,true,null);
+		newgoal2= new GoalActor(Gdx.graphics.getHeight()-490,5,true,null);
+		newgoal3= new GoalActor(Gdx.graphics.getHeight()-690,5,true,null);
 
 		playerGoalActors.put("1", newgoal1);
 		playerGoalActors.put("2", newgoal2);
 		playerGoalActors.put("3", newgoal3);
+
+		//plan route button
+		planRouteBtn= new SpriteButton(0,0,Game_TextureManager.getInstance().game_menuobject_addgoalbtn){
+			boolean touchedDown;
+			@Override
+			protected void onClicked()
+			{
+				touchedDown = true;
+			}
+			protected void onMouseEnter()
+			{
+				started= true;
+			}
+
+			@Override
+			public void act(float delta){
+				if(started){
+					this.setVisible(true);
+					started = false;
+				}
+				if(touchedDown){
+					touchedDown=false;
+				}
+			}
+		};
+		planRouteBtn.setVisible(false);
+
+
 
 
 
@@ -127,7 +157,7 @@ public class Game_goal_PlayerGoals {
 			removebuttons.get(a).setX(400);
 			removebuttons.get(a).setY(buttony);
 			buttony-=200;
-			}
+		}
 
 
 
@@ -136,6 +166,7 @@ public class Game_goal_PlayerGoals {
 		actors.add(newgoal1);
 		actors.add(newgoal2);
 		actors.add(newgoal3);
+
 		actors.add(ticket1);
 		actors.add(ticket2);
 		actors.add(ticket3);
@@ -163,6 +194,7 @@ public class Game_goal_PlayerGoals {
 
 			stage.addActor(b);
 		}
+		stage.addActor(planRouteBtn);
 
 
 
@@ -276,13 +308,13 @@ public class Game_goal_PlayerGoals {
 		removebuttons.get("3").resetButtons();
 
 		numberofOwnedGoals-=1;
-		
+
 
 		if (numberofOwnedGoals==0)
 			numberofOwnedGoals=0;
 	}
 
-	public static boolean addGoal(Game_goal_PlayerGoalActors newgoal){
+	public static boolean addGoal(GoalActor newgoal){
 		if (numberofOwnedGoals>2){
 			return false;
 		}
@@ -297,14 +329,15 @@ public class Game_goal_PlayerGoals {
 					newgoal.getGoal().getRoute())
 					);
 			ticketLabels.get(a).setColor(0,0,0,1);
-			
+
 			playerGoalActors.get(a).setGoal(newgoal.getGoal());
 			playerGoalActors.get(a).setEmpty(false);
+			playerGoalActors.get(a).setOwnedgoal(true);
 			removebuttons.get(a).setVisible(true);
 			removebuttons.get(a).setRedoBtn();
 			removebuttons.get(a).setnewgoalindex(newgoal.getIndex());
 
-			
+
 			numberofOwnedGoals+=1;
 			Game_Goal_GoalScreenManager.numberofGoalsOnScreen--;
 			return true;

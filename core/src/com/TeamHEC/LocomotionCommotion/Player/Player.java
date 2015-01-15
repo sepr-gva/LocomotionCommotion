@@ -336,7 +336,7 @@ public class Player implements Serializable, RouteListener{
 		for (int i = 0; i < stations.size(); i++)
 		{
 			Station currentStation = stations.get(i);
-			this.addFuel(currentStation.getResourceType().toString(), currentStation.getTotalResourceOut());
+			this.addFuel(currentStation.getResourceString(), currentStation.getTotalResourceOut());
 		}
 	}
 	

@@ -74,6 +74,8 @@ public class Game_Map_StationSelectBtn extends Game_Map_MapObj {
 					selectedP1 = selectedStation;
 					selectedStation = null;
 					
+					Game_startGameManager.selectLabel.setVisible(true);
+					Game_startGameManager.getStartedWindow.setVisible(true);
 					Game_startGameManager.selectLabel.setText(GameScreen.player2name + " please select your start station!");
 					Game_startGameManager.player1 = false;
 				}
@@ -91,6 +93,12 @@ public class Game_Map_StationSelectBtn extends Game_Map_MapObj {
 					Game_startGameManager.inProgress = false;
 					
 					GameScreen.createCoreGame(tempP1Station, selectedStation.getStation());
+					Game_startGameManager.selectLabel.setVisible(true);
+					Game_startGameManager.getStartedWindow.setVisible(true);
+					Game_startGameManager.getStartedWindow.actorX=100;
+					Game_startGameManager.getStartedWindow.setTexture(Game_TextureManager.getInstance().game_start_getstartedwindow2);
+					
+					Game_startGameManager.selectLabel.setText(GameScreen.game.getPlayerTurn().getName()+"select a new Goal from the goalScreen");
 				}
 			}
 		}

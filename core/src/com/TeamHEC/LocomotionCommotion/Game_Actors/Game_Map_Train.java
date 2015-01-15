@@ -45,23 +45,7 @@ public class Game_Map_Train extends Actor{
 			public void exit(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
 				((Game_Map_Train)event.getTarget()).toggleHighlight(false);
 			}
-
 		});
-		
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(1));
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-		train.route.addConnection(train.route.getAdjacentConnections().get(1));
 	}
 	
 	public void clickedTrain()
