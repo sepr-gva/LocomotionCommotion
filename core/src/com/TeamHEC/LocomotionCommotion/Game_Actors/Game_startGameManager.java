@@ -1,11 +1,15 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_Backdrop;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -20,6 +24,7 @@ public class Game_startGameManager {
 	public static int startGameActors;
 	public static Label selectLabel;
 	public static boolean player1 = true, inProgress = true;
+	public static Game_start_getStartedWindow getStartedWindow;
 
 	public Game_startGameManager(){}
 
@@ -31,6 +36,9 @@ public class Game_startGameManager {
 		player1= true;
 		inProgress = true;
 
+		getStartedWindow= new Game_start_getStartedWindow();
+		actors.add(getStartedWindow);
+		
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 40;
@@ -44,8 +52,8 @@ public class Game_startGameManager {
 		selectLabel.setText(GameScreen.player1name + " please select your start station!");
 		selectLabel.setColor(0,0,0,1);
 		selectLabel.setAlignment(Align.center);
-		selectLabel.setX(800);
-		selectLabel.setY(950);
+		selectLabel.setX(790);
+		selectLabel.setY(575);
 
 		actors.add(selectLabel);
 
@@ -78,5 +86,36 @@ public class Game_startGameManager {
 		startGameActors=0;
 		player1= true;
 		inProgress = true;
+	}
+	
+	public static class Game_start_getStartedWindow extends Game_Actor {
+		public Game_start_getStartedWindow(){
+			texture = Game_TextureManager.getInstance().game_start_getstartedwindow; 
+			actorX = 300 ;
+			actorY = 400;
+			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			addListener(new InputListener(){
+				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+					((Game_start_getStartedWindow)event.getTarget()).started = true;
+					return true;
+				}
+			});
+
+		}
+
+
+		@Override
+		public void draw(Batch batch, float alpha){
+			batch.draw(texture,actorX,actorY);
+		}
+
+		@Override
+		public void act(float delta){
+			if(started){
+				this.setVisible(false);
+				Game_startGameManager.selectLabel.setVisible(false);
+				started = false;
+			}
+		}
 	}
 }

@@ -28,7 +28,6 @@ public class LocomotionCommotion extends Game {
 	@Override
 	public void create() {
 		gameScreen = new GameScreen();
-		
 		//setScreen(gameScreen); // Use the StartMenu Screen First
 		setScreen(SceneManager.getInstance().startScene);
 	}
