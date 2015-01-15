@@ -42,7 +42,7 @@ public class Player implements Serializable, RouteListener{
 	public ArrayList<Goal> goals;
 	public ArrayList<Train> trains;
 	public Carriage carriages;
-	public ArrayList<Station> stations;
+	public ArrayList<Station> stations = new ArrayList<Station>();
 	public int[] lines = new int[8];
 	
 	private HashMap<String, Fuel> playerFuel;
@@ -50,8 +50,8 @@ public class Player implements Serializable, RouteListener{
 	public boolean isPlayer1;
 	
 	public Player(String name, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
-				Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains,
-				ArrayList<Station> stations)
+				Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains)
+				//ArrayList<Station> stations)
 	{
 		this.name = name;
 		this.points = points;
@@ -65,7 +65,7 @@ public class Player implements Serializable, RouteListener{
 		this.goals = goals;
 		this.trains = trains;
 		this.carriages = carriage;
-		this.stations = stations;
+		//this.stations = stations;
 		for (int i = 0; i<6;i++)
 		{
 			this.lines[i] = 0;
@@ -320,7 +320,7 @@ public class Player implements Serializable, RouteListener{
 			Station currentStation = stations.get(i);
 			this.addFuel(currentStation.getResourceType().toString(), currentStation.getTotalResourceOut());
 		}
-		lineBonuses();
+		this.lineBonuses();
 	}
 	
 	

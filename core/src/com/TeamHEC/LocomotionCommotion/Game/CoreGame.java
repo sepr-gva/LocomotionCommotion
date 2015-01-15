@@ -61,13 +61,14 @@ public class CoreGame implements Serializable{
 		//Initialise Players
 		HashMap<String, Resource> player1Resources = getBaseResources(Player1StationStart);
 		HashMap<String, Resource> player2Resources = getBaseResources(Player2StationStart);
-				
+		
+		/*
 		ArrayList<Station> Player1Stations = new ArrayList<Station>();
 		Player1Stations.add(Player1StationStart);
 		
 		ArrayList<Station> Player2Stations = new ArrayList<Station>();
 		Player2Stations.add(Player2StationStart);
-		
+		*/
 		player1 = new Player(
 				Player1Name,
 				0, 
@@ -79,8 +80,8 @@ public class CoreGame implements Serializable{
 				(Carriage) player1Resources.get("carriage"),
 				new ArrayList<Card>(), 				 
 				new ArrayList<Goal>(), 
-				new ArrayList<Train>(), 				 
-				Player1Stations);		
+				new ArrayList<Train>()); 				 
+				//Player1Stations);		
 		
 		player2 = new Player(
 				Player2Name,
@@ -93,8 +94,8 @@ public class CoreGame implements Serializable{
 				(Carriage) player2Resources.get("carriage"),
 				new ArrayList<Card>(),	
 				new ArrayList<Goal>(),
-				new ArrayList<Train>(),
-				Player2Stations);
+				new ArrayList<Train>());
+				//Player2Stations);
 		
 		player1.isPlayer1 = true;
 		player2.isPlayer1 = false;
@@ -176,7 +177,7 @@ public class CoreGame implements Serializable{
 		else
 		{
 			// Proceed with the turn:
-			//playerTurn.stationRewards();
+			playerTurn.stationRewards();
 		}
 	}
 	
