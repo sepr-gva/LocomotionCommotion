@@ -59,6 +59,8 @@ public class Game_TextureManager {
 	public Texture game_menuobject_removegoalbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/removebtn.png"));
 	public Texture game_menuobject_redobtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/redobtn.png"));
 	public Texture game_menuobject_addgoalbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/addgoalbtn.png"));
+	public Texture game_menuobject_planroutebtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/planroutebtn.png"));
+	public Texture game_menuobject_editroutebtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/editroutebtn.png"));
 	
 	public Texture game_goals_goalscreenbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/goalScreenBtn.png"));
 	public Texture game_goals_newgoals= new Texture(Gdx.files.internal("gameScreen/game_goalScreen/newgoals.png"));

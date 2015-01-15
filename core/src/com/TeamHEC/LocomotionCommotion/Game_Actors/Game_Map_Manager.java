@@ -31,6 +31,8 @@ public class Game_Map_Manager {
 	public static Label stationLabelFuel,stationLabelName, stationLabelCost;
 	public LabelStyle style;
 	
+	public static Sprite planBackground;
+	
 	public Game_Map_Manager(){	}
 
 	public void create(Stage stage){
@@ -42,8 +44,17 @@ public class Game_Map_Manager {
 		mapActors=0;
 		stationTracker=0;
 		numberOfStations=0;
+<<<<<<< Updated upstream
 			
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
+=======
+
+		planBackground = new Sprite(-1,50,Game_TextureManager.getInstance().game_pause_blackoutscreen);
+		planBackground.setVisible(false);
+		actors.add(planBackground);
+		
+		map = new Map();		
+>>>>>>> Stashed changes
 		actors.add(map);
 
 		stationTracker=stage.getActors().size;
@@ -120,9 +131,9 @@ public class Game_Map_Manager {
 			mapActors ++;
 		}
 
-		mapInfo = new Game_Map_Info();
-		mapInfo.setVisible(infoVisible);
-		stage.addActor(mapInfo);
+//		mapInfo = new Game_Map_Info();
+//		mapInfo.setVisible(infoVisible);
+//		stage.addActor(mapInfo);
 	}
 
 	public static void moveInfoBox(float x,float y){

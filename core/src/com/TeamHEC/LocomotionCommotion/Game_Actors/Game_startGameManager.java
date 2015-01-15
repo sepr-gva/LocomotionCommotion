@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_Backdrop;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -66,6 +65,7 @@ public class Game_startGameManager {
 
 	}
 
+	@SuppressWarnings("static-access")
 	public static void startGame(){
 	
 		for(int i=Game_ScreenMenu.actorManager.getStageStart(); i<=Game_ScreenMenu.actorManager.getStageEnd();i++)	
@@ -75,7 +75,21 @@ public class Game_startGameManager {
 			}
 			else
 				GameScreen.getStage().getActors().get(i).setVisible(true);
-		}	
+		}
+		
+		//Handle Text within Game
+		//Score and Who's Turn it is
+		Game_ScreenMenu.actorManager.playerScore.setText(GameScreen.player1name+"    " + GameScreen.player1score +
+				"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.player2name
+				+"                      "+GameScreen.game.getPlayerTurn().getName()+" it's your turn ");
+		//Resources
+		Game_ScreenMenu.resourceActorManager.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
+		Game_ScreenMenu.resourceActorManager.coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
+		Game_ScreenMenu.resourceActorManager.oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
+		Game_ScreenMenu.resourceActorManager.electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electricity"));
+		Game_ScreenMenu.resourceActorManager.nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
+		Game_ScreenMenu.resourceActorManager.cardQuant.setText(""+GameScreen.cards);
+		
 		Game_ScreenMenu.resourceActorManager.game_card_togglebtn.setVisible(true);
 		Game_ScreenMenu.resourceActorManager.cardQuant.setVisible(true);
 	}

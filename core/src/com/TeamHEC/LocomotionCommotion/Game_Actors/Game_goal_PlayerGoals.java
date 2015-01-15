@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RemoveBtn;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -70,7 +71,7 @@ public class Game_goal_PlayerGoals {
 		playerGoalActors.put("3", newgoal3);
 
 		//plan route button
-		planRouteBtn= new SpriteButton(0,0,Game_TextureManager.getInstance().game_menuobject_addgoalbtn){
+		planRouteBtn= new SpriteButton(0,0,Game_TextureManager.getInstance().game_menuobject_planroutebtn){
 			boolean touchedDown;
 			@Override
 			protected void onClicked()
@@ -89,14 +90,14 @@ public class Game_goal_PlayerGoals {
 					started = false;
 				}
 				if(touchedDown){
+					Game_Map_Manager.planBackground.setVisible(true);
 					touchedDown=false;
 				}
 			}
 		};
 		planRouteBtn.setVisible(false);
-
-
-
+		
+		//^^^^^^^^^^^ Both added to the stage after everything else see end of method
 
 
 		//Label Styling
