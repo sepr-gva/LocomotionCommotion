@@ -92,5 +92,6 @@ public class Game_TextureManager {
 	
 	//StartGame
 	public Texture game_start_getstartedwindow = new Texture(Gdx.files.internal("gameScreen/game_startsequence/getstartedwindow.png"));
+	public Texture game_start_getstartedwindow2 = new Texture(Gdx.files.internal("gameScreen/game_startsequence/getstartedwindow-witharrow.png"));
 
 	}

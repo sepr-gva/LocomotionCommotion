@@ -14,19 +14,19 @@ public class Sprite extends Actor{
 	
 	public Sprite(float x, float y, Texture texture)
 	{
-		actorX = x;
+		setActorX(x);
 		actorY = y;
 		actorTexture = texture;
 	}
 	
 	public Vector2 getPosition()
 	{
-		return new Vector2(actorX, actorY);
+		return new Vector2(getActorX(), actorY);
 	}
 	
 	public void setPosition(float x, float y)
 	{
-		actorX = x;
+		setActorX(x);
 		actorY = y;
 	}
 	
@@ -49,6 +49,24 @@ public class Sprite extends Actor{
 	@Override
 	public void draw(Batch batch, float alpha)
 	{
-		batch.draw(actorTexture, actorX, actorY);
+		batch.draw(actorTexture, getActorX(), actorY);
+	}
+	public void refreshBounds() {
+		setBounds(getActorX(), actorY, actorTexture.getWidth(), actorTexture.getHeight());
+	}
+
+	public float getActorX() {
+		return actorX;
+	}
+
+	public void setActorX(float actorX) {
+		this.actorX = actorX;
+	}
+	public float getActorY() {
+		return actorY;
+	}
+
+	public void setActorY(float actorY) {
+		this.actorY = actorY;
 	}
 }

@@ -27,24 +27,25 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
-public class Game_goal_PlayerGoalActors extends Actor {
+public class GoalActor extends Actor {
 	boolean started = false;
 	boolean touchedDown = false;
-	
+
 	private Texture texture;
 	private float actorX;
 	private float actorY;
-	
-	private boolean empty, btnvisible;
-	
+
+	private boolean empty, addGoalButtonVisible;
+	private boolean ownedgoal, planRouteButtonVisible;
+
 	private Goal goal;
 	public int index;
 
-	public Game_goal_PlayerGoalActors( int actorY, int actorX, boolean empty, Goal goal){
+	public GoalActor( int actorY, int actorX, boolean empty, Goal goal){
 		this.goal = goal;
 		this.empty= empty;
 		this.index =0;
-		
+
 		//This block decides what type of ticket to display empty, standard or special
 		if (this.empty)
 			this.texture = Game_TextureManager.getInstance().game_menuobject_emptyticket;
@@ -59,27 +60,28 @@ public class Game_goal_PlayerGoalActors extends Actor {
 
 		this.actorX = actorX;
 		this.actorY = actorY;
-		this.btnvisible=false;
-		
+		this.addGoalButtonVisible=false;
+		this.setPlanRouteButtonVisible(false);
+
 		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
 		//Mouse click listener - not used yet
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_goal_PlayerGoalActors)event.getTarget()).touchedDown = true;
+				((GoalActor)event.getTarget()).touchedDown = true;
 				return true;
 			}
 		});
 		//Mouse enter listener
 		addListener(new InputListener(){
 			public void enter(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
-				((Game_goal_PlayerGoalActors)event.getTarget()).started = true;
+				((GoalActor)event.getTarget()).started = true;
 			}
 
 		});
 		//Mouse exit listener
 		addListener(new InputListener(){
 			public void exit(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
-				((Game_goal_PlayerGoalActors)event.getTarget()).started = true;
+				((GoalActor)event.getTarget()).started = true;
 			}
 
 		});
@@ -95,27 +97,54 @@ public class Game_goal_PlayerGoalActors extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if (this.isEmpty()){
+			if(this.isOwnedgoal()){
 
+				if (this.isEmpty()){
+
+				}
+				else
+				{
+					if  (this.isPlanRouteButtonVisible()){
+						Game_goal_PlayerGoals.planRouteBtn.setVisible(false);
+						this.setPlanRouteButtonVisible(false);
+					}
+					else
+					{	
+						Game_goal_PlayerGoals.planRouteBtn.setVisible(true);
+						Game_goal_PlayerGoals.planRouteBtn.setActorX(this.getX()+60);
+						Game_goal_PlayerGoals.planRouteBtn.setActorY(this.getY()+75);
+						Game_goal_PlayerGoals.planRouteBtn.refreshBounds();
+						this.setPlanRouteButtonVisible(true);
+					}
+			
+				}
+				started=false;
 			}
 			else
 			{
-				if  (this.btnvisible){
-					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setVisible(false);
-					this.btnvisible=false;
+				if (this.isEmpty()){
+
 				}
 				else
-				{	//Makes the addgoalbtn visible to user on the selected goal
-					Game_Goal_GoalScreenManager.selectedGoal=this;
-					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setX(actorX+60);
-					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setY(actorY+75);
-					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setVisible(true);
-					Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.refreshBounds();
-					this.btnvisible=true;
+				{
+					if  (this.addGoalButtonVisible){
+						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setVisible(false);
+						this.addGoalButtonVisible=false;
+					}
+					else
+					{	//Makes the addgoalbtn visible to user on the selected goal
+						Game_Goal_GoalScreenManager.selectedGoal=this;
+						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setX(actorX+60);
+						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setY(actorY+75);
+						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setVisible(true);
+						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.refreshBounds();
+						this.addGoalButtonVisible=true;
+					}
 				}
+				started = false;
 			}
-			started = false;
 		}
+
 
 	}
 
@@ -123,10 +152,10 @@ public class Game_goal_PlayerGoalActors extends Actor {
 	public boolean isEmpty(){
 		return this.empty;
 	}
-	
+
 	public void setEmpty(Boolean empty){
 		this.empty=empty;
-		
+
 		//Change the ticket type
 		if (this.empty)
 			this.texture = Game_TextureManager.getInstance().game_menuobject_emptyticket;
@@ -139,8 +168,8 @@ public class Game_goal_PlayerGoalActors extends Actor {
 
 		}
 	}
-	
-	
+
+
 	//Getters and Setters for goal, actor x, actor y and index
 	public void setGoal(Goal goal){
 		this.goal= goal;
@@ -166,5 +195,25 @@ public class Game_goal_PlayerGoalActors extends Actor {
 	}
 	public void setIndex(int i){
 		this.index=i;
+	}
+
+
+	public boolean isPlanRouteButtonVisible() {
+		return planRouteButtonVisible;
+	}
+
+
+	public void setPlanRouteButtonVisible(boolean planRouteButtonVisible) {
+		this.planRouteButtonVisible = planRouteButtonVisible;
+	}
+
+
+	public boolean isOwnedgoal() {
+		return ownedgoal;
+	}
+
+
+	public void setOwnedgoal(boolean ownedgoal) {
+		this.ownedgoal = ownedgoal;
 	}
 }

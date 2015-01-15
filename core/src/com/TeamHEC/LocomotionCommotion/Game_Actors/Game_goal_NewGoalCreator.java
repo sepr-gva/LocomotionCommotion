@@ -16,9 +16,9 @@ import java.util.HashMap;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 
 public class Game_goal_NewGoalCreator {
-	public static ArrayList<Game_goal_PlayerGoalActors> createdGoals;
+	public static ArrayList<GoalActor> createdGoals;
 	public ArrayList<Goal> newgoals;
-	public static Game_goal_PlayerGoalActors newgoal1, newgoal2, newgoal3,
+	public static GoalActor newgoal1, newgoal2, newgoal3,
 									newgoal4, newgoal5, newgoal6,
 									newgoal7, newgoal8, newgoal9;
 	
@@ -34,7 +34,7 @@ public class Game_goal_NewGoalCreator {
 		else
 			numberofNewGoals = 0;
 		//Initialize createGoals 
-		createdGoals = new ArrayList<Game_goal_PlayerGoalActors>();
+		createdGoals = new ArrayList<GoalActor>();
 
 		if (numberofNewGoals==0){	//If no goals passed just create 9 empty tickets
 			createdGoals = createEmpties(newgoals);
@@ -45,7 +45,7 @@ public class Game_goal_NewGoalCreator {
 		else
 		{
 			//Create slots
-			HashMap<String, Game_goal_PlayerGoalActors> goalslots = new HashMap<String, Game_goal_PlayerGoalActors>();
+			HashMap<String, GoalActor> goalslots = new HashMap<String, GoalActor>();
 			goalslots = createSlots();
 
 			//fill slots
@@ -66,9 +66,9 @@ public class Game_goal_NewGoalCreator {
 
 	}
 	
-	private ArrayList<Game_goal_PlayerGoalActors> createEmpties(ArrayList<Goal> newgoals) {
-		ArrayList<Game_goal_PlayerGoalActors> 		empties = new ArrayList< Game_goal_PlayerGoalActors>();
-		HashMap<String, Game_goal_PlayerGoalActors> 	goalslots = new HashMap<String, Game_goal_PlayerGoalActors>();
+	private ArrayList<GoalActor> createEmpties(ArrayList<Goal> newgoals) {
+		ArrayList<GoalActor> 		empties = new ArrayList< GoalActor>();
+		HashMap<String, GoalActor> 	goalslots = new HashMap<String, GoalActor>();
 		
 		goalslots = createSlots();
 
@@ -79,22 +79,22 @@ public class Game_goal_NewGoalCreator {
 		return empties;
 	}
 
-	private HashMap<String, Game_goal_PlayerGoalActors> createSlots() {
-		HashMap<String, Game_goal_PlayerGoalActors> goalslots = new HashMap<String, Game_goal_PlayerGoalActors>();
-		goalslots.put("1", newgoal1= new Game_goal_PlayerGoalActors(row1,col1,true,null));
-		goalslots.put("2", newgoal2= new Game_goal_PlayerGoalActors(row1,col2,true,null));
-		goalslots.put("3", newgoal3= new Game_goal_PlayerGoalActors(row1,col3,true,null));
-		goalslots.put("4", newgoal4= new Game_goal_PlayerGoalActors(row2,col1,true,null));
-		goalslots.put("5", newgoal5= new Game_goal_PlayerGoalActors(row2,col2,true,null));
-		goalslots.put("6", newgoal6= new Game_goal_PlayerGoalActors(row2,col3,true,null));
-		goalslots.put("7", newgoal7= new Game_goal_PlayerGoalActors(row3,col1,true,null));
-		goalslots.put("8", newgoal8= new Game_goal_PlayerGoalActors(row3,col2,true,null));
-		goalslots.put("9", newgoal9= new Game_goal_PlayerGoalActors(row3,col3,true,null));
+	private HashMap<String, GoalActor> createSlots() {
+		HashMap<String, GoalActor> goalslots = new HashMap<String, GoalActor>();
+		goalslots.put("1", newgoal1= new GoalActor(row1,col1,true,null));
+		goalslots.put("2", newgoal2= new GoalActor(row1,col2,true,null));
+		goalslots.put("3", newgoal3= new GoalActor(row1,col3,true,null));
+		goalslots.put("4", newgoal4= new GoalActor(row2,col1,true,null));
+		goalslots.put("5", newgoal5= new GoalActor(row2,col2,true,null));
+		goalslots.put("6", newgoal6= new GoalActor(row2,col3,true,null));
+		goalslots.put("7", newgoal7= new GoalActor(row3,col1,true,null));
+		goalslots.put("8", newgoal8= new GoalActor(row3,col2,true,null));
+		goalslots.put("9", newgoal9= new GoalActor(row3,col3,true,null));
 		return goalslots;
 	}
 
 
-	public ArrayList<Game_goal_PlayerGoalActors> getGoals(){
+	public ArrayList<GoalActor> getGoals(){
 		return createdGoals;
 	}
 }
