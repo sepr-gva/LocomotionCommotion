@@ -26,9 +26,8 @@ public class LocomotionCommotion extends Game {
 	public static final String TITLE = "LOCOMOTION COMOTION", VERSION = "0.0.0.1";
 	
 	@Override
-	public void create() {
-		gameScreen = new GameScreen();
-		//setScreen(gameScreen); // Use the StartMenu Screen First
+	public void create()
+	{
 		setScreen(SceneManager.getInstance().startScene);
 	}
 
@@ -47,7 +46,7 @@ public class LocomotionCommotion extends Game {
 	{
 		gameScreen.dispose();
 		Gdx.graphics.getGL20().glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
-		
+				
 		SceneManager.getInstance().startScene.addToStage();
 		setScreen(SceneManager.getInstance().startScene);
 	}

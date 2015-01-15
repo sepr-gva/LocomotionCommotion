@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -12,6 +13,8 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 
 	public boolean owned;
 	private Station station;
+	
+	public float offset = 0;
 
 	public Game_Map_Station(Station station, float actorX, float actorY)
 	{
@@ -53,20 +56,12 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		if(highlighted)
 		{
 			texture = toggleTexture2;
-			if(!started)
-			{
-				actorX -= 2.5;
-				actorY -= 2.5;
-			}
+			offset = -2.5f;
 		}
 		else
 		{
 			texture = toggleTexture1;
-			if(!started)
-			{
-				actorX += 2.5;
-				actorY += 2.5;
-			}
+			offset = 0;
 		}
 	}
 	
@@ -161,7 +156,13 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		}		
 	}
 	
-	public void setOwned(Boolean b){
+	public void setOwned(Boolean b)
+	{
 		this.owned =b;
+	}
+	
+	@Override
+	public void draw(Batch batch, float alpha){
+		batch.draw(this.texture, actorX + offset, actorY + offset);
 	}
 }

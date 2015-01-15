@@ -19,17 +19,6 @@ public class Sprite extends Actor{
 		actorTexture = texture;
 	}
 	
-	public Vector2 getPosition()
-	{
-		return new Vector2(getActorX(), actorY);
-	}
-	
-	public void setPosition(float x, float y)
-	{
-		setActorX(x);
-		actorY = y;
-	}
-	
 	public Texture getTexture()
 	{
 		return actorTexture;
@@ -51,7 +40,9 @@ public class Sprite extends Actor{
 	{
 		batch.draw(actorTexture, getActorX(), actorY);
 	}
-	public void refreshBounds() {
+	
+	public void refreshBounds()
+	{
 		setBounds(getActorX(), actorY, actorTexture.getWidth(), actorTexture.getHeight());
 	}
 
@@ -59,14 +50,29 @@ public class Sprite extends Actor{
 		return actorX;
 	}
 
-	public void setActorX(float actorX) {
+	public void setActorX(float actorX)
+	{
 		this.actorX = actorX;
 	}
-	public float getActorY() {
+	
+	public float getActorY()
+	{
 		return actorY;
 	}
 
-	public void setActorY(float actorY) {
+	public void setActorY(float actorY)
+	{
 		this.actorY = actorY;
+	}
+	
+	public Vector2 getPosition()
+	{
+		return new Vector2(getActorX(), actorY);
+	}
+	
+	public void setPosition(float x, float y)
+	{
+		setActorX(x);
+		actorY = y;
 	}
 }

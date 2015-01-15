@@ -16,5 +16,4 @@ public class SceneManager{
         startScene = new StartScene();
         startScene.addToStage();
 	}
-	
 }

@@ -26,8 +26,7 @@ public class Scene implements Screen{
 		camera.viewportHeight= screenY;
 		camera.viewportWidth= screenX;
 		camera.update();
-        Gdx.input.setInputProcessor(stage);
-		
+       
 		actors = new Array<Actor>();
 	}
 	
@@ -37,6 +36,18 @@ public class Scene implements Screen{
 		{
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
+		}
+		
+		Gdx.input.setInputProcessor(stage);
+	}
+	
+	public void removeFromStage()
+	{
+		for (Actor a : actors)
+		{
+			int index = stage.getActors().indexOf(a, false);
+			if(index != -1)
+				stage.getActors().removeIndex(index);
 		}
 	}
 	
@@ -48,13 +59,14 @@ public class Scene implements Screen{
 		}
 	}
 	
-	public void removeFromStage()
+	public void setActorsTouchable(boolean touchable)
 	{
 		for (Actor a : actors)
 		{
-			int index = stage.getActors().indexOf(a, false);
-			if(index != -1)
-				stage.getActors().removeIndex(index);
+			if(touchable)
+				a.setTouchable(Touchable.enabled);
+			else
+				a.setTouchable(Touchable.disabled);
 		}
 	}
 
@@ -81,14 +93,14 @@ public class Scene implements Screen{
 	}
 
 	@Override
-	public void dispose() {
-		stage.dispose();
-		stage.getActors().clear();
+	public void dispose()
+	{
+		stage.clear();
 	}
 
 	@Override
-	public void show() {
-		// TODO Auto-generated method stub
+	public void show()
+	{
 		
 	}
 
