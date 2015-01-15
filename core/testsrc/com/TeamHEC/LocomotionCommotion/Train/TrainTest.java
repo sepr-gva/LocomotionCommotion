@@ -11,7 +11,7 @@ public class TrainTest {
 	OilTrain oilTrain = new OilTrain(1,2,true, new Route(new MapObj(0, 0)));
 	ElectricTrain electricTrain = new ElectricTrain(1,2,true, new Route(new MapObj(0, 0)));
 	NuclearTrain nuclearTrain = new NuclearTrain(1,2,true, new Route(new MapObj(0, 0)));
-			
+	
 	@Test
 	public void testTrain() throws Exception {
 		throw new RuntimeException("not yet implemented");

@@ -51,7 +51,6 @@ public class Player implements Serializable, RouteListener{
 	
 	public Player(String name, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
 				Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains)
-				//ArrayList<Station> stations)
 	{
 		this.name = name;
 		this.points = points;
