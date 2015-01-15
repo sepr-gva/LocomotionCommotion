@@ -151,6 +151,7 @@ public class CoreGame implements Serializable{
 	 */
 	public void EndTurn()
 	{
+		playerTurn.lineBonuses();
 		turnCount = (turnCount + 1);
 		if(playerTurn == player1)
 			playerTurn = player2;
@@ -169,6 +170,7 @@ public class CoreGame implements Serializable{
 		else
 		{
 			// Proceed with the turn:
+			playerTurn.lineBonuses();
 			playerTurn.stationRewards();
 		}
 	}

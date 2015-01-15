@@ -69,7 +69,11 @@ public class Station extends MapObj{
 	public int getValueMod()
 	{
 		return valueMod;
-	}	
+	}
+	public void setValueMod(int value)
+	{
+		valueMod = value;
+	}
 	public void addValueMod(int add)
 	{
 		valueMod += add;
@@ -80,7 +84,7 @@ public class Station extends MapObj{
 	}	
 	public int getTotalValue()
 	{
-		return baseValue + valueMod;
+		return baseValue * (1 + valueMod);
 	}
 	
 	public Resource getResourceType()
@@ -109,7 +113,7 @@ public class Station extends MapObj{
 	}	
 	public int getTotalResourceOut()
 	{
-		return baseResourceOut + resourceOutMod;
+		return baseResourceOut * (1 + resourceOutMod);
 	}
 	
 	public int getRentValue()
@@ -120,6 +124,10 @@ public class Station extends MapObj{
 	{
 		return rentValueMod;
 	}	
+	public void setRentValueMod(int value)
+	{
+		rentValueMod = value;
+	}
 	public void addRentValueMod(int add)
 	{
 		rentValueMod += add;
@@ -131,7 +139,7 @@ public class Station extends MapObj{
 	
 	public int getTotalRent()
 	{
-		return rentValue + rentValueMod;
+		return rentValue * (1 + rentValueMod);
 	}
 	
 	public Player getOwner()

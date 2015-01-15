@@ -215,6 +215,7 @@ public class Player implements Serializable, RouteListener{
 			}
 		}
 		station.purchaseStation(this);
+		this.lineBonuses();
 	}
 	
 	public void sellStation(Station station)
@@ -259,6 +260,7 @@ public class Player implements Serializable, RouteListener{
 		station.setOwner(null);
 		stations.remove(station);
 		station.purchaseStation(null);
+		this.lineBonuses();
 	}
 	
 	@Override
@@ -273,53 +275,69 @@ public class Player implements Serializable, RouteListener{
 		
 	}
 	
-	private void lineBonuses()
+	public void lineBonuses() //MUST BE CALLED BEFORE YOU ACCESS A STATIONS VALUE, RENT OR RESOURCE AMOUNTS
 	{
-		//bonuses subject to change
-		for (int i = 0; i < 6; i++)
+		for (int i = 0; i<stations.size(); i++)
 		{
-			switch(i)
+			Station currentStation = stations.get(i);
+			int red = 0;
+			int blue = 0;
+			int green = 0;
+			int yellow = 0;
+			int purple = 0;
+			int black = 0;
+			int brown = 0;
+			int orange = 0;
+			
+			for (int j = 0; j < currentStation.getLineType().length; j++)
 			{
-				case 0:
-					//red bonus
-					//nested case statements to give specific bonuses?
-					/*
-					switch(lines[i])
-					{
-						case 1:
-							this.addFuel("coal", 50); //will fill in and uncomment once bonuses are decided
-						case 2:
-						case 3:
-						case 4:
-						//case 5: //?
+				if (j == 0 || ((j > 0) && (currentStation.getLineType()[j] != currentStation.getLineType()[j-1])))
+				{
+					switch(currentStation.getLineType()[j])
+					{	
+						case Red:
+							red = lines[0];
+							break;
+						case Blue:
+							blue = lines[1];
+							break;
+						case Green:
+							green = lines[2];
+							break;
+						case Yellow:
+							yellow = lines[3];
+							break;
+						case Purple:
+							purple = lines[4];
+							break;
+						case Black:
+							black = lines[5];
+							break;
+						case Brown:
+							brown = lines[6];
+							break;
+						case Orange:
+							orange = lines[7];
+							break;
+						default:
+							throw new IllegalArgumentException("Could not find line associated with value");
 					}
-					*/
-				case 1:
-					//blue bonus
-				case 2:
-					//green bonus
-				case 3:
-					//yellow bonus
-				case 4:
-					//purple bonus
-				case 5:
-					//black bonus
-				case 6:
-					//brown bonus
-				case 7:
-					//orange bonus
+				}
 			}
+			currentStation.setRentValueMod((int)((red + blue + green + yellow + purple + black + brown + orange) * 0.05));
+			currentStation.setResourceOutMod((int)((red + blue + green + yellow + purple + black + brown + orange) * 0.05));
+			currentStation.setValueMod((int)((red + blue + green + yellow + purple + black + brown + orange) * 0.05));
 		}
 	}
 	
 	public void stationRewards()
 	{
+		
 		for (int i = 0; i < stations.size(); i++)
 		{
 			Station currentStation = stations.get(i);
 			this.addFuel(currentStation.getResourceType().toString(), currentStation.getTotalResourceOut());
 		}
-		this.lineBonuses();
 	}
 	
 	
