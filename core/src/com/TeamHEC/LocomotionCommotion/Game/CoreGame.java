@@ -255,7 +255,7 @@ public class CoreGame implements Serializable {
 		return finalJson = finalJson + "}\n";
 	}
 	
-	public String savePlayerJSON(Player player) {
+	private String savePlayerJSON(Player player) {
 		String finalJson = "{\n";
 		finalJson += "\"playerName\": \"" + player.getName() + "\",\n";
 		finalJson += "\"points\": " + player.points + ",\n";
@@ -264,7 +264,7 @@ public class CoreGame implements Serializable {
 		return finalJson = finalJson + "\n}";
 	}
 
-	public String savePlayerResourceJSON(Player player) {
+	private String savePlayerResourceJSON(Player player) {
 		String finalJson = "{\n";
 		finalJson += "\"gold\": " + player.getGold() + ",\n";
 		finalJson += "\"coal\": " + player.getFuel("Coal") + ",\n";
@@ -277,7 +277,7 @@ public class CoreGame implements Serializable {
 		return finalJson = finalJson + "}\n";
 	}
 
-	public String savePlayerCardJSON(Player player) {
+	private String savePlayerCardJSON(Player player) {
 		String finalJson = "[\n";
 		Card[] cards = player.getCards().toArray(
 				new Card[player.getCards().size()]);
@@ -291,7 +291,7 @@ public class CoreGame implements Serializable {
 		return finalJson = finalJson + "]\n";
 	}
 
-	public String savePlayerGoalJSON(Player player) {
+	private String savePlayerGoalJSON(Player player) {
 		String finalJson = "{\n";
 		Goal[] goals = player.getGoals().toArray(
 				new Goal[player.getGoals().size()]);
