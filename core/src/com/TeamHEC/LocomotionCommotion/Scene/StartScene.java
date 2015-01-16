@@ -178,7 +178,7 @@ public class StartScene extends Scene{
 		};
 		actors.add(howToPlayButton);
 
-		exitButton = new SpriteButton(610, 86, SM_TextureManager.getInstance().sm_main_exitButton){
+		exitButton = new SpriteButton(600, 86, SM_TextureManager.getInstance().sm_main_exitButton){
 
 			@Override
 			public void onClicked()
