@@ -18,107 +18,74 @@ import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 
 public class GoalFactory{
 
+	private WorldMap map;
+	private ArrayList<Station> stations;
+	private CardFactory cardFactory;
+	public Random random;
+	
 	public GoalFactory()
 	{   
-
+		map = WorldMap.getInstance();
+		stations = map.stationsList;
+		cardFactory = CardFactory.getInstance();
+		random = new Random();
 	}	
-	private WorldMap wmp = WorldMap.getInstance();
-	private ArrayList<Station> stations = wmp.stationsList;
-	private CardFactory cf = CardFactory.getInstance();
-	public int Length = 0;
-	public GoalMenu goalmenu = GoalMenu.getInstance();
-	Random r = new Random();
-	private Resource getResource(){
-		Resource newres = null;
-		int x = (r.nextInt(8) ); 
-		switch (x) {
-		case 0:  
-			newres = new Coal(0);          //add all resources 
-		case 1: 
-			newres = new Electric(0);
-		case 2:
-			newres = new Nuclear(0);
-		case 3:
-			newres = new Oil(0);      
-		}
-		return newres;
-	}
 
-	//importing world map to and finding first station
-	private Station NewSStation(){ 
-		Station st = stations.get(r.nextInt(stations.size()));
+	private Station newSStation(){ 
+		Station st = stations.get(random.nextInt(stations.size()));
 		return st;  
 	}  
-	
-	private Station NewFStation(){
-		Station st = stations.get(r.nextInt(stations.size()));
+
+	private Station newFStation(){
+		Station st = stations.get(random.nextInt(stations.size()));
 		return st;
-		
+
 	}
-//	private Station NewFStation(Station sstation,ArrayList<Station> wastelist, int itr,int length){
-//		if (itr == 0){   
-//			Length = length;
-//			return sstation; //return statement?
-//		}
-//		ArrayList<Connection> choices = sstation.getConnections();
-//		MapObj st = choices.get(r.nextInt(choices.size())).getDestination();
-//		while (wastelist.contains(st)){
-//			st = choices.get(r.nextInt(choices.size())).getDestination();
-//		}
-//		//blind coded, needs testing, should work in theory
-//		//check name, case statement for junctions
-//		//return string of station
-//		wastelist.add(st);
-//		itr = itr - 1;
-//		return NewFStation(st, wastelist, itr, length + st.getLength() );      
-//	}
+	//	private Station NewFStation(Station sstation,ArrayList<Station> wastelist, int itr,int length){
+	//		if (itr == 0){   
+	//			Length = length;
+	//			return sstation; //return statement?
+	//		}
+	//		ArrayList<Connection> choices = sstation.getConnections();
+	//		MapObj st = choices.get(r.nextInt(choices.size())).getDestination();
+	//		while (wastelist.contains(st)){
+	//			st = choices.get(r.nextInt(choices.size())).getDestination();
+	//		}
+	//		//blind coded, needs testing, should work in theory
+	//		//check name, case statement for junctions
+	//		//return string of station
+	//		wastelist.add(st);
+	//		itr = itr - 1;
+	//		return NewFStation(st, wastelist, itr, length + st.getLength() );      
+	//	}
 
 	public Card genCard(){
-		return cf.createRandomCard();     
+		return cardFactory.createRandomCard();     
 	}
-
-	private double getReward(){
-		double reward = (Length * 100); 
-		//    String name = train.getName();
-		//    String resource = resc.getType();
-		//    
-		//    for (rewards r: rewards.values()){
-		//      if (name || resource) == r.getType());
-		//      reward += r.getage();
-		//      
-		//  
-		//    System.out.printf("%s %s", r,r.getage()); 
-		//  }
-		return reward;
-	}
-	
-public void setCargo(){
-	String[] cargo = {"Passenger","Cargo"};
-	
-	//return cargo.;
-	
-	
-	
-}
 
 	public Goal CreateRandomGoal(){
 		Goal newgoal;
-		Station SStation = (Station) this.NewSStation();
-		Station FStation = (Station) this.NewFStation();
-		Card card = this.genCard();
-		Resource resc = this.getResource();
-		double reward = this.getReward();
-
-		if (goalmenu.SpecialCount() < 3)
-		{
-			newgoal = new SGoal(SStation,FStation, null, "Cargo", 500); //array list for special goals, 
-		}
-		else {
-			newgoal = new Goal(SStation, FStation, null,"Cargo", 200);
-						
-		}
-
+		Station sStation = (Station) newSStation();
+		Station fStation = (Station) newFStation();
+		String cargo;
+		int reward = getLength(sStation, fStation);
+				
+		if(random.nextInt(2) == 0)
+			cargo = "Passenger";
+		else
+			cargo = "Cargo";
+		
+		if(random.nextInt(5) == 5)
+			newgoal = new SGoal(sStation ,fStation, null, cargo, reward);		
+		else
+			newgoal = new Goal(sStation, fStation, null, cargo, reward);
+		
 		return newgoal; 
+	}
+	
+	public int getLength(Station sStation, Station fStation)
+	{
+		return 1;		
 	}
 
 

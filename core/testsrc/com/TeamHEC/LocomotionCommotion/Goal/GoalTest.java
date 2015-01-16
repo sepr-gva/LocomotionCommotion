@@ -5,15 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
+
+@RunWith(GdxTestRunner.class)
 public class GoalTest {
-	GoalFactory gf = new GoalFactory();
-	Goal newgoal = gf.CreateRandomGoal();
+	GoalFactory gf;
+	Goal newgoal;
+	
 	@Before
 	public void setUp() throws Exception {
-		GoalFactory gf = new GoalFactory();
-		Goal newgoal = gf.CreateRandomGoal();
-		
+		gf = new GoalFactory();
+		newgoal = gf.CreateRandomGoal();		
 	}
 
 	@After
@@ -21,16 +25,13 @@ public class GoalTest {
 	}
 
 	@Test
-	public void testGoal() {
-		GoalFactory gf = new GoalFactory();
-		Goal newgoal = gf.CreateRandomGoal();
-		assertTrue(newgoal != null);
-		
+	public void testGoal() {		
+		assertTrue(newgoal != null);		
 	}
 
 	@Test
 	public void testStartdate() {
-		
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -45,9 +46,7 @@ public class GoalTest {
 
 	@Test
 	public void testGetSStation() {
-		GoalFactory gf = new GoalFactory();
-		Goal newgoal = gf.CreateRandomGoal();
-		assertTrue(newgoal.GetSStation() != null);
+		assertTrue(newgoal.getSStation() != null);
 	}
 
 	@Test

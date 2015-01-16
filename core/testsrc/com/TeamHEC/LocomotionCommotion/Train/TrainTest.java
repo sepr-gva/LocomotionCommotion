@@ -12,7 +12,6 @@ import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
@@ -37,15 +36,14 @@ public class TrainTest {
 			new Electric(1000), 
 			new Nuclear(1000), 
 			new Oil(1000), 
-			new Carriage(5), 
 			new ArrayList<Card>(), 
 			new ArrayList<Goal>(), 
 			new ArrayList<Train>());	
 	
-	coalTrain = new CoalTrain(0,0,true, new Route(new MapObj(0, 0)), owner);
-	oilTrain = new OilTrain(0,0,true, new Route(new MapObj(0, 0)), owner);
-	electricTrain = new ElectricTrain(0,0,true, new Route(new MapObj(0, 0)), owner);
-	nuclearTrain = new NuclearTrain(0,0,true, new Route(new MapObj(0, 0)), owner);
+	coalTrain = new CoalTrain(0,true, new Route(new MapObj(0, 0)), owner);
+	oilTrain = new OilTrain(0,true, new Route(new MapObj(0, 0)), owner);
+	electricTrain = new ElectricTrain(0,true, new Route(new MapObj(0, 0)), owner);
+	nuclearTrain = new NuclearTrain(0,true, new Route(new MapObj(0, 0)), owner);
 	}
 	
 	@Test

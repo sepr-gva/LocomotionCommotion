@@ -18,7 +18,6 @@ import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
-import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
@@ -47,7 +46,6 @@ public class PlayerTest {
 	Shop shop;
 	ArrayList<Goal> goals;
 	ArrayList<Train> trains;
-	Carriage carriages;
 	ArrayList<Station> stations = new ArrayList<Station>();
 	int[] lines = new int[8];
 	Player tester;
@@ -63,7 +61,6 @@ public class PlayerTest {
 		oil = new Oil(200);
 		electric = new Electric(200);
 		nuclear = new Nuclear(200);
-		carriages = new Carriage(5);
 		cards = new ArrayList<Card>();
 		goals = new ArrayList<Goal>();
 		trains = new ArrayList<Train>();
@@ -214,9 +211,9 @@ public class PlayerTest {
 
 	@Test
 	public void testPurchaseStation() {
-		tester = new Player(name, points, gold, coal, electric, nuclear, oil, carriages, cards,	goals, trains);
+		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
 		Station testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
-		tester.trains.add(new OilTrain(0, 0, true, new Route(testStation), tester));
+		tester.trains.add(new OilTrain(0, true, new Route(testStation), tester));
 		tester.purchaseStation(testStation);
 		assertTrue("Station 1 was not purchased correctly", tester.stations.get(0) == testStation);
 		assertTrue("incorrect gold value was removed", tester.getGold() == (1000 - testStation.getBaseValue()));
@@ -229,7 +226,7 @@ public class PlayerTest {
 		assertTrue("Lines are added incorrectly", tester.lines[6] == 1);
 		assertTrue("Lines are added incorrectly", tester.lines[7] == 1);
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Red, Line.Red}, 50, 731f, 560f);
-		tester.trains.add(new OilTrain(0, 0, true, new Route(testStation2), tester));
+		tester.trains.add(new OilTrain(0, true, new Route(testStation2), tester));
 		tester.purchaseStation(testStation2);
 		assertTrue("Station 2 was not purchased correctly", tester.stations.get(1) == testStation2);
 		assertTrue("Lines are added incorrectly", tester.lines[0] == 1);
@@ -254,9 +251,9 @@ public class PlayerTest {
 	
 	@Test
 	public void testLineBonuses() {
-		tester = new Player(name, points, gold, coal, electric, nuclear, oil, carriages, cards,	goals, trains);
+		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
 		Station testStation = new Station("London", 850, new Coal(500), 100, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f);
-		tester.trains.add(new OilTrain(0, 0, true, new Route(testStation), tester));
+		tester.trains.add(new OilTrain(0, true, new Route(testStation), tester));
 		tester.purchaseStation(testStation);
 		tester.lineBonuses();
 		assertTrue("Resource out != 100", tester.stations.get(0).getBaseResourceOut() == 100);

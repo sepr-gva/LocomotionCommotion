@@ -150,8 +150,6 @@ public class CoreGameTest {
 			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear + Player2Start.getBaseResourceOut());
 		else
 			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear);
-		assertTrue("player1's Carriage was incorrectly set", tester.getPlayer1().getCarriage() == baseCarriage);
-		assertTrue("player2's Carriage was incorrectly set", tester.getPlayer2().getCarriage() == baseCarriage);
 				
 		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().getStations().equals(player1StationList));
 		assertTrue("player2's Station list was incorrectly set", tester.getPlayer2().getStations().equals(player2StationList));
