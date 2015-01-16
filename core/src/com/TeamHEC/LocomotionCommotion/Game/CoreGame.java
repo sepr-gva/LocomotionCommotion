@@ -43,9 +43,11 @@ public class CoreGame implements Serializable {
 	private WorldMap gameMap;
 	private Player player1;
 	private Player player2;
+	private Player playerTurn;
 	private int turnCount;
 	private int turnLimit;
-	private Player playerTurn;
+	private boolean isTestCase;
+	
 
 	/**
 	 * Initialises a Game object. This represents one instance of a game.
@@ -63,10 +65,10 @@ public class CoreGame implements Serializable {
 	 * @param turnLimit
 	 *            The number of turns before the end of the game.
 	 */
-	public CoreGame(String Player1Name, String Player2Name,
-			Station Player1StationStart, Station Player2StationStart,
-			int turnLimit) {
+	public CoreGame(String Player1Name, String Player2Name,	Station Player1StationStart, Station Player2StationStart, int turnLimit, boolean isTestCase) {
 		// Initialise Players
+		this.isTestCase = isTestCase;
+		
 		HashMap<String, Resource> player1Resources = getBaseResources(Player1StationStart);
 		HashMap<String, Resource> player2Resources = getBaseResources(Player2StationStart);
 
@@ -136,7 +138,9 @@ public class CoreGame implements Serializable {
 			train = new OilTrain(0, true, new Route(startStation), player);
 
 		player.trains.add(train);
-		GameScreen.getStage().getActors().add(train.getActor());
+		
+		if(!this.isTestCase)
+			GameScreen.getStage().getActors().add(train.getActor());
 	}
 
 	/**

@@ -82,8 +82,7 @@ public class GameScreen implements Screen {
 		goalScreenManager.create(getStage());
 		
 		Game_goal_PlayerGoals ticketManager = new Game_goal_PlayerGoals();
-		ticketManager.create(getStage());
-	
+		ticketManager.create(getStage());	
 		
 		Game_startGameManager startgameManager = new Game_startGameManager();
 		startgameManager.create(getStage());
@@ -97,7 +96,7 @@ public class GameScreen implements Screen {
 	
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
-		game = new CoreGame(LocomotionCommotion.player1name, LocomotionCommotion.player2name, p1Station, p2Station, LocomotionCommotion.turnChoice);
+		game = new CoreGame(LocomotionCommotion.player1name, LocomotionCommotion.player2name, p1Station, p2Station, LocomotionCommotion.turnChoice, false);
 	}
 	
 	@Override

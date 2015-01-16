@@ -80,7 +80,7 @@ public class CoreGameTest {
 		baseElectric = 200;
 		baseNuclear = 200;
 		
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit, true);
 	}
 	
 	//Private Accessors
@@ -190,7 +190,7 @@ public class CoreGameTest {
 
 	@Test
 	public void testStartTurn() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
