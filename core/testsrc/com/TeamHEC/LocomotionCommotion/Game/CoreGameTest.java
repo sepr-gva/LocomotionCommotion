@@ -73,7 +73,7 @@ public class CoreGameTest {
 		player1StationList.add(Player1Start);
 		player2StationList.add(Player2Start);
 		
-		baseGold = 200;
+		baseGold = 1000;
 		baseCarriage = 200;
 		baseCoal = 200;
 		baseOil = 200;

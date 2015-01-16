@@ -206,8 +206,8 @@ public class CoreGame implements Serializable {
 		Nuclear nuclear = new Nuclear(200);
 
 		HashMap<String, Resource> dict = new HashMap<String, Resource>();
+
 		dict.put("gold", gold); // Base gold amount minus the value of the
-								// station bought.
 		dict.put("coal", coal);
 		dict.put("oil", oil);
 		dict.put("electric", electric);
@@ -321,7 +321,6 @@ public class CoreGame implements Serializable {
 					+ "\"special\": " + goal.isSpecial() + ",\n"
 					+ "\"reward\": " + goal.getReward() + ",\n"
 					+ "\"startDate\": " + goal.getStartDate() + ",\n"
-					+ "\"carriageType\": \"" + goal.getCarriageType() + "\",\n"
 					+ "\"route\": \"" + goal.getRoute() + "\"\n},";
 		}
 		return finalJson = finalJson + "]\n";

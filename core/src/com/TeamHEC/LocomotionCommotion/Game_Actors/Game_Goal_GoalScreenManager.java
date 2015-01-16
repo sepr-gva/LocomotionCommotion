@@ -213,7 +213,7 @@ public class Game_Goal_GoalScreenManager {
 			numberofNewGoals= goals.size();
 		for (int i=0;i<numberofNewGoals;i++){
 			String a = new Integer(i+1).toString();
-			newgoalLabels.get(a).setText(ticketMaker(	createdGoals.get(i).getGoal().getCarriageType(),
+			newgoalLabels.get(a).setText(ticketMaker(createdGoals.get(i).getGoal().getCargo(),
 					createdGoals.get(i).getGoal().getReward(),
 					createdGoals.get(i).getGoal().getSStation(),
 					createdGoals.get(i).getGoal().getStartDate(), 
@@ -278,7 +278,7 @@ public class Game_Goal_GoalScreenManager {
 			String a = new Integer(numberofGoalsOnScreen+1).toString();
 		
 				
-			newgoalLabels.get(a).setText(ticketMaker(	goals.get(i).getCarriageType(),
+			newgoalLabels.get(a).setText(ticketMaker(	goals.get(i).getCargo(),
 					goals.get(i).getReward(),
 					goals.get(i).getSStation(),
 					goals.get(i).getStartDate(), 
@@ -301,7 +301,7 @@ public class Game_Goal_GoalScreenManager {
 			String a = new Integer(emptyspace+1).toString();
 			System.out.println(emptyspace);	
 			
-			newgoalLabels.get(a).setText(ticketMaker(	goals.get(i).getCarriageType(),
+			newgoalLabels.get(a).setText(ticketMaker(	goals.get(i).getCargo(),
 					goals.get(i).getReward(),
 					goals.get(i).getSStation(),
 					goals.get(i).getStartDate(), 

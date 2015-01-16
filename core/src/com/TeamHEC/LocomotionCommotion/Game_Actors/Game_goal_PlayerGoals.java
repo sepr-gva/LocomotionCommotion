@@ -286,7 +286,7 @@ public class Game_goal_PlayerGoals {
 		else
 		{
 			String a = new Integer(numberofOwnedGoals+1).toString();
-			ticketLabels.get(a).setText(ticketMaker(newgoal.getGoal().getCarriageType(),
+			ticketLabels.get(a).setText(ticketMaker(newgoal.getGoal().getCargo(),
 					newgoal.getGoal().getReward(),
 					newgoal.getGoal().getSStation(),
 					newgoal.getGoal().getStartDate(), 
@@ -349,7 +349,7 @@ public class Game_goal_PlayerGoals {
 			ticketLabels.get(a).setX(15);
 			ticketLabels.get(a).setY(tickety);
 			tickety-=200;
-			ticketLabels.get(a).setText(ticketMaker(	playerGoalActors.get(a).getGoal().getCarriageType(),
+			ticketLabels.get(a).setText(ticketMaker(	playerGoalActors.get(a).getGoal().getCargo(),
 					playerGoalActors.get(a).getGoal().getReward(),
 					playerGoalActors.get(a).getGoal().getSStation(),
 					playerGoalActors.get(a).getGoal().getStartDate(), 
