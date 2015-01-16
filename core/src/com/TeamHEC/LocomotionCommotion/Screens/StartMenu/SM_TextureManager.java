@@ -25,6 +25,7 @@ public class SM_TextureManager {
 	public Texture sm_main_loadgamebtn = new Texture(Gdx.files.internal("startMenu/sm_main/sm_loadgame.png"));
 	public Texture sm_main_preferencesbtn = new Texture(Gdx.files.internal("startMenu/sm_main/sm_preferences.png"));
 	public Texture sm_main_howtoplaybtn = new Texture(Gdx.files.internal("startMenu/sm_main/sm_howtoplay.png"));
+	public Texture sm_main_exitButton = new Texture(Gdx.files.internal("startMenu/sm_main/sm_exitgame.png"));
 	public Texture sm_main_linesimg = new Texture(Gdx.files.internal("startMenu/sm_main/lines.png"));
 	
 	//Start Menu NewGame Page
