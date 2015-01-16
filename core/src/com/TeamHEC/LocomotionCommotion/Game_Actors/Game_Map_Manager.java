@@ -21,7 +21,8 @@ public class Game_Map_Manager {
 	private final static Array<Actor> infoactors = new Array<Actor>();
 
 	public static Sprite map;
-	public static Game_Map_Info mapInfo;
+	public static Sprite mapInfo;
+	
 
 	public static Sprite stationInfo;
 	public static Game_Map_StationBtn stationSelect;
@@ -49,6 +50,7 @@ public class Game_Map_Manager {
 		planBackground = new Sprite(-1,50,Game_TextureManager.getInstance().game_pause_blackoutscreen);
 		planBackground.setVisible(false);
 		actors.add(planBackground);
+
 
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
@@ -127,7 +129,9 @@ public class Game_Map_Manager {
 			mapActors ++;
 		}
 
-		mapInfo = new Game_Map_Info();
+		
+		mapInfo = new Sprite(500, 100, Game_TextureManager.getInstance().mapInfo);
+
 		mapInfo.setVisible(infoVisible);
 		stage.addActor(mapInfo);
 	}

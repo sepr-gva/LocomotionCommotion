@@ -3,11 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 public class Game_Map_Station extends Game_Map_MapObj implements StationListener {
 
@@ -18,51 +14,11 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 
 	public Game_Map_Station(Station station, float actorX, float actorY)
 	{
-		this.texture = Game_Map_TextureManager.getInstance().station;
-		this.toggleTexture1 = Game_Map_TextureManager.getInstance().station;
-		this.toggleTexture2 = Game_Map_TextureManager.getInstance().stationx2;
-		this.station = station;
-		this.actorX = actorX;
-		this.actorY = actorY;
+		super(actorX, actorY, Game_Map_TextureManager.getInstance().station, Game_Map_TextureManager.getInstance().stationx2);
 		
-		station.register(this);
+		this.station = station;
 		this.owned = false;
-	
-		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-
-		// Shows station info box on click:
-		addListener(new InputListener(){
-			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-				((Game_Map_Station)event.getTarget()).started = true;
-				return true;
-			}
-		});
-		addListener(new InputListener(){
-			public void enter(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
-				((Game_Map_Station)event.getTarget()).toggleHighlight(true);
-			}
-
-		});
-		addListener(new InputListener(){
-			public void exit(InputEvent event, float x, float y, int pointer, Actor Game_Map_Station) {
-				((Game_Map_Station)event.getTarget()).toggleHighlight(false);
-			}
-
-		});
-	}
-	
-	public void toggleHighlight(boolean highlighted)
-	{
-		if(highlighted)
-		{
-			texture = toggleTexture2;
-			offset = -2.5f;
-		}
-		else
-		{
-			texture = toggleTexture1;
-			offset = 0;
-		}
+		station.register(this);
 	}
 	
 	public Station getStation()
@@ -92,41 +48,24 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			toggleTexture1 = Game_Map_TextureManager.getInstance().p2Station;
 			toggleTexture2 = Game_Map_TextureManager.getInstance().p2Stationx2;
 		}
-	
 	}
 
 	@Override
-	public void act(float delta){
-		if(started){
-			if(this.highlighted==false)
-			{	
-				toggleHighlight(false);
-				showInfoBox();
-				Game_Map_StationBtn.selectedStation = this;
-			}
-			else
-			{
-				toggleHighlight(true);
-				hideInfoBox();
-			}
-			started = false;
+	protected void onClicked()
+	{
+		if(!highlighted)
+		{	
+			highlighted = true;
+			showInfoBox();
+			Game_Map_StationBtn.selectedStation = this;
 		}
-	}
-
-	public void resetHighlight(){
-		if(owned){
-			
-		}
-		else if (highlighted)
+		else
 		{
-			this.texture= Game_Map_TextureManager.getInstance().station;
-			this.actorX+=2.5;
-			this.actorY+=2.5;
-			this.highlighted = false;
+			highlighted = false;
+			hideInfoBox();
 		}
-
 	}
-
+	
 	public void showInfoBox(){
 		for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++)	
 		{ 	
@@ -159,10 +98,5 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	public void setOwned(Boolean b)
 	{
 		this.owned =b;
-	}
-	
-	@Override
-	public void draw(Batch batch, float alpha){
-		batch.draw(this.texture, actorX + offset, actorY + offset);
 	}
 }

@@ -22,6 +22,9 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
+import com.TeamHEC.LocomotionCommotion.Train.CoalTrain;
+import com.TeamHEC.LocomotionCommotion.Train.NuclearTrain;
+import com.TeamHEC.LocomotionCommotion.Train.Route;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
@@ -144,18 +147,20 @@ public class CoreGameTest {
 		
 		assertTrue("player1's Gold was incorrectly set", tester.getPlayer1().getGold() == baseGold - Player1Start.getTotalValue());	
 		assertTrue("player2's Gold was incorrectly set", tester.getPlayer2().getGold() == baseGold - Player2Start.getTotalValue());	
-		if(tester.getPlayerTurn() == tester.getPlayer2())		
-			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal);
+		if(tester.getPlayerTurn() == tester.getPlayer1())		
+			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal + Player1Start.getBaseResourceOut());
 		else
-			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal);
-			
+			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal);			
 		assertTrue("player2's Coal was incorrectly set", tester.getPlayer2().getFuel("Coal") == baseCoal);
 		assertTrue("player1's Oil was incorrectly set", tester.getPlayer1().getFuel("Oil") == baseOil);
 		assertTrue("player2's Oil was incorrectly set", tester.getPlayer2().getFuel("Oil") == baseOil);
 		assertTrue("player1's Electric was incorrectly set", tester.getPlayer1().getFuel("Electric") == baseElectric);
 		assertTrue("player2's Electric was incorrectly set", tester.getPlayer2().getFuel("Electric") == baseElectric);
 		assertTrue("player1's Nuclear was incorrectly set", tester.getPlayer1().getFuel("Nuclear") == baseNuclear);
-		assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear);
+		if(tester.getPlayerTurn() == tester.getPlayer2())		
+			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear + Player2Start.getBaseResourceOut());
+		else
+			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear);
 		assertTrue("player1's Carriage was incorrectly set", tester.getPlayer1().getCarriage() == baseCarriage);
 		assertTrue("player2's Carriage was incorrectly set", tester.getPlayer2().getCarriage() == baseCarriage);
 				
@@ -163,8 +168,8 @@ public class CoreGameTest {
 		assertTrue("player2's Station list was incorrectly set", tester.getPlayer2().getStations().equals(player2StationList));
 		assertTrue("player1's Goal list was incorrectly set", tester.getPlayer1().getGoals().equals(new ArrayList<Goal>()));
 		assertTrue("player2's Goal list was incorrectly set", tester.getPlayer2().getGoals().equals(new ArrayList<Goal>()));
-		assertTrue("player1's Train list was incorrectly set", tester.getPlayer1().getTrains().equals(new ArrayList<Train>()));
-		assertTrue("player2's Train list was incorrectly set", tester.getPlayer2().getTrains().equals(new ArrayList<Train>()));
+		assertTrue("player1's Train list was incorrectly set", tester.getPlayer1().getTrains().size() == 1);
+		assertTrue("player2's Train list was incorrectly set", tester.getPlayer2().getTrains().size() == 1);
 		
 		assertTrue("turnCount was not zero", tester.getTurnCount() == 0);
 		assertTrue("turnLimit was not equal to " + turnLimit, tester.getTurnLimit() == 50);
@@ -309,7 +314,6 @@ public class CoreGameTest {
 		//Reset
 		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 		String output = tester.saveGameJSON("ThisGameName");
-		PrintWriter writer = new PrintWriter("C:/Desktop/JSONTester.txt", "UTF-8");
 		writer.println(output);
 		writer.close();
 		
