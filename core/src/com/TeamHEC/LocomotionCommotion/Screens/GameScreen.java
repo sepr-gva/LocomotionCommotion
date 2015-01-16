@@ -98,12 +98,7 @@ public class GameScreen implements Screen {
 	
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
-<<<<<<< Updated upstream
 		game = new CoreGame(StartScene.player1name, StartScene.player2name, p1Station, p2Station, StartScene.turnChoice);
-=======
-		game = new CoreGame(player1name,player2name,
-				p1Station, p2Station, SceneManager.getInstance().startScene.turnChoice);
->>>>>>> Stashed changes
 	}
 	
 	@Override

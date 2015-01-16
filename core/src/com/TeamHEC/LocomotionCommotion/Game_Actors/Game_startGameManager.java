@@ -65,7 +65,6 @@ public class Game_startGameManager {
 
 	}
 
-	@SuppressWarnings("static-access")
 	public static void startGame(){
 	
 		for(int i=Game_ScreenMenu.actorManager.getStageStart(); i<=Game_ScreenMenu.actorManager.getStageEnd();i++)	
@@ -79,19 +78,19 @@ public class Game_startGameManager {
 		
 		//Handle Text within Game
 		//Score and Who's Turn it is
-		Game_ScreenMenu.actorManager.playerScore.setText(GameScreen.player1name+"    " + GameScreen.player1score +
-				"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.player2name
-				+"                      "+GameScreen.game.getPlayerTurn().getName()+" it's your turn ");
-		//Resources
-		Game_ScreenMenu.resourceActorManager.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
-		Game_ScreenMenu.resourceActorManager.coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
-		Game_ScreenMenu.resourceActorManager.oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
-		Game_ScreenMenu.resourceActorManager.electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electricity"));
-		Game_ScreenMenu.resourceActorManager.nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
-		Game_ScreenMenu.resourceActorManager.cardQuant.setText(""+GameScreen.cards);
-		
-		Game_ScreenMenu.resourceActorManager.game_card_togglebtn.setVisible(true);
-		Game_ScreenMenu.resourceActorManager.cardQuant.setVisible(true);
+//		Game_ScreenMenu.actorManager.playerScore.setText(GameScreen.player1name+"    " + GameScreen.player1score +
+//				"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.player2name
+//				+"                      "+GameScreen.game.getPlayerTurn().getName()+" it's your turn ");
+//		//Resources
+//		Game_ScreenMenu.resourceActorManager.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
+//		Game_ScreenMenu.resourceActorManager.coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
+//		Game_ScreenMenu.resourceActorManager.oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
+//		Game_ScreenMenu.resourceActorManager.electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electricity"));
+//		Game_ScreenMenu.resourceActorManager.nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
+//		Game_ScreenMenu.resourceActorManager.cardQuant.setText(""+GameScreen.cards);
+//		
+//		Game_ScreenMenu.resourceActorManager.game_card_togglebtn.setVisible(true);
+//		Game_ScreenMenu.resourceActorManager.cardQuant.setVisible(true);
 	}
 	
 	public static void reset(){

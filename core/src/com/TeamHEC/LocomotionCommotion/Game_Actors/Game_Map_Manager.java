@@ -44,18 +44,14 @@ public class Game_Map_Manager {
 		mapActors=0;
 		stationTracker=0;
 		numberOfStations=0;
-<<<<<<< Updated upstream
 			
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
-=======
+		actors.add(map);
 
 		planBackground = new Sprite(-1,50,Game_TextureManager.getInstance().game_pause_blackoutscreen);
 		planBackground.setVisible(false);
 		actors.add(planBackground);
 		
-		map = new Map();		
->>>>>>> Stashed changes
-		actors.add(map);
 
 		stationTracker=stage.getActors().size;
 		for(int i = 0; i < WorldMap.getInstance().stationsList.size(); i++)
