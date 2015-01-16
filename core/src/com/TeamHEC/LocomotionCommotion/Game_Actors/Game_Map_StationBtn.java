@@ -7,8 +7,6 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
-
-
 public class Game_Map_StationBtn extends SpriteButton {
 
 	public boolean exit = false;
@@ -33,9 +31,6 @@ public class Game_Map_StationBtn extends SpriteButton {
 		if(started){
 			if(Game_startGameManager.inProgress)
 			{
-				selectedStation.actorX -= 2.5;
-				selectedStation.actorY -= 2.5;
-				
 				if(Game_startGameManager.player1)
 				{
 					// Sets texture (could be done via listener?)

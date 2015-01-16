@@ -24,24 +24,17 @@ public class Train implements Serializable{
 	 
 		- increase carriage limit, trains performance, speed and efficiency.
 	 	- Nuclear will move further than coal...
-	 	- More carriages = more fuel...
 	
 	Train:
 
 	Speed					= ---
-	Number of Carriages		= ---
-	Carriage Capacity		= ------------
 	Fuel Efficiency			= -----
-	
-	You need one power to pull every carriage
-	Fuel Efficiency = amount of fuel charged per carriage
 	 */
 	
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
 	private int baseSpeed, speedMod;
-	private int numOfCarriages, baseCarriageLimit, carriageLimitMod;
 	
 	private Fuel fuel;
 	public int fuelPerTurn;
@@ -60,24 +53,18 @@ public class Train implements Serializable{
 	 * The superclass of Train types, Creates a Train for player.
 	 * @param fuelType Type of fuel the train consumes
 	 * @param speedMod Any speed modifications made to the train
-	 * @param baseCarriageLimit
-	 * @param carriageLimitMod Any carriage upgrades made to the train
 	 * @param value The price of the train
 	 * @param inStation whether the train is currently in a station
 	 * @param route The route the train is currently using
 	 * @param owner The owner of the train
 	 */
-	public Train(String name, Fuel fuelType, int baseSpeed, int speedMod, int baseCarriageLimit,
-			int carriageLimitMod, int value, boolean inStation, Route route, Player owner)
+	public Train(String name, Fuel fuelType, int baseSpeed, int speedMod, int value, boolean inStation, Route route, Player owner)
 	{
 		this.name = name;
 		this.fuel = fuelType;
 		
 		this.baseSpeed = baseSpeed;
 		this.speedMod = speedMod;
-		this.baseCarriageLimit = baseCarriageLimit;
-		this.carriageLimitMod = carriageLimitMod;
-		this.numOfCarriages = baseCarriageLimit;
 		this.value = value;
 		this.inStation = inStation;
 		this.route = route;
@@ -113,7 +100,7 @@ public class Train implements Serializable{
 	
 	public int getSpeed()
 	{
-		return baseSpeed + speedMod - numOfCarriages;
+		return baseSpeed + speedMod;
 	}
 		
 	public int getPricePerTurn()
@@ -121,11 +108,6 @@ public class Train implements Serializable{
 		return fuel.cost * fuelPerTurn;
 	}
 		
-	public int getCarriageCapacity()
-	{
-		return baseCarriageLimit + carriageLimitMod;
-	}
-	
 	public String getFuelType()
 	{
 		return fuel.getClass().getName();				
@@ -147,17 +129,7 @@ public class Train implements Serializable{
 	{
 		this.fuelPerTurn = fuelPerTurn;
 	}
-	
-	public void setCarriageLimitMod(int carriageLimitMod)
-	{
-		this.carriageLimitMod = carriageLimitMod;
-	}
-	
-	public void increaseCarriageLimit(int by)
-	{
-		carriageLimitMod += by;
-	}
-	
+		
 	public void increaseSpeedMod(int by)
 	{
 		speedMod += by;

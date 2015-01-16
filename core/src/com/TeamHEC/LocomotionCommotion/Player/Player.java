@@ -14,7 +14,6 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
-import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
@@ -41,7 +40,6 @@ public class Player implements Serializable, RouteListener{
 	private Shop shop;
 	public ArrayList<Goal> goals;
 	public ArrayList<Train> trains;
-	public Carriage carriages;
 	public ArrayList<Station> stations = new ArrayList<Station>();
 	public int[] lines = new int[8];
 
@@ -49,8 +47,7 @@ public class Player implements Serializable, RouteListener{
 
 	public boolean isPlayer1;
 
-	public Player(String name, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
-			Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains)
+	public Player(String name, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains)
 	{
 		this.name = name;
 		this.points = points;
@@ -63,7 +60,7 @@ public class Player implements Serializable, RouteListener{
 		this.shop = new Shop(this);
 		this.goals = goals;
 		this.trains = trains;
-		this.carriages = carriage;
+	
 		//this.stations = stations;
 		for (int i = 0; i<6;i++)
 		{
@@ -119,11 +116,6 @@ public class Player implements Serializable, RouteListener{
 	public void subGold(int value)
 	{
 		gold.setValue(gold.getValue() - value);
-	}
-
-	//Carriages
-	public int getCarriage() {		
-		return carriages.getValue();
 	}
 
 	//Cards

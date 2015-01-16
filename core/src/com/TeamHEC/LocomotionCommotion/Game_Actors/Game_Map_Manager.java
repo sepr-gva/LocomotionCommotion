@@ -23,7 +23,6 @@ public class Game_Map_Manager {
 	public static Sprite map;
 	public static Sprite mapInfo;
 	
-
 	public static Sprite stationInfo;
 	public static Game_Map_StationBtn stationSelect;
 
@@ -46,12 +45,10 @@ public class Game_Map_Manager {
 		stationTracker=0;
 		numberOfStations=0;
 
-
 		planBackground = new Sprite(-1,50,Game_TextureManager.getInstance().game_pause_blackoutscreen);
 		planBackground.setVisible(false);
 		actors.add(planBackground);
-
-
+		
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
 
@@ -72,6 +69,8 @@ public class Game_Map_Manager {
 
 		stationInfo = new Sprite(0, 0, Game_Map_TextureManager.getInstance().stationInfo);
 		infoactors.add(stationInfo);
+		
+		// Add route planning stuff in here
 
 		//=========================================================
 

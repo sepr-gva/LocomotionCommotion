@@ -16,12 +16,11 @@ public class CoalTrain extends Train {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final int BASE_SPEED = 3;
-	private static final int BASE_CARRIAGE_LIMIT = 1;
 	private static final int VALUE = 200;
 		
-	public CoalTrain(int speedMod, int carriageLimitMod, boolean inStation, Route route, Player player)
+	public CoalTrain(int speedMod, boolean inStation, Route route, Player player)
 	{
-		super("Steam Machine", new Coal(200), BASE_SPEED, speedMod, BASE_CARRIAGE_LIMIT, carriageLimitMod, VALUE,
+		super("Steam Machine", new Coal(200), BASE_SPEED, speedMod, VALUE,
 				inStation, route, player);
 		fuelPerTurn = 10;
 	}

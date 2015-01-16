@@ -33,7 +33,6 @@ public class Shop implements Serializable {
 	private Electric electricForSale;
 	private Nuclear nuclearForSale;
 	private Oil oilForSale;
-	private Carriage carriageForSale;
 	
 	private HashMap<String, Fuel> fuelSale;
 	
@@ -47,7 +46,6 @@ public class Shop implements Serializable {
 		electricForSale = new Electric(500);
 		nuclearForSale = new Nuclear(500);
 		oilForSale = new Oil(500);
-		carriageForSale = new Carriage(100);
 		
 		fuelSale = new HashMap<String, Fuel>();
 		
@@ -80,14 +78,7 @@ public class Shop implements Serializable {
 		customer.subFuel(fuelType, quantity);
 		customer.addGold(fuel.cost * quantity);
 	}
-	
-	// Needs Gold validation
-	public void upgradeTrainCarriageCapacity(Train train, int quantity)
-	{
-		customer.subGold(carriageForSale.cost * quantity);
-		train.increaseCarriageLimit(quantity);
-	}
-	
+		
 	public void upgradeTrainType(Train train)
 	{
 		// Not sure quite to do this as they're different classes for each

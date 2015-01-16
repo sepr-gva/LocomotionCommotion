@@ -13,14 +13,12 @@ import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.CoalTrain;
 import com.TeamHEC.LocomotionCommotion.Train.ElectricTrain;
 import com.TeamHEC.LocomotionCommotion.Train.NuclearTrain;
@@ -77,7 +75,6 @@ public class CoreGame implements Serializable {
 				(Electric) player1Resources.get("electric"),
 				(Nuclear) player1Resources.get("nuclear"),
 				(Oil) player1Resources.get("oil"),
-				(Carriage) player1Resources.get("carriage"),
 				new ArrayList<Card>(), new ArrayList<Goal>(),
 				new ArrayList<Train>());
 
@@ -87,7 +84,6 @@ public class CoreGame implements Serializable {
 				(Electric) player2Resources.get("electric"),
 				(Nuclear) player2Resources.get("nuclear"),
 				(Oil) player2Resources.get("oil"),
-				(Carriage) player2Resources.get("carriage"),
 				new ArrayList<Card>(), new ArrayList<Goal>(),
 				new ArrayList<Train>());
 
@@ -128,17 +124,17 @@ public class CoreGame implements Serializable {
 		Train train = null;
 
 		if (fuelType.equals("Coal"))
-			train = new CoalTrain(0, 0, true, new Route(startStation), player);
+			train = new CoalTrain(0, true, new Route(startStation), player);
 		else if (fuelType.equals("Nuclear"))
-			train = new NuclearTrain(0, 0, true, new Route(startStation),
+			train = new NuclearTrain(0, true, new Route(startStation),
 					player);
 		else if (fuelType.equals("Electric"))
-			train = new ElectricTrain(0, 0, true, new Route(startStation),
+			train = new ElectricTrain(0, true, new Route(startStation),
 					player);
 		else if (fuelType.equals("Oil"))
-			train = new OilTrain(0, 0, true, new Route(startStation), player);
+			train = new OilTrain(0, true, new Route(startStation), player);
 		else
-			train = new OilTrain(0, 0, true, new Route(startStation), player);
+			train = new OilTrain(0, true, new Route(startStation), player);
 
 		player.trains.add(train);
 		// GameScreen.getStage().getActors().add(train.getActor());
@@ -204,7 +200,6 @@ public class CoreGame implements Serializable {
 		// NEED TO CHOOSE STATION FIRST!
 		// gold.subValue(station.getTotalValue());
 
-		Carriage carriage = new Carriage(200);
 		Coal coal = new Coal(200);
 		Oil oil = new Oil(200);
 		Electric electric = new Electric(200);
@@ -213,7 +208,6 @@ public class CoreGame implements Serializable {
 		HashMap<String, Resource> dict = new HashMap<String, Resource>();
 		dict.put("gold", gold); // Base gold amount minus the value of the
 								// station bought.
-		dict.put("carriage", carriage);
 		dict.put("coal", coal);
 		dict.put("oil", oil);
 		dict.put("electric", electric);
@@ -287,7 +281,6 @@ public class CoreGame implements Serializable {
 		finalJson += "\"electric\": " + player.getFuel("Electric") + ",\n";
 		finalJson += "\"oil\": " + player.getFuel("Oil") + ",\n";
 		finalJson += "\"nuclear\": " + player.getFuel("Nuclear") + ",\n";
-		finalJson += "\"carriages\": " + player.getCarriage() + ",\n";
 		finalJson += "\"cards\": " + savePlayerCardJSON(player) + ",\n";
 		finalJson += "\"goals\": " + savePlayerGoalJSON(player) + ",\n";
 		return finalJson = finalJson + "}\n";

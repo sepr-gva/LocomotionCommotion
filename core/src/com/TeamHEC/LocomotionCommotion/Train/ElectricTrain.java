@@ -11,13 +11,12 @@ public class ElectricTrain extends Train{
 	
 	private static final long serialVersionUID = 1L;
 	private static final int BASE_SPEED = 6;
-	private static final int BASE_CARRIAGE_LIMIT = 3;
 	private static final int VALUE = 500;
 
-	public ElectricTrain(int speedMod, int carriageLimitMod, boolean inStation, Route route, Player player)
+	public ElectricTrain(int speedMod, boolean inStation, Route route, Player player)
 	{
 		// Name, Fuel, baseSpeed, speedMod, baseCarriageLimit, carriageLimitMod, value, inStation
-		super("Electrix", new Electric(200), BASE_SPEED, speedMod, BASE_CARRIAGE_LIMIT, carriageLimitMod, VALUE, inStation,
+		super("Electrix", new Electric(200), BASE_SPEED, speedMod, VALUE, inStation,
 				route, player);
 		fuelPerTurn = 30;
 	}
