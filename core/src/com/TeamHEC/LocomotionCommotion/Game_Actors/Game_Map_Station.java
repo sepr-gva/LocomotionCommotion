@@ -1,8 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
-import java.util.ArrayList;
-
-import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
@@ -56,29 +53,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	@Override
 	protected void onClicked()
 	{
-		if(routeAvailable())
-		{
-			System.out.println("Added to route");
-			
-			/* Need to discard old connections somehow...
-			ArrayList<Connection> oldConnections = getRouteConnection().getStartMapObj().connections;
-			for(Connection c : oldConnections)
-			{
-				c.getDestination().getActor().setRouteAvailable(null, null, false);
-				c.getDestination().getActor().toggleHighlight(false);
-			}
-			*/
-			
-			getRouteTrain().route.addConnection(getRouteConnection());
-			ArrayList<Connection> adj = getRouteTrain().route.getAdjacentConnections();	
-			
-			for(Connection c: adj)
-			{
-				c.getDestination().getActor().setRouteAvailable(getRouteTrain(), c, true);
-				c.getDestination().getActor().toggleHighlight(true);
-			}
-			
-		}
+		super.onClicked();
 		if(!highlighted)
 		{	
 			highlighted = true;

@@ -1,5 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import java.util.ArrayList;
+
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +16,7 @@ public class Game_Map_MapObj extends Actor{
 	public float actorX, actorY;
 	public boolean started = false, highlighted = false;
 	
+	// Used for adjacent MapObjs in route:
 	private boolean routeAvailable = false;
 	private Train routeTrain;
 	private Connection routeConnection;
@@ -60,9 +63,9 @@ public class Game_Map_MapObj extends Actor{
 		routeAvailable = available;
 	}
 	
-	public void setRouteAvailable(Train train, Connection connection, boolean available)
+	public void setRouteAvailable(Train train, Connection connection)
 	{
-		routeAvailable = available;
+		routeAvailable = true;
 		routeTrain = train;
 		routeConnection = connection;
 	}
@@ -79,7 +82,28 @@ public class Game_Map_MapObj extends Actor{
 	
 	protected void onClicked()
 	{
-		//Overwrite me
+		if(routeAvailable())
+		{
+			System.out.println("Added to route");
+			
+			//Discards old selections:
+			ArrayList<Connection> oldConnections = getRouteConnection().getStartMapObj().connections;
+			for(Connection c : oldConnections)
+			{
+				c.getDestination().getActor().setRouteAvailable(false);
+				c.getDestination().getActor().toggleHighlight(false);
+			}
+			
+			getRouteTrain().route.addConnection(getRouteConnection());
+			ArrayList<Connection> adj = getRouteTrain().route.getAdjacentConnections();	
+			
+			//Adds new ones:
+			for(Connection c: adj)
+			{
+				c.getDestination().getActor().setRouteAvailable(getRouteTrain(), c);
+				c.getDestination().getActor().toggleHighlight(true);
+			}	
+		}
 	}
 	
 	public void toggleHighlight(boolean highlighted)

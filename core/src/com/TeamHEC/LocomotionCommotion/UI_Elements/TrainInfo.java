@@ -26,6 +26,7 @@ public class TrainInfo extends Sprite{
 	public Array<Actor> actors = new Array<Actor>();
 	
 	public Train train;
+	public ArrayList<Connection> adjacent;
 	
 	public TrainInfo()
 	{
@@ -78,12 +79,23 @@ public class TrainInfo extends Sprite{
 	 */
 	public void highlightAdjacent()
 	{
-		ArrayList<Connection> adjacent = train.route.getAdjacentConnections();
+		adjacent = train.route.getAdjacentConnections();
 		
 		for(Connection c : adjacent)
 		{
-			c.getDestination().getActor().setRouteAvailable(train, c, true);
+			c.getDestination().getActor().setRouteAvailable(train, c);
 			c.getDestination().getActor().toggleHighlight(true);
+		}
+	}
+	
+	public void unhighlightAdjacent()
+	{
+		adjacent = train.route.getAdjacentConnections();
+		
+		for(Connection c : adjacent)
+		{
+			c.getDestination().getActor().setRouteAvailable(false);
+			c.getDestination().getActor().toggleHighlight(false);
 		}
 	}
 	

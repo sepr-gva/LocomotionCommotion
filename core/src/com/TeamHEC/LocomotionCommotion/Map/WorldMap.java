@@ -80,7 +80,6 @@ public class WorldMap implements Serializable{
 	private WorldMap()
 	{
 		// Creates a connection instance for each:
-		
 		createConnections(REYKJAVIK, new MapObj[]{OSLO, DUBLIN});
 		createConnections(DUBLIN, new MapObj[]{REYKJAVIK, AMSTERDAM, LONDON});
 		createConnections(LONDON, new MapObj[]{DUBLIN, PARIS});
@@ -98,10 +97,10 @@ public class WorldMap implements Serializable{
 		createConnections(VIENNA, new MapObj[]{PRAGUE, ATHENS});
 		createConnections(ROME, new MapObj[]{LISBON, BERN, ATHENS});
 		createConnections(MONACO, new MapObj[]{MADRID, PARIS, BERN});
-		createConnections(BERN, new MapObj[]{MONACO, junction[0], PRAGUE});
+		createConnections(BERN, new MapObj[]{MONACO, junction[0], PRAGUE, ROME});
 		createConnections(VILNIUS, new MapObj[]{HELSINKI, junction[1]});
-		createConnections(junction[0], new MapObj[]{WARSAW, VILNIUS, MOSCOW});
-		createConnections(junction[1], new MapObj[]{PARIS, BERLIN, PRAGUE, BERN});
+		createConnections(junction[1], new MapObj[]{WARSAW, VILNIUS, MOSCOW});
+		createConnections(junction[0], new MapObj[]{PARIS, BERLIN, PRAGUE, BERN});
 		createConnections(ATHENS, new MapObj[]{ROME, VIENNA});
 	}
 	

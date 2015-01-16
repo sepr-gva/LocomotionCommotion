@@ -55,6 +55,7 @@ public class Game_Map_Manager {
 		planBackground = new Sprite(-1,50,Game_TextureManager.getInstance().game_pause_blackoutscreen);
 		planBackground.setVisible(false);
 		actors.add(planBackground);
+		
 		routingModeWindow = new Sprite(-20,65,Game_TextureManager.getInstance().routingModeWindow);
 		routingModeWindow.setVisible(false);
 		actors.add(routingModeWindow);
@@ -63,15 +64,10 @@ public class Game_Map_Manager {
 			@Override
 			protected void onClicked(){
 				exitRoutingMode();
-				
 			}
 		};
 		exitRoutingModeBtn.setVisible(false);
 		actors.add(exitRoutingModeBtn);
-		
-		
-		
-		
 		
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
@@ -173,12 +169,17 @@ public class Game_Map_Manager {
 		stage.addActor(mapInfo);
 	}
 	
-	public static void enterRoutingMode(){
+	public static void enterRoutingMode()
+	{		
 		planBackground.setVisible(true);
 		routingModeWindow.setVisible(true);
 		exitRoutingModeBtn.setVisible(true);
 	}
-	public static void exitRoutingMode(){
+	
+	public static void exitRoutingMode()
+	{
+		trainInfo.unhighlightAdjacent();
+		
 		planBackground.setVisible(false);
 		routingModeWindow.setVisible(false);
 		exitRoutingModeBtn.setVisible(false);
