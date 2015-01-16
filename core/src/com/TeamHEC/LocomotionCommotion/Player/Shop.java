@@ -27,11 +27,11 @@ public class Shop implements Serializable {
 	private Player customer;
 	private CardFactory cardFactory;
 	
-	private final static int coalPrice = 10;
-	private final static int oilPrice = 20;
-	private final static int electricPrice = 30;
-	private final static int nuclearPrice = 40;
-	private final static int cardPrice = 1000;
+	public final static int coalPrice = 10;
+	public final static int oilPrice = 20;
+	public final static int electricPrice = 30;
+	public final static int nuclearPrice = 40;
+	public final static int cardPrice = 1000;
 	
 	public Shop(Player customer)
 	{

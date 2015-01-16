@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Card.OilCard;
+import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -218,6 +219,7 @@ public class Game_Shop {
 		return num;
 	}
 
+	
 	//SHOP Actors
 	//Back Button
 	public static class Game_shop_BackBtn extends Game_Actor {
@@ -610,7 +612,7 @@ public class Game_Shop {
 			costLabel.setX(posx+ 160);
 			costLabel.setY(posy +43);
 			costLabel.setColor(0,0,0,1);
-			costLabel.setText("100");
+			costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.coalPrice);
 
 			actors.add(quantityLabel);
 			actors.add(costLabel);
@@ -618,10 +620,12 @@ public class Game_Shop {
 
 		}
 
-		public static void increase(int i){
-			int quant = strToInt(costLabel.getText());
-			String l = new Integer(quant + i).toString();
-			costLabel.setText(l);
+		public static void changeQuantity(int change){
+			int newQuantity = strToInt(quantityLabel.getText());
+			newQuantity+=change;
+			costLabel.setText(""+(newQuantity*Shop.coalPrice));
+			
+			String l = new Integer(newQuantity).toString();
 			quantityLabel.setText(l);
 		}
 
@@ -644,7 +648,7 @@ public class Game_Shop {
 			public void act(float delta){
 				if(started){
 					quantity+=100;
-					increase(100);
+					changeQuantity(100);
 					started = false;
 				}
 			}
@@ -668,7 +672,7 @@ public class Game_Shop {
 				if(started){
 					if(quantity!=0){
 						quantity-=100;
-						increase(-100);}
+						changeQuantity(-100);}
 					started = false;
 				}
 			}
@@ -691,14 +695,9 @@ public class Game_Shop {
 			public void act(float delta){
 				if(started){
 					if (Game_Shop.actorManager.startpage.buy){
-						int goldcost = strToInt(costLabel.getText());
-						int coal = strToInt(quantityLabel.getText());
-						if (goldcost <= GameScreen.gold){
-							GameScreen.game.getPlayerTurn().subGold(goldcost);
-							GameScreen.game.getPlayerTurn().addFuel("Coal", coal);
-							Game_ScreenMenu.resourceActorManager.refreshResources();
-							Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
-						}
+						int quantity = strToInt(quantityLabel.getText());
+						GameScreen.game.getPlayerTurn().getShop().buyFuel("Coal",quantity );
+						
 					}
 					if (Game_Shop.actorManager.startpage.sell){
 						int goldcost = strToInt(costLabel.getText());

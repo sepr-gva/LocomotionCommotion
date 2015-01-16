@@ -89,6 +89,9 @@ public class Player implements Serializable, RouteListener{
 	}
 	
 	//Shop
+	public Shop getShop(){
+		return shop;
+	}
 	public void buyCoal(int quantity)
 	{
 		shop.buyFuel("Coal", quantity);
