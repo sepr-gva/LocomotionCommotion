@@ -18,7 +18,6 @@ import com.badlogic.gdx.graphics.GL20;
 
 import com.TeamHEC.LocomotionCommotion.Mocking.MockFileHandler;
 
-
 public class GdxTestRunner extends BlockJUnit4ClassRunner implements ApplicationListener{
 	   
 	   private Map<FrameworkMethod, RunNotifier> invokeInRender = new HashMap<FrameworkMethod, RunNotifier>();
@@ -72,9 +71,6 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
 	      waitUntilInvokedInRenderMethod();
 	   }
 
-	   /**
-	    *
-	    */
 	   private void waitUntilInvokedInRenderMethod() {
 	      try {
 	         while (true){

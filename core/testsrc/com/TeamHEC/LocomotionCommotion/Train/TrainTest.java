@@ -1,94 +1,123 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
-import org.junit.Assert;
+import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import java.util.ArrayList;
+
+import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
+import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
+import com.TeamHEC.LocomotionCommotion.Resource.Coal;
+import com.TeamHEC.LocomotionCommotion.Resource.Electric;
+import com.TeamHEC.LocomotionCommotion.Resource.Gold;
+import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
+import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 
+@RunWith(GdxTestRunner.class)
 public class TrainTest {
 
-	CoalTrain coalTrain = new CoalTrain(1,2,true, new Route(new MapObj(0, 0)), null);
-	OilTrain oilTrain = new OilTrain(1,2,true, new Route(new MapObj(0, 0)), null);
-	ElectricTrain electricTrain = new ElectricTrain(1,2,true, new Route(new MapObj(0, 0)), null);
-	NuclearTrain nuclearTrain = new NuclearTrain(1,2,true, new Route(new MapObj(0, 0)), null);
+	CoalTrain coalTrain;
+	OilTrain oilTrain;
+	ElectricTrain electricTrain;
+	NuclearTrain nuclearTrain;
+	
+	@Before
+	public void setUp()	{
+	Player owner = new Player(
+			"Alice", 
+			0, 
+			new Gold(1000), 
+			new Coal(1000), 
+			new Electric(1000), 
+			new Nuclear(1000), 
+			new Oil(1000), 
+			new Carriage(5), 
+			new ArrayList<Card>(), 
+			new ArrayList<Goal>(), 
+			new ArrayList<Train>());	
+	
+	coalTrain = new CoalTrain(0,0,true, new Route(new MapObj(0, 0)), owner);
+	oilTrain = new OilTrain(0,0,true, new Route(new MapObj(0, 0)), owner);
+	electricTrain = new ElectricTrain(0,0,true, new Route(new MapObj(0, 0)), owner);
+	nuclearTrain = new NuclearTrain(0,0,true, new Route(new MapObj(0, 0)), owner);
+	}
 	
 	@Test
 	public void testTrain() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetName() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetValue() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetSpeed() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetPricePerTurn() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetCarriageCapacity() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetFuelType() throws Exception {
-		//reset
-		coalTrain = new CoalTrain(1,2,true, new Route(new MapObj(0, 0)), null);
-		oilTrain = new OilTrain(1,2,true, new Route(new MapObj(0, 0)), null);
-		electricTrain = new ElectricTrain(1,2,true, new Route(new MapObj(0, 0)), null);
-		nuclearTrain = new NuclearTrain(1,2,true, new Route(new MapObj(0, 0)), null);
-		
-		//execute
-		Assert.assertTrue(coalTrain.getFuelType() == "Coal");
-		Assert.assertTrue(oilTrain.getFuelType() == "Oil");
-		Assert.assertTrue(electricTrain.getFuelType() == "Electric");
-		Assert.assertTrue(nuclearTrain.getFuelType() == "Nuclear");
+	public void testGetFuelType() throws Exception {		
+		assertTrue(coalTrain.getFuelType() == "Coal");
+		assertTrue(oilTrain.getFuelType() == "Oil");
+		assertTrue(electricTrain.getFuelType() == "Electric");
+		assertTrue(nuclearTrain.getFuelType() == "Nuclear");
 	}
 
 	@Test
 	public void testSetSpeedMod() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetFuelPerTurn() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetCarriageLimitMod() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testIncreaseCarriageLimit() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testSetInStation() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testIsInStation() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testMoveTrain() throws Exception {
-		throw new RuntimeException("not yet implemented");
+		fail("Not yet implemented");
 	}
 }

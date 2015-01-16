@@ -118,6 +118,11 @@ public class CoreGame implements Serializable {
 		StartTurn();
 	}
 
+	/**
+	 * Used during initialisation to assign a player a train based on their startStation fuel type
+	 * @param player The player to be assigned a train
+	 * @param startStation The player's starting station.
+	 */
 	private void createFirstTrain(Player player, Station startStation) {
 		String fuelType = startStation.getResourceString();
 		Train train = null;
@@ -216,7 +221,6 @@ public class CoreGame implements Serializable {
 
 		return dict;
 	}
-
 	
 	public WorldMap getGameMap() {
 		return gameMap;
@@ -242,19 +246,26 @@ public class CoreGame implements Serializable {
 		return playerTurn;
 	}
 
-	
+	/**
+	 * Saves the game to a .json file which can be loaded at a later date.
+	 * @param gameName The name you want to assign to the game.
+	 * @return A JSON string representing the current CoreGame state.
+	 */
 	public String saveGameJSON(String gameName) {
 		String finalJson = "{\n";
 		finalJson += "\"playerTurn\": \"" + playerTurn.name + "\",\n";
 		finalJson += "\"turnCount\": " + turnCount + ",\n";
 		finalJson += "\"map\": " + saveMapJSON() + ",\n";
-		finalJson += "\"cardScreenCards\": " + saveCardScreenCardsJSON()
-				+ ",\n";
 		finalJson += "\"player1\": " + savePlayerJSON(player1) + ",\n";
 		finalJson += "\"player2\": " + savePlayerJSON(player2) + ",\n";
 		return finalJson = finalJson + "}\n";
 	}
 	
+	/**
+	 * Called during saveGameJSON. Used to save a player's state.
+	 * @param player The player to be saved.
+	 * @return A JSON string representing the player
+	 */
 	private String savePlayerJSON(Player player) {
 		String finalJson = "{\n";
 		finalJson += "\"playerName\": \"" + player.getName() + "\",\n";
@@ -264,6 +275,11 @@ public class CoreGame implements Serializable {
 		return finalJson = finalJson + "\n}";
 	}
 
+	/**
+	 * Called during savePlayerJSON. Used to save a player's resources.
+	 * @param player The player whose resources will be saved.
+	 * @return A JSON string representing the player's resources
+	 */
 	private String savePlayerResourceJSON(Player player) {
 		String finalJson = "{\n";
 		finalJson += "\"gold\": " + player.getGold() + ",\n";
@@ -277,6 +293,11 @@ public class CoreGame implements Serializable {
 		return finalJson = finalJson + "}\n";
 	}
 
+	/**
+	 * Called during savePlayerJSON. Used to save a player's cards.
+	 * @param player The player whose cards will be saved.
+	 * @return A JSON string representing the player's cards
+	 */
 	private String savePlayerCardJSON(Player player) {
 		String finalJson = "[\n";
 		Card[] cards = player.getCards().toArray(
@@ -291,6 +312,11 @@ public class CoreGame implements Serializable {
 		return finalJson = finalJson + "]\n";
 	}
 
+	/**
+	 * Called during savePlayerJSON. Used to save a player's goals.
+	 * @param player The player whose goals will be saved.
+	 * @return A JSON string representing the player's goals
+	 */
 	private String savePlayerGoalJSON(Player player) {
 		String finalJson = "{\n";
 		Goal[] goals = player.getGoals().toArray(
@@ -307,27 +333,21 @@ public class CoreGame implements Serializable {
 		}
 		return finalJson = finalJson + "]\n";
 	}
-
-	/*
-	 * public String savePlayerTrainJSON(Player player) { String finalJson =
-	 * "{\n"; Train[] trains = player.trains.toArray(new
-	 * Train[player.trains.size()]); for (int i = 0; i < trains.length; i++) {
-	 * Train train = trains[i]; finalJson += //name fuel speedMod
-	 * carriageLimitMod numberOfCarriages value inStation route
-	 * "{\n\"name\": \"" + train.getName() + "\",\n" + "\"trainType\": \"" +
-	 * train.getFuelType() + "\",\n" + "\"speedMod\": \"" + train.getSpeedMod()
-	 * + "\",\n" + "\"carriageLimitMod\": " + train.getCarriageLimitMod() +
-	 * ",\n" + "\"numOfCarriages\": " + train.getCarriageNumber() + ",\n" +
-	 * "\"value\": " + train.getValue() + ",\n" + "\"inStation\": " +
-	 * train.isInStation() + ",\n}"; return finalJson = finalJson + "}\n"; }
-	 */
 	
+	/**
+	 * Called during saveGameJSON. Used to save the WorldMap state.
+	 * @return A JSON string representing the WorldMap.
+	 */
 	public String saveMapJSON() {
 		String finalJson = "{\n";
 		finalJson += "\"station\": " + saveMapStationJSON() + "\",\n";
 		return finalJson = finalJson + "}\n";
 	}
 
+	/**
+	 * Called during saveMapJSON. Used to save the Stations states.
+	 * @return A JSON string representing the Stations on the WorldMap.
+	 */
 	public String saveMapStationJSON() {
 		String finalJson = "{\n";
 		Station[] stations = gameMap.stationsList
@@ -342,26 +362,14 @@ public class CoreGame implements Serializable {
 		}
 		return finalJson = finalJson + "}\n";
 	}
-
-	public String saveMapConnectionsJSON() {
-		String finalJson = "{\n";
-		return finalJson = finalJson + "}\n";
-	}
-
-	public String saveCardScreenCardsJSON() {
-		String finalJson = "{\n \"temporaryValue\"\":dumbCards\"";
-		return finalJson = finalJson + "}\n";
-	}
-
+	
 	/**
 	 * Launches a save dialog asking the user to specify a save game location
-	 * and serializes the game object to that location
-	 * 
-	 * @param testCase
-	 *            Is this operation a test? If so it will skip the dialog
-	 *            section.
+	 * and serializes the game object to that location. This is one of two save options.
+	 * The other is saving as a JSON file.
+	 * @param gameName The name you want to assign to the game.
 	 */
-	public void saveGame(String gameName) {
+	public void saveGameSerialize(String gameName) {
 		try {
 			File saveLocation = new File(System.getProperty("user.home")
 					+ System.getProperty("file.separator")

@@ -3,7 +3,6 @@ package com.TeamHEC.LocomotionCommotion.Game;
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -12,6 +11,8 @@ import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
@@ -22,10 +23,6 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Train.CoalTrain;
-import com.TeamHEC.LocomotionCommotion.Train.NuclearTrain;
-import com.TeamHEC.LocomotionCommotion.Train.Route;
-import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
 /**
@@ -43,8 +40,8 @@ public class CoreGameTest {
 	Station Player2Start;	
 	ArrayList<Station> player1StationList;
 	ArrayList<Station> player2StationList;	
-	int turnLimit;
 	CoreGame tester;
+	int turnLimit;	
 	int baseGold;
 	int baseCarriage;	
 	int baseCoal;
@@ -53,9 +50,7 @@ public class CoreGameTest {
 	int baseNuclear;
 	
 	@Before
-	public void setUp()
-	{				
-		
+	public void setUp()	{		
 		Line[] line1 = new Line[3];
 		Line[] line2 = new Line[3];
 		line1[0] = Line.Red;
@@ -84,10 +79,11 @@ public class CoreGameTest {
 		baseOil = 200;
 		baseElectric = 200;
 		baseNuclear = 200;
+		
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 	}
 	
-	// {{ Private Accessors
-	
+	//Private Accessors
 	/**
 	 * Gets the field value from an instance.  The field we wish to retrieve is
 	 * specified by passing the name.  The value will be returned, even if the
@@ -133,15 +129,8 @@ public class CoreGameTest {
 		return m.invoke( instance, params );
 	}
 	
-	// }} Private Accessors
-	
 	@Test
-	public void testCoreGame() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
-		//Good Execution
-		//Execute		
+	public void testCoreGame() throws Exception {		
 		assertTrue("player1Name was incorrectly set", tester.getPlayer1().name == player1Name);
 		assertTrue("player2Name was incorrectly set", tester.getPlayer2().name == player2Name);
 		
@@ -179,9 +168,6 @@ public class CoreGameTest {
 	
 	@Test
 	public void testFlipCoin() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		for(int i=0; i<10000; i++)
 		{
 			int x = (Integer) executeMethod(tester, "flipCoin", new Object[] {} );
@@ -191,9 +177,6 @@ public class CoreGameTest {
 
 	@Test
 	public void testEndTurn() {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		//Setup
 		Player initialPlayer = tester.getPlayerTurn();
 		int initialCount = tester.getTurnCount();
@@ -209,25 +192,16 @@ public class CoreGameTest {
 
 	@Test
 	public void testStartTurn() {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 		
-		fail("Not yet implemented");
 	}
 	
 	@Test
 	public void testEndGame() {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testGetBaseResources() {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		HashMap<String, Resource> checker = tester.getBaseResources(Player1Start);
 		
 		assertTrue("Gold was incorrectly set", checker.get("gold").getValue() == baseGold - Player1Start.getTotalValue());	
@@ -240,61 +214,41 @@ public class CoreGameTest {
 
 	@Test
 	public void testGetGameMap() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		assertTrue(tester.getGameMap() == (WorldMap) getField(tester, "gameMap"));
 	}
 	
 	@Test
 	public void testGetPlayer1() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		assertTrue(tester.getPlayer1() == (Player) getField(tester, "player1"));
 	}
 
 	@Test
 	public void testGetPlayer2() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		assertTrue(tester.getPlayer2() == (Player) getField(tester, "player2"));
 	}
 	
 	@Test
 	public void testGetTurnCount() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		assertTrue(tester.getTurnCount() == (Integer) getField(tester, "turnCount"));
 	}
 
 	@Test
 	public void testGetTurnLimit() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		assertTrue(tester.getTurnLimit() == (Integer) getField(tester, "turnLimit"));
 	}
 	
 	@Test
 	public void testGetPlayerTurn() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		
 		assertTrue(tester.getPlayerTurn() == (Player) getField(tester, "playerTurn"));
 	}
 
 	@Test
 	public void testSaveGame() throws Exception {
-		//Reset
 		String error = "";
-		boolean success = false;
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+		boolean success = false;		
 		try
 		{
-			tester.saveGame("myGame");
+			tester.saveGameSerialize("myGame");
 			success = true;
 		}
 		catch (Exception ex)
@@ -311,12 +265,8 @@ public class CoreGameTest {
 
 	@Test
 	public void testSaveGameJSON() throws Exception {
-		//Reset
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
-		String output = tester.saveGameJSON("ThisGameName");
-		writer.println(output);
-		writer.close();
-		
+		String output = tester.saveGameJSON("ThisGameName");	
+		fail("Not yet implemented");
 	}
 
 }
