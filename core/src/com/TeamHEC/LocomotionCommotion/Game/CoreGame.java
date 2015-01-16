@@ -199,11 +199,9 @@ public class CoreGame implements Serializable {
 	 *            A player's starting location.
 	 */
 	public HashMap<String, Resource> getBaseResources(Station station) {
-		Gold gold = new Gold(1000);
-
-		// NEED TO CHOOSE STATION FIRST!
-		// gold.subValue(station.getTotalValue());
-
+		
+		Gold gold = new Gold(1000);	
+		gold.subValue(station.getTotalValue());
 		Carriage carriage = new Carriage(200);
 		Coal coal = new Coal(200);
 		Oil oil = new Oil(200);
@@ -211,8 +209,7 @@ public class CoreGame implements Serializable {
 		Nuclear nuclear = new Nuclear(200);
 
 		HashMap<String, Resource> dict = new HashMap<String, Resource>();
-		dict.put("gold", gold); // Base gold amount minus the value of the
-								// station bought.
+		dict.put("gold", gold);
 		dict.put("carriage", carriage);
 		dict.put("coal", coal);
 		dict.put("oil", oil);
