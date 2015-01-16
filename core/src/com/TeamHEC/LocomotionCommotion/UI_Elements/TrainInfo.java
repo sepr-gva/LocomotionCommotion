@@ -51,7 +51,7 @@ public class TrainInfo extends Sprite{
 			@Override
 			public void act(float delta){
 				if(started){
-					Game_Map_Manager.planBackground.setVisible(true);
+					Game_Map_Manager.enterRoutingMode();
 					makeVisible(false);
 					started=false;
 				}

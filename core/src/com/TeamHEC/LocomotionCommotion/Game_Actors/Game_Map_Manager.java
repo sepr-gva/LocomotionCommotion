@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.TrainInfo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -35,8 +36,8 @@ public class Game_Map_Manager {
 	public static Label stationLabelFuel,stationLabelName, stationLabelCost;
 	public LabelStyle style;
 
-	public static Sprite planBackground;
-	
+	public static Sprite planBackground, routingModeWindow;
+	public static SpriteButton exitRoutingModeBtn;
 	public static Array<Game_Map_Train> trainBlips = new Array<Game_Map_Train>();
 
 	public Game_Map_Manager(){	}
@@ -54,6 +55,23 @@ public class Game_Map_Manager {
 		planBackground = new Sprite(-1,50,Game_TextureManager.getInstance().game_pause_blackoutscreen);
 		planBackground.setVisible(false);
 		actors.add(planBackground);
+		routingModeWindow = new Sprite(-20,65,Game_TextureManager.getInstance().routingModeWindow);
+		routingModeWindow.setVisible(false);
+		actors.add(routingModeWindow);
+		
+		exitRoutingModeBtn = new SpriteButton(50,100,Game_TextureManager.getInstance().exitroutingModebtn){
+			@Override
+			protected void onClicked(){
+				exitRoutingMode();
+				
+			}
+		};
+		exitRoutingModeBtn.setVisible(false);
+		actors.add(exitRoutingModeBtn);
+		
+		
+		
+		
 		
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
@@ -156,6 +174,17 @@ public class Game_Map_Manager {
 
 		mapInfo.setVisible(infoVisible);
 		stage.addActor(mapInfo);
+	}
+	
+	public static void enterRoutingMode(){
+		planBackground.setVisible(true);
+		routingModeWindow.setVisible(true);
+		exitRoutingModeBtn.setVisible(true);
+	}
+	public static void exitRoutingMode(){
+		planBackground.setVisible(false);
+		routingModeWindow.setVisible(false);
+		exitRoutingModeBtn.setVisible(false);
 	}
 
 	public static void moveInfoBox(float x,float y){
