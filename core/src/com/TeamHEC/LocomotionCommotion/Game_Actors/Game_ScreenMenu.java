@@ -79,7 +79,7 @@ public class Game_ScreenMenu {
 					Game_TextureManager.getInstance().game_menuobject_topbar );
 			actors.add(game_menuobject_topbar);	
 
-			game_menuobject_cornerframe=new Sprite((LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_cornerframe.getWidth())+5,2
+			game_menuobject_cornerframe=new Sprite((LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_cornerframe.getWidth())+3,2
 					,Game_TextureManager.getInstance().game_menuobject_cornerframe);
 			actors.add(game_menuobject_cornerframe);
 
