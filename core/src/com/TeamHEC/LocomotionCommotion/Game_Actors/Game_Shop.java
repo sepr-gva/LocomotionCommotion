@@ -195,7 +195,6 @@ public class Game_Shop {
 		}
 
 	}
-	
 
 	public static int strToInt( StringBuilder stringBuilder ){
 		int i = 0;
@@ -543,10 +542,8 @@ public class Game_Shop {
 			}
 			public void act(float delta){
 				if(started){
-					//Card Factory need !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					OilCard card = new OilCard();
+					OilCard card = new OilCard(null);
 					if(GameScreen.game.getPlayerTurn().getCards().size()<7){
-						System.out.println(GameScreen.game.getPlayerTurn().getCards().size());
 						Game_CardHand.actorManager.addCard(card);
 						GameScreen.game.getPlayerTurn().subGold(1000);
 						Game_ScreenMenu.resourceActorManager.refreshResources();

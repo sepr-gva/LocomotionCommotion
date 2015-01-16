@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class Game_TextureManager {
 	private static Game_TextureManager instance;
 	
+	
 	protected Game_TextureManager()
 	{}
 	
@@ -70,9 +71,13 @@ public class Game_TextureManager {
 	public Texture game_goals_backdrop = new Texture(Gdx.files.internal("gameScreen/game_goalScreen/screen.png"));
 
 	//Cards
+	public Texture game_card_gofasterstripescard = new Texture(Gdx.files.internal("gameScreen/game_cards/gofasterstripecard.png"));
+	public Texture game_card_teleportcard = new Texture(Gdx.files.internal("gameScreen/game_cards/teleportCard.png"));
 	public Texture game_card_goldcard = new Texture(Gdx.files.internal("gameScreen/game_cards/goldCard.png"));
 	public Texture game_card_coalcard = new Texture(Gdx.files.internal("gameScreen/game_cards/coalCard.png"));
 	public Texture game_card_oilcard = new Texture(Gdx.files.internal("gameScreen/game_cards/oilCard.png"));
+	public Texture game_card_electriccard = new Texture(Gdx.files.internal("gameScreen/game_cards/electricCard.png"));
+	public Texture game_card_nuclearcard = new Texture(Gdx.files.internal("gameScreen/game_cards/nuclearCard.png"));
 	public Texture game_card_cardtoggle = new Texture(Gdx.files.internal("gameScreen/game_cards/Cardbtn-1.png"));
 	public Texture game_card_usecardbtn = new Texture(Gdx.files.internal("gameScreen/game_cards/usecardbtn.png"));
 		

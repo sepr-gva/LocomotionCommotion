@@ -192,10 +192,6 @@ public class CoreGame implements Serializable {
 	 */
 	public HashMap<String, Resource> getBaseResources(Station station) {
 		Gold gold = new Gold(1000);
-
-		// NEED TO CHOOSE STATION FIRST!
-		// gold.subValue(station.getTotalValue());
-
 		Coal coal = new Coal(200);
 		Oil oil = new Oil(200);
 		Electric electric = new Electric(200);
@@ -293,10 +289,9 @@ public class CoreGame implements Serializable {
 				new Card[player.getCards().size()]);
 		for (int i = 0; i < cards.length; i++) {
 			Card card = cards[i];
-			finalJson += "{\ncardName\": \"" + card.getName() + "\",\n"
-					+ "\"cardDescription\": \"" + card.getDescription()
-					+ "\",\n" + "\"owner\": \"" + card.getOwner().getName()
-					+ "\",\n" + "\"cardValue\": " + card.getValue() + ",\n},";
+			finalJson += "{\n";
+			finalJson += "\"cardType\": " + card.getClass().getName() + ",\n";
+			finalJson +=  "\"owner\": " + card.getOwner().getName() + ",\n}";
 		}
 		return finalJson = finalJson + "]\n";
 	}

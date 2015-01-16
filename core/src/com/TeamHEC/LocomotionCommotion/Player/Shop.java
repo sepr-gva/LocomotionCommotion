@@ -22,83 +22,70 @@ public class Shop implements Serializable {
 		exchange for Gold. You can also sell existing resources in exchange for Gold.
 	*/
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
-	private ArrayList<Card> cardsForSale = new ArrayList<Card>();
-	
-	private Coal coalForSale;
-	private Electric electricForSale;
-	private Nuclear nuclearForSale;
-	private Oil oilForSale;
-	
-	private HashMap<String, Fuel> fuelSale;
 	
 	private Player customer;
+	private CardFactory cardFactory;
+	
+	private final static int coalPrice = 10;
+	private final static int oilPrice = 20;
+	private final static int electricPrice = 30;
+	private final static int nuclearPrice = 40;
+	private final static int cardPrice = 1000;
 	
 	public Shop(Player customer)
 	{
-		this.customer = customer;
-		
-		coalForSale = new Coal(500);
-		electricForSale = new Electric(500);
-		nuclearForSale = new Nuclear(500);
-		oilForSale = new Oil(500);
-		
-		fuelSale = new HashMap<String, Fuel>();
-		
-		fuelSale.put("Coal", coalForSale);
-		fuelSale.put("Electric", electricForSale);
-		fuelSale.put("Nuclear", nuclearForSale);
-		fuelSale.put("Oil", oilForSale);
-				
-		// Generated wild cards for sale:
-		for(int i = 0; i < 3; i++)
-			cardsForSale.add(CardFactory.getInstance().createRandomCard());
+		this.customer = customer;	
+		cardFactory = new CardFactory(customer);
 	}
 	
-	public void openShop()
-	{
-		// Stuff for setting up UI
-	}
-	
-	// Need validation for price etc..
 	public void buyFuel(String fuelType, int quantity)
-	{
-		Fuel fuel = fuelSale.get(fuelType);
-		customer.addFuel(fuelType, quantity);
-		customer.subGold(fuel.cost * quantity);
+	{		
+		if(fuelType == "Coal" && customer.getGold() > (quantity*coalPrice)) {
+			customer.addFuel(fuelType, quantity);
+			customer.subGold(quantity * coalPrice);
+		}
+		if(fuelType == "Oil" && customer.getGold() > (quantity*oilPrice)) {
+			customer.addFuel(fuelType, quantity);
+			customer.subGold(quantity * oilPrice);
+		}
+		if(fuelType == "Electric" && customer.getGold() > (quantity*electricPrice)) {
+			customer.addFuel(fuelType, quantity);
+			customer.subGold(quantity * electricPrice);
+		}
+		if(fuelType == "Nuclear" && customer.getGold() > (quantity*nuclearPrice)) {
+			customer.addFuel(fuelType, quantity);
+			customer.subGold(quantity * nuclearPrice);
+		}						
 	}
 		
 	public void sellFuel(String fuelType, int quantity)
 	{
-		Fuel fuel = fuelSale.get(fuelType);
-		customer.subFuel(fuelType, quantity);
-		customer.addGold(fuel.cost * quantity);
+		if(fuelType == "Coal" && customer.getFuel(fuelType) > quantity) {
+			customer.subFuel(fuelType, quantity);
+			customer.addGold(quantity * coalPrice);
+		}
+		if(fuelType == "Oil" && customer.getFuel(fuelType) > quantity) {
+			customer.subFuel(fuelType, quantity);
+			customer.addGold(quantity * oilPrice);
+		}
+		if(fuelType == "Electric" && customer.getFuel(fuelType) > quantity) {
+			customer.subFuel(fuelType, quantity);
+			customer.addGold(quantity * electricPrice);
+		}
+		if(fuelType == "Nuclear" && customer.getFuel(fuelType) > quantity) {
+			customer.subFuel(fuelType, quantity);
+			customer.addGold(quantity * nuclearPrice);
+		}
 	}
-		
-	public void upgradeTrainType(Train train)
+
+	public void buyCard()
 	{
-		// Not sure quite to do this as they're different classes for each
-		// need to fetch all of the current trains stats and make a new object
-		// replace accordingly in the Player trains list
-	}
-	
-	// ========== See comments ==============
-	
-	public void purchaseCard(Card card)
-	{
-		// ** need a try catch or something for insufficient funds exception **
-		
-		// Sets the owner to the card and subtract gold from player
-		customer.purchaseCard(card);
-		customer.subGold(card.getValue());
-		
-		// Replenish Shop with another card (needs testing):
-		int cardIndex = cardsForSale.indexOf(card);
-		cardsForSale.remove(card);
-		cardsForSale.add(cardIndex, CardFactory.getInstance().createRandomCard());
+		if (customer.cards.size() < 7 && customer.getGold() > 999)
+		{			
+			// Sets the owner to the card and subtract gold from player
+			customer.addCard(cardFactory.createAnyCard());
+			customer.subGold(1000);		
+		}
 	}
 }
