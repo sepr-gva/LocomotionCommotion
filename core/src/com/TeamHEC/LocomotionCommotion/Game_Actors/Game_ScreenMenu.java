@@ -44,7 +44,7 @@ public class Game_ScreenMenu {
 		public  SpriteButton game_menuobject_traindepotbtn;
 
 		public  SpriteButton game_menuobject_goalscreenbtn;
-		public  Label playerScore;
+		public  Label playerScore, currentPlayerName;
 
 		public int menuobjectsStageStart, menuobjectsStageEnd;
 
@@ -66,14 +66,15 @@ public class Game_ScreenMenu {
 			playerScore = new Label(null, style);
 			playerScore.setColor(0,0,0,1);
 
-			playerScore.setText(GameScreen.player1name+"    " + GameScreen.player1score +
-					"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.player2name
-					+"                      "+" it's your turn ");
+			playerScore.setText("");
 			playerScore.setX(600);
 			playerScore.setY(Gdx.graphics.getHeight()- playerScore.getHeight() -45);
 
-
-
+			currentPlayerName = new Label(null,style);
+			currentPlayerName.setColor(1,1,1,1);
+			currentPlayerName.setX(Gdx.graphics.getWidth()-260);
+			currentPlayerName.setY(280);
+			
 			game_menuobject_topbar = new Sprite(-20, Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_menuobject_topbar.getHeight() +10,
 					Game_TextureManager.getInstance().game_menuobject_topbar );
 			actors.add(game_menuobject_topbar);	
@@ -164,6 +165,7 @@ public class Game_ScreenMenu {
 					Game_ScreenMenu.actorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + GameScreen.player1score +
 							"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName()
 							+"     "+GameScreen.game.getPlayerTurn().getName()+" it's your turn ");
+					Game_ScreenMenu.actorManager.currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
 				}
 			};
 			actors.add(game_menuobject_endturnbutton);
@@ -283,9 +285,11 @@ public class Game_ScreenMenu {
 				}
 			};
 			actors.add(game_menuobject_goalscreenbtn);
-
+			
+			//Add Labels
 			actors.add(playerScore);
-
+			actors.add(currentPlayerName);
+			
 			menuobjectsStageStart = stage.getActors().size;
 			menuobjectsStageEnd = menuobjectsStageStart+ actors.size-1;
 			for (Actor a : actors){

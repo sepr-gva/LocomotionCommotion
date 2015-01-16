@@ -84,8 +84,8 @@ public class Game_startGameManager {
 		//Handle Text within Game
 		//Score and Who's Turn it is
 		Game_ScreenMenu.actorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + GameScreen.player1score +
-				"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName()
-				+"     "+GameScreen.game.getPlayerTurn().getName()+" it's your turn ");;
+				"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName());
+		Game_ScreenMenu.actorManager.currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
 		//Resources
 		Game_ScreenMenu.resourceActorManager.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
 		Game_ScreenMenu.resourceActorManager.coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
@@ -97,31 +97,11 @@ public class Game_startGameManager {
 		Game_ScreenMenu.resourceActorManager.game_card_togglebtn.setVisible(true);
 		Game_ScreenMenu.resourceActorManager.cardQuant.setVisible(true);
 		Game_goal_PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
-		enterSetGoals();
+		fillGoalScreen();
 	}
 
-	public static void enterSetGoals(){
-//		//TEMP GOALS
+	public static void fillGoalScreen(){
 		ArrayList<Goal> goals = new ArrayList<Goal>();
-//		Goal goal1 = new Goal(WorldMap.getInstance().LONDON, WorldMap.getInstance().MOSCOW, null, "Cargo", 100);
-//		goals.add(goal1);
-//		Goal goal2 = new Goal(WorldMap.getInstance().LISBON, WorldMap.getInstance().HELSINKI, null, "Cargo",200);
-//		goals.add(goal2);
-//		Goal goal3 = new Goal(WorldMap.getInstance().BERLIN, WorldMap.getInstance().MOSCOW, null, "Cargo",200);
-//		goals.add(goal3);
-//		Goal goal4 = new Goal(WorldMap.getInstance().PARIS, WorldMap.getInstance().BERLIN, null, "Cargo", 100);
-//		goals.add(goal4);
-//		Goal goal5 = new Goal(WorldMap.getInstance().OSLO, WorldMap.getInstance().MADRID, null, "Cargo",200);
-//		goals.add(goal5);
-//		Goal goal6 = new Goal(WorldMap.getInstance().ATHENS, WorldMap.getInstance().VILNIUS, null, "Cargo",200);
-//		goals.add(goal6);
-//		Goal goal7 = new Goal(WorldMap.getInstance().STOCKHOLM, WorldMap.getInstance().VIENNA, null, "Cargo", 100);
-//		goals.add(goal7);
-//		Goal goal8 = new Goal(WorldMap.getInstance().BERN, WorldMap.getInstance().REYKJAVIK, null, "Cargo",200);
-//		goals.add(goal8);
-//		Goal goal9 = new Goal(WorldMap.getInstance().MONACO, WorldMap.getInstance().WARSAW, null, "Cargo",200);
-//		goals.add(goal9);
-////TEMP GOALS
 		GoalFactory factory = new GoalFactory();
 		
 		for (int i=0; i<9; i++){
