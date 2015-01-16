@@ -1,7 +1,10 @@
 package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
+import java.util.ArrayList;
+
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_TextureManager;
+import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -22,6 +25,8 @@ public class TrainInfo extends Sprite{
 	
 	public Array<Actor> actors = new Array<Actor>();
 	
+	public Train train;
+	
 	public TrainInfo()
 	{
 		super(0, 0, Game_Map_TextureManager.getInstance().trainInfo);
@@ -41,20 +46,13 @@ public class TrainInfo extends Sprite{
 		routeRemaining = new Label(null, style);
 		
 		planRoute = new SpriteButton(0, 0, Game_Map_TextureManager.getInstance().trainInfoPlanRoute){
+			
 			@Override
 			protected void onClicked()
 			{
-				started = true;
-			}
-			
-
-			@Override
-			public void act(float delta){
-				if(started){
-					Game_Map_Manager.planBackground.setVisible(true);
-					makeVisible(false);
-					started=false;
-				}
+				Game_Map_Manager.planBackground.setVisible(true);
+				highlightAdjacent();
+				makeVisible(false);
 			}
 		};
 		
@@ -64,6 +62,20 @@ public class TrainInfo extends Sprite{
 		actors.add(planRoute);
 	}
 	
+	/**
+	 * Makes the adjacent MapObjs to the Train clickable to add to route...
+	 */
+	public void highlightAdjacent()
+	{
+		ArrayList<Connection> adjacent = train.route.getAdjacentConnections();
+		
+		for(Connection c : adjacent)
+		{
+			c.getDestination().getActor().setRouteAvailable(train, c, true);
+			c.getDestination().getActor().toggleHighlight(true);
+		}
+	}
+	
 	public Array<Actor> getActors()
 	{
 		return actors;
@@ -71,6 +83,8 @@ public class TrainInfo extends Sprite{
 	
 	public void showLabel(Train train)
 	{
+		this.train = train;
+		
 		float x = train.route.getTrainPos().x + 30;
 		float y = train.route.getTrainPos().y - 50;
 		

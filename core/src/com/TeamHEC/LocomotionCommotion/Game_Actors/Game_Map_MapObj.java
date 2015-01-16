@@ -1,5 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import com.TeamHEC.LocomotionCommotion.Map.Connection;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -11,6 +13,10 @@ public class Game_Map_MapObj extends Actor{
 	public Texture texture, toggleTexture1, toggleTexture2;
 	public float actorX, actorY;
 	public boolean started = false, highlighted = false;
+	
+	private boolean routeAvailable = false;
+	private Train routeTrain;
+	private Connection routeConnection;
 	
 	public float offset = 0;
 	
@@ -42,6 +48,33 @@ public class Game_Map_MapObj extends Actor{
 				((Game_Map_MapObj)event.getTarget()).toggleHighlight(false);	
 			}
 		});
+	}
+	
+	public boolean routeAvailable()
+	{
+		return routeAvailable;
+	}
+	
+	public void setRouteAvailable(boolean available)
+	{
+		routeAvailable = available;
+	}
+	
+	public void setRouteAvailable(Train train, Connection connection, boolean available)
+	{
+		routeAvailable = available;
+		routeTrain = train;
+		routeConnection = connection;
+	}
+	
+	public Train getRouteTrain()
+	{
+		return routeTrain;
+	}
+	
+	public Connection getRouteConnection()
+	{
+		return routeConnection;
 	}
 	
 	protected void onClicked()

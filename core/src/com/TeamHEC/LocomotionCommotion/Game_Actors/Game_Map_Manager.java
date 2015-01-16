@@ -87,11 +87,8 @@ public class Game_Map_Manager {
 		trainInfoActors.add(trainInfo);
 		trainInfoActors.addAll(trainInfo.getActors());
 
-		//=========================================================
-
 		stationSelect = new Game_Map_StationBtn(0, 0, Game_Map_TextureManager.getInstance().stationSelect);
 		infoactors.add(stationSelect);
-		//=========================================================
 
 		//Stuff for Labels
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
