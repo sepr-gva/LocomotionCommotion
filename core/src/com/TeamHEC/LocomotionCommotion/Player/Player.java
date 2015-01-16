@@ -170,7 +170,7 @@ public class Player implements Serializable, RouteListener{
 		{
 			if ((this.trains.get(j).isInStation() && this.trains.get(j).route.getStation().getOwner() == null) && (this.trains.get(j).getRoute().getStation() == station))
 			{
-				validPurchase = true;
+				validPurchase = true;				
 			}
 		}
 		if (validPurchase)
