@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Locomotion Commotion</title>
+
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    
+</head>
+<body>
+<nav>
+    <a href="index.html">Home</a>
+    <a href="dev.html">Development</a>
+    <a href="#" class="selected">FAQs</a>
+    <a href="team.html">Team</a>
+</nav>
+<div class="main">
+
+<h2 id="setup-problems">Setup Problems</h2>
+<h4 id="eclipse-says-android-development-tools-will-be-ignored-because-it-is-already-installed-and-updates-are-not-permitted-when-trying-to-install-the-android-plugin-">Eclipse says &quot;Android Development Tools will be ignored because it is already installed, and updates are not permitted.&quot; when trying to install the Android Plugin.</h4>
+<h4 id="eclipse-says-that-the-location-of-the-android-sdk-has-not-been-setup-in-the-preferences">Eclipse says that the location of the Android SDK has not been setup in the preferences</h4>
+<ol>
+<li>Open Eclipse preferences (Window -&gt; Preferences)</li>
+<li>Select Android</li>
+<li>Browse for the SDK folder. Click Apply.</li>
+<li>Click OK.</li>
+</ol>
+<h4 id="i-get-the-error-error-in-runnable-creating-gradle-model-when-trying-to-import-the-project-">I get the Error &quot;Error in runnable &#39;Creating Gradle model&#39; when trying to Import the project.</h4>
+<p>Eclipse 4.4.1 does not work with the Gradle Eclipse plugin 3.6.). The solution is to edit the eclipse.ini file for your install.</p>
+<ol>
+<li>Close Eclipse</li>
+<li>Open your installation location for Eclipse</li>
+<li>Add the following lines to the ini:<ul>
+<li>Dosgi.configuration.area.default=null</li>
+<li>Dosgi.user.area.default=null</li>
+<li>Dosgi.user.area=@user.dir</li>
+</ul>
+</li>
+<li>Restart Eclipse</li>
+</ol>
+<p>This should fix the problem. However, if you encountered this problem when trying to use the Computer Science computers and their version of Eclipse you will have to install a fresh copy of the latest version of Eclipse along with the relevant plugins.</p>
+<h2 id="other-problems-">Other Problems?</h2>
+<p>If you have any other concerns please contact Callum Hewitt at <a href="mailto:ch1194@york.ac.uk">ch1194@york.ac.uk</a>. Please be specific in the description of the problem as this means Callum can help to solve your issue faster.</p>
+</div>
+</body>
+</html>
