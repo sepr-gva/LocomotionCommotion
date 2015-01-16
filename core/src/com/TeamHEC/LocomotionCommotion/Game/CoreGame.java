@@ -94,12 +94,12 @@ public class CoreGame implements Serializable {
 		player1.isPlayer1 = true;
 		player2.isPlayer1 = false;
 
-		player1.purchaseStation(Player1StationStart);
-		player2.purchaseStation(Player2StationStart);
-
 		// Create players First Train depending on the station selected:
 		createFirstTrain(player1, Player1StationStart);
 		createFirstTrain(player2, Player2StationStart);
+		
+		player1.purchaseStation(Player1StationStart);
+		player2.purchaseStation(Player2StationStart);
 
 		// Initialise Map and other Game Resources
 

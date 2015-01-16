@@ -10,12 +10,14 @@ import java.util.HashMap;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 import com.TeamHEC.LocomotionCommotion.Resource.Carriage;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
@@ -31,7 +33,7 @@ import com.TeamHEC.LocomotionCommotion.Train.OilTrain;
 import com.TeamHEC.LocomotionCommotion.Train.Route;
 
 
-
+@RunWith(GdxTestRunner.class)
 public class PlayerTest {
 	
 	String name;
@@ -56,7 +58,7 @@ public class PlayerTest {
 	public void setUp() throws Exception {
 		name = "Player 1";
 		points = 0;
-		gold = new Gold(200);
+		gold = new Gold(1000);
 		coal = new Coal(200);
 		oil = new Oil(200);
 		electric = new Electric(200);
@@ -212,7 +214,32 @@ public class PlayerTest {
 
 	@Test
 	public void testPurchaseStation() {
-		fail("Not yet implemented");
+		tester = new Player(name, points, gold, coal, electric, nuclear, oil, carriages, cards,	goals, trains);
+		Station testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
+		tester.trains.add(new OilTrain(0, 0, true, new Route(testStation), tester));
+		tester.purchaseStation(testStation);
+		assertTrue("Station 1 was not purchased correctly", tester.stations.get(0) == testStation);
+		assertTrue("incorrect gold value was removed", tester.getGold() == (1000 - testStation.getBaseValue()));
+		assertTrue("Lines are added incorrectly", tester.lines[0] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[1] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[2] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[3] == 1);
+		assertTrue("Lines are added incorrectly", tester.lines[4] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[5] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[6] == 1);
+		assertTrue("Lines are added incorrectly", tester.lines[7] == 1);
+		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Red, Line.Red}, 50, 731f, 560f);
+		tester.trains.add(new OilTrain(0, 0, true, new Route(testStation2), tester));
+		tester.purchaseStation(testStation2);
+		assertTrue("Station 2 was not purchased correctly", tester.stations.get(1) == testStation2);
+		assertTrue("Lines are added incorrectly", tester.lines[0] == 1);
+		assertTrue("Lines are added incorrectly", tester.lines[1] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[2] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[3] == 2);
+		assertTrue("Lines are added incorrectly", tester.lines[4] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[5] == 0);
+		assertTrue("Lines are added incorrectly", tester.lines[6] == 1);
+		assertTrue("Lines are added incorrectly", tester.lines[7] == 1);
 	}
 
 	@Test
@@ -228,9 +255,13 @@ public class PlayerTest {
 	@Test
 	public void testLineBonuses() {
 		tester = new Player(name, points, gold, coal, electric, nuclear, oil, carriages, cards,	goals, trains);
-		trains.add(new OilTrain(0, 0, true, new Route(stations.get(0)), tester));
-		stations.add(new Station("London", 850, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f));
-		assertTrue("bonuses were incorrectly set", tester.stations.get(0).getRentValueMod() == ((int)tester.stations.get(0).getRentValue() * 0.05));
+		Station testStation = new Station("London", 850, new Coal(500), 100, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f);
+		tester.trains.add(new OilTrain(0, 0, true, new Route(testStation), tester));
+		tester.purchaseStation(testStation);
+		tester.lineBonuses();
+		assertTrue("Resource out != 100", tester.stations.get(0).getBaseResourceOut() == 100);
+		assertTrue("scaling of base value fails", (int)(tester.stations.get(0).getBaseResourceOut() * 0.05) == 5);
+		assertTrue("bonuses were incorrectly set", tester.stations.get(0).getResourceOutMod() == (int)(tester.stations.get(0).getBaseResourceOut() * 0.05));
 	}
 
 	@Test

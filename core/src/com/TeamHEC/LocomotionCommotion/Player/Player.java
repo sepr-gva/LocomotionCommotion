@@ -44,13 +44,13 @@ public class Player implements Serializable, RouteListener{
 	public Carriage carriages;
 	public ArrayList<Station> stations = new ArrayList<Station>();
 	public int[] lines = new int[8];
-	
+
 	private HashMap<String, Fuel> playerFuel;
-	
+
 	public boolean isPlayer1;
-	
+
 	public Player(String name, int points, Gold gold, Coal coal, Electric electric, Nuclear nuclear, Oil oil, 
-				Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains)
+			Carriage carriage, ArrayList<Card> cards, ArrayList<Goal> goals, ArrayList<Train> trains)
 	{
 		this.name = name;
 		this.points = points;
@@ -69,26 +69,26 @@ public class Player implements Serializable, RouteListener{
 		{
 			this.lines[i] = 0;
 		}
-		
+
 		playerFuel = new HashMap<String, Fuel>();
-		
+
 		playerFuel.put("Coal", this.coal);
 		playerFuel.put("Electric", this.electric);
 		playerFuel.put("Nuclear", this.nuclear);
 		playerFuel.put("Oil", this.oil);
-		
+
 		// Registers listeners for Routes:
 		for(int i = 0; i < trains.size(); i++)
 		{
 			trains.get(i).route.register(this);
 		}
 	}
-		
+
 	public String getName()
 	{
 		return name;
 	}
-	
+
 	//Fuel	
 	public int getFuel(String fuelType)
 	{
@@ -99,12 +99,12 @@ public class Player implements Serializable, RouteListener{
 	{
 		playerFuel.get(fuelType).addValue(quantity);
 	}
-	
+
 	public void subFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).subValue(quantity);
 	}
-	
+
 	//Gold
 	public int getGold()
 	{
@@ -115,17 +115,17 @@ public class Player implements Serializable, RouteListener{
 	{
 		gold.setValue(gold.getValue() + value);
 	}
-	
+
 	public void subGold(int value)
 	{
 		gold.setValue(gold.getValue() - value);
 	}
-	
+
 	//Carriages
 	public int getCarriage() {		
 		return carriages.getValue();
 	}
-	
+
 	//Cards
 	// Specific cards should be purchased in the shop
 	// This can be used after completing Goals
@@ -139,7 +139,7 @@ public class Player implements Serializable, RouteListener{
 			cards.add(mCard);
 		}
 	}
-	
+
 	// Called when a card is purchased in the shop
 	public void purchaseCard(Card card)
 	{
@@ -149,17 +149,17 @@ public class Player implements Serializable, RouteListener{
 			cards.add(card); // Adds card to the players list of owned cards
 		}
 	}
-	
+
 	public int getNumCards()
 	{
 		return cards.size();
 	}
-	
+
 	public ArrayList<Card> getCards()
 	{
 		return cards;
 	}
-	
+
 	//Stations
 	public int getNumStations()
 	{
@@ -170,54 +170,70 @@ public class Player implements Serializable, RouteListener{
 	{
 		return stations;
 	}
-	
+
 	public void purchaseStation(Station station)
 	{
-		stations.add(station);
-		this.subGold(station.getTotalValue());
-		for (int i=0; i<station.getLineType().length; i++)
-		{	
-			if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
-				//Line is an array of 3 line colours, this loop will add the first line colour
-				//then if a station is on another line of a different colour it will add that
-				//hence when i > 0 (checking the second colour) AND is a different colour to the previous colour
-				//add that colour to the players lines
+		boolean validPurchase = false;
+		for (int j=0; j < this.trains.size(); j ++)
+		{
+			if ((this.trains.get(j).isInStation() && this.trains.get(j).route.getStation().getOwner() == null) && (this.trains.get(j).getRoute().getStation() == station))
 			{
-				switch(station.getLineType()[i])
-				{ //keeps track of how many of a line the player owns
-				case Red:
-					lines[0] += 1;	
-					break;
-				case Blue:
-					lines[1] += 1;
-					break;
-				case Green:
-					lines[2] += 1;
-					break;
-				case Yellow:
-					lines[3] += 1;
-					break;
-				case Purple: 
-					lines[4] += 1;
-					break;
-				case Black:
-					lines[5] += 1;
-					break;
-				case Brown:
-					lines[6] += 1;
-					break;
-				case Orange:
-					lines[7] += 1;
-					break;
-				default:
-					throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
-				}
+				validPurchase = true;
 			}
 		}
-		station.purchaseStation(this);
-		this.lineBonuses();
+		if (validPurchase)
+		{
+			stations.add(station);
+			this.subGold(station.getTotalValue());
+			for (int i=0; i<station.getLineType().length; i++)
+			{	
+				if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
+					//Line is an array of 3 line colours, this loop will add the first line colour
+					//then if a station is on another line of a different colour it will add that
+					//hence when i > 0 (checking the second colour) AND is a different colour to the previous colour
+					//add that colour to the players lines
+				{
+					switch(station.getLineType()[i])
+					{ //keeps track of how many of a line the player owns
+					case Red:
+						lines[0] += 1;	
+						break;
+					case Blue:
+						lines[1] += 1;
+						break;
+					case Green:
+						lines[2] += 1;
+						break;
+					case Yellow:
+						lines[3] += 1;
+						break;
+					case Purple: 
+						lines[4] += 1;
+						break;
+					case Black:
+						lines[5] += 1;
+						break;
+					case Brown:
+						lines[6] += 1;
+						break;
+					case Orange:
+						lines[7] += 1;
+						break;
+					default:
+						throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
+					}
+				}
+			}
+			station.purchaseStation(this);
+			this.lineBonuses();
+		}
+		else
+		{
+			//error message?
+		}
+		
 	}
-	
+
 	public void sellStation(Station station)
 	{
 		for (int i=0; i<3; i++)
@@ -262,19 +278,19 @@ public class Player implements Serializable, RouteListener{
 		station.purchaseStation(null);
 		this.lineBonuses();
 	}
-	
+
 	@Override
 	public void stationPassed(Station station) {
 		// TODO Auto-generated method stub
-		
+
 		// STATION TAX:
 		if(station.getOwner() != this && station.getOwner() != null)
 		{
 			this.subGold(station.getTotalRent());
 		}
-		
+
 	}
-	
+
 	public void lineBonuses() //MUST BE CALLED BEFORE YOU ACCESS A STATIONS VALUE, RENT OR RESOURCE AMOUNTS
 	{
 		for (int i = 0; i<stations.size(); i++)
@@ -288,60 +304,60 @@ public class Player implements Serializable, RouteListener{
 			int black = 0;
 			int brown = 0;
 			int orange = 0;
-			
+
 			for (int j = 0; j < currentStation.getLineType().length; j++)
 			{
 				if (j == 0 || ((j > 0) && (currentStation.getLineType()[j] != currentStation.getLineType()[j-1])))
 				{
 					switch(currentStation.getLineType()[j])
 					{	
-						case Red:
-							red = lines[0];
-							break;
-						case Blue:
-							blue = lines[1];
-							break;
-						case Green:
-							green = lines[2];
-							break;
-						case Yellow:
-							yellow = lines[3];
-							break;
-						case Purple:
-							purple = lines[4];
-							break;
-						case Black:
-							black = lines[5];
-							break;
-						case Brown:
-							brown = lines[6];
-							break;
-						case Orange:
-							orange = lines[7];
-							break;
-						default:
-							throw new IllegalArgumentException("Could not find line associated with value");
+					case Red:
+						red = lines[0];
+						break;
+					case Blue:
+						blue = lines[1];
+						break;
+					case Green:
+						green = lines[2];
+						break;
+					case Yellow:
+						yellow = lines[3];
+						break;
+					case Purple:
+						purple = lines[4];
+						break;
+					case Black:
+						black = lines[5];
+						break;
+					case Brown:
+						brown = lines[6];
+						break;
+					case Orange:
+						orange = lines[7];
+						break;
+					default:
+						throw new IllegalArgumentException("Could not find line associated with value");
 					}
 				}
 			}
-			currentStation.setRentValueMod((int)((red + blue + green + yellow + purple + black + brown + orange) * 0.05));
-			currentStation.setResourceOutMod((int)((red + blue + green + yellow + purple + black + brown + orange) * 0.05));
-			currentStation.setValueMod((int)((red + blue + green + yellow + purple + black + brown + orange) * 0.05));
+			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
+			currentStation.setResourceOutMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseResourceOut() * 0.05)));
+			currentStation.setValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getValueMod() * 0.05)));
 		}
 	}
-	
+
 	public void stationRewards()
 	{
-		
+
 		for (int i = 0; i < stations.size(); i++)
 		{
 			Station currentStation = stations.get(i);
 			this.addFuel(currentStation.getResourceString(), currentStation.getTotalResourceOut());
 		}
 	}
-	
-	
-	
+
+
+
 	//Shop
 	public void accessShop()
 	{
@@ -350,12 +366,12 @@ public class Player implements Serializable, RouteListener{
 
 	//Goals
 	public void accessGoals(){}
-	
+
 	public ArrayList<Goal> getGoals()
 	{
 		return goals;
 	}
-	
+
 	//Trains
 	public ArrayList<Train> getTrains()
 	{

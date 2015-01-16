@@ -194,13 +194,20 @@ public class Route{
 	 */
 	public boolean inStation()
 	{
-		Connection currentConnection = route.get(routeIndex);
-		float connectionLength = currentConnection.getLength();
-		
-		if(connectionTravelled == 0 || connectionTravelled == connectionLength)
+		if(route.isEmpty())
+		{
 			return true;
+		}
 		else
-			return false;
+		{
+			Connection currentConnection = route.get(routeIndex);
+			float connectionLength = currentConnection.getLength();
+			
+			if(connectionTravelled == 0 || connectionTravelled == connectionLength)
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/**
@@ -210,12 +217,19 @@ public class Route{
 	{
 		if(inStation())
 		{
-			float connectionLength = route.get(routeIndex).getLength();
-			
-			if(connectionTravelled == 0)
-				return route.get(routeIndex).getStartMapObj().getStation();
-			else if(connectionTravelled == connectionLength)
-				return route.get(routeIndex).getDestination().getStation();
+			if(route.isEmpty())
+			{
+				return currentMapObj.getStation();
+			}
+			else
+			{
+				float connectionLength = route.get(routeIndex).getLength();
+				
+				if(connectionTravelled == 0)
+					return route.get(routeIndex).getStartMapObj().getStation();
+				else if(connectionTravelled == connectionLength)
+					return route.get(routeIndex).getDestination().getStation();
+			}
 		}
 		return null;
 	}
