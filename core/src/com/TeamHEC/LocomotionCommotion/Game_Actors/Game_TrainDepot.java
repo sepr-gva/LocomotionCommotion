@@ -36,7 +36,7 @@ public class Game_TrainDepot {
 			actors.clear();
 			stageStart= 0;
 			stageEnd =0;
-			game_traindepot_backdrop = new Game_Asset(-1,-20,Game_TextureManager.getInstance().game_shop_backdrop);
+			game_traindepot_backdrop = new Game_Asset(-20,-20,Game_TextureManager.getInstance().game_shop_backdrop);
 			actors.add(game_traindepot_backdrop);
 			game_traindepot_backbtn = new Game_traindepot_BackBtn();
 			actors.add(game_traindepot_backbtn);

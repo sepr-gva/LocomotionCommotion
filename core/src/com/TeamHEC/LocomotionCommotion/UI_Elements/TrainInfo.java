@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.badlogic.gdx.Gdx;
@@ -39,7 +40,23 @@ public class TrainInfo extends Sprite{
 		speed = new Label(null, style);
 		routeRemaining = new Label(null, style);
 		
-		planRoute = new SpriteButton(0, 0, Game_Map_TextureManager.getInstance().trainInfoPlanRoute);
+		planRoute = new SpriteButton(0, 0, Game_Map_TextureManager.getInstance().trainInfoPlanRoute){
+			@Override
+			protected void onClicked()
+			{
+				started = true;
+			}
+			
+
+			@Override
+			public void act(float delta){
+				if(started){
+					Game_Map_Manager.planBackground.setVisible(true);
+					makeVisible(false);
+					started=false;
+				}
+			}
+		};
 		
 		actors.add(name);
 		actors.add(speed);
@@ -59,6 +76,7 @@ public class TrainInfo extends Sprite{
 		
 		this.setPosition(x, y);
 		planRoute.setPosition(x + 22, y + 15);
+		planRoute.refreshBounds();
 		
 		name.setPosition(x + 32, y + 142, Align.center);
 		speed.setPosition(x + 93, y + 97, Align.center);

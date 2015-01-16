@@ -142,7 +142,7 @@ public class Station extends MapObj{
 	 */
 	public int getTotalResourceOut()
 	{
-		return baseResourceOut * (1 + resourceOutMod);
+		return baseResourceOut + resourceOutMod;
 	}
 	
 	public int getBaseRentValue()
@@ -170,7 +170,7 @@ public class Station extends MapObj{
 	 */
 	public int getTotalRent()
 	{
-		return rentValue * (1 + rentValueMod);
+		return rentValue + rentValueMod ;
 	}
 	
 	/**

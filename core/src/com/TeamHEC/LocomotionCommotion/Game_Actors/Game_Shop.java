@@ -282,7 +282,7 @@ public class Game_Shop {
 
 		public ShopHomeScreen(){
 			this.actors = new ArrayList<Actor>();
-			Game_Asset shopscreen = new Game_Asset(45, 8, Game_TextureManager.getInstance().game_shop_startscreen);
+			Game_Asset shopscreen = new Game_Asset(45, 17, Game_TextureManager.getInstance().game_shop_startscreen);
 			this.actors.add(shopscreen);
 			ShopBackBtn back = new ShopBackBtn();
 			this.actors.add(back);
