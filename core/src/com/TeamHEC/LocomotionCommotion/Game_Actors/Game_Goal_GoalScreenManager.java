@@ -43,7 +43,7 @@ public class Game_Goal_GoalScreenManager {
 	//public static Game_goal_RefreshGoals refreshGoals; 
 	//Ints
 	public static int  stagestart, goalActors;
-	public static int row1 = 580, row2 = row1-220, row3 = row2-220;
+	public static int row1 = 630, row2 = row1-220, row3 = row2-220;
 	public static int col1 = 670, col2 = col1+320, col3 = col2+320;
 	//Label and LabelStyle
 	public static Label gLabel1,gLabel2,gLabel3,gLabel4,gLabel5,gLabel6,gLabel7,gLabel8,gLabel9;

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
-import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.Goal.GoalFactory;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -101,27 +101,32 @@ public class Game_startGameManager {
 	}
 
 	public static void enterSetGoals(){
-		//TEMP GOALS
+//		//TEMP GOALS
 		ArrayList<Goal> goals = new ArrayList<Goal>();
-		Goal goal1 = new Goal(WorldMap.getInstance().LONDON, WorldMap.getInstance().MOSCOW, null, "Cargo", 100);
-		goals.add(goal1);
-		Goal goal2 = new Goal(WorldMap.getInstance().LISBON, WorldMap.getInstance().HELSINKI, null, "Cargo",200);
-		goals.add(goal2);
-		Goal goal3 = new Goal(WorldMap.getInstance().BERLIN, WorldMap.getInstance().MOSCOW, null, "Cargo",200);
-		goals.add(goal3);
-		Goal goal4 = new Goal(WorldMap.getInstance().PARIS, WorldMap.getInstance().BERLIN, null, "Cargo", 100);
-		goals.add(goal4);
-		Goal goal5 = new Goal(WorldMap.getInstance().OSLO, WorldMap.getInstance().MADRID, null, "Cargo",200);
-		goals.add(goal5);
-		Goal goal6 = new Goal(WorldMap.getInstance().ATHENS, WorldMap.getInstance().VILNIUS, null, "Cargo",200);
-		goals.add(goal6);
-		Goal goal7 = new Goal(WorldMap.getInstance().STOCKHOLM, WorldMap.getInstance().VIENNA, null, "Cargo", 100);
-		goals.add(goal7);
-		Goal goal8 = new Goal(WorldMap.getInstance().BERN, WorldMap.getInstance().REYKJAVIK, null, "Cargo",200);
-		goals.add(goal8);
-		Goal goal9 = new Goal(WorldMap.getInstance().MONACO, WorldMap.getInstance().WARSAW, null, "Cargo",200);
-		goals.add(goal9);
-//TEMP GOALS
+//		Goal goal1 = new Goal(WorldMap.getInstance().LONDON, WorldMap.getInstance().MOSCOW, null, "Cargo", 100);
+//		goals.add(goal1);
+//		Goal goal2 = new Goal(WorldMap.getInstance().LISBON, WorldMap.getInstance().HELSINKI, null, "Cargo",200);
+//		goals.add(goal2);
+//		Goal goal3 = new Goal(WorldMap.getInstance().BERLIN, WorldMap.getInstance().MOSCOW, null, "Cargo",200);
+//		goals.add(goal3);
+//		Goal goal4 = new Goal(WorldMap.getInstance().PARIS, WorldMap.getInstance().BERLIN, null, "Cargo", 100);
+//		goals.add(goal4);
+//		Goal goal5 = new Goal(WorldMap.getInstance().OSLO, WorldMap.getInstance().MADRID, null, "Cargo",200);
+//		goals.add(goal5);
+//		Goal goal6 = new Goal(WorldMap.getInstance().ATHENS, WorldMap.getInstance().VILNIUS, null, "Cargo",200);
+//		goals.add(goal6);
+//		Goal goal7 = new Goal(WorldMap.getInstance().STOCKHOLM, WorldMap.getInstance().VIENNA, null, "Cargo", 100);
+//		goals.add(goal7);
+//		Goal goal8 = new Goal(WorldMap.getInstance().BERN, WorldMap.getInstance().REYKJAVIK, null, "Cargo",200);
+//		goals.add(goal8);
+//		Goal goal9 = new Goal(WorldMap.getInstance().MONACO, WorldMap.getInstance().WARSAW, null, "Cargo",200);
+//		goals.add(goal9);
+////TEMP GOALS
+		GoalFactory factory = new GoalFactory();
+		
+		for (int i=0; i<9; i++){
+				goals.add(factory.CreateRandomGoal());
+		}
 		Game_Goal_GoalScreenManager.AddGoalToScreen(goals);
 	}
 	public static void reset(){

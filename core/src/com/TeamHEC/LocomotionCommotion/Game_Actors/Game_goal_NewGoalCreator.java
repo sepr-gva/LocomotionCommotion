@@ -23,7 +23,7 @@ public class Game_goal_NewGoalCreator {
 									newgoal7, newgoal8, newgoal9;
 	
 	public static int numberofNewGoals;
-	public int row1 = 500, row2 = row1-220, row3 = row2-220;
+	public int row1 = 550, row2 = row1-220, row3 = row2-220;
 	public int col1 = 660, col2 = col1+320, col3 = col2+320;
 
 	public Game_goal_NewGoalCreator(ArrayList<Goal> newgoals){
