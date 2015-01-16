@@ -92,7 +92,7 @@ public class Game_goal_PlayerGoals {
 					started = false;
 				}
 				if(touchedDown){
-					Game_Map_Manager.planBackground.setVisible(true);
+					Game_Map_Manager.enterRoutingMode();
 					touchedDown=false;
 				}
 			}

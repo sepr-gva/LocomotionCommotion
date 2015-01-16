@@ -53,6 +53,17 @@ public class TrainInfo extends Sprite{
 				Game_Map_Manager.planBackground.setVisible(true);
 				highlightAdjacent();
 				makeVisible(false);
+				started = true;
+			}
+			
+
+			@Override
+			public void act(float delta){
+				if(started){
+					Game_Map_Manager.enterRoutingMode();
+					makeVisible(false);
+					started=false;
+				}
 			}
 		};
 		
