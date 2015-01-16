@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RemoveBtn;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -97,7 +97,7 @@ public class Game_goal_PlayerGoals {
 		};
 		planRouteBtn.setVisible(false);
 		
-		//^^^^^^^^^^^ Both added to the stage after everything else see end of method
+		//^^^^^^^^^^^  added to the stage after everything else see end of method
 
 
 		//Label Styling
@@ -307,8 +307,9 @@ public class Game_goal_PlayerGoals {
 		playerGoalActors.get("3").setEmpty(true);
 		removebuttons.get("3").setVisible(false);
 		removebuttons.get("3").resetButtons();
-
+		
 		numberofOwnedGoals-=1;
+		GameScreen.game.getPlayerTurn().goals.remove(goal);
 
 
 		if (numberofOwnedGoals==0)
@@ -340,6 +341,7 @@ public class Game_goal_PlayerGoals {
 
 
 			numberofOwnedGoals+=1;
+			GameScreen.game.getPlayerTurn().goals.add(newgoal.getGoal());
 			Game_Goal_GoalScreenManager.numberofGoalsOnScreen--;
 			return true;
 		}

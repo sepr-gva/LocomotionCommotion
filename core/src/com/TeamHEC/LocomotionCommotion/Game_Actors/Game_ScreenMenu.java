@@ -393,7 +393,7 @@ public class Game_ScreenMenu {
 		public static int resourcesStageEnd;
 
 		public int expandedheight= 40;
-		public  static Label  goldQuant, coalQuant, oilQuant, electricityQuant, nuclearQuant;
+		public  Label  goldQuant, coalQuant, oilQuant, electricityQuant, nuclearQuant;
 
 
 		public Label cardQuant;
@@ -456,7 +456,7 @@ public class Game_ScreenMenu {
 			cardQuant.setY(expandedheight);
 			cardQuant.setColor(0,0,0,1);
 
-			refreshResources();
+			//refreshResources();
 
 			visibleActors.add(goldQuant);
 			visibleActors.add(coalQuant);
@@ -517,20 +517,20 @@ public class Game_ScreenMenu {
 		}
 
 		public void refreshResources(){
-			goldQuant.setText(""+GameScreen.gold);
-			coalQuant.setText(""+GameScreen.coal);
-			oilQuant.setText(""+GameScreen.oil);
-			electricityQuant.setText(""+GameScreen.electricity);
-			nuclearQuant.setText(""+GameScreen.nuclear);
-			Game_ScreenMenu.resourceActorManager.cardQuant.setText(""+GameScreen.cards);
+			goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
+			coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
+			oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
+			electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electric"));
+			nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
+			Game_ScreenMenu.resourceActorManager.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
 		}
 
 		public static void setResourcesHeight(float height){
-			goldQuant.setY(height);
-			coalQuant.setY(height);
-			oilQuant.setY(height);
-			electricityQuant.setY(height);
-			nuclearQuant.setY(height);
+			Game_ScreenMenu.resourceActorManager.goldQuant.setY(height);
+			Game_ScreenMenu.resourceActorManager.coalQuant.setY(height);
+			Game_ScreenMenu.resourceActorManager.oilQuant.setY(height);
+			Game_ScreenMenu.resourceActorManager.electricityQuant.setY(height);
+			Game_ScreenMenu.resourceActorManager.nuclearQuant.setY(height);
 			Game_ScreenMenu.resourceActorManager.cardQuant.setY(height);
 		}
 

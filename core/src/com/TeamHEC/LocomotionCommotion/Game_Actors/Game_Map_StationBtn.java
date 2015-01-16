@@ -1,20 +1,13 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
-/*
- * @author Robert Precious <rp825@york.ac.uk>
- * 
- * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
- * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
- * @param x	The x coordinate of the bottom left corner of the image
- * @param y	The y coordinate of the bottom left corner of the image
- *
- */
+
 
 public class Game_Map_StationBtn extends SpriteButton {
 
@@ -59,10 +52,10 @@ public class Game_Map_StationBtn extends SpriteButton {
 					
 					Game_startGameManager.selectLabel.setVisible(true);
 					Game_startGameManager.getStartedWindow.setVisible(true);
-					Game_startGameManager.selectLabel.setText(GameScreen.player2name + " please select your start station!");
+					Game_startGameManager.selectLabel.setText(LocomotionCommotion.player2name + " please select your start station!");
 					Game_startGameManager.player1 = false;
 				}
-				else
+				else	
 				{
 					selectedStation.texture=Game_Map_TextureManager.getInstance().p2Station;
 					selectedStation.setOwned(true);

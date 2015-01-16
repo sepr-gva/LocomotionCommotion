@@ -15,6 +15,10 @@ public class LocomotionCommotion extends Game {
 	public static int screenX = 1680;
 	public static int screenY = 1050;
 	
+	//StartMenuOptions
+	public static String gameMode, player1name, player2name;
+	public static int turnChoice;
+	
 	private static LocomotionCommotion INSTANCE = new LocomotionCommotion();
 
 	public static LocomotionCommotion getInstance()

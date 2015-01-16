@@ -131,7 +131,7 @@ public class Game_CardHand {
 				Game_CardHand.actorManager.cards.get(numberofcards).setCard(newCard);					//give the actor the card object
 				Game_CardHand.actorManager.cards.get(numberofcards).refreshBounds();		
 				Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
-				GameScreen.cards+=1;										//update the cards value for display
+				GameScreen.game.getPlayerTurn().cards.add(newCard);									//update the cards value for display
 				Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 			}
 		}

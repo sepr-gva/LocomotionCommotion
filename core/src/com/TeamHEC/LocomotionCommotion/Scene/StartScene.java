@@ -1,7 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Scene;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Screens.StartMenu.SM_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
@@ -183,10 +182,10 @@ public class StartScene extends Scene{
 					@Override
 					public void onClicked()
 					{
-						GameScreen.player1name=textbox1.getText();
-						GameScreen.player2name=textbox2.getText();
-						GameScreen.gameMode= gameMode;
-						GameScreen.turns = turnChoice;
+						LocomotionCommotion.player1name=textbox1.getText();
+						LocomotionCommotion.player2name=textbox2.getText();
+						LocomotionCommotion.gameMode= gameMode;
+						LocomotionCommotion.turnChoice = turnChoice;
 						LocomotionCommotion.getInstance().setGameScreen();
 						
 					resetNewGameScreen();
