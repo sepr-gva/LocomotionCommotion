@@ -211,8 +211,7 @@ public class CoreGameTest {
 	public void testGetBaseResources() {
 		HashMap<String, Resource> checker = tester.getBaseResources(Player1Start);
 		
-		assertTrue("Gold was incorrectly set", checker.get("gold").getValue() == baseGold - Player1Start.getBaseValue());	
-		assertTrue("Carriage was incorrectly set", checker.get("carriage").getValue() == baseCarriage);
+		assertTrue("Gold was incorrectly set", checker.get("gold").getValue() == baseGold);	
 		assertTrue("Coal was incorrectly set", checker.get("coal").getValue() == baseCoal);
 		assertTrue("Oil was incorrectly set", checker.get("oil").getValue() == baseOil);
 		assertTrue("Electric was incorrectly set", checker.get("electric").getValue() == baseElectric);

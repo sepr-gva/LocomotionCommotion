@@ -42,6 +42,7 @@ public class Player implements Serializable, RouteListener{
 	public ArrayList<Train> trains;
 	public ArrayList<Station> stations = new ArrayList<Station>();
 	public int[] lines = new int[8];
+	private CardFactory cardFactory;
 
 	private HashMap<String, Fuel> playerFuel;
 
@@ -60,6 +61,7 @@ public class Player implements Serializable, RouteListener{
 		this.shop = new Shop(this);
 		this.goals = goals;
 		this.trains = trains;
+		cardFactory = new CardFactory(this);
 	
 		//this.stations = stations;
 		for (int i = 0; i<6;i++)
@@ -85,7 +87,29 @@ public class Player implements Serializable, RouteListener{
 	{
 		return name;
 	}
-
+	
+	//Shop
+	public void buyCoal(int quantity)
+	{
+		shop.buyFuel("Coal", quantity);
+	}
+	public void buyOil(int quantity)
+	{
+		shop.buyFuel("Oil", quantity);
+	}
+	public void buyElectric(int quantity)
+	{
+		shop.buyFuel("Electric", quantity);
+	}
+	public void buyNuclear(int quantity)
+	{
+		shop.buyFuel("Nuclear", quantity);
+	}
+	public void buyCard(int quantity)
+	{
+		shop.buyCard();
+	}
+	
 	//Fuel	
 	public int getFuel(String fuelType)
 	{
@@ -119,29 +143,11 @@ public class Player implements Serializable, RouteListener{
 	}
 
 	//Cards
-	// Specific cards should be purchased in the shop
-	// This can be used after completing Goals
-	// (Could be implemented in Goal class)
-	public void purchaseRandomCard()
+	public void addCard(Card card)
 	{
-		if(getNumCards() < 3)
-		{
-			Card mCard = CardFactory.getInstance().createRandomCard();
-			mCard.setOwner(this);
-			cards.add(mCard);
-		}
+		cards.add(card);
 	}
-
-	// Called when a card is purchased in the shop
-	public void purchaseCard(Card card)
-	{
-		if(getNumCards() < 3)
-		{
-			card.setOwner(this); // Card has association with player
-			cards.add(card); // Adds card to the players list of owned cards
-		}
-	}
-
+	
 	public int getNumCards()
 	{
 		return cards.size();
@@ -346,14 +352,6 @@ public class Player implements Serializable, RouteListener{
 			Station currentStation = stations.get(i);
 			this.addFuel(currentStation.getResourceString(), currentStation.getTotalResourceOut());
 		}
-	}
-
-
-
-	//Shop
-	public void accessShop()
-	{
-		shop.openShop();
 	}
 
 	//Goals

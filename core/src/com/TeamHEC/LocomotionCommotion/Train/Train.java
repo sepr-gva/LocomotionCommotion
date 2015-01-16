@@ -63,7 +63,7 @@ public class Train implements Serializable{
 	
 	// =========== Getters ===========
 	/**
-	 * @return The Actor (UI Elelemt) for the train
+	 * @return The Actor (UI Element) for the train
 	 */
 	public Game_Map_Train getActor()
 	{

@@ -21,7 +21,7 @@ public class GoalFactory{
 	{   
 		map = WorldMap.getInstance();
 		stations = map.stationsList;
-		cardFactory = CardFactory.getInstance();
+		cardFactory = new CardFactory(null);
 		random = new Random();
 	}	
 
@@ -54,13 +54,15 @@ public class GoalFactory{
 	//	}
 
 	public Card genCard(){
-		return cardFactory.createRandomCard();     
+		return cardFactory.createAnyCard();     
 	}
 
 	public Goal CreateRandomGoal(){
 		Goal newgoal;
 		Station sStation = (Station) newSStation();
-		Station fStation = (Station) newFStation();
+		Station fStation = (Station) newFStation();		
+		while (sStation.getName() == fStation.getName())
+			fStation = (Station) newFStation();		
 		String cargo;
 		int reward = getLength(sStation, fStation);
 				

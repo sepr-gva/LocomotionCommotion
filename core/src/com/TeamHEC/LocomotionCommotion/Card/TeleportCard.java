@@ -1,7 +1,9 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 /**
@@ -22,13 +24,11 @@ public class TeleportCard extends Card{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public TeleportCard()
+	public TeleportCard(Player player)
 	{
-		// Name, Description, Value, Owner:
-		super("Teleport", "Teleport a Train from one station to another!", 100, null, null);
+		super(player, Game_TextureManager.getInstance().game_card_teleportcard);
 	}
 	
-	// Needs testing obviously but you could do it somehow like this:
 	@Override
 	public void implementCard()
 	{

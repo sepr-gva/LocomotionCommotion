@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 
 /**
@@ -13,9 +14,9 @@ public class GoldCard extends Card{
 
 	private static final long serialVersionUID = 1L;
 
-	public GoldCard()
+	public GoldCard(Player player)
 	{
-		super("100 Gold Coins", "Cash in to win 100 Gold coins", 50, null, Game_TextureManager.getInstance().game_card_goldcard);
+		super(player, Game_TextureManager.getInstance().game_card_goldcard);
 	}
 	
 	@Override

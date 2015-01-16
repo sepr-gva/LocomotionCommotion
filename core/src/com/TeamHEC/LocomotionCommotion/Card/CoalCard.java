@@ -1,12 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 
-/**
- * 
- * @author  Robert Precious <rp825@york.ac.uk>
- * Just making the cards work.
+/** * 
+ * @author  Callum Hewitt <ch1194@york.ac.uk> * 
  *
  */
 
@@ -14,9 +13,9 @@ public class CoalCard extends Card{
 
 	private static final long serialVersionUID = 1L;
 
-	public CoalCard()
+	public CoalCard(Player player)
 	{
-		super("100 Coal", "Cash in to win 100 Coal", 50, null, Game_TextureManager.getInstance().game_card_coalcard);
+		super(player, Game_TextureManager.getInstance().game_card_coalcard);
 	}
 	
 	@Override

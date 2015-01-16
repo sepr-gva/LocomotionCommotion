@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 
 /**
@@ -14,9 +15,9 @@ public class OilCard extends Card{
 
 	private static final long serialVersionUID = 1L;
 
-	public OilCard()
+	public OilCard(Player player)
 	{
-		super("100 Oil", "Cash in to win 100 Oil", 50, null, Game_TextureManager.getInstance().game_card_oilcard);
+		super(player, Game_TextureManager.getInstance().game_card_oilcard);
 	}
 	
 	public void implementCard()
