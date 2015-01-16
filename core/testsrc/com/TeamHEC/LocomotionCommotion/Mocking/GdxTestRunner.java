@@ -16,8 +16,6 @@ import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
 import com.badlogic.gdx.graphics.GL20;
 import com.TeamHEC.LocomotionCommotion.Mocking.MockFileHandler;
-import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 
 public class GdxTestRunner extends BlockJUnit4ClassRunner implements ApplicationListener{
 	   

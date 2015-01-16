@@ -9,12 +9,6 @@ import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 //import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Resource.Coal;
-import com.TeamHEC.LocomotionCommotion.Resource.Electric;
-import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
-import com.TeamHEC.LocomotionCommotion.Resource.Oil;
-import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-
 
 public class GoalFactory{
 

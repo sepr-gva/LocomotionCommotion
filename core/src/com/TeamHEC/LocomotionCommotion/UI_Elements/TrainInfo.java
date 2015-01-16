@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
-import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_TextureManager;
