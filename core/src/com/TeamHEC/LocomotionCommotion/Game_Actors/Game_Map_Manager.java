@@ -21,7 +21,7 @@ public class Game_Map_Manager {
 	private final static Array<Actor> infoactors = new Array<Actor>();
 
 	public static Sprite map;
-	public static Game_Map_Info mapInfo;
+	public static Sprite mapInfo;
 	
 	public static Sprite stationInfo;
 	public static Game_Map_StationBtn stationSelect;
@@ -52,7 +52,6 @@ public class Game_Map_Manager {
 		planBackground.setVisible(false);
 		actors.add(planBackground);
 		
-
 		stationTracker=stage.getActors().size;
 		for(int i = 0; i < WorldMap.getInstance().stationsList.size(); i++)
 		{
@@ -126,10 +125,10 @@ public class Game_Map_Manager {
 			stage.addActor(a);
 			mapActors ++;
 		}
-
-//		mapInfo = new Game_Map_Info();
-//		mapInfo.setVisible(infoVisible);
-//		stage.addActor(mapInfo);
+		
+		mapInfo = new Sprite(500, 100, Game_TextureManager.getInstance().mapInfo);
+		mapInfo.setVisible(infoVisible);
+		stage.addActor(mapInfo);
 	}
 
 	public static void moveInfoBox(float x,float y){
