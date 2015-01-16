@@ -258,7 +258,11 @@ public class Game_ScreenMenu {
 							}else
 								GameScreen.getStage().getActors().get(i).setVisible(true);
 
-						}			}
+						}			
+					Game_startGameManager.getStartedWindow.setVisible(false);
+					Game_startGameManager.selectLabel.setVisible(false);
+					
+					}
 					else
 					{	
 						Game_Goal_GoalScreenManager.open= false;
