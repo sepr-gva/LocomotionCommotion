@@ -110,7 +110,7 @@ public class Station extends MapObj{
 	 */
 	public int getTotalValue()
 	{
-		return baseValue * (1 + valueMod);
+		return baseValue + valueMod;
 	}
 	
 	public Resource getResourceType()
@@ -200,9 +200,6 @@ public class Station extends MapObj{
 	{		
 		//needs conditions to check station is purchasable
 		//either added here or where purchase station will be called
-		
-		//player.subGold(this.getTotalValue());
-		
 		setOwner(player);
 		notifyStationPurchased(this, player);
 	}

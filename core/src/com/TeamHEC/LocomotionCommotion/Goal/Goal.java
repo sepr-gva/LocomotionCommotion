@@ -1,11 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
 
-import java.util.Random;
-
-import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 public class Goal { 
  //Variables
