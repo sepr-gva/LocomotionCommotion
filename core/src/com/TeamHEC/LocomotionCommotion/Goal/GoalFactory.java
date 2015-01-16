@@ -21,13 +21,11 @@ public class GoalFactory{
 	public GoalFactory()
 	{   
 
-	}
-	
+	}	
 	private WorldMap wmp = WorldMap.getInstance();
 	private ArrayList<Station> stations = wmp.stationsList;
 	private CardFactory cf = CardFactory.getInstance();
 	public int Length = 0;
-	
 	public GoalMenu goalmenu = GoalMenu.getInstance();
 	Random r = new Random();
 	private Resource getResource(){
@@ -93,7 +91,14 @@ public class GoalFactory{
 		//  }
 		return reward;
 	}
-
+public String setCargo(){
+	String[] cargo = {"Passenger","Cargo"};
+	
+	//return cargo.;
+	
+	
+	
+}
 
 	public Goal CreateRandomGoal(){
 		Goal newgoal;

@@ -50,6 +50,10 @@ public class Goal {
   return this.FStation.getName(); //eh
  }
  
+ 
+ 
+ 
+ 
  public String getMission(){
   String st = "You are required to deliver " + resc + " from " + SStation + " to " +FStation + ". The reward for this will be " + Reward + "points and a special card.";
   return st;   //potentally iterate over enum to find goal

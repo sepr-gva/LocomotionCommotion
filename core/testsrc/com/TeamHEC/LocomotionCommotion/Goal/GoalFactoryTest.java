@@ -10,6 +10,8 @@ public class GoalFactoryTest {
 
 	@Before
 	public void setUp() throws Exception {
+		GoalFactory gf = new GoalFactory();
+		Goal newgoal;
 		
 	}
 
@@ -32,8 +34,7 @@ public class GoalFactoryTest {
 
 	@Test
 	public void testCreateRandomGoal() {
-		
-		fail("Not yet implemented");
+	
 		
 	}
 
