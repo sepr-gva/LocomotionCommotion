@@ -19,6 +19,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.CoalTrain;
 import com.TeamHEC.LocomotionCommotion.Train.ElectricTrain;
 import com.TeamHEC.LocomotionCommotion.Train.NuclearTrain;
@@ -126,22 +127,18 @@ public class CoreGame implements Serializable {
 		if (fuelType.equals("Coal"))
 			train = new CoalTrain(0, true, new Route(startStation), player);
 		else if (fuelType.equals("Nuclear"))
-			train = new NuclearTrain(0, true, new Route(startStation),
-					player);
+			train = new NuclearTrain(0, true, new Route(startStation),player);
 		else if (fuelType.equals("Electric"))
-			train = new ElectricTrain(0, true, new Route(startStation),
-					player);
+			train = new ElectricTrain(0, true, new Route(startStation),player);
 		else if (fuelType.equals("Oil"))
 			train = new OilTrain(0, true, new Route(startStation), player);
 		else
 			train = new OilTrain(0, true, new Route(startStation), player);
 
 		player.trains.add(train);
-		// GameScreen.getStage().getActors().add(train.getActor());
-		train.getActor().setZIndex(1);
+		GameScreen.getStage().getActors().add(train.getActor());
 	}
 
-	// {{ Turn System
 	/**
 	 * Randomly returns either 0 or 1. It's used in determining which player
 	 * will go first in this game.
@@ -155,7 +152,6 @@ public class CoreGame implements Serializable {
 	 * Ends the turn of a player. It will increase the turn count and switch the
 	 * player's turns.
 	 */
-
 	public void EndTurn() {
 
 		playerTurn.lineBonuses();

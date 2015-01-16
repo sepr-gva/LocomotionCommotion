@@ -50,7 +50,7 @@ public class Game_Map_Train extends Actor{
 	
 	public void clickedTrain()
 	{
-		
+		Game_Map_Manager.trainInfo.showLabel(train);
 	}
 	
 	public void toggleHighlight(boolean highlighted)
@@ -67,6 +67,7 @@ public class Game_Map_Train extends Actor{
 		}
 	}
 	
+	/*
 	@Override
 	public void act(float delta){
 		if(!train.route.isComplete())
@@ -74,6 +75,7 @@ public class Game_Map_Train extends Actor{
 			train.moveTrain();
 		}
 	}
+	*/
 	
 	@Override
 	public void draw(Batch batch, float alpha){

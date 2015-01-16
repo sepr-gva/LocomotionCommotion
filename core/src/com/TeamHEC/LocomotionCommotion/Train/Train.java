@@ -8,29 +8,11 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 
 /**
- * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
- *
  */
 
 public class Train implements Serializable{
-	
-	/*
-	 A train can be upgraded to go faster, be protected
-	 against obstacles and other novel upgrades that affect the performance of the
-	 object in game.
-	 
-	 Upgrading Trains:
-	 
-		- increase carriage limit, trains performance, speed and efficiency.
-	 	- Nuclear will move further than coal...
-	
-	Train:
-
-	Speed					= ---
-	Fuel Efficiency			= -----
-	 */
-	
+		
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
@@ -101,6 +83,11 @@ public class Train implements Serializable{
 	public int getSpeed()
 	{
 		return baseSpeed + speedMod;
+	}
+	
+	public int getFuelPerTurn()
+	{
+		return fuelPerTurn;
 	}
 		
 	public int getPricePerTurn()

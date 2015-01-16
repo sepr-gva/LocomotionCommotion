@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.TrainInfo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -19,12 +20,15 @@ public class Game_Map_Manager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> infoactors = new Array<Actor>();
+	private final static Array<Actor> trainInfoActors = new Array<Actor>();
 
 	public static Sprite map;
 	public static Sprite mapInfo;
 	
 	public static Sprite stationInfo;
 	public static Game_Map_StationBtn stationSelect;
+	
+	public static TrainInfo trainInfo;
 
 	public static boolean infoVisible= false;
 	public static int  stagestart, mapActors, stationTracker, numberOfStations, junctionTracker, numberOfJunctions = 2;
@@ -70,7 +74,9 @@ public class Game_Map_Manager {
 		stationInfo = new Sprite(0, 0, Game_Map_TextureManager.getInstance().stationInfo);
 		infoactors.add(stationInfo);
 		
-		// Add route planning stuff in here
+		trainInfo = new TrainInfo();		
+		trainInfoActors.add(trainInfo);
+		trainInfoActors.addAll(trainInfo.getActors());
 
 		//=========================================================
 
@@ -115,12 +121,14 @@ public class Game_Map_Manager {
 		infoactors.add(stationLabelFuel);
 		infoactors.add(stationLabelCost);
 
-
-		for (Actor a : actors){
+		for(Actor a : actors)
+		{
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
 		}
-		stagestart= stage.getActors().size;
+		
+		stagestart = stage.getActors().size;
+		
 		for (Actor a : infoactors){
 			a.setTouchable(Touchable.enabled);
 			a.setVisible(false);
@@ -128,6 +136,12 @@ public class Game_Map_Manager {
 			mapActors ++;
 		}
 
+		for(Actor a : trainInfoActors)
+		{
+			a.setTouchable(Touchable.enabled);
+			a.setVisible(false);
+			stage.addActor(a);
+		}
 		
 		mapInfo = new Sprite(500, 100, Game_TextureManager.getInstance().mapInfo);
 
