@@ -92,6 +92,7 @@ public class Game_startGameManager {
 
 		Game_ScreenMenu.resourceActorManager.game_card_togglebtn.setVisible(true);
 		Game_ScreenMenu.resourceActorManager.cardQuant.setVisible(true);
+		Game_goal_PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
 	}
 
 	public static void reset(){

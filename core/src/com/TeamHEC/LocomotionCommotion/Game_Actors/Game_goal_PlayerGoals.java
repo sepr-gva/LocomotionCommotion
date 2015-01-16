@@ -1,10 +1,12 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RemoveBtn;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
@@ -124,45 +126,6 @@ public class Game_goal_PlayerGoals {
 			removebuttons.get(a).setVisible(false);
 
 		}
-		float tickety= 845, buttony = 725;
-
-		for (int i=0; i<playerGoals.size();i++){
-			String a = new Integer(i+1).toString();
-
-			playerGoalActors.get(a).setGoal(playerGoals.get(a));
-			playerGoalActors.get(a).setEmpty(false);
-
-			ticketLabels.get(a).setColor(0,0,0,1);
-			ticketLabels.get(a).setX(15);
-			ticketLabels.get(a).setY(tickety);
-			tickety-=200;
-			ticketLabels.get(a).setText(ticketMaker(	playerGoalActors.get(a).getGoal().getCarriageType(),
-					playerGoalActors.get(a).getGoal().getReward(),
-					playerGoalActors.get(a).getGoal().getSStation(),
-					playerGoalActors.get(a).getGoal().getStartDate(), 
-					playerGoalActors.get(a).getGoal().getFStation(), 
-					playerGoalActors.get(a).getGoal().getRoute())
-					);
-			removebuttons.get(a).setX(250);
-			removebuttons.get(a).setY(buttony);
-			buttony-=200;
-			removebuttons.get(a).setVisible(true);
-		}
-		for (int i=playerGoals.size();i<3;i++){
-			String a = new Integer(i+1).toString();
-			ticketLabels.get(a).setColor(0,0,0,1);
-			ticketLabels.get(a).setX(15);
-			ticketLabels.get(a).setY(tickety);
-			tickety-=200;
-			ticketLabels.get(a).setText("");
-			removebuttons.get(a).setX(400);
-			removebuttons.get(a).setY(buttony);
-			buttony-=200;
-		}
-
-
-
-
 
 		actors.add(newgoal1);
 		actors.add(newgoal2);
@@ -370,6 +333,47 @@ public class Game_goal_PlayerGoals {
 		}
 		return output;
 
+	}
+	
+	
+	public static void changePlayer(Player player) {
+		float tickety= 845, buttony = 725;
+		ArrayList<Goal> playerGoals = player.getGoals();
+		for (int i=0; i<playerGoals.size();i++){
+			String a = new Integer(i+1).toString();
+
+			playerGoalActors.get(a).setGoal(playerGoals.get(i));
+			playerGoalActors.get(a).setEmpty(false);
+
+			ticketLabels.get(a).setColor(0,0,0,1);
+			ticketLabels.get(a).setX(15);
+			ticketLabels.get(a).setY(tickety);
+			tickety-=200;
+			ticketLabels.get(a).setText(ticketMaker(	playerGoalActors.get(a).getGoal().getCarriageType(),
+					playerGoalActors.get(a).getGoal().getReward(),
+					playerGoalActors.get(a).getGoal().getSStation(),
+					playerGoalActors.get(a).getGoal().getStartDate(), 
+					playerGoalActors.get(a).getGoal().getFStation(), 
+					playerGoalActors.get(a).getGoal().getRoute())
+					);
+			removebuttons.get(a).setX(250);
+			removebuttons.get(a).setY(buttony);
+			buttony-=200;
+			removebuttons.get(a).setVisible(true);
+		}
+		for (int i=playerGoals.size();i<3;i++){
+			String a = new Integer(i+1).toString();
+			playerGoalActors.get(a).setEmpty(true);
+			ticketLabels.get(a).setColor(0,0,0,1);
+			ticketLabels.get(a).setX(15);
+			ticketLabels.get(a).setY(tickety);
+			tickety-=200;
+			ticketLabels.get(a).setText("");
+			removebuttons.get(a).setX(400);
+			removebuttons.get(a).setY(buttony);
+			buttony-=200;
+		}
+		
 	}
 
 

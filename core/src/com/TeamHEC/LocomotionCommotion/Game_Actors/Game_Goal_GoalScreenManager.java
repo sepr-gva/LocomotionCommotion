@@ -15,6 +15,7 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_Ba
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_Backdrop;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RefreshGoals;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -325,6 +326,8 @@ public class Game_Goal_GoalScreenManager {
 		return 0;
 		
 	}
+
+	
 
 	/*
 	 * Serializes all actors and stores them in an array. This and the Game object

@@ -78,7 +78,7 @@ public class Game_ScreenMenu {
 					Game_TextureManager.getInstance().game_menuobject_topbar );
 			actors.add(game_menuobject_topbar);	
 
-			game_menuobject_cornerframe=new Sprite((LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_cornerframe.getWidth()),14
+			game_menuobject_cornerframe=new Sprite((LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_cornerframe.getWidth())-4,0
 					,Game_TextureManager.getInstance().game_menuobject_cornerframe);
 			actors.add(game_menuobject_cornerframe);
 
@@ -152,10 +152,14 @@ public class Game_ScreenMenu {
 			game_menuobject_endturnbutton = new SpriteButton(LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_endturnbutton.getWidth()-15,
 					15, Game_TextureManager.getInstance().game_menuobject_endturnbutton){
 
+				@SuppressWarnings("static-access")
 				@Override
 				protected void onClicked()
 				{
-
+					GameScreen.game.EndTurn();
+					Game_ScreenMenu.resourceActorManager.refreshResources();
+					Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+					Game_goal_PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
 				}
 			};
 			actors.add(game_menuobject_endturnbutton);
@@ -191,7 +195,9 @@ public class Game_ScreenMenu {
 							}else
 								GameScreen.getStage().getActors().get(i).setVisible(true);
 
-						}			}
+						}			
+						Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+						}
 					else
 					{	Game_Shop.actorManager.open= false;
 					for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd(); i++){
@@ -429,6 +435,7 @@ public class Game_ScreenMenu {
 			goldQuant.setX(100);
 			goldQuant.setY(expandedheight);
 			goldQuant.setColor(0,0,0,1);
+			goldQuant.setText("1000");
 
 			coalQuant= new Label(null,style);
 			coalQuant.setX(240);

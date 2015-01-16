@@ -190,6 +190,7 @@ public class Game_Shop {
 		public static void refreshgold(int i){
 			String g = new Integer(i).toString();
 			Game_Shop.actorManager.goldLabel.setText(g);
+			Game_ScreenMenu.resourceActorManager.goldQuant.setText(g);
 		}
 
 	}
@@ -518,7 +519,7 @@ public class Game_Shop {
 			costLabel.setX(posx+ 160);
 			costLabel.setY(posy +43);
 			costLabel.setColor(0,0,0,1);
-			costLabel.setText("1000");
+			costLabel.setText("");
 
 			actors.add(costLabel);
 
@@ -545,6 +546,8 @@ public class Game_Shop {
 					OilCard card = new OilCard();
 					Game_CardHand.actorManager.addCard(card);
 					GameScreen.game.getPlayerTurn().subGold(1000);
+					Game_ScreenMenu.resourceActorManager.refreshResources();
+					Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 					
 				}
 				started = false;
