@@ -217,4 +217,7 @@ public class GoalActor extends Actor {
 	public void setOwnedgoal(boolean ownedgoal) {
 		this.ownedgoal = ownedgoal;
 	}
+	public void refreshBounds(){
+		setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+	}
 }

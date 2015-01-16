@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -46,7 +47,7 @@ public class Game_CardHand {
 		private static 	Array<Actor> actors = new Array<Actor>();
 		public 	Array<Game_card_Card> cards = new Array<Game_card_Card>();
 		//ArrayLists
-		public static 	ArrayList<Game_card_Card> currentHand;
+		public 	ArrayList<Game_card_Card> currentHand;
 		public static 	ArrayList<Card> newcards = new ArrayList<Card>();
 		//Booleans
 		public boolean open=false;
@@ -94,6 +95,24 @@ public class Game_CardHand {
 
 
 		}
+		public static void changePlayer(Player player) {
+		 Game_CardHand.actorManager.numberofcards=0;
+		 flushHand();
+		 for (int i=0; i<player.getCards().size();i++){
+			 Game_CardHand.actorManager.addCard(player.getCards().get(i));
+			 Game_CardHand.actorManager.numberofcards++;
+		 }
+		}
+		public static void flushHand(){
+			for (int i=0;i<7;i++){
+					Game_CardHand.actorManager.cards.get(i).setTexture(null);	//sets the image
+					Game_CardHand.actorManager.cards.get(i).setEmpty(true);					//sets the empty boolean to false
+				}
+			Game_ScreenMenu.resourceActorManager.refreshResources();
+			Game_CardHand.actorManager.numberofcards=0;
+				
+			}
+		
 
 		public void useCard(int cardNum){						//Method useCard lets the player use their card.
 			if (cardNum !=0){												//if the the number of card is not 0

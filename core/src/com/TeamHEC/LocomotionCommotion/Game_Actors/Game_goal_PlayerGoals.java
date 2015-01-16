@@ -193,6 +193,7 @@ public class Game_goal_PlayerGoals {
 			a.setVisible(true);
 			a.setX(a.getX()+150);
 			a.setY(a.getY()-200);
+			
 		}
 		//Hide goal side menu
 		Game_ScreenMenu.actorManager.game_menuobject_ticketenclosure.setVisible(false);
@@ -201,7 +202,7 @@ public class Game_goal_PlayerGoals {
 		for (int i=0;i<numberofOwnedGoals; i++){
 			String a = new Integer(i+1).toString();
 			removebuttons.get(a).setVisible(true);
-			removebuttons.get(a).refreshBounds();;
+			removebuttons.get(a).refreshBounds();
 
 		}
 
@@ -272,7 +273,7 @@ public class Game_goal_PlayerGoals {
 		removebuttons.get("3").resetButtons();
 		
 		numberofOwnedGoals-=1;
-		GameScreen.game.getPlayerTurn().goals.remove(goal);
+		GameScreen.game.getPlayerTurn().goals.remove(goal-1);
 
 
 		if (numberofOwnedGoals==0)
@@ -300,11 +301,13 @@ public class Game_goal_PlayerGoals {
 			playerGoalActors.get(a).setOwnedgoal(true);
 			removebuttons.get(a).setVisible(true);
 			removebuttons.get(a).setRedoBtn();
+			removebuttons.get(a).refreshBounds();
 			removebuttons.get(a).setnewgoalindex(newgoal.getIndex());
 
 
 			numberofOwnedGoals+=1;
 			GameScreen.game.getPlayerTurn().goals.add(newgoal.getGoal());
+			
 			Game_Goal_GoalScreenManager.numberofGoalsOnScreen--;
 			return true;
 		}
@@ -339,11 +342,13 @@ public class Game_goal_PlayerGoals {
 	public static void changePlayer(Player player) {
 		float tickety= 845, buttony = 725;
 		ArrayList<Goal> playerGoals = player.getGoals();
+		numberofOwnedGoals=playerGoals.size();
 		for (int i=0; i<playerGoals.size();i++){
 			String a = new Integer(i+1).toString();
 
 			playerGoalActors.get(a).setGoal(playerGoals.get(i));
 			playerGoalActors.get(a).setEmpty(false);
+			playerGoalActors.get(a).setIndex(i+1);
 
 			ticketLabels.get(a).setColor(0,0,0,1);
 			ticketLabels.get(a).setX(15);
@@ -356,10 +361,10 @@ public class Game_goal_PlayerGoals {
 					playerGoalActors.get(a).getGoal().getFStation(), 
 					playerGoalActors.get(a).getGoal().getRoute())
 					);
-			removebuttons.get(a).setX(250);
+			removebuttons.get(a).setX(400);
 			removebuttons.get(a).setY(buttony);
 			buttony-=200;
-			removebuttons.get(a).setVisible(true);
+			removebuttons.get(a).setVisible(false);
 		}
 		for (int i=playerGoals.size();i<3;i++){
 			String a = new Integer(i+1).toString();
@@ -371,6 +376,7 @@ public class Game_goal_PlayerGoals {
 			ticketLabels.get(a).setText("");
 			removebuttons.get(a).setX(400);
 			removebuttons.get(a).setY(buttony);
+			removebuttons.get(a).setVisible(false);
 			buttony-=200;
 		}
 		

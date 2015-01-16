@@ -218,13 +218,13 @@ public class Game_goal_Assets {
 		 * 				Action- 
 		 */
 
-		public boolean started = false, undostart= false,undo;
+		public boolean started = false, undo;
 		public int index, newgoalindex;
 		public Game_goal_RemoveBtn(int index){
 			this.index=index;
 			this.actorX=250;
 			this.actorY=470;
-			this.undo = false;
+			this.undo = true;
 			this.newgoalindex=0;
 			this.texture=Game_TextureManager.getInstance().game_menuobject_removegoalbtn;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
@@ -234,30 +234,27 @@ public class Game_goal_Assets {
 					return true;
 				}
 			});
-			addListener(new InputListener(){
-				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-					((Game_goal_RemoveBtn)event.getTarget()).undostart = true;
-					return true;
-				}
-			});
 
 		}
 
 		public void act(float delta){
+			if (started){
+				System.out.println("Hello");
+			}
 			if (undo){
-				if(undostart){
+				if(started){
+					System.out.println("Hello");
+
 					Game_goal_PlayerGoals.resetGoal(index);
-					undostart=false;
 					started=false;
 				}
 			}
 			else
 			{
 				if(started){
-
+					
 					Game_goal_PlayerGoals.removeGoal(index);
 					started = false;
-					undostart = false;
 				}
 			}
 		}
@@ -297,7 +294,7 @@ public class Game_goal_Assets {
 
 		}
 		public void resetButtons(){
-			this.undo=false;
+			//this.undo=false;
 			this.texture=Game_TextureManager.getInstance().game_menuobject_removegoalbtn;
 		}
 
@@ -308,7 +305,7 @@ public class Game_goal_Assets {
 		}
 
 	}
-
+//------------------------------------------------------------------------------------------------------------------------------------
 	public static class Game_goal_RefreshGoals extends Game_Actor{
 		public Game_goal_RefreshGoals(){
 			actorX=Gdx.graphics.getWidth()-100;
