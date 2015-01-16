@@ -179,14 +179,21 @@ public class Route{
 	 */
 	public float getLengthRemaining()
 	{
-		float currentLength = route.get(routeIndex).getLength(); 
-		float length = currentLength - connectionTravelled;
-
-		for(int i = routeIndex + 1; i < route.size(); i++)
+		if(route.isEmpty())
 		{
-			length += route.get(i).getLength();
+			return 0;
 		}
-		return length;
+		else
+		{
+			float currentLength = route.get(routeIndex).getLength(); 
+			float length = currentLength - connectionTravelled;
+
+			for(int i = routeIndex + 1; i < route.size(); i++)
+			{
+				length += route.get(i).getLength();
+			}
+			return length;
+		}
 	}
 	
 	/**
