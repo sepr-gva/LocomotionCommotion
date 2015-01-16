@@ -54,8 +54,11 @@ public class Train implements Serializable{
 		this.owner = owner;
 		
 		// The UI blip for each train
-		trainActor = Game_Map_Manager.trainBlips.pop();
-		trainActor.createBlip(this);
+		if(Game_Map_Manager.trainBlips.size > 0)
+		{
+			trainActor = Game_Map_Manager.trainBlips.pop();
+			trainActor.createBlip(this);
+		}
 	}
 	
 	// =========== Getters ===========
