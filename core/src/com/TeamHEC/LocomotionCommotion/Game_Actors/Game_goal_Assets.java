@@ -2,7 +2,9 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -327,11 +329,11 @@ public class Game_goal_Assets {
 			if (started){
 				//TEMP GOALS
 				ArrayList<Goal> goals = new ArrayList<Goal>();
-				Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
+				Goal goal1 = new Goal(WorldMap.getInstance().LONDON, WorldMap.getInstance().PARIS, null, "Cargo", 100);
 				goals.add(goal1);
-				Goal goal2 = new Goal("Lisbon", "Helsinki", false, 200, 0, "Cargo","Any");
+				Goal goal2 = new Goal(WorldMap.getInstance().LISBON, WorldMap.getInstance().HELSINKI, null, "Cargo",200);
 				goals.add(goal2);
-				Goal goal3 = new Goal("Berln", "Moscow", false, 200, 0, "Cargo","Any");
+				Goal goal3 = new Goal(WorldMap.getInstance().BERLIN, WorldMap.getInstance().MOSCOW, null, "Cargo",200);
 				goals.add(goal3);
 		//TEMP GOALS
 				Game_Goal_GoalScreenManager.AddGoalToScreen(goals);

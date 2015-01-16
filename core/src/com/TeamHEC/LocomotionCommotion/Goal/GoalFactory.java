@@ -105,10 +105,10 @@ public class GoalFactory{
 
 		if (goalmenu.SpecialCount() < 3)
 		{
-			newgoal = new SGoal(SStation,FStation,card,resc,reward,true); //array list for special goals, 
+			newgoal = new SGoal(SStation,FStation, null, "Cargo", 500); //array list for special goals, 
 		}
 		else {
-			newgoal = new Goal(SStation,FStation,card,resc,reward,false);
+			newgoal = new Goal(SStation, FStation, null,"Cargo", 200);
 						
 		}
 

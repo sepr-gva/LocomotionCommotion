@@ -10,16 +10,10 @@ public class SGoal extends Goal{
 
  
  
- public SGoal(Station Startstation, Station FinalStation, Card card, Resource resc,double reward, boolean b) {
-	 
-	 super(Startstation,FinalStation,card,resc,reward,b);  
-	
+ public SGoal(Station Startstation, Station FinalStation, Station stationVia, String cargo, int reward2) 
+ {	 
+	 super(Startstation, FinalStation, stationVia , cargo, reward2);  
+	 this.Special = true;
 }
 
-@Override
- public String getMission()
- {
-   String st = "You are required to deliver " + resc + "using a from " + SStation + " to " +FStation + ". The reward for this will be " + Reward + "points and a special card.";
-  return st;
- }
 }
