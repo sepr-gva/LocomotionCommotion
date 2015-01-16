@@ -194,7 +194,7 @@ public class CoreGame implements Serializable {
 	 *            A player's starting location.
 	 */
 	public HashMap<String, Resource> getBaseResources(Station station) {
-		Gold gold = new Gold(200);
+		Gold gold = new Gold(1000);
 
 		// NEED TO CHOOSE STATION FIRST!
 		// gold.subValue(station.getTotalValue());
