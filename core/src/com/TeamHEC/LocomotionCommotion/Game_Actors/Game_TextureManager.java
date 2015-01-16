@@ -30,7 +30,7 @@ public class Game_TextureManager {
 	public Texture game_menuobject_infobutton = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/infobutton.png"));
 		
 	//Map
-	public Texture tempMap = new Texture(Gdx.files.internal("gameScreen/game_map/map.png"));
+	public Texture map = new Texture(Gdx.files.internal("gameScreen/game_map/map.png"));
 	public Texture mapInfo = new Texture(Gdx.files.internal("gameScreen/game_map/mapinfo.png"));
 	
 	//Pause Menu
