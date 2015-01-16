@@ -16,7 +16,6 @@ import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
-import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
@@ -25,9 +24,6 @@ import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
-import com.TeamHEC.LocomotionCommotion.Train.CoalTrain;
-import com.TeamHEC.LocomotionCommotion.Train.ElectricTrain;
-import com.TeamHEC.LocomotionCommotion.Train.NuclearTrain;
 import com.TeamHEC.LocomotionCommotion.Train.OilTrain;
 import com.TeamHEC.LocomotionCommotion.Train.Route;
 

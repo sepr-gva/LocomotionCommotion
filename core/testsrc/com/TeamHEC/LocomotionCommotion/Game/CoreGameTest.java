@@ -12,8 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
@@ -137,7 +135,7 @@ public class CoreGameTest {
 		assertTrue("player1's Gold was incorrectly set", tester.getPlayer1().getGold() == baseGold - Player1Start.getTotalValue());	
 		assertTrue("player2's Gold was incorrectly set", tester.getPlayer2().getGold() == baseGold - Player2Start.getTotalValue());	
 		if(tester.getPlayerTurn() == tester.getPlayer1())		
-			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal + Player1Start.getBaseResourceOut());
+			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal + Player1Start.getTotalResourceOut());
 		else
 			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal);			
 		assertTrue("player2's Coal was incorrectly set", tester.getPlayer2().getFuel("Coal") == baseCoal);
@@ -147,7 +145,7 @@ public class CoreGameTest {
 		assertTrue("player2's Electric was incorrectly set", tester.getPlayer2().getFuel("Electric") == baseElectric);
 		assertTrue("player1's Nuclear was incorrectly set", tester.getPlayer1().getFuel("Nuclear") == baseNuclear);
 		if(tester.getPlayerTurn() == tester.getPlayer2())		
-			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear + Player2Start.getBaseResourceOut());
+			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear + Player2Start.getTotalResourceOut());
 		else
 			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear);
 				
@@ -190,7 +188,18 @@ public class CoreGameTest {
 
 	@Test
 	public void testStartTurn() {
-		fail("Not yet implemented");
+		//Setup
+		if(tester.getPlayerTurn() != tester.getPlayer1())
+			tester.EndTurn();
+		int coal = tester.getPlayer1().getFuel("Coal");
+		
+		//Execution
+		tester.StartTurn();
+		assertTrue("Player1's coal was not the value expected after StartTurn() executed once", tester.getPlayer1().getFuel("Coal") == coal + Player1Start.getTotalResourceOut());
+		tester.StartTurn();
+		assertTrue("Player1's coal was not the value expected after StartTurn() executed twice", tester.getPlayer1().getFuel("Coal") == coal + 2*Player1Start.getTotalResourceOut());
+		tester.StartTurn();
+		assertTrue("Player1's coal was not the value expected after StartTurn() executed three times", tester.getPlayer1().getFuel("Coal") == coal + 3*Player1Start.getTotalResourceOut());
 	}
 	
 	@Test
@@ -202,7 +211,7 @@ public class CoreGameTest {
 	public void testGetBaseResources() {
 		HashMap<String, Resource> checker = tester.getBaseResources(Player1Start);
 		
-		assertTrue("Gold was incorrectly set", checker.get("gold").getValue() == baseGold - Player1Start.getTotalValue());	
+		assertTrue("Gold was incorrectly set", checker.get("gold").getValue() == baseGold - Player1Start.getBaseValue());	
 		assertTrue("Carriage was incorrectly set", checker.get("carriage").getValue() == baseCarriage);
 		assertTrue("Coal was incorrectly set", checker.get("coal").getValue() == baseCoal);
 		assertTrue("Oil was incorrectly set", checker.get("oil").getValue() == baseOil);

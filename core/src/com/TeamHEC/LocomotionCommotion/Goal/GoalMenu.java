@@ -1,7 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class GoalMenu {
   public ArrayList<Goal> GoalList = new ArrayList<Goal>(11);
