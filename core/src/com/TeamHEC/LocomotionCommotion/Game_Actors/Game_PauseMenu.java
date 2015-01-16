@@ -23,7 +23,7 @@ public class Game_PauseMenu {
 		private final static Array<Actor> actors = new Array<Actor>();
 
 		public  Game_Asset game_pause_blackoutscreen;
-		public  Game_Asset game_pause_background;
+		public static Game_Asset game_pause_background;
 		public  Game_Asset game_pause_logo;
 		public  Game_pause_ResumeGame game_pause_resume;
 		public  Game_pause_LoadGame game_pause_load;

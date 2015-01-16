@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Train;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Train;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
@@ -53,7 +54,8 @@ public class Train implements Serializable{
 		this.owner = owner;
 		
 		// The UI blip for each train
-		trainActor = new Game_Map_Train(this);
+		trainActor = Game_Map_Manager.trainBlips.pop();
+		trainActor.createBlip(this);
 	}
 	
 	// =========== Getters ===========

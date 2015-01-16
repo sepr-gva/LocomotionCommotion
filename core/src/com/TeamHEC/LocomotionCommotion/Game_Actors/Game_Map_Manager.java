@@ -36,11 +36,13 @@ public class Game_Map_Manager {
 	public LabelStyle style;
 
 	public static Sprite planBackground;
+	
+	public static Array<Game_Map_Train> trainBlips = new Array<Game_Map_Train>();
 
 	public Game_Map_Manager(){	}
 
 	public void create(Stage stage){
-
+	
 		actors.clear();
 		infoactors.clear();
 		resetMap();
@@ -55,7 +57,7 @@ public class Game_Map_Manager {
 		
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
-
+	
 		stationTracker=stage.getActors().size;
 		for(int i = 0; i < WorldMap.getInstance().stationsList.size(); i++)
 		{
@@ -68,6 +70,13 @@ public class Game_Map_Manager {
 		{
 			actors.add(WorldMap.getInstance().junction[i].getActor());
 		}
+		
+		// Creates UI Train blips for 6 trains:
+		for(int i = 0; i < 6; i++)
+		{
+			trainBlips.add(new Game_Map_Train());
+		}
+		actors.addAll(trainBlips);
 
 		// Add train stuff
 
@@ -193,7 +202,8 @@ public class Game_Map_Manager {
 			{//This is just to avoid range errors
 			}
 			else{
-				if (GameScreen.getStage().getActors().get(i).getClass() == Game_Map_Station.class){
+				if (GameScreen.getStage().getActors().get(i).getClass() == Game_Map_Station.class)
+				{
 					((Game_Map_Station) GameScreen.getStage().getActors().get(i)).setOwned(false);
 				}
 			}

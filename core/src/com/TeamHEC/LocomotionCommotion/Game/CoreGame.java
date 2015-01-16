@@ -48,7 +48,6 @@ public class CoreGame implements Serializable {
 	private int turnLimit;
 	private boolean isTestCase;
 	
-
 	/**
 	 * Initialises a Game object. This represents one instance of a game.
 	 * 
@@ -138,9 +137,6 @@ public class CoreGame implements Serializable {
 			train = new OilTrain(0, true, new Route(startStation), player);
 
 		player.trains.add(train);
-		
-		if(!this.isTestCase)
-			GameScreen.getStage().getActors().add(train.getActor());
 	}
 
 	/**

@@ -13,20 +13,13 @@ public class Game_Map_Train extends Actor{
 	private Texture texture, toggleTexture1, toggleTexture2;
 	private float offset;
 	
-	public Game_Map_Train(Train train)
+	public Game_Map_Train()
 	{
-		this.train = train;
-		if(train.getOwner().isPlayer1)
-		{
-			toggleTexture1 = Game_Map_TextureManager.getInstance().p1Train;
-			toggleTexture2 = Game_Map_TextureManager.getInstance().p1Trainx2;
-		}
-		else
-		{
-			toggleTexture1 = Game_Map_TextureManager.getInstance().p2Train;
-			toggleTexture2 = Game_Map_TextureManager.getInstance().p2Trainx2;
-		}
-		texture = toggleTexture1;
+		texture = Game_Map_TextureManager.getInstance().p1Train;
+		toggleTexture1 = texture;
+		toggleTexture2 = texture;
+		
+		this.setVisible(false);
 		
 		addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -46,6 +39,24 @@ public class Game_Map_Train extends Actor{
 				((Game_Map_Train)event.getTarget()).toggleHighlight(false);
 			}
 		});
+	}
+	
+	public void createBlip(Train train)
+	{
+		this.train = train;
+		this.setVisible(true);
+		
+		if(train.getOwner().isPlayer1)
+		{
+			toggleTexture1 = Game_Map_TextureManager.getInstance().p1Train;
+			toggleTexture2 = Game_Map_TextureManager.getInstance().p1Trainx2;
+		}
+		else
+		{
+			toggleTexture1 = Game_Map_TextureManager.getInstance().p2Train;
+			toggleTexture2 = Game_Map_TextureManager.getInstance().p2Trainx2;
+		}
+		texture = toggleTexture1;
 	}
 	
 	public void clickedTrain()

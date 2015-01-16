@@ -1,7 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
-import java.util.ArrayList;
-
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.badlogic.gdx.Gdx;
