@@ -11,13 +11,10 @@ public class GoalFactoryTest {
 	@Before
 	public void setUp() throws Exception {
 		GoalFactory gf = new GoalFactory();
-		Goal newgoal;
-		
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		
 	}
 
 	@Test
@@ -27,15 +24,17 @@ public class GoalFactoryTest {
 
 	@Test
 	public void testGenCard() {
-		
 		fail("Not yet implemented");
-		
 	}
 
 	@Test
 	public void testCreateRandomGoal() {
-	
-		
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetLength() {
+		fail("Not yet implemented");
 	}
 
 }
