@@ -54,13 +54,13 @@ public int getStartDate() {
 	// TODO Auto-generated method stub
 	return -1;
 }
-public String getRoute() {
+public String getVia() {
 	// TODO Auto-generated method stub
-	return null;
+	return "Any";
 }
 public String getCargo() {
 	// TODO Auto-generated method stub
-	return null;
+	return cargo;
 }
 }
 

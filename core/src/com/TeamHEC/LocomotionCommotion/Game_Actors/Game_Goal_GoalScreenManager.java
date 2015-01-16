@@ -13,7 +13,6 @@ import java.util.HashMap;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_AddGoalBtn;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_BackBtn;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_Backdrop;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RefreshGoals;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -41,7 +40,7 @@ public class Game_Goal_GoalScreenManager {
 	public static Game_goal_AddGoalBtn Game_goal_addgoalbtn;
 	public static Game_goal_BackBtn game_goal_backbtn;
 	public static GoalActor newgoal1, newgoal2,newgoal3,newgoal4,newgoal5,newgoal6,newgoal7,newgoal8,newgoal9, selectedGoal;
-	public static Game_goal_RefreshGoals refreshGoals; 
+	//public static Game_goal_RefreshGoals refreshGoals; 
 	//Ints
 	public static int  stagestart, goalActors;
 	public static int row1 = 580, row2 = row1-220, row3 = row2-220;
@@ -72,8 +71,8 @@ public class Game_Goal_GoalScreenManager {
 		actors.add(Game_goal_Backdrop);
 		game_goal_backbtn = new Game_goal_BackBtn();
 		actors.add(game_goal_backbtn);
-		refreshGoals = new Game_goal_RefreshGoals();
-		actors.add(refreshGoals);
+//		refreshGoals = new Game_goal_RefreshGoals();
+//		actors.add(refreshGoals);
 
 //		//TEMP GOALS
 //		goals = new ArrayList<Goal>();
@@ -217,7 +216,7 @@ public class Game_Goal_GoalScreenManager {
 					createdGoals.get(i).getGoal().getSStation(),
 					createdGoals.get(i).getGoal().getStartDate(), 
 					createdGoals.get(i).getGoal().getFStation(), 
-					createdGoals.get(i).getGoal().getRoute()));
+					createdGoals.get(i).getGoal().getVia()));
 			numberofGoalsOnScreen++;
 		}
 		for (int i=numberofNewGoals;i<9;i++){
@@ -282,7 +281,7 @@ public class Game_Goal_GoalScreenManager {
 					goals.get(i).getSStation(),
 					goals.get(i).getStartDate(), 
 					goals.get(i).getFStation(), 
-					goals.get(i).getRoute()));
+					goals.get(i).getVia()));
 			createdGoals.get(goalsbeforeadd+i).setGoal(goals.get(i));
 			createdGoals.get(goalsbeforeadd+i).setEmpty(false);
 			createdGoals.get(goalsbeforeadd+i).setIndex(goalsbeforeadd+i+1);
@@ -304,7 +303,7 @@ public class Game_Goal_GoalScreenManager {
 					goals.get(i).getSStation(),
 					goals.get(i).getStartDate(), 
 					goals.get(i).getFStation(), 
-					goals.get(i).getRoute()));
+					goals.get(i).getVia()));
 			createdGoals.get(emptyspace).setGoal(goals.get(i));
 			createdGoals.get(emptyspace).setEmpty(false);
 			createdGoals.get(emptyspace).setIndex(emptyspace+1);

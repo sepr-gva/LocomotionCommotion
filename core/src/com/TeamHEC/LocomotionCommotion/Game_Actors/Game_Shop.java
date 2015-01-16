@@ -544,11 +544,13 @@ public class Game_Shop {
 				if(started){
 					//Card Factory need !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 					OilCard card = new OilCard();
-					Game_CardHand.actorManager.addCard(card);
-					GameScreen.game.getPlayerTurn().subGold(1000);
-					Game_ScreenMenu.resourceActorManager.refreshResources();
-					Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
-					
+					if(GameScreen.game.getPlayerTurn().getCards().size()<7){
+						System.out.println(GameScreen.game.getPlayerTurn().getCards().size());
+						Game_CardHand.actorManager.addCard(card);
+						GameScreen.game.getPlayerTurn().subGold(1000);
+						Game_ScreenMenu.resourceActorManager.refreshResources();
+						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+					}
 				}
 				started = false;
 			}

@@ -99,14 +99,23 @@ public class Game_CardHand {
 		 Game_CardHand.actorManager.numberofcards=0;
 		 flushHand();
 		 for (int i=0; i<player.getCards().size();i++){
-			 Game_CardHand.actorManager.addCard(player.getCards().get(i));
-			 Game_CardHand.actorManager.numberofcards++;
+			 int numberofcards=Game_CardHand.actorManager.numberofcards;
+				if(numberofcards<7){
+					Game_CardHand.actorManager.cards.get(numberofcards).setTexture(player.getCards().get(i).getImage());	//sets the image
+					Game_CardHand.actorManager.cards.get(numberofcards).setSlot(numberofcards+1);			//sets the slot
+					Game_CardHand.actorManager.cards.get(numberofcards).setEmpty(false);					//sets the empty boolean to false
+					Game_CardHand.actorManager.cards.get(numberofcards).setCard(player.getCards().get(i));					//give the actor the card object
+					Game_CardHand.actorManager.cards.get(numberofcards).refreshBounds();		
+					Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
+					Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
+				}
 		 }
 		}
 		public static void flushHand(){
 			for (int i=0;i<7;i++){
-					Game_CardHand.actorManager.cards.get(i).setTexture(null);	//sets the image
-					Game_CardHand.actorManager.cards.get(i).setEmpty(true);					//sets the empty boolean to false
+					Game_CardHand.actorManager.cards.get(i).setVisible(false);	//sets the image
+					Game_CardHand.actorManager.cards.get(i).setEmpty(true);	
+					Game_CardHand.actorManager.usecardbtn.setVisible(false);//sets the empty boolean to false
 				}
 			Game_ScreenMenu.resourceActorManager.refreshResources();
 			Game_CardHand.actorManager.numberofcards=0;
@@ -150,7 +159,7 @@ public class Game_CardHand {
 				Game_CardHand.actorManager.cards.get(numberofcards).setCard(newCard);					//give the actor the card object
 				Game_CardHand.actorManager.cards.get(numberofcards).refreshBounds();		
 				Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
-				GameScreen.game.getPlayerTurn().cards.add(newCard);									//update the cards value for display
+				GameScreen.game.getPlayerTurn().getCards().add(newCard);									//update the cards value for display
 				Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 			}
 		}

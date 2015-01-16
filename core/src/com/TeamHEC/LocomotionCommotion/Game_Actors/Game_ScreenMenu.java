@@ -160,6 +160,10 @@ public class Game_ScreenMenu {
 					Game_ScreenMenu.resourceActorManager.refreshResources();
 					Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 					Game_goal_PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
+					Game_CardHand.actorManager.changePlayer(GameScreen.game.getPlayerTurn());
+					Game_ScreenMenu.actorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + GameScreen.player1score +
+							"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName()
+							+"     "+GameScreen.game.getPlayerTurn().getName()+" it's your turn ");
 				}
 			};
 			actors.add(game_menuobject_endturnbutton);
@@ -299,6 +303,8 @@ public class Game_ScreenMenu {
 
 
 		}
+		
+
 		public int getStageStart(){
 			return menuobjectsStageStart;
 		}

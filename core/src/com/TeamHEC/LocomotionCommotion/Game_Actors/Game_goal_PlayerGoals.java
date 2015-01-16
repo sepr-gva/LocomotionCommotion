@@ -292,7 +292,7 @@ public class Game_goal_PlayerGoals {
 					newgoal.getGoal().getSStation(),
 					newgoal.getGoal().getStartDate(), 
 					newgoal.getGoal().getFStation(), 
-					newgoal.getGoal().getRoute())
+					newgoal.getGoal().getVia())
 					);
 			ticketLabels.get(a).setColor(0,0,0,1);
 
@@ -359,7 +359,7 @@ public class Game_goal_PlayerGoals {
 					playerGoalActors.get(a).getGoal().getSStation(),
 					playerGoalActors.get(a).getGoal().getStartDate(), 
 					playerGoalActors.get(a).getGoal().getFStation(), 
-					playerGoalActors.get(a).getGoal().getRoute())
+					playerGoalActors.get(a).getGoal().getVia())
 					);
 			removebuttons.get(a).setX(400);
 			removebuttons.get(a).setY(buttony);

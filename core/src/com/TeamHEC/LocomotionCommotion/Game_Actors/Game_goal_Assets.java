@@ -1,12 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
-import java.util.ArrayList;
-
-import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Goal.Goal;
-import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -306,38 +300,50 @@ public class Game_goal_Assets {
 
 	}
 //------------------------------------------------------------------------------------------------------------------------------------
-	public static class Game_goal_RefreshGoals extends Game_Actor{
-		public Game_goal_RefreshGoals(){
-			actorX=Gdx.graphics.getWidth()-100;
-			actorY=Gdx.graphics.getHeight()-250;
-			texture=Game_TextureManager.getInstance().game_menuobject_redobtn;
-			
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-			addListener(new InputListener(){
-				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-					((Game_goal_RefreshGoals)event.getTarget()).started = true;
-					return true;
-				}
-			});
-		}
-		
-
-		public void act(float delta){
-			if (started){
-				//TEMP GOALS
-				ArrayList<Goal> goals = new ArrayList<Goal>();
-				Goal goal1 = new Goal(WorldMap.getInstance().LONDON, WorldMap.getInstance().PARIS, null, "Cargo", 100);
-				goals.add(goal1);
-				Goal goal2 = new Goal(WorldMap.getInstance().LISBON, WorldMap.getInstance().HELSINKI, null, "Cargo",200);
-				goals.add(goal2);
-				Goal goal3 = new Goal(WorldMap.getInstance().BERLIN, WorldMap.getInstance().MOSCOW, null, "Cargo",200);
-				goals.add(goal3);
-		//TEMP GOALS
-				Game_Goal_GoalScreenManager.AddGoalToScreen(goals);
-				started=false;
-
-			}
-		}
-	}
+//	public static class Game_goal_RefreshGoals extends Game_Actor{
+//		public Game_goal_RefreshGoals(){
+//			actorX=Gdx.graphics.getWidth()-100;
+//			actorY=Gdx.graphics.getHeight()-250;
+//			texture=Game_TextureManager.getInstance().game_menuobject_redobtn;
+//			
+//			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+//			addListener(new InputListener(){
+//				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+//					((Game_goal_RefreshGoals)event.getTarget()).started = true;
+//					return true;
+//				}
+//			});
+//		}
+//		
+//
+//		public void act(float delta){
+//			if (started){
+//				//TEMP GOALS
+//				ArrayList<Goal> goals = new ArrayList<Goal>();
+//				Goal goal1 = new Goal(WorldMap.getInstance().LONDON, WorldMap.getInstance().MOSCOW, null, "Cargo", 100);
+//				goals.add(goal1);
+//				Goal goal2 = new Goal(WorldMap.getInstance().LISBON, WorldMap.getInstance().HELSINKI, null, "Cargo",200);
+//				goals.add(goal2);
+//				Goal goal3 = new Goal(WorldMap.getInstance().BERLIN, WorldMap.getInstance().MOSCOW, null, "Cargo",200);
+//				goals.add(goal3);
+//				Goal goal4 = new Goal(WorldMap.getInstance().PARIS, WorldMap.getInstance().BERLIN, null, "Cargo", 100);
+//				goals.add(goal4);
+//				Goal goal5 = new Goal(WorldMap.getInstance().OSLO, WorldMap.getInstance().MADRID, null, "Cargo",200);
+//				goals.add(goal5);
+//				Goal goal6 = new Goal(WorldMap.getInstance().ATHENS, WorldMap.getInstance().VILNIUS, null, "Cargo",200);
+//				goals.add(goal6);
+//				Goal goal7 = new Goal(WorldMap.getInstance().STOCKHOLM, WorldMap.getInstance().VIENNA, null, "Cargo", 100);
+//				goals.add(goal7);
+//				Goal goal8 = new Goal(WorldMap.getInstance().BERN, WorldMap.getInstance().REYKJAVIK, null, "Cargo",200);
+//				goals.add(goal8);
+//				Goal goal9 = new Goal(WorldMap.getInstance().MONACO, WorldMap.getInstance().WARSAW, null, "Cargo",200);
+//				goals.add(goal9);
+//		//TEMP GOALS
+//				Game_Goal_GoalScreenManager.AddGoalToScreen(goals);
+//				started=false;
+//
+//			}
+//		}
+//	}
 
 }

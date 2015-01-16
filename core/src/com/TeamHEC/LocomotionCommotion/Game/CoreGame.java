@@ -317,7 +317,7 @@ public class CoreGame implements Serializable {
 					+ "\"special\": " + goal.isSpecial() + ",\n"
 					+ "\"reward\": " + goal.getReward() + ",\n"
 					+ "\"startDate\": " + goal.getStartDate() + ",\n"
-					+ "\"route\": \"" + goal.getRoute() + "\"\n},";
+					+ "\"route\": \"" + goal.getVia() + "\"\n},";
 		}
 		return finalJson = finalJson + "]\n";
 	}
