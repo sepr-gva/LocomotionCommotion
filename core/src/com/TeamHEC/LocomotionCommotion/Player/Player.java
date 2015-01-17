@@ -155,6 +155,11 @@ public class Player implements Serializable, RouteListener{
 	{
 		cards.add(card);
 	}
+	
+	public void discardCard(Card card)
+	{
+		cards.remove(card);
+	}
 
 	public int getNumCards()
 	{

@@ -81,7 +81,7 @@ public class Shop implements Serializable {
 
 	public void buyCard()
 	{
-		if (customer.getCards().size() < 7 && customer.getGold() > 999)
+		if (customer.getCards().size() < 7 && customer.getGold() >= 1000)
 		{			
 			// Sets the owner to the card and subtract gold from player
 			customer.addCard(cardFactory.createAnyCard());

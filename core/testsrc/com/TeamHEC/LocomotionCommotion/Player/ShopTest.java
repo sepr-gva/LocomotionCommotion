@@ -3,7 +3,6 @@ package com.TeamHEC.LocomotionCommotion.Player;
 import static org.junit.Assert.*;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import org.junit.After;
@@ -90,8 +89,7 @@ public class ShopTest {
 	 * field would have private or protected access.
 	 */
 	@SuppressWarnings("rawtypes")
-	private Object getField( Object instance, String name ) throws Exception
-	{
+	private Object getField( Object instance, String name ) throws Exception {
 		Class c = instance.getClass();
 
 		// Retrieve the field with the specified name
@@ -306,7 +304,87 @@ public class ShopTest {
 	@Test
 	public void testBuyCard() {
 		//Setup
-		//assertTrue(testCustomer.getCards());
+		assertTrue("testCustomer cards was not empty after initialisation", testCustomer.getCards().isEmpty());
+		int currentGold = testCustomer.getGold();
+		//1
+		testShop.buyCard();
+		assertTrue("testCustomer cards did not have 1 card after 1st purchase", testCustomer.getCards().size() == 1);
+		assertTrue(
+				"testCustomer's gold was not decremented by Shop.cardPrice after buying 1 card", 
+				currentGold - Shop.cardPrice == testCustomer.getGold());
+		currentGold = testCustomer.getGold();
+		
+		//2
+		testShop.buyCard();
+		assertTrue("testCustomer cards did not have 2 cards after 2nd purchase", testCustomer.getCards().size() == 2);
+		assertTrue(
+				"testCustomer's gold was not decremented by Shop.cardPrice after buying 2 cards", 
+				currentGold - Shop.cardPrice == testCustomer.getGold());
+		currentGold = testCustomer.getGold();
+		
+		//3
+		testShop.buyCard();
+		assertTrue("testCustomer cards did not have 3 cards after 3rd purchase", testCustomer.getCards().size() == 3);
+		assertTrue(
+				"testCustomer's gold was not decremented by Shop.cardPrice after buying 3 cards", 
+				currentGold - Shop.cardPrice == testCustomer.getGold());
+		currentGold = testCustomer.getGold();
+				
+		//4
+		testShop.buyCard();
+		assertTrue("testCustomer cards did not have 4 cards after 4th purchase", testCustomer.getCards().size() == 4);
+		assertTrue(
+				"testCustomer's gold was not decremented by Shop.cardPrice after buying 4 cards", 
+				currentGold - Shop.cardPrice == testCustomer.getGold());
+		currentGold = testCustomer.getGold();
+		
+		//5
+		testShop.buyCard();
+		assertTrue("testCustomer cards did not have 5 cards after 5th purchase", testCustomer.getCards().size() == 5);
+		assertTrue(
+				"testCustomer's gold was not decremented by Shop.cardPrice after buying 5 cards", 
+				currentGold - Shop.cardPrice == testCustomer.getGold());
+		currentGold = testCustomer.getGold();
+		
+		//6
+		testShop.buyCard();
+		assertTrue("testCustomer cards did not have 6 cards after 6th purchase", testCustomer.getCards().size() == 6);
+		assertTrue(
+				"testCustomer's gold was not decremented by Shop.cardPrice after buying 6 cards", 
+				currentGold - Shop.cardPrice == testCustomer.getGold());
+		currentGold = testCustomer.getGold();
+				
+		//7
+		testShop.buyCard();
+		assertTrue("testCustomer cards did not have 7 cards after 7th purchase", testCustomer.getCards().size() == 7);
+		assertTrue(
+				"testCustomer's gold was not decremented by Shop.cardPrice after buying 7 cards", 
+				currentGold - Shop.cardPrice == testCustomer.getGold());
+		currentGold = testCustomer.getGold();	
+		
+		//No more purchases should be possible.
+		testShop.buyCard();
+		assertTrue("testCustomer cards did not remain at 7 after an attempted 8th purchase", testCustomer.getCards().size() == 7);
+		assertTrue(
+				"testCustomer's gold was changed after an 8th purchase was attempted",
+				currentGold == testCustomer.getGold());
+		
+		//Customer has no money
+		//Setup
+		testCustomer.subGold(testCustomer.getGold());
+		testCustomer.getCards().clear();
+		assertTrue("testCustomer still had cards after an attempt to clear them", testCustomer.getCards().size() == 0);
+		assertTrue("testCustomer still had gold after an attempt to remove it", testCustomer.getGold() == 0);
+		
+		//Execute
+		testShop.buyCard();
+		assertTrue(
+				"testCustomer's gold changed after an attempt to buy a card with no gold",
+				testCustomer.getGold() == 0);
+		assertTrue(
+				"testCustomer's card collection size changed after an attempt to buy a card with no gold",
+				testCustomer.getCards().size() == 0);
+		
 	}
 
 }
