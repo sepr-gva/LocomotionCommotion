@@ -179,7 +179,7 @@ public class Player implements Serializable, RouteListener{
 		{
 			if ((this.trains.get(j).isInStation() && this.trains.get(j).route.getStation().getOwner() == null) && (this.trains.get(j).getRoute().getStation() == station))
 			{
-				if (this.getGold() >= station.getTotalValue())
+				if (this.getGold() >= station.getBaseValue())
 				{
 					validPurchase = true;				
 
@@ -193,7 +193,7 @@ public class Player implements Serializable, RouteListener{
 		if (validPurchase)
 		{
 			stations.add(station);
-			this.subGold(station.getTotalValue());
+			this.subGold(station.getBaseValue());
 			for (int i=0; i<station.getLineType().length; i++)
 			{	
 				if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
@@ -283,7 +283,7 @@ public class Player implements Serializable, RouteListener{
 					}
 				}
 			}
-			this.addGold((int)(station.getTotalValue() * 0.7));
+			this.addGold((int)(station.getBaseValue() * 0.7));
 			station.setOwner(null);
 			stations.remove(station);
 			station.purchaseStation(null);
