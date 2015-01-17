@@ -2,7 +2,10 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.Card.OilCard;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
@@ -494,6 +497,7 @@ public class Game_Shop {
 		public static int posy=100;
 		public static LabelStyle style;
 		BuyButton buyButton ;
+		
 		public Game_shop_card(){
 			this.actors = new ArrayList<Actor>();
 
@@ -513,7 +517,7 @@ public class Game_Shop {
 			style = new LabelStyle();
 			style.font = font;
 
-			//end
+			//end			
 
 			quantity =100;
 
@@ -524,8 +528,6 @@ public class Game_Shop {
 			costLabel.setText("");
 
 			actors.add(costLabel);
-
-
 		}
 
 		public static class BuyButton extends Game_Actor{
@@ -544,8 +546,10 @@ public class Game_Shop {
 			}
 			public void act(float delta){
 				if(started){
-					OilCard card = new OilCard(null);
-					if(GameScreen.game.getPlayerTurn().getCards().size()<7){
+					Player currentPlayer = GameScreen.game.getPlayerTurn();
+					if(currentPlayer.getCards().size()<7){
+						CardFactory cardFactory = new CardFactory(currentPlayer);
+						Card card = cardFactory.createAnyCard();
 						Game_CardHand.actorManager.addCard(card);
 						GameScreen.game.getPlayerTurn().subGold(1000);
 						Game_ScreenMenu.resourceActorManager.refreshResources();
@@ -577,6 +581,7 @@ public class Game_Shop {
 		public static int posy=470;
 		public static LabelStyle style;
 		BuyButton buyButton;
+		
 		public Game_shop_coal(){
 			this.actors = new ArrayList<Actor>();
 			Game_Asset coalitem = new Game_Asset(posx,posy,Game_TextureManager.getInstance().game_shop_coalitem);
@@ -624,7 +629,7 @@ public class Game_Shop {
 			int newQuantity = strToInt(quantityLabel.getText());
 			newQuantity+=change;
 			costLabel.setText(""+(newQuantity*Shop.coalPrice));
-			
+						
 			String l = new Integer(newQuantity).toString();
 			quantityLabel.setText(l);
 		}

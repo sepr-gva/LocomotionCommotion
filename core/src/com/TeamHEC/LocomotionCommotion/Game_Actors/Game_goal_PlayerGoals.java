@@ -273,7 +273,7 @@ public class Game_goal_PlayerGoals {
 		removebuttons.get("3").resetButtons();
 		
 		numberofOwnedGoals-=1;
-		GameScreen.game.getPlayerTurn().goals.remove(goal-1);
+		GameScreen.game.getPlayerTurn().getGoals().remove(goal-1);
 
 
 		if (numberofOwnedGoals==0)
@@ -306,7 +306,7 @@ public class Game_goal_PlayerGoals {
 
 
 			numberofOwnedGoals+=1;
-			GameScreen.game.getPlayerTurn().goals.add(newgoal.getGoal());
+			GameScreen.game.getPlayerTurn().getGoals().add(newgoal.getGoal());
 			
 			Game_Goal_GoalScreenManager.numberofGoalsOnScreen--;
 			return true;

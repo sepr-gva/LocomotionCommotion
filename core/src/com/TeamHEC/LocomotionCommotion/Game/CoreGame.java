@@ -136,7 +136,7 @@ public class CoreGame implements Serializable {
 		else
 			train = new OilTrain(0, true, new Route(startStation), player);
 
-		player.trains.add(train);
+		player.getTrains().add(train);
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class CoreGame implements Serializable {
 	 */
 	public String saveGameJSON(String gameName) {
 		String finalJson = "{\n";
-		finalJson += "\"playerTurn\": \"" + playerTurn.name + "\",\n";
+		finalJson += "\"playerTurn\": \"" + playerTurn.getName() + "\",\n";
 		finalJson += "\"turnCount\": " + turnCount + ",\n";
 		finalJson += "\"map\": " + saveMapJSON() + ",\n";
 		finalJson += "\"player1\": " + savePlayerJSON(player1) + ",\n";
@@ -255,7 +255,7 @@ public class CoreGame implements Serializable {
 	private String savePlayerJSON(Player player) {
 		String finalJson = "{\n";
 		finalJson += "\"playerName\": \"" + player.getName() + "\",\n";
-		finalJson += "\"points\": " + player.points + ",\n";
+		finalJson += "\"points\": " + player.getPoints() + ",\n";
 		finalJson += "\"resources\": " + savePlayerResourceJSON(player) + ",\n";
 		// finalJson += "\"trains\": " + savePlayerTrainJSON(player) + ",\n";
 		return finalJson = finalJson + "\n}";

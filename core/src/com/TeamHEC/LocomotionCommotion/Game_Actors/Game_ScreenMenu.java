@@ -161,7 +161,7 @@ public class Game_ScreenMenu {
 				@Override
 				protected void onClicked()
 				{	
-					ArrayList<Train> playerTrains = GameScreen.game.getPlayerTurn().trains;	
+					ArrayList<Train> playerTrains = GameScreen.game.getPlayerTurn().getTrains();	
 					for(Train t : playerTrains)
 					{
 						t.moveTrain();

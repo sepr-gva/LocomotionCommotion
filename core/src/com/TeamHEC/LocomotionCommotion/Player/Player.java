@@ -29,19 +29,19 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 public class Player implements Serializable, RouteListener{
 
 	private static final long serialVersionUID = 1L;
-	public String name;
-	public int points;
+	private String name;
+	private int points;
 	private Gold gold;
 	private Coal coal;
 	private Oil oil;
 	private Electric electric;
 	private Nuclear nuclear;
-	public ArrayList<Card> cards;
+	private ArrayList<Card> cards;
 	private Shop shop;
-	public ArrayList<Goal> goals;
-	public ArrayList<Train> trains;
-	public ArrayList<Station> stations = new ArrayList<Station>();
-	public int[] lines = new int[8];
+	private ArrayList<Goal> goals;
+	private ArrayList<Train> trains;
+	private ArrayList<Station> stations = new ArrayList<Station>();
+	private int[] lines = new int[8];
 	private CardFactory cardFactory;
 
 	private HashMap<String, Fuel> playerFuel;
@@ -86,6 +86,11 @@ public class Player implements Serializable, RouteListener{
 	public String getName()
 	{
 		return name;
+	}
+	
+	public int getPoints()
+	{
+		return points;
 	}
 
 	//Shop
@@ -170,6 +175,11 @@ public class Player implements Serializable, RouteListener{
 	public ArrayList<Station> getStations()
 	{
 		return stations;
+	}
+	
+	public int[] getLines()
+	{
+		return lines;
 	}
 
 	public void purchaseStation(Station station)

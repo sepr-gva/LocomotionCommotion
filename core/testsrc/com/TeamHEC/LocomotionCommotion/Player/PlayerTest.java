@@ -80,8 +80,6 @@ public class PlayerTest {
 	@After
 	public void tearDown() throws Exception {
 	}
-
-	// {{ Private Accessors
 	
 		/**
 		 * Gets the field value from an instance.  The field we wish to retrieve is
@@ -209,49 +207,49 @@ public class PlayerTest {
 	public void testPurchaseStation() {
 		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
 		Station testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation), tester));
 		tester.purchaseStation(testStation);
-		assertTrue("Station 1 was not purchased correctly", tester.stations.get(0) == testStation);
+		assertTrue("Station 1 was not purchased correctly", tester.getStations().get(0) == testStation);
 		assertTrue("incorrect gold value was removed", tester.getGold() == (1000 - testStation.getBaseValue()));
-		assertTrue("Lines are added incorrectly", tester.lines[0] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[1] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[2] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[3] == 1);
-		assertTrue("Lines are added incorrectly", tester.lines[4] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[5] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[6] == 1);
-		assertTrue("Lines are added incorrectly", tester.lines[7] == 1);
+		assertTrue("Lines are added incorrectly", tester.getLines()[0] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[1] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[2] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[3] == 1);
+		assertTrue("Lines are added incorrectly", tester.getLines()[4] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[5] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[6] == 1);
+		assertTrue("Lines are added incorrectly", tester.getLines()[7] == 1);
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Red, Line.Red}, 50, 731f, 560f);
 		tester.addGold(1000);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation2), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation2), tester));
 		tester.purchaseStation(testStation2);
-		assertTrue("Station 2 was not purchased correctly", tester.stations.get(1) == testStation2);
-		assertTrue("Lines are added incorrectly", tester.lines[0] == 1);
-		assertTrue("Lines are added incorrectly", tester.lines[1] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[2] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[3] == 2);
-		assertTrue("Lines are added incorrectly", tester.lines[4] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[5] == 0);
-		assertTrue("Lines are added incorrectly", tester.lines[6] == 1);
-		assertTrue("Lines are added incorrectly", tester.lines[7] == 1);
+		assertTrue("Station 2 was not purchased correctly", tester.getStations().get(1) == testStation2);
+		assertTrue("Lines are added incorrectly", tester.getLines()[0] == 1);
+		assertTrue("Lines are added incorrectly", tester.getLines()[1] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[2] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[3] == 2);
+		assertTrue("Lines are added incorrectly", tester.getLines()[4] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[5] == 0);
+		assertTrue("Lines are added incorrectly", tester.getLines()[6] == 1);
+		assertTrue("Lines are added incorrectly", tester.getLines()[7] == 1);
 	}
 
 	@Test
 	public void testSellStation() {
 		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
 		Station testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation), tester));
 		tester.purchaseStation(testStation);
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Red, Line.Red}, 50, 731f, 560f);
 		tester.addGold(950);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation2), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation2), tester));
 		tester.purchaseStation(testStation2);
-		assertTrue("Station 1 was not purchased correctly", tester.stations.get(0) == testStation);
-		assertTrue("Station 2 was not purchased correctly", tester.stations.get(1) == testStation2);
+		assertTrue("Station 1 was not purchased correctly", tester.getStations().get(0) == testStation);
+		assertTrue("Station 2 was not purchased correctly", tester.getStations().get(1) == testStation2);
 		tester.sellStation(testStation);
-		assertTrue("Station 1 was not sold correctly", tester.stations.contains(testStation) == false);
+		assertTrue("Station 1 was not sold correctly", tester.getStations().contains(testStation) == false);
 		assertTrue("incorrect gold was refunded", tester.getGold() == 700);
-		assertTrue("both stations were removed", tester.stations.contains(testStation2));
+		assertTrue("both stations were removed", tester.getStations().contains(testStation2));
 		tester.sellStation(testStation);
 		assertFalse("station was sold when not owned", tester.getGold() == 1400);		
 	}
@@ -265,34 +263,34 @@ public class PlayerTest {
 	public void testLineBonuses() {
 		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
 		Station testStation = new Station("London", 850, new Coal(500), 100, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation), tester));
 		tester.purchaseStation(testStation);
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Black, Line.Red}, 50, 731f, 560f);
 		tester.addGold(950);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation2), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation2), tester));
 		tester.purchaseStation(testStation2);
 		tester.lineBonuses();
-		assertTrue("Resource out != 100", tester.stations.get(0).getBaseResourceOut() == 100);
-		assertTrue("scaling of base value fails", (int)(tester.stations.get(0).getBaseResourceOut() * 0.05) == 5);
-		assertTrue("bonuses ere incorrectly set", tester.stations.get(0).getResourceOutMod() == (int)(tester.stations.get(0).getBaseResourceOut() * 0.05 * 2));
-		assertTrue("bonuses ere incorrectly set", tester.stations.get(1).getResourceOutMod() == (int)(tester.stations.get(1).getBaseResourceOut() * 0.05 * 4));
+		assertTrue("Resource out != 100", tester.getStations().get(0).getBaseResourceOut() == 100);
+		assertTrue("scaling of base value fails", (int)(tester.getStations().get(0).getBaseResourceOut() * 0.05) == 5);
+		assertTrue("bonuses ere incorrectly set", tester.getStations().get(0).getResourceOutMod() == (int)(tester.getStations().get(0).getBaseResourceOut() * 0.05 * 2));
+		assertTrue("bonuses ere incorrectly set", tester.getStations().get(1).getResourceOutMod() == (int)(tester.getStations().get(1).getBaseResourceOut() * 0.05 * 4));
 		tester.sellStation(testStation);
 		tester.sellStation(testStation2);
 		
 		Station testStation3 = new Station("London", 850, new Coal(500), 100, new Line[]{Line.Green, Line.Green, Line.Green}, 50, 471f, 300f);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation3), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation3), tester));
 		tester.purchaseStation(testStation3);
 		Station testStation4 = new Station("Paris", 850, new Coal(500), 100, new Line[]{Line.Green, Line.Green, Line.Green}, 50, 471f, 300f);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation4), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation4), tester));
 		tester.addGold(850);
 		tester.purchaseStation(testStation4);
 		Station testStation5 = new Station("Berlin", 850, new Coal(500), 100, new Line[]{Line.Green, Line.Green, Line.Green}, 50, 471f, 300f);
-		tester.trains.add(new OilTrain(0, true, new Route(testStation5), tester));
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation5), tester));
 		tester.addGold(850);
 		tester.purchaseStation(testStation5);
 		tester.lineBonuses();
 		
-		assertTrue("bonuses ere incorrectly set", tester.stations.get(1).getResourceOutMod() == (int)(tester.stations.get(2).getBaseResourceOut() * 0.05 * 4));
+		assertTrue("bonuses ere incorrectly set", tester.getStations().get(1).getResourceOutMod() == (int)(tester.getStations().get(2).getBaseResourceOut() * 0.05 * 4));
 		
 	}
 

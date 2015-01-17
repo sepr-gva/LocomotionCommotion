@@ -129,8 +129,8 @@ public class CoreGameTest {
 	
 	@Test
 	public void testCoreGame() throws Exception {		
-		assertTrue("player1Name was incorrectly set", tester.getPlayer1().name == player1Name);
-		assertTrue("player2Name was incorrectly set", tester.getPlayer2().name == player2Name);
+		assertTrue("player1Name was incorrectly set", tester.getPlayer1().getName() == player1Name);
+		assertTrue("player2Name was incorrectly set", tester.getPlayer2().getName() == player2Name);
 		
 		assertTrue("player1's Gold was incorrectly set", tester.getPlayer1().getGold() == baseGold - Player1Start.getTotalValue());	
 		assertTrue("player2's Gold was incorrectly set", tester.getPlayer2().getGold() == baseGold - Player2Start.getTotalValue());	

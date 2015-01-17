@@ -17,7 +17,7 @@ public class GoFasterStripesCard extends Card {
 	@Override
 	public void implementCard()
 	{
-		Train train = getOwner().trains.get(0);
+		Train train = getOwner().getTrains().get(0);
 		SpeedUpgrade speedUpgrade = new SpeedUpgrade(train);
 		train.addUpgrade(speedUpgrade);
 	}
