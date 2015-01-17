@@ -62,7 +62,7 @@ public class Player implements Serializable, RouteListener{
 		this.goals = goals;
 		this.trains = trains;
 		cardFactory = new CardFactory(this);
-	
+
 		//this.stations = stations;
 		for (int i = 0; i<6;i++)
 		{
@@ -87,7 +87,7 @@ public class Player implements Serializable, RouteListener{
 	{
 		return name;
 	}
-	
+
 	//Shop
 	public Shop getShop(){
 		return shop;
@@ -112,7 +112,7 @@ public class Player implements Serializable, RouteListener{
 	{
 		shop.buyCard();
 	}
-	
+
 	//Fuel	
 	public int getFuel(String fuelType)
 	{
@@ -150,7 +150,7 @@ public class Player implements Serializable, RouteListener{
 	{
 		cards.add(card);
 	}
-	
+
 	public int getNumCards()
 	{
 		return cards.size();
@@ -182,7 +182,7 @@ public class Player implements Serializable, RouteListener{
 				if (this.getGold() >= station.getTotalValue())
 				{
 					validPurchase = true;				
-			
+
 				}
 				else
 				{
@@ -240,52 +240,55 @@ public class Player implements Serializable, RouteListener{
 		{
 			//error message?
 		}
-		
+
 	}
 
 	public void sellStation(Station station)
 	{
-		for (int i=0; i<3; i++)
-		{	
-			if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
-			{
-				//same method as in purchase station
-				switch(station.getLineType()[i])
-				{ //keeps track of how many of a line the player owns
-				case Red:
-					lines[0] -= 1;			
-					break;
-				case Blue:
-					lines[1] -= 1;
-					break;
-				case Green:
-					lines[2] -= 1;
-					break;
-				case Yellow:
-					lines[3] -= 1;
-					break;
-				case Purple: 
-					lines[4] -= 1;
-					break;
-				case Black:
-					lines[5] -= 1;
-					break;
-				case Brown:
-					lines[6] -= 1;
-					break;
-				case Orange:
-					lines[7] -= 1;
-					break;
-				default:
-					throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
+		if (this.stations.contains(station))
+		{
+			for (int i=0; i<3; i++)
+			{	
+				if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
+				{
+					//same method as in purchase station
+					switch(station.getLineType()[i])
+					{ //keeps track of how many of a line the player owns
+					case Red:
+						lines[0] -= 1;			
+						break;
+					case Blue:
+						lines[1] -= 1;
+						break;
+					case Green:
+						lines[2] -= 1;
+						break;
+					case Yellow:
+						lines[3] -= 1;
+						break;
+					case Purple: 
+						lines[4] -= 1;
+						break;
+					case Black:
+						lines[5] -= 1;
+						break;
+					case Brown:
+						lines[6] -= 1;
+						break;
+					case Orange:
+						lines[7] -= 1;
+						break;
+					default:
+						throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
+					}
 				}
 			}
+			this.addGold((int)(station.getTotalValue() * 0.7));
+			station.setOwner(null);
+			stations.remove(station);
+			station.purchaseStation(null);
+			this.lineBonuses();
 		}
-		this.addGold((int)(station.getTotalValue() * 0.7));
-		station.setOwner(null);
-		stations.remove(station);
-		station.purchaseStation(null);
-		this.lineBonuses();
 	}
 
 	@Override
@@ -313,16 +316,16 @@ public class Player implements Serializable, RouteListener{
 			int black = 0;
 			int brown = 0;
 			int orange = 0;
-			
-			
+
+
 
 			for (int j = 0; j < currentStation.getLineType().length; j++) //line type length should be 3, so for 0 to 2		
 			{
 				if (j == 0 || ((j > 0) && (currentStation.getLineType()[j] != currentStation.getLineType()[j-1])))
-					 //if 0 check line type 
-					 //if 1 check if it is the same as 0 if not check line type
-					 //if 2 check if it is the same as 1 if not check line type
-					 //always configure your line type array to have repeats in 1 and 2 e.g. (Black, Red, Red) NOT (Black, Red, Black) else this will not work
+					//if 0 check line type 
+					//if 1 check if it is the same as 0 if not check line type
+					//if 2 check if it is the same as 1 if not check line type
+					//always configure your line type array to have repeats in 1 and 2 e.g. (Black, Red, Red) NOT (Black, Red, Black) else this will not work
 				{
 					switch(currentStation.getLineType()[j])
 					{	

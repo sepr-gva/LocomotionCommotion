@@ -222,6 +222,7 @@ public class PlayerTest {
 		assertTrue("Lines are added incorrectly", tester.lines[6] == 1);
 		assertTrue("Lines are added incorrectly", tester.lines[7] == 1);
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Red, Line.Red}, 50, 731f, 560f);
+		tester.addGold(1000);
 		tester.trains.add(new OilTrain(0, true, new Route(testStation2), tester));
 		tester.purchaseStation(testStation2);
 		assertTrue("Station 2 was not purchased correctly", tester.stations.get(1) == testStation2);
@@ -237,7 +238,22 @@ public class PlayerTest {
 
 	@Test
 	public void testSellStation() {
-		fail("Not yet implemented");
+		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
+		Station testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
+		tester.trains.add(new OilTrain(0, true, new Route(testStation), tester));
+		tester.purchaseStation(testStation);
+		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Red, Line.Red}, 50, 731f, 560f);
+		tester.addGold(950);
+		tester.trains.add(new OilTrain(0, true, new Route(testStation2), tester));
+		tester.purchaseStation(testStation2);
+		assertTrue("Station 1 was not purchased correctly", tester.stations.get(0) == testStation);
+		assertTrue("Station 2 was not purchased correctly", tester.stations.get(1) == testStation2);
+		tester.sellStation(testStation);
+		assertTrue("Station 1 was not sold correctly", tester.stations.contains(testStation) == false);
+		assertTrue("incorrect gold was refunded", tester.getGold() == 700);
+		assertTrue("both stations were removed", tester.stations.contains(testStation2));
+		tester.sellStation(testStation);
+		assertFalse("station was sold when not owned", tester.getGold() == 1400);		
 	}
 
 	@Test
