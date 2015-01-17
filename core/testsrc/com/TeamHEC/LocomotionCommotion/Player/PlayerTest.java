@@ -267,10 +267,33 @@ public class PlayerTest {
 		Station testStation = new Station("London", 850, new Coal(500), 100, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f);
 		tester.trains.add(new OilTrain(0, true, new Route(testStation), tester));
 		tester.purchaseStation(testStation);
+		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Black, Line.Red}, 50, 731f, 560f);
+		tester.addGold(950);
+		tester.trains.add(new OilTrain(0, true, new Route(testStation2), tester));
+		tester.purchaseStation(testStation2);
 		tester.lineBonuses();
 		assertTrue("Resource out != 100", tester.stations.get(0).getBaseResourceOut() == 100);
 		assertTrue("scaling of base value fails", (int)(tester.stations.get(0).getBaseResourceOut() * 0.05) == 5);
-		assertTrue("bonuses were incorrectly set", tester.stations.get(0).getResourceOutMod() == (int)(tester.stations.get(0).getBaseResourceOut() * 0.05));
+		assertTrue("bonuses ere incorrectly set", tester.stations.get(0).getResourceOutMod() == (int)(tester.stations.get(0).getBaseResourceOut() * 0.05 * 2));
+		assertTrue("bonuses ere incorrectly set", tester.stations.get(1).getResourceOutMod() == (int)(tester.stations.get(1).getBaseResourceOut() * 0.05 * 4));
+		tester.sellStation(testStation);
+		tester.sellStation(testStation2);
+		
+		Station testStation3 = new Station("London", 850, new Coal(500), 100, new Line[]{Line.Green, Line.Green, Line.Green}, 50, 471f, 300f);
+		tester.trains.add(new OilTrain(0, true, new Route(testStation3), tester));
+		tester.purchaseStation(testStation3);
+		Station testStation4 = new Station("Paris", 850, new Coal(500), 100, new Line[]{Line.Green, Line.Green, Line.Green}, 50, 471f, 300f);
+		tester.trains.add(new OilTrain(0, true, new Route(testStation4), tester));
+		tester.addGold(850);
+		tester.purchaseStation(testStation4);
+		Station testStation5 = new Station("Berlin", 850, new Coal(500), 100, new Line[]{Line.Green, Line.Green, Line.Green}, 50, 471f, 300f);
+		tester.trains.add(new OilTrain(0, true, new Route(testStation5), tester));
+		tester.addGold(850);
+		tester.purchaseStation(testStation5);
+		tester.lineBonuses();
+		
+		assertTrue("bonuses ere incorrectly set", tester.stations.get(1).getResourceOutMod() == (int)(tester.stations.get(2).getBaseResourceOut() * 0.05 * 4));
+		
 	}
 
 	@Test

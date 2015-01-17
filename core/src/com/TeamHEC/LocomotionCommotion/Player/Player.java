@@ -331,34 +331,75 @@ public class Player implements Serializable, RouteListener{
 					{	
 					case Red:
 						red = lines[0];
+						if (red == 5)
+						{
+							red += 3;
+						}
+						//5
 						break;
 					case Blue:
 						blue = lines[1];
+						if (blue == 5)
+						{
+							blue += 3;
+						}
+						//5
 						break;
 					case Green:
 						green = lines[2];
+						if (green == 3)
+						{
+							green += 1;
+						}
+						//3
 						break;
 					case Yellow:
 						yellow = lines[3];
+						if (yellow == 4)
+						{
+							yellow += 2;
+						}
+						//4
 						break;
 					case Purple:
 						purple = lines[4];
+						if (purple == 4)
+						{
+							purple += 2;
+						}
+						//4
 						break;
 					case Black:
 						black = lines[5];
+						if (black == 5)
+						{
+							black += 3;
+						}
+						//5
 						break;
 					case Brown:
 						brown = lines[6];
+						if (brown == 5)
+						{
+							brown += 3;
+						}
+						//5
 						break;
 					case Orange:
 						orange = lines[7];
+						if (orange == 6)
+						{
+							orange += 4;
+						}
+						//6
 						break;
 					default:
 						throw new IllegalArgumentException("Could not find line associated with value");
 					}
 				}
 			}
-			//increase rent, resource and value by 5 percent per line you have a station connected too, this may be adjusted to due scaling at larger values
+			//owning an entire line is worth an additional reward (3 stations 5%, 4 stations 10%, 5 stations 15%, 6 stations 20%)
+			//increase rent, resource and value by 5% per line you have a station connected too, this may be adjusted to due scaling at larger values
 			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
 			currentStation.setResourceOutMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseResourceOut() * 0.05)));
 			currentStation.setValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getValueMod() * 0.05)));
