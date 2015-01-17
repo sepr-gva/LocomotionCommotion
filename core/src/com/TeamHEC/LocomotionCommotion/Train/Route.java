@@ -7,6 +7,8 @@ import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class Route{
 	
@@ -25,7 +27,6 @@ public class Route{
 	
 	private boolean isComplete = false;
 	
-	// Stuff for adding and removing connections
 	public Train train;
 	
 	protected ArrayList<RouteListener> listeners = new ArrayList<RouteListener>();
@@ -126,9 +127,79 @@ public class Route{
 	 * Usually one of the connections return from getAdjacentConnections()
 	 * @param connection The connection to be added
 	 */
+	
+	public void showRouteBlips()
+	{
+		Stage stage = train.getActor().getStage();
+		for(Connection c : getRoute())
+		{
+			for(Actor a : c.getRouteBlips())
+			{
+				a.setVisible(true);
+				stage.addActor(a);
+			}
+		}
+	}
+	
+	public void hideRouteBlips()
+	{
+		Stage stage = train.getActor().getStage();
+		for(Connection c : getRoute())
+		{
+			for(Actor a : c.getRouteBlips())
+			{
+				a.setVisible(false);
+				stage.getActors().removeValue(a, true);
+			}
+		}
+	}
+	
+	public void showConnectionBlips(Connection connection)
+	{
+		Stage stage = train.getActor().getStage();
+		for(Actor a : connection.getRouteBlips())
+		{
+			a.setVisible(true);
+			stage.addActor(a);
+		}
+	}
+	
+	public void hideConnectionBlips(Connection connection)
+	{
+		Stage stage = train.getActor().getStage();
+		for(Actor a : connection.getRouteBlips())
+		{
+			a.setVisible(false);
+			stage.getActors().removeValue(a, true);
+		}
+	}
+	
 	public void addConnection(Connection connection)
 	{
+		//Discards old selections:
+		ArrayList<Connection> oldConnections = connection.getStartMapObj().connections;
+		for(Connection c : oldConnections)
+		{
+			c.getDestination().getActor().setRouteAvailable(false);
+			c.getDestination().getActor().toggleHighlight(false);
+			
+			// hideConnectionBlips(c);
+		}
+		
 		route.add(connection);
+		
+		ArrayList<Connection> adj = getAdjacentConnections();	
+		
+		//Adds new ones:
+		for(Connection c: adj)
+		{
+			c.getDestination().getActor().setRouteAvailable(train, c);
+			c.getDestination().getActor().toggleHighlight(true);
+			
+			// showConnectionBlips(c);
+		}
+		
+		showConnectionBlips(connection);
 		
 		isComplete = false;
 		train.getActor().canMove = false;
@@ -144,15 +215,18 @@ public class Route{
 	public void removeConnection()
 	{
 		if(!route.isEmpty())
-		{
+		{	
+			hideConnectionBlips(route.get(route.size() - 1));
 			
 			ArrayList<Connection> currentConnection = getAdjacentConnections();	
-			
-			// Toggles the current possible selections 
+		
+			// Removes the possible adjacent connections: 
 			for(Connection c : currentConnection)
 			{
 				c.getDestination().getActor().setRouteAvailable(false);
 				c.getDestination().getActor().toggleHighlight(false);
+				
+				//train.route.hideConnectionBlips(c);
 			}
 			
 			// Remove the connection from the route:
@@ -168,6 +242,8 @@ public class Route{
 			{
 				c.getDestination().getActor().setRouteAvailable(train, c);
 				c.getDestination().getActor().toggleHighlight(true);
+				
+				//train.route.showConnectionBlips(c);
 			}
 		}
 	}

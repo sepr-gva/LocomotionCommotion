@@ -1,6 +1,10 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_TextureManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.utils.Array;
 
 public class Connection{
 	
@@ -8,6 +12,11 @@ public class Connection{
 	private float length;
 	
 	private Vector2 vector;
+	
+	// Displaying Route stuff:
+	private Array<Actor> connectionBlips = new Array<Actor>();
+//	private Sprite redRouteBlip;
+//	private int blipSize;
 
 	/**
 	 * A connection between two adjacent MapObjs in the Map.
@@ -28,6 +37,52 @@ public class Connection{
 		
 		length = vector.len();
 		vector.nor();
+		
+		// Create route blips for a connection:
+		Vector2 blipVector = vector.cpy();
+	
+		// 30 pixels apart:
+		for(int i = 30; i < length - 15; i += 30)
+		{
+			Vector2 startPos = new Vector2(startMapObj.x, startMapObj.y);
+			blipVector.scl(i);
+			startPos.add(blipVector);
+			
+			Sprite blip = new Sprite(startPos.x, startPos.y, Game_Map_TextureManager.getInstance().routeBlip);
+			blip.setVisible(false);
+			connectionBlips.add(blip);
+			blipVector.nor();
+		}
+		
+		// blipSize = connectionBlips.size;
+		
+		/*
+		// Red blip to indicate direction:
+		redRouteBlip = new Sprite(50, 50, Game_Map_TextureManager.getInstance().redRouteBlip){
+			
+			int counter = 0;
+			int delay = 0;
+			
+			@Override
+			public void act(float delta)
+			{
+				if(delay > 20)
+				{
+					if(counter > blipSize)
+						counter = 0;
+					
+					setPosition(connectionBlips.get(counter).getX(), connectionBlips.get(counter).getY());
+					counter++;
+					
+					delay = 0;
+				}
+				else
+					delay++;
+			}
+		};
+		redRouteBlip.setVisible(false);
+		connectionBlips.add(redRouteBlip);
+		*/
 	}
 	
 	/**
@@ -59,5 +114,13 @@ public class Connection{
 	public MapObj getDestination()
 	{
 		return endMapObj;
+	}
+	/**
+	 * 
+	 * @return An Array of routeblips used when creating a route
+	 */
+	public Array<Actor> getRouteBlips()
+	{
+		return connectionBlips;
 	}
 }

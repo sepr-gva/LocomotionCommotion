@@ -81,7 +81,7 @@ public class Game_Map_Manager {
 		};
 		undoLastRouteButton.setVisible(false);
 		actors.add(undoLastRouteButton);
-		
+
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
 	
@@ -104,7 +104,7 @@ public class Game_Map_Manager {
 			trainBlips.add(new Game_Map_Train());
 		}
 		actors.addAll(trainBlips);
-
+		
 		// Add train stuff
 
 		stationInfo = new Sprite(0, 0, Game_Map_TextureManager.getInstance().stationInfo);
@@ -198,6 +198,10 @@ public class Game_Map_Manager {
 	
 	public static void enterRoutingMode()
 	{		
+		trainInfo.train.getRoute().showRouteBlips();
+		
+		trainInfo.train.getActor().setTouchable(Touchable.disabled);
+		
 		planBackground.setVisible(true);
 		routingModeWindow.setVisible(true);
 		exitRoutingModeBtn.setVisible(true);
@@ -210,6 +214,9 @@ public class Game_Map_Manager {
 	public static void exitRoutingMode()
 	{
 		trainInfo.unhighlightAdjacent();
+		trainInfo.train.getRoute().hideRouteBlips();
+		
+		trainInfo.train.getActor().setTouchable(Touchable.enabled);
 		
 		planBackground.setVisible(false);
 		routingModeWindow.setVisible(false);

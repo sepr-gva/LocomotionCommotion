@@ -41,4 +41,8 @@ public class Game_Map_TextureManager{
 	public Texture p2Stationx2 = new Texture(Gdx.files.internal("gameScreen/game_map/p2station2.png"));
 	public Texture p2Train = new Texture(Gdx.files.internal("gameScreen/game_map/p2train.png"));
 	public Texture p2Trainx2 = new Texture(Gdx.files.internal("gameScreen/game_map/p2train2.png"));
+	
+	public Texture routeBlip = new Texture(Gdx.files.internal("gameScreen/game_map/routeBlip.png"));
+	public Texture redRouteBlip = new Texture(Gdx.files.internal("gameScreen/game_map/routeBlip2.png"));
+	
 }

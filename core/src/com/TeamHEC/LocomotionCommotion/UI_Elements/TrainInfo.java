@@ -80,6 +80,8 @@ public class TrainInfo extends Sprite{
 		{
 			c.getDestination().getActor().setRouteAvailable(train, c);
 			c.getDestination().getActor().toggleHighlight(true);
+			
+			//train.route.showConnectionBlips(c);
 		}
 	}
 	
