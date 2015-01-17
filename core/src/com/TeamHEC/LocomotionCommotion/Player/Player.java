@@ -179,7 +179,15 @@ public class Player implements Serializable, RouteListener{
 		{
 			if ((this.trains.get(j).isInStation() && this.trains.get(j).route.getStation().getOwner() == null) && (this.trains.get(j).getRoute().getStation() == station))
 			{
-				validPurchase = true;				
+				if (this.getGold() >= station.getTotalValue())
+				{
+					validPurchase = true;				
+			
+				}
+				else
+				{
+					//not enough gold message
+				}
 			}
 		}
 		if (validPurchase)
@@ -305,10 +313,16 @@ public class Player implements Serializable, RouteListener{
 			int black = 0;
 			int brown = 0;
 			int orange = 0;
+			
+			
 
-			for (int j = 0; j < currentStation.getLineType().length; j++)
+			for (int j = 0; j < currentStation.getLineType().length; j++) //line type length should be 3, so for 0 to 2		
 			{
 				if (j == 0 || ((j > 0) && (currentStation.getLineType()[j] != currentStation.getLineType()[j-1])))
+					 //if 0 check line type 
+					 //if 1 check if it is the same as 0 if not check line type
+					 //if 2 check if it is the same as 1 if not check line type
+					 //always configure your line type array to have repeats in 1 and 2 e.g. (Black, Red, Red) NOT (Black, Red, Black) else this will not work
 				{
 					switch(currentStation.getLineType()[j])
 					{	
@@ -341,6 +355,7 @@ public class Player implements Serializable, RouteListener{
 					}
 				}
 			}
+			//increase rent, resource and value by 5 percent per line you have a station connected too, this may be adjusted to due scaling at larger values
 			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
 			currentStation.setResourceOutMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseResourceOut() * 0.05)));
 			currentStation.setValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getValueMod() * 0.05)));
