@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -51,19 +52,13 @@ public class TrainInfo extends Sprite{
 			@Override
 			protected void onClicked()
 			{
-				Game_Map_Manager.planBackground.setVisible(true);
-				highlightAdjacent();
-				makeVisible(false);
-				started = true;
-			}
-			
-
-			@Override
-			public void act(float delta){
-				if(started){
+				if(train != null)
+				if(GameScreen.game.getPlayerTurn() == train.getOwner())
+				{
 					Game_Map_Manager.enterRoutingMode();
+					Game_Map_Manager.planBackground.setVisible(true);
+					highlightAdjacent();
 					makeVisible(false);
-					started=false;
 				}
 			}
 		};
@@ -124,7 +119,10 @@ public class TrainInfo extends Sprite{
 		
 		name.setText(train.getName());
 		speed.setText(Integer.toString(train.getSpeed()));
-		routeRemaining.setText(Float.toString(train.route.getLengthRemaining()));
+		routeRemaining.setText(String.format("%.2f", train.route.getLengthRemaining()));
+		
+		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", train.route.getTotalLength()));
+		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", train.route.getLengthRemaining()));
 		
 		makeVisible(true);
 	}
@@ -136,5 +134,8 @@ public class TrainInfo extends Sprite{
 		{
 			a.setVisible(v);
 		}
+		
+		if(train.getOwner() != GameScreen.game.getPlayerTurn())
+			planRoute.setVisible(false);
 	}
 }

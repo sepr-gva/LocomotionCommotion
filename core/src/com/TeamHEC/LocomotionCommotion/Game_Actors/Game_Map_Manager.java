@@ -6,6 +6,7 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.TrainInfo;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
@@ -37,7 +38,8 @@ public class Game_Map_Manager {
 	public LabelStyle style;
 
 	public static Sprite planBackground, routingModeWindow;
-	public static SpriteButton exitRoutingModeBtn;
+	public static Label routeLength, routeRemaining;
+	public static SpriteButton exitRoutingModeBtn, undoLastRouteButton;
 	public static Array<Game_Map_Train> trainBlips = new Array<Game_Map_Train>();
 
 	public Game_Map_Manager(){	}
@@ -60,7 +62,7 @@ public class Game_Map_Manager {
 		routingModeWindow.setVisible(false);
 		actors.add(routingModeWindow);
 		
-		exitRoutingModeBtn = new SpriteButton(50,100,Game_TextureManager.getInstance().exitroutingModebtn){
+		exitRoutingModeBtn = new SpriteButton(50, 90, Game_TextureManager.getInstance().exitroutingModebtn){
 			@Override
 			protected void onClicked(){
 				exitRoutingMode();
@@ -68,6 +70,16 @@ public class Game_Map_Manager {
 		};
 		exitRoutingModeBtn.setVisible(false);
 		actors.add(exitRoutingModeBtn);
+		
+		undoLastRouteButton = new SpriteButton(110, 130, Game_TextureManager.getInstance().game_menuobject_redobtn){
+			@Override
+			protected void onClicked()
+			{
+				
+			}
+		};
+		undoLastRouteButton.setVisible(false);
+		actors.add(undoLastRouteButton);
 		
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
@@ -118,7 +130,7 @@ public class Game_Map_Manager {
 		stationLabelName = new Label(null, style);
 		stationLabelFuel = new Label(null, style);
 		stationLabelCost = new Label(null, style);
-
+		
 		stationLabelName.setText("LONDON");
 		stationLabelName.setAlignment(Align.center);		
 		stationLabelName.setColor(1,1,1,1);
@@ -136,6 +148,20 @@ public class Game_Map_Manager {
 		stationLabelCost.setColor(0,0,0,1);
 		stationLabelCost.setX(stationInfo.getX()+100);
 		stationLabelCost.setY(stationInfo.getY()+60);
+		
+		// Route Labels
+		routeLength = new Label(null, style);
+		routeRemaining = new Label(null, style);
+		routeLength.setText("Route length: ");
+		routeRemaining.setText("Route remaining: ");
+		routeLength.setPosition(10, 230, Align.center);
+		routeRemaining.setPosition(10, 200, Align.center);
+		routeLength.setVisible(false);
+		routeRemaining.setVisible(false);
+		routeLength.setColor(Color.BLACK);
+		routeRemaining.setColor(Color.BLACK);
+		actors.add(routeLength);
+		actors.add(routeRemaining);
 
 		infoactors.add(stationLabelName);
 		infoactors.add(stationLabelFuel);
@@ -174,6 +200,10 @@ public class Game_Map_Manager {
 		planBackground.setVisible(true);
 		routingModeWindow.setVisible(true);
 		exitRoutingModeBtn.setVisible(true);
+		
+		routeLength.setVisible(true);
+		routeRemaining.setVisible(true);
+		undoLastRouteButton.setVisible(true);
 	}
 	
 	public static void exitRoutingMode()
@@ -183,6 +213,10 @@ public class Game_Map_Manager {
 		planBackground.setVisible(false);
 		routingModeWindow.setVisible(false);
 		exitRoutingModeBtn.setVisible(false);
+		
+		routeLength.setVisible(false);
+		routeRemaining.setVisible(false);
+		undoLastRouteButton.setVisible(false);
 	}
 
 	public static void moveInfoBox(float x,float y){

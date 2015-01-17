@@ -145,7 +145,7 @@ public class Train implements Serializable{
 	}	
 	
 	/**
-	 * Moves the train through it's route using it's speed
+	 * Moves the train through it's route
 	 */
 	public void moveTrain()
 	{
