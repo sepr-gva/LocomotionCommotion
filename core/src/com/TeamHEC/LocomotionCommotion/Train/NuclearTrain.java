@@ -15,7 +15,7 @@ public class NuclearTrain extends Train{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int BASE_SPEED = 8;
+	private static final int BASE_SPEED = 120;
 	private static final int VALUE = 750;
 
 	public NuclearTrain(int speedMod, boolean inStation, Route route, Player player)

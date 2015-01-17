@@ -149,7 +149,10 @@ public class Train implements Serializable{
 	 */
 	public void moveTrain()
 	{
-		route.update(getSpeed());
+		if(!route.getRoute().isEmpty())
+		{
+			getActor().canMove = true;
+		}
 	}
 	
 	/**

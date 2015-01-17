@@ -15,7 +15,7 @@ public class OilTrain extends Train{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int BASE_SPEED = 5;
+	private static final int BASE_SPEED = 80;
 	private static final int VALUE = 350;
 
 	public OilTrain(int speedMod, boolean inStation, Route route, Player player)

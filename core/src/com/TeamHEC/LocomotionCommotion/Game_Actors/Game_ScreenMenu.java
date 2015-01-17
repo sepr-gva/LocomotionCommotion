@@ -1,7 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import java.util.ArrayList;
+
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
@@ -156,7 +160,13 @@ public class Game_ScreenMenu {
 				@SuppressWarnings("static-access")
 				@Override
 				protected void onClicked()
-				{
+				{	
+					ArrayList<Train> playerTrains = GameScreen.game.getPlayerTurn().trains;	
+					for(Train t : playerTrains)
+					{
+						t.moveTrain();
+					}
+					
 					GameScreen.game.EndTurn();
 					Game_ScreenMenu.resourceActorManager.refreshResources();
 					Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
@@ -202,7 +212,7 @@ public class Game_ScreenMenu {
 								GameScreen.getStage().getActors().get(i).setVisible(true);
 
 						}			
-						Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 						}
 					else
 					{	Game_Shop.actorManager.open= false;

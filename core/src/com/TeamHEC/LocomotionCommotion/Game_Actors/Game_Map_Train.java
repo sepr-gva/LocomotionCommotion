@@ -13,6 +13,9 @@ public class Game_Map_Train extends Actor{
 	private Texture texture, toggleTexture1, toggleTexture2;
 	private float offset;
 	
+	public boolean canMove = false;
+	public int moveCounter = 0;
+	
 	public Game_Map_Train()
 	{
 		texture = Game_Map_TextureManager.getInstance().p1Train;
@@ -78,15 +81,27 @@ public class Game_Map_Train extends Actor{
 		}
 	}
 	
-	/*
 	@Override
-	public void act(float delta){
-		if(!train.route.isComplete())
+	public void act(float delta)
+	{	
+		if(canMove)
 		{
-			train.moveTrain();
+			if(!train.route.isComplete())
+			{
+				int trainSpeed = train.getSpeed();
+				if(moveCounter < trainSpeed)
+				{
+					train.route.update(1);
+					moveCounter++;
+				}
+				else
+				{
+					canMove = false;
+					moveCounter = 0;
+				}
+			}
 		}
 	}
-	*/
 	
 	@Override
 	public void draw(Batch batch, float alpha){

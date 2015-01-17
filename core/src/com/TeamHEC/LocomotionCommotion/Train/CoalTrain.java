@@ -15,7 +15,7 @@ public class CoalTrain extends Train {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int BASE_SPEED = 3;
+	private static final int BASE_SPEED = 70;
 	private static final int VALUE = 200;
 		
 	public CoalTrain(int speedMod, boolean inStation, Route route, Player player)
