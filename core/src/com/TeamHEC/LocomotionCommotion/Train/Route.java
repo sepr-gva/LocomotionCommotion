@@ -130,6 +130,9 @@ public class Route{
 	{
 		route.add(connection);
 		
+		isComplete = false;
+		train.getActor().canMove = false;
+		
 		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
 		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
 	}
