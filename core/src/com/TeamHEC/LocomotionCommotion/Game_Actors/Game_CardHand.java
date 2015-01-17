@@ -48,7 +48,7 @@ public class Game_CardHand {
 		public 	Array<Game_card_Card> cards = new Array<Game_card_Card>();
 		//ArrayLists
 		public 	ArrayList<Game_card_Card> currentHand;
-		public static 	ArrayList<Card> newcards = new ArrayList<Card>();
+		public static ArrayList<Card> newcards = new ArrayList<Card>();
 		//Booleans
 		public boolean open=false;
 		//Game_card_Cards

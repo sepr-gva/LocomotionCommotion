@@ -546,18 +546,14 @@ public class Game_Shop {
 			public void act(float delta){
 				if(started){
 					if (Game_Shop.actorManager.startpage.buy){						
-						/*Player currentPlayer = GameScreen.game.getPlayerTurn();
-						CardFactory cardFactory = new CardFactory(currentPlayer);
-						Card card = cardFactory.createAnyCard();
-						Game_CardHand.actorManager.addCard(card);
-						GameScreen.game.getPlayerTurn().subGold(1000);
-						Game_ScreenMenu.resourceActorManager.refreshResources();
-						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());		*/		
 						int newAdditionIndex = GameScreen.game.getPlayerTurn().getCards().size();
 						GameScreen.game.getPlayerTurn().getShop().buyCard();
-						Game_CardHand.actorManager.addCard(GameScreen.game.getPlayerTurn().getCards().get(newAdditionIndex));						
+						Game_CardHand.actorManager.addCard(GameScreen.game.getPlayerTurn().getCards().get(newAdditionIndex));
+						Game_ScreenMenu.resourceActorManager.refreshResources();
+						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 					}
 				}
+				
 				started = false;
 			}
 			public  void changeTexture(){
