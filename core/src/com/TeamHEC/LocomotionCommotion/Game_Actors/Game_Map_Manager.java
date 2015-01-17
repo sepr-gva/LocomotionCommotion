@@ -75,7 +75,8 @@ public class Game_Map_Manager {
 			@Override
 			protected void onClicked()
 			{
-				
+				if(Game_Map_Manager.trainInfo.train != null)
+					Game_Map_Manager.trainInfo.train.route.removeConnection();
 			}
 		};
 		undoLastRouteButton.setVisible(false);

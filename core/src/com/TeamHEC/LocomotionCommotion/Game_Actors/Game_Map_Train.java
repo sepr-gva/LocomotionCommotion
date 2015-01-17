@@ -12,7 +12,7 @@ public class Game_Map_Train extends Actor{
 	private Train train;
 	private Texture texture, toggleTexture1, toggleTexture2;
 	private float offset;
-	
+		
 	public boolean canMove = false;
 	public int moveCounter = 0;
 	
@@ -64,7 +64,13 @@ public class Game_Map_Train extends Actor{
 	
 	public void clickedTrain()
 	{
-		Game_Map_Manager.trainInfo.showLabel(train);
+		if(Game_Map_Manager.trainInfo.train == train)
+		{
+			Game_Map_Manager.trainInfo.makeVisible(false);
+			Game_Map_Manager.trainInfo.train = null;
+		}
+		else
+			Game_Map_Manager.trainInfo.showLabel(train);
 	}
 	
 	public void toggleHighlight(boolean highlighted)

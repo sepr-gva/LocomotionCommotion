@@ -57,7 +57,8 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		if(!highlighted)
 		{	
 			highlighted = true;
-			showInfoBox();
+			if(!Game_Map_Manager.routingModeWindow.isVisible())
+				showInfoBox();
 			Game_Map_StationBtn.selectedStation = this;
 		}
 		else

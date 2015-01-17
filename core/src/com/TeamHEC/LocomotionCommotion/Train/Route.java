@@ -2,6 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Train;
 
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
@@ -23,6 +24,9 @@ public class Route{
 	private MapObj currentMapObj;
 	
 	private boolean isComplete = false;
+	
+	// Stuff for adding and removing connections
+	public Train train;
 	
 	protected ArrayList<RouteListener> listeners = new ArrayList<RouteListener>();
 	
@@ -125,6 +129,9 @@ public class Route{
 	public void addConnection(Connection connection)
 	{
 		route.add(connection);
+		
+		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
+		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
 	}
 
 	/**
@@ -133,7 +140,33 @@ public class Route{
 	 */
 	public void removeConnection()
 	{
-		route.remove(route.size());
+		if(!route.isEmpty())
+		{
+			
+			ArrayList<Connection> currentConnection = getAdjacentConnections();	
+			
+			// Toggles the current possible selections 
+			for(Connection c : currentConnection)
+			{
+				c.getDestination().getActor().setRouteAvailable(false);
+				c.getDestination().getActor().toggleHighlight(false);
+			}
+			
+			// Remove the connection from the route:
+			route.remove(route.size() - 1);
+			
+			// Updates the route information window text:
+			Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
+			Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
+					
+			//Toggles the current selection for the new route:
+			currentConnection = getAdjacentConnections();	
+			for(Connection c: currentConnection)
+			{
+				c.getDestination().getActor().setRouteAvailable(train, c);
+				c.getDestination().getActor().toggleHighlight(true);
+			}
+		}
 	}
 	
 	/**

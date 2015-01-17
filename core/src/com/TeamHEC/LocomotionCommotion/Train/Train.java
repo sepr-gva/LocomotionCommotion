@@ -51,6 +51,7 @@ public class Train implements Serializable{
 		this.value = value;
 		this.inStation = inStation;
 		this.route = route;
+		this.route.train = this;
 		this.owner = owner;
 		
 		// The UI blip for each train

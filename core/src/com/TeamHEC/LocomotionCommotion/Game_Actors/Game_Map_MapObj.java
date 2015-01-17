@@ -101,9 +101,6 @@ public class Game_Map_MapObj extends Actor{
 				c.getDestination().getActor().setRouteAvailable(getRouteTrain(), c);
 				c.getDestination().getActor().toggleHighlight(true);
 			}
-			
-			Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getRouteTrain().route.getTotalLength()));
-			Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getRouteTrain().route.getLengthRemaining()));
 		}
 	}
 	
