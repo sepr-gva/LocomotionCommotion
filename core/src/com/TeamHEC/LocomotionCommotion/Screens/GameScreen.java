@@ -22,18 +22,18 @@ package com.TeamHEC.LocomotionCommotion.Screens;
  */
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepot;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.WarningMessage;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -76,7 +76,7 @@ public class GameScreen implements Screen {
 		actorManager.create(getStage());
 
 
-		Game_TrainDepot trainDepot = new Game_TrainDepot();
+		TrainDepotUI trainDepot = new TrainDepotUI();
 		trainDepot.create(getStage());
 
 		GoalMenu goalScreenManager = new GoalMenu();
@@ -168,13 +168,13 @@ public class GameScreen implements Screen {
 		Game_PauseMenu.actorManager.open = false;
 		PlayerGoals.open = false;
 		Game_Shop.actorManager.open = false;
-		Game_TrainDepot.actorManager.open = false;
+		TrainDepotUI.actorManager.open = false;
 		Game_ScreenMenu.resourceActorManager.resourcebarexpanded =false;
 		GoalMenu.open= false;
 		
 		//CARDS
 		Game_CardHand.actorManager.open=false;
-		Game_CardHand.actorManager.cards.clear();;
+		Game_CardHand.actorManager.cardactors.clear();;
 		
 		//Map
 		Game_startGameManager.reset();

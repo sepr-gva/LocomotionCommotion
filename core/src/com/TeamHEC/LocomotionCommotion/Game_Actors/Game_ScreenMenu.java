@@ -3,10 +3,12 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
@@ -235,10 +237,10 @@ public class Game_ScreenMenu {
 				@Override
 				protected void onClicked()
 				{
-					if (Game_TrainDepot.actorManager.open== false)
+					if (TrainDepotUI.actorManager.open== false)
 					{
-						Game_TrainDepot.actorManager.open= true;
-						for(int i=Game_TrainDepot.actorManager.getStageStart(); i<=Game_TrainDepot.actorManager.getStageEnd();i++){
+						TrainDepotUI.actorManager.open= true;
+						for(int i=TrainDepotUI.actorManager.getStageStart(); i<=TrainDepotUI.actorManager.getStageEnd();i++){
 							if (i > GameScreen.getStage().getActors().size-1){
 
 							}else
@@ -247,8 +249,8 @@ public class Game_ScreenMenu {
 						}			}
 					else
 					{	
-						Game_TrainDepot.actorManager.open= false;
-						for(int i=Game_TrainDepot.actorManager.getStageStart(); i<=Game_TrainDepot.actorManager.getStageEnd();i++){
+						TrainDepotUI.actorManager.open= false;
+						for(int i=TrainDepotUI.actorManager.getStageStart(); i<=TrainDepotUI.actorManager.getStageEnd();i++){
 							if (i > GameScreen.getStage().getActors().size-1){
 
 							}else
@@ -345,9 +347,9 @@ public class Game_ScreenMenu {
 	public static class Game_resources_ToggleBtn extends Game_Actor {
 		public Game_resources_ToggleBtn(){
 			texture = Game_TextureManager.getInstance().game_menuobject_menubtn; // reuse the new game back btn texture
-			actorX = 10 ;
-			actorY = 30;
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			setActorX(10) ;
+			setActorY(30);
+			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_resources_ToggleBtn)event.getTarget()).started = true;
@@ -362,8 +364,9 @@ public class Game_ScreenMenu {
 				if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded== false)
 				{	
 					//Move up button, bar and quantities
-					Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.actorY+=expandedheight;
-					setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+					Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.setActorY(Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.getActorY()
+							+ expandedheight);
+					setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 					Game_ScreenMenu.resourceActorManager.game_menuobject_resourcesbar.increaseY(expandedheight);
 					Game_ResourcesManager.setResourcesHeight(Game_ScreenMenu.resourceActorManager.cardQuant.getY()+expandedheight);
 					//move cards up
@@ -386,8 +389,9 @@ public class Game_ScreenMenu {
 				{	Game_ScreenMenu.resourceActorManager.resourcebarexpanded= false;
 				Game_CardHand.actorManager.usecardbtn.setVisible(false);
 				//Move up
-				Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.actorY-=expandedheight;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				Game_ScreenMenu.resourceActorManager.game_resources_togglebtn
+						.setActorY(Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.getActorY() - expandedheight);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				Game_ScreenMenu.resourceActorManager.game_menuobject_resourcesbar.increaseY(-expandedheight);
 				Game_ResourcesManager.setResourcesHeight(Game_ScreenMenu.resourceActorManager.cardQuant.getY()-expandedheight);
 

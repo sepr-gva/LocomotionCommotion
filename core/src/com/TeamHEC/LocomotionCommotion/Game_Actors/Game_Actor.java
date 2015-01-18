@@ -6,11 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 
 public class Game_Actor extends Actor{
 	public Texture texture;
-	float actorX, actorY;
-	boolean started = false;
+	private float actorX;
+	private float actorY;
+	public boolean started = false;
 
 	public void draw(Batch batch, float alpha){
-		batch.draw(texture, actorX, actorY);
+		batch.draw(texture, getActorX(), getActorY());
 	}
 
 	public void setTexture(Texture t){
@@ -18,5 +19,21 @@ public class Game_Actor extends Actor{
 	}
 	public Texture getTexture(){
 		return this.texture;
+	}
+
+	public float getActorX() {
+		return actorX;
+	}
+
+	public void setActorX(float actorX) {
+		this.actorX = actorX;
+	}
+
+	public float getActorY() {
+		return actorY;
+	}
+
+	public void setActorY(float actorY) {
+		this.actorY = actorY;
 	}
 }

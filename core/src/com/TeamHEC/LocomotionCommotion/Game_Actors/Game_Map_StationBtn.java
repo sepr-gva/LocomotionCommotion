@@ -67,7 +67,7 @@ public class Game_Map_StationBtn extends SpriteButton {
 					
 					Game_startGameManager.selectLabel.setVisible(true);
 					Game_startGameManager.getStartedWindow.setVisible(true);
-					Game_startGameManager.getStartedWindow.actorX=130;
+					Game_startGameManager.getStartedWindow.setActorX(130);
 					Game_startGameManager.getStartedWindow.setTexture(Game_TextureManager.getInstance().game_start_getstartedwindow2);
 					
 					Game_startGameManager.selectLabel.setText(GameScreen.game.getPlayerTurn().getName()+" select a new Goal from the Goal Screen!");

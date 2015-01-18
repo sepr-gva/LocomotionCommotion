@@ -2,6 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
@@ -33,7 +34,7 @@ public class Game_Shop {
 
 
 	}
-	
+
 	//ACTOR MANAGER
 	public static class Game_ShopManager {
 
@@ -224,15 +225,15 @@ public class Game_Shop {
 		return num;
 	}
 
-	
+
 	//SHOP Actors
 	//Back Button
 	public static class Game_shop_BackBtn extends Game_Actor {
 		public Game_shop_BackBtn(){
 			texture = Game_TextureManager.getInstance().game_shop_backbtn; 
-			actorX = 1350 ;
-			actorY = 860;
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			setActorX(1350) ;
+			setActorY(860);
+			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_shop_BackBtn)event.getTarget()).started = true;
@@ -245,7 +246,7 @@ public class Game_Shop {
 
 		@Override
 		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX,actorY);
+			batch.draw(texture,getActorX(),getActorY());
 		}
 
 		@Override
@@ -336,9 +337,9 @@ public class Game_Shop {
 		public class ShopBackBtn extends Game_Actor{
 			public ShopBackBtn(){
 				texture = Game_TextureManager.getInstance().game_shop_backbtn; 
-				actorX = 1350 ;
-				actorY = 860;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(1350) ;
+				setActorY(860);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((ShopBackBtn)event.getTarget()).started = true;
@@ -381,9 +382,9 @@ public class Game_Shop {
 		public class ShopBuyBtn extends Game_Actor{
 			public ShopBuyBtn(){
 				texture = Game_TextureManager.getInstance().game_shop_startbuy; 
-				actorX = 250 ;
-				actorY = 350;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(250) ;
+				setActorY(350);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((ShopBuyBtn)event.getTarget()).started = true;
@@ -426,9 +427,9 @@ public class Game_Shop {
 		public class ShopSellBtn extends Game_Actor{
 			public ShopSellBtn(){
 				texture = Game_TextureManager.getInstance().game_shop_startsell; 
-				actorX = 650 ;
-				actorY = 350;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(650) ;
+				setActorY(350);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((ShopSellBtn)event.getTarget()).started = true;
@@ -471,9 +472,9 @@ public class Game_Shop {
 		public class ShopTrainBtn extends Game_Actor{
 			public ShopTrainBtn(){
 				texture = Game_TextureManager.getInstance().game_shop_starttrain; 
-				actorX = 1050 ;
-				actorY = 350;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(1050) ;
+				setActorY(350);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((ShopTrainBtn)event.getTarget()).started = true;
@@ -499,7 +500,7 @@ public class Game_Shop {
 		public static int posy=100;
 		public static LabelStyle style;
 		BuyButton buyButton ;
-		
+
 		public Game_shop_card(){
 			this.actors = new ArrayList<Actor>();
 
@@ -531,14 +532,16 @@ public class Game_Shop {
 
 			actors.add(costLabel);
 		}
-
+		
+		
+		
 		public static class BuyButton extends Game_Actor{
 			public BuyButton(){				
-					texture = Game_TextureManager.getInstance().game_shop_buybtn; 
-					actorX = posx+75 ;
-					actorY = posy+20;
-					setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-					addListener(new InputListener(){
+				texture = Game_TextureManager.getInstance().game_shop_buybtn; 
+				setActorX(posx+75) ;
+				setActorY(posy+20);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
+				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((BuyButton)event.getTarget()).started = true;
 						return true;
@@ -551,13 +554,15 @@ public class Game_Shop {
 						if(GameScreen.game.getPlayerTurn().getCards().size()<7){
 							int newAdditionIndex = GameScreen.game.getPlayerTurn().getCards().size();
 							GameScreen.game.getPlayerTurn().getShop().buyCard();
-							Game_CardHand.actorManager.addCard(GameScreen.game.getPlayerTurn().getCards().get(newAdditionIndex));
-							Game_ScreenMenu.resourceActorManager.refreshResources();
-							Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
-					}
+							if(GameScreen.game.getPlayerTurn().getCards().size()>newAdditionIndex){
+								Game_CardHand.actorManager.addCard(GameScreen.game.getPlayerTurn().getCards().get(newAdditionIndex));
+								Game_ScreenMenu.resourceActorManager.refreshResources();
+								Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+							}
+						}
 					}
 				}
-				
+
 				started = false;
 			}
 			public  void changeTexture(){
@@ -583,7 +588,7 @@ public class Game_Shop {
 		public static int posy=470;
 		public static LabelStyle style;
 		BuyButton buyButton;
-		
+
 		public Game_shop_coal(){
 			this.actors = new ArrayList<Actor>();
 			Game_Asset coalitem = new Game_Asset(posx,posy,Game_TextureManager.getInstance().game_shop_coalitem);
@@ -629,7 +634,7 @@ public class Game_Shop {
 			int newQuantity = strToInt(quantityLabel.getText());
 			newQuantity+=change;
 			costLabel.setText(""+(newQuantity*Shop.coalPrice));
-						
+
 			String l = new Integer(newQuantity).toString();
 			quantityLabel.setText(l);
 		}
@@ -639,9 +644,9 @@ public class Game_Shop {
 		public class AddButton extends Game_Actor{
 			public AddButton(){
 				texture = Game_TextureManager.getInstance().game_shop_addbtn; 
-				actorX = posx+75 ;
-				actorY = posy+42;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+42);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((AddButton)event.getTarget()).started = true;
@@ -662,9 +667,9 @@ public class Game_Shop {
 		public class MinusButton extends Game_Actor{
 			public MinusButton(){
 				texture = Game_TextureManager.getInstance().game_shop_minusbtn; 
-				actorX = posx+220 ;
-				actorY = posy+48;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+220) ;
+				setActorY(posy+48);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((MinusButton)event.getTarget()).started = true;
@@ -686,9 +691,9 @@ public class Game_Shop {
 		public class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
-				actorX = posx+75 ;
-				actorY = posy+20;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+20);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((BuyButton)event.getTarget()).started = true;
@@ -781,17 +786,17 @@ public class Game_Shop {
 			int newQuantity = strToInt(quantityLabel.getText());
 			newQuantity+=change;
 			costLabel.setText(""+(newQuantity*Shop.oilPrice));
-						
+
 			String l = new Integer(newQuantity).toString();
 			quantityLabel.setText(l);
 		}
-		
+
 		public class AddButton extends Game_Actor{
 			public AddButton(){
 				texture = Game_TextureManager.getInstance().game_shop_addbtn; 
-				actorX = posx+75 ;
-				actorY = posy+42;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+42);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((AddButton)event.getTarget()).started = true;
@@ -812,9 +817,9 @@ public class Game_Shop {
 		public class MinusButton extends Game_Actor{
 			public MinusButton(){
 				texture = Game_TextureManager.getInstance().game_shop_minusbtn; // reuse the new game back btn texture
-				actorX = posx+220 ;
-				actorY = posy+48;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+220) ;
+				setActorY(posy+48);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((MinusButton)event.getTarget()).started = true;
@@ -836,9 +841,9 @@ public class Game_Shop {
 		public static class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
-				actorX = posx+75 ;
-				actorY = posy+20;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+20);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((BuyButton)event.getTarget()).started = true;
@@ -875,7 +880,7 @@ public class Game_Shop {
 			return this.actors;
 		}
 	}
-	
+
 	//Electricity
 	public static class Game_shop_electricity {
 		ArrayList<Actor> actors ;
@@ -932,7 +937,7 @@ public class Game_Shop {
 			int newQuantity = strToInt(quantityLabel.getText());
 			newQuantity+=change;
 			costLabel.setText(""+(newQuantity*Shop.electricPrice));
-						
+
 			String l = new Integer(newQuantity).toString();
 			quantityLabel.setText(l);
 		}
@@ -940,9 +945,9 @@ public class Game_Shop {
 		public class AddButton extends Game_Actor{
 			public AddButton(){
 				texture = Game_TextureManager.getInstance().game_shop_addbtn; // reuse the new game back btn texture
-				actorX = posx+75 ;
-				actorY = posy+42;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+42);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((AddButton)event.getTarget()).started = true;
@@ -963,9 +968,9 @@ public class Game_Shop {
 		public class MinusButton extends Game_Actor{
 			public MinusButton(){
 				texture = Game_TextureManager.getInstance().game_shop_minusbtn; // reuse the new game back btn texture
-				actorX = posx+220 ;
-				actorY = posy+48;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+220) ;
+				setActorY(posy+48);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((MinusButton)event.getTarget()).started = true;
@@ -987,9 +992,9 @@ public class Game_Shop {
 		public static class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
-				actorX = posx+75 ;
-				actorY = posy+20;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+20);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((BuyButton)event.getTarget()).started = true;
@@ -1013,7 +1018,7 @@ public class Game_Shop {
 					started = false;
 				}
 			}
-			
+
 			public void changeTexture(){
 				if (Game_Shop.actorManager.startpage.buy==true)
 					texture=Game_TextureManager.getInstance().game_shop_buybtn;
@@ -1032,7 +1037,7 @@ public class Game_Shop {
 
 
 	}
-	
+
 	//Nuclear
 	public static class Game_shop_nuclear {
 		ArrayList<Actor> actors ;
@@ -1089,7 +1094,7 @@ public class Game_Shop {
 			int newQuantity = strToInt(quantityLabel.getText());
 			newQuantity+=change;
 			costLabel.setText(""+(newQuantity*Shop.nuclearPrice));
-						
+
 			String l = new Integer(newQuantity).toString();
 			quantityLabel.setText(l);
 		}
@@ -1098,9 +1103,9 @@ public class Game_Shop {
 		public class AddButton extends Game_Actor{
 			public AddButton(){
 				texture = Game_TextureManager.getInstance().game_shop_addbtn; // reuse the new game back btn texture
-				actorX = posx+75 ;
-				actorY = posy+42;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+42);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((AddButton)event.getTarget()).started = true;
@@ -1121,9 +1126,9 @@ public class Game_Shop {
 		public class MinusButton extends Game_Actor{
 			public MinusButton(){
 				texture = Game_TextureManager.getInstance().game_shop_minusbtn; // reuse the new game back btn texture
-				actorX = posx+220 ;
-				actorY = posy+48;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+220) ;
+				setActorY(posy+48);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((MinusButton)event.getTarget()).started = true;
@@ -1145,9 +1150,9 @@ public class Game_Shop {
 		public static class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_buybtn; // reuse the new game back btn texture
-				actorX = posx+75 ;
-				actorY = posy+20;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+20);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((BuyButton)event.getTarget()).started = true;
@@ -1171,7 +1176,7 @@ public class Game_Shop {
 					started = false;
 				}
 			}
-			
+
 			public void changeTexture(){
 				if (Game_Shop.actorManager.startpage.buy==true)
 					texture=Game_TextureManager.getInstance().game_shop_buybtn;
@@ -1216,17 +1221,17 @@ public class Game_Shop {
 			style.font = font;
 
 			//end
-			
+
 			quantity =100;
-			
-		
-			
+
+
+
 			costLabel= new Label(null,style);
 			costLabel.setX(posx+ 100);
 			costLabel.setY(posy +43);
 			costLabel.setColor(0,0,0,1);
 			costLabel.setText("Buy Trains");
-			
+
 			actors.add(costLabel);
 
 
@@ -1235,9 +1240,9 @@ public class Game_Shop {
 		public class BuyButton extends Game_Actor{
 			public BuyButton(){
 				texture = Game_TextureManager.getInstance().game_shop_blankbuybtn; // reuse the new game back btn texture
-				actorX = posx+75 ;
-				actorY = posy+20;
-				setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+				setActorX(posx+75) ;
+				setActorY(posy+20);
+				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 				addListener(new InputListener(){
 					public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 						((BuyButton)event.getTarget()).started = true;
@@ -1248,11 +1253,11 @@ public class Game_Shop {
 			}
 			public void act(float delta){
 				if(started){
-					
-					}
-					started = false;
+
 				}
+				started = false;
 			}
+		}
 
 		public ArrayList<Actor> getActors() {
 			return this.actors;

@@ -3,10 +3,10 @@ package com.TeamHEC.LocomotionCommotion.Train;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.WarningMessage;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;

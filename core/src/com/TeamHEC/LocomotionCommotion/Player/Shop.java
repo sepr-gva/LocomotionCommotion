@@ -3,7 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Player;
 import java.io.Serializable;
 
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.WarningMessage;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 
 /**
  * 

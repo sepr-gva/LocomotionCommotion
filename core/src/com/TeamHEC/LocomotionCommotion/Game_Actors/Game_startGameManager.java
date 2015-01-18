@@ -122,9 +122,9 @@ public class Game_startGameManager {
 	public static class Game_start_getStartedWindow extends Game_Actor {
 		public Game_start_getStartedWindow(){
 			texture = Game_TextureManager.getInstance().game_start_getstartedwindow; 
-			actorX = 300 ;
-			actorY = 400;
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			setActorX(300) ;
+			setActorY(400);
+			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_start_getStartedWindow)event.getTarget()).started = true;
@@ -137,7 +137,7 @@ public class Game_startGameManager {
 
 		@Override
 		public void draw(Batch batch, float alpha){
-			batch.draw(texture,actorX,actorY);
+			batch.draw(texture,getActorX(),getActorY());
 		}
 
 		@Override

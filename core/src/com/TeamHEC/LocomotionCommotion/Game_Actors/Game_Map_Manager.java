@@ -3,9 +3,9 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.Train.TrainInfoUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.TrainInfo;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -31,7 +31,7 @@ public class Game_Map_Manager {
 	public static Sprite stationInfo;
 	public static Game_Map_StationBtn stationSelect;
 	
-	public static TrainInfo trainInfo;
+	public static TrainInfoUI trainInfo;
 
 	public static boolean infoVisible= false;
 	public static int  stagestart, mapActors, stationTracker, numberOfStations, junctionTracker, numberOfJunctions = 2;
@@ -133,7 +133,7 @@ public class Game_Map_Manager {
 		stationInfo = new Sprite(0, 0, Game_Map_TextureManager.getInstance().stationInfo);
 		infoactors.add(stationInfo);
 		
-		trainInfo = new TrainInfo();		
+		trainInfo = new TrainInfoUI();		
 		trainInfoActors.add(trainInfo);
 		trainInfoActors.addAll(trainInfo.getActors());
 

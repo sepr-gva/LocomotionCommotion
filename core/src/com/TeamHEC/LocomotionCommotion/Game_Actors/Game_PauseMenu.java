@@ -98,9 +98,9 @@ public class Game_PauseMenu {
 	public static class Game_pause_ResumeGame extends Game_Actor {
 		public Game_pause_ResumeGame(){
 			texture = Game_TextureManager.getInstance().game_pause_resumegame;
-			actorX = 590 ;
-			actorY = 550;
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			setActorX(590) ;
+			setActorY(550);
+			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_pause_ResumeGame)event.getTarget()).started = true;
@@ -135,17 +135,15 @@ public class Game_PauseMenu {
 				started = false;
 			}
 		}
-		public float getActorX(){
-			return actorX;
-		}
+	
 	}
 	//Load Game Button
 	public static class Game_pause_LoadGame extends Game_Actor {
 		public Game_pause_LoadGame(){
 			texture = Game_TextureManager.getInstance().game_pause_loadgame; // reuse the new game back btn texture
-			actorX = Game_PauseMenu.actorManager.game_pause_resume.actorX;
-			actorY = Game_PauseMenu.actorManager.game_pause_resume.actorY-100;
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			setActorX(Game_PauseMenu.actorManager.game_pause_resume.getActorX());
+			setActorY(Game_PauseMenu.actorManager.game_pause_resume.getActorY()-100);
+			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_pause_LoadGame)event.getTarget()).started = true;
@@ -164,9 +162,9 @@ public class Game_PauseMenu {
 	public static class Game_pause_Settings extends Game_Actor {
 		public Game_pause_Settings(){
 			texture = Game_TextureManager.getInstance().game_pause_settings; // reuse the new game back btn texture
-			actorX = Game_PauseMenu.actorManager.game_pause_resume.actorX ;
-			actorY = Game_PauseMenu.actorManager.game_pause_resume.actorY-200;
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			setActorX(Game_PauseMenu.actorManager.game_pause_resume.getActorX()) ;
+			setActorY(Game_PauseMenu.actorManager.game_pause_resume.getActorY()-200);
+			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_pause_Settings)event.getTarget()).started = true;
@@ -185,9 +183,9 @@ public class Game_PauseMenu {
 	public static class Game_pause_MainMenu extends Game_Actor {
 		public Game_pause_MainMenu(){
 			texture = Game_TextureManager.getInstance().game_pause_mainmenu; // reuse the new game back btn texture
-			actorX = Game_PauseMenu.actorManager.game_pause_resume.actorX ;
-			actorY = Game_PauseMenu.actorManager.game_pause_resume.actorY-300;
-			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
+			setActorX(Game_PauseMenu.actorManager.game_pause_resume.getActorX()) ;
+			setActorY(Game_PauseMenu.actorManager.game_pause_resume.getActorY()-300);
+			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_pause_MainMenu)event.getTarget()).started = true;
