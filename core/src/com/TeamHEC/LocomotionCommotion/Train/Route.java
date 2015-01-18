@@ -41,13 +41,15 @@ public class Route{
 	}
 	/**
 	 * Used to reload an existing route
-	 * @param startingPos Initial starting poiut of the route
+	 * @param route current route of the train
 	 * @param routeIndex The index used to track progress through an array of connections
 	 * @param connectionTravelled The distance travelled through that connection 
 	 */
-	public Route(MapObj startingPos, int routeIndex, float connectionTravelled)
+	public Route(ArrayList<Connection> route, int routeIndex, float connectionTravelled)
 	{
-		currentMapObj = startingPos;
+		this.route = route;
+		if(!route.isEmpty())
+			currentMapObj = route.get(routeIndex).getStartMapObj();
 		this.routeIndex = routeIndex;
 		this.connectionTravelled = connectionTravelled;
 	}
@@ -125,7 +127,6 @@ public class Route{
 	 * Usually one of the connections return from getAdjacentConnections()
 	 * @param connection The connection to be added
 	 */
-	
 	public void showRouteBlips()
 	{
 		Stage stage = train.getActor().getStage();
@@ -214,34 +215,38 @@ public class Route{
 	{
 		if(!route.isEmpty())
 		{	
-			hideConnectionBlips(route.get(route.size() - 1));
-			
-			ArrayList<Connection> currentConnection = getAdjacentConnections();	
-		
-			// Removes the possible adjacent connections: 
-			for(Connection c : currentConnection)
+			// If the route trying to be removed has already been traversed...
+			if((route.get(route.size() - 1) == route.get(routeIndex) && connectionTravelled == 0) || route.get(route.size() - 1) != route.get(routeIndex))
 			{
-				c.getDestination().getActor().setRouteAvailable(false);
-				c.getDestination().getActor().toggleHighlight(false);
+				hideConnectionBlips(route.get(route.size() - 1));
 				
-				//train.route.hideConnectionBlips(c);
-			}
-			
-			// Remove the connection from the route:
-			route.remove(route.size() - 1);
-			
-			// Updates the route information window text:
-			Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
-			Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
+				ArrayList<Connection> currentConnection = getAdjacentConnections();	
+				
+				// Removes the possible adjacent connections: 
+				for(Connection c : currentConnection)
+				{
+					c.getDestination().getActor().setRouteAvailable(false);
+					c.getDestination().getActor().toggleHighlight(false);
 					
-			//Toggles the current selection for the new route:
-			currentConnection = getAdjacentConnections();	
-			for(Connection c: currentConnection)
-			{
-				c.getDestination().getActor().setRouteAvailable(train, c);
-				c.getDestination().getActor().toggleHighlight(true);
+					//train.route.hideConnectionBlips(c);
+				}
 				
-				//train.route.showConnectionBlips(c);
+				// Remove the connection from the route:
+				route.remove(route.size() - 1);
+				
+				// Updates the route information window text:
+				Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
+				Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
+						
+				//Toggles the current selection for the new route:
+				currentConnection = getAdjacentConnections();	
+				for(Connection c: currentConnection)
+				{
+					c.getDestination().getActor().setRouteAvailable(train, c);
+					c.getDestination().getActor().toggleHighlight(true);
+					
+					//train.route.showConnectionBlips(c);
+				}
 			}
 		}
 	}

@@ -2,6 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.TrainInfo;
@@ -199,8 +200,16 @@ public class Game_Map_Manager {
 	public static void enterRoutingMode()
 	{		
 		trainInfo.train.getRoute().showRouteBlips();
-		
-		trainInfo.train.getActor().setTouchable(Touchable.disabled);
+				
+		// Allows you to click on stations that are covered by trains:
+		for(Train t : GameScreen.game.getPlayer1().getTrains())
+		{
+			t.getActor().setTouchable(Touchable.disabled);
+		}
+		for(Train t : GameScreen.game.getPlayer2().getTrains())
+		{
+			t.getActor().setTouchable(Touchable.disabled);
+		}
 		
 		planBackground.setVisible(true);
 		routingModeWindow.setVisible(true);
@@ -216,7 +225,15 @@ public class Game_Map_Manager {
 		trainInfo.unhighlightAdjacent();
 		trainInfo.train.getRoute().hideRouteBlips();
 		
-		trainInfo.train.getActor().setTouchable(Touchable.enabled);
+		//Makes trains clickable again
+		for(Train t : GameScreen.game.getPlayer1().getTrains())
+		{
+			t.getActor().setTouchable(Touchable.enabled);
+		}
+		for(Train t : GameScreen.game.getPlayer2().getTrains())
+		{
+			t.getActor().setTouchable(Touchable.enabled);
+		}
 		
 		planBackground.setVisible(false);
 		routingModeWindow.setVisible(false);

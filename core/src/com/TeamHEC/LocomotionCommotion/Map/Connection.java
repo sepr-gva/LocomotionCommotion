@@ -15,8 +15,8 @@ public class Connection{
 	
 	// Displaying Route stuff:
 	private Array<Actor> connectionBlips = new Array<Actor>();
-//	private Sprite redRouteBlip;
-//	private int blipSize;
+	private Sprite redRouteBlip;
+	private int blipSize;
 
 	/**
 	 * A connection between two adjacent MapObjs in the Map.
@@ -54,10 +54,8 @@ public class Connection{
 			blipVector.nor();
 		}
 		
-		// blipSize = connectionBlips.size;
-		
-		/*
 		// Red blip to indicate direction:
+		blipSize = connectionBlips.size;
 		redRouteBlip = new Sprite(50, 50, Game_Map_TextureManager.getInstance().redRouteBlip){
 			
 			int counter = 0;
@@ -82,7 +80,6 @@ public class Connection{
 		};
 		redRouteBlip.setVisible(false);
 		connectionBlips.add(redRouteBlip);
-		*/
 	}
 	
 	/**
