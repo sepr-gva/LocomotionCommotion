@@ -39,8 +39,8 @@ public class Game_Map_Manager {
 	public LabelStyle style;
 
 	public static Sprite planBackground, routingModeWindow;
-	public static Label routeLength, routeRemaining;
-	public static SpriteButton exitRoutingModeBtn, undoLastRouteButton;
+	public static Label routeLength, routeRemaining, routeFuelCost;
+	public static SpriteButton confirmRouteBtn, undoLastRouteButton, abortRouteBtn, cancelRouteBtn;
 	public static Array<Game_Map_Train> trainBlips = new Array<Game_Map_Train>();
 
 	public Game_Map_Manager(){	}
@@ -63,16 +63,16 @@ public class Game_Map_Manager {
 		routingModeWindow.setVisible(false);
 		actors.add(routingModeWindow);
 		
-		exitRoutingModeBtn = new SpriteButton(50, 90, Game_TextureManager.getInstance().exitroutingModebtn){
+		confirmRouteBtn = new SpriteButton(20, 125, Game_TextureManager.getInstance().confirmroutingModebtn){
 			@Override
 			protected void onClicked(){
 				exitRoutingMode();
 			}
 		};
-		exitRoutingModeBtn.setVisible(false);
-		actors.add(exitRoutingModeBtn);
+		confirmRouteBtn.setVisible(false);
+		actors.add(confirmRouteBtn);
 		
-		undoLastRouteButton = new SpriteButton(110, 130, Game_TextureManager.getInstance().game_menuobject_redobtn){
+		undoLastRouteButton = new SpriteButton(130, 125, Game_TextureManager.getInstance().undoRouteBtn){
 			@Override
 			protected void onClicked()
 			{
@@ -82,6 +82,28 @@ public class Game_Map_Manager {
 		};
 		undoLastRouteButton.setVisible(false);
 		actors.add(undoLastRouteButton);
+		
+		abortRouteBtn = new SpriteButton(130, 80, Game_TextureManager.getInstance().abortRouteBtn){
+			@Override
+			protected void onClicked()
+			{
+				if(Game_Map_Manager.trainInfo.train != null)
+					Game_Map_Manager.trainInfo.train.route.abortRoute();
+			}
+		};
+		abortRouteBtn.setVisible(false);
+		actors.add(abortRouteBtn);
+		
+		cancelRouteBtn = new SpriteButton(20, 80, Game_TextureManager.getInstance().cancelRouteBtn){
+			@Override
+			protected void onClicked()
+			{
+				if(Game_Map_Manager.trainInfo.train != null)
+					Game_Map_Manager.trainInfo.train.route.cancelRoute();;
+			}
+		};
+		cancelRouteBtn.setVisible(false);
+		actors.add(cancelRouteBtn);
 
 		map = new Sprite(100, 60, Game_Map_TextureManager.getInstance().map);		
 		actors.add(map);
@@ -132,7 +154,7 @@ public class Game_Map_Manager {
 		stationLabelName = new Label(null, style);
 		stationLabelFuel = new Label(null, style);
 		stationLabelCost = new Label(null, style);
-		
+			
 		stationLabelName.setText("LONDON");
 		stationLabelName.setAlignment(Align.center);		
 		stationLabelName.setColor(1,1,1,1);
@@ -154,21 +176,30 @@ public class Game_Map_Manager {
 		// Route Labels
 		routeLength = new Label(null, style);
 		routeRemaining = new Label(null, style);
+		routeFuelCost =  new Label(null, style);
+		
 		routeLength.setText("Route length: ");
 		routeRemaining.setText("Route remaining: ");
-		routeLength.setPosition(10, 230, Align.center);
-		routeRemaining.setPosition(10, 200, Align.center);
+		routeFuelCost.setText("Fuel cost (Coal): ");
+		
+		routeLength.setPosition(10, 245, Align.center);
+		routeRemaining.setPosition(10, 215, Align.center);
+		routeFuelCost.setPosition(10, 185, Align.center);
+		
 		routeLength.setVisible(false);
 		routeRemaining.setVisible(false);
+		routeFuelCost.setVisible(false);
 		routeLength.setColor(Color.BLACK);
 		routeRemaining.setColor(Color.BLACK);
+		routeFuelCost.setColor(Color.BLACK);
 		actors.add(routeLength);
 		actors.add(routeRemaining);
+		actors.add(routeFuelCost);
 
 		infoactors.add(stationLabelName);
 		infoactors.add(stationLabelFuel);
 		infoactors.add(stationLabelCost);
-
+		
 		for(Actor a : actors)
 		{
 			a.setTouchable(Touchable.enabled);
@@ -211,12 +242,18 @@ public class Game_Map_Manager {
 			t.getActor().setTouchable(Touchable.disabled);
 		}
 		
+		Game_ScreenMenu.ScreenMenuManager.game_menuobject_endturnbutton.setVisible(false);
+		
 		planBackground.setVisible(true);
 		routingModeWindow.setVisible(true);
-		exitRoutingModeBtn.setVisible(true);
+		confirmRouteBtn.setVisible(true);
+		undoLastRouteButton.setVisible(true);
+		abortRouteBtn.setVisible(true);
+		cancelRouteBtn.setVisible(true);
 		
 		routeLength.setVisible(true);
 		routeRemaining.setVisible(true);
+		routeFuelCost.setVisible(true);
 		undoLastRouteButton.setVisible(true);
 	}
 	
@@ -235,12 +272,18 @@ public class Game_Map_Manager {
 			t.getActor().setTouchable(Touchable.enabled);
 		}
 		
+		Game_ScreenMenu.ScreenMenuManager.game_menuobject_endturnbutton.setVisible(true);
+		
 		planBackground.setVisible(false);
 		routingModeWindow.setVisible(false);
-		exitRoutingModeBtn.setVisible(false);
+		confirmRouteBtn.setVisible(false);
+		undoLastRouteButton.setVisible(false);
+		abortRouteBtn.setVisible(false);
+		cancelRouteBtn.setVisible(false);
 		
 		routeLength.setVisible(false);
 		routeRemaining.setVisible(false);
+		routeFuelCost.setVisible(false);
 		undoLastRouteButton.setVisible(false);
 	}
 

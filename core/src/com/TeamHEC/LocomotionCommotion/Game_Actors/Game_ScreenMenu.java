@@ -40,7 +40,7 @@ public class Game_ScreenMenu {
 
 		public  SpriteButton game_menuobject_tickettoggle;
 		public 	Sprite game_menuobject_ticketenclosure;
-		public  SpriteButton game_menuobject_endturnbutton;
+		public static SpriteButton game_menuobject_endturnbutton;
 		public  Sprite game_menuobject_cornerframe;
 		public  SpriteButton game_menuobject_infobutton;
 

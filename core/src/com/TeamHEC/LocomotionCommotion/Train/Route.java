@@ -203,15 +203,15 @@ public class Route{
 		isComplete = false;
 		train.getActor().canMove = false;
 		
-		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
-		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
+		updateRouteText();
 	}
 
 	/**
 	 * Removes the latest connection from the route.
 	 * Used to undo latest addition.
+	 * @return returns true if remove successful
 	 */
-	public void removeConnection()
+	public boolean removeConnection()
 	{
 		if(!route.isEmpty())
 		{	
@@ -234,10 +234,8 @@ public class Route{
 				// Remove the connection from the route:
 				route.remove(route.size() - 1);
 				
-				// Updates the route information window text:
-				Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
-				Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
-						
+				updateRouteText();
+				
 				//Toggles the current selection for the new route:
 				currentConnection = getAdjacentConnections();	
 				for(Connection c: currentConnection)
@@ -247,8 +245,40 @@ public class Route{
 					
 					//train.route.showConnectionBlips(c);
 				}
+				return true;
 			}
+			return false;
 		}
+		else
+			return false;
+	}
+	
+	public void abortRoute()
+	{	
+		currentMapObj = route.get(routeIndex).getStartMapObj();
+		hideRouteBlips();
+		updateRouteText();
+		
+		while(removeConnection()){}
+		
+		routeIndex = 0;
+		connectionTravelled = 0;
+	}
+	
+	public void cancelRoute()
+	{
+		hideRouteBlips();
+				
+		while(removeConnection()){}
+				
+		showRouteBlips();
+		updateRouteText();
+	}
+		
+	public void updateRouteText()
+	{
+		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
+		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
 	}
 	
 	/**

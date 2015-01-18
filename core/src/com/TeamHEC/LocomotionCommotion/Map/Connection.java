@@ -56,7 +56,7 @@ public class Connection{
 		
 		// Red blip to indicate direction:
 		blipSize = connectionBlips.size;
-		redRouteBlip = new Sprite(50, 50, Game_Map_TextureManager.getInstance().redRouteBlip){
+		redRouteBlip = new Sprite(-50, -50, Game_Map_TextureManager.getInstance().redRouteBlip){
 			
 			int counter = 0;
 			int delay = 0;
