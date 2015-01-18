@@ -361,7 +361,7 @@ public class CoreGame implements Serializable {
 		finalJSON += "\"player2\": " + savePlayerJSON(player2) + ", ";
 		
 		//Save Turn - whose turn, turn count, turnLimit
-		finalJSON += "\"playerTurn\": " + playerTurn.getName() + ", ";
+		finalJSON += "\"playerTurn\": \"" + playerTurn.getName() + "\", ";
 		finalJSON += "\"turnCount\": " + turnCount + ", ";
 		finalJSON += "\"turnLimit\": " + turnLimit;
 		
@@ -395,7 +395,7 @@ public class CoreGame implements Serializable {
 		playerJSON += "\"coal\" : " 	+ player.getFuel("Coal") + ",";
 		playerJSON += "\"oil\" : " 		+ player.getFuel("Oil") + ",";
 		playerJSON += "\"electric\" : " + player.getFuel("Electric") + ",";
-		playerJSON += "\"nuclear\" : " 	+ player.getFuel("Nuclear") + ",";
+		playerJSON += "\"nuclear\" : " 	+ player.getFuel("Nuclear");
 		playerJSON += "}, ";
 		
 		//Save Player cards
@@ -412,10 +412,10 @@ public class CoreGame implements Serializable {
 		playerJSON += "\"trains\" : [";
 		for(int i = 0; i < player.getTrains().size(); i++){
 			playerJSON += "{";
-			playerJSON += "\"type\" : " + player.getTrains().get(i).getFuelType() + ", ";
-			playerJSON += "\"inStation\" : " + player.getTrains().get(i).getName() + ", ";
+			playerJSON += "\"type\" : \"" + player.getTrains().get(i).getFuelType() + "\", ";
+			playerJSON += "\"inStation\" : " + player.getTrains().get(i).isInStation() + ", ";
 			playerJSON += "\"route\" : " + saveRouteJSON(player.getTrains().get(i).getRoute()) + ", ";
-			playerJSON += "\"speedMod\" : " + player.getTrains().get(i).getName();
+			playerJSON += "\"speedMod\" : " + player.getTrains().get(i).getSpeedMod();
 			playerJSON += "}";
 			if(i != player.getTrains().size() - 1)
 				playerJSON += ", ";
@@ -426,7 +426,7 @@ public class CoreGame implements Serializable {
 		playerJSON += "\"stations\" : [";
 		for(int i = 0; i < player.getStations().size(); i++){
 			playerJSON += "{";
-			playerJSON += "\"stationName\" : " + player.getStations().get(i).getName() + ", ";
+			playerJSON += "\"stationName\" : \"" + player.getStations().get(i).getName() + "\", ";
 			playerJSON += "\"rentValueMod\" : " + player.getStations().get(i).getRentValueMod() + ", ";
 			playerJSON += "\"resourceOutMod\" : " + player.getStations().get(i).getResourceOutMod() + ", ";
 			playerJSON += "\"valueMod\" : " + player.getStations().get(i).getValueMod();
@@ -434,6 +434,7 @@ public class CoreGame implements Serializable {
 			if(i != player.getTrains().size() - 1)
 				playerJSON += ", ";
 		}
+		playerJSON += "], ";
 		
 		//Save Player goals
 		playerJSON += "\"goals\" : [";
@@ -449,6 +450,7 @@ public class CoreGame implements Serializable {
 			if(i != player.getGoals().size() - 1)
 				playerJSON += ", ";
 		}
+		playerJSON += "]";
 		
 		playerJSON += "}";		
 		return playerJSON;
@@ -469,6 +471,7 @@ public class CoreGame implements Serializable {
 			if(i != route.getRoute().size() - 1)
 				routeJSON += ", ";
 		}			
+		routeJSON += "], ";
 		routeJSON += "\"connectionTravelled\" : " + route.getConnectionTravelled();
 		routeJSON += "}";
 		return routeJSON;
@@ -503,11 +506,3 @@ public class CoreGame implements Serializable {
 		}
 	}
 }
-
-
-
-
-
-
-
-

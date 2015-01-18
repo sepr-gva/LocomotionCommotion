@@ -91,6 +91,11 @@ public class Train implements Serializable{
 		return baseSpeed + speedMod;
 	}
 	
+	public int getSpeedMod()
+	{
+		return speedMod;
+	}
+	
 	public int getFuelPerTurn()
 	{
 		return fuelPerTurn;
@@ -103,7 +108,7 @@ public class Train implements Serializable{
 		
 	public String getFuelType()
 	{
-		return fuel.getClass().getName();				
+		return fuel.getType();				
 	}
 	
 	public Route getRoute()

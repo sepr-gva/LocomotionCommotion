@@ -249,7 +249,7 @@ public class CoreGameTest {
 	}
 
 	@Test
-	public void testSaveGame() throws Exception {
+	public void testSaveGameSerialize() throws Exception {
 		String error = "";
 		boolean success = false;		
 		try
@@ -263,7 +263,7 @@ public class CoreGameTest {
 			error = ex.getMessage();
 		}
 		
-		assertTrue("saveGame did not execute successfully. " + error, success);		
+		assertTrue("saveGameSerialize did not execute successfully. " + error, success);		
 		
 		File f = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "LocomotionCommotion" + System.getProperty("file.separator") + "myGame" + ".ser");
 		assertTrue("The expected file did not exist",f.exists());
@@ -271,7 +271,22 @@ public class CoreGameTest {
 
 	@Test
 	public void testSaveGameJSON() throws Exception {
-		//String output = tester.saveGameJSON("ThisGameName");	
+		String error = "";
+		boolean success = false;
+		try
+		{
+			tester.saveGameJSON("myGame");
+			success = true;
+		}
+		catch (Exception ex)
+		{
+			success = false;
+			error = ex.getMessage();
+		}
+		
+		assertTrue("saveGameJSON did not execute successfully. " + error, success);
+		
+		
 		fail("Not yet implemented");
 	}
 
