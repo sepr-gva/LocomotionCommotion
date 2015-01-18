@@ -429,7 +429,14 @@ public class Player implements Serializable, RouteListener{
 		for (int i = 0; i < stations.size(); i++)
 		{
 			Station currentStation = stations.get(i);
-			this.addFuel(currentStation.getResourceString(), currentStation.getTotalResourceOut());
+			if (currentStation.getName() == "Monaco")
+			{
+				this.addGold(currentStation.getBaseResourceOut());
+			}
+			else
+			{
+				this.addFuel(currentStation.getResourceString(), currentStation.getTotalResourceOut());
+			}
 		}
 	}
 

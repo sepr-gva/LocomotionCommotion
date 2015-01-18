@@ -36,7 +36,7 @@ public class WorldMap implements Serializable{
 	public final Station LISBON = new Station("Lisbon", 850, new Electric(500), 100, new Line[]{Line.Yellow, Line.Green, Line.Green}, 50, 341f, 170f);
 	public final Station LONDON = new Station("London", 850, new Coal(500), 100, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 430f);
 	public final Station MADRID = new Station("Madrid", 900, new Electric(500), 100, new Line[]{Line.Yellow, Line.Orange, Line.Orange}, 50, 471f, 300f);
-	public final Station MONACO = new Station("Monaco", 900, new Gold(500), 100, new Line[]{Line.Black, Line.Orange, Line.Orange}, 50, 601f, 300f);
+	public final Station MONACO = new Station("Monaco", 1500, new Gold(500), 100, new Line[]{Line.Black, Line.Orange, Line.Orange}, 50, 601f, 300f);
 	public final Station MOSCOW = new Station("Moscow", 850, new Nuclear(500), 100, new Line[]{Line.Blue, Line.Orange, Line.Orange}, 50, 1381f, 560f);
 	public final Station OSLO = new Station("Oslo", 900, new Oil(500), 100, new Line[]{Line.Purple, Line.Blue, Line.Blue}, 50, 731f, 820f);
 	public final Station PARIS = new Station("Paris", 950, new Electric(500), 100, new Line[]{Line.Yellow, Line.Black, Line.Black}, 50, 601f, 430f);
