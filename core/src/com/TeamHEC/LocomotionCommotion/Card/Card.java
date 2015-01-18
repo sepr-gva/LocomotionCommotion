@@ -24,6 +24,7 @@ public class Card implements Serializable {
 	{		
 		owner = player;	
 		cardImage = image;
+		this.name = name;
 	}
 		
 	public Player getOwner()

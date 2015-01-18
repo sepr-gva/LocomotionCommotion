@@ -123,8 +123,7 @@ public class TrainInfo extends Sprite{
 		speed.setText(Integer.toString(train.getSpeed()));
 		routeRemaining.setText(String.format("%.2f", train.route.getLengthRemaining()));
 		
-		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", train.route.getTotalLength()));
-		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", train.route.getLengthRemaining()));
+		train.route.updateRouteText();
 		
 		makeVisible(true);
 	}
