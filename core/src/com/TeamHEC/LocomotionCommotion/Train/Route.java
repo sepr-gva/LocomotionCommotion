@@ -13,18 +13,16 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class Route{
 	
 	/*
-	  	## READ ME ##
-		https://drive.google.com/file/d/0B-ZG2Demzd4tc0JTbWxOS0FVd0E/view?usp=sharing
+	## READ ME ##
+	https://drive.google.com/file/d/0B-ZG2Demzd4tc0JTbWxOS0FVd0E/view?usp=sharing
 	*/
 	
 	private ArrayList<Connection> route = new ArrayList<Connection>();
 	
 	// Progress through route ArrayList
 	private int routeIndex = 0;
-	private float connectionTravelled = 0;
-	
-	private MapObj currentMapObj;
-	
+	private float connectionTravelled = 0;	
+	private MapObj currentMapObj;	
 	private boolean isComplete = false;
 	
 	public Train train;

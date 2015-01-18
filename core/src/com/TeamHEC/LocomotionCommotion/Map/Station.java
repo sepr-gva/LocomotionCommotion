@@ -35,7 +35,7 @@ public class Station extends MapObj{
 	 * @param baseFuelOut The amount of fuel the station produces each turn, without updates
 	 * @param line The line the station belongs to
 	 * @param rentValue How much it costs to rent without upgrades
-	 * @param x Coordinate of posisiton x on map
+	 * @param x Coordinate of position x on map
 	 * @param y Coordinate of position y on map 
 	 */
 	

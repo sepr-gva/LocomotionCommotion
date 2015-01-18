@@ -271,7 +271,7 @@ public class CoreGameTest {
 
 	@Test
 	public void testSaveGameJSON() throws Exception {
-		String output = tester.saveGameJSON("ThisGameName");	
+		//String output = tester.saveGameJSON("ThisGameName");	
 		fail("Not yet implemented");
 	}
 

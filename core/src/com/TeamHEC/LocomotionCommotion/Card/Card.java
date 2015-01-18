@@ -17,9 +17,10 @@ public class Card implements Serializable {
 	
 	private Player owner;
 	private Texture cardImage;
+	private String name;
 	
 	// The player can be initialised to null if necessary:
-	public Card(Player player, Texture image)
+	public Card(Player player, Texture image, String name)
 	{		
 		owner = player;	
 		cardImage = image;
@@ -37,6 +38,10 @@ public class Card implements Serializable {
 	
 	public Texture getImage(){
 		return cardImage;
+	}
+	
+	public String getName(){
+		return name;
 	}
 
 	public void implementCard(){}

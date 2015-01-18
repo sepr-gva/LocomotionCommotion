@@ -20,7 +20,7 @@ public class ResourceCard extends Card {
 
 	public ResourceCard(Player owner, Texture cardTexture, String fuelType)
 	{
-			super(owner, cardTexture);			
+			super(owner, cardTexture, fuelType);			
 			this.fuelType = fuelType;
 	}
 	

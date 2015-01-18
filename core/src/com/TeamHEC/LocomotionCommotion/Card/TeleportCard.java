@@ -26,7 +26,7 @@ public class TeleportCard extends Card{
 	
 	public TeleportCard(Player player)
 	{
-		super(player, Game_TextureManager.getInstance().game_card_teleportcard);
+		super(player, Game_TextureManager.getInstance().game_card_teleportcard, "Teleport");
 	}
 	
 	@Override

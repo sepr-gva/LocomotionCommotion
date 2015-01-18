@@ -94,22 +94,27 @@ public class Player implements Serializable, RouteListener{
 	public Shop getShop(){
 		return shop;
 	}
+	
 	public void buyCoal(int quantity)
 	{
 		shop.buyFuel("Coal", quantity);
 	}
+
 	public void buyOil(int quantity)
 	{
 		shop.buyFuel("Oil", quantity);
 	}
+	
 	public void buyElectric(int quantity)
 	{
 		shop.buyFuel("Electric", quantity);
 	}
+
 	public void buyNuclear(int quantity)
 	{
 		shop.buyFuel("Nuclear", quantity);
 	}
+
 	public void buyCard(int quantity)
 	{
 		shop.buyCard();
@@ -157,12 +162,12 @@ public class Player implements Serializable, RouteListener{
 	{
 		cards.remove(card);
 	}
-
+	
 	public int getNumCards()
 	{
 		return cards.size();
 	}
-
+	
 	public ArrayList<Card> getCards()
 	{
 		return cards;

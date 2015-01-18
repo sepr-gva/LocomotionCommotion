@@ -59,10 +59,10 @@ public class GoalFactory{
 
 	public Goal CreateRandomGoal(){
 		Goal newgoal;
-		Station sStation = (Station) newSStation();
-		Station fStation = (Station) newFStation();		
+		Station sStation = newSStation();
+		Station fStation = newFStation();		
 		while (sStation.getName() == fStation.getName())
-			fStation = (Station) newFStation();		
+			fStation = newFStation();		
 		String cargo;
 		int reward = getLength(sStation, fStation);
 				
