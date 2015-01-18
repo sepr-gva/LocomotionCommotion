@@ -180,7 +180,7 @@ public class Game_Map_Manager {
 		
 		routeLength.setText("Route length: 0");
 		routeRemaining.setText("Route remaining: 0");
-		routeFuelCost.setText("Fuel cost (Coal): 0");
+		routeFuelCost.setText("Fuel cost (): 0");
 		
 		routeLength.setPosition(10, 245, Align.center);
 		routeRemaining.setPosition(10, 215, Align.center);

@@ -107,7 +107,7 @@ public class Train implements Serializable{
 	 */
 	public int getFuelRouteCost()
 	{
-		return getFuelLengthCost(route.getTotalLength());
+		return getFuelLengthCost(route.getLengthRemaining());
 	}
 	
 	public int getFuelLengthCost(float length)

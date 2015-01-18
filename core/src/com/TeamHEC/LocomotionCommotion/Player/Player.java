@@ -325,6 +325,8 @@ public class Player implements Serializable, RouteListener{
 	@Override
 	public void stationPassed(Station station) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Train passed " + station.getName());
 
 		// STATION TAX:
 		// RENT IS CURRENTLY NOT IMPLEMENTED AS UI DOES NOT CURRENTLY SUPPORT
