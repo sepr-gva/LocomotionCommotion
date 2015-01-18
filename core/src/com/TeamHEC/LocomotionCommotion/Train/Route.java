@@ -279,6 +279,7 @@ public class Route{
 	{
 		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
 		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
+		Game_Map_Manager.routeFuelCost.setText(String.format("Fuel cost (%s): %d", train.getFuelType(), train.getFuelCost()));
 	}
 	
 	/**

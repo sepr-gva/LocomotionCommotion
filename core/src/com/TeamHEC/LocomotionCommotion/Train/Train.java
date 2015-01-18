@@ -101,9 +101,13 @@ public class Train implements Serializable{
 		return fuelPerTurn;
 	}
 		
-	public int getPricePerTurn()
+	/**
+	 * 
+	 * @return The cost for fuel for the current route
+	 */
+	public int getFuelCost()
 	{
-		return fuel.cost * fuelPerTurn;
+		return Math.round((float)(fuel.cost * fuelPerTurn * (route.getTotalLength()*0.0002)));
 	}
 		
 	public String getFuelType()

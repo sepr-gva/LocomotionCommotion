@@ -178,9 +178,9 @@ public class Game_Map_Manager {
 		routeRemaining = new Label(null, style);
 		routeFuelCost =  new Label(null, style);
 		
-		routeLength.setText("Route length: ");
-		routeRemaining.setText("Route remaining: ");
-		routeFuelCost.setText("Fuel cost (Coal): ");
+		routeLength.setText("Route length: 0");
+		routeRemaining.setText("Route remaining: 0");
+		routeFuelCost.setText("Fuel cost (Coal): 0");
 		
 		routeLength.setPosition(10, 245, Align.center);
 		routeRemaining.setPosition(10, 215, Align.center);
