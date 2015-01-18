@@ -230,129 +230,10 @@ public class CoreGame implements Serializable {
 		return playerTurn;
 	}
 
-/*	
-	*//**
-	 * Saves the game to a .json file which can be loaded at a later date.
-	 * @param gameName The name you want to assign to the game.
-	 * @return A JSON string representing the current CoreGame state.
-	 *//*
-	public String saveGameJSON(String gameName) {
-		String finalJson = "{\n";
-		finalJson += "\"playerTurn\": \"" + playerTurn.getName() + "\",\n";
-		finalJson += "\"turnCount\": " + turnCount + ",\n";
-		finalJson += "\"map\": " + saveMapJSON() + ",\n";
-		finalJson += "\"player1\": " + savePlayerJSON(player1) + ",\n";
-		finalJson += "\"player2\": " + savePlayerJSON(player2) + ",\n";
-		return finalJson = finalJson + "}\n";
-	}
-
-	*//**
-	 * Called during saveGameJSON. Used to save a player's state.
-	 * @param player The player to be saved.
-	 * @return A JSON string representing the player
-	 *//*
-	private String savePlayerJSON(Player player) {
-		String finalJson = "{\n";
-		finalJson += "\"playerName\": \"" + player.getName() + "\",\n";
-		finalJson += "\"points\": " + player.getPoints() + ",\n";
-		finalJson += "\"resources\": " + savePlayerResourceJSON(player) + ",\n";
-		// finalJson += "\"trains\": " + savePlayerTrainJSON(player) + ",\n";
-		return finalJson = finalJson + "\n}";
-	}
-
-	*//**
-	 * Called during savePlayerJSON. Used to save a player's resources.
-	 * @param player The player whose resources will be saved.
-	 * @return A JSON string representing the player's resources
-	 *//*
-	private String savePlayerResourceJSON(Player player) {
-		String finalJson = "{\n";
-		finalJson += "\"gold\": " + player.getGold() + ",\n";
-		finalJson += "\"coal\": " + player.getFuel("Coal") + ",\n";
-		finalJson += "\"electric\": " + player.getFuel("Electric") + ",\n";
-		finalJson += "\"oil\": " + player.getFuel("Oil") + ",\n";
-		finalJson += "\"nuclear\": " + player.getFuel("Nuclear") + ",\n";
-		finalJson += "\"cards\": " + savePlayerCardJSON(player) + ",\n";
-		finalJson += "\"goals\": " + savePlayerGoalJSON(player) + ",\n";
-		return finalJson = finalJson + "}\n";
-	}
-
-	*//**
-	 * Called during savePlayerJSON. Used to save a player's cards.
-	 * @param player The player whose cards will be saved.
-	 * @return A JSON string representing the player's cards
-	 *//*
-	private String savePlayerCardJSON(Player player) {
-		String finalJson = "[\n";
-		Card[] cards = player.getCards().toArray(
-				new Card[player.getCards().size()]);
-		for (int i = 0; i < cards.length; i++) {
-			Card card = cards[i];
-			finalJson += "{\n";
-			finalJson += "\"cardType\": " + card.getClass().getName() + ",\n";
-			finalJson +=  "\"owner\": " + card.getOwner().getName() + ",\n}";
-		}
-		return finalJson = finalJson + "]\n";
-	}
-
-	*//**
-	 * Called during savePlayerJSON. Used to save a player's goals.
-	 * @param player The player whose goals will be saved.
-	 * @return A JSON string representing the player's goals
-	 *//*
-	private String savePlayerGoalJSON(Player player) {
-		String finalJson = "{\n";
-		Goal[] goals = player.getGoals().toArray(
-				new Goal[player.getGoals().size()]);
-		for (int i = 0; i < goals.length; i++) {
-			Goal goal = goals[i];
-			finalJson += "{\n\"sStation\": \"" + goal.getSStation() + "\",\n"
-					+ "\"fStation\": \"" + goal.getFStation() + "\",\n"
-					+ "\"special\": " + goal.isSpecial() + ",\n"
-					+ "\"reward\": " + goal.getReward() + ",\n"
-					+ "\"startDate\": " + goal.getStartDate() + ",\n"
-					+ "\"route\": \"" + goal.getVia() + "\"\n},";
-		}
-		return finalJson = finalJson + "]\n";
-	}
-	
-	*//**
-	 * Called during saveGameJSON. Used to save the WorldMap state.
-	 * @return A JSON string representing the WorldMap.
-	 *//*
-	public String saveMapJSON() {
-		String finalJson = "{\n";
-		finalJson += "\"station\": " + saveMapStationJSON() + "\",\n";
-		return finalJson = finalJson + "}\n";
-	}
-
-	*//**
-	 * Called during saveMapJSON. Used to save the Stations states.
-	 * @return A JSON string representing the Stations on the WorldMap.
-	 *//*
-	public String saveMapStationJSON() {
-		String finalJson = "{\n";
-		Station[] stations = gameMap.stationsList
-				.toArray(new Station[gameMap.stationsList.size()]);
-		for (int i = 0; i < stations.length; i++) {
-			Station station = stations[i];
-			finalJson += "{\n\"name\": \"" + station.getName() + "\",\n"
-					+ "\"owner\": \"" + station.getOwner() + "\",\n"
-					+ "\"valueMod\": " + station.getValueMod() + ",\n"
-					+ "\"fuelOutMod\": " + station.getResourceOutMod() + ",\n"
-					+ "\"rentValueMod\": " + station.getRentValueMod() + ",\n}";
-		}
-		return finalJson = finalJson + "}\n";
-	}
-
-	*/
 	/**
-	 * Launches a save dialog asking the user to specify a save game location
-	 * and serializes the game object to that location. This is one of two save options.
-	 * The other is saving as a JSON file.
-	 * @param gameName The name you want to assign to the game.
+	 * One form of saving the game. Saves the game to a .json file in the user's home directory in a folder called LocomotionCommotion.
+	 * @param gameName The name of the .json file the game is saved to. (No extension).
 	 */
-	
 	public void saveGameJSON(String gameName)
 	{
 		String finalJSON = "{";
@@ -361,7 +242,7 @@ public class CoreGame implements Serializable {
 		finalJSON += "\"player2\": " + savePlayerJSON(player2) + ", ";
 		
 		//Save Turn - whose turn, turn count, turnLimit
-		finalJSON += "\"playerTurn\": \"" + playerTurn.getName() + "\", ";
+		finalJSON += "\"playerTurn\": " + playerTurn.getName() + ", ";
 		finalJSON += "\"turnCount\": " + turnCount + ", ";
 		finalJSON += "\"turnLimit\": " + turnLimit;
 		
@@ -372,7 +253,7 @@ public class CoreGame implements Serializable {
 		File saveLocation = new File(System.getProperty("user.home")
 				+ System.getProperty("file.separator")
 				+ "LocomotionCommotion"
-				+ System.getProperty("file.separator") + gameName + ".txt");
+				+ System.getProperty("file.separator") + gameName + ".json");
 		saveLocation.getParentFile().mkdirs();
 		saveLocation.createNewFile();
 		PrintWriter out = new PrintWriter(saveLocation);
@@ -386,6 +267,11 @@ public class CoreGame implements Serializable {
 		}
 	}
 	
+	/**
+	 * Returns the player given represented as a JSON string. Called by saveGameJSON.
+	 * @param player The player to be represented in JSON.
+	 * @return A JSON string representing player.
+	 */
 	private String savePlayerJSON(Player player)
 	{
 		String playerJSON = "{";
@@ -395,7 +281,7 @@ public class CoreGame implements Serializable {
 		playerJSON += "\"coal\" : " 	+ player.getFuel("Coal") + ",";
 		playerJSON += "\"oil\" : " 		+ player.getFuel("Oil") + ",";
 		playerJSON += "\"electric\" : " + player.getFuel("Electric") + ",";
-		playerJSON += "\"nuclear\" : " 	+ player.getFuel("Nuclear");
+		playerJSON += "\"nuclear\" : " 	+ player.getFuel("Nuclear") + ",";
 		playerJSON += "}, ";
 		
 		//Save Player cards
@@ -412,10 +298,10 @@ public class CoreGame implements Serializable {
 		playerJSON += "\"trains\" : [";
 		for(int i = 0; i < player.getTrains().size(); i++){
 			playerJSON += "{";
-			playerJSON += "\"type\" : \"" + player.getTrains().get(i).getFuelType() + "\", ";
-			playerJSON += "\"inStation\" : " + player.getTrains().get(i).isInStation() + ", ";
+			playerJSON += "\"type\" : " + player.getTrains().get(i).getFuelType() + ", ";
+			playerJSON += "\"inStation\" : " + player.getTrains().get(i).getName() + ", ";
 			playerJSON += "\"route\" : " + saveRouteJSON(player.getTrains().get(i).getRoute()) + ", ";
-			playerJSON += "\"speedMod\" : " + player.getTrains().get(i).getSpeedMod();
+			playerJSON += "\"speedMod\" : " + player.getTrains().get(i).getName();
 			playerJSON += "}";
 			if(i != player.getTrains().size() - 1)
 				playerJSON += ", ";
@@ -426,7 +312,7 @@ public class CoreGame implements Serializable {
 		playerJSON += "\"stations\" : [";
 		for(int i = 0; i < player.getStations().size(); i++){
 			playerJSON += "{";
-			playerJSON += "\"stationName\" : \"" + player.getStations().get(i).getName() + "\", ";
+			playerJSON += "\"stationName\" : " + player.getStations().get(i).getName() + ", ";
 			playerJSON += "\"rentValueMod\" : " + player.getStations().get(i).getRentValueMod() + ", ";
 			playerJSON += "\"resourceOutMod\" : " + player.getStations().get(i).getResourceOutMod() + ", ";
 			playerJSON += "\"valueMod\" : " + player.getStations().get(i).getValueMod();
@@ -434,7 +320,6 @@ public class CoreGame implements Serializable {
 			if(i != player.getTrains().size() - 1)
 				playerJSON += ", ";
 		}
-		playerJSON += "], ";
 		
 		//Save Player goals
 		playerJSON += "\"goals\" : [";
@@ -450,12 +335,16 @@ public class CoreGame implements Serializable {
 			if(i != player.getGoals().size() - 1)
 				playerJSON += ", ";
 		}
-		playerJSON += "]";
 		
 		playerJSON += "}";		
 		return playerJSON;
 	}
 	
+	/**
+	 * Returns the route given represented as a JSON string. Called by savePlayerJSON.
+	 * @param route The route to be represented in JSON.
+	 * @return A JSON string representing the route.
+	 */
 	private String saveRouteJSON(Route route)
 	{
 		String routeJSON = "{";
@@ -471,12 +360,16 @@ public class CoreGame implements Serializable {
 			if(i != route.getRoute().size() - 1)
 				routeJSON += ", ";
 		}			
-		routeJSON += "], ";
 		routeJSON += "\"connectionTravelled\" : " + route.getConnectionTravelled();
 		routeJSON += "}";
 		return routeJSON;
 	}
 	
+	/**
+	 * Returns the mapObj given represented as a JSON string. Called by saveRouteJSON.
+	 * @param mapObj The mapObj to be represented in JSON.
+	 * @return A JSON string representing the mapObj
+	 */
 	private String saveMapObjJSON(MapObj mapObj)
 	{
 		String mapObjJSON = "{";
@@ -486,6 +379,10 @@ public class CoreGame implements Serializable {
 		return mapObjJSON;
 	}
 
+	/**
+	 * Saves the CoreGame object by serialising it. It is save as a .ser file in the user's home directory in a folder called LocomotionCommotion.
+	 * @param gameName The name of the .ser file the game is saved to. (No extension).
+	 */
 	public void saveGameSerialize(String gameName) {
 		try {
 			File saveLocation = new File(System.getProperty("user.home")
