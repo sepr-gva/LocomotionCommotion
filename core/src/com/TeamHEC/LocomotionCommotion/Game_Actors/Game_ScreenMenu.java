@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop.Game_ShopManager;
+import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
+import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
@@ -126,10 +128,10 @@ public class Game_ScreenMenu {
 				@Override
 				protected void onClicked()
 				{
-					if (Game_goal_PlayerGoals.open== false)
+					if (PlayerGoals.open== false)
 					{
-						Game_goal_PlayerGoals.open= true;
-						for(int i=Game_goal_PlayerGoals.stagestart; i<=Game_goal_PlayerGoals.stagestart +Game_goal_PlayerGoals.ticketActors-1;i++){
+						PlayerGoals.open= true;
+						for(int i=PlayerGoals.stagestart; i<=PlayerGoals.stagestart +PlayerGoals.ticketActors-1;i++){
 							if (i > GameScreen.getStage().getActors().size-1){
 
 							}else
@@ -139,8 +141,8 @@ public class Game_ScreenMenu {
 						Game_ScreenMenu.actorManager.game_menuobject_ticketenclosure.setVisible(true);
 					}
 					else
-					{	Game_goal_PlayerGoals.open= false;
-					for(int i=Game_goal_PlayerGoals.stagestart; i<=Game_goal_PlayerGoals.stagestart +Game_goal_PlayerGoals.ticketActors-1;i++){
+					{	PlayerGoals.open= false;
+					for(int i=PlayerGoals.stagestart; i<=PlayerGoals.stagestart +PlayerGoals.ticketActors-1;i++){
 						if (i > GameScreen.getStage().getActors().size-1){
 
 						}else
@@ -170,7 +172,7 @@ public class Game_ScreenMenu {
 					GameScreen.game.EndTurn();
 					Game_ScreenMenu.resourceActorManager.refreshResources();
 					Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
-					Game_goal_PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
+					PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
 					Game_CardHand.actorManager.changePlayer(GameScreen.game.getPlayerTurn());
 					Game_ScreenMenu.actorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + GameScreen.player1score +
 							"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName()
@@ -264,11 +266,11 @@ public class Game_ScreenMenu {
 				@Override
 				protected void onClicked()
 				{
-					if (Game_Goal_GoalScreenManager.open== false)
+					if (GoalMenu.open== false)
 					{
-						Game_Goal_GoalScreenManager.open= true;
-						Game_goal_PlayerGoals.goalMenuOpen();
-						for(int i=Game_Goal_GoalScreenManager.stagestart; i<=Game_Goal_GoalScreenManager.stagestart +Game_Goal_GoalScreenManager.goalActors-1;i++){
+						GoalMenu.open= true;
+						PlayerGoals.goalMenuOpen();
+						for(int i=GoalMenu.stagestart; i<=GoalMenu.stagestart +GoalMenu.goalActors-1;i++){
 							if (i > GameScreen.getStage().getActors().size-1){
 
 							}else
@@ -281,10 +283,10 @@ public class Game_ScreenMenu {
 					}
 					else
 					{	
-						Game_Goal_GoalScreenManager.open= false;
-						Game_goal_PlayerGoals.goalMenuClose();
+						GoalMenu.open= false;
+						PlayerGoals.goalMenuClose();
 
-						for(int i=Game_Goal_GoalScreenManager.stagestart; i<=Game_Goal_GoalScreenManager.stagestart +Game_Goal_GoalScreenManager.goalActors-1;i++){
+						for(int i=GoalMenu.stagestart; i<=GoalMenu.stagestart +GoalMenu.goalActors-1;i++){
 							if (i > GameScreen.getStage().getActors().size-1){
 
 							}else

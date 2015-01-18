@@ -3,6 +3,8 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
+import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalFactory;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
@@ -96,7 +98,7 @@ public class Game_startGameManager {
 
 		Game_ScreenMenu.resourceActorManager.game_card_togglebtn.setVisible(true);
 		Game_ScreenMenu.resourceActorManager.cardQuant.setVisible(true);
-		Game_goal_PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
+		PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
 		fillGoalScreen();
 	}
 
@@ -107,7 +109,7 @@ public class Game_startGameManager {
 		for (int i=0; i<9; i++){
 				goals.add(factory.CreateRandomGoal());
 		}
-		Game_Goal_GoalScreenManager.AddGoalToScreen(goals);
+		GoalMenu.AddGoalToScreen(goals);
 	}
 	public static void reset(){
 		actors.clear();

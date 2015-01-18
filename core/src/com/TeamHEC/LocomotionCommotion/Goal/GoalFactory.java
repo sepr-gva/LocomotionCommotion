@@ -72,7 +72,7 @@ public class GoalFactory{
 			cargo = "Cargo";
 		
 		if(random.nextInt(5) == 5)
-			newgoal = new SGoal(sStation ,fStation, null, cargo, reward);		
+			newgoal = new SpecialGoal(sStation ,fStation, null, cargo, reward);		
 		else
 			newgoal = new Goal(sStation, fStation, null, cargo, reward);
 		

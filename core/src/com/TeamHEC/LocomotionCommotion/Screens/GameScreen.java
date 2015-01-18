@@ -24,15 +24,15 @@ package com.TeamHEC.LocomotionCommotion.Screens;
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHand;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_GoalScreenManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepot;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.WarningMessage;
+import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
+import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -79,10 +79,10 @@ public class GameScreen implements Screen {
 		Game_TrainDepot trainDepot = new Game_TrainDepot();
 		trainDepot.create(getStage());
 
-		Game_Goal_GoalScreenManager goalScreenManager = new Game_Goal_GoalScreenManager();
+		GoalMenu goalScreenManager = new GoalMenu();
 		goalScreenManager.create(getStage());
 		
-		Game_goal_PlayerGoals ticketManager = new Game_goal_PlayerGoals();
+		PlayerGoals ticketManager = new PlayerGoals();
 		ticketManager.create(getStage());	
 		
 		Game_startGameManager startgameManager = new Game_startGameManager();
@@ -165,11 +165,11 @@ public class GameScreen implements Screen {
 	public void  resetScreen(){
 		Game_Map_Manager.infoVisible= false;
 		Game_PauseMenu.actorManager.open = false;
-		Game_goal_PlayerGoals.open = false;
+		PlayerGoals.open = false;
 		Game_Shop.actorManager.open = false;
 		Game_TrainDepot.actorManager.open = false;
 		Game_ScreenMenu.resourceActorManager.resourcebarexpanded =false;
-		Game_Goal_GoalScreenManager.open= false;
+		GoalMenu.open= false;
 		
 		//CARDS
 		Game_CardHand.actorManager.open=false;
