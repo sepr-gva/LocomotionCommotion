@@ -109,7 +109,7 @@ public class CoreGame implements Serializable {
 			playerTurn = player2;
 		else
 			playerTurn = player1;
-
+		
 		// Start Game
 		StartTurn();
 	}

@@ -175,35 +175,44 @@ public class Route{
 	
 	public void addConnection(Connection connection)
 	{
-		//Discards old selections:
-		ArrayList<Connection> oldConnections = connection.getStartMapObj().connections;
-		for(Connection c : oldConnections)
+		// Charging the player for the fuel needed...
+		
+		int fuelCost = train.getFuelLengthCost(connection.getLength());
+		if( fuelCost <= train.getOwner().getFuel(train.getFuelType()))
 		{
-			c.getDestination().getActor().setRouteAvailable(false);
-			c.getDestination().getActor().toggleHighlight(false);
+			System.out.println(fuelCost);
+			train.getOwner().subFuel(train.getFuelType(), fuelCost);
 			
-			// hideConnectionBlips(c);
+			//Discards old selections:
+			ArrayList<Connection> oldConnections = connection.getStartMapObj().connections;
+			for(Connection c : oldConnections)
+			{
+				c.getDestination().getActor().setRouteAvailable(false);
+				c.getDestination().getActor().toggleHighlight(false);
+			}
+			
+			route.add(connection);
+			
+			ArrayList<Connection> adj = getAdjacentConnections();	
+			
+			//Adds new ones:
+			for(Connection c: adj)
+			{
+				c.getDestination().getActor().setRouteAvailable(train, c);
+				c.getDestination().getActor().toggleHighlight(true);
+			}
+			
+			showConnectionBlips(connection);
+			
+			isComplete = false;
+			train.getActor().canMove = false;
+			
+			updateRouteText();
 		}
-		
-		route.add(connection);
-		
-		ArrayList<Connection> adj = getAdjacentConnections();	
-		
-		//Adds new ones:
-		for(Connection c: adj)
+		else
 		{
-			c.getDestination().getActor().setRouteAvailable(train, c);
-			c.getDestination().getActor().toggleHighlight(true);
-			
-			// showConnectionBlips(c);
+			// Warning Message, you don't have any cash for fuel...
 		}
-		
-		showConnectionBlips(connection);
-		
-		isComplete = false;
-		train.getActor().canMove = false;
-		
-		updateRouteText();
 	}
 
 	/**
@@ -279,7 +288,7 @@ public class Route{
 	{
 		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
 		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
-		Game_Map_Manager.routeFuelCost.setText(String.format("Fuel cost (%s): %d", train.getFuelType(), train.getFuelCost()));
+		Game_Map_Manager.routeFuelCost.setText(String.format("Fuel cost (%s): %d", train.getFuelType(), train.getFuelRouteCost()));
 	}
 	
 	/**

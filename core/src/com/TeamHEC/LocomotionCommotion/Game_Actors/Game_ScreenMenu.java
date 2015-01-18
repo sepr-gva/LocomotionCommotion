@@ -547,7 +547,8 @@ public class Game_ScreenMenu {
 			stage.addActor(cardQuant);
 		}
 
-		public void refreshResources(){
+		public void refreshResources()
+		{
 			goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
 			coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
 			oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
@@ -556,7 +557,8 @@ public class Game_ScreenMenu {
 			Game_ScreenMenu.resourceActorManager.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
 		}
 
-		public static void setResourcesHeight(float height){
+		public static void setResourcesHeight(float height)
+		{
 			Game_ScreenMenu.resourceActorManager.goldQuant.setY(height);
 			Game_ScreenMenu.resourceActorManager.coalQuant.setY(height);
 			Game_ScreenMenu.resourceActorManager.oilQuant.setY(height);
