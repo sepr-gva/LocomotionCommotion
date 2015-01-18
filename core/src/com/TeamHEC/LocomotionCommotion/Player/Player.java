@@ -262,6 +262,9 @@ public class Player implements Serializable, RouteListener{
 
 	public void sellStation(Station station)
 	{
+		//UI DOES NOT CURRENTLY SUPPORT SELLING OF STATIONS
+		//but sell station has been tested and does work
+		/*
 		if (this.stations.contains(station))
 		{
 			for (int i=0; i<3; i++)
@@ -306,6 +309,7 @@ public class Player implements Serializable, RouteListener{
 			station.purchaseStation(null);
 			this.lineBonuses();
 		}
+		*/
 	}
 
 	@Override
@@ -313,14 +317,17 @@ public class Player implements Serializable, RouteListener{
 		// TODO Auto-generated method stub
 
 		// STATION TAX:
+		// RENT IS CURRENTLY NOT IMPLEMENTED AS UI DOES NOT CURRENTLY SUPPORT
+		/*
 		if(station.getOwner() != this && station.getOwner() != null)
 		{
 			this.subGold(station.getTotalRent());
 		}
+		*/
 
 	}
 
-	public void lineBonuses() //MUST BE CALLED BEFORE YOU ACCESS A STATIONS VALUE, RENT OR RESOURCE AMOUNTS
+	public void lineBonuses() //MUST BE CALLED BEFORE YOU ACCESS A STATIONS VALUE, RENT OR RESOURCE AMOUNTS IF STATIONS OWNED HAS CHANGED
 	{
 		for (int i = 0; i<stations.size(); i++)
 		{
