@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Train;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.WarningMessage;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
@@ -211,7 +212,9 @@ public class Route{
 		}
 		else
 		{
-			// Warning Message, you don't have any cash for fuel...
+			// Warning message
+			WarningMessage.fireWarningWindow("INSUFFICIENT FUEL!", "You need " + fuelCost
+					+ " more " + train.getFuelType());
 		}
 	}
 
@@ -239,6 +242,11 @@ public class Route{
 					
 					//train.route.hideConnectionBlips(c);
 				}
+				
+				// Refund player:
+				
+				int fuelCost = train.getFuelLengthCost(route.get(route.size() - 1).getLength());
+				train.getOwner().addFuel(train.getFuelType(), fuelCost);
 				
 				// Remove the connection from the route:
 				route.remove(route.size() - 1);

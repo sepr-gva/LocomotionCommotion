@@ -9,7 +9,6 @@ import java.util.HashMap;
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager.Game_start_getStartedWindow;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
