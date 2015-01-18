@@ -3,7 +3,6 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.TeamHEC.LocomotionCommotion.Event.EventListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 
 /**

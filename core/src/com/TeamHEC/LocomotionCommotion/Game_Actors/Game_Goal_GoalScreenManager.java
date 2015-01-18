@@ -1,5 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
-/*
+/**
  * @author Robert Precious <rp825@york.ac.uk>
  * 
  * This class is a Manager for all the Goal Actors (excluding the the side menu of goals which is Managed by PlayerGaals)

@@ -2,8 +2,6 @@ package com.TeamHEC.LocomotionCommotion.Player;
 
 import static org.junit.Assert.*;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -60,7 +58,7 @@ public class PlayerTest {
 		cards = new ArrayList<Card>();
 		goals = new ArrayList<Goal>();
 		trains = new ArrayList<Train>();
-		/*tester = new Player(
+		tester = new Player(
 				name,
 				points,
 				gold,
@@ -68,65 +66,16 @@ public class PlayerTest {
 				electric,
 				nuclear,
 				oil,
-				carriages,
 				cards,	
 				goals,
 				trains);
-		trains.add(new OilTrain(0, 0, true, new Route(stations.get(0)), tester));
-		stations.add(new Station("London", 850, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f));
-		*/
+		trains.add(new OilTrain(0, true, new Route(stations.get(0)), tester));
+		stations.add(new Station("London", 850, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f));		
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
-	
-		/**
-		 * Gets the field value from an instance.  The field we wish to retrieve is
-		 * specified by passing the name.  The value will be returned, even if the
-		 * field would have private or protected access.
-		 */
-		@SuppressWarnings("rawtypes")
-		private Object getField( Object instance, String name ) throws Exception
-		{
-			Class c = instance.getClass();
-
-			// Retrieve the field with the specified name
-			Field f = c.getDeclaredField( name );
-
-			// Make sure the field is accessible, even if it
-			// would be private or protected
-			f.setAccessible( true );
-
-			// Return the value of the field for the instance
-			return f.get( instance );
-		}
-
-		/**
-		 * Executes a method on an object instance.  The name and parameters of
-		 * the method are specified.  The method will be executed and the value
-		 * of it returned, even if the method would have private or protected access.
-		 */
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		private Object executeMethod( Object instance, String name, Object[] params ) throws Exception
-		{
-			Class c 	= instance.getClass();
-
-			// Fetch the Class types of all method parameters
-			Class[] types 	= new Class[params.length];
-
-			for ( int i = 0; i < params.length; i++ )
-				types[i] = params[i].getClass();
-
-			Method m        = c.getDeclaredMethod( name, types );
-
-			// Make sure the method is accessible
-			m.setAccessible( true );
-
-			return m.invoke( instance, params );
-		}
-		
-		// }} Private Accessors
 	
 	@Test
 	public void testPlayer() {

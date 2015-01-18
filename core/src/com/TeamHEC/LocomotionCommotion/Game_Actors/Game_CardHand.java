@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class Game_CardHand {
 	public static Game_CardHandManager actorManager;
-	/*
+	/**
 	 * @author Robert Precious <rp825@york.ac.uk>
 	 * 
 	 * This class is a Manager, I use Managers in the UI to handed groups of actors. It means I can hide or show a major group of action from one action.
@@ -96,10 +96,10 @@ public class Game_CardHand {
 
 		}
 		public static void changePlayer(Player player) {
-		 Game_CardHand.actorManager.numberofcards=0;
-		 flushHand();
-		 for (int i=0; i<player.getCards().size();i++){
-			 int numberofcards=Game_CardHand.actorManager.numberofcards;
+			Game_CardHand.actorManager.numberofcards=0;
+			flushHand();
+			for (int i=0; i<player.getCards().size();i++){
+				int numberofcards=Game_CardHand.actorManager.numberofcards;
 				if(numberofcards<7){
 					Game_CardHand.actorManager.cards.get(numberofcards).setTexture(player.getCards().get(i).getImage());	//sets the image
 					Game_CardHand.actorManager.cards.get(numberofcards).setSlot(numberofcards+1);			//sets the slot
@@ -109,19 +109,19 @@ public class Game_CardHand {
 					Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
 					Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 				}
-		 }
+			}
 		}
 		public static void flushHand(){
 			for (int i=0;i<7;i++){
-					Game_CardHand.actorManager.cards.get(i).setVisible(false);	//sets the image
-					Game_CardHand.actorManager.cards.get(i).setEmpty(true);	
-					Game_CardHand.actorManager.usecardbtn.setVisible(false);//sets the empty boolean to false
-				}
+				Game_CardHand.actorManager.cards.get(i).setVisible(false);	//sets the image
+				Game_CardHand.actorManager.cards.get(i).setEmpty(true);	
+				Game_CardHand.actorManager.usecardbtn.setVisible(false);//sets the empty boolean to false
+			}
 			Game_ScreenMenu.resourceActorManager.refreshResources();
 			Game_CardHand.actorManager.numberofcards=0;
-				
-			}
-		
+
+		}
+
 
 		public void useCard(int cardNum){						//Method useCard lets the player use their card.
 			if (cardNum !=0){												//if the the number of card is not 0
@@ -262,8 +262,8 @@ public class Game_CardHand {
 		}
 
 	}
-	
-	
+
+
 	//Card Actor
 	public static class Game_card_Card extends Actor {
 		boolean started = false;
@@ -274,7 +274,7 @@ public class Game_CardHand {
 		private boolean empty;
 		private int slot;
 		private Card card;
-		
+
 		public  Game_card_Card(Texture texture, int actorX, int actorY, boolean empty, int slot){
 			this.slot = slot;
 			this.empty= empty;
@@ -284,47 +284,47 @@ public class Game_CardHand {
 				this.texture = texture; 
 			this.actorX = actorX;
 			this.actorY = actorY;
-			
+
 
 			setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
-			
+
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_card_Card)event.getTarget()).started = true;
 					return true;
 				}
 			});	
-			
-		/*	UNCOMMENT THIS TO ALLOW MOUSE OVER (VERY BUGGY)
+
+			/*	UNCOMMENT THIS TO ALLOW MOUSE OVER (VERY BUGGY)
 			addListener(new InputListener(){
 				public void enter(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
 					((ScreenCard)event.getTarget()).started = true;
 				}
-			
+
 			});
 			addListener(new InputListener(){
 				public void exit(InputEvent event, float x, float y, int pointer, Actor ScreenCard) {
 					((ScreenCard)event.getTarget()).started = true;
 				}
-			
+
 			});
-			*/
+			 */
 		}
 
 
 		public void refreshBounds() {
 			setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
-			
+
 		}
 
 
 		@Override
 		public void draw(Batch batch, float alpha){
-				if (empty)
-					this.setVisible(false); //if empty we do not want to draw the actor.
-				else
-					batch.draw(this.texture,actorX,actorY);
-					
+			if (empty)
+				this.setVisible(false); //if empty we do not want to draw the actor.
+			else
+				batch.draw(this.texture,actorX,actorY);
+
 		}
 
 		@Override
@@ -335,7 +335,7 @@ public class Game_CardHand {
 					this.cardCollapse();
 					Game_CardHand.actorManager.usecardbtn.setVisible(false);	// hides the use card button
 					Game_CardHand.actorManager.selectedCard=0; 				//sets to no card selected
-					
+
 				}
 				else
 				{
@@ -344,7 +344,7 @@ public class Game_CardHand {
 					this.cardExpand();										//raises the card
 					Game_CardHand.actorManager.usecardbtn.actorX=this.actorX+40;				//moves the usecardbutton to above it
 					Game_CardHand.actorManager.usecardbtn.actorY=this.actorY+350;			//moves the usecardbutton to above it
-					
+
 				}
 				Game_CardHand.actorManager.usecardbtn.refreshBounds();		//refreshes the use card button action area
 				started = false; 	//ends action
@@ -376,7 +376,7 @@ public class Game_CardHand {
 		public Texture getTexture(){
 			return texture;
 		}
-		
+
 		//Getter and Setter for Slot
 		public int getSlot(){
 			return this.slot;
@@ -384,18 +384,18 @@ public class Game_CardHand {
 		public void setSlot(int slot) {
 			this.slot= slot;
 		}
-		
+
 		//Setter for ActorY
 		public void setActorY(float y){
 			this.actorY=y;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());				
 		}
-		
+
 		//Setter for Empty
 		public void setEmpty(boolean b) {
 			this.empty=b;
 		}
-		
+
 		//cardExpand- Calls Organise deck, moves the card up, updates the expanded boolean, and refreshes bounds.
 		public void cardExpand(){
 			Game_CardHand.actorManager.organiseDeck();
@@ -403,7 +403,7 @@ public class Game_CardHand {
 			setexpanded(true);
 			setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
 		}
-		
+
 		/*cardCollapse- if the card is expanded: resets the height of the card depending on whether or not the resource bar is expanded
 			sets the expanded boolean, refreshes the action area and calls organiseDeck OR just resets the height when the resource bar changes.*/
 		public void cardCollapse(){
@@ -415,16 +415,16 @@ public class Game_CardHand {
 				setexpanded(false);
 				setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
 				Game_CardHand.actorManager.organiseDeck();
-				}
+			}
 			else
 			{if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded)
 				this.actorY=80;
 			else
 				this.actorY=-100;}
-				
+
 		}		
 	}
-	
+
 	//Hand Creator----------------------------------------------------------------------------------------------
 	public static class Game_card_HandCreator {
 		/*
@@ -445,12 +445,12 @@ public class Game_CardHand {
 
 		public Game_card_HandCreator(ArrayList<Card> cards)
 		{
-			
+
 			numberOfCards = cards.size();	 	//assign the size of the give ArrayList of Cards
 			GameScreen.cards= numberOfCards;	//update the gamescreen value (for display)
-			
+
 			newCards = new ArrayList<Game_card_Card>(); //initialise new Arraylist
-			
+
 			if (cards.size()==0){
 				newCards=createEmpties(cards);	//if there are not given card then we need an empty hand
 			}
@@ -484,7 +484,7 @@ public class Game_CardHand {
 		{
 			HashMap<String, Game_card_Card> cardslots = new HashMap<String, Game_card_Card>(); //create an Hashmap of slots
 			cardslots = createSlots(cards);		//create slots
-			
+
 			for (int i=numberOfCards;i<7;i++)				//run through all slots
 			{
 				String a = new Integer(i+1).toString();		//change the counter+1 to a string for recall in the hashmap 
@@ -493,7 +493,7 @@ public class Game_CardHand {
 			}
 			return newCards;
 		}
-		
+
 		private HashMap<String, Game_card_Card> createSlots(ArrayList<Card> cards) {
 			int heightY = -100;
 			int x = 1130;
@@ -513,16 +513,16 @@ public class Game_CardHand {
 			cardslots.put("7", card7= new Game_card_Card(null,x,heightY,false,7));
 			return cardslots;
 		}
-		
-		
-			public  ArrayList<Game_card_Card>  getNewCards(){
-				return newCards; //return the result
-			}
-		
 
 
+		public  ArrayList<Game_card_Card>  getNewCards(){
+			return newCards; //return the result
 		}
-	
+
+
+
+	}
+
 	//Card Hand Actors----------------------------------------------------------------------------------------------
 	//Use Card Button
 	public static class Game_card_UseCardBtn extends Game_Actor {
@@ -547,7 +547,7 @@ public class Game_CardHand {
 			actorX = 1170;
 			actorY = 450;
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-			
+
 			addListener(new InputListener(){
 				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
 					((Game_card_UseCardBtn)event.getTarget()).started = true;
@@ -559,12 +559,12 @@ public class Game_CardHand {
 			if(started){
 				Game_CardHand.actorManager.useCard((Game_CardHand.actorManager.selectedCard)); //gets the selected card and sends it to the useCard method.
 				started= false;
-				}
+			}
 		}
-		
+
 		public void refreshBounds(){
 			setBounds(actorX,actorY,texture.getWidth(),texture.getHeight());
-		
+
 		}
 
 	}

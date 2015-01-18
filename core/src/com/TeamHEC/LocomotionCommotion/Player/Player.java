@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
@@ -42,7 +41,6 @@ public class Player implements Serializable, RouteListener{
 	private ArrayList<Train> trains;
 	private ArrayList<Station> stations = new ArrayList<Station>();
 	private int[] lines = new int[8];
-	private CardFactory cardFactory;
 
 	private HashMap<String, Fuel> playerFuel;
 
@@ -61,7 +59,6 @@ public class Player implements Serializable, RouteListener{
 		this.shop = new Shop(this);
 		this.goals = goals;
 		this.trains = trains;
-		cardFactory = new CardFactory(this);
 
 		//this.stations = stations;
 		for (int i = 0; i<6;i++)

@@ -1,13 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
-import com.TeamHEC.LocomotionCommotion.Resource.*;
-import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 /**
  * 
@@ -27,10 +22,10 @@ public class Shop implements Serializable {
 	private Player customer;
 	private CardFactory cardFactory;
 	
-	public final static int coalPrice = 10;
-	public final static int oilPrice = 20;
-	public final static int electricPrice = 30;
-	public final static int nuclearPrice = 40;
+	public final static int coalPrice = 1;
+	public final static int oilPrice = 2;
+	public final static int electricPrice = 3;
+	public final static int nuclearPrice = 4;
 	public final static int cardPrice = 1000;
 	
 	public Shop(Player customer)

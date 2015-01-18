@@ -2,10 +2,6 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import java.util.ArrayList;
 
-import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
-import com.TeamHEC.LocomotionCommotion.Card.OilCard;
-import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
@@ -23,6 +19,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StringBuilder;
 
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ *
+ */
 public class Game_Shop {
 	public static Game_ShopManager actorManager;
 
@@ -32,6 +33,7 @@ public class Game_Shop {
 
 
 	}
+	
 	//ACTOR MANAGER
 	public static class Game_ShopManager {
 

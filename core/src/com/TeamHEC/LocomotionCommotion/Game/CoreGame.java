@@ -19,7 +19,6 @@ import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.CoalTrain;
 import com.TeamHEC.LocomotionCommotion.Train.ElectricTrain;
 import com.TeamHEC.LocomotionCommotion.Train.NuclearTrain;
@@ -46,7 +45,6 @@ public class CoreGame implements Serializable {
 	private Player playerTurn;
 	private int turnCount;
 	private int turnLimit;
-	private boolean isTestCase;
 	
 	/**
 	 * Initialises a Game object. This represents one instance of a game.
@@ -64,9 +62,7 @@ public class CoreGame implements Serializable {
 	 * @param turnLimit
 	 *            The number of turns before the end of the game.
 	 */
-	public CoreGame(String Player1Name, String Player2Name,	Station Player1StationStart, Station Player2StationStart, int turnLimit, boolean isTestCase) {
-		// Initialise Players
-		this.isTestCase = isTestCase;
+	public CoreGame(String Player1Name, String Player2Name,	Station Player1StationStart, Station Player2StationStart, int turnLimit) {
 		
 		HashMap<String, Resource> player1Resources = getBaseResources(Player1StationStart);
 		HashMap<String, Resource> player2Resources = getBaseResources(Player2StationStart);

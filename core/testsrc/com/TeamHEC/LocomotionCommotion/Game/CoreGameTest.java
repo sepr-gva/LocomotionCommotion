@@ -78,7 +78,7 @@ public class CoreGameTest {
 		baseElectric = 200;
 		baseNuclear = 200;
 		
-		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit, true);
+		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
 	}
 	
 	//Private Accessors

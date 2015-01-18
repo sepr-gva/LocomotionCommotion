@@ -5,7 +5,6 @@ import com.TeamHEC.LocomotionCommotion.Screens.StartMenu.SM_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Gdx2DPixmap;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldListener;

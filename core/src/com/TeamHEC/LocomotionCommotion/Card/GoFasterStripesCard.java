@@ -17,6 +17,7 @@ public class GoFasterStripesCard extends Card {
 	@Override
 	public void implementCard()
 	{
+		//Need a way to select the train to upgrade
 		Train train = getOwner().getTrains().get(0);
 		SpeedUpgrade speedUpgrade = new SpeedUpgrade(train);
 		train.addUpgrade(speedUpgrade);
