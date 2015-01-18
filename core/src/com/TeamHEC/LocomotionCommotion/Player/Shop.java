@@ -36,19 +36,19 @@ public class Shop implements Serializable {
 	
 	public void buyFuel(String fuelType, int quantity)
 	{		
-		if(fuelType == "Coal" && customer.getGold() > (quantity*coalPrice)) {
+		if(fuelType == "Coal" && customer.getGold() >= (quantity*coalPrice)) {
 			customer.addFuel(fuelType, quantity);
 			customer.subGold(quantity * coalPrice);
 		}
-		if(fuelType == "Oil" && customer.getGold() > (quantity*oilPrice)) {
+		if(fuelType == "Oil" && customer.getGold() >= (quantity*oilPrice)) {
 			customer.addFuel(fuelType, quantity);
 			customer.subGold(quantity * oilPrice);
 		}
-		if(fuelType == "Electric" && customer.getGold() > (quantity*electricPrice)) {
+		if(fuelType == "Electric" && customer.getGold() >= (quantity*electricPrice)) {
 			customer.addFuel(fuelType, quantity);
 			customer.subGold(quantity * electricPrice);
 		}
-		if(fuelType == "Nuclear" && customer.getGold() > (quantity*nuclearPrice)) {
+		if(fuelType == "Nuclear" && customer.getGold() >= (quantity*nuclearPrice)) {
 			customer.addFuel(fuelType, quantity);
 			customer.subGold(quantity * nuclearPrice);
 		}						
@@ -56,19 +56,19 @@ public class Shop implements Serializable {
 		
 	public void sellFuel(String fuelType, int quantity)
 	{
-		if(fuelType == "Coal" && customer.getFuel(fuelType) > quantity) {
+		if(fuelType == "Coal" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold(quantity * coalPrice);
 		}
-		if(fuelType == "Oil" && customer.getFuel(fuelType) > quantity) {
+		if(fuelType == "Oil" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold(quantity * oilPrice);
 		}
-		if(fuelType == "Electric" && customer.getFuel(fuelType) > quantity) {
+		if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold(quantity * electricPrice);
 		}
-		if(fuelType == "Nuclear" && customer.getFuel(fuelType) > quantity) {
+		if(fuelType == "Nuclear" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold(quantity * nuclearPrice);
 		}

@@ -3,11 +3,14 @@ package com.TeamHEC.LocomotionCommotion.Game;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -282,12 +285,34 @@ public class CoreGameTest {
 		{
 			success = false;
 			error = ex.getMessage();
-		}
-		
+		}		
 		assertTrue("saveGameJSON did not execute successfully. " + error, success);
 		
+		File filePath = new File(
+				System.getProperty("user.home") +
+				System.getProperty("file.separator") + 
+				"LocomotionCommotion" + 
+				System.getProperty("file.separator") + 
+				"myGame.json");
 		
-		fail("Not yet implemented");
+		assertTrue("saveGameJSON did not create the necessary json file.", filePath.exists());
+		FileReader fileReader = new FileReader(filePath);
+		
+		//String jsonString = fileReader.
+	
+		
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -929,7 +929,7 @@ public class Game_Shop {
 		public static void changeQuantity(int change){
 			int newQuantity = strToInt(quantityLabel.getText());
 			newQuantity+=change;
-			costLabel.setText(""+(newQuantity*Shop.coalPrice));
+			costLabel.setText(""+(newQuantity*Shop.electricPrice));
 						
 			String l = new Integer(newQuantity).toString();
 			quantityLabel.setText(l);
@@ -1086,7 +1086,7 @@ public class Game_Shop {
 		public static void changeQuantity(int change){
 			int newQuantity = strToInt(quantityLabel.getText());
 			newQuantity+=change;
-			costLabel.setText(""+(newQuantity*Shop.coalPrice));
+			costLabel.setText(""+(newQuantity*Shop.nuclearPrice));
 						
 			String l = new Integer(newQuantity).toString();
 			quantityLabel.setText(l);
