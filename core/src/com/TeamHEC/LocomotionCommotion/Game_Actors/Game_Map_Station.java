@@ -9,23 +9,23 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 
 	public boolean owned;
 	private Station station;
-	
+
 	public float offset = 0;
 
 	public Game_Map_Station(Station station, float actorX, float actorY)
 	{
 		super(actorX, actorY, Game_Map_TextureManager.getInstance().station, Game_Map_TextureManager.getInstance().stationx2);
-		
+
 		this.station = station;
 		this.owned = false;
 		station.register(this);
 	}
-	
+
 	public Station getStation()
 	{
 		return station;
 	}
-	
+
 	@Override
 	public void ownerChanged(Station station, Player player)
 	{
@@ -35,7 +35,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			toggleTexture1 = Game_Map_TextureManager.getInstance().station;
 			toggleTexture2 = Game_Map_TextureManager.getInstance().stationx2;
 		}
-			
+
 		else if(player.isPlayer1)
 		{
 			texture = Game_Map_TextureManager.getInstance().p1Station;
@@ -67,7 +67,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			hideInfoBox();
 		}
 	}
-	
+
 	public void showInfoBox()
 	{
 		for(int i = Game_Map_Manager.stagestart;i <= Game_Map_Manager.stagestart + Game_Map_Manager.mapActors-1; i++)	
@@ -76,15 +76,17 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			}
 			else
 			{
-				// Sets the labels to info from each station:
-				Game_Map_Manager.stationLabelName.setText(station.getName());
-				Game_Map_Manager.stationLabelCost.setText(String.format("%d", station.getTotalRent()));
-				Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", station.getResourceType().getValue(), station.getResourceString()));
-				
 				GameScreen.getStage().getActors().get(i).setVisible(true);
-				Game_Map_Manager.moveInfoBox(this.actorX-180, this.actorY-80);
 			}
-		}		
+		}
+		// Sets the labels to info from each station:
+		Game_Map_Manager.stationLabelName.setText(station.getName());
+		Game_Map_Manager.stationLabelCost.setText(String.format("%d", station.getBaseValue() ));
+		Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", station.getResourceType().getValue(), station.getResourceString()));
+
+		Game_Map_Manager.moveInfoBox(this.actorX-180, this.actorY-80);
+
+
 	}
 	public void hideInfoBox(){
 		for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++)	
@@ -97,7 +99,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			}
 		}		
 	}
-	
+
 	public void setOwned(Boolean b)
 	{
 		this.owned =b;

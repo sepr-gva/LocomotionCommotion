@@ -32,6 +32,7 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepot;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.WarningMessage;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -92,6 +93,9 @@ public class GameScreen implements Screen {
 		
 		Game_PauseMenu pauseMenu= new Game_PauseMenu();
 		pauseMenu.create(getStage());
+		
+		WarningMessage warningMessage = new WarningMessage();
+		warningMessage.create(getStage());
 	}
 	
 	public static void createCoreGame(Station p1Station, Station p2Station)

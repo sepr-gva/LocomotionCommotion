@@ -107,6 +107,8 @@ public class Game_TextureManager {
 	public Texture game_start_getstartedwindow = new Texture(Gdx.files.internal("gameScreen/game_startsequence/getstartedwindow.png"));
 	public Texture game_start_getstartedwindow2 = new Texture(Gdx.files.internal("gameScreen/game_startsequence/getstartedwindow-witharrow.png"));
 	
+	//Warning Window
+	public Texture game_warningwindow = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/warningwindow.png"));
 	
 
 	}

@@ -74,6 +74,15 @@ public class Game_Map_StationBtn extends SpriteButton {
 					Game_startGameManager.selectLabel.setX(950);
 				}
 			}
+			else
+			{
+				//Buy Stations in game
+				if (GameScreen.game.getPlayerTurn().getGold()>= selectedStation.getStation().getBaseValue()){
+					GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
+					System.out.println(selectedStation.getStation().getOwner());				}
+					Game_Map_Manager.hideInfoBox();
+			}
+			
 		}
 		started = false;
 	}
