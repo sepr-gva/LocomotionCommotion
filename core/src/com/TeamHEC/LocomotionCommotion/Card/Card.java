@@ -45,4 +45,5 @@ public class Card implements Serializable {
 	}
 
 	public void implementCard(){}
+	
 }

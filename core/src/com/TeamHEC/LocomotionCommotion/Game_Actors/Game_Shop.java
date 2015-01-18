@@ -548,11 +548,13 @@ public class Game_Shop {
 			public void act(float delta){
 				if(started){
 					if (Game_Shop.actorManager.startpage.buy){						
-						int newAdditionIndex = GameScreen.game.getPlayerTurn().getCards().size();
-						GameScreen.game.getPlayerTurn().getShop().buyCard();
-						Game_CardHand.actorManager.addCard(GameScreen.game.getPlayerTurn().getCards().get(newAdditionIndex));
-						Game_ScreenMenu.resourceActorManager.refreshResources();
-						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+						if(GameScreen.game.getPlayerTurn().getCards().size()<7){
+							int newAdditionIndex = GameScreen.game.getPlayerTurn().getCards().size();
+							GameScreen.game.getPlayerTurn().getShop().buyCard();
+							Game_CardHand.actorManager.addCard(GameScreen.game.getPlayerTurn().getCards().get(newAdditionIndex));
+							Game_ScreenMenu.resourceActorManager.refreshResources();
+							Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+					}
 					}
 				}
 				

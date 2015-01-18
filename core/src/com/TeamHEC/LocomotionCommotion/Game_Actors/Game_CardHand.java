@@ -136,11 +136,12 @@ public class Game_CardHand {
 					}
 				}
 
+				GameScreen.game.getPlayerTurn().getCards().remove(selectedCard-1)	;
+				System.out.println(GameScreen.game.getPlayerTurn().getCards());
 				Game_CardHand.actorManager.selectedCard = 0;											//No card is selected
 				cards.get(Game_CardHand.actorManager.numberofcards-1).setEmpty(true);					//Set the end slot as empty and hidden
 				cards.get(Game_CardHand.actorManager.numberofcards-1).setVisible(false);
 				Game_CardHand.actorManager.numberofcards-=1;											//decrement card number
-				GameScreen.cards-=1;										
 				Game_ScreenMenu.resourceActorManager.refreshResources();
 				Game_CardHand.actorManager.organiseDeck();
 				Game_CardHand.actorManager.usecardbtn.setVisible(false);			//hide the use card button
@@ -159,7 +160,6 @@ public class Game_CardHand {
 				Game_CardHand.actorManager.cards.get(numberofcards).setCard(newCard);					//give the actor the card object
 				Game_CardHand.actorManager.cards.get(numberofcards).refreshBounds();		
 				Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
-				GameScreen.game.getPlayerTurn().getCards().add(newCard);									//update the cards value for display
 				Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 			}
 		}
