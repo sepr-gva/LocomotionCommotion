@@ -407,7 +407,7 @@ public class CoreGameTest {
 				tester.getPlayer1().getGoals().get(0).getVia().equals(((JSONObject) player1Goals.get(0)).get("stationVia")));
 		assertTrue(
 				"Player 1 special bool was not saved correctly",
-				tester.getPlayer1().getGoals().get(0).Special == (Boolean) ((JSONObject) player1Goals.get(0)).get("special"));
+				tester.getPlayer1().getGoals().get(0).isSpecial() == (Boolean) ((JSONObject) player1Goals.get(0)).get("special"));
 		assertTrue(
 				"Player 1 reward was not saved correctly",
 				tester.getPlayer1().getGoals().get(0).getReward() == (Long) ((JSONObject) player1Goals.get(0)).get("reward"));
@@ -472,7 +472,7 @@ public class CoreGameTest {
 				tester.getPlayer2().getGoals().get(0).getVia().equals(((JSONObject) player2Goals.get(0)).get("stationVia")));
 		assertTrue(
 				"Player 2 special bool was not saved correctly",
-				tester.getPlayer2().getGoals().get(0).Special == (Boolean) ((JSONObject) player2Goals.get(0)).get("special"));
+				tester.getPlayer2().getGoals().get(0).isSpecial() == (Boolean) ((JSONObject) player2Goals.get(0)).get("special"));
 		assertTrue(
 				"Player 2 reward was not saved correctly",
 				tester.getPlayer2().getGoals().get(0).getReward() == (Long) ((JSONObject) player2Goals.get(0)).get("reward"));

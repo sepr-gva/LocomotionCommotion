@@ -64,11 +64,11 @@ public class CardFactory{
 	
 	public Card createResourceCard()
 	{
-		return magicCardList.get(random.nextInt(magicCardList.size()));
+		return resourceCardList.get(random.nextInt(resourceCardList.size()));
 	}
 	
 	public Card createMagicCard()
 	{
-		return resourceCardList.get(random.nextInt(resourceCardList.size()));
+		return magicCardList.get(random.nextInt(magicCardList.size()));
 	}
 }

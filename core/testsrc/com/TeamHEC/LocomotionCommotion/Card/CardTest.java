@@ -3,7 +3,6 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,18 +11,12 @@ import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
-import com.TeamHEC.LocomotionCommotion.Map.Line;
-import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
-import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
-import com.TeamHEC.LocomotionCommotion.Train.OilTrain;
-import com.TeamHEC.LocomotionCommotion.Train.Route;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 import com.badlogic.gdx.graphics.Texture;
@@ -53,7 +46,7 @@ public class CardTest {
 		
 		cardName = "Name";
 		cardTexture = Game_TextureManager.getInstance().game_card_coalcard;	
-		card = new Card(player, cardTexture, cardName);
+		card = new CoalCard(player); //Using CoalCard to test as Card is abstract
 	}
 
 	@After
