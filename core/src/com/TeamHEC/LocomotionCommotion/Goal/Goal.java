@@ -37,7 +37,7 @@ public class Goal implements RouteListener{
 		this.reward = reward;  
 		this.cargo = cargo;
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yy", Locale.ENGLISH);
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH);
         Date date = new Date();
         startDate = formatter.format(date);
 		
