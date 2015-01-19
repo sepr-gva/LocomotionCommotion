@@ -106,7 +106,7 @@ public class WorldMap implements Serializable{
 	 * @param mapObj the initial starting MapObj
 	 * @param connection All it's adjacent MapObjs
 	 */
-	public void createConnections(MapObj mapObj, MapObj[] connection)
+	private void createConnections(MapObj mapObj, MapObj[] connection)
 	{
 		for(int i = 0; i < connection.length; i++)
 		{
