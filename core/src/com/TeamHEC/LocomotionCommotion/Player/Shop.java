@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
 import java.io.Serializable;
+import java.math.RoundingMode;
 
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
@@ -69,25 +70,25 @@ public class Shop implements Serializable {
 		
 		if(fuelType == "Coal" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold((int)(quantity * coalSellPrice));
+			customer.addGold((int)(Math.ceil(quantity * coalSellPrice)));
 		}
 		
 		
 		else if(fuelType == "Oil" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold((int)(quantity * oilSellPrice));
+			customer.addGold((int)(Math.ceil(quantity * oilSellPrice)));
 		}
 		
 		
 		else if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold((int)(quantity * electricSellPrice));
+			customer.addGold((int)(Math.ceil(quantity * electricSellPrice)));
 		}
 		
 		
 		else if(fuelType == "Nuclear" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold((int)(quantity * nuclearSellPrice));
+			customer.addGold((int)(Math.ceil(quantity * nuclearSellPrice)));
 		}
 		else
 		{
