@@ -24,10 +24,15 @@ public class Shop implements Serializable {
 	private CardFactory cardFactory;
 	
 	public final static int coalPrice = 1;
+	public final static float coalSellPrice = 0.7f;
 	public final static int oilPrice = 2;
+	public final static float oilSellPrice = 0.7f;
 	public final static int electricPrice = 3;
+	public final static float electricSellPrice = 0.7f;
 	public final static int nuclearPrice = 4;
+	public final static float nuclearSellPrice = 0.7f;
 	public final static int cardPrice = 1000;
+	public final static float cardSellPrice = 0.7f;
 	
 	public Shop(Player customer)
 	{
