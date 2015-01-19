@@ -36,12 +36,11 @@ public class PlayerGoals {
 	public Label ticket1, ticket2, ticket3;
 	public LabelStyle style;
 
-
 	public static PlayerGoalRemoveBtn removebtn1,removebtn2,removebtn3;
 
 	public static boolean open=false;
 
-	public static int  stagestart, ticketActors, numberofOwnedGoals;
+	public static int stagestart, ticketActors, numberofOwnedGoals;
 
 	public static SpriteButton planRouteBtn;
 
@@ -56,12 +55,8 @@ public class PlayerGoals {
 		stagestart =0;
 		ticketActors=0;
 
-
-
 		playerGoals = new HashMap<String,Goal>();
 		playerGoalActors = new HashMap<String,GoalActor>();
-
-
 
 		numberofOwnedGoals=playerGoals.size();
 

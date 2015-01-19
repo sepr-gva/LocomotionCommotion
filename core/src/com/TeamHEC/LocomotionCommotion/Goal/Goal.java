@@ -122,9 +122,9 @@ public class Goal implements RouteListener{
 		{
 			if(station == SStation)
 				startStationPassed = true;
-			else if(station == FStation)
+			else if(startStationPassed && station == FStation)
 				finalStationPassed = true;
-			else if(station == stationVia && stationVia != null)
+			else if(startStationPassed && station == stationVia && stationVia != null)
 				stationViaPassed = true;
 			
 			if(startStationPassed && finalStationPassed && stationViaPassed)
