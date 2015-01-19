@@ -260,7 +260,7 @@ public class Game_Shop {
 	//SHOP HOME Screen---------------------------------------------------------------
 	public static class ShopHomeScreen {
 		ArrayList<Actor> actors ;
-		public static boolean buy=false;
+		public boolean buy=false;
 		public static boolean sell=false;
 
 		public ShopHomeScreen(){
@@ -508,14 +508,14 @@ public class Game_Shop {
 							int quantity = strToInt(quantityLabel.getText());
 							GameScreen.game.getPlayerTurn().getShop().buyFuel("Coal",quantity );									
 						}
-						if (Game_Shop.actorManager.startpage.sell){						
+						if (ShopHomeScreen.sell){						
 							int quantity = strToInt(quantityLabel.getText());
 							GameScreen.game.getPlayerTurn().getShop().sellFuel("Coal", quantity);
 						}
 						GameScreen_ActorManager.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 					}
-					
+
 				};
 
 				actors.add(coalitem);
@@ -614,14 +614,14 @@ public class Game_Shop {
 							int quantity = strToInt(quantityLabel.getText());
 							GameScreen.game.getPlayerTurn().getShop().buyFuel("Oil",quantity );									
 						}
-						if (Game_Shop.actorManager.startpage.sell){						
+						if (ShopHomeScreen.sell){						
 							int quantity = strToInt(quantityLabel.getText());
 							GameScreen.game.getPlayerTurn().getShop().sellFuel("Oil", quantity);
 						}
 						GameScreen_ActorManager.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 					}
-					
+
 				};
 
 				actors.add(oilitem);
@@ -722,14 +722,14 @@ public class Game_Shop {
 							int quantity = strToInt(quantityLabel.getText());
 							GameScreen.game.getPlayerTurn().getShop().buyFuel("Electric",quantity );									
 						}
-						if (Game_Shop.actorManager.startpage.sell){						
+						if (ShopHomeScreen.sell){						
 							int quantity = strToInt(quantityLabel.getText());
 							GameScreen.game.getPlayerTurn().getShop().sellFuel("Electric", quantity);
 						}
 						GameScreen_ActorManager.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 					}
-				
+
 				};
 
 				actors.add(electricitem);
@@ -830,14 +830,14 @@ public class Game_Shop {
 							int quantity = strToInt(quantityLabel.getText());
 							GameScreen.game.getPlayerTurn().getShop().buyFuel("Nuclear",quantity );									
 						}
-						if (Game_Shop.actorManager.startpage.sell){						
+						if (ShopHomeScreen.sell){						
 							int quantity = strToInt(quantityLabel.getText());
 							GameScreen.game.getPlayerTurn().getShop().sellFuel("Nuclear", quantity);
 						}
 						GameScreen_ActorManager.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 					}
-				
+
 				};
 
 				actors.add(nuclearitem);
