@@ -1,127 +1,41 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
 import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.TeamHEC.LocomotionCommotion.Resource.Resource;
 
 public class StationTest {
 
+	Station tester;
+	String name;
+	Player owner;
+	int baseValue;
+	int valueMod;
+	Resource resourceType;
+	int baseResourceOut;
+	int resourceOutMod;
+	Line[] line = null;//max number of lines on one station is 3, alter if this changes
+	int rentValue;
+	int rentValueMod;
+	
+	@Before
+	public void setUp() throws Exception {
+		
+		
+		tester = new Station(null, 0, null, 0, null, 0, 0, 0);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
 	@Test
 	public void testStation() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetName() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetBaseValue() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetValueMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddValueMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSubValueMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetTotalValue() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetFuelType() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetBaseFuelOut() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetFuelOutMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddFuelOutMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSubFuelOutMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetTotalFuelOut() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetRentValue() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetRentValueMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddRentValueMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSubRentValueMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetTotalRent() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetOwner() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetOwner() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetFuelOutMod() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetLineType() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddListener() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testStationPurchased() {
 		fail("Not yet implemented");
 	}
 
