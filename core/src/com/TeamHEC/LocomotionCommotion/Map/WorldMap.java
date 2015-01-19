@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Resource.*;
@@ -9,9 +8,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.*;
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  */
 
-public class WorldMap implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class WorldMap {
 
 	private final static WorldMap INSTANCE = new WorldMap();
 	public static WorldMap getInstance()
