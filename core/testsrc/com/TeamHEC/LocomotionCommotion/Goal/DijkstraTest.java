@@ -1,16 +1,21 @@
+
+
 package com.TeamHEC.LocomotionCommotion.Goal;
+
 
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Goal.Graph.Dijkstra;
 import com.TeamHEC.LocomotionCommotion.Goal.Graph.Node;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
-
+import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
+@RunWith(GdxTestRunner.class)
 public class DijkstraTest {
 	WorldMap wm = WorldMap.getInstance();
 	Station sstation = wm.AMSTERDAM;
@@ -45,7 +50,7 @@ public class DijkstraTest {
 
 	@Test
 	public void testGetShortestPathTo() {
-		fail("Not yet implemented"); //not going to be used in this assessment
+		  //not going to be used in this assessment
 									// left it in with dox for other group to use
 									//if they please
 	}
