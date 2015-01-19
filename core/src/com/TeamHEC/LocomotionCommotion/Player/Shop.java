@@ -24,6 +24,7 @@ public class Shop implements Serializable {
 	private Player customer;
 	private CardFactory cardFactory;
 	
+	//Sell price is 70% of the buy price
 	public final static int coalPrice = 1;
 	public final static float coalSellPrice = 0.7f;
 	public final static int oilPrice = 2;
@@ -82,7 +83,7 @@ public class Shop implements Serializable {
 		
 		else if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold((int)(Math.ceil(quantity * electricSellPrice)));
+			customer.addGold((int)(Math.ceil(quantity * electricSellPrice))); //DO NOT REMOVE MATH.CEIL IT ROUNDS WIERDLY
 		}
 		
 		

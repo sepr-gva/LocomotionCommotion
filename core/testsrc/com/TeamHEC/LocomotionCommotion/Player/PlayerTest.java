@@ -127,11 +127,6 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void testGetCarriage() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testPurchaseRandomCard() {
 		fail("Not yet implemented");
 	}
