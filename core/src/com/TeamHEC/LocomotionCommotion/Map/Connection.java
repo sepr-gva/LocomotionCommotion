@@ -140,4 +140,15 @@ public class Connection{
 	{
 		return connectionBlips;
 	}
+	/**
+	 * @param connection to be compared
+	 * @returntrue if two connections are the same but reversed
+	 */
+	public boolean isReverseOf(Connection connection)
+	{
+		if(startMapObj == connection.getDestination() && endMapObj == connection.getStartMapObj())
+			return true;
+		else
+			return false;
+	}
 }
