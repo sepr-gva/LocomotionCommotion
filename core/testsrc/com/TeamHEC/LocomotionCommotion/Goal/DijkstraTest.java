@@ -21,11 +21,12 @@ public class DijkstraTest {
 	Station sstation = wm.AMSTERDAM;
 	Station fstation = wm.OSLO;		
 	Dijkstra d = new Dijkstra();
+	double rew;
 	
 	@Before
 	public void setUp() throws Exception {
 		d.initialiseGraph();		
-		double rew = d.lookUpNode(fstation).minDistance;	
+		rew = d.lookUpNode(fstation).minDistance;	
 	}
 
 	@After
@@ -41,11 +42,16 @@ public class DijkstraTest {
 	@Test
 	public void testComputePaths() {
 		d.computePaths(d.lookUpNode(this.sstation));
-		double rew = d.lookUpNode(this.fstation).minDistance;
 		assertTrue(rew != null);//[1]
 		assertThat(rew, instanceOf(double.class));  //[2]
 		//[1] not really sure why this is an error
 		//[2] check that ComputePaths returns a double
+		
+		//You don't need to test if its null. Doubles can't be null. 
+		//Also you don't need to check if it's a double. It has to return a double it can't return anythign else.
+		
+		//Just check that the value is > 0 and is not infinite.
+		//You also need to add error messages like I have in my tests. It helps with debugging.
 	}
 
 	@Test
@@ -56,13 +62,16 @@ public class DijkstraTest {
 	}
 
 	@Test
-	public void testLookUpNode() {
-		Station st = wm.AMSTERDAM;
-		Node n = d.lookUpNode(st);
+	public void testLookUpNode() {		
+		Node n = d.lookUpNode(fstation);
 		//[1] would be nice to have a test that asserts it is of type Node
 		assertTrue(n!=null); //test to assert that the lookup node isnotnull
 		assertThat(n, instanceOf(Node.class)); //i thought this would accomplish 1
 		}
+	
+	//Again, you don't need to test it's type. 
+	//You should test that lookUpNode works by making sure it returns a value you expect.
+	//And add error messages to all of your assertions.
 
 	@Test
 	public void testInitialiseGraph() {

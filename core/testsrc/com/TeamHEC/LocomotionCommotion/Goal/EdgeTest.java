@@ -32,6 +32,8 @@ public class EdgeTest {
 		assertThat(e.weight, instanceOf(float.class));
 		assertTrue(e.weight == 37);
 		
+		//Stop checking class types. And add error messages.
+		
 		
 	}
 

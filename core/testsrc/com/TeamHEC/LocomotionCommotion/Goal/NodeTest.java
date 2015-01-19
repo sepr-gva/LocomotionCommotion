@@ -37,7 +37,9 @@ public class NodeTest {
 		assertTrue(n.getMapObj() != null); //k this works
 		assertThat((n.getMapObj()), instanceOf(MapObj.class)); 
 		//I found assertThat online and its suposed to work
-		//gdamniteclipseyusoshit
+		//gdamniteclipseyusoshit#
+		
+		//STOP TESTING CLASS TYPES AND ADD ERROR MESSAGES.
 		
 		
 	}
