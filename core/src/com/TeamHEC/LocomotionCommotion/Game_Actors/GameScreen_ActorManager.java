@@ -46,14 +46,12 @@ public class GameScreen_ActorManager {
 	public static  int menuobjectsStageStart, menuobjectsStageEnd;
 
 	//Resources UI Elements
-	public static Label  goldQuant, coalQuant, oilQuant, electricityQuant, nuclearQuant;
-
-	public static Label cardQuant;
+	public static Label  goldQuant, coalQuant, oilQuant, electricityQuant, nuclearQuant, cardQuant;
 	public static Sprite game_menuobject_resourcesbar;
 	public static SpriteButton game_card_togglebtn, game_resources_togglebtn;
 
 	//Resource Actors start index and end index - used to toggle expanded resources menu
-	public static  int  resourcesStageStart, resourcesStageEnd;
+	public static int  resourcesStageStart, resourcesStageEnd;
 	//Height value for expanded height
 	public static int expandedheight= 40;
 	//Boolean for expanded
@@ -95,7 +93,14 @@ public class GameScreen_ActorManager {
 		//The Pause Menu Button -- Top right corner
 		game_menuobject_menubtn = new SpriteButton(LocomotionCommotion.screenX-60, 
 				Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_menuobject_menubtn.getHeight() - 30, Game_TextureManager.getInstance().game_menuobject_menubtn){
+			/**
+			 * onClicked for menuBtn:
+			 *  Checks if the pause Menu is open
+			 *  	if NOT set pause Menu as open, run through the pauseMenu actors making them visible
+			 *  	else set pause Menu open as false, run through the pauseMenu actors making them invisible
+			 *  Note the "if (i > GameScreen.getStage().getActors().size-1)" is there to catch index errors
 
+			 */
 			@Override
 			protected void onClicked()
 			{
@@ -127,7 +132,14 @@ public class GameScreen_ActorManager {
 		//Ticket (OwnedGoals) toggle button -- Top Left corner
 		game_menuobject_tickettoggle=new SpriteButton(30, Gdx.graphics.getHeight() - Game_TextureManager.getInstance().game_menuobject_ticketbtn.getHeight()-15,
 				Game_TextureManager.getInstance().game_menuobject_ticketbtn){
+			/**
+			 * onClicked for ticket toggle:
+			 *  Checks if the Player goals is open
+			 *  	if NOT set player goals as open, run through the player goals actors making them visible and make the enclosure visible
+			 *  	else set player goals open as false, run through the player goals actors making them invisible
+			 *  Note the "if (i > GameScreen.getStage().getActors().size-1)" is there to catch index errors
 
+			 */
 			@Override
 			protected void onClicked()
 			{
@@ -161,7 +173,12 @@ public class GameScreen_ActorManager {
 		//End Turn Button -- Bottom right button
 		game_menuobject_endturnbutton = new SpriteButton(LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_endturnbutton.getWidth()-15,
 				15, Game_TextureManager.getInstance().game_menuobject_endturnbutton){
+			/**
+			 * onClicked for end turn button:
+			 *  Move trains, call the back end endTurn, RefreshResourses for new player, refresh gold, change cards to new player, changes the title text
+			 *  and fill the goalScreen.
 
+			 */
 			@SuppressWarnings("static-access")
 			@Override
 			protected void onClicked()
@@ -177,8 +194,8 @@ public class GameScreen_ActorManager {
 				Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 				PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
 				Game_CardHand.actorManager.changePlayer(GameScreen.game.getPlayerTurn());
-				playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + GameScreen.player1score +
-						"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName()
+				playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + 0 +
+						"     SCORE     "+ 0+"     "+GameScreen.game.getPlayer2().getName()
 						+"     "+GameScreen.game.getPlayerTurn().getName()+" it's your turn ");
 				currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
 				GoalMenu.fillGoalScreen();
@@ -188,7 +205,10 @@ public class GameScreen_ActorManager {
 
 		//Map Info Toggle Button -- Bottom right group
 		game_menuobject_infobutton = new SpriteButton(LocomotionCommotion.screenX-310, 63, Game_TextureManager.getInstance().game_menuobject_infobutton){
-
+			/**
+			 * onClicked for info Button:
+			 * Toggles the visibility of the map info legend.
+			 */
 			@Override
 			protected void onClicked()
 			{
@@ -206,7 +226,14 @@ public class GameScreen_ActorManager {
 
 		//Access Shop Button -- Bottom right group
 		game_menuobject_shopbtn = new SpriteButton(LocomotionCommotion.screenX-310, 125, Game_TextureManager.getInstance().game_shop_shopbtn){
+			/**
+			 * onClicked for shopbtn:
+			 *   Checks if the shop is open
+			 *  	if NOT set shop as open, run through the shop actors making them visible and refreshes the shop gold label
+			 *  	else set shop open as false, run through the shop actors making them invisible
+			 *  Note the "if (i > GameScreen.getStage().getActors().size-1)" is there to catch index errors
 
+			 */
 			@Override
 			protected void onClicked()
 			{
@@ -238,7 +265,14 @@ public class GameScreen_ActorManager {
 
 		//Access Train Depot Button -- Bottom right group
 		game_menuobject_traindepotbtn = new SpriteButton(LocomotionCommotion.screenX-310, 193, Game_TextureManager.getInstance().game_traindepot_traindepotbtn){
+			/**
+			 * onClicked for traindepotbtn:
+			 *   Checks if the train depot is open
+			 *  	if NOT set train depot as open, run through the shop actors making them visible
+			 *  	else set train depot open as false, run through the train depot actors making them invisible
+			 *  Note the "if (i > GameScreen.getStage().getActors().size-1)" is there to catch index errors
 
+			 */
 			@Override
 			protected void onClicked()
 			{
@@ -270,7 +304,14 @@ public class GameScreen_ActorManager {
 		//Access Goal Screen Button -- Top Left Corner
 		game_menuobject_goalscreenbtn = new SpriteButton(110, Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_goals_goalscreenbtn.getHeight() -25,
 				Game_TextureManager.getInstance().game_goals_goalscreenbtn){
+			/**
+			 * onClicked for goalscreenbtn:
+			 *   Checks if the goal Screen is open
+			 *  	if NOT set  goal Screen as open, call the goalMenuOpen() in player goals and runs through the goal Screen actors making them visible
+			 *  	else set goal Screen open as false, call the goalMenuClose() in player goals and run through the goal Screen actors making them invisible
+			 *  Note the "if (i > GameScreen.getStage().getActors().size-1)" is there to catch index errors
 
+			 */
 			@Override
 			protected void onClicked()
 			{
@@ -284,7 +325,8 @@ public class GameScreen_ActorManager {
 						}else
 							GameScreen.getStage().getActors().get(i).setVisible(true);
 
-					}			
+					}	
+					//Hides the get Started Stuff when you first press goal Screen
 					Game_startGameManager.getStartedWindow.setVisible(false);
 					Game_startGameManager.selectLabel.setVisible(false);
 
@@ -322,18 +364,23 @@ public class GameScreen_ActorManager {
 		currentPlayerName.setX(Gdx.graphics.getWidth()-260);
 		currentPlayerName.setY(280);
 		actors.add(currentPlayerName);
-		
+
 		//Get current stage end - where menuObjects start
 		menuobjectsStageStart = stage.getActors().size;
 		//Assign the index of the last MenuObject
 		menuobjectsStageEnd = menuobjectsStageStart+ actors.size-1;
 
 		//Resource Actors----------------------------------------------------------------------------------------------------------------------------------------
-		//Resource Bar -
+		//Resource Bar - bottom
 		game_menuobject_resourcesbar = new Sprite(-13,-175,Game_TextureManager.getInstance().game_menuobject_resourcesbar);
 		actors.add(game_menuobject_resourcesbar);
 
+		//Resource Toggle Button-- This raises the resources bar given YOU the ASSESSMENT 3 people some more UI space to work with.
 		game_resources_togglebtn = new SpriteButton(10,30,Game_TextureManager.getInstance().game_menuobject_menubtn){
+			/**
+			 * onClicked for resources toggle button:
+			 * This method raises the resources bar and everything connected.
+			 */
 			@Override
 			protected void onClicked(){
 				int expandedheight=180;
@@ -344,7 +391,7 @@ public class GameScreen_ActorManager {
 					setBounds(getX(),getY(),getTexture().getWidth(),getTexture().getHeight());
 					GameScreen_ActorManager.game_menuobject_resourcesbar.increaseY(expandedheight);
 					setResourcesHeight(GameScreen_ActorManager.cardQuant.getY()+expandedheight);
-					//move cards up
+					//Move cards up
 					GameScreen_ActorManager.game_card_togglebtn.increaseY(expandedheight);
 					GameScreen_ActorManager.game_card_togglebtn.refreshBounds();
 					Game_CardHand.actorManager.organiseDeck();
@@ -361,27 +408,29 @@ public class GameScreen_ActorManager {
 
 					}			}
 				else
-				{	GameScreen_ActorManager.resourcebarexpanded= false;
-				Game_CardHand.actorManager.usecardbtn.setVisible(false);
-				//Move up
-				GameScreen_ActorManager.game_resources_togglebtn.setY(GameScreen_ActorManager.game_resources_togglebtn.getY() - expandedheight);
-				setBounds(getX(),getY(),getTexture().getWidth(),getTexture().getHeight());
-				GameScreen_ActorManager.game_menuobject_resourcesbar.increaseY(-expandedheight);
-				setResourcesHeight(GameScreen_ActorManager.cardQuant.getY()-expandedheight);
+				{	
+					GameScreen_ActorManager.resourcebarexpanded= false;
+					Game_CardHand.actorManager.usecardbtn.setVisible(false);
+					//Move up
+					GameScreen_ActorManager.game_resources_togglebtn.setY(GameScreen_ActorManager.game_resources_togglebtn.getY() - expandedheight);
+					setBounds(getX(),getY(),getTexture().getWidth(),getTexture().getHeight());
+					GameScreen_ActorManager.game_menuobject_resourcesbar.increaseY(-expandedheight);
+					setResourcesHeight(GameScreen_ActorManager.cardQuant.getY()-expandedheight);
+					//Move Cards back down
+					GameScreen_ActorManager.game_card_togglebtn.increaseY(-expandedheight);
+					GameScreen_ActorManager.game_card_togglebtn.refreshBounds();
+					Game_CardHand.actorManager.selectedCard=0;
+					Game_CardHand.actorManager.changeHeight(-expandedheight);
+					Game_CardHand.actorManager.organiseDeck();
 
-				GameScreen_ActorManager.game_card_togglebtn.increaseY(-expandedheight);
-				GameScreen_ActorManager.game_card_togglebtn.refreshBounds();
-				Game_CardHand.actorManager.selectedCard=0;
-				Game_CardHand.actorManager.changeHeight(-expandedheight);
-				Game_CardHand.actorManager.organiseDeck();
-				//end
-				for(int i=GameScreen_ActorManager.resourcesStageStart; i<=GameScreen_ActorManager.resourcesStageStart +GameScreen_ActorManager.resourcesStageEnd-1;i++){
-					if (i > GameScreen.getStage().getActors().size-1){
+					for(int i=GameScreen_ActorManager.resourcesStageStart; i<=GameScreen_ActorManager.resourcesStageStart +GameScreen_ActorManager.resourcesStageEnd-1;i++){
+						if (i > GameScreen.getStage().getActors().size-1){
 
-					}else
-						GameScreen.getStage().getActors().get(i).setVisible(true);
+						}
+						else
+							GameScreen.getStage().getActors().get(i).setVisible(true);
 
-				}
+					}
 
 				}
 
@@ -389,48 +438,57 @@ public class GameScreen_ActorManager {
 		};
 		actors.add(game_resources_togglebtn);
 
+		//Get font style with text size 19
 		style= getLabelStyle(19);
-
+		//Quantity Labels------------------------------------------------------------------------------
+		//Gold Quantity
 		goldQuant= new Label(null, style);
 		goldQuant.setX(100);
 		goldQuant.setY(expandedheight);
 		goldQuant.setColor(0,0,0,1);
 
+		//Coal Quantity
 		coalQuant= new Label(null,style);
 		coalQuant.setX(240);
 		coalQuant.setY(expandedheight);
 		coalQuant.setColor(0,0,0,1);
 
-
+		//Oil Quantity
 		oilQuant= new Label(null,style);
 		oilQuant.setX(350);
 		oilQuant.setY(expandedheight);
 		oilQuant.setColor(0,0,0,1);
 
+		//Electricity Quantity
 		electricityQuant= new Label(null,style);
 		electricityQuant.setX(450);
 		electricityQuant.setY(expandedheight);
 		electricityQuant.setColor(0,0,0,1);
 
+		//Nuclear Quantity
 		nuclearQuant= new Label(null,style);
 		nuclearQuant.setX(590);
 		nuclearQuant.setY(expandedheight);
 		nuclearQuant.setColor(0,0,0,1);
 
+		//Card Quantity
 		cardQuant= new Label(null,style);
 		cardQuant.setX(920);
 		cardQuant.setY(expandedheight);
 		cardQuant.setColor(0,0,0,1);
 
+		//Add all but cards to actors array -- This is because card's stuff isnt shown in the starting sequence
 		actors.add(goldQuant);
 		actors.add(coalQuant);
 		actors.add(oilQuant);
 		actors.add(electricityQuant);
 		actors.add(nuclearQuant);
 
+		//Grouping Values can be used to change actors involved.
 		resourcesStageStart= menuobjectsStageEnd+1;
 		resourcesStageEnd = menuobjectsStageStart+actors.size-1;
 
+		//Run through all actors: Setting them to touchable, invisible(for the starting sequence) and add to stage.
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
 			a.setVisible(false);
@@ -442,8 +500,16 @@ public class GameScreen_ActorManager {
 		game_menuobject_ticketenclosure.setVisible(false);
 		stage.addActor(game_menuobject_ticketenclosure);
 
+		//Card toggle Button -- Shows or Hides CardHand
 		game_card_togglebtn = new SpriteButton(670, 25, Game_TextureManager.getInstance().game_card_cardtoggle){
+			/**
+			 * onClicked for cardTogglebutton
+			 *  Checks if the cards are open
+			 *  	if NOT set cards as open, run through the cards actors making them visible
+			 *  	else set cards open as false, run through the cards actors making them invisible
+			 *  Note the "if (i > GameScreen.getStage().getActors().size-1)" is there to catch index errors
 
+			 */
 			@Override
 			protected void onClicked()
 			{
@@ -478,8 +544,8 @@ public class GameScreen_ActorManager {
 			}
 		};
 		game_card_togglebtn.setVisible(false);
-
 		stage.addActor(game_card_togglebtn);
+		//Add CardQuant to stage -- Invisible
 		cardQuant.setVisible(false);
 		stage.addActor(cardQuant);
 	}
@@ -489,9 +555,12 @@ public class GameScreen_ActorManager {
 	}
 
 	public static int getStageEnd(){
-		return resourcesStageEnd;
+		return resourcesStageEnd; // This is the end of all the actors involved in GameScreen_ActorManager
 	}
 
+	/**
+	 * refreshResources() refreshes all resource quantities for the current player.
+	 */
 	public static void refreshResources()
 	{
 		goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
@@ -501,7 +570,10 @@ public class GameScreen_ActorManager {
 		nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
 		GameScreen_ActorManager.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
 	}
-
+	/**
+	 * Changes all quantity label heights with the toggle resources button
+	 * @param height the height that the labels are to be raised or lowered to
+	 */
 	public static void setResourcesHeight(float height)
 	{
 		GameScreen_ActorManager.goldQuant.setY(height);
@@ -511,7 +583,11 @@ public class GameScreen_ActorManager {
 		GameScreen_ActorManager.nuclearQuant.setY(height);
 		GameScreen_ActorManager.cardQuant.setY(height);
 	}
-
+	/**
+	 * 
+	 * @param fontsize -the size of the font style returned by method
+	 * @return returns full LabelStyle with fontsize passed
+	 */
 	public LabelStyle  getLabelStyle(int fontsize){
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();

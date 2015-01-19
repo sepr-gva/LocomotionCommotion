@@ -2,9 +2,13 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-/*
- * Holds all the textures and file paths for all actors in StartMenu
- * This means if we need to change a file path you come here.
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ * 
+ * This is the centre for all the Texture's used in the game except for Map textures.
+ * When fetching a Texture use : Game_TextureManager.getInstance().<desired texture name>
+ *
  */
 public class Game_TextureManager {
 	private static Game_TextureManager instance;

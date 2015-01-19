@@ -41,19 +41,23 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ * Game Screen is the Screen that handles everything in the game screen.
+ * First we sort the Camera- create the stage, create the camera and set the dimensions and update
+ * Then we create all the managers- these manage the actors and they are split up in to separate menu sections.
+ *
+ */
 public class GameScreen implements Screen {
 	public static CoreGame game;
 	private static Stage stage;
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
-	public static String player1name , player2name, gameMode ;
-	public static int turns;
-
-	public static int coal, oil, electricity, nuclear,cards, player1score = 0, player2score = 0, gold = 1000;
-	
 	public static Game_Map_Manager mapManager;
-
+	/**
+	 * 
+	 */
 	public static void create(){
 		//Set up stage camera
 		stage = new Stage(); 

@@ -90,8 +90,8 @@ public class Game_startGameManager {
 
 		//Handle Text within Game
 		//Score and Who's Turn it is
-		GameScreen_ActorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + GameScreen.player1score +
-				"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName());
+		GameScreen_ActorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + 0 +
+				"     SCORE     "+ 0+"     "+GameScreen.game.getPlayer2().getName());
 		GameScreen_ActorManager.currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
 		//Resources
 		GameScreen_ActorManager.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
