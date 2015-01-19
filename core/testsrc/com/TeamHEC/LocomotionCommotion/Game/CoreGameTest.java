@@ -16,11 +16,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalFactory;
-import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
@@ -28,7 +26,6 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Train.Route;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
 /**
@@ -349,6 +346,10 @@ public class CoreGameTest {
 			turnLimit = turnLimitL.intValue();
 		else
 			throw new IllegalArgumentException("turnLimit was too large to be cast to an int.");
+		
+		assertTrue("Player turn was not saved correctly", tester.getPlayerTurn().getName() == playerTurn);
+		assertTrue("turnCount was not saved correctly", tester.getTurnCount() == turnCount);
+		assertTrue("turnLimit was not saved correctly", tester.getTurnLimit() == turnLimit);		
 		
 		//Assertions
 		//Resources 1

@@ -1,13 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.Goal.Graph;
 
-import java.util.PriorityQueue;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
-import com.TeamHEC.LocomotionCommotion.Map.Station;
-
 public class Node implements Comparable<Node>
 {
   
