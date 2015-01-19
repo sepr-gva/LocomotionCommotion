@@ -25,6 +25,7 @@ public class Station extends MapObj{
 	private Line[] line = null;//max number of lines on one station is 3, alter if this changes
 	private int rentValue;
 	private int rentValueMod;
+	public double mindistance = Double.POSITIVE_INFINITY;
 	
 	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
 	

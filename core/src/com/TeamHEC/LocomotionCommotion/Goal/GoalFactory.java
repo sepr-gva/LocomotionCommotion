@@ -1,10 +1,12 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
+import com.TeamHEC.LocomotionCommotion.Map.Connection;
 //import com.TeamHEC.LocomotionCommotion.Map.Connection;
 //import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
@@ -59,8 +61,8 @@ public class GoalFactory{
 
 	public Goal CreateRandomGoal(){
 		Goal newgoal;
-		Station sStation = (Station) newSStation();
-		Station fStation = (Station) newFStation();		
+		Station sStation =  newSStation();
+		Station fStation =  newFStation();		
 		while (sStation.getName() == fStation.getName())
 			fStation = (Station) newFStation();		
 		String cargo;
@@ -79,11 +81,7 @@ public class GoalFactory{
 		return newgoal; 
 	}
 	
-	public int getLength(Station sStation, Station fStation)
-	{
-		return 1;		
-	}
-
+	 
 
 }
 

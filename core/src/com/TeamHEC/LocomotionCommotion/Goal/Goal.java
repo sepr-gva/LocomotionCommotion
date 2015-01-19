@@ -6,10 +6,8 @@ public class Goal {
  //Variables
  protected Station SStation;
  protected Station FStation;
- protected Station stationVia;
- 
- private String cargo;
- 
+ protected Station stationVia; 
+ private String cargo; 
  public boolean Special;
  protected double Reward;
  private int Startdate;
