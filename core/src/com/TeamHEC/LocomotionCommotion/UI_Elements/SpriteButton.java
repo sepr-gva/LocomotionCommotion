@@ -5,6 +5,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
+/**
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ * @author Rob
+ */
+
 public class SpriteButton extends Sprite{
 
 	/**
@@ -42,22 +47,15 @@ public class SpriteButton extends Sprite{
 	/**
 	 * Called whenever the Sprite is clicked on. Overwritten using anonymous classes,
 	 */
-	protected void onClicked()
-	{
-		// Overwrite me
-	}
+	protected void onClicked(){}
+	
 	/**
 	 * Called upon the mouse hovering over the sprite. Overwritten using anonymous classes.
 	 */
-	protected void onMouseEnter()
-	{
-		// Overwrite me
-	}
+	protected void onMouseEnter(){}
+	
 	/**
 	 * Called upon a mouse leaving an image region. Overwritten using anonymous classes
 	 */
-	protected void onMouseExit()
-	{
-		// Overwrite me
-	}
+	protected void onMouseExit(){}
 }

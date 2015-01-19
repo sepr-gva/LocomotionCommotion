@@ -9,7 +9,9 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -92,8 +94,11 @@ public class PlayerGoals {
 					this.setVisible(true);
 					started = false;
 				}
-				if(touchedDown){
-					Game_Map_Manager.enterRoutingMode();
+				if(touchedDown)
+				{
+					WarningMessage.fireWarningWindow("", "Please Select a Train");
+					
+					//Game_Map_Manager.enterRoutingMode();
 					touchedDown=false;
 				}
 			}
@@ -167,7 +172,7 @@ public class PlayerGoals {
 
 	}
 
-	public static String ticketMaker(String type, int  reward, String from, int startdate, String dest, String route){
+	public static String ticketMaker(String type, int reward, String from, String startdate, String dest, String route){
 		String output;
 		output ="";
 

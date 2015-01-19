@@ -25,6 +25,7 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  * @author Callum Hewitt <ch1194@york.ac.uk>
+ * @author Elliot Bray <eb1033@york.ac.uk>
  */
 
 public class Player implements Serializable, RouteListener{
@@ -74,12 +75,6 @@ public class Player implements Serializable, RouteListener{
 		playerFuel.put("Electric", this.electric);
 		playerFuel.put("Nuclear", this.nuclear);
 		playerFuel.put("Oil", this.oil);
-
-		// Registers listeners for Routes:
-		for(int i = 0; i < trains.size(); i++)
-		{
-			trains.get(i).route.register(this);
-		}
 	}
 
 	public String getName()
@@ -323,7 +318,7 @@ public class Player implements Serializable, RouteListener{
 	}
 
 	@Override
-	public void stationPassed(Station station) {
+	public void stationPassed(Station station, Train train) {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Train passed " + station.getName());
@@ -436,8 +431,10 @@ public class Player implements Serializable, RouteListener{
 			}
 			//owning an entire line is worth an additional reward (3 stations 5%, 4 stations 10%, 5 stations 15%, 6 stations 20%)
 			//increase rent, resource and value by 5% per line you have a station connected too, this may be adjusted to due scaling at larger values
-			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
 			currentStation.setResourceOutMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseResourceOut() * 0.05)));
+			//Rent not currently increased but is increased for later use anyway
+			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
+			//Increasing value has no affect as stations cannot be currently be sold but if increased for later use anyway
 			currentStation.setValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getValueMod() * 0.05)));
 		}
 	}
@@ -448,7 +445,7 @@ public class Player implements Serializable, RouteListener{
 		for (int i = 0; i < stations.size(); i++)
 		{
 			Station currentStation = stations.get(i);
-			if (currentStation.getName() == "Monaco")
+			if (currentStation.getResourceString() == "Gold")
 			{
 				this.addGold(currentStation.getBaseResourceOut());
 			}
