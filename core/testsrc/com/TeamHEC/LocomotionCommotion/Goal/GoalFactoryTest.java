@@ -6,11 +6,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GoalFactoryTest {
+import com.TeamHEC.LocomotionCommotion.Card.Card;
 
+public class GoalFactoryTest {
+	GoalFactory gf = new GoalFactory();
 	@Before
 	public void setUp() throws Exception {
-		GoalFactory gf = new GoalFactory();
+		
 	}
 
 	@After
@@ -24,7 +26,9 @@ public class GoalFactoryTest {
 
 	@Test
 	public void testGenCard() {
-		fail("Not yet implemented");
+		assertTrue(gf.genCard() != null);
+		assertThat(gf.genCard(), instanceOf(Card.class));
+		
 	}
 
 	@Test

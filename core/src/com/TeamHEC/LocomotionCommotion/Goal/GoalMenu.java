@@ -192,6 +192,7 @@ public class GoalMenu {
 
 
 	}
+	
 	private ArrayList<GoalActor> createEmpties() {
 		ArrayList<GoalActor> 		empties = new ArrayList< GoalActor>();
 		HashMap<String, GoalActor> 	goalslots = new HashMap<String, GoalActor>();
