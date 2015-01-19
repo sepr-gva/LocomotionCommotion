@@ -217,16 +217,7 @@ public class Station extends MapObj{
 	{
 		return line;
 	}
-	
-	/**
-	 * @param player changes owner of the stations and notify listeners
-	 */
-	public void purchaseStation(Player player)
-	{		
-		setOwner(player);
-		notifyStationPurchased(this, player);
-	}
-	
+		
 	/**
 	 * Registers an object implementing the StationListener by adding it to the listeners array
 	 * @param newListener the object to be added

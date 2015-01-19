@@ -456,8 +456,11 @@ public class Route{
 		float connectionLength = route.get(routeIndex).getLength();
 		
 		// If the train is still on the same connection, update conenctionTravelled:
-		if(connectionTravelled + moveBy < connectionLength)
+		if(connectionTravelled + moveBy <= connectionLength)
+		{
 			connectionTravelled += moveBy;
+			currentMapObj = route.get(routeIndex).getStartMapObj();
+		}
 		else
 		{
 			// Completes the current connection and progresses onto the next using

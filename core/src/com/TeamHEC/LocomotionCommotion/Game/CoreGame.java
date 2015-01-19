@@ -89,6 +89,9 @@ public class CoreGame implements Serializable {
 
 		player1.isPlayer1 = true;
 		player2.isPlayer1 = false;
+		
+		player1.addGold(90000);
+		player2.addGold(90000);
 
 		// Create players First Train depending on the station selected:
 		createFirstTrain(player1, Player1StationStart);

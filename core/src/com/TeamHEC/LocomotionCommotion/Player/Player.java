@@ -21,6 +21,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Train.RouteListener;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -216,31 +217,33 @@ public class Player implements Serializable, RouteListener{
 	//There is space to add some sort of message for the player
 	{
 		boolean validPurchase = false;
-		for (int j=0; j < this.trains.size(); j ++)
+		for (int j=0; j < trains.size(); j ++)
 		{
-			if (this.trains.get(j).route.getStation().getOwner() == null)
+			if(station.getOwner() == null)
 			{
-				if (this.trains.get(j).getRoute().getStation() == station)
+				if(trains.get(j).getRoute().getStation() == station)
 				{
-					if (this.getGold() >= station.getBaseValue())
+					if(getGold() >= station.getBaseValue())
 					{
 						validPurchase = true;				
-
 					}
 					else
 					{
 						//not enough gold
 						this.addFuel("Nuclear", 3);
+						//WarningMessage.fireWarningWindow("Not enough gold", "");
 					}
 				}
 				else
 				{
 					this.addFuel("Nuclear", 2);
+					//WarningMessage.fireWarningWindow("Not in station", trains.get(j).getRoute().getStation().getName());
 				}
 			}
 			else
 			{
 				this.addFuel("Nuclear", 1);
+				//WarningMessage.fireWarningWindow("Already owned", "");
 			}
 		}
 		if (validPurchase)
@@ -286,6 +289,8 @@ public class Player implements Serializable, RouteListener{
 					}
 				}
 			}
+			
+			WarningMessage.fireWarningWindow("Station bought", "");
 			station.setOwner(this);
 			this.lineBonuses();
 		}

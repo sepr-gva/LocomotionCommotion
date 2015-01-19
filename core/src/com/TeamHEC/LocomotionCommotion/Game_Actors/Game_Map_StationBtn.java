@@ -13,7 +13,7 @@ public class Game_Map_StationBtn extends SpriteButton {
 
 	// Used to hold player1s selection:
 	public static Game_Map_Station selectedStation, selectedP1;
-	private static Station tempP1Station;
+	public static Station tempP1Station;
 
 	public Game_Map_StationBtn(float x, float y, Texture texture)
 	{

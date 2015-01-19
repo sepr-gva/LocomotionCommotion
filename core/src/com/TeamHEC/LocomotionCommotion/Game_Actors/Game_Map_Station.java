@@ -54,6 +54,9 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	protected void onClicked()
 	{
 		super.onClicked();
+		
+		Game_Map_StationBtn.tempP1Station = getStation();
+		
 		if(!highlighted)
 		{	
 			highlighted = true;
