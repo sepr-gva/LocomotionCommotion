@@ -28,6 +28,7 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 /**
  * 
  * @author Callum Hewitt <ch1194@york.ac.uk>
+ * The core game object. Contains all information necessary for the backend of a single game.
  *
  */
 
@@ -178,8 +179,8 @@ public class CoreGame {
 	 * Generates the resources a player will start with based on their start
 	 * location
 	 * 
-	 * @param station
-	 *            A player's starting location.
+	 * @param station A player's starting location.
+	 * 
 	 */
 	public HashMap<String, Resource> getBaseResources(Station station) {
 		Gold gold = new Gold(1000);
@@ -224,7 +225,7 @@ public class CoreGame {
 	}
 
 	/**
-	 * One form of saving the game. Saves the game to a .json file in the user's home directory in a folder called LocomotionCommotion.
+	 * Saves the game to a .json file in the user's home directory in a folder called LocomotionCommotion.
 	 * @param gameName The name of the .json file the game is saved to. (No extension).
 	 */
 	public void saveGameJSON(String gameName)
