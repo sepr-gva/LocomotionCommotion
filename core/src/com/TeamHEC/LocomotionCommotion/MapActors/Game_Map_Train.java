@@ -71,9 +71,13 @@ public class Game_Map_Train extends Actor{
 		{
 			Game_Map_Manager.trainInfo.makeVisible(false);			
 			
+			// Showing both the station and the train if they are ontop of eachother
 			if(Game_Map_Manager.trainInfo.train.route.inStation())
+			{
 				Game_Map_Manager.trainInfo.train.route.getStation().actor.showInfoBox();
-			
+				Game_Map_StationBtn.selectedStation = Game_Map_Manager.trainInfo.train.route.getStation().getStationActor();
+			}
+				
 			Game_Map_Manager.trainInfo.train = null;
 		}
 		else
@@ -82,8 +86,6 @@ public class Game_Map_Train extends Actor{
 			
 			if(Game_Map_Manager.trainInfo.train.route.inStation())
 				Game_Map_Manager.trainInfo.train.route.getStation().actor.hideInfoBox();
-			
-			// Showing both the station and the train if they are ontop of eachother
 		}
 		
 		if(PlayerGoals.chooseTrain && GameScreen.game.getPlayerTurn() == train.getOwner())
