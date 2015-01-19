@@ -9,120 +9,15 @@
 <body>
 <nav>
     <a href="index.html">Home</a>
-    <a href="#" class="selected">Installing</a>
-    <a href="howto.html">Tutorial</a>
-    <a href="faq.html">FAQs</a>
+    <a href="#" class="selected">Development</a>
+    <a href="howto.html">User Guide</a>
     <a href="team.html">Team</a>
 </nav>
-<div class="main">
-<h1 id="getting-started">Getting Started</h1>
-<h2 id="introduction">Introduction</h2>
-<p>To start using our code you will need to install</p>
-<ul>
-<li>The Java JDK</li>
-<li>Eclipse</li>
-<li>Eclipse Gradle Plugin</li>
-</ul>
-<p>The actual version of Eclipse you end up using shouldn&#39;t matter too much however this guide was built with Luna in mind. You could also use another IDE such as IntelliJ however the setup for that is not covered here.</p>
-<p>You will also need to install the GitHub desktop client (we found this the easiest way to use Git but you can use other methods too).</p>
-<h2 id="other-problems">Other Problems</h2>
-<p>If you have any problems getting set up. Please double check that you have read the full start up guide carefully. If that does not work please consult the FAQ.</p>
-<h1 id="installing-the-java-jdk">Installing the Java JDK</h1>
-<p>To install the Java JDK you will need to download version 7 <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html">here.</a> Accept the license agreement and download the correct file for your machine in the Java SE Development Kit 7u71 section.</p>
-<h4 id="windows">Windows</h4>
-<ol>
-<li>Wait for the .exe file to download and run it to install the JDK.</li>
-<li>After installing the JDK you will need to add a new Environment variable. </li>
-<li>Go to Control Panel -&gt; System and Security -&gt; System. </li>
-<li>Select Advanced system settings -&gt; Environment Variables. </li>
-<li>You will then need to find the &quot;Path&quot; variable in the System Variables section. </li>
-<li>Double click to edit the value. </li>
-<li>You will now need to find the location the installer saved the JDK to. In my case this will be: C:\Program Files\Java\jdk1.7.0_71\bin. However, double check your Program Files folder to see if this matches.</li>
-<li>Add &#39;;&#39; plus the path name to the end of the variable value. So in my case &quot;;C:\Program Files\Java\jdk1.7.0_71\bin&quot; is appended to the end of the Path.</li>
-</ol>
-<h4 id="mac">Mac</h4>
-<p>Double click the .dmg file to lauch it and install the JDK.</p>
-<h1 id="installing-eclipse-and-plugins">Installing Eclipse and Plugins</h1>
-<h2 id="install-eclipse">Install Eclipse</h2>
-<p>To download Eclipse 4.4 go to their downloads page <a href="https://eclipse.org/downloads/">here</a> and download the appropriate files for your machine under the &quot;Eclipse IDE for Java Developers&quot; section. Even if you have a version of Eclipse you are best off downloading the latest update for everything to run smoothly.</p>
-<h4 id="windows">Windows</h4>
-<ol>
-<li>After downloading your zip file extract it to your preferred location (I recommend under C:. You can sometimes have problems if you try and put it under C:\Program Files or C:\Program Files (x86) when it comes to installing Plugins).</li>
-<li>Create a Desktop Shortcut by right clicking eclipse.exe  -&gt; Send to -&gt; Desktop (create shortcut).</li>
-<li>Double click the Desktop shortcut to launch eclipse.</li>
-<li>Set your preferred Workspace folder</li>
-</ol>
-<h4 id="mac">Mac</h4>
-<h2 id="install-plugins">Install Plugins</h2>
-<p>All of these Plugins must be installed to run and import the project correctly. If you do not see an option to Install New Software under the Help drop down in Eclipse you may need to move your &quot;eclipse&quot; installation folder out of the C:\Program Files or C:\Program Files (x86) folder.</p>
-<h4 id="gradle">Gradle</h4>
-<ol>
-<li>Open Eclipse</li>
-<li>Go to Help -&gt; Install New Software...</li>
-<li>Paste &quot;<a href="http://dist.springsource.com/release/TOOLS/gradle">http://dist.springsource.com/release/TOOLS/gradle</a>&quot; into the &quot;Work With:&quot; text box.</li>
-<li>Select the drop down next to &quot;Extensions / Gradle Integration&quot; and tick the box next to &quot;Gradle IDE&quot;.</li>
-<li>Press Next a few times and accept the license to install.</li>
-</ol>
-<p><img src="http://i.imgur.com/NaL6FgT.jpg" alt="Gradle plugin"></p>
-<h4 id="android-adt-plugin">Android ADT-plugin</h4>
-<ol>
-<li>Open Eclipse</li>
-<li>Go to Help -&gt; Install New Software...</li>
-<li>Paste &quot;<a href="https://dl-ssl.google.com/android/eclipse/">https://dl-ssl.google.com/android/eclipse/</a>&quot; into the &quot;Work With:&quot; text box.</li>
-<li>Select the tick box next to &quot;Developer Tools&quot;.</li>
-<li>Press Next a few times and accept the license to install.</li>
-</ol>
-<p><img src="http://i.imgur.com/z0xyAyj.jpg" alt="Android Tools"></p>
-<h4 id="gwt-plugin">GWT Plugin</h4>
-<ol>
-<li>Open Eclipse</li>
-<li>Go to Help -&gt; Install New Software...</li>
-<li>Paste &quot;<a href="https://dl.google.com/eclipse/plugin/4.4">https://dl.google.com/eclipse/plugin/4.4</a>&quot; into the &quot;Work With:&quot; text box. (Again this is assuming you have the Eclipse version 4.4.).</li>
-<li>Select the drop down next to &quot;SDK&#39;s&quot; and select &quot;Google Web Toolkid SDK 2.6.0&quot;</li>
-<li>Press Next a few times and accept the license to install.</li>
-</ol>
-<p><img src="http://i.imgur.com/HWtebt1.jpg" alt="GWT Plugin"></p>
-<h1 id="importing-the-project">Importing the Project</h1>
-<p>Finally you are all set up to import the latest version of the project. To do this we will use the GitHub desktop client which can be downloaded for <a href="https://windows.github.com/">Windows</a> or <a href="https://mac.github.com/">Mac</a> if you are using Linux you will have to use traditional Git commands as described <a href="http://git-scm.com/book/en/v2/Git-Basics-Getting-a-Git-Repository">here</a>. You will also need to login with the GitHub account which has permission to access the project.</p>
-<ol>
-<li><p>After installing the client the first thing to do is to make a clone of the project. To do this first select the &#39;+&#39; icon in the top left corner. Then when the drop down box appears select Clone and select LocommotionCommotion. If LocommotionCommotion or the Clone option itself does not appear contact Callum Hewitt at ch1194@york.ac.uk. </p><img src="http://i.imgur.com/lkhQywW.jpg" alt="Cloning">
-</li>
-<li><p>You will then have the option to specify a directory to store the clone in. DO NOT clone into the same directory you are using as your Eclipse workspace, this causes problems when importing the project later.
-</p><img src="http://i.imgur.com/T78rpdN.jpg" alt="Cloning 2">
-</li>
-<li><p>Wait for the GitHub client to finish cloning the repository and then open Eclipse.</p>
-</li>
-<li><p>In Eclipse go to File -&gt; Import</p>
-</li>
-<li><p>Go to Gradle -&gt; Gradle Project and then press Next. 
-</p><img src="http://i.imgur.com/rcRRawS.jpg" alt="Gradle setup">
-</li>
-<li><p>Browse to the location of the LocommotionCommotion directory and then select Build Model.
-</p>
-    <img src="http://i.imgur.com/xKSx6WD.jpg" alt="Build Model">
-</li>
-<li><p>If the model builds successfully select the root LocommotionCommotion directory and select Finish.</p>
-</li>
-<li><p>If the model does not build successfully consult our FAQ.</p>
-</li>
-<li><p>Congratulations! You have imported the project and can now start working on it.</p>
-</li>
-</ol>
-<h2 id="project-structure">Project Structure</h2>
-<p>The project has 5 folders in the Package Explorer.</p>
-<ul>
-<li>LocommotionCommotion</li>
-<li>LocommotionCommotion-android</li>
-<li>LocommotionCommotion-core</li>
-<li>LocommotionCommotion-desktop</li>
-<li>LocommotionCommotion-ios</li>
-</ul>
-<p>The core project is where the vast majority of the code goes. This builds first and is central to all of the other builds. The android, desktop and ios projects correspond to Android , Desktop and iOS runtime environments. This is how our code can compile to multiple platforms from a central code-base. It is the advantage behind using libGDX.</p>
-<h1 id="running-the-project">Running the Project</h1>
-<p>To run the project you will need to use LocommotionCommotion-desktop. Right click the project in the Package Explorer -&gt; Run As -&gt; Java Application. </p>
-<img src="http://i.imgur.com/t6erpJw.jpg" alt="Long method">
-<p>This option should also now appear in the drop down next to the Run button in the Eclipse hot-bar.</p>
-<img src="http://i.imgur.com/JtvW4wZ.jpg" alt="Short method">
+<div class="main down">
+<h1>Documentation Download</h1>
+<h3><a href="#">Architecture Documention</a></h3>
+<h3><a href="#">Testing Documentation</a></h3>
+<h3><a href="#">User Interface Documentation</a></h3>
 </div>
 </body>
 </html>

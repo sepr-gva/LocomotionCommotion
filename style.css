@@ -33,6 +33,7 @@ nav a{
     text-align: center;
     padding: 10px 0px 6px 0px;
     color: black;
+    transition: border-bottom 0.3s ease;
 }
 nav a:hover{
     border-bottom: 4px solid grey;
@@ -61,4 +62,35 @@ a{
 }
 a:hover, a:active{
     text-decoration: underline;
+}
+
+h3 a{
+    color: #ffffff;
+    background: #00BCD4;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    text-align: center;
+    width: 30%;
+    margin: 30px auto;
+    border-radius: 2px;
+    border: 2px solid #00BCD4;
+    transition: background 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+}
+
+h3 a:hover, h3 a:active{
+    color: #00BCD4;
+    background: #ffffff;
+    text-decoration: none;
+}
+
+.down{
+    width: 40%;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.down h3 a{
+    width: auto;
 }
