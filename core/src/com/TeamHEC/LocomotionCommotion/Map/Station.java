@@ -91,19 +91,19 @@ public class Station extends MapObj{
 	/**
 	 * @return the value added onto baseValue from bonuses
 	 */
-	public int getValueMod() //Currently has no affect on the game, but 
+	public int getValueMod() //Currently has no affect on the game, but is ready for later implementation
 	{
 		return valueMod;
 	}
-	public void setValueMod(int value)
+	public void setValueMod(int value) //Currently has no affect on the game, but is ready for later implementation
 	{
 		valueMod = value;
 	}
-	public void addValueMod(int add)
+	public void addValueMod(int add) //Currently has no affect on the game, but is ready for later implementation
 	{
 		valueMod += add;
 	}
-	public void subValueMod(int sub)
+	public void subValueMod(int sub) //Currently has no affect on the game, but is ready for later implementation
 	{
 		valueMod -= sub;
 	}
@@ -135,50 +135,60 @@ public class Station extends MapObj{
 	{
 		return resourceOutMod;
 	}
+	/**
+	 * @param mod the amount resourceOut will be increased by, Total = Base + Mod
+	 */
 	public void setResourceOutMod(int mod)
 	{
 		resourceOutMod = mod;
 	}
-	public void addResourceOutMod(int add)
+	
+	public void addResourceOutMod(int add) //Not currently necessary but is here if need in later implementation
 	{
 		resourceOutMod += add;
 	}
-	public void subResourceOutMod(int sub)
+	public void subResourceOutMod(int sub) //Not currently necessary but is here if need in later implementation
 	{
 		resourceOutMod -= sub;
 	}
 	/**
-	 * @return the total output of fuel resources the station produces
+	 * @return the total output of fuel or gold resources the station produces
 	 */
 	public int getTotalResourceOut()
 	{
 		return baseResourceOut + resourceOutMod;
 	}
 	
-	public int getBaseRentValue()
+	/**
+	 * @return the base amount of rent a player will be charged for using an opponents station
+	 */
+	public int getBaseRentValue() //Not currently implemented but is ready if needed later
 	{
 		return rentValue;
 	}
-	public int getRentValueMod()
+	/**
+	 * @return the amount the base rent value is increased by
+	 */
+	public int getRentValueMod() //Not currently implemented but is ready if needed later
 	{
 		return rentValueMod;
 	}	
-	public void setRentValueMod(int value)
+	public void setRentValueMod(int value) //Not currently implemented but is ready if needed later
 	{
 		rentValueMod = value;
 	}
-	public void addRentValueMod(int add)
+	public void addRentValueMod(int add) //Not currently implemented but is ready if needed later
 	{
 		rentValueMod += add;
 	}	
-	public void subRentValueMod(int sub)
+	public void subRentValueMod(int sub) //Not currently implemented but is ready if needed later
 	{
 		rentValueMod-= sub;
 	}
 	/**
-	 * @return the total value of the station with mods
+	 * @return the total rent value of the station with bonuses
 	 */
-	public int getTotalRent()
+	public int getTotalRent() //Not currently implemented but is ready if needed later
 	{
 		return rentValue + rentValueMod ;
 	}
