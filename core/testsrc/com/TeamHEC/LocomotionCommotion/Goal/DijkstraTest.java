@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.TeamHEC.LocomotionCommotion.Goal.Graph.Dijkstra;
+import com.TeamHEC.LocomotionCommotion.Goal.Graph.Node;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 
@@ -18,10 +19,8 @@ public class DijkstraTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		d.initialiseGraph();
-		
-		double rew = d.lookUpNode(fstation).minDistance;
-		
+		d.initialiseGraph();		
+		double rew = d.lookUpNode(fstation).minDistance;	
 	}
 
 	@After
@@ -31,28 +30,42 @@ public class DijkstraTest {
 
 	@Test
 	public void testDijkstra() {
-		fail("Not yet implemented");
+		//don't know if needed for test
 	}
 
 	@Test
 	public void testComputePaths() {
 		d.computePaths(d.lookUpNode(this.sstation));
-		assertTrue((d.lookUpNode(fstation).minDistance) != null);
+		double rew = d.lookUpNode(this.fstation).minDistance;
+		assertTrue(rew != null);//[1]
+		assertThat(rew, instanceOf(double.class));  //[2]
+		//[1] not really sure why this is an error
+		//[2] check that ComputePaths returns a double
 	}
 
 	@Test
 	public void testGetShortestPathTo() {
-		fail("Not yet implemented");
+		fail("Not yet implemented"); //not going to be used in this assessment
+									// left it in with dox for other group to use
+									//if they please
 	}
 
 	@Test
 	public void testLookUpNode() {
-		fail("Not yet implemented");
-	}
+		Station st = wm.AMSTERDAM;
+		Node n = d.lookUpNode(st);
+		//[1] would be nice to have a test that asserts it is of type Node
+		assertTrue(n!=null); //test to assert that the lookup node isnotnull
+		assertThat(n, instanceOf(Node.class)); //i thought this would accomplish 1
+		}
 
 	@Test
 	public void testInitialiseGraph() {
-		fail("Not yet implemented");
+		d.initialiseGraph();
+		assertTrue(d.nodeList.length != 0 ); //changed visibility of nodelist to 
+											// public for this test 
+		//couldnt think of a better test
+		
 	}
 
 }

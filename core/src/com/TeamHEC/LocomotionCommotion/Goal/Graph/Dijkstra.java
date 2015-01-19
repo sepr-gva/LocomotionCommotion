@@ -14,7 +14,7 @@ public class Dijkstra {
 	private WorldMap map;
 	private static ArrayList<Station> stations;
 	Node v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14,v15,v16,v17,v18,v19,v20,v21,v22; 
-	Node[] nodeList;
+	public Node[] nodeList;
 
 	public Dijkstra(){
 		map = WorldMap.getInstance();
@@ -29,19 +29,19 @@ public class Dijkstra {
 		NodeQueue.add(source);
 
 		while (!NodeQueue.isEmpty()) {
-			Node u = NodeQueue.poll();
+			Node currentnode = NodeQueue.poll();
 
-			// Visit each edge exiting u
-			for (Edge e : u.edges)
+			// Visit each edge exiting 
+			for (Edge e : currentnode.edges)
 			{
-				Node v = e.target;
+				Node nextnode = e.target;
 				double weight = e.weight;
-				double distanceThroughU = u.minDistance + weight;
-				if (distanceThroughU < v.minDistance) {
-					NodeQueue.remove(v);
-					v.minDistance = distanceThroughU ;
-					v.previous = u;
-					NodeQueue.add(v);
+				double distanceThroughU = currentnode.minDistance + weight;
+				if (distanceThroughU < nextnode.minDistance) {
+					NodeQueue.remove(nextnode);
+					nextnode.minDistance = distanceThroughU ;
+					nextnode.previous = currentnode;
+					NodeQueue.add(nextnode);
 				}
 			}
 		}
@@ -55,7 +55,7 @@ public class Dijkstra {
 		Collections.reverse(path);
 		return path;
 	}
-	
+
 	public Node lookUpNode(MapObj mapObj)
 	{
 		for (Node n : nodeList){
