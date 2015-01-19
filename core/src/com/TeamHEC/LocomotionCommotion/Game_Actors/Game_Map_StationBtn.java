@@ -62,7 +62,7 @@ public class Game_Map_StationBtn extends SpriteButton {
 					
 					GameScreen.createCoreGame(tempP1Station, selectedStation.getStation());
 					Game_startGameManager.startGame();
-					Game_ScreenMenu.resourceActorManager.refreshResources();
+					GameScreen_ActorManager.refreshResources();
 					Game_startGameManager.inProgress = false;
 					
 					Game_startGameManager.selectLabel.setVisible(true);
