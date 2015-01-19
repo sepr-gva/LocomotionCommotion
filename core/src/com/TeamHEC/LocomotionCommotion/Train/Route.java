@@ -312,6 +312,9 @@ public class Route{
 	 */
 	public void cancelRoute()
 	{
+		if(route.isEmpty())
+			Game_Map_Manager.exitRoutingMode();
+		
 		hideRouteBlips();
 				
 		while(removeConnection()){}

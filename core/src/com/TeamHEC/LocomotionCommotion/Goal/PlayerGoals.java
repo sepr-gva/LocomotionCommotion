@@ -4,12 +4,10 @@ package com.TeamHEC.LocomotionCommotion.Goal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
@@ -38,12 +36,11 @@ public class PlayerGoals {
 	public Label ticket1, ticket2, ticket3;
 	public LabelStyle style;
 
-
 	public static PlayerGoalRemoveBtn removebtn1,removebtn2,removebtn3;
 
 	public static boolean open=false;
 
-	public static int  stagestart, ticketActors, numberofOwnedGoals;
+	public static int stagestart, ticketActors, numberofOwnedGoals;
 
 	public static SpriteButton planRouteBtn;
 
@@ -58,12 +55,8 @@ public class PlayerGoals {
 		stagestart =0;
 		ticketActors=0;
 
-
-
 		playerGoals = new HashMap<String,Goal>();
 		playerGoalActors = new HashMap<String,GoalActor>();
-
-
 
 		numberofOwnedGoals=playerGoals.size();
 
