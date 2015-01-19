@@ -24,7 +24,11 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
-
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ * 
+ */
 public class GameScreen_ActorManager {
 
 	private final static Array<Actor> actors = new Array<Actor>();
@@ -56,33 +60,39 @@ public class GameScreen_ActorManager {
 	public static boolean resourcebarexpanded = false;
 	LabelStyle style;
 
-
+	/**
+	 * Create method instantiates all Labels, Sprites and SpriteButtons in the Main game screen and then addes them to the stage.
+	 * Method follows simple formula throughout -
+	 * 		Sprite:
+	 * 			1.Create new Sprite - requires x , y and texture
+	 * 			2.Add to actors array
+	 * 		SpriteButtton:
+	 * 			1.Create new Sprite - requires x , y and texture
+	 * 			2.Add onClicked method -- an action for the sprite
+	 * 			3.Add to actors array
+	 * 		Label:
+	 * 			1.Create new Label with LabelStyle style (If you need to change font size call style= getLabelStyle(fontsize) )
+	 * 			2.Set Colour, Text , x and y
+	 * 			3.Add to actors array
+	 * 
+	 * @param stage The stage is the central collection of actors(Sprites and SpriteButtons) passed from GameScreen
+	 * 
+	 */
 	public void create(Stage stage) {
+		//Clear Actors -- fixes an error caused from exiting to main menu and returning to game.
 		actors.clear();
-		style= getLabelStyle(32);
-		playerScore = new Label(null, style);
-		playerScore.setColor(0,0,0,1);
-
-		playerScore.setText("");
-		playerScore.setX(600);
-		playerScore.setY(Gdx.graphics.getHeight()- playerScore.getHeight() -45);
-
-		currentPlayerName = new Label(null,style);
-		currentPlayerName.setColor(1,1,1,1);
-		currentPlayerName.setX(Gdx.graphics.getWidth()-260);
-		currentPlayerName.setY(280);
-
-
-		//Actors
+		//Actors----------------------------------------------------------------------------------------------------------------------------------------------------
+		//The Top Bar
 		game_menuobject_topbar = new Sprite(-20, Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_menuobject_topbar.getHeight() +10,
 				Game_TextureManager.getInstance().game_menuobject_topbar );
 		actors.add(game_menuobject_topbar);	
 
+		//The Corner Frame -- Bottom right corner
 		game_menuobject_cornerframe=new Sprite((LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_cornerframe.getWidth())+3,2
 				,Game_TextureManager.getInstance().game_menuobject_cornerframe);
 		actors.add(game_menuobject_cornerframe);
 
-
+		//The Pause Menu Button -- Top right corner
 		game_menuobject_menubtn = new SpriteButton(LocomotionCommotion.screenX-60, 
 				Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_menuobject_menubtn.getHeight() - 30, Game_TextureManager.getInstance().game_menuobject_menubtn){
 
@@ -112,9 +122,9 @@ public class GameScreen_ActorManager {
 				}
 			}
 		};
-
 		actors.add(game_menuobject_menubtn);	
 
+		//Ticket (OwnedGoals) toggle button -- Top Left corner
 		game_menuobject_tickettoggle=new SpriteButton(30, Gdx.graphics.getHeight() - Game_TextureManager.getInstance().game_menuobject_ticketbtn.getHeight()-15,
 				Game_TextureManager.getInstance().game_menuobject_ticketbtn){
 
@@ -148,7 +158,7 @@ public class GameScreen_ActorManager {
 		};
 		actors.add(game_menuobject_tickettoggle);
 
-
+		//End Turn Button -- Bottom right button
 		game_menuobject_endturnbutton = new SpriteButton(LocomotionCommotion.screenX-Game_TextureManager.getInstance().game_menuobject_endturnbutton.getWidth()-15,
 				15, Game_TextureManager.getInstance().game_menuobject_endturnbutton){
 
@@ -176,6 +186,7 @@ public class GameScreen_ActorManager {
 		};
 		actors.add(game_menuobject_endturnbutton);
 
+		//Map Info Toggle Button -- Bottom right group
 		game_menuobject_infobutton = new SpriteButton(LocomotionCommotion.screenX-310, 63, Game_TextureManager.getInstance().game_menuobject_infobutton){
 
 			@Override
@@ -193,6 +204,7 @@ public class GameScreen_ActorManager {
 		};
 		actors.add(game_menuobject_infobutton);
 
+		//Access Shop Button -- Bottom right group
 		game_menuobject_shopbtn = new SpriteButton(LocomotionCommotion.screenX-310, 125, Game_TextureManager.getInstance().game_shop_shopbtn){
 
 			@Override
@@ -224,6 +236,7 @@ public class GameScreen_ActorManager {
 		};
 		actors.add(game_menuobject_shopbtn);
 
+		//Access Train Depot Button -- Bottom right group
 		game_menuobject_traindepotbtn = new SpriteButton(LocomotionCommotion.screenX-310, 193, Game_TextureManager.getInstance().game_traindepot_traindepotbtn){
 
 			@Override
@@ -254,6 +267,7 @@ public class GameScreen_ActorManager {
 		};
 		actors.add(game_menuobject_traindepotbtn);
 
+		//Access Goal Screen Button -- Top Left Corner
 		game_menuobject_goalscreenbtn = new SpriteButton(110, Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_goals_goalscreenbtn.getHeight() -25,
 				Game_TextureManager.getInstance().game_goals_goalscreenbtn){
 
@@ -293,16 +307,29 @@ public class GameScreen_ActorManager {
 		actors.add(game_menuobject_goalscreenbtn);
 
 		//Add Labels
+		//Player Score Label -- Top Centre (NOT FUNCTIONAL IN ASSESSMENT 2 VERSION)
+		style= getLabelStyle(32);
+		playerScore = new Label(null, style);
+		playerScore.setColor(0,0,0,1);
+		playerScore.setText("");
+		playerScore.setX(600);
+		playerScore.setY(Gdx.graphics.getHeight()- playerScore.getHeight() -45);
 		actors.add(playerScore);
-		actors.add(currentPlayerName);
 
+		//Player Name Label -- Bottom group Corner
+		currentPlayerName = new Label(null,style);
+		currentPlayerName.setColor(1,1,1,1);
+		currentPlayerName.setX(Gdx.graphics.getWidth()-260);
+		currentPlayerName.setY(280);
+		actors.add(currentPlayerName);
+		
+		//Get current stage end - where menuObjects start
 		menuobjectsStageStart = stage.getActors().size;
+		//Assign the index of the last MenuObject
 		menuobjectsStageEnd = menuobjectsStageStart+ actors.size-1;
 
-		//Resources--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-		resourcesStageStart=0;
-		resourcesStageEnd =0;
-		//Resources bar is now connected to variables for easy update of quantities.
+		//Resource Actors----------------------------------------------------------------------------------------------------------------------------------------
+		//Resource Bar -
 		game_menuobject_resourcesbar = new Sprite(-13,-175,Game_TextureManager.getInstance().game_menuobject_resourcesbar);
 		actors.add(game_menuobject_resourcesbar);
 
@@ -462,9 +489,8 @@ public class GameScreen_ActorManager {
 	}
 
 	public static int getStageEnd(){
-		return menuobjectsStageEnd;
+		return resourcesStageEnd;
 	}
-
 
 	public static void refreshResources()
 	{

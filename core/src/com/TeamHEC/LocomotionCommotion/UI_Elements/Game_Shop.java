@@ -647,7 +647,7 @@ public class Game_Shop {
 				costLabel.setX(posx+ 160);
 				costLabel.setY(posy +43);
 				costLabel.setColor(0,0,0,1);
-				costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.coalPrice);
+				costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.oilPrice);
 
 				actors.add(quantityLabel);
 				actors.add(costLabel);
