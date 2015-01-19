@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -151,7 +151,7 @@ public class CardActor extends Actor {
 			sets the expanded boolean, refreshes the action area and calls organiseDeck OR just resets the height when the resource bar changes.*/
 		public void cardCollapse(){
 			if (expanded){
-				if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded)
+				if (GameScreen_ActorManager.resourcebarexpanded)
 					this.actorY=80;
 				else
 					this.actorY=-100;
@@ -160,7 +160,7 @@ public class CardActor extends Actor {
 				Game_CardHand.actorManager.organiseDeck();
 			}
 			else
-			{if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded)
+			{if (GameScreen_ActorManager.resourcebarexpanded)
 				this.actorY=80;
 			else
 				this.actorY=-100;}

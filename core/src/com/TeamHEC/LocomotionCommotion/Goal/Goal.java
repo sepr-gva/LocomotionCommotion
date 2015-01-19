@@ -1,9 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Train.RouteListener;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
@@ -37,9 +33,7 @@ public class Goal implements RouteListener{
 		this.reward = reward;  
 		this.cargo = cargo;
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy", Locale.ENGLISH);
-        Date date = new Date();
-        startDate = formatter.format(date);
+        startDate = "1";
 		
 		// Initiliase goal completion variables to false
 		startStationPassed = false;
@@ -107,8 +101,10 @@ public class Goal implements RouteListener{
 	public void goalComplete()
 	{
 		WarningMessage.fireWarningWindow("GOAL COMPLETE!", "You've successfully complete the route: " + getSStation()
-				+ " to " + getFStation() + ", you've won " + getReward());
+				+ " to " + getFStation() + "\n you've won " + getReward());
+		
 		train.getOwner().addGold(getReward());
+		train.route.unregister(this);
 	}
 	
 	/**
@@ -120,11 +116,13 @@ public class Goal implements RouteListener{
 	{
 		if(train == this.train)
 		{
+			System.out.println(train.getName() + station.getName());
+			
 			if(station == SStation)
 				startStationPassed = true;
-			else if(station == FStation)
+			else if(startStationPassed && station == FStation)
 				finalStationPassed = true;
-			else if(station == stationVia && stationVia != null)
+			else if(startStationPassed && station == stationVia && stationVia != null)
 				stationViaPassed = true;
 			
 			if(startStationPassed && finalStationPassed && stationViaPassed)

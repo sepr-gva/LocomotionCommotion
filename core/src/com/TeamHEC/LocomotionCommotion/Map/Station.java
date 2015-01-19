@@ -25,6 +25,7 @@ public class Station extends MapObj{
 	private Line[] line = null;//max number of lines on one station is 3, alter if this changes
 	private int rentValue;
 	private int rentValueMod;
+	public double mindistance = Double.POSITIVE_INFINITY;
 	
 	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
 	
@@ -41,7 +42,7 @@ public class Station extends MapObj{
 	
 	public Station(String name, int baseValue, Resource resourceType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
-		super(x, y);
+		super(x, y, name);
 		
 		// Creates a map blip for this station
 		actor = new Game_Map_Station(this, x, y);
@@ -201,12 +202,13 @@ public class Station extends MapObj{
 		return owner;
 	}
 	/**
-	 * Changes the owner of this station
+	 * Changes the owner of this station and notifies listeners
 	 * @param newOwner
 	 */
 	public void setOwner(Player newOwner)
 	{
 		owner = newOwner;
+		notifyStationPurchased(this, newOwner);
 	}
 	/**
 	 * @return the array of lines the station is on
@@ -216,10 +218,11 @@ public class Station extends MapObj{
 		return line;
 	}
 	
+	/**
+	 * @param player changes owner of the stations and notify listeners
+	 */
 	public void purchaseStation(Player player)
 	{		
-		//needs conditions to check station is purchasable
-		//either added here or where purchase station will be called
 		setOwner(player);
 		notifyStationPurchased(this, player);
 	}

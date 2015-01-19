@@ -24,10 +24,15 @@ public class Shop implements Serializable {
 	private CardFactory cardFactory;
 	
 	public final static int coalPrice = 1;
+	public final static float coalSellPrice = 0.7f;
 	public final static int oilPrice = 2;
+	public final static float oilSellPrice = 1.4f;
 	public final static int electricPrice = 3;
+	public final static float electricSellPrice = 2.1f;
 	public final static int nuclearPrice = 4;
+	public final static float nuclearSellPrice = 2.8f;
 	public final static int cardPrice = 1000;
+	public final static float cardSellPrice = 700f;
 	
 	public Shop(Player customer)
 	{
@@ -64,25 +69,25 @@ public class Shop implements Serializable {
 		
 		if(fuelType == "Coal" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold(quantity * coalPrice);
+			customer.addGold((int)(quantity * coalSellPrice));
 		}
 		
 		
 		else if(fuelType == "Oil" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold(quantity * oilPrice);
+			customer.addGold((int)(quantity * oilSellPrice));
 		}
 		
 		
 		else if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold(quantity * electricPrice);
+			customer.addGold((int)(quantity * electricSellPrice));
 		}
 		
 		
 		else if(fuelType == "Nuclear" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold(quantity * nuclearPrice);
+			customer.addGold((int)(quantity * nuclearSellPrice));
 		}
 		else
 		{

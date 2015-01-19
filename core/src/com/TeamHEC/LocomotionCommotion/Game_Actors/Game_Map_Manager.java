@@ -242,7 +242,7 @@ public class Game_Map_Manager {
 			t.getActor().setTouchable(Touchable.disabled);
 		}
 		
-		Game_ScreenMenu.ScreenMenuManager.game_menuobject_endturnbutton.setVisible(false);
+		GameScreen_ActorManager.game_menuobject_endturnbutton.setVisible(false);
 		
 		planBackground.setVisible(true);
 		routingModeWindow.setVisible(true);
@@ -272,7 +272,7 @@ public class Game_Map_Manager {
 			t.getActor().setTouchable(Touchable.enabled);
 		}
 		
-		Game_ScreenMenu.ScreenMenuManager.game_menuobject_endturnbutton.setVisible(true);
+		GameScreen_ActorManager.game_menuobject_endturnbutton.setVisible(true);
 		
 		planBackground.setVisible(false);
 		routingModeWindow.setVisible(false);

@@ -18,6 +18,6 @@ public class ElectricTrain extends Train{
 		// Name, Fuel, baseSpeed, speedMod, baseCarriageLimit, carriageLimitMod, value, inStation
 		super("Electrix", new Electric(200), BASE_SPEED, speedMod, VALUE, inStation,
 				route, player);
-		fuelPerTurn = 30;
+		fuelPerTurn = 25;
 	}
 }

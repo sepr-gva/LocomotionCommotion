@@ -40,10 +40,10 @@ public class TrainTest {
 			new ArrayList<Goal>(), 
 			new ArrayList<Train>());	
 	
-	coalTrain = new CoalTrain(0,true, new Route(new MapObj(0, 0)), owner);
-	oilTrain = new OilTrain(0,true, new Route(new MapObj(0, 0)), owner);
-	electricTrain = new ElectricTrain(0,true, new Route(new MapObj(0, 0)), owner);
-	nuclearTrain = new NuclearTrain(0,true, new Route(new MapObj(0, 0)), owner);
+	coalTrain = new CoalTrain(0,true, new Route(new MapObj(0, 0, "aStation")), owner);
+	oilTrain = new OilTrain(0,true, new Route(new MapObj(0, 0, "aStation")), owner);
+	electricTrain = new ElectricTrain(0,true, new Route(new MapObj(0, 0, "aStation")), owner);
+	nuclearTrain = new NuclearTrain(0,true, new Route(new MapObj(0, 0, "aStation")), owner);
 	}
 	
 	@Test

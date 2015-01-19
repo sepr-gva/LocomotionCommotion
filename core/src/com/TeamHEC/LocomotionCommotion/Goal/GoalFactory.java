@@ -1,10 +1,13 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
+import com.TeamHEC.LocomotionCommotion.Goal.Graph.Dijkstra;
+import com.TeamHEC.LocomotionCommotion.Map.Connection;
 //import com.TeamHEC.LocomotionCommotion.Map.Connection;
 //import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
@@ -24,7 +27,20 @@ public class GoalFactory{
 		cardFactory = new CardFactory(null);
 		random = new Random();
 	}	
-
+	private int genReward(Station sstation, Station fstation){
+		Dijkstra d = new Dijkstra();
+		d.computePaths(d.lookUpNode(sstation));
+		double rew = d.lookUpNode(fstation).minDistance;
+		
+		
+		
+		return (int) rew;
+	}
+	
+	
+	
+	
+	
 	private Station newSStation(){ 
 		Station st = stations.get(random.nextInt(stations.size()));
 		return st;  
@@ -35,23 +51,7 @@ public class GoalFactory{
 		return st;
 
 	}
-	//	private Station NewFStation(Station sstation,ArrayList<Station> wastelist, int itr,int length){
-	//		if (itr == 0){   
-	//			Length = length;
-	//			return sstation; //return statement?
-	//		}
-	//		ArrayList<Connection> choices = sstation.getConnections();
-	//		MapObj st = choices.get(r.nextInt(choices.size())).getDestination();
-	//		while (wastelist.contains(st)){
-	//			st = choices.get(r.nextInt(choices.size())).getDestination();
-	//		}
-	//		//blind coded, needs testing, should work in theory
-	//		//check name, case statement for junctions
-	//		//return string of station
-	//		wastelist.add(st);
-	//		itr = itr - 1;
-	//		return NewFStation(st, wastelist, itr, length + st.getLength() );      
-	//	}
+
 
 	public Card genCard(){
 		return cardFactory.createAnyCard();     
@@ -59,12 +59,14 @@ public class GoalFactory{
 
 	public Goal CreateRandomGoal(){
 		Goal newgoal;
+
 		Station sStation = newSStation();
 		Station fStation = newFStation();		
+
 		while (sStation.getName() == fStation.getName())
 			fStation = newFStation();		
 		String cargo;
-		int reward = getLength(sStation, fStation);
+		int reward = genReward(sStation, fStation);
 				
 		if(random.nextInt(2) == 0)
 			cargo = "Passenger";
@@ -79,11 +81,7 @@ public class GoalFactory{
 		return newgoal; 
 	}
 	
-	public int getLength(Station sStation, Station fStation)
-	{
-		return 1;		
-	}
-
+	 
 
 }
 

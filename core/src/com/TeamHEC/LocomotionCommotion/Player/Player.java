@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
@@ -77,11 +77,17 @@ public class Player implements Serializable, RouteListener{
 		playerFuel.put("Oil", this.oil);
 	}
 
+	/**
+	 * @return returns the players name
+	 */
 	public String getName()
 	{
 		return name;
 	}
 	
+	/**
+	 * @return returns the players points
+	 */
 	public int getPoints()
 	{
 		return points;
@@ -127,14 +133,14 @@ public class Player implements Serializable, RouteListener{
 	{
 		playerFuel.get(fuelType).addValue(quantity);
 		if(!Game_startGameManager.inProgress)
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 	}
 
 	public void subFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).subValue(quantity);
 		if(!Game_startGameManager.inProgress)
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 	}
 
 	//Gold
@@ -147,14 +153,14 @@ public class Player implements Serializable, RouteListener{
 	{
 		gold.setValue(gold.getValue() + value);
 		if(!Game_startGameManager.inProgress)
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 	}
 
 	public void subGold(int value)
 	{
 		gold.setValue(gold.getValue() - value);
 		if(!Game_startGameManager.inProgress)
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 	}
 
 	//Cards
@@ -179,22 +185,35 @@ public class Player implements Serializable, RouteListener{
 	}
 
 	//Stations
+	/**
+	 * @return returns the number of stations owned by the player
+	 */
 	public int getNumStations()
 	{
 		return stations.size();
 	}	
-
+	/**
+	 * @return returns the array list of stations
+	 */
 	public ArrayList<Station> getStations()
 	{
 		return stations;
 	}
-	
+	/**
+	 * @return returns the array containing how much of each line a player owns
+	 */
 	public int[] getLines()
 	{
 		return lines;
 	}
 
+	/**
+	 * @param station purchases the station for the player
+	 */
 	public void purchaseStation(Station station)
+	//If the player doesn't have enough gold or if the station is owned by a player or if the player does not 
+	//have a train in that station then nothing will happen
+	//There is space to add some sort of message for the player
 	{
 		boolean validPurchase = false;
 		for (int j=0; j < this.trains.size(); j ++)
@@ -208,7 +227,7 @@ public class Player implements Serializable, RouteListener{
 				}
 				else
 				{
-					//not enough gold message
+					//not enough gold
 				}
 			}
 		}
@@ -225,7 +244,7 @@ public class Player implements Serializable, RouteListener{
 					//add that colour to the players lines
 				{
 					switch(station.getLineType()[i])
-					{ //keeps track of how many of a line the player owns
+					{ //keeps track of how much of a line the player owns
 					case Red:
 						lines[0] += 1;	
 						break;
@@ -255,12 +274,12 @@ public class Player implements Serializable, RouteListener{
 					}
 				}
 			}
-			station.purchaseStation(this);
+			station.setOwner(this);
 			this.lineBonuses();
 		}
 		else
 		{
-			//error message?
+			//Station is owned by a player already
 		}
 
 	}
@@ -272,7 +291,7 @@ public class Player implements Serializable, RouteListener{
 		/*
 		if (this.stations.contains(station))
 		{
-			for (int i=0; i<3; i++)
+			for (int i=0; i<station.getLineType().length; i++)
 			{	
 				if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
 				{
@@ -334,6 +353,9 @@ public class Player implements Serializable, RouteListener{
 
 	}
 
+	/**
+	 * calculates the bonus for each individual station based on how many other stations on the same line are owned
+	 */
 	public void lineBonuses() //MUST BE CALLED BEFORE YOU ACCESS A STATIONS VALUE, RENT OR RESOURCE AMOUNTS IF STATIONS OWNED HAS CHANGED
 	{
 		for (int i = 0; i<stations.size(); i++)
@@ -347,8 +369,6 @@ public class Player implements Serializable, RouteListener{
 			int black = 0;
 			int brown = 0;
 			int orange = 0;
-
-
 
 			for (int j = 0; j < currentStation.getLineType().length; j++) //line type length should be 3, so for 0 to 2		
 			{
@@ -366,7 +386,7 @@ public class Player implements Serializable, RouteListener{
 						{
 							red += 3;
 						}
-						//5
+						//5 stations on red line
 						break;
 					case Blue:
 						blue = lines[1];
@@ -374,7 +394,7 @@ public class Player implements Serializable, RouteListener{
 						{
 							blue += 3;
 						}
-						//5
+						//5 stations on blue line
 						break;
 					case Green:
 						green = lines[2];
@@ -382,7 +402,7 @@ public class Player implements Serializable, RouteListener{
 						{
 							green += 1;
 						}
-						//3
+						//3 stations on green line
 						break;
 					case Yellow:
 						yellow = lines[3];
@@ -390,7 +410,7 @@ public class Player implements Serializable, RouteListener{
 						{
 							yellow += 2;
 						}
-						//4
+						//4 stations on yellow line
 						break;
 					case Purple:
 						purple = lines[4];
@@ -398,7 +418,7 @@ public class Player implements Serializable, RouteListener{
 						{
 							purple += 2;
 						}
-						//4
+						//4 stations on purple line
 						break;
 					case Black:
 						black = lines[5];
@@ -406,7 +426,7 @@ public class Player implements Serializable, RouteListener{
 						{
 							black += 3;
 						}
-						//5
+						//5 stations on black line
 						break;
 					case Brown:
 						brown = lines[6];
@@ -414,7 +434,7 @@ public class Player implements Serializable, RouteListener{
 						{
 							brown += 3;
 						}
-						//5
+						//5 stations on brown line
 						break;
 					case Orange:
 						orange = lines[7];
@@ -422,7 +442,7 @@ public class Player implements Serializable, RouteListener{
 						{
 							orange += 4;
 						}
-						//6
+						//6 stations on orange line
 						break;
 					default:
 						throw new IllegalArgumentException("Could not find line associated with value");
@@ -432,6 +452,7 @@ public class Player implements Serializable, RouteListener{
 			//owning an entire line is worth an additional reward (3 stations 5%, 4 stations 10%, 5 stations 15%, 6 stations 20%)
 			//increase rent, resource and value by 5% per line you have a station connected too, this may be adjusted to due scaling at larger values
 			currentStation.setResourceOutMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseResourceOut() * 0.05)));
+			
 			//Rent not currently increased but is increased for later use anyway
 			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
 			//Increasing value has no affect as stations cannot be currently be sold but if increased for later use anyway
@@ -445,7 +466,7 @@ public class Player implements Serializable, RouteListener{
 		for (int i = 0; i < stations.size(); i++)
 		{
 			Station currentStation = stations.get(i);
-			if (currentStation.getResourceString() == "Gold")
+			if (currentStation.getResourceString() == "Gold") //Special case for Monaco which gives gold
 			{
 				this.addGold(currentStation.getBaseResourceOut());
 			}

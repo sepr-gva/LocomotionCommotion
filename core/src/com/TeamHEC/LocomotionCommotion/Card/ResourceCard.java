@@ -2,7 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Card;
 
 import java.util.Random;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
@@ -40,7 +40,8 @@ public abstract class ResourceCard extends Card {
 		if(fuelType == "Nuclear")
 			GameScreen.nuclear+= fuelToAdd;
 		
-		Game_ScreenMenu.resourceActorManager.refreshResources();
+		GameScreen_ActorManager.refreshResources();
+
 		// Need to destroy card instance here or something
 	}
 	
