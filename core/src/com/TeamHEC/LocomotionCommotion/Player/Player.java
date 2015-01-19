@@ -323,7 +323,7 @@ public class Player implements Serializable, RouteListener{
 	}
 
 	@Override
-	public void stationPassed(Station station) {
+	public void stationPassed(Station station, Train train) {
 		// TODO Auto-generated method stub
 		
 		System.out.println("Train passed " + station.getName());

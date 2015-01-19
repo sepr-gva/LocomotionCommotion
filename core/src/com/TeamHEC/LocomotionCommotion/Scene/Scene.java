@@ -10,6 +10,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ */
+
 public class Scene implements Screen{
 	
 	public Stage stage;
@@ -45,9 +49,7 @@ public class Scene implements Screen{
 	{
 		for (Actor a : actors)
 		{
-			int index = stage.getActors().indexOf(a, false);
-			if(index != -1)
-				stage.getActors().removeIndex(index);
+			stage.getActors().removeValue(a, true);
 		}
 	}
 	
@@ -70,7 +72,13 @@ public class Scene implements Screen{
 		}
 	}
 
-	public void changeCam(int x,int y){
+	/**
+	 * Can be used to change or animate the cameras position
+	 * @param x New x coordinate
+	 * @param y New y coordinate
+	 */
+	public void changeCam(int x,int y)
+	{
 		stage.getCamera().translate(x, y, 0);
 	}
 

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 
@@ -46,7 +45,6 @@ public class Station extends MapObj{
 		// Creates a map blip for this station
 		actor = new Game_Map_Station(this, x, y);
 		
-		this.trains = new Train[5];
 		this.name = name;
 		this.owner = null;
 		this.baseValue = baseValue;

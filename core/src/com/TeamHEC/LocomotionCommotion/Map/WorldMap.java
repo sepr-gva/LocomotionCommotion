@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Resource.*;
+
 /**
- * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
- *
  */
 
 public class WorldMap implements Serializable{
@@ -20,13 +19,10 @@ public class WorldMap implements Serializable{
 		return INSTANCE;
 	}
 	
-	// List of Stations:
-	// String name, int baseValue, Fuel fuelType, int baseFuelOut, Line lineType, int rentValue, xcoordinate and ycoordinate
-	
 	//Line colour takes an array of 3 colours, if a station needs less than 3 set the first one(s) to the colour you want and repeat the last unique colour
 	//e.g. for a station on a black and blue line the second and third slots of the array must be the same (order of colours is otherwise irrelevant)
 	
-
+	// Hardcoded stations used in the map:
 	public final Station AMSTERDAM = new Station("Amsterdam", 850, new Electric(500), 100, new Line[]{Line.Orange, Line.Orange, Line.Orange}, 50, 615f, 560f);
 	public final Station ATHENS = new Station("Athens", 850, new Coal(500), 100, new Line[]{Line.Brown, Line.Green, Line.Green}, 50,  1121f, 170f);
 	public final Station BERLIN = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Purple, Line.Red, Line.Red}, 50, 731f, 560f);
@@ -48,9 +44,10 @@ public class WorldMap implements Serializable{
 	public final Station VILNIUS = new Station("Vilnuis", 850, new Oil(500), 100, new Line[]{Line.Brown, Line.Brown, Line.Brown}, 50, 1121f, 690f);
 	public final Station WARSAW = new Station("Warsaw", 950, new Coal(500), 100, new Line[]{Line.Red, Line.Orange, Line.Orange}, 50, 861f, 560f);
 	
-	// Specify coordinates of each junction here:
+	// Creates Junction MapObjs with specified coordinates:
 	public final Junction[] junction = new Junction[]{new Junction(731f, 430f), new Junction(991f, 560f)};
 	
+	// Adds all the created stations to an ArrayList for later access:
 	public ArrayList<Station> stationsList = new ArrayList<Station>() {	 		 
 		private static final long serialVersionUID = 1L;
 
@@ -79,7 +76,7 @@ public class WorldMap implements Serializable{
 	
 	private WorldMap()
 	{
-		// Creates a connection instance for each:
+		// Creates a connection instance for each existing connection:
 		createConnections(REYKJAVIK, new MapObj[]{OSLO, DUBLIN});
 		createConnections(DUBLIN, new MapObj[]{REYKJAVIK, AMSTERDAM, LONDON});
 		createConnections(LONDON, new MapObj[]{DUBLIN, PARIS});

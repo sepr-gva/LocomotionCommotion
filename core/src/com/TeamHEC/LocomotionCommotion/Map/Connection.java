@@ -6,6 +6,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ */
+
 public class Connection{
 	
 	private MapObj startMapObj, endMapObj;
@@ -35,12 +39,23 @@ public class Connection{
 		// Creates a vector so we can find the length and normalise for direction:
 		vector = new Vector2(dX, dY);
 		
+		// The length between the two mapobjs:
 		length = vector.len();
+		
+		// Normalises direction so we can scale later:
 		vector.nor();
 		
-		// Create route blips for a connection:
+		// ==== UI blips for connections ====
+		/*
+		 * Creates a series of white blips for a connection, with a red blip traversing that connection
+		 * to indicate direction
+		 */
+		
+		// Use the direction vector to find coordiantes by scaling it by how far we want the blips
+		// to be apart:
+		
 		Vector2 blipVector = vector.cpy();
-	
+		
 		// 30 pixels apart:
 		for(int i = 30; i < length - 15; i += 30)
 		{
@@ -48,9 +63,13 @@ public class Connection{
 			blipVector.scl(i);
 			startPos.add(blipVector);
 			
+			// Creates a sprite blip in that position:
 			Sprite blip = new Sprite(startPos.x, startPos.y, Game_Map_TextureManager.getInstance().routeBlip);
 			blip.setVisible(false);
+			
+			// Adds it to an Array of UI Actors:
 			connectionBlips.add(blip);
+			// Normalises so we can rescale again:
 			blipVector.nor();
 		}
 		
@@ -64,6 +83,7 @@ public class Connection{
 			@Override
 			public void act(float delta)
 			{
+				// Delays the animation so the position isn't reset immediately:
 				if(delay > 20)
 				{
 					if(counter > blipSize)
