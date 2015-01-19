@@ -1,5 +1,9 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Train.RouteListener;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
@@ -15,7 +19,7 @@ public class Goal implements RouteListener{
 
 	public boolean special;
 	private int reward;
-	private int startDate;
+	private String startDate;
 
 	// Variables used to track Goal completion:
 	private Train train;
@@ -32,6 +36,10 @@ public class Goal implements RouteListener{
 		this.special = false; 
 		this.reward = reward;  
 		this.cargo = cargo;
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/mm/yy", Locale.ENGLISH);
+        Date date = new Date();
+        startDate = formatter.format(date);
 		
 		// Initiliase goal completion variables to false
 		startStationPassed = false;
@@ -62,9 +70,9 @@ public class Goal implements RouteListener{
 		return reward;
 	}
 	
-	public int getStartDate()
+	public String getStartDate()
 	{
-		return -1;
+		return startDate;
 	}
 	
 	public String getVia()

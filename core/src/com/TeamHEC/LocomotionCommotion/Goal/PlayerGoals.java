@@ -167,7 +167,7 @@ public class PlayerGoals {
 
 	}
 
-	public static String ticketMaker(String type, int  reward, String from, int startdate, String dest, String route){
+	public static String ticketMaker(String type, int reward, String from, String startdate, String dest, String route){
 		String output;
 		output ="";
 

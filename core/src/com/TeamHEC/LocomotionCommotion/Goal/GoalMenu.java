@@ -287,7 +287,7 @@ public class GoalMenu {
 
 	}
 	//Creates the string that make up the ticket information
-	public static String ticketMaker(String type, int  reward, String from, int startdate, String dest, String route){
+	public static String ticketMaker(String type, int reward, String from, String startdate, String dest, String route){
 		String output;
 		output ="";
 
