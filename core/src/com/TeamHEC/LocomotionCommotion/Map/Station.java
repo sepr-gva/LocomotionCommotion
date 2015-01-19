@@ -29,6 +29,8 @@ public class Station extends MapObj{
 	
 	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
 	
+	private Game_Map_Station gameMapStation;
+	
 	/**
 	 * @param name
 	 * @param baseValue The value of the station
@@ -45,7 +47,8 @@ public class Station extends MapObj{
 		super(x, y, name);
 		
 		// Creates a map blip for this station
-		actor = new Game_Map_Station(this, x, y);
+		gameMapStation = new Game_Map_Station(this, x, y);
+		actor = gameMapStation;
 		
 		this.name = name;
 		this.owner = null;
@@ -65,6 +68,11 @@ public class Station extends MapObj{
 	public Station getStation()
 	{
 		return this;
+	}
+	
+	public Game_Map_Station getStationActor()
+	{
+		return gameMapStation;
 	}
 	
 	/**

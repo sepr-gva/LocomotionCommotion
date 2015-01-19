@@ -1,7 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
-import java.io.Serializable;
-
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -11,9 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
  *
  */
 
-public abstract class Card implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
+public abstract class Card {
 	
 	private Player owner;
 	private Texture cardImage;

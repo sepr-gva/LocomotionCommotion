@@ -380,6 +380,7 @@ public class Game_Shop {
 			Game_Shop.actorManager.sell=true;
 			Texture t = Game_TextureManager.getInstance().game_shop_sellbtn;
 			Game_Shop.actorManager.carditem.buyButton.setTexture(t);
+			Game_Shop.actorManager.coalitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.oilitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.electricityitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.nuclearitem.buyButton.setTexture(t);
@@ -393,7 +394,7 @@ public class Game_Shop {
 				Game_Shop.actorManager.carditem.costLabel.setText(""+1000*Shop.cardSellPrice);
 				Game_Shop.actorManager.coalitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.coalitem.quantityLabel.getText())*Shop.coalSellPrice);
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilSellPrice);
-				Game_Shop.actorManager.electricityitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice);
+				Game_Shop.actorManager.electricityitem.costLabel.setText(""+Math.ceil((strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice)));
 				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText())*Shop.nuclearSellPrice);
 			}
 			else

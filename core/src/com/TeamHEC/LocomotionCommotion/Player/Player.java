@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -28,7 +27,7 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
  * @author Elliot Bray <eb1033@york.ac.uk>
  */
 
-public class Player implements Serializable, RouteListener{
+public class Player implements RouteListener{
 
 	private static final long serialVersionUID = 1L;
 	private String name;

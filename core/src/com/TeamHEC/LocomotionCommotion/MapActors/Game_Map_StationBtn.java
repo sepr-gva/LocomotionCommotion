@@ -7,6 +7,7 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
@@ -80,12 +81,10 @@ public class Game_Map_StationBtn extends SpriteButton {
 			else
 			{
 				//Buy Stations in game
-				if (GameScreen.game.getPlayerTurn().getGold()>= selectedStation.getStation().getBaseValue()){
-					GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
-					System.out.println(selectedStation.getStation().getOwner());				}
-					Game_Map_Manager.hideInfoBox();
+				GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
+				WarningMessage.fireWarningWindow(selectedStation.getStation().getName(), GameScreen.game.getPlayerTurn().getName());
+				Game_Map_Manager.hideInfoBox();
 			}
-			
 		}
 		started = false;
 	}

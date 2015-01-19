@@ -254,27 +254,6 @@ public class CoreGameTest {
 	}
 
 	@Test
-	public void testSaveGameSerialize() throws Exception {
-		String error = "";
-		boolean success = false;		
-		try
-		{
-			tester.saveGameSerialize("myGame");
-			success = true;
-		}
-		catch (Exception ex)
-		{
-			success = false;
-			error = ex.getMessage();
-		}
-		
-		assertTrue("saveGameSerialize did not execute successfully. " + error, success);		
-		
-		File f = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "LocomotionCommotion" + System.getProperty("file.separator") + "myGame" + ".ser");
-		assertTrue("The expected file did not exist",f.exists());
-	}
-
-	@Test
 	public void testSaveGameJSON() throws Exception {
 		//Setup
 		GoalFactory gF = new GoalFactory();

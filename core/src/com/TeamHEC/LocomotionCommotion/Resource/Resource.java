@@ -1,13 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Resource;
 
-import java.io.Serializable;
+public class Resource {
 
-public class Resource implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private int value;
 	private String type;
 	
