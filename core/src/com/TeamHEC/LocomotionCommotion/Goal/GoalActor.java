@@ -99,7 +99,7 @@ public class GoalActor extends Actor {
 		if(started){
 			if(this.isOwnedgoal()){
 
-				if(!isEmpty())
+				if(!this.isEmpty())
 				{
 					if  (this.isPlanRouteButtonVisible()){
 						PlayerGoals.planRouteBtn.setVisible(false);
@@ -107,6 +107,7 @@ public class GoalActor extends Actor {
 					}
 					else
 					{	
+						PlayerGoals.selectedGoal = goal;
 						PlayerGoals.planRouteBtn.setVisible(true);
 						PlayerGoals.planRouteBtn.setX(this.getX()+60);
 						PlayerGoals.planRouteBtn.setY(this.getY()+75);
@@ -118,10 +119,7 @@ public class GoalActor extends Actor {
 			}
 			else
 			{
-				if (this.isEmpty()){
-
-				}
-				else
+				if(!this.isEmpty())
 				{
 					if  (this.addGoalButtonVisible){
 						GoalMenu.addGoalBtn.setVisible(false);

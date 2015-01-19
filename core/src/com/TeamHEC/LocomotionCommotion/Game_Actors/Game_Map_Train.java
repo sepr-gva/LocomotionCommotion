@@ -1,6 +1,9 @@
 package com.TeamHEC.LocomotionCommotion.Game_Actors;
 
+import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -71,6 +74,13 @@ public class Game_Map_Train extends Actor{
 		}
 		else
 			Game_Map_Manager.trainInfo.showLabel(train);
+		
+		if(PlayerGoals.chooseTrain && GameScreen.game.getPlayerTurn() == train.getOwner())
+		{
+			PlayerGoals.selectedGoal.assignTrain(train);
+			WarningMessage.fireWarningWindow("Assigned Goal to Train!", "Plan your route");
+			PlayerGoals.chooseTrain = false;
+		}
 	}
 	
 	public void toggleHighlight(boolean highlighted)

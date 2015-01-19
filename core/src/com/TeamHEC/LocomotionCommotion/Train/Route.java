@@ -496,7 +496,7 @@ public class Route{
 	 */
 	public void unregister(RouteListener r)
 	{
-		listeners.remove(listeners.indexOf(r));
+		listeners.remove(r);
 	}
 
 	/**

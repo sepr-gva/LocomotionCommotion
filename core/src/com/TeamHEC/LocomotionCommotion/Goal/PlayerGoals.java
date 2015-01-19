@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -44,6 +43,8 @@ public class PlayerGoals {
 
 	public static SpriteButton planRouteBtn;
 
+	public static Goal selectedGoal;
+	public static boolean chooseTrain = false;
 
 	public PlayerGoals(){	}
 
@@ -90,8 +91,7 @@ public class PlayerGoals {
 				if(touchedDown)
 				{
 					WarningMessage.fireWarningWindow("", "Please Select a Train");
-					
-					//Game_Map_Manager.enterRoutingMode();
+					chooseTrain = true;
 					touchedDown=false;
 				}
 			}
