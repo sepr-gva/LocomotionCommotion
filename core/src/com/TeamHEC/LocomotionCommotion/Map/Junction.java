@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Junction;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Junction;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>

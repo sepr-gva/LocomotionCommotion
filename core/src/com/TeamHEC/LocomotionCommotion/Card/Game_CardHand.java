@@ -3,10 +3,10 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -283,7 +283,6 @@ public class Game_CardHand {
 		{
 
 			numberOfCards = cards.size();	 	//assign the size of the give ArrayList of Cards
-			GameScreen.cards= numberOfCards;	//update the gamescreen value (for display)
 
 			newCards = new ArrayList<CardActor>(); //initialise new Arraylist
 

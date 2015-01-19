@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
@@ -21,7 +19,8 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Train.RouteListener;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -133,14 +132,14 @@ public class Player implements Serializable, RouteListener{
 	public void addFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).addValue(quantity);
-		if(!Game_startGameManager.inProgress)
+		if(!Game_StartingSequence.inProgress)
 			GameScreen_ActorManager.refreshResources();
 	}
 
 	public void subFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).subValue(quantity);
-		if(!Game_startGameManager.inProgress)
+		if(!Game_StartingSequence.inProgress)
 			GameScreen_ActorManager.refreshResources();
 	}
 
@@ -153,14 +152,14 @@ public class Player implements Serializable, RouteListener{
 	public void addGold(int value)
 	{
 		gold.setValue(gold.getValue() + value);
-		if(!Game_startGameManager.inProgress)
+		if(!Game_StartingSequence.inProgress)
 			GameScreen_ActorManager.refreshResources();
 	}
 
 	public void subGold(int value)
 	{
 		gold.setValue(gold.getValue() - value);
-		if(!Game_startGameManager.inProgress)
+		if(!Game_StartingSequence.inProgress)
 			GameScreen_ActorManager.refreshResources();
 	}
 
@@ -289,8 +288,6 @@ public class Player implements Serializable, RouteListener{
 					}
 				}
 			}
-			
-			WarningMessage.fireWarningWindow("Station bought", "");
 			station.setOwner(this);
 			this.lineBonuses();
 		}

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Station;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>

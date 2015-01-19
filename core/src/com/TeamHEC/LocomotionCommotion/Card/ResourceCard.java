@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -29,15 +28,6 @@ public abstract class ResourceCard extends Card {
 		Random random = new Random();
 		int fuelToAdd = ((Shop.cardPrice/2) + random.nextInt(Shop.cardPrice)) / getFuelPrice();
 		getOwner().addFuel(fuelType, fuelToAdd);
-		
-		if(fuelType == "Coal")
-			GameScreen.coal+= fuelToAdd;
-		if(fuelType == "Oil")
-			GameScreen.oil+= fuelToAdd;
-		if(fuelType == "Electric")
-			GameScreen.electricity+= fuelToAdd;
-		if(fuelType == "Nuclear")
-			GameScreen.nuclear+= fuelToAdd;
 		
 	}
 	

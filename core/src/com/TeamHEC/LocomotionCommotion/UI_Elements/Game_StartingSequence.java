@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,6 @@ import com.TeamHEC.LocomotionCommotion.Goal.GoalFactory;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -20,8 +19,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
-
-public class Game_startGameManager {
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ * 
+ *
+ */
+public class Game_StartingSequence {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	public static int stagestart ;
@@ -30,7 +34,7 @@ public class Game_startGameManager {
 	public static boolean player1 = true, inProgress = true;
 	public static SpriteButton getStartedWindow;
 
-	public Game_startGameManager(){}
+	public Game_StartingSequence(){}
 
 	public void create(Stage stage)
 	{
@@ -43,7 +47,7 @@ public class Game_startGameManager {
 		getStartedWindow= new SpriteButton(300,400,Game_TextureManager.getInstance().game_start_getstartedwindow){
 			@Override
 			protected void onClicked(){
-				Game_startGameManager.selectLabel.setVisible(false);
+				Game_StartingSequence.selectLabel.setVisible(false);
 				this.setVisible(false);
 				
 			}

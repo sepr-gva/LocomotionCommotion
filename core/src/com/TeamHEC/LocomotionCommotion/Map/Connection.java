@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_TextureManager;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
