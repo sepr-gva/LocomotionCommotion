@@ -75,12 +75,6 @@ public class Player implements Serializable, RouteListener{
 		playerFuel.put("Electric", this.electric);
 		playerFuel.put("Nuclear", this.nuclear);
 		playerFuel.put("Oil", this.oil);
-
-		// Registers listeners for Routes:
-		for(int i = 0; i < trains.size(); i++)
-		{
-			trains.get(i).route.register(this);
-		}
 	}
 
 	public String getName()

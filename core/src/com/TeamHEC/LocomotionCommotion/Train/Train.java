@@ -61,6 +61,8 @@ public class Train implements Serializable{
 			trainActor = Game_Map_Manager.trainBlips.pop();
 			trainActor.createBlip(this);
 		}
+		
+		route.register(owner);
 	}
 	
 	// =========== Getters ===========
