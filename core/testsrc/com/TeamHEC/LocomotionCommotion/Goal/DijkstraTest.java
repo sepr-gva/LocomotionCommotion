@@ -7,15 +7,20 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.TeamHEC.LocomotionCommotion.Goal.Graph.Dijkstra;
+import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 
 public class DijkstraTest {
-
+	WorldMap wm = WorldMap.getInstance();
+	Station sstation = wm.AMSTERDAM;
+	Station fstation = wm.OSLO;		
+	Dijkstra d = new Dijkstra();
+	
 	@Before
 	public void setUp() throws Exception {
-		Dijkstra d = new Dijkstra();
 		d.initialiseGraph();
 		
-		
+		double rew = d.lookUpNode(fstation).minDistance;
 		
 	}
 
@@ -31,7 +36,8 @@ public class DijkstraTest {
 
 	@Test
 	public void testComputePaths() {
-		fail("Not yet implemented");
+		d.computePaths(d.lookUpNode(this.sstation));
+		assertTrue((d.lookUpNode(fstation).minDistance) != null);
 	}
 
 	@Test
