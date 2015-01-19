@@ -79,7 +79,7 @@ public class Game_startGameManager {
 
 	public static void startGame(){
 
-		for(int i=Game_ScreenMenu.actorManager.getStageStart(); i<=Game_ScreenMenu.actorManager.getStageEnd();i++)	
+		for(int i=GameScreen_ActorManager.getStageStart(); i<=GameScreen_ActorManager.getStageEnd();i++)	
 		{ 	
 			if (i > GameScreen.getStage().getActors().size-1)
 			{//This is just to avoid range errors
@@ -90,19 +90,19 @@ public class Game_startGameManager {
 
 		//Handle Text within Game
 		//Score and Who's Turn it is
-		Game_ScreenMenu.actorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + GameScreen.player1score +
+		GameScreen_ActorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + GameScreen.player1score +
 				"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName());
-		Game_ScreenMenu.actorManager.currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
+		GameScreen_ActorManager.currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
 		//Resources
-		Game_ScreenMenu.resourceActorManager.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
-		Game_ScreenMenu.resourceActorManager.coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
-		Game_ScreenMenu.resourceActorManager.oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
-		Game_ScreenMenu.resourceActorManager.electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electric"));
-		Game_ScreenMenu.resourceActorManager.nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
-		Game_ScreenMenu.resourceActorManager.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
+		GameScreen_ActorManager.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
+		GameScreen_ActorManager.coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
+		GameScreen_ActorManager.oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
+		GameScreen_ActorManager.electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electric"));
+		GameScreen_ActorManager.nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
+		GameScreen_ActorManager.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
 
-		Game_ScreenMenu.resourceActorManager.game_card_togglebtn.setVisible(true);
-		Game_ScreenMenu.resourceActorManager.cardQuant.setVisible(true);
+		GameScreen_ActorManager.game_card_togglebtn.setVisible(true);
+		GameScreen_ActorManager.cardQuant.setVisible(true);
 		PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
 		fillGoalScreen();
 	}
