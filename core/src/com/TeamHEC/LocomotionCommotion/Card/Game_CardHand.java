@@ -283,7 +283,6 @@ public class Game_CardHand {
 		{
 
 			numberOfCards = cards.size();	 	//assign the size of the give ArrayList of Cards
-			GameScreen.cards= numberOfCards;	//update the gamescreen value (for display)
 
 			newCards = new ArrayList<CardActor>(); //initialise new Arraylist
 

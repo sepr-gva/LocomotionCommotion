@@ -30,15 +30,6 @@ public abstract class ResourceCard extends Card {
 		int fuelToAdd = ((Shop.cardPrice/2) + random.nextInt(Shop.cardPrice)) / getFuelPrice();
 		getOwner().addFuel(fuelType, fuelToAdd);
 		
-		if(fuelType == "Coal")
-			GameScreen.coal+= fuelToAdd;
-		if(fuelType == "Oil")
-			GameScreen.oil+= fuelToAdd;
-		if(fuelType == "Electric")
-			GameScreen.electricity+= fuelToAdd;
-		if(fuelType == "Nuclear")
-			GameScreen.nuclear+= fuelToAdd;
-		
 	}
 	
 	private int getFuelPrice()
