@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
@@ -127,14 +127,14 @@ public class Player implements Serializable, RouteListener{
 	{
 		playerFuel.get(fuelType).addValue(quantity);
 		if(!Game_startGameManager.inProgress)
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 	}
 
 	public void subFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).subValue(quantity);
 		if(!Game_startGameManager.inProgress)
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 	}
 
 	//Gold
@@ -147,14 +147,14 @@ public class Player implements Serializable, RouteListener{
 	{
 		gold.setValue(gold.getValue() + value);
 		if(!Game_startGameManager.inProgress)
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 	}
 
 	public void subGold(int value)
 	{
 		gold.setValue(gold.getValue() - value);
 		if(!Game_startGameManager.inProgress)
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 	}
 
 	//Cards

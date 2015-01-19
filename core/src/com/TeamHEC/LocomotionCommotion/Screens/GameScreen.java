@@ -25,7 +25,7 @@ import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
@@ -72,7 +72,7 @@ public class GameScreen implements Screen {
 		Game_CardHand cardHand = new Game_CardHand();
 		cardHand.create(getStage());
 
-		Game_ScreenMenu actorManager = new Game_ScreenMenu();
+		GameScreen_ActorManager actorManager = new GameScreen_ActorManager();
 		actorManager.create(getStage());
 
 
@@ -101,7 +101,7 @@ public class GameScreen implements Screen {
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
 		game = new CoreGame(LocomotionCommotion.player1name, LocomotionCommotion.player2name, p1Station, p2Station, LocomotionCommotion.turnChoice);
-		Game_ScreenMenu.resourceActorManager.refreshResources();
+		GameScreen_ActorManager.refreshResources();
 	}
 	
 	@Override
@@ -169,7 +169,7 @@ public class GameScreen implements Screen {
 		PlayerGoals.open = false;
 		Game_Shop.actorManager.open = false;
 		TrainDepotUI.actorManager.open = false;
-		Game_ScreenMenu.resourceActorManager.resourcebarexpanded =false;
+		GameScreen_ActorManager.resourcebarexpanded =false;
 		GoalMenu.open= false;
 		
 		//CARDS

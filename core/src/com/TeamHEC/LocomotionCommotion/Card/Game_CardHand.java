@@ -3,7 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
@@ -107,7 +107,7 @@ public class Game_CardHand {
 					Game_CardHand.actorManager.cardactors.get(numberofcards).setCard(player.getCards().get(i));					//give the actor the card object
 					Game_CardHand.actorManager.cardactors.get(numberofcards).refreshBounds();		
 					Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
-					Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
+					GameScreen_ActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 				}
 			}
 		}
@@ -117,7 +117,7 @@ public class Game_CardHand {
 				Game_CardHand.actorManager.cardactors.get(i).setEmpty(true);	
 				Game_CardHand.actorManager.usecardbtn.setVisible(false);//sets the empty boolean to false
 			}
-			Game_ScreenMenu.resourceActorManager.refreshResources();
+			GameScreen_ActorManager.refreshResources();
 			Game_CardHand.actorManager.numberofcards=0;
 
 		}
@@ -126,7 +126,7 @@ public class Game_CardHand {
 		public void useCard(int cardNum){						//Method useCard lets the player use their card.
 			if (cardNum !=0){												//if the the number of card is not 0
 				cardactors.get(cardNum-1).getCard().implementCard();				//Implement the card object
-				Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels showing the resources
+				GameScreen_ActorManager.refreshResources();					//refresh the labels showing the resources
 				if (cardNum<Game_CardHand.actorManager.numberofcards){									//Shuffle the cards up
 					for(int i=cardNum-1;i<Game_CardHand.actorManager.numberofcards-1;i++){
 						cardactors.get(i).setTexture(cardactors.get(i+1).getTexture());
@@ -142,7 +142,7 @@ public class Game_CardHand {
 				cardactors.get(Game_CardHand.actorManager.numberofcards-1).setEmpty(true);					//Set the end slot as empty and hidden
 				cardactors.get(Game_CardHand.actorManager.numberofcards-1).setVisible(false);
 				Game_CardHand.actorManager.numberofcards-=1;											//decrement card number
-				Game_ScreenMenu.resourceActorManager.refreshResources();
+				GameScreen_ActorManager.refreshResources();
 				Game_CardHand.actorManager.organiseDeck();
 				Game_CardHand.actorManager.usecardbtn.setVisible(false);			//hide the use card button
 			}
@@ -160,7 +160,7 @@ public class Game_CardHand {
 				Game_CardHand.actorManager.cardactors.get(numberofcards).setCard(newCard);					//give the actor the card object
 				Game_CardHand.actorManager.cardactors.get(numberofcards).refreshBounds();		
 				Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
-				Game_ScreenMenu.resourceActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
+				GameScreen_ActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 			}
 		}
 
