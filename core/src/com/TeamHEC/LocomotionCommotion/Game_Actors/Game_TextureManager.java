@@ -42,7 +42,7 @@ public class Game_TextureManager {
 	public Texture game_pause_blackoutscreen = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/screen.png"));
 	public Texture game_pause_pauselogo = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/pauselogo.png"));
 	public Texture game_pause_resumegame = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/resumegamebtn.png"));
-	public Texture game_pause_loadgame = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/loadgamebtn.png"));
+	public Texture game_pause_savegame = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/savegamebtn.png"));
 	public Texture game_pause_settings = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/settingsbtn.png"));
 	public Texture game_pause_mainmenu = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/mainmenubtn.png"));
 	public Texture game_pause_background = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_Pausemenu/pausebackground.png"));

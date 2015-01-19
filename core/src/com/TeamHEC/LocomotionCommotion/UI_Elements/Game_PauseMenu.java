@@ -7,7 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
-
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ * Pause Menu does what it says on the tin. 
+ *
+ */
 public class Game_PauseMenu {
 
 	public static Game_Pause_Manager actorManager;
@@ -74,7 +79,7 @@ public class Game_PauseMenu {
 				}
 			};
 			actors.add(game_pause_resume);
-			game_pause_save = new SpriteButton(Game_PauseMenu.actorManager.game_pause_resume.getX(),Game_PauseMenu.actorManager.game_pause_resume.getY()-100,Game_TextureManager.getInstance().game_pause_loadgame){
+			game_pause_save = new SpriteButton(Game_PauseMenu.actorManager.game_pause_resume.getX(),Game_PauseMenu.actorManager.game_pause_resume.getY()-100,Game_TextureManager.getInstance().game_pause_savegame){
 				@Override
 				protected void onClicked(){
 				}

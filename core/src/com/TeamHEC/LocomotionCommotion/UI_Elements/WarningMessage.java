@@ -11,7 +11,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
-
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ * 
+ * WarningMessage is a class you can use for whatever you need. Just call fireWarningWindow(warning title, warning body) and it will appear when you need it
+ * the user can just click it to make it disappear.
+ * 
+ *
+ */
 public class WarningMessage {
 	
 	static LabelStyle titleStyle, bodyStyle;
@@ -69,7 +77,12 @@ public class WarningMessage {
 		actors.add(bodyLabel);
 		actors.add(titleLabel);
 	}
-	
+	/**
+	 * Makes the WarningWindow visible to the user 
+	 * It adds the actors to the end of actors (so it is on top of everything).
+	 * @param title - The title for your window e.g. WARNING
+	 * @param body	- The body for your window e.g. You dont have enough gold for this.
+	 */
 	public static void fireWarningWindow(String title, String body)
 	{
 		stage.getActors().addAll(actors);
@@ -80,6 +93,9 @@ public class WarningMessage {
 		bodyLabel.setVisible(true);
 		bodyLabel.setText(body);
 	}
+	/**
+	 * Removes the WarningWindow by removing its actors from the stage.
+	 */
 	public static void killWarningWindow()
 	{	
 		window.setVisible(false);

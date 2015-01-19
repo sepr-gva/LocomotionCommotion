@@ -1,25 +1,4 @@
 package com.TeamHEC.LocomotionCommotion.Screens;
-/*
- * @author Robert Precious <rp825@york.ac.uk>
- * Game Screen is the Screen that handles everything in the game screen.
- * First we sort the Camera- create the stage, create the camera and set the dimensions and update
- * Then we create all the managers- these manage the actors and they are split up in to separate menu sections.
- * 
- * @param stage - The stage for the actors.
- * @param sb - The spritebatch (needed for textbox's etc)
- * @param camera - the camera
- * 
- * we have methods:
- * create - explained above
- * render - updates the camera, lets the actors act and draws the screen
- * resize - updates the screen size when window is resized
- * show - just calls create.
- * dispose - disposes of the stage
- * getStage and setStage - getters and setters for stage
- * resetScreen- used when reentering the screen- it resets all the settings.
- * 
- * 
- */
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
@@ -48,6 +27,19 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  * First we sort the Camera- create the stage, create the camera and set the dimensions and update
  * Then we create all the managers- these manage the actors and they are split up in to separate menu sections.
  *
+ * @param stage - The stage for the actors.
+ * @param sb - The spritebatch (needed for textbox's etc)
+ * @param camera - the camera
+ * 
+ * we have methods:
+ * create - explained above
+ * render - updates the camera, lets the actors act and draws the screen
+ * resize - updates the screen size when window is resized
+ * show - just calls create.
+ * dispose - disposes of the stage
+ * getStage and setStage - getters and setters for stage
+ * resetScreen- used when reentering the screen- it resets all the settings.
+ * 
  */
 public class GameScreen implements Screen {
 	public static CoreGame game;
@@ -166,7 +158,9 @@ public class GameScreen implements Screen {
 	public static void setStage(Stage stage) {
 		GameScreen.stage = stage;
 	}
-
+	/**
+	 * Reset Screen - Sets all the boolean to start values and clears actors and resets the map. 
+	 */
 	public void  resetScreen(){
 		Game_Map_Manager.infoVisible= false;
 		Game_PauseMenu.actorManager.open = false;
