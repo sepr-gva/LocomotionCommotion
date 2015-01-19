@@ -84,7 +84,7 @@ public class Player implements Serializable, RouteListener{
 	{
 		return name;
 	}
-	
+
 	/**
 	 * @return returns the players points
 	 */
@@ -97,7 +97,7 @@ public class Player implements Serializable, RouteListener{
 	public Shop getShop(){
 		return shop;
 	}
-	
+
 	public void buyCoal(int quantity)
 	{
 		shop.buyFuel("Coal", quantity);
@@ -107,7 +107,7 @@ public class Player implements Serializable, RouteListener{
 	{
 		shop.buyFuel("Oil", quantity);
 	}
-	
+
 	public void buyElectric(int quantity)
 	{
 		shop.buyFuel("Electric", quantity);
@@ -168,17 +168,17 @@ public class Player implements Serializable, RouteListener{
 	{
 		cards.add(card);
 	}
-	
+
 	public void discardCard(Card card)
 	{
 		cards.remove(card);
 	}
-	
+
 	public int getNumCards()
 	{
 		return cards.size();
 	}
-	
+
 	public ArrayList<Card> getCards()
 	{
 		return cards;
@@ -218,17 +218,29 @@ public class Player implements Serializable, RouteListener{
 		boolean validPurchase = false;
 		for (int j=0; j < this.trains.size(); j ++)
 		{
-			if ((this.trains.get(j).isInStation() && this.trains.get(j).route.getStation().getOwner() == null) && (this.trains.get(j).getRoute().getStation() == station))
+			if (this.trains.get(j).route.getStation().getOwner() == null)
 			{
-				if (this.getGold() >= station.getBaseValue())
+				if (this.trains.get(j).getRoute().getStation() == station)
 				{
-					validPurchase = true;				
+					if (this.getGold() >= station.getBaseValue())
+					{
+						validPurchase = true;				
 
+					}
+					else
+					{
+						//not enough gold
+						this.addFuel("Nuclear", 3);
+					}
 				}
 				else
 				{
-					//not enough gold
+					this.addFuel("Nuclear", 2);
 				}
+			}
+			else
+			{
+				this.addFuel("Nuclear", 1);
 			}
 		}
 		if (validPurchase)
@@ -333,13 +345,13 @@ public class Player implements Serializable, RouteListener{
 			station.purchaseStation(null);
 			this.lineBonuses();
 		}
-		*/
+		 */
 	}
 
 	@Override
 	public void stationPassed(Station station, Train train) {
 		// TODO Auto-generated method stub
-		
+
 		System.out.println("Train passed " + station.getName());
 
 		// STATION TAX:
@@ -349,7 +361,7 @@ public class Player implements Serializable, RouteListener{
 		{
 			this.subGold(station.getTotalRent());
 		}
-		*/
+		 */
 
 	}
 
@@ -452,7 +464,7 @@ public class Player implements Serializable, RouteListener{
 			//owning an entire line is worth an additional reward (3 stations 5%, 4 stations 10%, 5 stations 15%, 6 stations 20%)
 			//increase rent, resource and value by 5% per line you have a station connected too, this may be adjusted to due scaling at larger values
 			currentStation.setResourceOutMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseResourceOut() * 0.05)));
-			
+
 			//Rent not currently increased but is increased for later use anyway
 			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
 			//Increasing value has no affect as stations cannot be currently be sold but if increased for later use anyway
