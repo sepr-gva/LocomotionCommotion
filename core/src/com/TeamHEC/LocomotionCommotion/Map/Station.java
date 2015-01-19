@@ -9,6 +9,7 @@ import com.TeamHEC.LocomotionCommotion.Map.Line;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
+ * @author Elliot Bray<eb1033@york.ac.uk>
  */
 
 public class Station extends MapObj{
@@ -29,11 +30,11 @@ public class Station extends MapObj{
 	
 	/**
 	 * @param name
-	 * @param baseValue The value of the station without any upgrades
-	 * @param resourceType The type of fuel the station produces
-	 * @param baseFuelOut The amount of fuel the station produces each turn, without updates
-	 * @param line The line the station belongs to
-	 * @param rentValue How much it costs to rent without upgrades
+	 * @param baseValue The value of the station
+	 * @param resourceType The type of resource the station produces
+	 * @param baseFuelOut The amount of resource the station produces each turn, without up line bonuses
+	 * @param line Array of lines the station belongs to
+	 * @param rentValue How much it costs to rent
 	 * @param x Coordinate of position x on map
 	 * @param y Coordinate of position y on map 
 	 */
@@ -87,7 +88,10 @@ public class Station extends MapObj{
 	{
 		return baseValue;
 	}
-	public int getValueMod()
+	/**
+	 * @return the value added onto baseValue from bonuses
+	 */
+	public int getValueMod() //Currently has no affect on the game, but 
 	{
 		return valueMod;
 	}
@@ -104,21 +108,29 @@ public class Station extends MapObj{
 		valueMod -= sub;
 	}
 	/**
-	 * @return the total value of the station with mods
+	 * @return the total value of the station with mods (Base + Mod)
 	 */
 	public int getTotalValue()
 	{
 		return baseValue + valueMod;
 	}
-	
+	/**
+	 * @return returns the resource Type as a type
+	 */
 	public Resource getResourceType()
 	{
 		return resourceType;
 	}
+	/**
+	 * @return returns the base amount of resources produced by the station
+	 */
 	public int getBaseResourceOut()
 	{
 		return baseResourceOut;
 	}
+	/**
+	 * @return the amount of resources added to base from bonuses
+	 */
 	public int getResourceOutMod()
 	{
 		return resourceOutMod;
