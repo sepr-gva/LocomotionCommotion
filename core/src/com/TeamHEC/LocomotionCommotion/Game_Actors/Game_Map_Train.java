@@ -69,11 +69,18 @@ public class Game_Map_Train extends Actor{
 	{
 		if(Game_Map_Manager.trainInfo.train == train)
 		{
-			Game_Map_Manager.trainInfo.makeVisible(false);
-			Game_Map_Manager.trainInfo.train = null;
+			Game_Map_Manager.trainInfo.makeVisible(false);			
+			Game_Map_Manager.trainInfo.train = null;		
 		}
 		else
+		{
 			Game_Map_Manager.trainInfo.showLabel(train);
+			
+			// Showing both the station and the train if they are ontop of eachother
+			if(Game_Map_Manager.trainInfo.train.route.inStation())
+				Game_Map_Manager.trainInfo.train.route.getStation().actor.showInfoBox();
+		}
+			
 		
 		if(PlayerGoals.chooseTrain && GameScreen.game.getPlayerTurn() == train.getOwner())
 		{

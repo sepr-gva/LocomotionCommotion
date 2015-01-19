@@ -51,6 +51,9 @@ public class Game_Map_MapObj extends Actor{
 		});
 	}
 	
+	// Is overriden in Game_Map_Station
+	public void showInfoBox(){}
+	
 	public boolean routeAvailable()
 	{
 		return routeAvailable;

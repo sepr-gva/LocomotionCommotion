@@ -104,7 +104,7 @@ public class Goal implements RouteListener{
 				+ " to " + getFStation() + "\n you've won " + getReward());
 		
 		train.getOwner().addGold(getReward());
-		train.route.unregister(this);
+		//train.route.unregister(this);
 	}
 	
 	/**
@@ -116,7 +116,8 @@ public class Goal implements RouteListener{
 	{
 		if(train == this.train)
 		{
-			System.out.println(train.getName() + station.getName());
+			System.out.println(train.getName() +" passed " + station.getName());
+			//WarningMessage.fireWarningWindow(train.getName(), station.getName());;
 			
 			if(station == SStation)
 				startStationPassed = true;

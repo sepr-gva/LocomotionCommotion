@@ -32,7 +32,7 @@ public class Route{
 	
 	public Train train;
 	
-	protected ArrayList<RouteListener> listeners = new ArrayList<RouteListener>();
+	private ArrayList<RouteListener> listeners = new ArrayList<RouteListener>();
 	
 	/**
 	 * Creates an arrayList of connections (a route) for tge train to eventually follow
@@ -494,9 +494,10 @@ public class Route{
 	/**
 	 * Removes an object from the Listener array
 	 */
-	public void unregister(RouteListener r)
+	public void unregister(RouteListener removeListener)
 	{
-		listeners.remove(r);
+		if(listeners.contains(removeListener))
+			listeners.remove(removeListener);
 	}
 
 	/**
