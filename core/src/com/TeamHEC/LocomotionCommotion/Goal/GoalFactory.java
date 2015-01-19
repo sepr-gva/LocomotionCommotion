@@ -11,44 +11,30 @@ import com.TeamHEC.LocomotionCommotion.Map.Station;
 
 public class GoalFactory{
 
-	private WorldMap map;
+	private WorldMap map;                // creating world map 
 	private ArrayList<Station> stations;
 	private CardFactory cardFactory;
 	public Random random;
 	
 	public GoalFactory()
 	{   
-		map = WorldMap.getInstance();
-		stations = map.stationsList;
-		cardFactory = new CardFactory(null);
-		random = new Random();
+		map = WorldMap.getInstance(); //initializing 
+		stations = map.stationsList;  //get all the stations 
+		cardFactory = new CardFactory(null); //initialize the card factory
+		random = new Random(); //initializes random, used throughout
 	}	
 	private int genReward(Station sstation, Station fstation){
-		Dijkstra d = new Dijkstra();
-		d.computePaths(d.lookUpNode(sstation));
-		double rew = d.lookUpNode(fstation).minDistance;
-		
-		
-		
-		return (int) rew;
-	}
-	
-	
-	
-	
-	
-	private Station newSStation(){ 
-		Station st = stations.get(random.nextInt(stations.size()));
+		Dijkstra d = new Dijkstra(); //implements dijkstra 
+		d.computePaths(d.lookUpNode(sstation)); //uses the loopup function to get instance of a
+												//station and compute paths 
+		double rew = d.lookUpNode(fstation).minDistance; // 
+		return (int) rew; //returns reward casted to integer 
+	}	
+	private Station newStation(){ 
+		Station st = stations.get(random.nextInt(stations.size())); //get a random station
 		return st;  
 	}  
-
-	private Station newFStation(){
-		Station st = stations.get(random.nextInt(stations.size()));
-		return st;
-
-	}
-
-
+	
 	public Card genCard(){
 		return cardFactory.createAnyCard();     
 	}
@@ -56,28 +42,26 @@ public class GoalFactory{
 	public Goal CreateRandomGoal(){
 		Goal newgoal;
 
-		Station sStation = newSStation();
-		Station fStation = newFStation();		
+		Station sStation = newStation();
+		Station fStation = newStation();		
 
 		while (sStation.getName() == fStation.getName())
-			fStation = newFStation();		
-		String cargo;
+			fStation = newStation();		
 		int reward = genReward(sStation, fStation);
-				
+		
+		String cargo;
 		if(random.nextInt(2) == 0)
-			cargo = "Passenger";
+			cargo = "Passenger"; //change this to add more cargo stations
 		else
 			cargo = "Cargo";
 		
-		if(random.nextInt(5) == 5)
+		if(random.nextInt(5) == 5) //random 1/5 choice of getting special goals
 			newgoal = new SpecialGoal(sStation ,fStation, null, cargo, reward);		
 		else
 			newgoal = new Goal(sStation, fStation, null, cargo, reward);
 		
 		return newgoal; 
 	}
-	
-	 
 
 }
 
