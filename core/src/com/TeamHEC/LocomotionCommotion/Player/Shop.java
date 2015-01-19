@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Player;
 import java.io.Serializable;
 
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 
 /**
  * 
@@ -36,41 +37,56 @@ public class Shop implements Serializable {
 	
 	public void buyFuel(String fuelType, int quantity)
 	{		
-		if(fuelType == "Coal" && customer.getGold() > (quantity*coalPrice)) {
+		if(fuelType == "Coal" && customer.getGold() >= (quantity*coalPrice)) {
 			customer.addFuel(fuelType, quantity);
 			customer.subGold(quantity * coalPrice);
 		}
-		if(fuelType == "Oil" && customer.getGold() > (quantity*oilPrice)) {
+		else if(fuelType == "Oil" && customer.getGold() >= (quantity*oilPrice)) {
 			customer.addFuel(fuelType, quantity);
 			customer.subGold(quantity * oilPrice);
 		}
-		if(fuelType == "Electric" && customer.getGold() > (quantity*electricPrice)) {
+		else if(fuelType == "Electric" && customer.getGold() >= (quantity*electricPrice)) {
 			customer.addFuel(fuelType, quantity);
 			customer.subGold(quantity * electricPrice);
 		}
-		if(fuelType == "Nuclear" && customer.getGold() > (quantity*nuclearPrice)) {
+		else if(fuelType == "Nuclear" && customer.getGold() >= (quantity*nuclearPrice)) {
 			customer.addFuel(fuelType, quantity);
 			customer.subGold(quantity * nuclearPrice);
-		}						
+		}	
+		else
+		{
+			WarningMessage.fireWarningWindow("SORRY", "You don't have enough gold!");
+		}
 	}
 		
 	public void sellFuel(String fuelType, int quantity)
 	{
-		if(fuelType == "Coal" && customer.getFuel(fuelType) > quantity) {
+		
+		if(fuelType == "Coal" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold(quantity * coalPrice);
 		}
-		if(fuelType == "Oil" && customer.getFuel(fuelType) > quantity) {
+		
+		
+		else if(fuelType == "Oil" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold(quantity * oilPrice);
 		}
-		if(fuelType == "Electric" && customer.getFuel(fuelType) > quantity) {
+		
+		
+		else if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold(quantity * electricPrice);
 		}
-		if(fuelType == "Nuclear" && customer.getFuel(fuelType) > quantity) {
+		
+		
+		else if(fuelType == "Nuclear" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold(quantity * nuclearPrice);
+		}
+		else
+		{
+			WarningMessage.fireWarningWindow("SORRY", "You don't have enough "+fuelType+"!");
 		}
 	}
 
@@ -81,6 +97,10 @@ public class Shop implements Serializable {
 			// Sets the owner to the card and subtract gold from player
 			customer.addCard(cardFactory.createAnyCard());
 			customer.subGold(1000);		
+		}
+		else
+		{
+			WarningMessage.fireWarningWindow("SORRY", "You don't have enough gold!");
 		}
 	}
 }

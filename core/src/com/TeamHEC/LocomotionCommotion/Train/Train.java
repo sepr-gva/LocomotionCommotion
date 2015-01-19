@@ -22,14 +22,15 @@ public class Train implements Serializable{
 	private Fuel fuel;
 	public int fuelPerTurn;
 	
-	private int value; // needs to change after upgrades?
+	private int value; // Might need to change after updgrades
 	private boolean inStation;
 	private Player owner;
 	
 	public final Route route;
 	
+	// The UI blip for the Train:
 	private Game_Map_Train trainActor;
-	
+	// An ArrayList of upgrades the train possesses
 	private ArrayList<TrainUpgrade> upgrades = new ArrayList<TrainUpgrade>();
 	
 	/**
@@ -60,6 +61,8 @@ public class Train implements Serializable{
 			trainActor = Game_Map_Manager.trainBlips.pop();
 			trainActor.createBlip(this);
 		}
+		
+		route.register(owner);
 	}
 	
 	// =========== Getters ===========
@@ -85,10 +88,17 @@ public class Train implements Serializable{
 	{
 		return owner;
 	}
-	
+	/**
+	 * @return Speed of the train with upgrades:
+	 */
 	public int getSpeed()
 	{
 		return baseSpeed + speedMod;
+	}
+	
+	public int getSpeedMod()
+	{
+		return speedMod;
 	}
 	
 	public int getFuelPerTurn()
@@ -96,14 +106,27 @@ public class Train implements Serializable{
 		return fuelPerTurn;
 	}
 		
-	public int getPricePerTurn()
+	/**
+	 * @return The amount of fuel for the remaining route:
+	 */
+	public int getFuelRouteCost()
 	{
-		return fuel.cost * fuelPerTurn;
+		return getFuelLengthCost(route.getLengthRemaining());
 	}
-		
+	/**
+	 * @param length the length of distance you want to travel
+	 * @return The amount of fuel needed to travel that distance 
+	 */
+	public int getFuelLengthCost(float length)
+	{
+		return Math.round((float)(fuel.cost * fuelPerTurn * (length*0.0002)));
+	}
+	/**
+	 * @return A string of the fuel used by a train:
+	 */
 	public String getFuelType()
 	{
-		return fuel.getClass().getName();				
+		return fuel.getType();				
 	}
 	
 	public Route getRoute()

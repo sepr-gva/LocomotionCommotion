@@ -13,14 +13,14 @@ import com.badlogic.gdx.graphics.Texture;
  * @author Callum Hewitt <ch1194@york.ac.uk>
  *
  */
-public class ResourceCard extends Card {
+public abstract class ResourceCard extends Card {
 
 	private static final long serialVersionUID = 1L;
 	private String fuelType;
 
 	public ResourceCard(Player owner, Texture cardTexture, String fuelType)
 	{
-			super(owner, cardTexture);			
+			super(owner, cardTexture, fuelType);			
 			this.fuelType = fuelType;
 	}
 	

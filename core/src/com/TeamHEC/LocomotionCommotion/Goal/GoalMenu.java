@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.Goal;
 /**
  * @author Robert Precious <rp825@york.ac.uk>
  * 
@@ -10,10 +10,10 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_AddGoalBtn;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_BackBtn;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_Backdrop;
-import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -25,22 +25,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_Goal_GoalScreenManager {
+public class GoalMenu {
 	//Arrays
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> subactors = new Array<Actor>();
 	//ArrayLists
 	public static ArrayList<GoalActor> createdGoals;
-	private static ArrayList<Goal> goals;
 	//HashMaps
 	public static HashMap<String,Goal> newgoals ;
 	public static HashMap<String, Label> goalLabels ;
 	//Actors
-	public static Game_goal_Backdrop Game_goal_Backdrop;
-	public static Game_goal_AddGoalBtn Game_goal_addgoalbtn;
-	public static Game_goal_BackBtn game_goal_backbtn;
 	public static GoalActor newgoal1, newgoal2,newgoal3,newgoal4,newgoal5,newgoal6,newgoal7,newgoal8,newgoal9, selectedGoal;
-	//public static Game_goal_RefreshGoals refreshGoals; 
 	//Ints
 	public static int  stagestart, goalActors;
 	public static int row1 = 630, row2 = row1-220, row3 = row2-220;
@@ -50,13 +45,14 @@ public class Game_Goal_GoalScreenManager {
 	public static LabelStyle style;
 	//Booleans
 	public static boolean open=false;
-	
+
 	public static int numberofGoalsOnScreen;
 
+	public static Sprite backDrop;
+	public static SpriteButton backBtn, addGoalBtn, refreshGoalsBtn;
 
 
-
-	public Game_Goal_GoalScreenManager(){	}
+	public GoalMenu(){	}
 
 	public void create(Stage stage){
 		//reset Array for newGame
@@ -67,41 +63,78 @@ public class Game_Goal_GoalScreenManager {
 		numberofGoalsOnScreen=0;
 
 		//Actors
-		Game_goal_Backdrop = new Game_goal_Backdrop();
-		actors.add(Game_goal_Backdrop);
-		game_goal_backbtn = new Game_goal_BackBtn();
-		actors.add(game_goal_backbtn);
-//		refreshGoals = new Game_goal_RefreshGoals();
-//		actors.add(refreshGoals);
+		backDrop = new Sprite(-1,-35, Game_TextureManager.getInstance().game_goals_backdrop);
+		actors.add(backDrop);
 
-//		//TEMP GOALS
-//		goals = new ArrayList<Goal>();
-//		Goal goal1 = new Goal("London", "Paris", false, 100, 0, "Passenger","Any");
-//		goals.add(goal1);
-//		Goal goal2 = new Goal("Lisbon", "Helsinki", false, 200, 0, "Cargo","Any");
-//		goals.add(goal2);
-//		Goal goal3 = new Goal("Berln", "Moscow", false, 200, 0, "Cargo","Any");
-//		goals.add(goal3);
-//		//TEMP GOALS
+		backBtn = new SpriteButton(1350,880,Game_TextureManager.getInstance().game_shop_backbtn){
+			@Override
+			protected void onClicked(){
+				if (GoalMenu.open== false)
+				{
+					GoalMenu.open= true;
+					PlayerGoals.goalMenuOpen();
+					for(int i=GoalMenu.stagestart; i<=GoalMenu.stagestart +GoalMenu.goalActors-1;i++){
+						if (i > GameScreen.getStage().getActors().size-1){
 
-		Game_goal_NewGoalCreator goalcreator= new Game_goal_NewGoalCreator(goals); //Call goal creator
-		createdGoals = goalcreator.getGoals();	//set createdGoals to the result of the goal creator
+						}else
+							GameScreen.getStage().getActors().get(i).setVisible(true);
+
+					}			}
+				else
+				{	GoalMenu.open= false;
+				PlayerGoals.goalMenuClose();
+				for(int i=GoalMenu.stagestart; i<=GoalMenu.stagestart +GoalMenu.goalActors-1;i++){
+					if (i > GameScreen.getStage().getActors().size-1){
+
+					}else
+						GameScreen.getStage().getActors().get(i).setVisible(false);
+
+				}
+
+				}
+			}
+		};
+		actors.add(backBtn);
+
+		addGoalBtn = new SpriteButton(720,575,Game_TextureManager.getInstance().game_menuobject_addgoalbtn){
+			@Override
+			protected void onClicked(){
+				if (PlayerGoals.addGoal(GoalMenu.selectedGoal))
+				{ 	
+					GoalMenu.selectedGoal.setEmpty(true);								//Sets the slot from which the goal is added to empty
+					String a = new Integer(GoalMenu.selectedGoal.getIndex()).toString();	//turns the goal index int to a string
+					GoalMenu.goalLabels.get(a).setText("");;								//clears the label (text on the ticket)
+					this.setVisible(false);	
+				}
+			}
+			@Override
+			protected void onMouseEnter(){
+				started = true;
+
+			}
+			@Override
+			public void act(float delta){
+				if(started){
+					this.setVisible(true);
+					started= false;
+				}
+			}
+		};
+		subactors.add(addGoalBtn);
+
+		refreshGoalsBtn = new SpriteButton(Gdx.graphics.getWidth()-100,Gdx.graphics.getHeight()-250,Game_TextureManager.getInstance().game_menuobject_redobtn){
+			@Override
+			protected void onClicked(){
+				//Can Refresh Goals
+			}
+		};
+		//actors.add(refreshGoalsBtn);
 
 
 
-		//Stuff for Labels
-		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
-		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-		parameter.size = 17;
+		createdGoals =createEmpties();	
 
-		BitmapFont font = generator.generateFont(parameter); 
-		generator.dispose();
-		style = new LabelStyle();
-		style.font = font;
-
-		//end
-
-		//Assign new goals to the actors
+		//Assign blanks to the actors
 		newgoal1 = createdGoals.get(0);
 		actors.add(newgoal1);
 		newgoal2 = createdGoals.get(1);
@@ -123,12 +156,18 @@ public class Game_Goal_GoalScreenManager {
 		newgoal9 = createdGoals.get(8);
 		actors.add(newgoal9);
 
-		//Add the addgoalbtn actor to sub actors
-		Game_goal_addgoalbtn = new Game_goal_AddGoalBtn();
-		subactors.add(Game_goal_addgoalbtn);
+		//Stuff for Labels
+		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
+		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+		parameter.size = 17;
 
+		BitmapFont font = generator.generateFont(parameter); 
+		generator.dispose();
+		style = new LabelStyle();
+		style.font = font;
+
+		//end
 		goalLabels = createLabels();				//createLabels
-		goalLabels=createGoalLabels(goalLabels);	//Set the properties of the Labels using the goal information
 		addLabelstoStage();							//Call function to add labels to stage
 
 		//Adds the actors to the stage
@@ -143,6 +182,7 @@ public class Game_Goal_GoalScreenManager {
 			stage.addActor(a);
 			goalActors ++;
 		}
+		
 		//Used for other actors we don't want to show straight away
 		for (Actor a : subactors){
 			a.setTouchable(Touchable.enabled);
@@ -152,7 +192,38 @@ public class Game_Goal_GoalScreenManager {
 
 
 	}
-	//Creates the blank label objects
+	private ArrayList<GoalActor> createEmpties() {
+		ArrayList<GoalActor> 		empties = new ArrayList< GoalActor>();
+		HashMap<String, GoalActor> 	goalslots = new HashMap<String, GoalActor>();
+
+		goalslots = createSlots();
+
+		for (int i=0;i<9;i++){
+			String a = new Integer(i+1).toString();
+			empties.add(goalslots.get(a));
+		}
+		return empties;
+	}
+
+	private HashMap<String, GoalActor> createSlots() {
+		int row1 = 550, row2 = row1-220, row3 = row2-220;
+		int col1 = 660, col2 = col1+320, col3 = col2+320;
+		HashMap<String, GoalActor> goalslots = new HashMap<String, GoalActor>();
+		goalslots.put("1", newgoal1= new GoalActor(row1,col1,true,null));
+		goalslots.put("2", newgoal2= new GoalActor(row1,col2,true,null));
+		goalslots.put("3", newgoal3= new GoalActor(row1,col3,true,null));
+		goalslots.put("4", newgoal4= new GoalActor(row2,col1,true,null));
+		goalslots.put("5", newgoal5= new GoalActor(row2,col2,true,null));
+		goalslots.put("6", newgoal6= new GoalActor(row2,col3,true,null));
+		goalslots.put("7", newgoal7= new GoalActor(row3,col1,true,null));
+		goalslots.put("8", newgoal8= new GoalActor(row3,col2,true,null));
+		goalslots.put("9", newgoal9= new GoalActor(row3,col3,true,null));
+		return goalslots;
+	}
+
+
+
+	//Creates the blank labels
 	public static  HashMap<String, Label> createLabels(){
 		//Create the Labels in a Hashmap and run through them
 		HashMap<String, Label> goals = new HashMap<String, Label>();
@@ -197,36 +268,10 @@ public class Game_Goal_GoalScreenManager {
 
 
 		}
+
 		return goals;
 
 	}
-
-	//Creates the goal labels - sets the text of the blank labels to the goal information
-	public static  HashMap<String, Label> createGoalLabels(HashMap<String, Label> newgoalLabels){
-		int  numberofNewGoals;
-		if (goals==null){
-			numberofNewGoals=0;
-		}
-		else
-			numberofNewGoals= goals.size();
-		for (int i=0;i<numberofNewGoals;i++){
-			String a = new Integer(i+1).toString();
-			newgoalLabels.get(a).setText(ticketMaker(createdGoals.get(i).getGoal().getCargo(),
-					createdGoals.get(i).getGoal().getReward(),
-					createdGoals.get(i).getGoal().getSStation(),
-					createdGoals.get(i).getGoal().getStartDate(), 
-					createdGoals.get(i).getGoal().getFStation(), 
-					createdGoals.get(i).getGoal().getVia()));
-			numberofGoalsOnScreen++;
-		}
-		for (int i=numberofNewGoals;i<9;i++){
-			String a = new Integer(i+1).toString();
-			newgoalLabels.get(a).setText("");
-		}
-		return newgoalLabels;
-
-	}
-
 	//Adds all labels to stage
 	public static void addLabelstoStage(){
 		actors.add(gLabel1);
@@ -242,7 +287,7 @@ public class Game_Goal_GoalScreenManager {
 
 	}
 	//Creates the string that make up the ticket information
-	public static String ticketMaker(String type, int  reward, String from, int startdate, String dest, String route){
+	public static String ticketMaker(String type, int reward, String from, String startdate, String dest, String route){
 		String output;
 		output ="";
 
@@ -263,42 +308,16 @@ public class Game_Goal_GoalScreenManager {
 		}
 		return space;
 	}
-	
-	public static void AddGoalToScreen(ArrayList<Goal> goals){
-		createNewGoalLabels1(goalLabels,goals);
-	}
-	public static  void createNewGoalLabels(HashMap<String, Label> newgoalLabels,ArrayList<Goal> goals){
-		int goalsbeforeadd= numberofGoalsOnScreen;
-		for (int i=0;i<goals.size();i++){
-			if (numberofGoalsOnScreen==9){
-				break;
-			}
-			String a = new Integer(numberofGoalsOnScreen+1).toString();
-		
-				
-			newgoalLabels.get(a).setText(ticketMaker(	goals.get(i).getCargo(),
-					goals.get(i).getReward(),
-					goals.get(i).getSStation(),
-					goals.get(i).getStartDate(), 
-					goals.get(i).getFStation(), 
-					goals.get(i).getVia()));
-			createdGoals.get(goalsbeforeadd+i).setGoal(goals.get(i));
-			createdGoals.get(goalsbeforeadd+i).setEmpty(false);
-			createdGoals.get(goalsbeforeadd+i).setIndex(goalsbeforeadd+i+1);
-			numberofGoalsOnScreen++;
-		}
-	
 
-	}
-	public static  void createNewGoalLabels1(HashMap<String, Label> newgoalLabels,ArrayList<Goal> goals){
+	public static void AddGoalToScreen(ArrayList<Goal> goals){
 		for (int i=0;i<goals.size();i++){
 			if (numberofGoalsOnScreen==9){
 				break;
 			}
-			int emptyspace= findEmptySpace(newgoalLabels);
+			int emptyspace= findEmptyGoalSlot(goalLabels);
 			String a = new Integer(emptyspace+1).toString();
-			
-			newgoalLabels.get(a).setText(ticketMaker(	goals.get(i).getCargo(),
+
+			goalLabels.get(a).setText(ticketMaker(	goals.get(i).getCargo(),
 					goals.get(i).getReward(),
 					goals.get(i).getSStation(),
 					goals.get(i).getStartDate(), 
@@ -309,32 +328,35 @@ public class Game_Goal_GoalScreenManager {
 			createdGoals.get(emptyspace).setIndex(emptyspace+1);
 			numberofGoalsOnScreen++;
 		}
-	
+
 
 	}
-	public static int findEmptySpace(HashMap<String, Label> newgoalLabels){
+
+	public static int findEmptyGoalSlot(HashMap<String, Label> newgoalLabels){
 		for (int i=0;i<9;i++){
 			String a = new Integer(i+1).toString();
 			if( newgoalLabels.get(a).getText().length==0){
 				return i;
-				
+
 			}
 		}
 		return 0;
-		
-	}
 
+	}
 	
+	public static void fillGoalScreen(){
+		ArrayList<Goal> goals = new ArrayList<Goal>();
+		GoalFactory factory = new GoalFactory();
+		
+		for (int i=0; i<9; i++){
+				goals.add(factory.CreateRandomGoal());
+		}
+		GoalMenu.AddGoalToScreen(goals);
+	}
 
 	/*
 	 * Serializes all actors and stores them in an array. This and the Game object
 	 * are then saved and stored to be loaded.
 	 */
-
-
-
-
-
-
 }
 

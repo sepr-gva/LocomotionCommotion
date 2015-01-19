@@ -64,7 +64,10 @@ public class Game_TextureManager {
 	public Texture game_menuobject_planroutebtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/planroutebtn.png"));
 	public Texture game_menuobject_editroutebtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/editroutebtn.png"));
 	public Texture routingModeWindow = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/routingModeWindow.png")); 
-	public Texture exitroutingModebtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/exitRoutingModebtn.png")); 
+	public Texture confirmroutingModebtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/confirmRoute.png"));
+	public Texture undoRouteBtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/undoRoute.png")); 
+	public Texture abortRouteBtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/abortRoute.png")); 
+	public Texture cancelRouteBtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/game_tickets/routeCancel.png"));
 	
 	public Texture game_goals_goalscreenbtn = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/goalScreenBtn.png"));
 	public Texture game_goals_newgoals= new Texture(Gdx.files.internal("gameScreen/game_goalScreen/newgoals.png"));
@@ -104,6 +107,8 @@ public class Game_TextureManager {
 	public Texture game_start_getstartedwindow = new Texture(Gdx.files.internal("gameScreen/game_startsequence/getstartedwindow.png"));
 	public Texture game_start_getstartedwindow2 = new Texture(Gdx.files.internal("gameScreen/game_startsequence/getstartedwindow-witharrow.png"));
 	
+	//Warning Window
+	public Texture game_warningwindow = new Texture(Gdx.files.internal("gameScreen/game_MenuObjects/warningwindow.png"));
 	
 
 	}

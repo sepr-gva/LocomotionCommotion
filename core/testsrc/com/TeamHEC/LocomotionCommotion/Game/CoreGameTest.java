@@ -3,17 +3,24 @@ package com.TeamHEC.LocomotionCommotion.Game;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.io.FileReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.Goal.GoalFactory;
+import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
@@ -21,6 +28,7 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
+import com.TeamHEC.LocomotionCommotion.Train.Route;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
 /**
@@ -249,7 +257,7 @@ public class CoreGameTest {
 	}
 
 	@Test
-	public void testSaveGame() throws Exception {
+	public void testSaveGameSerialize() throws Exception {
 		String error = "";
 		boolean success = false;		
 		try
@@ -263,7 +271,7 @@ public class CoreGameTest {
 			error = ex.getMessage();
 		}
 		
-		assertTrue("saveGame did not execute successfully. " + error, success);		
+		assertTrue("saveGameSerialize did not execute successfully. " + error, success);		
 		
 		File f = new File(System.getProperty("user.home") + System.getProperty("file.separator") + "LocomotionCommotion" + System.getProperty("file.separator") + "myGame" + ".ser");
 		assertTrue("The expected file did not exist",f.exists());
@@ -271,8 +279,218 @@ public class CoreGameTest {
 
 	@Test
 	public void testSaveGameJSON() throws Exception {
-		String output = tester.saveGameJSON("ThisGameName");	
-		fail("Not yet implemented");
+		//Setup
+		GoalFactory gF = new GoalFactory();
+		Goal testGoal1 = gF.CreateRandomGoal();
+		Goal testGoal2 = gF.CreateRandomGoal();
+		
+		tester.getPlayer1().addGold(5000);
+		tester.getPlayer2().addGold(5000);
+		tester.getPlayer1().getShop().buyCard();
+		tester.getPlayer2().getShop().buyCard();
+		
+		tester.getPlayer1().getGoals().add(testGoal1);
+		tester.getPlayer2().getGoals().add(testGoal2);
+		
+		String error = "";
+		boolean success = false;
+		try
+		{
+			tester.saveGameJSON("myGame");
+			success = true;
+		}
+		catch (Exception ex)
+		{
+			success = false;
+			error = ex.getMessage();
+		}		
+		assertTrue("saveGameJSON did not execute successfully. " + error, success);
+		
+		File filePath = new File(
+				System.getProperty("user.home") +
+				System.getProperty("file.separator") + 
+				"LocomotionCommotion" + 
+				System.getProperty("file.separator") + 
+				"myGame.json");
+		
+		assertTrue("saveGameJSON did not create the necessary json file.", filePath.exists());
+		
+		FileReader reader = new FileReader(filePath);
+		JSONParser jsonParser = new JSONParser();		
+		JSONObject game = (JSONObject) jsonParser.parse(reader);
+		
+		JSONObject player1 = (JSONObject) game.get("player1");
+		JSONObject player1Resources = (JSONObject) player1.get("resources");
+		JSONArray player1Cards = (JSONArray) player1.get("cards");
+		JSONArray player1Trains = (JSONArray) player1.get("trains");
+		JSONObject player1Route = (JSONObject) ((JSONObject) player1Trains.get(0)).get("route");
+		JSONArray player1Stations = (JSONArray) player1.get("stations");
+		JSONArray player1Goals = (JSONArray) player1.get("goals");
+		JSONObject player2 = (JSONObject) game.get("player2");	
+		JSONObject player2Resources = (JSONObject) player2.get("resources");
+		JSONArray player2Cards = (JSONArray) player2.get("cards");
+		JSONArray player2Trains = (JSONArray) player2.get("trains");
+		JSONObject player2Route = (JSONObject) ((JSONObject) player2Trains.get(0)).get("route");
+		JSONArray player2Stations = (JSONArray) player2.get("stations");
+		JSONArray player2Goals = (JSONArray) player2.get("goals");
+		String playerTurn = (String) game.get("playerTurn");
+		Long turnCountL = (Long) game.get("turnCount");
+		Long turnLimitL = (Long) game.get("turnLimit");
+		
+		int turnCount;
+		int turnLimit;
+		
+		if(turnCountL < Long.MAX_VALUE && turnCountL > Long.MIN_VALUE)
+			turnCount = turnCountL.intValue();
+		else
+			throw new IllegalArgumentException("turnCount was too large to be cast to an int.");
+		
+		if(turnLimitL < Long.MAX_VALUE && turnLimitL > Long.MIN_VALUE)
+			turnLimit = turnLimitL.intValue();
+		else
+			throw new IllegalArgumentException("turnLimit was too large to be cast to an int.");
+		
+		//Assertions
+		//Resources 1
+		assertTrue("Player 1 Gold value was not saved correctly", tester.getPlayer1().getGold() == (Long) player1Resources.get("gold"));
+		assertTrue("Player 1 Coal value was not saved correctly", tester.getPlayer1().getFuel("Coal") == (Long) player1Resources.get("coal"));
+		assertTrue("Player 1 Oil value was not saved correctly", tester.getPlayer1().getFuel("Oil") == (Long) player1Resources.get("oil"));
+		assertTrue("Player 1 Electric value was not saved correctly", tester.getPlayer1().getFuel("Electric") == (Long) player1Resources.get("electric"));
+		assertTrue("Player 1 Nuclear value was not saved correctly", tester.getPlayer1().getFuel("Nuclear") == (Long) player1Resources.get("nuclear"));
+		
+		//Cards 1
+		assertTrue("Player 1 Cards list was not saved correctly", tester.getPlayer1().getCards().get(0).getName().equals(((JSONObject) player1Cards.get(0)).get("cardType")));
+		
+		//Trains 1
+		assertTrue(
+				"Player 1 Trains type was not saved correctly", 
+				tester.getPlayer1().getTrains().get(0).getFuelType().equals(((JSONObject) player1Trains.get(0)).get("type")));
+		assertTrue(
+				"Player 1 Trains isInStation was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).isInStation() == (Boolean) ((JSONObject) player1Trains.get(0)).get("inStation"));
+		assertTrue(
+				"Player 1 Trains speedMod was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).getSpeedMod() == (Long) ((JSONObject) player1Trains.get(0)).get("speedMod"));
+		assertTrue(
+				"Player 1 Trains routeIndex was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).getRoute().getRouteIndex() == (Long) player1Route.get("routeIndex"));
+		assertTrue(
+				"Player 1 Trains connectionsTravelled was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).getRoute().getConnectionTravelled() == (Double) player1Route.get("connectionTravelled"));
+		
+		// No connections could be tested.
+		
+		//Stations 1
+		assertTrue(
+				"Player 1 stationName was not saved correctly",
+				tester.getPlayer1().getStations().get(0).getName().equals(((JSONObject) player1Stations.get(0)).get("stationName")));
+		assertTrue(
+				"Player 1 resourceOutMod was not saved correctly",
+				tester.getPlayer1().getStations().get(0).getResourceOutMod() == (Long) ((JSONObject) player1Stations.get(0)).get("resourceOutMod"));
+		assertTrue(
+				"Player 1 rentValueMod was not saved correctly",
+				tester.getPlayer1().getStations().get(0).getRentValueMod() == (Long) ((JSONObject) player1Stations.get(0)).get("rentValueMod"));
+		assertTrue(
+				"Player 1 valueMod was not saved correctly",
+				tester.getPlayer1().getStations().get(0).getValueMod() == (Long) ((JSONObject) player1Stations.get(0)).get("valueMod"));
+		
+		
+		//Goals 1
+		assertTrue(
+				"Player 1 start station was not saved correctly",
+				tester.getPlayer1().getGoals().get(0).getSStation().equals(((JSONObject) player1Goals.get(0)).get("SStation")));
+		assertTrue(
+				"Player 1 final station was not saved correctly",
+				tester.getPlayer1().getGoals().get(0).getFStation().equals(((JSONObject) player1Goals.get(0)).get("FStation")));
+		assertTrue(
+				"Player 1 via station was not saved correctly",
+				tester.getPlayer1().getGoals().get(0).getVia().equals(((JSONObject) player1Goals.get(0)).get("stationVia")));
+		assertTrue(
+				"Player 1 special bool was not saved correctly",
+				tester.getPlayer1().getGoals().get(0).isSpecial() == (Boolean) ((JSONObject) player1Goals.get(0)).get("special"));
+		assertTrue(
+				"Player 1 reward was not saved correctly",
+				tester.getPlayer1().getGoals().get(0).getReward() == (Long) ((JSONObject) player1Goals.get(0)).get("reward"));
+		assertTrue(
+				"Player 1 cargo was not saved correctly",
+				tester.getPlayer1().getGoals().get(0).getCargo().equals(((JSONObject) player1Goals.get(0)).get("cargo")));
+		
+		//Assertions
+		//Resources 2
+		assertTrue("Player 2 Gold value was not saved correctly", tester.getPlayer2().getGold() == (Long) player2Resources.get("gold"));
+		assertTrue("Player 2 Coal value was not saved correctly", tester.getPlayer2().getFuel("Coal") == (Long) player2Resources.get("coal"));
+		assertTrue("Player 2 Oil value was not saved correctly", tester.getPlayer2().getFuel("Oil") == (Long) player2Resources.get("oil"));
+		assertTrue("Player 2 Electric value was not saved correctly", tester.getPlayer2().getFuel("Electric") == (Long) player2Resources.get("electric"));
+		assertTrue("Player 2 Nuclear value was not saved correctly", tester.getPlayer2().getFuel("Nuclear") == (Long) player2Resources.get("nuclear"));
+		
+		//Cards 2
+		assertTrue("Player 2 Cards list was not saved correctly", tester.getPlayer2().getCards().get(0).getName().equals(((JSONObject) player2Cards.get(0)).get("cardType")));
+				
+		//Trains 2
+		assertTrue(
+				"Player 2 Trains type was not saved correctly", 
+				tester.getPlayer2().getTrains().get(0).getFuelType().equals(((JSONObject) player2Trains.get(0)).get("type")));
+		assertTrue(
+				"Player 2 Trains isInStation was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).isInStation() == (Boolean) ((JSONObject) player2Trains.get(0)).get("inStation"));
+		assertTrue(
+				"Player 2 Trains speedMod was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).getSpeedMod() == (Long) ((JSONObject) player2Trains.get(0)).get("speedMod"));
+		assertTrue(
+				"Player 2 Trains routeIndex was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).getRoute().getRouteIndex() == (Long) player2Route.get("routeIndex"));
+		assertTrue(
+				"Player 2 Trains connectionsTravelled was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).getRoute().getConnectionTravelled() == (Double) player2Route.get("connectionTravelled"));
+		
+		// No connections could be tested.
+		
+		//Stations 2
+		assertTrue(
+				"Player 2 stationName was not saved correctly",
+				tester.getPlayer2().getStations().get(0).getName().equals(((JSONObject) player2Stations.get(0)).get("stationName")));
+		assertTrue(
+				"Player 2 resourceOutMod was not saved correctly",
+				tester.getPlayer2().getStations().get(0).getResourceOutMod() == (Long) ((JSONObject) player2Stations.get(0)).get("resourceOutMod"));
+		assertTrue(
+				"Player 2 rentValueMod was not saved correctly",
+				tester.getPlayer2().getStations().get(0).getRentValueMod() == (Long) ((JSONObject) player2Stations.get(0)).get("rentValueMod"));
+		assertTrue(
+				"Player 2 valueMod was not saved correctly",
+				tester.getPlayer2().getStations().get(0).getValueMod() == (Long) ((JSONObject) player2Stations.get(0)).get("valueMod"));
+		
+		
+		//Goals 2
+		assertTrue(
+				"Player 2 start station was not saved correctly",
+				tester.getPlayer2().getGoals().get(0).getSStation().equals(((JSONObject) player2Goals.get(0)).get("SStation")));
+		assertTrue(
+				"Player 2 final station was not saved correctly",
+				tester.getPlayer2().getGoals().get(0).getFStation().equals(((JSONObject) player2Goals.get(0)).get("FStation")));
+		assertTrue(
+				"Player 2 via station was not saved correctly",
+				tester.getPlayer2().getGoals().get(0).getVia().equals(((JSONObject) player2Goals.get(0)).get("stationVia")));
+		assertTrue(
+				"Player 2 special bool was not saved correctly",
+				tester.getPlayer2().getGoals().get(0).isSpecial() == (Boolean) ((JSONObject) player2Goals.get(0)).get("special"));
+		assertTrue(
+				"Player 2 reward was not saved correctly",
+				tester.getPlayer2().getGoals().get(0).getReward() == (Long) ((JSONObject) player2Goals.get(0)).get("reward"));
+		assertTrue(
+				"Player 2 cargo was not saved correctly",
+				tester.getPlayer2().getGoals().get(0).getCargo().equals(((JSONObject) player2Goals.get(0)).get("cargo")));			
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

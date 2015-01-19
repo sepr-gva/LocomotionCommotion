@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.UI_Elements;
+package com.TeamHEC.LocomotionCommotion.Train;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,8 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,11 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
-/**
- * @author Matthew Taylor <mjkt500@york.ac.uk>
- */
-
-public class TrainInfo extends Sprite{
+public class TrainInfoUI extends Sprite{
 	
 	public static Label name, speed, routeRemaining;
 	public LabelStyle style;
@@ -33,15 +30,11 @@ public class TrainInfo extends Sprite{
 	public Train train;
 	public ArrayList<Connection> adjacent;
 	
-	/**
-	 * Creates the window to display train information such as Train name, speed, route remaining
-	 * and allows the user to plot a route for a train 
-	 */
-	public TrainInfo()
+	public TrainInfoUI()
 	{
 		super(0, 0, Game_Map_TextureManager.getInstance().trainInfo);
 		
-		//Creating labels:
+		//Stuff for Labels
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = 23;
@@ -55,7 +48,6 @@ public class TrainInfo extends Sprite{
 		speed = new Label(null, style);
 		routeRemaining = new Label(null, style);
 		
-		// Plan route button
 		planRoute = new SpriteButton(0, 0, Game_Map_TextureManager.getInstance().trainInfoPlanRoute){
 			
 			@Override
@@ -64,7 +56,6 @@ public class TrainInfo extends Sprite{
 				if(train != null)
 				if(GameScreen.game.getPlayerTurn() == train.getOwner())
 				{
-					// Enters the trains routing mode, allowing a route to be created:
 					Game_Map_Manager.enterRoutingMode();
 					Game_Map_Manager.planBackground.setVisible(true);
 					highlightAdjacent();
@@ -95,9 +86,6 @@ public class TrainInfo extends Sprite{
 		}
 	}
 	
-	/**
-	 * Adjacent mapObjs are no longer addable to the route
-	 */
 	public void unhighlightAdjacent()
 	{
 		adjacent = train.route.getAdjacentConnections();
@@ -109,18 +97,11 @@ public class TrainInfo extends Sprite{
 		}
 	}
 	
-	/**
-	 * @return The actors used to display the TrainInfo window
-	 */
 	public Array<Actor> getActors()
 	{
 		return actors;
 	}
 	
-	/**
-	 * Creates the TrainInfo window for a specfic train at it's position
-	 * @param train The train to create the window for
-	 */
 	public void showLabel(Train train)
 	{
 		this.train = train;
@@ -148,10 +129,6 @@ public class TrainInfo extends Sprite{
 		makeVisible(true);
 	}
 	
-	/**
-	 * Toggles the TrainInfo windows visibility
-	 * @param v true if visible
-	 */
 	public void makeVisible(boolean v)
 	{
 		this.setVisible(v);

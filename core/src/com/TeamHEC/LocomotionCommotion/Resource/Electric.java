@@ -10,6 +10,6 @@ public class Electric extends Fuel{
 	public Electric(int value)
 	{
 		super(value, "Electric");
-		cost = 100;
+		cost = 150;
 	}
 }

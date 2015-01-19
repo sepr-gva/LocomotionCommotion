@@ -1,4 +1,4 @@
-package Graph;
+
 import java.util.PriorityQueue;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ class Edge
     public Edge(Node tget, double wait)    //given a target node and a weight we have an edge. 
     
     { 
-    	
+     
     this.target = tget;
     this.weight = wait;
     

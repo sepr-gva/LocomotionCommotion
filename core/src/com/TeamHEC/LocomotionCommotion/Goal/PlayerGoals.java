@@ -1,14 +1,17 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.Goal;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_Assets.Game_goal_RemoveBtn;
-import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -20,14 +23,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
 
-public class Game_goal_PlayerGoals {
+public class PlayerGoals {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 	private final static Array<Actor> subactors = new Array<Actor>();
 
 	public static 	HashMap<String,Goal> playerGoals ;
 	public static 	HashMap<String,GoalActor> playerGoalActors;
-	private static 	HashMap<String, Game_goal_RemoveBtn> removebuttons ;
+	private static 	HashMap<String, PlayerGoalRemoveBtn> removebuttons ;
 	private static 	HashMap<String, Label> ticketLabels ;
 
 	public static GoalActor newgoal1, newgoal2, newgoal3;
@@ -36,7 +39,7 @@ public class Game_goal_PlayerGoals {
 	public LabelStyle style;
 
 
-	public static Game_goal_RemoveBtn removebtn1,removebtn2,removebtn3;
+	public static PlayerGoalRemoveBtn removebtn1,removebtn2,removebtn3;
 
 	public static boolean open=false;
 
@@ -45,7 +48,7 @@ public class Game_goal_PlayerGoals {
 	public static SpriteButton planRouteBtn;
 
 
-	public Game_goal_PlayerGoals(){	}
+	public PlayerGoals(){	}
 
 	public void create(Stage stage){
 
@@ -91,8 +94,11 @@ public class Game_goal_PlayerGoals {
 					this.setVisible(true);
 					started = false;
 				}
-				if(touchedDown){
-					Game_Map_Manager.enterRoutingMode();
+				if(touchedDown)
+				{
+					WarningMessage.fireWarningWindow("", "Please Select a Train");
+					
+					//Game_Map_Manager.enterRoutingMode();
 					touchedDown=false;
 				}
 			}
@@ -111,16 +117,17 @@ public class Game_goal_PlayerGoals {
 		generator.dispose();
 		style = new LabelStyle();
 		style.font = font;
+		
 		//Ticket Labels
 		ticketLabels = new HashMap<String, Label>();
 		ticketLabels.put("1", ticket1= new Label(null,style));
 		ticketLabels.put("2", ticket2= new Label(null,style));
 		ticketLabels.put("3", ticket3= new Label(null,style));
 		//Remove Buttons
-		removebuttons = new HashMap<String, Game_goal_RemoveBtn>();
-		removebuttons.put("1", removebtn1 = new Game_goal_RemoveBtn(1));
-		removebuttons.put("2", removebtn2 = new Game_goal_RemoveBtn(2));
-		removebuttons.put("3", removebtn3 = new Game_goal_RemoveBtn(3));
+		removebuttons = new HashMap<String, PlayerGoalRemoveBtn>();
+		removebuttons.put("1", removebtn1 = new PlayerGoalRemoveBtn(250, 470, Game_TextureManager.getInstance().game_menuobject_removegoalbtn, 1));
+		removebuttons.put("2", removebtn2 = new PlayerGoalRemoveBtn(250, 470, Game_TextureManager.getInstance().game_menuobject_removegoalbtn, 2));
+		removebuttons.put("3", removebtn3 = new PlayerGoalRemoveBtn(250, 470, Game_TextureManager.getInstance().game_menuobject_removegoalbtn, 3));
 		for (int i=0; i<3; i++){
 			String a = new Integer(i+1).toString();
 			removebuttons.get(a).setVisible(false);
@@ -165,7 +172,7 @@ public class Game_goal_PlayerGoals {
 
 	}
 
-	public static String ticketMaker(String type, int  reward, String from, int startdate, String dest, String route){
+	public static String ticketMaker(String type, int reward, String from, String startdate, String dest, String route){
 		String output;
 		output ="";
 
@@ -308,7 +315,7 @@ public class Game_goal_PlayerGoals {
 			numberofOwnedGoals+=1;
 			GameScreen.game.getPlayerTurn().getGoals().add(newgoal.getGoal());
 			
-			Game_Goal_GoalScreenManager.numberofGoalsOnScreen--;
+			GoalMenu.numberofGoalsOnScreen--;
 			return true;
 		}
 	}
@@ -316,28 +323,15 @@ public class Game_goal_PlayerGoals {
 	public static void resetGoal(int index) {
 		String a = new Integer(index).toString();
 		String b = new Integer(removebuttons.get(a).getnewgoalindex()).toString();
-		Game_Goal_GoalScreenManager.goalLabels.get(b).setText(ticketLabels.get(a).getText());
-		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(playerGoalActors.get(a).getGoal());
-		Game_Goal_GoalScreenManager.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setEmpty(false);
+		GoalMenu.goalLabels.get(b).setText(ticketLabels.get(a).getText());
+		GoalMenu.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setGoal(playerGoalActors.get(a).getGoal());
+		GoalMenu.createdGoals.get(removebuttons.get(a).getnewgoalindex()-1).setEmpty(false);
 		removeGoal(removebuttons.get(a).index);
-		Game_Goal_GoalScreenManager.numberofGoalsOnScreen++;
+		GoalMenu.numberofGoalsOnScreen++;
 
 
 	}
 
-	public static String outputOwnedGoals(){
-		String output;
-		output="";
-		for (int i=0;i<3;i++){
-			String a = new Integer(i+1).toString();
-			if (playerGoalActors.get(a).isEmpty()==false){
-				output+= playerGoalActors.get(a).getGoal().getSStation()+ " ";
-			}
-		}
-		return output;
-
-	}
-	
 	
 	public static void changePlayer(Player player) {
 		float tickety= 845, buttony = 725;

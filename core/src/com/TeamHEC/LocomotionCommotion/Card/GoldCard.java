@@ -16,7 +16,7 @@ public class GoldCard extends Card{
 
 	public GoldCard(Player player)
 	{
-		super(player, Game_TextureManager.getInstance().game_card_goldcard);
+		super(player, Game_TextureManager.getInstance().game_card_goldcard, "Gold");
 	}
 	
 	@Override

@@ -61,10 +61,12 @@ public class GoalFactory{
 
 	public Goal CreateRandomGoal(){
 		Goal newgoal;
-		Station sStation =  newSStation();
-		Station fStation =  newFStation();		
+
+		Station sStation = newSStation();
+		Station fStation = newFStation();		
+
 		while (sStation.getName() == fStation.getName())
-			fStation = (Station) newFStation();		
+			fStation = newFStation();		
 		String cargo;
 		int reward = getLength(sStation, fStation);
 				
@@ -74,7 +76,7 @@ public class GoalFactory{
 			cargo = "Cargo";
 		
 		if(random.nextInt(5) == 5)
-			newgoal = new SGoal(sStation ,fStation, null, cargo, reward);		
+			newgoal = new SpecialGoal(sStation ,fStation, null, cargo, reward);		
 		else
 			newgoal = new Goal(sStation, fStation, null, cargo, reward);
 		

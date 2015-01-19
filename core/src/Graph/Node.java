@@ -1,4 +1,4 @@
-package Graph;
+
 import java.util.PriorityQueue;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,16 +9,16 @@ import com.TeamHEC.LocomotionCommotion.Map.Station;
 class Node implements Comparable<Node>
 
 {
-	 public  String name;
-	 public final Station station;
-	public Node(Station st) 
+  public String name;
+  public final Station station;
+ public Node(Station st) 
     {
-    	this.station = st;  //sets name of node to name of station
-    	this.name = st.getName();  
-    	this.edges = new ArrayList<Edge>(); 
+     this.station = st;  //sets name of node to name of station
+     this.name = st.getName();  
+     this.edges = new ArrayList<Edge>(); 
     } 
    
-	public ArrayList<Edge> edges;
+ public ArrayList<Edge> edges;
     public double minDistance = Double.POSITIVE_INFINITY;
     public Node previous;
     
@@ -26,7 +26,7 @@ class Node implements Comparable<Node>
    
     public String toString() 
     {
-    	return name; //returns name of node
+     return name; //returns name of node
     }
     
     
@@ -34,6 +34,6 @@ class Node implements Comparable<Node>
     {
         return Double.compare(this.minDistance, other.minDistance); //compares this distance to anotdher node
     }
-	
-	
+ 
+ 
 }

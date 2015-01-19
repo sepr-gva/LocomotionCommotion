@@ -22,17 +22,18 @@ package com.TeamHEC.LocomotionCommotion.Screens;
  */
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_CardHand;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Goal_GoalScreenManager;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TrainDepot;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_goal_PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
+import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
+import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -75,13 +76,13 @@ public class GameScreen implements Screen {
 		actorManager.create(getStage());
 
 
-		Game_TrainDepot trainDepot = new Game_TrainDepot();
+		TrainDepotUI trainDepot = new TrainDepotUI();
 		trainDepot.create(getStage());
 
-		Game_Goal_GoalScreenManager goalScreenManager = new Game_Goal_GoalScreenManager();
+		GoalMenu goalScreenManager = new GoalMenu();
 		goalScreenManager.create(getStage());
 		
-		Game_goal_PlayerGoals ticketManager = new Game_goal_PlayerGoals();
+		PlayerGoals ticketManager = new PlayerGoals();
 		ticketManager.create(getStage());	
 		
 		Game_startGameManager startgameManager = new Game_startGameManager();
@@ -92,11 +93,15 @@ public class GameScreen implements Screen {
 		
 		Game_PauseMenu pauseMenu= new Game_PauseMenu();
 		pauseMenu.create(getStage());
+		
+		WarningMessage warningMessage = new WarningMessage();
+		warningMessage.create(getStage());
 	}
 	
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
 		game = new CoreGame(LocomotionCommotion.player1name, LocomotionCommotion.player2name, p1Station, p2Station, LocomotionCommotion.turnChoice);
+		Game_ScreenMenu.resourceActorManager.refreshResources();
 	}
 	
 	@Override
@@ -161,15 +166,15 @@ public class GameScreen implements Screen {
 	public void  resetScreen(){
 		Game_Map_Manager.infoVisible= false;
 		Game_PauseMenu.actorManager.open = false;
-		Game_goal_PlayerGoals.open = false;
+		PlayerGoals.open = false;
 		Game_Shop.actorManager.open = false;
-		Game_TrainDepot.actorManager.open = false;
+		TrainDepotUI.actorManager.open = false;
 		Game_ScreenMenu.resourceActorManager.resourcebarexpanded =false;
-		Game_Goal_GoalScreenManager.open= false;
+		GoalMenu.open= false;
 		
 		//CARDS
 		Game_CardHand.actorManager.open=false;
-		Game_CardHand.actorManager.cards.clear();;
+		Game_CardHand.actorManager.cardactors.clear();;
 		
 		//Map
 		Game_startGameManager.reset();

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
@@ -23,6 +25,7 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  * @author Callum Hewitt <ch1194@york.ac.uk>
+ * @author Elliot Bray <eb1033@york.ac.uk>
  */
 
 public class Player implements Serializable, RouteListener{
@@ -72,12 +75,6 @@ public class Player implements Serializable, RouteListener{
 		playerFuel.put("Electric", this.electric);
 		playerFuel.put("Nuclear", this.nuclear);
 		playerFuel.put("Oil", this.oil);
-
-		// Registers listeners for Routes:
-		for(int i = 0; i < trains.size(); i++)
-		{
-			trains.get(i).route.register(this);
-		}
 	}
 
 	public String getName()
@@ -94,22 +91,27 @@ public class Player implements Serializable, RouteListener{
 	public Shop getShop(){
 		return shop;
 	}
+	
 	public void buyCoal(int quantity)
 	{
 		shop.buyFuel("Coal", quantity);
 	}
+
 	public void buyOil(int quantity)
 	{
 		shop.buyFuel("Oil", quantity);
 	}
+	
 	public void buyElectric(int quantity)
 	{
 		shop.buyFuel("Electric", quantity);
 	}
+
 	public void buyNuclear(int quantity)
 	{
 		shop.buyFuel("Nuclear", quantity);
 	}
+
 	public void buyCard(int quantity)
 	{
 		shop.buyCard();
@@ -124,11 +126,15 @@ public class Player implements Serializable, RouteListener{
 	public void addFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).addValue(quantity);
+		if(!Game_startGameManager.inProgress)
+			Game_ScreenMenu.resourceActorManager.refreshResources();
 	}
 
 	public void subFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).subValue(quantity);
+		if(!Game_startGameManager.inProgress)
+			Game_ScreenMenu.resourceActorManager.refreshResources();
 	}
 
 	//Gold
@@ -140,11 +146,15 @@ public class Player implements Serializable, RouteListener{
 	public void addGold(int value)
 	{
 		gold.setValue(gold.getValue() + value);
+		if(!Game_startGameManager.inProgress)
+			Game_ScreenMenu.resourceActorManager.refreshResources();
 	}
 
 	public void subGold(int value)
 	{
 		gold.setValue(gold.getValue() - value);
+		if(!Game_startGameManager.inProgress)
+			Game_ScreenMenu.resourceActorManager.refreshResources();
 	}
 
 	//Cards
@@ -157,12 +167,12 @@ public class Player implements Serializable, RouteListener{
 	{
 		cards.remove(card);
 	}
-
+	
 	public int getNumCards()
 	{
 		return cards.size();
 	}
-
+	
 	public ArrayList<Card> getCards()
 	{
 		return cards;
@@ -257,6 +267,9 @@ public class Player implements Serializable, RouteListener{
 
 	public void sellStation(Station station)
 	{
+		//UI DOES NOT CURRENTLY SUPPORT SELLING OF STATIONS
+		//but sell station has been tested and does work
+		/*
 		if (this.stations.contains(station))
 		{
 			for (int i=0; i<3; i++)
@@ -301,21 +314,27 @@ public class Player implements Serializable, RouteListener{
 			station.purchaseStation(null);
 			this.lineBonuses();
 		}
+		*/
 	}
 
 	@Override
-	public void stationPassed(Station station) {
+	public void stationPassed(Station station, Train train) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("Train passed " + station.getName());
 
 		// STATION TAX:
+		// RENT IS CURRENTLY NOT IMPLEMENTED AS UI DOES NOT CURRENTLY SUPPORT
+		/*
 		if(station.getOwner() != this && station.getOwner() != null)
 		{
 			this.subGold(station.getTotalRent());
 		}
+		*/
 
 	}
 
-	public void lineBonuses() //MUST BE CALLED BEFORE YOU ACCESS A STATIONS VALUE, RENT OR RESOURCE AMOUNTS
+	public void lineBonuses() //MUST BE CALLED BEFORE YOU ACCESS A STATIONS VALUE, RENT OR RESOURCE AMOUNTS IF STATIONS OWNED HAS CHANGED
 	{
 		for (int i = 0; i<stations.size(); i++)
 		{
@@ -412,8 +431,10 @@ public class Player implements Serializable, RouteListener{
 			}
 			//owning an entire line is worth an additional reward (3 stations 5%, 4 stations 10%, 5 stations 15%, 6 stations 20%)
 			//increase rent, resource and value by 5% per line you have a station connected too, this may be adjusted to due scaling at larger values
-			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
 			currentStation.setResourceOutMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseResourceOut() * 0.05)));
+			//Rent not currently increased but is increased for later use anyway
+			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
+			//Increasing value has no affect as stations cannot be currently be sold but if increased for later use anyway
 			currentStation.setValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getValueMod() * 0.05)));
 		}
 	}
@@ -424,7 +445,14 @@ public class Player implements Serializable, RouteListener{
 		for (int i = 0; i < stations.size(); i++)
 		{
 			Station currentStation = stations.get(i);
-			this.addFuel(currentStation.getResourceString(), currentStation.getTotalResourceOut());
+			if (currentStation.getResourceString() == "Gold")
+			{
+				this.addGold(currentStation.getBaseResourceOut());
+			}
+			else
+			{
+				this.addFuel(currentStation.getResourceString(), currentStation.getTotalResourceOut());
+			}
 		}
 	}
 

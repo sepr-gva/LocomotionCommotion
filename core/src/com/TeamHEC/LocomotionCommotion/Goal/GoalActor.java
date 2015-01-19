@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.Goal;
 /*
  * @author Robert Precious <rp825@york.ac.uk>
  * This the transparent backing of the menu.
@@ -20,7 +20,7 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
  * act			The action taken if the listener detects interaction
  * 				Action- None
  */
-import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -99,25 +99,20 @@ public class GoalActor extends Actor {
 		if(started){
 			if(this.isOwnedgoal()){
 
-				if (this.isEmpty()){
-
-				}
-				else
+				if(!isEmpty())
 				{
 					if  (this.isPlanRouteButtonVisible()){
-						Game_goal_PlayerGoals.planRouteBtn.setVisible(false);
+						PlayerGoals.planRouteBtn.setVisible(false);
 						this.setPlanRouteButtonVisible(false);
 					}
 					else
 					{	
-						
-						Game_goal_PlayerGoals.planRouteBtn.setVisible(true);
-						Game_goal_PlayerGoals.planRouteBtn.setX(this.getX()+60);
-						Game_goal_PlayerGoals.planRouteBtn.setY(this.getY()+75);
-						Game_goal_PlayerGoals.planRouteBtn.refreshBounds();
+						PlayerGoals.planRouteBtn.setVisible(true);
+						PlayerGoals.planRouteBtn.setX(this.getX()+60);
+						PlayerGoals.planRouteBtn.setY(this.getY()+75);
+						PlayerGoals.planRouteBtn.refreshBounds();
 						this.setPlanRouteButtonVisible(true);
 					}
-			
 				}
 				started=false;
 			}
@@ -129,16 +124,16 @@ public class GoalActor extends Actor {
 				else
 				{
 					if  (this.addGoalButtonVisible){
-						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setVisible(false);
+						GoalMenu.addGoalBtn.setVisible(false);
 						this.addGoalButtonVisible=false;
 					}
 					else
 					{	//Makes the addgoalbtn visible to user on the selected goal
-						Game_Goal_GoalScreenManager.selectedGoal=this;
-						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setX(actorX+60);
-						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setY(actorY+75);
-						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.setVisible(true);
-						Game_Goal_GoalScreenManager.Game_goal_addgoalbtn.refreshBounds();
+						GoalMenu.selectedGoal=this;
+						GoalMenu.addGoalBtn.setX(actorX+60);
+						GoalMenu.addGoalBtn.setY(actorY+75);
+						GoalMenu.addGoalBtn.setVisible(true);
+						GoalMenu.addGoalBtn.refreshBounds();
 						this.addGoalButtonVisible=true;
 					}
 				}

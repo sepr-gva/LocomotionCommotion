@@ -6,25 +6,28 @@ import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+/**
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ */
+
 public class Route{
 	
 	/*
-	  	## READ ME ##
-		https://drive.google.com/file/d/0B-ZG2Demzd4tc0JTbWxOS0FVd0E/view?usp=sharing
+	## READ ME ##
+	https://drive.google.com/file/d/0B-ZG2Demzd4tc0JTbWxOS0FVd0E/view?usp=sharing
 	*/
 	
 	private ArrayList<Connection> route = new ArrayList<Connection>();
 	
 	// Progress through route ArrayList
 	private int routeIndex = 0;
-	private float connectionTravelled = 0;
-	
-	private MapObj currentMapObj;
-	
+	private float connectionTravelled = 0;	
+	private MapObj currentMapObj;	
 	private boolean isComplete = false;
 	
 	public Train train;
@@ -43,13 +46,15 @@ public class Route{
 	}
 	/**
 	 * Used to reload an existing route
-	 * @param startingPos Initial starting poiut of the route
+	 * @param route current route of the train
 	 * @param routeIndex The index used to track progress through an array of connections
 	 * @param connectionTravelled The distance travelled through that connection 
 	 */
-	public Route(MapObj startingPos, int routeIndex, float connectionTravelled)
+	public Route(ArrayList<Connection> route, int routeIndex, float connectionTravelled)
 	{
-		currentMapObj = startingPos;
+		this.route = route;
+		if(!route.isEmpty())
+			currentMapObj = route.get(routeIndex).getStartMapObj();
 		this.routeIndex = routeIndex;
 		this.connectionTravelled = connectionTravelled;
 	}
@@ -70,6 +75,10 @@ public class Route{
 		return routeIndex;
 	}
 	
+	/**
+	 * Set to true when the route reaches an end in update method
+	 * @return if the route is complete
+	 */
 	public boolean isComplete()
 	{
 		return isComplete;
@@ -123,11 +132,9 @@ public class Route{
 	}
 
 	/**
-	 * Adds a new connection to the end of the route.
-	 * Usually one of the connections return from getAdjacentConnections()
-	 * @param connection The connection to be added
+	 * Makes all the white route blips between connections visible, the red dot indicates
+	 * direction
 	 */
-	
 	public void showRouteBlips()
 	{
 		Stage stage = train.getActor().getStage();
@@ -140,7 +147,9 @@ public class Route{
 			}
 		}
 	}
-	
+	/**
+	 * Removes route UI blips from the screen
+	 */
 	public void hideRouteBlips()
 	{
 		Stage stage = train.getActor().getStage();
@@ -154,6 +163,10 @@ public class Route{
 		}
 	}
 	
+	/**
+	 * Creates route UI dots for this connection
+	 * @param connection the connection to add UI blips to
+	 */
 	public void showConnectionBlips(Connection connection)
 	{
 		Stage stage = train.getActor().getStage();
@@ -163,7 +176,9 @@ public class Route{
 			stage.addActor(a);
 		}
 	}
-	
+	/**
+	 * @param connection The connection to hide UI blips for
+	 */
 	public void hideConnectionBlips(Connection connection)
 	{
 		Stage stage = train.getActor().getStage();
@@ -174,78 +189,145 @@ public class Route{
 		}
 	}
 	
+	/**
+	 * Adds a new connection to the end of the route, if the player has enough fiel
+	 * Usually one of the connections return from getAdjacentConnections()
+	 * @param connection The connection to be added
+	 */
 	public void addConnection(Connection connection)
 	{
-		//Discards old selections:
-		ArrayList<Connection> oldConnections = connection.getStartMapObj().connections;
-		for(Connection c : oldConnections)
+		// Charging the player for the fuel needed or displaying an error message if insufficient:
+		int fuelCost = train.getFuelLengthCost(connection.getLength());
+		if( fuelCost <= train.getOwner().getFuel(train.getFuelType()))
 		{
-			c.getDestination().getActor().setRouteAvailable(false);
-			c.getDestination().getActor().toggleHighlight(false);
+			train.getOwner().subFuel(train.getFuelType(), fuelCost);
 			
-			// hideConnectionBlips(c);
+			//Discards old selections so they cannot be clicked on:
+			ArrayList<Connection> oldConnections = connection.getStartMapObj().connections;
+			for(Connection c : oldConnections)
+			{
+				c.getDestination().getActor().setRouteAvailable(false);
+				c.getDestination().getActor().toggleHighlight(false);
+			}
+			
+			// Adds the connection to route ArrayList:
+			route.add(connection);
+			
+			// Makes the new adjacent connections clickable:
+			ArrayList<Connection> adj = getAdjacentConnections();	
+			for(Connection c: adj)
+			{
+				c.getDestination().getActor().setRouteAvailable(train, c);
+				c.getDestination().getActor().toggleHighlight(true);
+			}
+			
+			// Shows the UI blips for that connection:
+			showConnectionBlips(connection);
+			
+			// Sets booleans to false so the train does not move and the route
+			//is not complete:
+			isComplete = false;
+			train.getActor().canMove = false;
+			
+			updateRouteText();
 		}
-		
-		route.add(connection);
-		
-		ArrayList<Connection> adj = getAdjacentConnections();	
-		
-		//Adds new ones:
-		for(Connection c: adj)
+		else
 		{
-			c.getDestination().getActor().setRouteAvailable(train, c);
-			c.getDestination().getActor().toggleHighlight(true);
-			
-			// showConnectionBlips(c);
+			// Player has insufficient fuel to add connection to route, Warning message:
+			WarningMessage.fireWarningWindow("INSUFFICIENT FUEL!", "You need " + fuelCost
+					+ " more " + train.getFuelType());
 		}
-		
-		showConnectionBlips(connection);
-		
-		isComplete = false;
-		train.getActor().canMove = false;
-		
-		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
-		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
 	}
 
 	/**
 	 * Removes the latest connection from the route.
 	 * Used to undo latest addition.
+	 * @return returns true if remove successful
 	 */
-	public void removeConnection()
+	public boolean removeConnection()
 	{
 		if(!route.isEmpty())
 		{	
-			hideConnectionBlips(route.get(route.size() - 1));
-			
-			ArrayList<Connection> currentConnection = getAdjacentConnections();	
-		
-			// Removes the possible adjacent connections: 
-			for(Connection c : currentConnection)
+			// If the route trying to be removed has already been traversed...
+			if((route.get(route.size() - 1) == route.get(routeIndex) && connectionTravelled == 0) || route.get(route.size() - 1) != route.get(routeIndex))
 			{
-				c.getDestination().getActor().setRouteAvailable(false);
-				c.getDestination().getActor().toggleHighlight(false);
+				hideConnectionBlips(route.get(route.size() - 1));
 				
-				//train.route.hideConnectionBlips(c);
-			}
-			
-			// Remove the connection from the route:
-			route.remove(route.size() - 1);
-			
-			// Updates the route information window text:
-			Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
-			Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
+				ArrayList<Connection> currentConnection = getAdjacentConnections();	
+				
+				// Removes the possible adjacent connections: 
+				for(Connection c : currentConnection)
+				{
+					c.getDestination().getActor().setRouteAvailable(false);
+					c.getDestination().getActor().toggleHighlight(false);
 					
-			//Toggles the current selection for the new route:
-			currentConnection = getAdjacentConnections();	
-			for(Connection c: currentConnection)
-			{
-				c.getDestination().getActor().setRouteAvailable(train, c);
-				c.getDestination().getActor().toggleHighlight(true);
+					//train.route.hideConnectionBlips(c);
+				}
 				
-				//train.route.showConnectionBlips(c);
+				// Refund player:
+				
+				int fuelCost = train.getFuelLengthCost(route.get(route.size() - 1).getLength());
+				train.getOwner().addFuel(train.getFuelType(), fuelCost);
+				
+				// Remove the connection from the route:
+				route.remove(route.size() - 1);
+				
+				updateRouteText();
+				
+				//Toggles the current selection for the new route:
+				currentConnection = getAdjacentConnections();	
+				for(Connection c: currentConnection)
+				{
+					c.getDestination().getActor().setRouteAvailable(train, c);
+					c.getDestination().getActor().toggleHighlight(true);
+					
+					//train.route.showConnectionBlips(c);
+				}
+				return true;
 			}
+			return false;
 		}
+		else
+			return false;
+	}
+	
+	/**
+	 * Removes all connections from the route and resets the train position to the last station it past.
+	 * Can be used to reset a train when it collides with another or when a route is completely aborted.
+	 */
+	public void abortRoute()
+	{	
+		currentMapObj = route.get(routeIndex).getStartMapObj();
+		hideRouteBlips();
+		updateRouteText();
+		
+		while(removeConnection()){}
+		
+		routeIndex = 0;
+		connectionTravelled = 0;
+	}
+	
+	/**
+	 * A repeated undo
+	 */
+	public void cancelRoute()
+	{
+		hideRouteBlips();
+				
+		while(removeConnection()){}
+				
+		showRouteBlips();
+		updateRouteText();
+	}
+	
+	/**
+	 * Updates the text displaying the route information:
+	 */
+	public void updateRouteText()
+	{
+		Game_Map_Manager.routeLength.setText(String.format("Route length: %.1f", getTotalLength()));
+		Game_Map_Manager.routeRemaining.setText(String.format("Route remaining: %.1f", getLengthRemaining()));
+		Game_Map_Manager.routeFuelCost.setText(String.format("Fuel cost (%s): %d", train.getFuelType(), train.getFuelRouteCost()));
 	}
 	
 	/**
@@ -263,10 +345,16 @@ public class Route{
 		{
 			MapObj startMapObj = route.get(routeIndex).getStartMapObj();
 			
+			// Gets the coordinates of the starting station of the current connection:
 			Vector2 pos = new Vector2(startMapObj.x, startMapObj.y);
+			
+			// Copies the vector for the connection direction so we can scale:
 			Vector2 vect = route.get(routeIndex).getVector().cpy();
-				
+			
+			// Scales the vector by the connectionTravelled
 			vect.scl(connectionTravelled);
+			
+			// Adds the starting startion and scaled vector to get exact train position:
 			pos.add(vect);
 
 			return pos;
@@ -359,19 +447,27 @@ public class Route{
 	 */
 	public void update(float moveBy)
 	{
+		// gets the length of the current connection:
 		float connectionLength = route.get(routeIndex).getLength();
 		
+		// If the train is still on the same connection, update conenctionTravelled:
 		if(connectionTravelled + moveBy < connectionLength)
 			connectionTravelled += moveBy;
 		else
 		{
+			// Completes the current connection and progresses onto the next using
+			// the route index, which then progresses the difference of that connection:
+			
 			float diff = Math.abs(connectionTravelled + moveBy - connectionLength);
 			currentMapObj = route.get(routeIndex).getDestination();
 			
 			routeIndex++;
 			connectionTravelled = 0;
+			
+			// Triggers a listener so we can implement station tax and Goal completion validation:
 			notifyStationPassed();
 			
+			// If route not complete, recursively call itself with a new distance to travel:
 			if(routeIndex < route.size())
 				update(diff);
 			else
@@ -409,7 +505,7 @@ public class Route{
 		for(RouteListener listener: listeners)
 		{
 			if(currentMapObj.getStation() != null)
-				listener.stationPassed(currentMapObj.getStation());
+				listener.stationPassed(currentMapObj.getStation(), train);
 		}
 	}
 }

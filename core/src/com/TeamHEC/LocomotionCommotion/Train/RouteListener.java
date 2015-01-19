@@ -4,6 +4,6 @@ import com.TeamHEC.LocomotionCommotion.Map.Station;
 
 public interface RouteListener {
 	
-	public void stationPassed(Station station);
+	public void stationPassed(Station station, Train train);
 
 }

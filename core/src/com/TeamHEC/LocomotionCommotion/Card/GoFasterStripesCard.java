@@ -11,7 +11,7 @@ public class GoFasterStripesCard extends Card {
 
 	public GoFasterStripesCard(Player player)
 	{
-		super(player, Game_TextureManager.getInstance().game_card_gofasterstripescard);
+		super(player, Game_TextureManager.getInstance().game_card_gofasterstripescard, "GoFasterStripes");
 	}
 	
 	@Override

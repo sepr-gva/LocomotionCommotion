@@ -5,6 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+/**
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ * @author Rob
+ */
+
 public class Sprite extends Actor{
 	
 	private float actorX, actorY;
@@ -30,17 +35,26 @@ public class Sprite extends Actor{
 		return actorTexture;
 	}
 	
+	/**
+	 * @param t the new texture for the sprite
+	 */
 	public void setTexture(Texture t)
 	{
 		actorTexture = t;
 	}
 	
+	/**
+	 * Can be overridden as an annoymous class to be used like a thread
+	 */
 	@Override
 	public void act(float delta)
 	{
 		
 	}
 	
+	/**
+	 * Draws a texture at specific coordinates:
+	 */
 	@Override
 	public void draw(Batch batch, float alpha)
 	{
@@ -95,4 +109,5 @@ public class Sprite extends Actor{
 		actorX = x;
 		actorY = y;
 	}
+	
 }
