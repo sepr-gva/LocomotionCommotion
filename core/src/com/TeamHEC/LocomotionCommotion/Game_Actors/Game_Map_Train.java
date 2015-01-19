@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 public class Game_Map_Train extends Actor{
 	
@@ -70,16 +71,29 @@ public class Game_Map_Train extends Actor{
 		if(Game_Map_Manager.trainInfo.train == train)
 		{
 			Game_Map_Manager.trainInfo.makeVisible(false);			
-			Game_Map_Manager.trainInfo.train = null;		
+			
+			if(Game_Map_Manager.trainInfo.train.route.inStation())
+				Game_Map_Manager.trainInfo.train.route.getStation().actor.showInfoBox();
+			
+			Game_Map_Manager.trainInfo.train = null;
+			
+			
 		}
 		else
 		{
 			Game_Map_Manager.trainInfo.showLabel(train);
 			
-			// Showing both the station and the train if they are ontop of eachother
 			if(Game_Map_Manager.trainInfo.train.route.inStation())
-				Game_Map_Manager.trainInfo.train.route.getStation().actor.showInfoBox();
+				Game_Map_Manager.trainInfo.train.route.getStation().actor.hideInfoBox();
+			
+			// Showing both the station and the train if they are ontop of eachother
+			
 		}
+		
+
+		
+		
+			
 			
 		
 		if(PlayerGoals.chooseTrain && GameScreen.game.getPlayerTurn() == train.getOwner())

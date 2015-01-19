@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
@@ -32,7 +33,8 @@ public class Route{
 	
 	public Train train;
 	
-	private ArrayList<RouteListener> listeners = new ArrayList<RouteListener>();
+	// Safe to remove while using:
+	private CopyOnWriteArrayList<RouteListener> listeners = new CopyOnWriteArrayList<RouteListener>();
 	
 	/**
 	 * Creates an arrayList of connections (a route) for tge train to eventually follow
