@@ -1,8 +1,10 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
+import java.util.Random;
+
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Player.Shop;
 
 /**
  * 
@@ -22,8 +24,7 @@ public class GoldCard extends Card{
 	@Override
 	public void implementCard()
 	{
-		getOwner().addGold(100);
-		GameScreen.gold+=100;
-		// Need to destroy card instance here or something
+		Random random = new Random();
+		getOwner().addGold(Shop.cardPrice/2 + random.nextInt(Shop.cardPrice));
 	}
 }

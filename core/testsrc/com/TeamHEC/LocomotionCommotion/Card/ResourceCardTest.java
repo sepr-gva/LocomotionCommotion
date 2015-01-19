@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
+import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Electric;
@@ -18,35 +20,48 @@ import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.badlogic.gdx.graphics.Texture;
 
+@RunWith(GdxTestRunner.class)
 public class ResourceCardTest {
 	
 	Card card;
 	Player player;
 	String cardName;
 	Texture cardTexture;
+	int baseFuel;
 	
 	@Before
-	public void setUp() throws Exception {		
+	public void setUp() throws Exception {				
 		player = new Player(
 				"Alice",
 				0,
-				new Gold(500),
-				new Coal(500),
-				new Electric(500),
-				new Nuclear(500),
-				new Oil(500),
+				new Gold(baseFuel),
+				new Coal(baseFuel),
+				new Electric(baseFuel),
+				new Nuclear(baseFuel),
+				new Oil(baseFuel),
 				new ArrayList<Card>(),
 				new ArrayList<Goal>(),
 				new ArrayList<Train>()
 				);		
 		
-		cardName = "Name";
+		cardName = "Coal";
 		cardTexture = Game_TextureManager.getInstance().game_card_coalcard;	
 		card = new CoalCard(player); //Using CoalCard to test as ResourceCard is abstract
 	}
 
 	@Test
-	public void testImplementCard() {
+	public void testImplementCard() {		
+		card.implementCard();
+		assertTrue(
+				"Fuel value did not increase after card was implemented",
+				player.getFuel("Coal") > baseFuel);		
+		assertTrue("Oil value changed unexpectedly", 
+				player.getFuel("Oil") == baseFuel);
+		assertTrue("Electric value changed unexpectedly", 
+				player.getFuel("Electric") == baseFuel);
+		assertTrue("Nuclear value changed unexpectedly", 
+				player.getFuel("Nuclear") == baseFuel);
+		
 		
 	}
 
