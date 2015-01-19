@@ -69,25 +69,25 @@ public class Shop implements Serializable {
 		
 		if(fuelType == "Coal" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold(quantity * coalPrice);
+			customer.addGold((int)(quantity * coalSellPrice));
 		}
 		
 		
 		else if(fuelType == "Oil" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold(quantity * oilPrice);
+			customer.addGold((int)(quantity * oilSellPrice));
 		}
 		
 		
 		else if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold(quantity * electricPrice);
+			customer.addGold((int)(quantity * electricSellPrice));
 		}
 		
 		
 		else if(fuelType == "Nuclear" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
-			customer.addGold(quantity * nuclearPrice);
+			customer.addGold((int)(quantity * nuclearSellPrice));
 		}
 		else
 		{
