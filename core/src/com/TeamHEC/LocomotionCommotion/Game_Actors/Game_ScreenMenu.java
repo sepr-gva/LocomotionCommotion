@@ -4,12 +4,14 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Shop.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.Game_ShopManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
@@ -17,8 +19,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -82,7 +82,9 @@ public class Game_ScreenMenu {
 			currentPlayerName.setColor(1,1,1,1);
 			currentPlayerName.setX(Gdx.graphics.getWidth()-260);
 			currentPlayerName.setY(280);
-			
+
+
+			//Actors
 			game_menuobject_topbar = new Sprite(-20, Gdx.graphics.getHeight()- Game_TextureManager.getInstance().game_menuobject_topbar.getHeight() +10,
 					Game_TextureManager.getInstance().game_menuobject_topbar );
 			actors.add(game_menuobject_topbar);	
@@ -170,7 +172,7 @@ public class Game_ScreenMenu {
 					{
 						t.moveTrain();
 					}
-					
+
 					GameScreen.game.EndTurn();
 					Game_ScreenMenu.resourceActorManager.refreshResources();
 					Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
@@ -180,6 +182,7 @@ public class Game_ScreenMenu {
 							"     SCORE     "+ GameScreen.player2score+"     "+GameScreen.game.getPlayer2().getName()
 							+"     "+GameScreen.game.getPlayerTurn().getName()+" it's your turn ");
 					Game_ScreenMenu.actorManager.currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
+					GoalMenu.fillGoalScreen();
 				}
 			};
 			actors.add(game_menuobject_endturnbutton);
@@ -217,7 +220,7 @@ public class Game_ScreenMenu {
 
 						}			
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
-						}
+					}
 					else
 					{	Game_Shop.actorManager.open= false;
 					for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd(); i++){
@@ -279,9 +282,9 @@ public class Game_ScreenMenu {
 								GameScreen.getStage().getActors().get(i).setVisible(true);
 
 						}			
-					Game_startGameManager.getStartedWindow.setVisible(false);
-					Game_startGameManager.selectLabel.setVisible(false);
-					
+						Game_startGameManager.getStartedWindow.setVisible(false);
+						Game_startGameManager.selectLabel.setVisible(false);
+
 					}
 					else
 					{	
@@ -299,11 +302,14 @@ public class Game_ScreenMenu {
 				}
 			};
 			actors.add(game_menuobject_goalscreenbtn);
-			
+
+			//Resource Actors
+
+
 			//Add Labels
 			actors.add(playerScore);
 			actors.add(currentPlayerName);
-			
+
 			menuobjectsStageStart = stage.getActors().size;
 			menuobjectsStageEnd = menuobjectsStageStart+ actors.size-1;
 			for (Actor a : actors){
@@ -321,7 +327,7 @@ public class Game_ScreenMenu {
 
 
 		}
-		
+
 
 		public int getStageStart(){
 			return menuobjectsStageStart;
@@ -344,76 +350,7 @@ public class Game_ScreenMenu {
 
 
 	//Resources toggle button
-	public static class Game_resources_ToggleBtn extends Game_Actor {
-		public Game_resources_ToggleBtn(){
-			texture = Game_TextureManager.getInstance().game_menuobject_menubtn; // reuse the new game back btn texture
-			setActorX(10) ;
-			setActorY(30);
-			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
-			addListener(new InputListener(){
-				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-					((Game_resources_ToggleBtn)event.getTarget()).started = true;
-					return true;
-				}
-			});
-		}
-
-		public void act(float delta){
-			int expandedheight=180;
-			if(started){
-				if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded== false)
-				{	
-					//Move up button, bar and quantities
-					Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.setActorY(Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.getActorY()
-							+ expandedheight);
-					setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
-					Game_ScreenMenu.resourceActorManager.game_menuobject_resourcesbar.increaseY(expandedheight);
-					Game_ResourcesManager.setResourcesHeight(Game_ScreenMenu.resourceActorManager.cardQuant.getY()+expandedheight);
-					//move cards up
-					Game_ScreenMenu.resourceActorManager.game_card_togglebtn.increaseY(expandedheight);
-					Game_ScreenMenu.resourceActorManager.game_card_togglebtn.refreshBounds();
-					Game_CardHand.actorManager.organiseDeck();
-					Game_CardHand.actorManager.changeHeight(expandedheight);
-					Game_CardHand.actorManager.usecardbtn.setVisible(false);
-
-
-					Game_ScreenMenu.resourceActorManager.resourcebarexpanded= true;
-					for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
-						if (i > GameScreen.getStage().getActors().size-1){
-
-						}else
-							GameScreen.getStage().getActors().get(i).setVisible(true);
-
-					}			}
-				else
-				{	Game_ScreenMenu.resourceActorManager.resourcebarexpanded= false;
-				Game_CardHand.actorManager.usecardbtn.setVisible(false);
-				//Move up
-				Game_ScreenMenu.resourceActorManager.game_resources_togglebtn
-						.setActorY(Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.getActorY() - expandedheight);
-				setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
-				Game_ScreenMenu.resourceActorManager.game_menuobject_resourcesbar.increaseY(-expandedheight);
-				Game_ResourcesManager.setResourcesHeight(Game_ScreenMenu.resourceActorManager.cardQuant.getY()-expandedheight);
-
-				Game_ScreenMenu.resourceActorManager.game_card_togglebtn.increaseY(-expandedheight);
-				Game_ScreenMenu.resourceActorManager.game_card_togglebtn.refreshBounds();
-				Game_CardHand.actorManager.selectedCard=0;
-				Game_CardHand.actorManager.changeHeight(-expandedheight);
-				Game_CardHand.actorManager.organiseDeck();
-				//end
-				for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
-					if (i > GameScreen.getStage().getActors().size-1){
-
-					}else
-						GameScreen.getStage().getActors().get(i).setVisible(true);
-
-				}
-
-				}
-				started = false;
-			}
-		}
-	}
+	
 
 	//Resources
 	public static class Game_ResourcesManager {
@@ -421,8 +358,7 @@ public class Game_ScreenMenu {
 		private  Array<Actor> visibleActors = new Array<Actor>();
 
 		public Sprite game_menuobject_resourcesbar;
-		public Game_resources_ToggleBtn game_resources_togglebtn;
-		public SpriteButton game_card_togglebtn;
+		public SpriteButton game_card_togglebtn,game_resources_togglebtn;
 		public boolean resourcebarexpanded = false;
 		public static  int  resourcesStageStart;
 
@@ -457,7 +393,61 @@ public class Game_ScreenMenu {
 			game_menuobject_resourcesbar = new Sprite(-13,-175,Game_TextureManager.getInstance().game_menuobject_resourcesbar);
 			visibleActors.add(game_menuobject_resourcesbar);
 
-			game_resources_togglebtn = new Game_resources_ToggleBtn();
+			game_resources_togglebtn = new SpriteButton(10,30,Game_TextureManager.getInstance().game_menuobject_menubtn){
+				@Override
+				protected void onClicked(){
+					int expandedheight=180;
+					if (Game_ScreenMenu.resourceActorManager.resourcebarexpanded== false)
+					{	
+						//Move up button, bar and quantities
+						Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.setY(Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.getY()
+								+ expandedheight);
+						setBounds(getX(),getY(),getTexture().getWidth(),getTexture().getHeight());
+						Game_ScreenMenu.resourceActorManager.game_menuobject_resourcesbar.increaseY(expandedheight);
+						Game_ResourcesManager.setResourcesHeight(Game_ScreenMenu.resourceActorManager.cardQuant.getY()+expandedheight);
+						//move cards up
+						Game_ScreenMenu.resourceActorManager.game_card_togglebtn.increaseY(expandedheight);
+						Game_ScreenMenu.resourceActorManager.game_card_togglebtn.refreshBounds();
+						Game_CardHand.actorManager.organiseDeck();
+						Game_CardHand.actorManager.changeHeight(expandedheight);
+						Game_CardHand.actorManager.usecardbtn.setVisible(false);
+
+
+						Game_ScreenMenu.resourceActorManager.resourcebarexpanded= true;
+						for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
+							if (i > GameScreen.getStage().getActors().size-1){
+
+							}else
+								GameScreen.getStage().getActors().get(i).setVisible(true);
+
+						}			}
+					else
+					{	Game_ScreenMenu.resourceActorManager.resourcebarexpanded= false;
+					Game_CardHand.actorManager.usecardbtn.setVisible(false);
+					//Move up
+					Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.setY(Game_ScreenMenu.resourceActorManager.game_resources_togglebtn.getY() - expandedheight);
+					setBounds(getX(),getY(),getTexture().getWidth(),getTexture().getHeight());
+					Game_ScreenMenu.resourceActorManager.game_menuobject_resourcesbar.increaseY(-expandedheight);
+					Game_ResourcesManager.setResourcesHeight(Game_ScreenMenu.resourceActorManager.cardQuant.getY()-expandedheight);
+
+					Game_ScreenMenu.resourceActorManager.game_card_togglebtn.increaseY(-expandedheight);
+					Game_ScreenMenu.resourceActorManager.game_card_togglebtn.refreshBounds();
+					Game_CardHand.actorManager.selectedCard=0;
+					Game_CardHand.actorManager.changeHeight(-expandedheight);
+					Game_CardHand.actorManager.organiseDeck();
+					//end
+					for(int i=Game_ResourcesManager.resourcesStageStart; i<=Game_ResourcesManager.resourcesStageStart +Game_ResourcesManager.resourcesStageEnd-1;i++){
+						if (i > GameScreen.getStage().getActors().size-1){
+
+						}else
+							GameScreen.getStage().getActors().get(i).setVisible(true);
+
+					}
+
+					}
+
+				}
+			};
 			visibleActors.add(game_resources_togglebtn);
 
 

@@ -3,19 +3,17 @@ package com.TeamHEC.LocomotionCommotion.Game_Actors;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
-import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
-import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalFactory;
+import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
+import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -30,7 +28,7 @@ public class Game_startGameManager {
 	public static int startGameActors;
 	public static Label selectLabel;
 	public static boolean player1 = true, inProgress = true;
-	public static Game_start_getStartedWindow getStartedWindow;
+	public static SpriteButton getStartedWindow;
 
 	public Game_startGameManager(){}
 
@@ -42,7 +40,14 @@ public class Game_startGameManager {
 		player1= true;
 		inProgress = true;
 
-		getStartedWindow= new Game_start_getStartedWindow();
+		getStartedWindow= new SpriteButton(300,400,Game_TextureManager.getInstance().game_start_getstartedwindow){
+			@Override
+			protected void onClicked(){
+				Game_startGameManager.selectLabel.setVisible(false);
+				this.setVisible(false);
+				
+			}
+		};
 		actors.add(getStartedWindow);
 
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
@@ -119,34 +124,4 @@ public class Game_startGameManager {
 		inProgress = true;
 	}
 
-	public static class Game_start_getStartedWindow extends Game_Actor {
-		public Game_start_getStartedWindow(){
-			texture = Game_TextureManager.getInstance().game_start_getstartedwindow; 
-			setActorX(300) ;
-			setActorY(400);
-			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
-			addListener(new InputListener(){
-				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-					((Game_start_getStartedWindow)event.getTarget()).started = true;
-					return true;
-				}
-			});
-
-		}
-
-
-		@Override
-		public void draw(Batch batch, float alpha){
-			batch.draw(texture,getActorX(),getActorY());
-		}
-
-		@Override
-		public void act(float delta){
-			if(started){
-				this.setVisible(false);
-				Game_startGameManager.selectLabel.setVisible(false);
-				started = false;
-			}
-		}
-	}
 }

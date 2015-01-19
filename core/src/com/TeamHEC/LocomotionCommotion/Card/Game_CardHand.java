@@ -3,14 +3,12 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Actor;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_ScreenMenu;
 import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
@@ -58,7 +56,7 @@ public class Game_CardHand {
 		public int selectedCard= 0;
 		public  int numberofcards;
 		//Actors
-		public Game_card_UseCardBtn usecardbtn;
+		public SpriteButton usecardbtn;
 
 		public Game_CardHandManager(){	}
 
@@ -85,7 +83,12 @@ public class Game_CardHand {
 				stage.addActor(a);
 				cardActors ++;					//Increment the number of cardActors
 			}
-			usecardbtn = new Game_card_UseCardBtn();//add the the usecardbtn to the stage
+			usecardbtn = new SpriteButton(1170,450,Game_TextureManager.getInstance().game_card_usecardbtn){
+				@Override
+				protected void onClicked(){
+					Game_CardHand.actorManager.useCard((Game_CardHand.actorManager.selectedCard)); //gets the selected card and sends it to the useCard method.
+				}
+			};//add the the usecardbtn to the stage
 			usecardbtn.setVisible(false);
 			stage.addActor(usecardbtn);
 
@@ -217,42 +220,42 @@ public class Game_CardHand {
 			return null;
 		}
 
-	
-	
-	private void createEmpties() 
-	{
-		HashMap<String, CardActor> cardslots = new HashMap<String, CardActor>(); //create an Hashmap of slots
-		cardslots = createSlots();		//create slots
 
-		for (int i=0;i<7;i++)				//run through all slots
+
+		private void createEmpties() 
 		{
-			String a = new Integer(i+1).toString();		//change the counter+1 to a string for recall in the hashmap 
-			cardslots.get(a).setEmpty(true);			//set slot as empty which means it does not get drawn
-			cardactors.add(cardslots.get(a));
-			actors.add(cardslots.get(a));//add it to the new card list
-		}
-		
-	}
+			HashMap<String, CardActor> cardslots = new HashMap<String, CardActor>(); //create an Hashmap of slots
+			cardslots = createSlots();		//create slots
 
-	private  HashMap<String, CardActor> createSlots() {
-		int heightY = -100;
-		int x = 1130;
-		HashMap<String, CardActor> cardslots = new HashMap<String, CardActor>();
-		cardslots.put("1", card1= new CardActor(null,x,heightY,false,1));
-		x-=130;																				 //Move card across to make them overlay on each other
-		cardslots.put("2", card2= new CardActor(null,x,heightY,false,2));
-		x-=130;
-		cardslots.put("3", card3= new CardActor(null,x,heightY,false,3));
-		x-=130;
-		cardslots.put("4", card4= new CardActor(null,x,heightY,false,4));
-		x-=130;
-		cardslots.put("5", card5= new CardActor(null,x,heightY,false,5));
-		x-=130;
-		cardslots.put("6", card6= new CardActor(null,x,heightY,false,6));
-		x-=130;
-		cardslots.put("7", card7= new CardActor(null,x,heightY,false,7));
-		return cardslots;
-	}
+			for (int i=0;i<7;i++)				//run through all slots
+			{
+				String a = new Integer(i+1).toString();		//change the counter+1 to a string for recall in the hashmap 
+				cardslots.get(a).setEmpty(true);			//set slot as empty which means it does not get drawn
+				cardactors.add(cardslots.get(a));
+				actors.add(cardslots.get(a));//add it to the new card list
+			}
+
+		}
+
+		private  HashMap<String, CardActor> createSlots() {
+			int heightY = -100;
+			int x = 1130;
+			HashMap<String, CardActor> cardslots = new HashMap<String, CardActor>();
+			cardslots.put("1", card1= new CardActor(null,x,heightY,false,1));
+			x-=130;																				 //Move card across to make them overlay on each other
+			cardslots.put("2", card2= new CardActor(null,x,heightY,false,2));
+			x-=130;
+			cardslots.put("3", card3= new CardActor(null,x,heightY,false,3));
+			x-=130;
+			cardslots.put("4", card4= new CardActor(null,x,heightY,false,4));
+			x-=130;
+			cardslots.put("5", card5= new CardActor(null,x,heightY,false,5));
+			x-=130;
+			cardslots.put("6", card6= new CardActor(null,x,heightY,false,6));
+			x-=130;
+			cardslots.put("7", card7= new CardActor(null,x,heightY,false,7));
+			return cardslots;
+		}
 	}
 
 
@@ -356,49 +359,4 @@ public class Game_CardHand {
 
 	}
 
-	//Card Hand Actors----------------------------------------------------------------------------------------------
-	//Use Card Button
-	public static class Game_card_UseCardBtn extends Game_Actor {
-		/*
-		 * @author Robert Precious <rp825@york.ac.uk>
-		 * 
-		 * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
-		 * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
-		 * @param actorX	The x coordinate of the bottom left corner of the image
-		 * @param actorY	The y coordinate of the bottom left corner of the image
-		 * @param started	Boolean used to show if an Actor has been interacted with. Used to stop and start interactions.
-		 * 
-		 * setBounds	This is the bounds for the interaction, we make it the whole image.
-		 * addListener	This adds a listener for a particular interaction in this case touchDown (click)
-		 * draw			Actor is drawn
-		 * act			The action taken if the listener detects interaction
-		 * refreshbounds 	resets the action area
-		 * 				Action- calls usecard method in CardHandManager
-		 */
-		public Game_card_UseCardBtn(){
-			texture = Game_TextureManager.getInstance().game_card_usecardbtn; 
-			setActorX(1170);
-			setActorY(450);
-			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
-
-			addListener(new InputListener(){
-				public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-					((Game_card_UseCardBtn)event.getTarget()).started = true;
-					return true;
-				}
-			});
-		}
-		public void act(float delta){
-			if(started){
-				Game_CardHand.actorManager.useCard((Game_CardHand.actorManager.selectedCard)); //gets the selected card and sends it to the useCard method.
-				started= false;
-			}
-		}
-
-		public void refreshBounds(){
-			setBounds(getActorX(),getActorY(),texture.getWidth(),texture.getHeight());
-
-		}
-
-	}
 }

@@ -95,4 +95,5 @@ public class Sprite extends Actor{
 		actorX = x;
 		actorY = y;
 	}
+	
 }

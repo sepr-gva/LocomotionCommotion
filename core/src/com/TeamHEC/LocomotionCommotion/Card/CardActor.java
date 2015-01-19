@@ -85,8 +85,8 @@ public class CardActor extends Actor {
 					Game_CardHand.actorManager.selectedCard=this.getSlot();		//sets the this card to be selected
 					Game_CardHand.actorManager.usecardbtn.setVisible(true);		//makes the use card button to visible
 					this.cardExpand();										//raises the card
-					Game_CardHand.actorManager.usecardbtn.setActorX(this.actorX+40);				//moves the usecardbutton to above it
-					Game_CardHand.actorManager.usecardbtn.setActorY(this.actorY+350);			//moves the usecardbutton to above it
+					Game_CardHand.actorManager.usecardbtn.setX(this.actorX+40);				//moves the usecardbutton to above it
+					Game_CardHand.actorManager.usecardbtn.setY(this.actorY+350);			//moves the usecardbutton to above it
 
 				}
 				Game_CardHand.actorManager.usecardbtn.refreshBounds();		//refreshes the use card button action area

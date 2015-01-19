@@ -343,6 +343,16 @@ public class GoalMenu {
 		return 0;
 
 	}
+	
+	public static void fillGoalScreen(){
+		ArrayList<Goal> goals = new ArrayList<Goal>();
+		GoalFactory factory = new GoalFactory();
+		
+		for (int i=0; i<9; i++){
+				goals.add(factory.CreateRandomGoal());
+		}
+		GoalMenu.AddGoalToScreen(goals);
+	}
 
 	/*
 	 * Serializes all actors and stores them in an array. This and the Game object
