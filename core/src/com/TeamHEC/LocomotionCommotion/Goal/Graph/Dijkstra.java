@@ -23,7 +23,7 @@ public class Dijkstra {
 		initialiseGraph();
 	}
 
-	public static void computePaths(Node source){
+	public void computePaths(Node source){
 		source.minDistance = 0;
 		PriorityQueue<Node> NodeQueue = new PriorityQueue<Node>();
 		NodeQueue.add(source);
@@ -47,7 +47,7 @@ public class Dijkstra {
 		}
 	}
 
-	public static List<Node> getShortestPathTo(Node target)
+	public List<Node> getShortestPathTo(Node target)
 	{
 		List<Node> path = new ArrayList<Node>();
 		for (Node Node = target; Node != null; Node = Node.previous)
@@ -55,6 +55,8 @@ public class Dijkstra {
 		Collections.reverse(path);
 		return path;
 	}
+	
+	
 	
 	public Node lookUpNode(MapObj mapObj)
 	{

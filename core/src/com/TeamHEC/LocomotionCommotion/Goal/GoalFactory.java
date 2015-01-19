@@ -27,10 +27,14 @@ public class GoalFactory{
 		cardFactory = new CardFactory(null);
 		random = new Random();
 	}	
-	private int genReward(){
+	private int genReward(Station sstation, Station fstation){
+		Dijkstra d = new Dijkstra();
+		d.computePaths(d.lookUpNode(sstation));
+		double rew = d.lookUpNode(fstation).minDistance;
 		
 		
-		return 1;
+		
+		return (int) rew;
 	}
 	
 	
@@ -62,8 +66,7 @@ public class GoalFactory{
 		while (sStation.getName() == fStation.getName())
 			fStation = newFStation();		
 		String cargo;
-		int reward = 1;
-				//Dijkstra(sStation, fStation);
+		int reward = genReward(sStation, fStation);
 				
 		if(random.nextInt(2) == 0)
 			cargo = "Passenger";

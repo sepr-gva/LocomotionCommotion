@@ -8,7 +8,7 @@ import java.util.Collections;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 
-class Node implements Comparable<Node>
+public class Node implements Comparable<Node>
 {
   
   public final MapObj mapobj;
