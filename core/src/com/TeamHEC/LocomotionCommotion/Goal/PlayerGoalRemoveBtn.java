@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.graphics.Texture;
 

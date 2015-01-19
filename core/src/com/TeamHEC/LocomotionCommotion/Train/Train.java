@@ -3,8 +3,8 @@ package com.TeamHEC.LocomotionCommotion.Train;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Train;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Train;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 

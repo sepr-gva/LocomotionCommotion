@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.graphics.Texture;
 
 /**

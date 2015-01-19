@@ -1,13 +1,21 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ * This is the Class for the card actor, It functions the same way as Sprite/SpriteButton. 
+ * @param started - This is used to tell the renderer that the listener has been triggered
+ * @param expanded - This is used to tell whether the card is raise above the overs (expanded)
+ * @param empty - A card can be empty and not have a texture
+ *
+ */
 public class CardActor extends Actor {
 		boolean started = false;
 		private boolean expanded =false;
@@ -139,7 +147,7 @@ public class CardActor extends Actor {
 			this.empty=b;
 		}
 
-		//cardExpand- Calls Organise deck, moves the card up, updates the expanded boolean, and refreshes bounds.
+		//cardExpand- Calls Organize deck, moves the card up, updates the expanded boolean, and refreshes bounds.
 		public void cardExpand(){
 			Game_CardHand.actorManager.organiseDeck();
 			this.actorY+=200;

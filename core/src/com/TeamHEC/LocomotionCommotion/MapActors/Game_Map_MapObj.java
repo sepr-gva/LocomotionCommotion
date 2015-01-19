@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Train.Train;

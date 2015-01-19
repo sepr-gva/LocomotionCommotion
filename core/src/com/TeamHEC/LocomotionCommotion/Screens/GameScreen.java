@@ -3,15 +3,15 @@ package com.TeamHEC.LocomotionCommotion.Screens;
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Manager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -81,7 +81,7 @@ public class GameScreen implements Screen {
 		PlayerGoals ticketManager = new PlayerGoals();
 		ticketManager.create(getStage());	
 		
-		Game_startGameManager startgameManager = new Game_startGameManager();
+		Game_StartingSequence startgameManager = new Game_StartingSequence();
 		startgameManager.create(getStage());
 		
 		Game_Shop shop = new Game_Shop();
@@ -175,7 +175,7 @@ public class GameScreen implements Screen {
 		Game_CardHand.actorManager.cardactors.clear();;
 		
 		//Map
-		Game_startGameManager.reset();
+		Game_StartingSequence.reset();
 		Game_Map_Manager.resetMap();
 	}
 }

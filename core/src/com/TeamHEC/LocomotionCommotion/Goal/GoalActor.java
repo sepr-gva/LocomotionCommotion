@@ -20,7 +20,7 @@ package com.TeamHEC.LocomotionCommotion.Goal;
  * act			The action taken if the listener detects interaction
  * 				Action- None
  */
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;

@@ -3,9 +3,6 @@ package com.TeamHEC.LocomotionCommotion.UI_Elements;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.ShopHomeScreen.Game_shop_card;
@@ -391,7 +388,7 @@ public class Game_Shop {
 			Game_Shop.actorManager.titleLabel.setText("Sell");
 
 			//Cost is different is selling
-			if(Game_Shop.actorManager.sell && !Game_startGameManager.inProgress)
+			if(Game_Shop.actorManager.sell && !Game_StartingSequence.inProgress)
 			{
 				Game_Shop.actorManager.carditem.costLabel.setText(""+1000*Shop.cardSellPrice);
 				Game_Shop.actorManager.coalitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.coalitem.quantityLabel.getText())*Shop.coalSellPrice);

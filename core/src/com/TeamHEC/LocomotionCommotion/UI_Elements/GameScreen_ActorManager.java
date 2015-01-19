@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
 import java.util.ArrayList;
 
@@ -6,14 +6,10 @@ import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.Game_ShopManager;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -327,8 +323,8 @@ public class GameScreen_ActorManager {
 
 					}	
 					//Hides the get Started Stuff when you first press goal Screen
-					Game_startGameManager.getStartedWindow.setVisible(false);
-					Game_startGameManager.selectLabel.setVisible(false);
+					Game_StartingSequence.getStartedWindow.setVisible(false);
+					Game_StartingSequence.selectLabel.setVisible(false);
 
 				}
 				else

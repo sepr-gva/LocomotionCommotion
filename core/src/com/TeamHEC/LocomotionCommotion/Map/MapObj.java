@@ -3,7 +3,7 @@ package com.TeamHEC.LocomotionCommotion.Map;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_MapObj;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_MapObj;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
