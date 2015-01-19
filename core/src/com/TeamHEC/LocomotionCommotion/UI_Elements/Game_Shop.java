@@ -260,8 +260,8 @@ public class Game_Shop {
 	//SHOP HOME Screen---------------------------------------------------------------
 	public static class ShopHomeScreen {
 		ArrayList<Actor> actors ;
-		public boolean buy=false;
-		public boolean sell=false;
+		public static boolean buy=false;
+		public static boolean sell=false;
 
 		public ShopHomeScreen(){
 			this.actors = new ArrayList<Actor>();
@@ -547,7 +547,13 @@ public class Game_Shop {
 				costLabel.setX(posx+ 160);
 				costLabel.setY(posy +43);
 				costLabel.setColor(0,0,0,1);
-				costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.coalPrice);
+				//Cost is different is selling
+				if(sell)
+				{
+					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.coalPrice*Shop.coalSellPrice);
+				}
+				else
+					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.coalPrice);
 
 				actors.add(quantityLabel);
 				actors.add(costLabel);
@@ -647,7 +653,14 @@ public class Game_Shop {
 				costLabel.setX(posx+ 160);
 				costLabel.setY(posy +43);
 				costLabel.setColor(0,0,0,1);
-				costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.oilPrice);
+				//Cost is different is selling
+				if(sell)
+				{
+					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.oilPrice*Shop.oilSellPrice);
+				}
+				else
+					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.oilPrice);
+
 
 				actors.add(quantityLabel);
 				actors.add(costLabel);
@@ -748,7 +761,14 @@ public class Game_Shop {
 				costLabel.setX(posx+ 160);
 				costLabel.setY(posy +43);
 				costLabel.setColor(0,0,0,1);
-				costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.electricPrice);
+				//Cost is different is selling
+				if(sell)
+				{
+					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.electricPrice*Shop.electricSellPrice);
+				}
+				else
+					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.electricPrice);
+
 
 				actors.add(quantityLabel);
 				actors.add(costLabel);
@@ -849,7 +869,14 @@ public class Game_Shop {
 				costLabel.setX(posx+ 160);
 				costLabel.setY(posy +43);
 				costLabel.setColor(0,0,0,1);
-				costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.nuclearPrice);
+				//Cost is different is selling
+				if(sell)
+				{
+					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.nuclearPrice*Shop.nuclearSellPrice);
+				}
+				else
+					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.nuclearPrice);
+
 
 				actors.add(quantityLabel);
 				actors.add(costLabel);
