@@ -15,6 +15,6 @@ public class CoalCard extends ResourceCard{
 
 	public CoalCard(Player player)
 	{
-		super(player, Game_TextureManager.getInstance().game_card_coalcard, "Coal");
+		super(player, Game_TextureManager.getInstance().game_card_coalcard, "Coal" );
 	}
 }

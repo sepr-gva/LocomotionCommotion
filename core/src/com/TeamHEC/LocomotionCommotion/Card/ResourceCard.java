@@ -30,7 +30,16 @@ public abstract class ResourceCard extends Card {
 		Random random = new Random();
 		int fuelToAdd = ((Shop.cardPrice/2) + random.nextInt(Shop.cardPrice)) / getFuelPrice();
 		getOwner().addFuel(fuelType, fuelToAdd);
-		GameScreen.oil+= fuelToAdd;
+		
+		if(fuelType == "Coal")
+			GameScreen.coal+= fuelToAdd;
+		if(fuelType == "Oil")
+			GameScreen.oil+= fuelToAdd;
+		if(fuelType == "Electric")
+			GameScreen.electricity+= fuelToAdd;
+		if(fuelType == "Nuclear")
+			GameScreen.nuclear+= fuelToAdd;
+		
 		Game_ScreenMenu.resourceActorManager.refreshResources();
 		// Need to destroy card instance here or something
 	}
