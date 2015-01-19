@@ -15,9 +15,7 @@ public class Shop {
 	  The shop can be used to buy more fuel, more trains, upgrade your existing trains and purchase Wildcards in
 		exchange for Gold. You can also sell existing resources in exchange for Gold.
 	*/
-	
-	private static final long serialVersionUID = 1L;
-	
+
 	private Player customer;
 	private CardFactory cardFactory;
 	

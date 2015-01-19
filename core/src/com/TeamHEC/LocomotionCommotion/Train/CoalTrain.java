@@ -11,10 +11,6 @@ import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 
 public class CoalTrain extends Train {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private static final int BASE_SPEED = 70;
 	private static final int VALUE = 200;
 		

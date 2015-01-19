@@ -9,7 +9,7 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 /**
  * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
- *
+ * Teleports a card
  */
 
 public class TeleportCard extends Card{
@@ -21,9 +21,7 @@ public class TeleportCard extends Card{
 	 so the user can choose a train and a new station...
 	 
 	*/
-	
-	private static final long serialVersionUID = 1L;
-	
+		
 	public TeleportCard(Player player)
 	{
 		super(player, Game_TextureManager.getInstance().game_card_teleportcard, "Teleport");

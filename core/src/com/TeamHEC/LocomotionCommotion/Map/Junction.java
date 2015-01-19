@@ -6,8 +6,6 @@ import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Junction;
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  */
 public class Junction extends MapObj {
-	
-	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Creates a Junction using it's coordinates as parameters

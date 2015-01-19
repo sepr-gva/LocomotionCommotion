@@ -6,23 +6,28 @@ import com.badlogic.gdx.graphics.Texture;
 /**
  * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
+ * @author Callum Hewitt <ch1194@york.ac.uk>
  *
  */
-
 public abstract class Card {
 	
 	private Player owner;
 	private Texture cardImage;
 	private String name;
 	
-	// The player can be initialised to null if necessary:
+	/**
+	 * Initialise's the Card's key parameters. Card is abstract so should only be called as super();
+	 * @param player The owner of the card.
+	 * @param image The texture used in displaying the card in the dock
+	 * @param name The name of the card. Eg. \"Coal\" or \"Teleport\"
+	 */
 	public Card(Player player, Texture image, String name)
 	{		
 		owner = player;	
 		cardImage = image;
 		this.name = name;
 	}
-		
+	
 	public Player getOwner()
 	{
 		return owner;
@@ -41,6 +46,9 @@ public abstract class Card {
 		return name;
 	}
 
+	/**
+	 * A method to be overridden in subclasses. This determines what happens when the card is used.
+	 */
 	public void implementCard(){}
 	
 }

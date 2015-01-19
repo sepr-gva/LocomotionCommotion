@@ -29,7 +29,6 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 
 public class Player implements RouteListener{
 
-	private static final long serialVersionUID = 1L;
 	private String name;
 	private int points;
 	private Gold gold;

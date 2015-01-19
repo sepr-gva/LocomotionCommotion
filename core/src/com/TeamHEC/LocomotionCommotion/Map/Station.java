@@ -13,8 +13,7 @@ import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Station;
  */
 
 public class Station extends MapObj{
-	
-	private static final long serialVersionUID = 1L;
+
 	private String name;
 	private Player owner;
 	private int baseValue;
