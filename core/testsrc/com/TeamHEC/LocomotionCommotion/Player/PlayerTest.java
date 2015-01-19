@@ -25,6 +25,11 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.OilTrain;
 import com.TeamHEC.LocomotionCommotion.Train.Route;
 
+/**
+ * 
+ * @author Elliot Bray <eb1033@york.ac.uk>
+ *
+ */
 
 @RunWith(GdxTestRunner.class)
 public class PlayerTest {
@@ -43,6 +48,7 @@ public class PlayerTest {
 	ArrayList<Station> stations = new ArrayList<Station>();
 	int[] lines = new int[8];
 	Player tester;
+	Station testStation;
 
 	HashMap<String, Fuel> playerFuel;
 
@@ -57,10 +63,8 @@ public class PlayerTest {
 		nuclear = new Nuclear(200);
 		cards = new ArrayList<Card>();
 		goals = new ArrayList<Goal>();
-		trains = new ArrayList<Train>();		
-		stations.add(new Station("London", 850, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f));		
-		trains.add(new OilTrain(0, true, new Route(stations.get(0)), tester));
-				
+		trains = new ArrayList<Train>();
+		
 		tester = new Player(
 				name,
 				points,
@@ -72,6 +76,10 @@ public class PlayerTest {
 				cards,	
 				goals,
 				trains);
+		
+		testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
+		tester.getTrains().add(new OilTrain(0, true, new Route(testStation), tester));
+		tester.purchaseStation(testStation);
 	}
 
 	@After
@@ -155,10 +163,6 @@ public class PlayerTest {
 
 	@Test
 	public void testPurchaseStation() {
-		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
-		Station testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
-		tester.getTrains().add(new OilTrain(0, true, new Route(testStation), tester));
-		tester.purchaseStation(testStation);
 		assertTrue("Station 1 was not purchased correctly", tester.getStations().get(0) == testStation);
 		assertTrue("incorrect gold value was removed", tester.getGold() == (1000 - testStation.getBaseValue()));
 		assertTrue("Lines are added incorrectly", tester.getLines()[0] == 0);
@@ -186,10 +190,8 @@ public class PlayerTest {
 
 	@Test
 	public void testSellStation() {
-		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
-		Station testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
-		tester.getTrains().add(new OilTrain(0, true, new Route(testStation), tester));
-		tester.purchaseStation(testStation);
+		//SELL STATION IS CURRENTLY COMMENTED OUT DUE TO NOT BEING SUPPORTED HOWEVER IT WAS TESTING SUCCESSFULLY
+		/*
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Red, Line.Red}, 50, 731f, 560f);
 		tester.addGold(950);
 		tester.getTrains().add(new OilTrain(0, true, new Route(testStation2), tester));
@@ -201,7 +203,8 @@ public class PlayerTest {
 		assertTrue("incorrect gold was refunded", tester.getGold() == 700);
 		assertTrue("both stations were removed", tester.getStations().contains(testStation2));
 		tester.sellStation(testStation);
-		assertFalse("station was sold when not owned", tester.getGold() == 1400);		
+		assertFalse("station was sold when not owned", tester.getGold() == 1400);
+		*/		
 	}
 
 	@Test
@@ -211,10 +214,6 @@ public class PlayerTest {
 	
 	@Test
 	public void testLineBonuses() {
-		tester = new Player(name, points, gold, coal, electric, nuclear, oil, cards, goals, trains);
-		Station testStation = new Station("London", 850, new Coal(500), 100, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f);
-		tester.getTrains().add(new OilTrain(0, true, new Route(testStation), tester));
-		tester.purchaseStation(testStation);
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Black, Line.Red}, 50, 731f, 560f);
 		tester.addGold(950);
 		tester.getTrains().add(new OilTrain(0, true, new Route(testStation2), tester));
@@ -222,7 +221,7 @@ public class PlayerTest {
 		tester.lineBonuses();
 		assertTrue("Resource out != 100", tester.getStations().get(0).getBaseResourceOut() == 100);
 		assertTrue("scaling of base value fails", (int)(tester.getStations().get(0).getBaseResourceOut() * 0.05) == 5);
-		assertTrue("bonuses ere incorrectly set", tester.getStations().get(0).getResourceOutMod() == (int)(tester.getStations().get(0).getBaseResourceOut() * 0.05 * 2));
+		assertTrue("bonuses ere incorrectly set", tester.getStations().get(0).getResourceOutMod() == (int)(tester.getStations().get(0).getBaseResourceOut() * 0.05 * 4));
 		assertTrue("bonuses ere incorrectly set", tester.getStations().get(1).getResourceOutMod() == (int)(tester.getStations().get(1).getBaseResourceOut() * 0.05 * 4));
 		tester.sellStation(testStation);
 		tester.sellStation(testStation2);
