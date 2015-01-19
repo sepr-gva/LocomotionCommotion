@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
+import com.TeamHEC.LocomotionCommotion.Goal.Graph.Dijkstra;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 //import com.TeamHEC.LocomotionCommotion.Map.Connection;
 //import com.TeamHEC.LocomotionCommotion.Map.MapObj;
@@ -26,7 +27,16 @@ public class GoalFactory{
 		cardFactory = new CardFactory(null);
 		random = new Random();
 	}	
-
+	private int genReward(){
+		
+		
+		return 1;
+	}
+	
+	
+	
+	
+	
 	private Station newSStation(){ 
 		Station st = stations.get(random.nextInt(stations.size()));
 		return st;  
@@ -37,23 +47,7 @@ public class GoalFactory{
 		return st;
 
 	}
-	//	private Station NewFStation(Station sstation,ArrayList<Station> wastelist, int itr,int length){
-	//		if (itr == 0){   
-	//			Length = length;
-	//			return sstation; //return statement?
-	//		}
-	//		ArrayList<Connection> choices = sstation.getConnections();
-	//		MapObj st = choices.get(r.nextInt(choices.size())).getDestination();
-	//		while (wastelist.contains(st)){
-	//			st = choices.get(r.nextInt(choices.size())).getDestination();
-	//		}
-	//		//blind coded, needs testing, should work in theory
-	//		//check name, case statement for junctions
-	//		//return string of station
-	//		wastelist.add(st);
-	//		itr = itr - 1;
-	//		return NewFStation(st, wastelist, itr, length + st.getLength() );      
-	//	}
+
 
 	public Card genCard(){
 		return cardFactory.createAnyCard();     
@@ -68,7 +62,8 @@ public class GoalFactory{
 		while (sStation.getName() == fStation.getName())
 			fStation = newFStation();		
 		String cargo;
-		int reward = getLength(sStation, fStation);
+		int reward = 1;
+				//Dijkstra(sStation, fStation);
 				
 		if(random.nextInt(2) == 0)
 			cargo = "Passenger";

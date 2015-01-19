@@ -42,7 +42,7 @@ public class Station extends MapObj{
 	
 	public Station(String name, int baseValue, Resource resourceType, int baseFuelOut, Line[] line, int rentValue, float x, float y)
 	{
-		super(x, y);
+		super(x, y, name);
 		
 		// Creates a map blip for this station
 		actor = new Game_Map_Station(this, x, y);

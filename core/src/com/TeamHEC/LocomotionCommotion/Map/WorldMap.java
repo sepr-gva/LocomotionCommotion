@@ -45,7 +45,7 @@ public class WorldMap implements Serializable{
 	public final Station WARSAW = new Station("Warsaw", 950, new Coal(500), 100, new Line[]{Line.Red, Line.Orange, Line.Orange}, 50, 861f, 560f);
 	
 	// Creates Junction MapObjs with specified coordinates:
-	public final Junction[] junction = new Junction[]{new Junction(731f, 430f), new Junction(991f, 560f)};
+	public final Junction[] junction = new Junction[]{new Junction(731f, 430f, "Junction1"), new Junction(991f, 560f, "Junction2")};
 	
 	// Adds all the created stations to an ArrayList for later access:
 	public ArrayList<Station> stationsList = new ArrayList<Station>() {	 		 

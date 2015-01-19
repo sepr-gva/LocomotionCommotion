@@ -12,9 +12,9 @@ public class Junction extends MapObj {
 	/**
 	 * Creates a Junction using it's coordinates as parameters
 	 */
-	public Junction(float xPos, float yPos)
+	public Junction(float xPos, float yPos, String name)
 	{
-		super(xPos, yPos);
+		super(xPos, yPos, name);
 		actor = new Game_Map_Junction(this, x, y);
 	}
 }

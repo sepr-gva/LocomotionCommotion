@@ -16,16 +16,26 @@ public class MapObj implements Serializable{
 	public Game_Map_MapObj actor;
 	public ArrayList<Connection> connections = new ArrayList<Connection>();
 	public float x, y;
+	private String name;
 	
 	/**
 	 * Every Station and Junction on the map
 	 * @param x xPosition on map
 	 * @param y yPosition on map
 	 */
-	public MapObj(float x, float y)
+	public MapObj(float x, float y, String name)
 	{
 		this.x = x;
 		this.y = y;
+		this.name = name;
+	}
+	
+	/**
+	 * Returns the name of the station or junction the MapObj represents
+	 */
+	public String getName()
+	{
+		return name;
 	}
 	
 	/**
