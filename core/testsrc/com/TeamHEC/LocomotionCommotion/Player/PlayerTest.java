@@ -57,7 +57,10 @@ public class PlayerTest {
 		nuclear = new Nuclear(200);
 		cards = new ArrayList<Card>();
 		goals = new ArrayList<Goal>();
-		trains = new ArrayList<Train>();
+		trains = new ArrayList<Train>();		
+		stations.add(new Station("London", 850, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f));		
+		trains.add(new OilTrain(0, true, new Route(stations.get(0)), tester));
+				
 		tester = new Player(
 				name,
 				points,
@@ -69,8 +72,6 @@ public class PlayerTest {
 				cards,	
 				goals,
 				trains);
-		trains.add(new OilTrain(0, true, new Route(stations.get(0)), tester));
-		stations.add(new Station("London", 850, new Coal(500), 10, new Line[]{Line.Black, Line.Black, Line.Black}, 50, 471f, 300f));		
 	}
 
 	@After
