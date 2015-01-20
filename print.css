@@ -24,3 +24,6 @@ a{
 }
 a:link:after, a:visited:after { content:" [" attr(href) "] "; }
 
+h3 a{
+    display: none;
+}
