@@ -102,6 +102,7 @@ public class Game_Map_Train extends Actor{
 		if(PlayerGoals.chooseTrain && GameScreen.game.getPlayerTurn() == train.getOwner())
 		{
 			PlayerGoals.selectedGoal.assignTrain(train);
+			PlayerGoals.selectedGoal.setActor(PlayerGoals.selectedGoalActor);
 			WarningMessage.fireWarningWindow("Assigned Goal to Train!", "Plan your route");
 			PlayerGoals.chooseTrain = false;
 		}

@@ -102,13 +102,14 @@ public class GoalActor extends Actor {
 
 				if(!this.isEmpty())
 				{
-					if  (this.isPlanRouteButtonVisible()){
+					if(this.isPlanRouteButtonVisible()){
 						PlayerGoals.planRouteBtn.setVisible(false);
 						this.setPlanRouteButtonVisible(false);
 					}
 					else
 					{	
 						PlayerGoals.selectedGoal = goal;
+						PlayerGoals.selectedGoalActor = this;
 						PlayerGoals.planRouteBtn.setVisible(true);
 						PlayerGoals.planRouteBtn.setX(this.getX()+60);
 						PlayerGoals.planRouteBtn.setY(this.getY()+75);

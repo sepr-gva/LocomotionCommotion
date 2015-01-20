@@ -28,6 +28,8 @@ public class Goal implements RouteListener{
 	private boolean stationViaPassed;
 	private boolean finalStationPassed;
 	
+	public static GoalActor goalActor;
+	
 	/**
 	 * Initialises the goal.
 	 * @param startStation The Station the goal starts from
@@ -81,6 +83,11 @@ public class Goal implements RouteListener{
 		return startDate;
 	}
 	
+	public void setActor(GoalActor actor)
+	{
+		goalActor = actor;
+	}
+	
 	/**
 	 * Returns the name of the viaStation. Returns "Any" if StationVia is null.
 	 * @return The name of the viaStation. Returns "Any" if StationVia is null.
@@ -127,6 +134,13 @@ public class Goal implements RouteListener{
 		train.getOwner().addGold(getReward());
 		train.route.unregister(this);
 		
+		train.getOwner().getGoals().remove(this);
+		
+		//if(goalActor != null)
+		//{
+		//	goalActor.setPlanRouteButtonVisible(false);
+		//}
+		
 		startStationPassed = false;
 		stationViaPassed = false;
 		finalStationPassed = false;
@@ -134,7 +148,6 @@ public class Goal implements RouteListener{
 	
 	/**
 	 * Listener trigger when a train passes a station
-	 * 
 	 */
 	@Override
 	public void stationPassed(Station station, Train train)
@@ -142,15 +155,23 @@ public class Goal implements RouteListener{
 		if(train == this.train)
 		{
 			System.out.println(train.getName() +" passed " + station.getName());
-			//WarningMessage.fireWarningWindow(train.getName(), station.getName());;
 			
-			if(station == sStation)
+			if(station.equals(sStation))
+			{
 				startStationPassed = true;
-			else if(startStationPassed && station == fStation)
+				System.out.println("start passed");
+			}
+			if(startStationPassed && station.equals(fStation))
+			{
 				finalStationPassed = true;
-			else if(stationVia == null || (startStationPassed && station == stationVia))
+				System.out.println("final passed");
+			}
+			if(stationVia == null || (startStationPassed && station.equals(stationVia)))
+			{
 				stationViaPassed = true;
-			
+				System.out.println("via passed");
+			}
+						
 			if(startStationPassed && finalStationPassed && stationViaPassed)
 				goalComplete();
 		}
