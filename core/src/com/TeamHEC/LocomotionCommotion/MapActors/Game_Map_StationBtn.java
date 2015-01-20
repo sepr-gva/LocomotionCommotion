@@ -1,8 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;

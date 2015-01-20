@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.MapActors;
 
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.TrainInfoUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;

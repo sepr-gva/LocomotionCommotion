@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.Game_ShopManager;

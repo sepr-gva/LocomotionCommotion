@@ -3,8 +3,8 @@ package com.TeamHEC.LocomotionCommotion.UI_Elements;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.ShopHomeScreen.Game_shop_card;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.ShopHomeScreen.Game_shop_coal;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.ShopHomeScreen.Game_shop_electric;

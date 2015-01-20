@@ -1,7 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.MapActors;
 
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.graphics.Texture;

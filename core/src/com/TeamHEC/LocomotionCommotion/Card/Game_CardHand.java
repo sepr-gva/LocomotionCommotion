@@ -3,8 +3,8 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;

@@ -1,8 +1,8 @@
 package com.TeamHEC.LocomotionCommotion;
 
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;

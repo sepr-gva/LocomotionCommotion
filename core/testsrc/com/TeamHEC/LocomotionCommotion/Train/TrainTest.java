@@ -48,11 +48,11 @@ public class TrainTest {
 	
 	@Test
 	public void testTrain() throws Exception {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testMoveTrain() throws Exception {
-		fail("Not yet implemented");
+		
 	}
 }

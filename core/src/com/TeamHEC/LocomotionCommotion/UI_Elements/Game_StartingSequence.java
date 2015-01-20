@@ -3,11 +3,11 @@ package com.TeamHEC.LocomotionCommotion.UI_Elements;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalFactory;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
