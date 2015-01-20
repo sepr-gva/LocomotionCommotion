@@ -6,22 +6,23 @@ import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 public class Node implements Comparable<Node>
 {
   
-  public final MapObj mapobj;
+ public final MapObj mapobj;
+ 
  public Node(MapObj st) 
     {
-     this.mapobj = st;  //sets name of node to name of station
+     this.mapobj = st;  //sets node to the station/junction passed
        
      this.edges = new ArrayList<Edge>(); 
     } 
    
- public ArrayList<Edge> edges;
+ 	public ArrayList<Edge> edges;
     public double minDistance = Double.POSITIVE_INFINITY;
     public Node previous;    
     
    
     public MapObj getMapObj() 
     {
-     return mapobj; //returns name of node
+     return mapobj; // not really needed as mapobj is public 
     }
     
     

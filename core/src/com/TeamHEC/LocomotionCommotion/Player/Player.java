@@ -1,26 +1,21 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.GameScreen_ActorManager;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_startGameManager;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Player.Shop;
+import com.TeamHEC.LocomotionCommotion.Resource.Coal;
+import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
-import com.TeamHEC.LocomotionCommotion.Resource.Coal;
-import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Train.RouteListener;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -28,9 +23,8 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
  * @author Elliot Bray <eb1033@york.ac.uk>
  */
 
-public class Player implements Serializable, RouteListener{
+public class Player implements RouteListener{
 
-	private static final long serialVersionUID = 1L;
 	private String name;
 	private int points;
 	private Gold gold;
@@ -84,7 +78,7 @@ public class Player implements Serializable, RouteListener{
 	{
 		return name;
 	}
-	
+
 	/**
 	 * @return returns the players points
 	 */
@@ -97,30 +91,30 @@ public class Player implements Serializable, RouteListener{
 	public Shop getShop(){
 		return shop;
 	}
-	
+
 	public void buyCoal(int quantity)
 	{
-		shop.buyFuel("Coal", quantity);
+		shop.buyFuel("Coal", quantity, false);
 	}
 
 	public void buyOil(int quantity)
 	{
-		shop.buyFuel("Oil", quantity);
+		shop.buyFuel("Oil", quantity, false);
 	}
-	
+
 	public void buyElectric(int quantity)
 	{
-		shop.buyFuel("Electric", quantity);
+		shop.buyFuel("Electric", quantity, false);
 	}
 
 	public void buyNuclear(int quantity)
 	{
-		shop.buyFuel("Nuclear", quantity);
+		shop.buyFuel("Nuclear", quantity, false);
 	}
 
 	public void buyCard(int quantity)
 	{
-		shop.buyCard();
+		shop.buyCard(false);
 	}
 
 	//Fuel	
@@ -132,15 +126,15 @@ public class Player implements Serializable, RouteListener{
 	public void addFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).addValue(quantity);
-		if(!Game_startGameManager.inProgress)
-			GameScreen_ActorManager.refreshResources();
+		if(!Game_StartingSequence.inProgress)
+			GameScreenUI.refreshResources();
 	}
 
 	public void subFuel(String fuelType, int quantity)
 	{
 		playerFuel.get(fuelType).subValue(quantity);
-		if(!Game_startGameManager.inProgress)
-			GameScreen_ActorManager.refreshResources();
+		if(!Game_StartingSequence.inProgress)
+			GameScreenUI.refreshResources();
 	}
 
 	//Gold
@@ -152,15 +146,15 @@ public class Player implements Serializable, RouteListener{
 	public void addGold(int value)
 	{
 		gold.setValue(gold.getValue() + value);
-		if(!Game_startGameManager.inProgress)
-			GameScreen_ActorManager.refreshResources();
+		if(!Game_StartingSequence.inProgress)
+			GameScreenUI.refreshResources();
 	}
 
 	public void subGold(int value)
 	{
 		gold.setValue(gold.getValue() - value);
-		if(!Game_startGameManager.inProgress)
-			GameScreen_ActorManager.refreshResources();
+		if(!Game_StartingSequence.inProgress)
+			GameScreenUI.refreshResources();
 	}
 
 	//Cards
@@ -168,17 +162,17 @@ public class Player implements Serializable, RouteListener{
 	{
 		cards.add(card);
 	}
-	
+
 	public void discardCard(Card card)
 	{
 		cards.remove(card);
 	}
-	
+
 	public int getNumCards()
 	{
 		return cards.size();
 	}
-	
+
 	public ArrayList<Card> getCards()
 	{
 		return cards;
@@ -208,80 +202,80 @@ public class Player implements Serializable, RouteListener{
 	}
 
 	/**
-	 * @param station purchases the station for the player
+	 * @param station purchases the station for the player and keeps track of lines owned
 	 */
 	public void purchaseStation(Station station)
 	//If the player doesn't have enough gold or if the station is owned by a player or if the player does not 
 	//have a train in that station then nothing will happen
 	//There is space to add some sort of message for the player
 	{
-		boolean validPurchase = false;
-		for (int j=0; j < this.trains.size(); j ++)
+		for (int j=0; j < trains.size(); j ++)
 		{
-			if ((this.trains.get(j).isInStation() && this.trains.get(j).route.getStation().getOwner() == null) && (this.trains.get(j).getRoute().getStation() == station))
+			if(station.getOwner() == null)
 			{
-				if (this.getGold() >= station.getBaseValue())
+				if(trains.get(j).getRoute().getStation() == station)
 				{
-					validPurchase = true;				
-
+					if(getGold() >= station.getBaseValue())
+					{
+						stations.add(station);
+						this.subGold(station.getBaseValue());
+						for (int i=0; i<station.getLineType().length; i++)
+						{	
+							if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
+								//Line is an array of 3 line colours, this loop will add the first line colour
+								//then if a station is on another line of a different colour it will add that
+								//hence when i > 0 (checking the second colour) AND is a different colour to the previous colour
+								//add that colour to the players lines
+							{
+								switch(station.getLineType()[i])
+								{ //keeps track of how much of a line the player owns
+								case Red:
+									lines[0] += 1;	
+									break;
+								case Blue:
+									lines[1] += 1;
+									break;
+								case Green:
+									lines[2] += 1;
+									break;
+								case Yellow:
+									lines[3] += 1;
+									break;
+								case Purple: 
+									lines[4] += 1;
+									break;
+								case Black:
+									lines[5] += 1;
+									break;
+								case Brown:
+									lines[6] += 1;
+									break;
+								case Orange:
+									lines[7] += 1;
+									break;
+								default:
+									throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
+								}
+							}
+						}
+						station.setOwner(this);
+						this.lineBonuses();				
+					}
+					else
+					{
+						//WarningMessage.fireWarningWindow("Not enough gold", "");
+					}
 				}
 				else
 				{
-					//not enough gold
+					//WarningMessage.fireWarningWindow("Not in station", trains.get(j).getRoute().getStation().getName());
 				}
 			}
-		}
-		if (validPurchase)
-		{
-			stations.add(station);
-			this.subGold(station.getBaseValue());
-			for (int i=0; i<station.getLineType().length; i++)
-			{	
-				if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
-					//Line is an array of 3 line colours, this loop will add the first line colour
-					//then if a station is on another line of a different colour it will add that
-					//hence when i > 0 (checking the second colour) AND is a different colour to the previous colour
-					//add that colour to the players lines
-				{
-					switch(station.getLineType()[i])
-					{ //keeps track of how much of a line the player owns
-					case Red:
-						lines[0] += 1;	
-						break;
-					case Blue:
-						lines[1] += 1;
-						break;
-					case Green:
-						lines[2] += 1;
-						break;
-					case Yellow:
-						lines[3] += 1;
-						break;
-					case Purple: 
-						lines[4] += 1;
-						break;
-					case Black:
-						lines[5] += 1;
-						break;
-					case Brown:
-						lines[6] += 1;
-						break;
-					case Orange:
-						lines[7] += 1;
-						break;
-					default:
-						throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
-					}
-				}
+			else
+			{
+				//WarningMessage.fireWarningWindow("Already owned", "");
 			}
-			station.setOwner(this);
-			this.lineBonuses();
 		}
-		else
-		{
-			//Station is owned by a player already
-		}
-
 	}
 
 	public void sellStation(Station station)
@@ -333,13 +327,13 @@ public class Player implements Serializable, RouteListener{
 			station.purchaseStation(null);
 			this.lineBonuses();
 		}
-		*/
+		 */
 	}
 
 	@Override
 	public void stationPassed(Station station, Train train) {
 		// TODO Auto-generated method stub
-		
+
 		System.out.println("Train passed " + station.getName());
 
 		// STATION TAX:
@@ -349,7 +343,7 @@ public class Player implements Serializable, RouteListener{
 		{
 			this.subGold(station.getTotalRent());
 		}
-		*/
+		 */
 
 	}
 
@@ -452,7 +446,7 @@ public class Player implements Serializable, RouteListener{
 			//owning an entire line is worth an additional reward (3 stations 5%, 4 stations 10%, 5 stations 15%, 6 stations 20%)
 			//increase rent, resource and value by 5% per line you have a station connected too, this may be adjusted to due scaling at larger values
 			currentStation.setResourceOutMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseResourceOut() * 0.05)));
-			
+
 			//Rent not currently increased but is increased for later use anyway
 			currentStation.setRentValueMod(((red + blue + green + yellow + purple + black + brown + orange) * (int)(currentStation.getBaseRentValue() * 0.05)));
 			//Increasing value has no affect as stations cannot be currently be sold but if increased for later use anyway

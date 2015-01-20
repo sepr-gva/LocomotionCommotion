@@ -1,18 +1,14 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_MapObj;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_MapObj;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  */
 
-public class MapObj implements Serializable{
+public class MapObj {
 	
-	private static final long serialVersionUID = 1L;
-		
 	public Game_Map_MapObj actor;
 	public ArrayList<Connection> connections = new ArrayList<Connection>();
 	public float x, y;

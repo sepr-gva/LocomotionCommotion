@@ -1,13 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Train.SpeedUpgrade;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 
 public class GoFasterStripesCard extends Card {
-
-	private static final long serialVersionUID = 1L;
 
 	public GoFasterStripesCard(Player player)
 	{

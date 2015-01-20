@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
 import java.util.ArrayList;
 
@@ -6,14 +6,11 @@ import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.Game_ShopManager;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -29,7 +26,7 @@ import com.badlogic.gdx.utils.Array;
  * @author Robert Precious <rp825@york.ac.uk>
  * 
  */
-public class GameScreen_ActorManager {
+public class GameScreenUI {
 
 	private final static Array<Actor> actors = new Array<Actor>();
 
@@ -190,7 +187,7 @@ public class GameScreen_ActorManager {
 				}
 
 				GameScreen.game.EndTurn();
-				GameScreen_ActorManager.refreshResources();
+				GameScreenUI.refreshResources();
 				Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 				PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
 				Game_CardHand.actorManager.changePlayer(GameScreen.game.getPlayerTurn());
@@ -327,8 +324,8 @@ public class GameScreen_ActorManager {
 
 					}	
 					//Hides the get Started Stuff when you first press goal Screen
-					Game_startGameManager.getStartedWindow.setVisible(false);
-					Game_startGameManager.selectLabel.setVisible(false);
+					Game_StartingSequence.getStartedWindow.setVisible(false);
+					Game_StartingSequence.selectLabel.setVisible(false);
 
 				}
 				else
@@ -384,23 +381,23 @@ public class GameScreen_ActorManager {
 			@Override
 			protected void onClicked(){
 				int expandedheight=180;
-				if (GameScreen_ActorManager.resourcebarexpanded== false)
+				if (GameScreenUI.resourcebarexpanded== false)
 				{	
 					//Move up button, bar and quantities
-					GameScreen_ActorManager.game_resources_togglebtn.setY(game_resources_togglebtn.getY()+ expandedheight);
+					GameScreenUI.game_resources_togglebtn.setY(game_resources_togglebtn.getY()+ expandedheight);
 					setBounds(getX(),getY(),getTexture().getWidth(),getTexture().getHeight());
-					GameScreen_ActorManager.game_menuobject_resourcesbar.increaseY(expandedheight);
-					setResourcesHeight(GameScreen_ActorManager.cardQuant.getY()+expandedheight);
+					GameScreenUI.game_menuobject_resourcesbar.increaseY(expandedheight);
+					setResourcesHeight(GameScreenUI.cardQuant.getY()+expandedheight);
 					//Move cards up
-					GameScreen_ActorManager.game_card_togglebtn.increaseY(expandedheight);
-					GameScreen_ActorManager.game_card_togglebtn.refreshBounds();
+					GameScreenUI.game_card_togglebtn.increaseY(expandedheight);
+					GameScreenUI.game_card_togglebtn.refreshBounds();
 					Game_CardHand.actorManager.organiseDeck();
 					Game_CardHand.actorManager.changeHeight(expandedheight);
 					Game_CardHand.actorManager.usecardbtn.setVisible(false);
 
 
-					GameScreen_ActorManager.resourcebarexpanded= true;
-					for(int i=GameScreen_ActorManager.resourcesStageStart; i<=GameScreen_ActorManager.resourcesStageStart +GameScreen_ActorManager.resourcesStageEnd-1;i++){
+					GameScreenUI.resourcebarexpanded= true;
+					for(int i=GameScreenUI.resourcesStageStart; i<=GameScreenUI.resourcesStageStart +GameScreenUI.resourcesStageEnd-1;i++){
 						if (i > GameScreen.getStage().getActors().size-1){
 
 						}else
@@ -409,21 +406,21 @@ public class GameScreen_ActorManager {
 					}			}
 				else
 				{	
-					GameScreen_ActorManager.resourcebarexpanded= false;
+					GameScreenUI.resourcebarexpanded= false;
 					Game_CardHand.actorManager.usecardbtn.setVisible(false);
 					//Move up
-					GameScreen_ActorManager.game_resources_togglebtn.setY(GameScreen_ActorManager.game_resources_togglebtn.getY() - expandedheight);
+					GameScreenUI.game_resources_togglebtn.setY(GameScreenUI.game_resources_togglebtn.getY() - expandedheight);
 					setBounds(getX(),getY(),getTexture().getWidth(),getTexture().getHeight());
-					GameScreen_ActorManager.game_menuobject_resourcesbar.increaseY(-expandedheight);
-					setResourcesHeight(GameScreen_ActorManager.cardQuant.getY()-expandedheight);
+					GameScreenUI.game_menuobject_resourcesbar.increaseY(-expandedheight);
+					setResourcesHeight(GameScreenUI.cardQuant.getY()-expandedheight);
 					//Move Cards back down
-					GameScreen_ActorManager.game_card_togglebtn.increaseY(-expandedheight);
-					GameScreen_ActorManager.game_card_togglebtn.refreshBounds();
+					GameScreenUI.game_card_togglebtn.increaseY(-expandedheight);
+					GameScreenUI.game_card_togglebtn.refreshBounds();
 					Game_CardHand.actorManager.selectedCard=0;
 					Game_CardHand.actorManager.changeHeight(-expandedheight);
 					Game_CardHand.actorManager.organiseDeck();
 
-					for(int i=GameScreen_ActorManager.resourcesStageStart; i<=GameScreen_ActorManager.resourcesStageStart +GameScreen_ActorManager.resourcesStageEnd-1;i++){
+					for(int i=GameScreenUI.resourcesStageStart; i<=GameScreenUI.resourcesStageStart +GameScreenUI.resourcesStageEnd-1;i++){
 						if (i > GameScreen.getStage().getActors().size-1){
 
 						}
@@ -568,7 +565,7 @@ public class GameScreen_ActorManager {
 		oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
 		electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electric"));
 		nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
-		GameScreen_ActorManager.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
+		GameScreenUI.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
 	}
 	/**
 	 * Changes all quantity label heights with the toggle resources button
@@ -576,12 +573,12 @@ public class GameScreen_ActorManager {
 	 */
 	public static void setResourcesHeight(float height)
 	{
-		GameScreen_ActorManager.goldQuant.setY(height);
-		GameScreen_ActorManager.coalQuant.setY(height);
-		GameScreen_ActorManager.oilQuant.setY(height);
-		GameScreen_ActorManager.electricityQuant.setY(height);
-		GameScreen_ActorManager.nuclearQuant.setY(height);
-		GameScreen_ActorManager.cardQuant.setY(height);
+		GameScreenUI.goldQuant.setY(height);
+		GameScreenUI.coalQuant.setY(height);
+		GameScreenUI.oilQuant.setY(height);
+		GameScreenUI.electricityQuant.setY(height);
+		GameScreenUI.nuclearQuant.setY(height);
+		GameScreenUI.cardQuant.setY(height);
 	}
 	/**
 	 * 

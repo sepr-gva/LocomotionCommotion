@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
@@ -53,6 +53,7 @@ public class Game_Map_MapObj extends Actor{
 	
 	// Is overriden in Game_Map_Station
 	public void showInfoBox(){}
+	public void hideInfoBox(){}
 	
 	public boolean routeAvailable()
 	{

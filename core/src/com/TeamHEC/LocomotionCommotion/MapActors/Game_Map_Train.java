@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
@@ -18,6 +18,8 @@ public class Game_Map_Train extends Actor{
 		
 	public boolean canMove = false;
 	public int moveCounter = 0;
+	
+	private int clickCount = 0;
 	
 	public Game_Map_Train()
 	{
@@ -67,24 +69,40 @@ public class Game_Map_Train extends Actor{
 	
 	public void clickedTrain()
 	{
-		if(Game_Map_Manager.trainInfo.train == train)
-		{
-			Game_Map_Manager.trainInfo.makeVisible(false);			
-			Game_Map_Manager.trainInfo.train = null;		
-		}
-		else
+		if(clickCount == 0)
 		{
 			Game_Map_Manager.trainInfo.showLabel(train);
 			
-			// Showing both the station and the train if they are ontop of eachother
 			if(Game_Map_Manager.trainInfo.train.route.inStation())
-				Game_Map_Manager.trainInfo.train.route.getStation().actor.showInfoBox();
+				clickCount = 2;
+			else
+				clickCount = 1;
 		}
+		else if(clickCount == 1)
+		{
+			Game_Map_Manager.trainInfo.makeVisible(false);
 			
+			if(Game_Map_Manager.trainInfo.train.route.inStation())
+				Game_Map_Manager.trainInfo.train.route.getStation().actor.hideInfoBox();
+			
+			clickCount = 0;
+		}
+		else if(clickCount == 2)
+		{
+			Game_Map_Manager.trainInfo.makeVisible(false);
+			
+			if(Game_Map_Manager.trainInfo.train.route.inStation())
+			{
+				Game_Map_Manager.trainInfo.train.route.getStation().actor.showInfoBox();
+				Game_Map_StationBtn.selectedStation = Game_Map_Manager.trainInfo.train.route.getStation().getStationActor();
+			}
+			clickCount = 1;
+		}
 		
 		if(PlayerGoals.chooseTrain && GameScreen.game.getPlayerTurn() == train.getOwner())
 		{
 			PlayerGoals.selectedGoal.assignTrain(train);
+			PlayerGoals.selectedGoal.setActor(PlayerGoals.selectedGoalActor);
 			WarningMessage.fireWarningWindow("Assigned Goal to Train!", "Plan your route");
 			PlayerGoals.chooseTrain = false;
 		}
@@ -123,6 +141,8 @@ public class Game_Map_Train extends Actor{
 					moveCounter = 0;
 				}
 			}
+			else
+				moveCounter = 0;
 		}
 	}
 	

@@ -1,9 +1,13 @@
-package com.TeamHEC.LocomotionCommotion.Game_Actors;
+package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
@@ -13,7 +17,7 @@ public class Game_Map_StationBtn extends SpriteButton {
 
 	// Used to hold player1s selection:
 	public static Game_Map_Station selectedStation, selectedP1;
-	private static Station tempP1Station;
+	public static Station tempP1Station;
 
 	public Game_Map_StationBtn(float x, float y, Texture texture)
 	{
@@ -29,9 +33,9 @@ public class Game_Map_StationBtn extends SpriteButton {
 	@Override
 	public void act(float delta){
 		if(started){
-			if(Game_startGameManager.inProgress)
+			if(Game_StartingSequence.inProgress)
 			{
-				if(Game_startGameManager.player1)
+				if(Game_StartingSequence.player1)
 				{
 					// Sets texture (could be done via listener?)
 					
@@ -45,10 +49,10 @@ public class Game_Map_StationBtn extends SpriteButton {
 					selectedP1 = selectedStation;
 					selectedStation = null;
 					
-					Game_startGameManager.selectLabel.setVisible(true);
-					Game_startGameManager.getStartedWindow.setVisible(true);
-					Game_startGameManager.selectLabel.setText(LocomotionCommotion.player2name + " please select your start station!");
-					Game_startGameManager.player1 = false;
+					Game_StartingSequence.selectLabel.setVisible(true);
+					Game_StartingSequence.getStartedWindow.setVisible(true);
+					Game_StartingSequence.selectLabel.setText(LocomotionCommotion.player2name + " please select your start station!");
+					Game_StartingSequence.player1 = false;
 				}
 				else	
 				{
@@ -58,31 +62,28 @@ public class Game_Map_StationBtn extends SpriteButton {
 					
 					selectedP1.setTouchable(Touchable.enabled);
 					
-					Game_startGameManager.selectLabel.setVisible(false);
+					Game_StartingSequence.selectLabel.setVisible(false);
 					
 					GameScreen.createCoreGame(tempP1Station, selectedStation.getStation());
-					Game_startGameManager.startGame();
-					GameScreen_ActorManager.refreshResources();
-					Game_startGameManager.inProgress = false;
+					Game_StartingSequence.startGame();
+					GameScreenUI.refreshResources();
+					Game_StartingSequence.inProgress = false;
 					
-					Game_startGameManager.selectLabel.setVisible(true);
-					Game_startGameManager.getStartedWindow.setVisible(true);
-					Game_startGameManager.getStartedWindow.setX(130);
-					Game_startGameManager.getStartedWindow.setTexture(Game_TextureManager.getInstance().game_start_getstartedwindow2);
+					Game_StartingSequence.selectLabel.setVisible(true);
+					Game_StartingSequence.getStartedWindow.setVisible(true);
+					Game_StartingSequence.getStartedWindow.setX(130);
+					Game_StartingSequence.getStartedWindow.setTexture(Game_TextureManager.getInstance().game_start_getstartedwindow2);
 					
-					Game_startGameManager.selectLabel.setText(GameScreen.game.getPlayerTurn().getName()+" select a new Goal from the Goal Screen!");
-					Game_startGameManager.selectLabel.setX(950);
+					Game_StartingSequence.selectLabel.setText(GameScreen.game.getPlayerTurn().getName()+" select a new Goal from the Goal Screen!");
+					Game_StartingSequence.selectLabel.setX(950);
 				}
 			}
 			else
 			{
 				//Buy Stations in game
-				if (GameScreen.game.getPlayerTurn().getGold()>= selectedStation.getStation().getBaseValue()){
-					GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
-					System.out.println(selectedStation.getStation().getOwner());				}
-					Game_Map_Manager.hideInfoBox();
+				GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
+				Game_Map_Manager.hideInfoBox();
 			}
-			
 		}
 		started = false;
 	}

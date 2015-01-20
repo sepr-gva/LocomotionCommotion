@@ -10,8 +10,8 @@ package com.TeamHEC.LocomotionCommotion.Goal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
@@ -192,6 +192,7 @@ public class GoalMenu {
 
 
 	}
+	
 	private ArrayList<GoalActor> createEmpties() {
 		ArrayList<GoalActor> 		empties = new ArrayList< GoalActor>();
 		HashMap<String, GoalActor> 	goalslots = new HashMap<String, GoalActor>();
@@ -220,8 +221,6 @@ public class GoalMenu {
 		goalslots.put("9", newgoal9= new GoalActor(row3,col3,true,null));
 		return goalslots;
 	}
-
-
 
 	//Creates the blank labels
 	public static  HashMap<String, Label> createLabels(){

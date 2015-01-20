@@ -1,12 +1,17 @@
 package com.TeamHEC.LocomotionCommotion.Resource;
 
+/**
+ * 
+ *  @author Matthew Taylor <mjkt500@york.ac.uk>
+ *	The object representing Oil fuel.
+ *
+ */
 public class Oil extends Fuel{
 
 	/**
-	 * 
+	 * Initialises Oil
+	 * @param value The initial value of the object.
 	 */
-	private static final long serialVersionUID = 1L;
-
 	public Oil(int value)
 	{
 		super(value, "Oil");

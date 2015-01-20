@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_TextureManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -85,13 +84,16 @@ public class WarningMessage {
 	 */
 	public static void fireWarningWindow(String title, String body)
 	{
-		stage.getActors().addAll(actors);
-		
-		window.setVisible(true);
-		titleLabel.setVisible(true);
-		titleLabel.setText(title);
-		bodyLabel.setVisible(true);
-		bodyLabel.setText(body);
+		if(!window.isVisible())
+		{
+			stage.getActors().addAll(actors);
+			
+			window.setVisible(true);
+			titleLabel.setVisible(true);
+			titleLabel.setText(title);
+			bodyLabel.setVisible(true);
+			bodyLabel.setText(body);
+		}
 	}
 	/**
 	 * Removes the WarningWindow by removing its actors from the stage.

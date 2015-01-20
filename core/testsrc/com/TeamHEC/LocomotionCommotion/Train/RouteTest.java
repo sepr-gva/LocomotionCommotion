@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Goal;
+package com.TeamHEC.LocomotionCommotion.Train;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
@@ -17,21 +18,17 @@ import com.TeamHEC.LocomotionCommotion.Resource.Electric;
 import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
-import com.TeamHEC.LocomotionCommotion.Train.OilTrain;
-import com.TeamHEC.LocomotionCommotion.Train.Route;
-import com.TeamHEC.LocomotionCommotion.Train.Train;
+
 
 @RunWith(GdxTestRunner.class)
-public class GoalTest {
-
-	Goal goal;
+public class RouteTest {
+	
 	Train train;
+	Route route;
 	
 	@Before
 	public void setUp() throws Exception {
 		
-		GoalFactory gf = new GoalFactory();
-		goal = gf.CreateRandomGoal();
 		
 		String name = "Player 1";
 		int points = 0;
@@ -55,31 +52,44 @@ public class GoalTest {
 				cards,	
 				goals,
 				trains);
+				
+		//train = new CoalTrain(0, true, new Route(WorldMap.getInstance().REYKJAVIK), player);
+		//train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		
+		//train.route.getTrainPos();
 		
-		train = new OilTrain(0, true, new Route(WorldMap.getInstance().AMSTERDAM), player);
-		
-		goal.assignTrain(train);
-		
+		route = new Route(WorldMap.getInstance().REYKJAVIK);
+		route.addConnection(route.getAdjacentConnections().get(0));
 	}
 
 	@Test
-	public void testGoal() {
+	public void testGetTrainPos() {
+		assertTrue("Train coordinates match start of route",
+				route.getTrainPos().x == WorldMap.getInstance().REYKJAVIK.x && route.getTrainPos().y == WorldMap.getInstance().REYKJAVIK.y);
+	}
+
+	@Test
+	public void testGetTotalLength() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testAssignTrain() {
-		assertTrue("", goal.getTrain() == train);
-	}
-
-	@Test
-	public void testGoalComplete() {
+	public void testGetLengthRemaining() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testStationPassed() {
+	public void testInStation() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testGetStation() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testUpdate() {
 		fail("Not yet implemented");
 	}
 

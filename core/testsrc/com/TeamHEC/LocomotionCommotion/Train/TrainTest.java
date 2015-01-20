@@ -52,69 +52,6 @@ public class TrainTest {
 	}
 
 	@Test
-	public void testGetName() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetValue() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetSpeed() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetPricePerTurn() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCarriageCapacity() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetFuelType() throws Exception {		
-		assertTrue(coalTrain.getFuelType() == "Coal");
-		assertTrue(oilTrain.getFuelType() == "Oil");
-		assertTrue(electricTrain.getFuelType() == "Electric");
-		assertTrue(nuclearTrain.getFuelType() == "Nuclear");
-	}
-
-	@Test
-	public void testSetSpeedMod() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetFuelPerTurn() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetCarriageLimitMod() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIncreaseCarriageLimit() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetInStation() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsInStation() throws Exception {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testMoveTrain() throws Exception {
 		fail("Not yet implemented");
 	}

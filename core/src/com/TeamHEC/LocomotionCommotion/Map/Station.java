@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Game_Actors.Game_Map_Station;
 import com.TeamHEC.LocomotionCommotion.Map.Line;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Station;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -13,8 +13,7 @@ import com.TeamHEC.LocomotionCommotion.Map.Line;
  */
 
 public class Station extends MapObj{
-	
-	private static final long serialVersionUID = 1L;
+
 	private String name;
 	private Player owner;
 	private int baseValue;
@@ -28,6 +27,8 @@ public class Station extends MapObj{
 	public double mindistance = Double.POSITIVE_INFINITY;
 	
 	protected ArrayList<StationListener> listeners = new ArrayList<StationListener>();
+	
+	private Game_Map_Station gameMapStation;
 	
 	/**
 	 * @param name
@@ -45,7 +46,8 @@ public class Station extends MapObj{
 		super(x, y, name);
 		
 		// Creates a map blip for this station
-		actor = new Game_Map_Station(this, x, y);
+		gameMapStation = new Game_Map_Station(this, x, y);
+		actor = gameMapStation;
 		
 		this.name = name;
 		this.owner = null;
@@ -65,6 +67,11 @@ public class Station extends MapObj{
 	public Station getStation()
 	{
 		return this;
+	}
+	
+	public Game_Map_Station getStationActor()
+	{
+		return gameMapStation;
 	}
 	
 	/**
@@ -217,16 +224,7 @@ public class Station extends MapObj{
 	{
 		return line;
 	}
-	
-	/**
-	 * @param player changes owner of the stations and notify listeners
-	 */
-	public void purchaseStation(Player player)
-	{		
-		setOwner(player);
-		notifyStationPurchased(this, player);
-	}
-	
+		
 	/**
 	 * Registers an object implementing the StationListener by adding it to the listeners array
 	 * @param newListener the object to be added
