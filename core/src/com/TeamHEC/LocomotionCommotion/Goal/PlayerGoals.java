@@ -10,16 +10,22 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
-
+/**
+ * 
+ * @author Robert Precious <rp825@york.ac.uk>
+ * 
+ * PlayerGoals are the (up to) 3 goals that the player owns. We have the actual Goals, the Goal Actors and the Labels (like GoalMenu) with the addition
+ * of the removeButtons which can remove goals or undo a goal choice from the goal menu.
+ * 
+ * 
+ *
+ */
 public class PlayerGoals {
 
 	private final static Array<Actor> actors = new Array<Actor>();
@@ -70,8 +76,14 @@ public class PlayerGoals {
 		playerGoalActors.put("2", newgoal2);
 		playerGoalActors.put("3", newgoal3);
 
-		//plan route button
+		/**
+		 * Plan Route Button
+		 * This button is only shown when we move the mouse over a player goal which is not empty, because of the mouse over action for the goal
+		 * will end if we enter this button we need to keep this visible. This is what started is for. We separate the touched down function (onClicked Method)
+		 * so we can apply a different action entirely.
+		 */
 		planRouteBtn= new SpriteButton(0,0,Game_TextureManager.getInstance().game_menuobject_planroutebtn){
+
 			boolean touchedDown;
 			@Override
 			protected void onClicked()
@@ -98,21 +110,14 @@ public class PlayerGoals {
 			}
 		};
 		planRouteBtn.setVisible(false);
-		
+
 		//^^^^^^^^^^^  added to the stage after everything else see end of method
 
 
-		//Label Styling
-		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
-		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-		parameter.size = 17;
 
-		BitmapFont font = generator.generateFont(parameter); 
-		generator.dispose();
-		style = new LabelStyle();
-		style.font = font;
-		
+
 		//Ticket Labels
+		style = GameScreenUI.getLabelStyle(17);
 		ticketLabels = new HashMap<String, Label>();
 		ticketLabels.put("1", ticket1= new Label(null,style));
 		ticketLabels.put("2", ticket2= new Label(null,style));
@@ -165,7 +170,9 @@ public class PlayerGoals {
 
 
 	}
-
+	/**
+	 * TicketMaker creates the Label using the Goal attributes.
+	 */
 	public static String ticketMaker(String type, int reward, String from, String startdate, String dest, String route){
 		String output;
 		output ="";
@@ -178,15 +185,21 @@ public class PlayerGoals {
 		return output;
 
 	}
+	/**
+	 * Finds the spacing needed for formatting the ticket.
+	 */
 	public static String getSpacing(int len){
 		String space="";
-		for (int i=0; i<(17-len)+23; i++){
+		for (int i=0; i<(17-len)+20; i++){
 			space += " ";
 
 		}
 		return space;
 	}
 
+	/**
+	 * Moves the playerGoals in to place when the goal menu is opened. This is used to avoid having to create more objects.
+	 */
 	public static void goalMenuOpen() {
 
 		//Move Tickets
@@ -194,7 +207,7 @@ public class PlayerGoals {
 			a.setVisible(true);
 			a.setX(a.getX()+150);
 			a.setY(a.getY()-200);
-			
+
 		}
 		//Hide goal side menu
 		GameScreenUI.game_menuobject_ticketenclosure.setVisible(false);
@@ -209,6 +222,9 @@ public class PlayerGoals {
 
 
 	}
+	/**
+	 * Moves the playerGoals in to place when the goal menu is closed. This is used to avoid having to create more objects.
+	 */
 	public static void goalMenuClose() {
 		for (Actor a: actors){
 			a.setVisible(false);
@@ -227,8 +243,12 @@ public class PlayerGoals {
 
 
 	}
-	public static void removeGoal(int goal){		
-		if(goal==1){
+/**
+ * RemoveGoal takes a goal index, removes that goal and shuffles the others up (if needed)
+ * @param goalIndex - the index of the goal you want to remove from PlayerGoals.
+ */
+	public static void removeGoal(int goalIndex){		
+		if(goalIndex==1){
 			ticketLabels.get("1").setText(ticketLabels.get("2").getText());
 			playerGoalActors.get("1").setGoal(playerGoalActors.get("2").getGoal());
 			removebuttons.get("1").setUndo(removebuttons.get("2").getUndo());
@@ -254,7 +274,7 @@ public class PlayerGoals {
 
 
 		}
-		if (goal ==2){
+		if (goalIndex ==2){
 			playerGoalActors.get("2").setGoal(playerGoalActors.get("3").getGoal());
 			ticketLabels.get("2").setText(ticketLabels.get("3").getText());
 			removebuttons.get("2").setUndo(removebuttons.get("3").getUndo());
@@ -272,15 +292,21 @@ public class PlayerGoals {
 		playerGoalActors.get("3").setEmpty(true);
 		removebuttons.get("3").setVisible(false);
 		removebuttons.get("3").resetButtons();
-		
+
 		numberofOwnedGoals-=1;
-		GameScreen.game.getPlayerTurn().getGoals().remove(goal-1);
+		GameScreen.game.getPlayerTurn().getGoals().remove(goalIndex-1);
 
 
 		if (numberofOwnedGoals==0)
 			numberofOwnedGoals=0;
 	}
-
+	
+	/**
+	 * AddGoal takes a new Goal Actor and adds it to player goals by taking its goal attributes and adding it to the bottom of the 
+	 * current player goals.
+	 * @param newgoal the GoalMenu GoalActor which you want to add to the playerGoals
+	 * @return Returns true if successful and false if not.
+	 */
 	public static boolean addGoal(GoalActor newgoal){
 		if (numberofOwnedGoals>2){
 			return false;
@@ -308,13 +334,17 @@ public class PlayerGoals {
 
 			numberofOwnedGoals+=1;
 			GameScreen.game.getPlayerTurn().getGoals().add(newgoal.getGoal());
-			
+
 			GoalMenu.numberofGoalsOnScreen--;
 			return true;
 		}
 	}
-
-	public static void resetGoal(int index) {
+	
+	/**
+	 * undoGoalSelection puts back the goal you just picked from the goal menu. You cannot do this once you leave the GoalMenu. 
+	 * @param index -The index of the player goal the player wants to put back.
+	 */
+	public static void undoGoalSelection(int index) {
 		String a = new Integer(index).toString();
 		String b = new Integer(removebuttons.get(a).getnewgoalindex()).toString();
 		GoalMenu.goalLabels.get(b).setText(ticketLabels.get(a).getText());
@@ -326,11 +356,18 @@ public class PlayerGoals {
 
 	}
 
-	
+	/**
+	 * Change Player is used when we end turn to get the goals of the player whose turn it is.
+	 * @param player -current Player.
+	 */
 	public static void changePlayer(Player player) {
+		//x and y values for the top ticket and button
 		float tickety= 845, buttony = 725;
+		//The current player's goals.
 		ArrayList<Goal> playerGoals = player.getGoals();
+		//The Number of goals the current player has.
 		numberofOwnedGoals=playerGoals.size();
+		//Run through the goal the player OWNS creating the player goal actors.
 		for (int i=0; i<playerGoals.size();i++){
 			String a = new Integer(i+1).toString();
 
@@ -354,6 +391,7 @@ public class PlayerGoals {
 			buttony-=200;
 			removebuttons.get(a).setVisible(false);
 		}
+		//Run through the empties. Slots not filled by the player goals.
 		for (int i=playerGoals.size();i<3;i++){
 			String a = new Integer(i+1).toString();
 			playerGoalActors.get(a).setEmpty(true);
@@ -367,7 +405,7 @@ public class PlayerGoals {
 			removebuttons.get(a).setVisible(false);
 			buttony-=200;
 		}
-		
+
 	}
 
 
