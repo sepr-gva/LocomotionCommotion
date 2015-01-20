@@ -34,8 +34,6 @@ public class GoalTest {
 		wm = WorldMap.getInstance();
 		GoalFactory gf = new GoalFactory(1);
 		goal = gf.CreateRandomGoal();
-		ss = goal.gSStation();
-		fs = goal.gFStation();
 		
 		String name = "Player 1";
 		int points = 0;
@@ -101,7 +99,7 @@ public class GoalTest {
    }
 	@Test 
 	public void testgetStartDate(){
-		assertTrue( goal.getStartDate() == "1");
+		assertTrue( goal.getStartDate() != null);
 	}
 
 }
