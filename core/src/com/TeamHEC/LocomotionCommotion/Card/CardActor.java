@@ -149,7 +149,7 @@ public class CardActor extends Actor {
 
 		//cardExpand- Calls Organize deck, moves the card up, updates the expanded boolean, and refreshes bounds.
 		public void cardExpand(){
-			Game_CardHand.actorManager.organiseDeck();
+			Game_CardHand.actorManager.organiseHand();
 			this.actorY+=200;
 			setexpanded(true);
 			setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
@@ -165,7 +165,7 @@ public class CardActor extends Actor {
 					this.actorY=-100;
 				setexpanded(false);
 				setBounds(this.actorX,this.actorY,this.texture.getWidth(),this.texture.getHeight());
-				Game_CardHand.actorManager.organiseDeck();
+				Game_CardHand.actorManager.organiseHand();
 			}
 			else
 			{if (GameScreenUI.resourcebarexpanded)

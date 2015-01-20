@@ -391,7 +391,7 @@ public class GameScreenUI {
 					//Move cards up
 					GameScreenUI.game_card_togglebtn.increaseY(expandedheight);
 					GameScreenUI.game_card_togglebtn.refreshBounds();
-					Game_CardHand.actorManager.organiseDeck();
+					Game_CardHand.actorManager.organiseHand();
 					Game_CardHand.actorManager.changeHeight(expandedheight);
 					Game_CardHand.actorManager.usecardbtn.setVisible(false);
 
@@ -412,7 +412,7 @@ public class GameScreenUI {
 					GameScreenUI.game_card_togglebtn.refreshBounds();
 					Game_CardHand.actorManager.selectedCard=0;
 					Game_CardHand.actorManager.changeHeight(-expandedheight);
-					Game_CardHand.actorManager.organiseDeck();
+					Game_CardHand.actorManager.organiseHand();
 
 					
 
@@ -522,7 +522,7 @@ public class GameScreenUI {
 					}
 
 					Game_CardHand.actorManager.selectedCard=0;	// 0 means that no card is selected 
-					Game_CardHand.actorManager.organiseDeck(); 	//call OrganiseDeck - see Game_CardHand.organiseDeck() documentation
+					Game_CardHand.actorManager.organiseHand(); 	//call OrganiseDeck - see Game_CardHand.organiseDeck() documentation
 					Game_CardHand.actorManager.usecardbtn.setVisible(false);	//hide the usecard button
 				}
 			}
