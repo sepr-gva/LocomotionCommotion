@@ -1,10 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -31,15 +28,12 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 /**
  * 
  * @author Callum Hewitt <ch1194@york.ac.uk>
+ * The core game object. Contains all information necessary for the backend of a single game.
  *
  */
 
-public class CoreGame implements Serializable {
+public class CoreGame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	// Privates
 	private WorldMap gameMap;
 	private Player player1;
@@ -185,8 +179,8 @@ public class CoreGame implements Serializable {
 	 * Generates the resources a player will start with based on their start
 	 * location
 	 * 
-	 * @param station
-	 *            A player's starting location.
+	 * @param station A player's starting location.
+	 * 
 	 */
 	public HashMap<String, Resource> getBaseResources(Station station) {
 		Gold gold = new Gold(1000);
@@ -231,7 +225,7 @@ public class CoreGame implements Serializable {
 	}
 
 	/**
-	 * One form of saving the game. Saves the game to a .json file in the user's home directory in a folder called LocomotionCommotion.
+	 * Saves the game to a .json file in the user's home directory in a folder called LocomotionCommotion.
 	 * @param gameName The name of the .json file the game is saved to. (No extension).
 	 */
 	public void saveGameJSON(String gameName)
@@ -381,28 +375,5 @@ public class CoreGame implements Serializable {
 		mapObjJSON += "}";
 		return mapObjJSON;
 	}
-
-	/**
-	 * Saves the CoreGame object by serialising it. It is save as a .ser file in the user's home directory in a folder called LocomotionCommotion.
-	 * @param gameName The name of the .ser file the game is saved to. (No extension).
-	 */
-	public void saveGameSerialize(String gameName) {
-		try {
-			File saveLocation = new File(System.getProperty("user.home")
-					+ System.getProperty("file.separator")
-					+ "LocomotionCommotion"
-					+ System.getProperty("file.separator") + gameName + ".ser");
-			saveLocation.getParentFile().mkdirs();
-			saveLocation.createNewFile();
-			FileOutputStream fout = new FileOutputStream(saveLocation);
-
-			ObjectOutputStream oos = new ObjectOutputStream(fout);
-			oos.writeObject(this);
-			oos.close();
-			fout.close();
-			System.out.println("Done");
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
+	
 }

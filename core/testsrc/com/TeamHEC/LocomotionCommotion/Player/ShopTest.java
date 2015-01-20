@@ -115,7 +115,7 @@ public class ShopTest {
 		int currentGold = testCustomer.getGold();
 		
 		//Execute coal buy
-		testShop.buyFuel("Coal", 500);		
+		testShop.buyFuel("Coal", 500, true);		
 		//Test
 		assertTrue(
 				"testCustomer's Coal was not incremented by 500",
@@ -126,7 +126,7 @@ public class ShopTest {
 		
 		//Execute oil buy
 		currentGold = testCustomer.getGold();
-		testShop.buyFuel("Oil", 500);		
+		testShop.buyFuel("Oil", 500, true);		
 		//Test
 		assertTrue(
 				"testCustomer's Oil was not incremented by 500",
@@ -137,7 +137,7 @@ public class ShopTest {
 		
 		//Execute electric buy
 		currentGold = testCustomer.getGold();
-		testShop.buyFuel("Electric", 500);		
+		testShop.buyFuel("Electric", 500, true);		
 		//Test
 		assertTrue(
 				"testCustomer's Electric was not incremented by 500",
@@ -148,7 +148,7 @@ public class ShopTest {
 				
 		//Execute nuclear buy
 		currentGold = testCustomer.getGold();
-		testShop.buyFuel("Nuclear", 500);		
+		testShop.buyFuel("Nuclear", 500, true);		
 		//Test
 		assertTrue(
 				"testCustomer's Nuclear was not incremented by 500",
@@ -164,7 +164,7 @@ public class ShopTest {
 		
 		//Coal
 		int preAttemptCoal = testCustomer.getFuel("Coal");
-		testShop.buyFuel("Coal", 500);
+		testShop.buyFuel("Coal", 500, true);
 		assertTrue(
 				"testCustomer's coal was changed after an attempt to purchase coal with no gold.",
 				testCustomer.getFuel("Coal") == preAttemptCoal);
@@ -174,7 +174,7 @@ public class ShopTest {
 		
 		//Oil
 		int preAttemptOil = testCustomer.getFuel("Oil");
-		testShop.buyFuel("Oil", 500);
+		testShop.buyFuel("Oil", 500, true);
 		assertTrue(
 				"testCustomer's oil was changed after an attempt to purchase oil with no gold.",
 				testCustomer.getFuel("Oil") == preAttemptOil);
@@ -184,7 +184,7 @@ public class ShopTest {
 		
 		//Electric
 		int preAttemptElectric = testCustomer.getFuel("Electric");
-		testShop.buyFuel("Electric", 500);
+		testShop.buyFuel("Electric", 500, true);
 		assertTrue(
 				"testCustomer's electric was changed after an attempt to purchase electric with no gold.",
 				testCustomer.getFuel("Electric") == preAttemptElectric);
@@ -194,7 +194,7 @@ public class ShopTest {
 		
 		//Nuclear
 		int preAttemptNuclear = testCustomer.getFuel("Nuclear");
-		testShop.buyFuel("Nuclear", 500);
+		testShop.buyFuel("Nuclear", 500, true);
 		assertTrue(
 				"testCustomer's nuclear was changed after an attempt to purchase nuclear with no gold.",
 				testCustomer.getFuel("Nuclear") == preAttemptNuclear);
@@ -209,47 +209,47 @@ public class ShopTest {
 		int currentGold = testCustomer.getGold();
 				
 		//Execute coal sell
-		testShop.sellFuel("Coal", 500);		
+		testShop.sellFuel("Coal", 500, true);		
 		//Test
 		assertTrue(
 				"testCustomer's Coal was not decremented by 500",
 				testCustomer.getFuel("Coal") == baseFuelValue - 500);
 		assertTrue(
-				"testCustomer's Gold was not incremented by 500 * Shop.coalPrice",
-				testCustomer.getGold() == currentGold + 500 * Shop.coalPrice);
+				"testCustomer's Gold was not incremented by 500 * Shop.coalSellPrice",
+				testCustomer.getGold() == currentGold + Math.ceil(500 * Shop.coalSellPrice));
 		
 		//Execute oil sell
 		currentGold = testCustomer.getGold();
-		testShop.sellFuel("Oil", 500);		
+		testShop.sellFuel("Oil", 500, true);		
 		//Test
 		assertTrue(
 				"testCustomer's Oil was not decremented by 500",
 				testCustomer.getFuel("Oil") == baseFuelValue - 500);
 		assertTrue(
-				"testCustomer's Gold was not incremented by 500 * Shop.oilPrice",
-				testCustomer.getGold() == currentGold + 500 * Shop.oilPrice);
+				"testCustomer's Gold was not incremented by 500 * Shop.oilSellPrice",
+				testCustomer.getGold() == currentGold + Math.ceil(500 * Shop.oilSellPrice));
 		
 		//Execute electric sell
 		currentGold = testCustomer.getGold();
-		testShop.sellFuel("Electric", 500);		
+		testShop.sellFuel("Electric", 500, true);		
 		//Test
 		assertTrue(
 				"testCustomer's Electric was not decremented by 500",
 				testCustomer.getFuel("Electric") == baseFuelValue - 500);
 		assertTrue(
-				"testCustomer's Gold was not incremented by 500 * Shop.electricPrice",
-				testCustomer.getGold() == currentGold + 500 * Shop.electricPrice);
+				"testCustomer's Gold was not incremented by 500 * Shop.electricSellPrice",
+				testCustomer.getGold() == currentGold + Math.ceil(500 * Shop.electricSellPrice));
 				
 		//Execute nuclear sell
 		currentGold = testCustomer.getGold();
-		testShop.sellFuel("Nuclear", 500);		
+		testShop.sellFuel("Nuclear", 500, true);		
 		//Test
 		assertTrue(
 				"testCustomer's Nuclear was not decremented by 500",
 				testCustomer.getFuel("Nuclear") == baseFuelValue - 500);
 		assertTrue(
-				"testCustomer's Gold was not incremented by 500 * Shop.nuclearPrice",
-				testCustomer.getGold() == currentGold + 500 * Shop.nuclearPrice);		
+				"testCustomer's Gold was not incremented by 500 * Shop.nuclearSellPrice",
+				testCustomer.getGold() == currentGold + 500 * Shop.nuclearSellPrice);		
 		
 		//Try sells with no gold.
 		//Setup
@@ -265,7 +265,7 @@ public class ShopTest {
 		currentGold = testCustomer.getGold();
 			
 		//Coal		
-		testShop.sellFuel("Coal", 500);
+		testShop.sellFuel("Coal", 500, true);
 		assertTrue(
 				"testCustomer's coal was changed after an attempt to sell coal with no coal.",
 				testCustomer.getFuel("Coal") == 0);
@@ -274,7 +274,7 @@ public class ShopTest {
 				testCustomer.getGold() == currentGold);
 		
 		//Oil
-		testShop.sellFuel("Oil", 500);
+		testShop.sellFuel("Oil", 500, true);
 		assertTrue(
 				"testCustomer's oil was changed after an attempt to sell oil with no oil.",
 				testCustomer.getFuel("Oil") == 0);
@@ -283,7 +283,7 @@ public class ShopTest {
 				testCustomer.getGold() == currentGold);
 		
 		//Electric
-		testShop.sellFuel("Electric", 500);
+		testShop.sellFuel("Electric", 500, true);
 		assertTrue(
 				"testCustomer's electric was changed after an attempt to sell electric with no electric.",
 				testCustomer.getFuel("Electric") == 0);
@@ -292,7 +292,7 @@ public class ShopTest {
 				testCustomer.getGold() == currentGold);
 		
 		//Nuclear
-		testShop.sellFuel("Nuclear", 500);
+		testShop.sellFuel("Nuclear", 500, true);
 		assertTrue(
 				"testCustomer's nuclear was changed after an attempt to sell nuclear with no nuclear.",
 				testCustomer.getFuel("Nuclear") == 0);
@@ -307,7 +307,7 @@ public class ShopTest {
 		assertTrue("testCustomer cards was not empty after initialisation", testCustomer.getCards().isEmpty());
 		int currentGold = testCustomer.getGold();
 		//1
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue("testCustomer cards did not have 1 card after 1st purchase", testCustomer.getCards().size() == 1);
 		assertTrue(
 				"testCustomer's gold was not decremented by Shop.cardPrice after buying 1 card", 
@@ -315,7 +315,7 @@ public class ShopTest {
 		currentGold = testCustomer.getGold();
 		
 		//2
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue("testCustomer cards did not have 2 cards after 2nd purchase", testCustomer.getCards().size() == 2);
 		assertTrue(
 				"testCustomer's gold was not decremented by Shop.cardPrice after buying 2 cards", 
@@ -323,7 +323,7 @@ public class ShopTest {
 		currentGold = testCustomer.getGold();
 		
 		//3
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue("testCustomer cards did not have 3 cards after 3rd purchase", testCustomer.getCards().size() == 3);
 		assertTrue(
 				"testCustomer's gold was not decremented by Shop.cardPrice after buying 3 cards", 
@@ -331,7 +331,7 @@ public class ShopTest {
 		currentGold = testCustomer.getGold();
 				
 		//4
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue("testCustomer cards did not have 4 cards after 4th purchase", testCustomer.getCards().size() == 4);
 		assertTrue(
 				"testCustomer's gold was not decremented by Shop.cardPrice after buying 4 cards", 
@@ -339,7 +339,7 @@ public class ShopTest {
 		currentGold = testCustomer.getGold();
 		
 		//5
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue("testCustomer cards did not have 5 cards after 5th purchase", testCustomer.getCards().size() == 5);
 		assertTrue(
 				"testCustomer's gold was not decremented by Shop.cardPrice after buying 5 cards", 
@@ -347,7 +347,7 @@ public class ShopTest {
 		currentGold = testCustomer.getGold();
 		
 		//6
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue("testCustomer cards did not have 6 cards after 6th purchase", testCustomer.getCards().size() == 6);
 		assertTrue(
 				"testCustomer's gold was not decremented by Shop.cardPrice after buying 6 cards", 
@@ -355,7 +355,7 @@ public class ShopTest {
 		currentGold = testCustomer.getGold();
 				
 		//7
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue("testCustomer cards did not have 7 cards after 7th purchase", testCustomer.getCards().size() == 7);
 		assertTrue(
 				"testCustomer's gold was not decremented by Shop.cardPrice after buying 7 cards", 
@@ -363,7 +363,7 @@ public class ShopTest {
 		currentGold = testCustomer.getGold();	
 		
 		//No more purchases should be possible.
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue("testCustomer cards did not remain at 7 after an attempted 8th purchase", testCustomer.getCards().size() == 7);
 		assertTrue(
 				"testCustomer's gold was changed after an 8th purchase was attempted",
@@ -377,7 +377,7 @@ public class ShopTest {
 		assertTrue("testCustomer still had gold after an attempt to remove it", testCustomer.getGold() == 0);
 		
 		//Execute
-		testShop.buyCard();
+		testShop.buyCard(true);
 		assertTrue(
 				"testCustomer's gold changed after an attempt to buy a card with no gold",
 				testCustomer.getGold() == 0);

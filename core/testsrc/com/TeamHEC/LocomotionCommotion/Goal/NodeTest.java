@@ -5,21 +5,25 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Goal.Graph.Node;
-import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
+@RunWith(GdxTestRunner.class)
 public class NodeTest {
-	WorldMap wm = WorldMap.getInstance();
-	Station yo = wm.AMSTERDAM;
-	Node n = new Node(yo);
+	WorldMap wm;
+	Station yo;
+	Node n;
 	
 	   
 	@Before
 	public void setUp() throws Exception {
-		
+		wm = WorldMap.getInstance();
+		yo = wm.AMSTERDAM;
+		n = new Node(yo);
 	}
 
 	@After
@@ -33,20 +37,5 @@ public class NodeTest {
 		assertTrue(n.edges.size() == 0);
 		assertTrue(n.minDistance == Double.POSITIVE_INFINITY);
 		assertTrue(n.previous == null);
-		
-		
 	}
-
-	@Test
-	public void testGetMapObj() {
-		assertTrue(n.getMapObj() != null); 
-		
-		
-	}
-
-	@Test
-	public void testCompareTo() {
-	
-	}
-
 }

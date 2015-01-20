@@ -1,9 +1,9 @@
 package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
@@ -16,7 +16,7 @@ public class Game_Map_StationBtn extends SpriteButton {
 
 	// Used to hold player1s selection:
 	public static Game_Map_Station selectedStation, selectedP1;
-	private static Station tempP1Station;
+	public static Station tempP1Station;
 
 	public Game_Map_StationBtn(float x, float y, Texture texture)
 	{
@@ -65,7 +65,7 @@ public class Game_Map_StationBtn extends SpriteButton {
 					
 					GameScreen.createCoreGame(tempP1Station, selectedStation.getStation());
 					Game_StartingSequence.startGame();
-					GameScreen_ActorManager.refreshResources();
+					GameScreenUI.refreshResources();
 					Game_StartingSequence.inProgress = false;
 					
 					Game_StartingSequence.selectLabel.setVisible(true);
@@ -80,12 +80,9 @@ public class Game_Map_StationBtn extends SpriteButton {
 			else
 			{
 				//Buy Stations in game
-				if (GameScreen.game.getPlayerTurn().getGold()>= selectedStation.getStation().getBaseValue()){
-					GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
-					System.out.println(selectedStation.getStation().getOwner());				}
-					Game_Map_Manager.hideInfoBox();
+				GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
+				Game_Map_Manager.hideInfoBox();
 			}
-			
 		}
 		started = false;
 	}

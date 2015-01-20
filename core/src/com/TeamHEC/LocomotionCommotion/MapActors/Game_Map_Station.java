@@ -1,9 +1,9 @@
 package com.TeamHEC.LocomotionCommotion.MapActors;
 
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 
 public class Game_Map_Station extends Game_Map_MapObj implements StationListener {
 
@@ -54,12 +54,12 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	protected void onClicked()
 	{
 		super.onClicked();
+		Game_Map_StationBtn.selectedStation = this;
 		if(!highlighted)
 		{	
 			highlighted = true;
 			if(!Game_Map_Manager.routingModeWindow.isVisible())
 				showInfoBox();
-			Game_Map_StationBtn.selectedStation = this;
 		}
 		else
 		{

@@ -1,12 +1,17 @@
 package com.TeamHEC.LocomotionCommotion.Resource;
 
+/**
+ * 
+ *  @author Matthew Taylor <mjkt500@york.ac.uk>
+ *	The object representing Electric fuel.
+ *
+ */
 public class Electric extends Fuel{
-		
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Initialises Electric
+	 * @param value The initial value of the object.
+	 */
 	public Electric(int value)
 	{
 		super(value, "Electric");

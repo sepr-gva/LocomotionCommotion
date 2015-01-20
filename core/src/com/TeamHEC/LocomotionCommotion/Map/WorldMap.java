@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Map;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Resource.*;
@@ -9,9 +8,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.*;
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  */
 
-public class WorldMap implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class WorldMap {
 
 	private final static WorldMap INSTANCE = new WorldMap();
 	public static WorldMap getInstance()
@@ -50,7 +47,6 @@ public class WorldMap implements Serializable{
 	// Adds all the created stations to an ArrayList for later access:
 	public ArrayList<Station> stationsList = new ArrayList<Station>() {	 		 
 		private static final long serialVersionUID = 1L;
-
 	{ 
 		add(LONDON);
 		add(PARIS);
@@ -106,7 +102,7 @@ public class WorldMap implements Serializable{
 	 * @param mapObj the initial starting MapObj
 	 * @param connection All it's adjacent MapObjs
 	 */
-	public void createConnections(MapObj mapObj, MapObj[] connection)
+	private void createConnections(MapObj mapObj, MapObj[] connection)
 	{
 		for(int i = 0; i < connection.length; i++)
 		{

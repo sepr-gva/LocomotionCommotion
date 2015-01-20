@@ -1,14 +1,13 @@
-package com.TeamHEC.LocomotionCommotion.Screens;
+package com.TeamHEC.LocomotionCommotion.Game;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
-import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
@@ -68,7 +67,7 @@ public class GameScreen implements Screen {
 		Game_CardHand cardHand = new Game_CardHand();
 		cardHand.create(getStage());
 
-		GameScreen_ActorManager actorManager = new GameScreen_ActorManager();
+		GameScreenUI actorManager = new GameScreenUI();
 		actorManager.create(getStage());
 
 
@@ -97,7 +96,7 @@ public class GameScreen implements Screen {
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
 		game = new CoreGame(LocomotionCommotion.player1name, LocomotionCommotion.player2name, p1Station, p2Station, LocomotionCommotion.turnChoice);
-		GameScreen_ActorManager.refreshResources();
+		GameScreenUI.refreshResources();
 	}
 	
 	@Override
@@ -167,7 +166,7 @@ public class GameScreen implements Screen {
 		PlayerGoals.open = false;
 		Game_Shop.actorManager.open = false;
 		TrainDepotUI.actorManager.open = false;
-		GameScreen_ActorManager.resourcebarexpanded =false;
+		GameScreenUI.resourcebarexpanded =false;
 		GoalMenu.open= false;
 		
 		//CARDS

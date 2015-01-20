@@ -9,36 +9,55 @@ import com.TeamHEC.LocomotionCommotion.Goal.Graph.Dijkstra;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 
+/**
+ * 
+ * @author Sam Anderson <sa902@york.ac.uk>
+ * Generates random Goals.
+ */
 public class GoalFactory{
 
 	private WorldMap map;                // creating world map 
 	private ArrayList<Station> stations;
-	private CardFactory cardFactory;
-	public Random random;
+	private Random random;
+	private int turnCount;
 	
-	public GoalFactory()
-	{   
-		map = WorldMap.getInstance(); //initializing 
+	/**
+	 * Initialises the GoalFactory
+	 */
+	public GoalFactory(int turnCount){   
+		map = WorldMap.getInstance(); 
 		stations = map.stationsList;  //get all the stations 
-		cardFactory = new CardFactory(null); //initialize the card factory
 		random = new Random(); //initializes random, used throughout
+		this.turnCount = turnCount;
 	}	
-	private int genReward(Station sstation, Station fstation){
+	
+	/**
+	 * Uses Dijkstra to calculate the appropriate reward value for achieving the Goal we generate
+	 * @param sStation The start station for the goal.
+	 * @param fStation The final station for the goal.
+	 * @return A value representing the reward. Will be proportional to the minimum distance between sStation and fStation.
+	 */
+	private int genReward(Station sStation, Station fStation){
 		Dijkstra d = new Dijkstra(); //implements dijkstra 
-		d.computePaths(d.lookUpNode(sstation)); //uses the loopup function to get instance of a
+		d.computePaths(d.lookUpNode(sStation)); //uses the loopup function to get instance of a
 												//station and compute paths 
-		double rew = d.lookUpNode(fstation).minDistance; // 
+		double rew = d.lookUpNode(fStation).minDistance; // 
 		return (int) rew; //returns reward casted to integer 
 	}	
+	
+	/**
+	 * Gets a random station from the stationList.
+	 * @return A random station.
+	 */
 	private Station newStation(){ 
 		Station st = stations.get(random.nextInt(stations.size())); //get a random station
 		return st;  
-	}  
-	
-	public Card genCard(){
-		return cardFactory.createAnyCard();     
-	}
+	} 
 
+	/**
+	 * Creates a new random Goal.
+	 * @return A random goal.
+	 */
 	public Goal CreateRandomGoal(){
 		Goal newgoal;
 

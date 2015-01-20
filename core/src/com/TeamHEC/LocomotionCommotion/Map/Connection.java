@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Array;
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  */
-
 public class Connection{
 	
 	private MapObj startMapObj, endMapObj;

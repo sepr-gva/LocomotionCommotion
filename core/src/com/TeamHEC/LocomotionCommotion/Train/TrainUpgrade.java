@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
-public class TrainUpgrade {
+public abstract class TrainUpgrade {
 	
 	private int price;
 	

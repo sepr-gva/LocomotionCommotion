@@ -9,27 +9,25 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 /**
  * 
  * @author Matthew Taylor <mjkt500@york.ac.uk>
- *
+ * Teleports a train (currently to London should be changed and worked in with UI so it teleports to a specified location).
  */
 
 public class TeleportCard extends Card{
-
-	/*
-		Teleport a train from one station to another...
 	
-	 Each card needs a implement method but also needs feedback from the UI
-	 so the user can choose a train and a new station...
-	 
-	*/
-	
-	private static final long serialVersionUID = 1L;
-	
+	/**
+	 * Initialises the card
+	 * @param player The owner of the card.
+	 */
 	public TeleportCard(Player player)
 	{
 		super(player, Game_TextureManager.getInstance().game_card_teleportcard, "Teleport");
 	}
 	
 	@Override
+	/**
+	 * Takes the owner's first train in their trains list and moves it to London.
+	 * Should be changed in Assessment 3 to teleport either random trains to random locations or a specified train to a specified location.
+	 */
 	public void implementCard()
 	{
 		// Need a way to choose the train:

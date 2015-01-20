@@ -1,6 +1,5 @@
 package com.TeamHEC.LocomotionCommotion.Train;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
@@ -12,10 +11,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  */
 
-public class Train implements Serializable{
-		
-	private static final long serialVersionUID = 1L;
-	
+public abstract class Train {	
 	private String name;
 	private int baseSpeed, speedMod;
 	

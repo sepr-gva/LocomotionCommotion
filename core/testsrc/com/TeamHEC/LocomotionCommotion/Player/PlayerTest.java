@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -79,85 +78,33 @@ public class PlayerTest {
 		
 		testStation = new Station("Prague", 1000, new Coal(500), 100, new Line[]{Line.Orange, Line.Yellow, Line.Brown}, 50, 471f, 300f);
 		tester.getTrains().add(new OilTrain(0, true, new Route(testStation), tester));
-		tester.purchaseStation(testStation);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-	
 	@Test
 	public void testPlayer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetName() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetFuel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddFuel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSubFuel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetGold() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddGold() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSubGold() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPurchaseRandomCard() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPurchaseCard() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetNumCards() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCards() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetNumStations() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetStations() {
-		fail("Not yet implemented");
+		assertTrue("name not set correctly", tester.getName() == name);
+		assertTrue("points not set correctly", tester.getPoints() == points);
+		assertTrue("gold not set correctly", tester.getGold() == gold.getValue());
+		assertTrue("coal not set correctly", tester.getFuel("Coal") == coal.getValue());
+		assertTrue("oil not set correctly", tester.getFuel("Oil") == oil.getValue());
+		assertTrue("electric not set correctly", tester.getFuel("Electric") == electric.getValue());
+		assertTrue("nuclear not set correctly", tester.getFuel("Nuclear") == nuclear.getValue());
+		assertTrue("cards not set correctly", tester.getCards() == cards);
+		assertTrue("goals not set correctly", tester.getGoals() == goals);
+		assertTrue("trains not set correctly", tester.getTrains() == trains);		
+		assertTrue("Line 0 was added incorrectly", tester.getLines()[0] == 0);
+		assertTrue("Line 1 was added incorrectly", tester.getLines()[1] == 0);
+		assertTrue("Line 2 was added incorrectly", tester.getLines()[2] == 0);
+		assertTrue("Line 3 was added incorrectly", tester.getLines()[3] == 0);
+		assertTrue("Line 4 was added incorrectly", tester.getLines()[4] == 0);
+		assertTrue("Line 5 was added incorrectly", tester.getLines()[5] == 0);
+		assertTrue("Line 6 was added incorrectly", tester.getLines()[6] == 0);
+		assertTrue("Line 7 was added incorrectly", tester.getLines()[7] == 0);
 	}
 
 	@Test
 	public void testPurchaseStation() {
+		tester.purchaseStation(testStation);
 		assertTrue("Station 1 was not purchased correctly", tester.getStations().get(0) == testStation);
 		assertTrue("incorrect gold value was removed", tester.getGold() == (1000 - testStation.getBaseValue()));
 		assertTrue("Lines are added incorrectly", tester.getLines()[0] == 0);
@@ -187,6 +134,7 @@ public class PlayerTest {
 	public void testSellStation() {
 		//SELL STATION IS CURRENTLY COMMENTED OUT DUE TO NOT BEING SUPPORTED HOWEVER IT WAS TESTING SUCCESSFULLY
 		/*
+		tester.purchaseStation(testStation);
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Red, Line.Red}, 50, 731f, 560f);
 		tester.addGold(950);
 		tester.getTrains().add(new OilTrain(0, true, new Route(testStation2), tester));
@@ -201,14 +149,10 @@ public class PlayerTest {
 		assertFalse("station was sold when not owned", tester.getGold() == 1400);
 		*/		
 	}
-
-	@Test
-	public void testStationPassed() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public void testLineBonuses() {
+		tester.purchaseStation(testStation);
 		Station testStation2 = new Station("Berlin", 950, new Nuclear(500), 100, new Line[]{Line.Yellow, Line.Black, Line.Red}, 50, 731f, 560f);
 		tester.addGold(950);
 		tester.getTrains().add(new OilTrain(0, true, new Route(testStation2), tester));
@@ -237,30 +181,4 @@ public class PlayerTest {
 		assertTrue("bonuses ere incorrectly set", tester.getStations().get(1).getResourceOutMod() == (int)(tester.getStations().get(2).getBaseResourceOut() * 0.05 * 4));
 		
 	}
-
-	@Test
-	public void testStationRewards() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAccessShop() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAccessGoals() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetGoals() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetTrains() {
-		fail("Not yet implemented");
-	}
-
 }

@@ -1,7 +1,16 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
-/*
+
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+
+/**
  * @author Robert Precious <rp825@york.ac.uk>
- * This the transparent backing of the menu.
+ * The Goal Actor is used in the goal menu and in playergoal's meaning it needs to keep track of which one it is. It can also be empty which mean it 
+ * shows a blank texture and does nothing. 
  * 
  * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
  * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
@@ -10,9 +19,11 @@ package com.TeamHEC.LocomotionCommotion.Goal;
  * @param started	Boolean used to show if an Actor has been moused over. Used to stop and start interactions.
  * @param touchDown	Boolean used to show if an Actor has been clicked. Used to stop and start interactions.
  * @param empty		Boolean for if the goal is empty (blank- without goal)
- * @param btnvisible Boolean for if the addGoalButton is visible 
+ * @param addGoalButtonVisible Boolean for if the addGoalButton is visible 
+ * @param planRouteButtonVisible Boolean for if the planRouteButton is visible 
  * @param goal		Goal is the goal object that the ticket represents.
  * @param index		index is a marker for which ticket it is in the grid.
+ * @param ownedGoal the boolean for whether the goal is a player goal or one from the goal menu.
  * 
  * setBounds	This is the bounds for the interaction, we make it the whole image.
  * addListener	This adds a listener for a particular interaction in this case touchDown (click)
@@ -20,13 +31,6 @@ package com.TeamHEC.LocomotionCommotion.Goal;
  * act			The action taken if the listener detects interaction
  * 				Action- None
  */
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-
 public class GoalActor extends Actor {
 	boolean started = false;
 	boolean touchedDown = false;
@@ -97,17 +101,18 @@ public class GoalActor extends Actor {
 	@Override
 	public void act(float delta){
 		if(started){
-			if(this.isOwnedgoal()){
+			if(this.isOwnedgoal()){ //First Checks if Owned (A Player Goal)
 
-				if(!this.isEmpty())
+				if(!this.isEmpty()&& (!GoalMenu.open)) //Checks that the goalActor has a Goal assigned to it and isn't a blank.
 				{
-					if  (this.isPlanRouteButtonVisible()){
+					if(this.isPlanRouteButtonVisible()){           // FOR ON EXIT: Hides the plan route button
 						PlayerGoals.planRouteBtn.setVisible(false);
 						this.setPlanRouteButtonVisible(false);
 					}
 					else
 					{	
-						PlayerGoals.selectedGoal = goal;
+						PlayerGoals.selectedGoal = goal;		//FOR ON ENTER: Shows the plan route button
+						PlayerGoals.selectedGoalActor = this;
 						PlayerGoals.planRouteBtn.setVisible(true);
 						PlayerGoals.planRouteBtn.setX(this.getX()+60);
 						PlayerGoals.planRouteBtn.setY(this.getY()+75);
@@ -117,9 +122,9 @@ public class GoalActor extends Actor {
 				}
 				started=false;
 			}
-			else
+			else //If a Goal Menu Goal- Shows the Add goal button instead.
 			{
-				if(!this.isEmpty())
+				if(!this.isEmpty()) 
 				{
 					if  (this.addGoalButtonVisible){
 						GoalMenu.addGoalBtn.setVisible(false);
@@ -146,7 +151,11 @@ public class GoalActor extends Actor {
 	public boolean isEmpty(){
 		return this.empty;
 	}
-
+	
+	/**
+	 * When we set empty we set the value AND change the texture to the relevant texture;
+	 * @param empty - Boolean for whether or not the Goal Actor has an assigned goal.
+	 */
 	public void setEmpty(Boolean empty){
 		this.empty=empty;
 

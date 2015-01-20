@@ -5,10 +5,16 @@ import com.TeamHEC.LocomotionCommotion.Train.RouteListener;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 
+/**
+ * 
+ * @author Sam Anderson <sa902@york.ac.uk>
+ * @author Matthew Taylor <mjkt500@york.ac.uk>
+ *
+ */
 public class Goal implements RouteListener{ 
 	//Variables
-	protected Station SStation;
-	protected Station FStation;
+	protected Station sStation;
+	protected Station fStation;
 	protected Station stationVia;
 	private String cargo;
 	public boolean special;
@@ -16,29 +22,38 @@ public class Goal implements RouteListener{
 	private String startDate;
 
 	// Variables used to track Goal completion:
-	private Train train;
-	
+	private Train train;	
 	private boolean startStationPassed;
 	private boolean stationViaPassed;
 	private boolean finalStationPassed;
 	
-	public Goal(Station Startstation, Station FinalStation, Station stationVia, String cargo, int reward)
+	public static GoalActor goalActor;
+	
+	/**
+	 * Initialises the goal.
+	 * @param startStation The Station the goal starts from
+	 * @param finalStation The Station the goal ends at
+	 * @param stationVia The Station the goal wants you to travel via
+	 * @param cargo The type of cargo the train is carrying.
+	 * @param reward The reward (currently Gold) you get for completing the Goal
+	 */
+	public Goal(Station startStation, Station finalStation, Station stationVia, String cargo, int reward)
 	{
-		this.SStation = Startstation;
-		this.FStation = FinalStation;
+		this.sStation = startStation;
+		this.fStation = finalStation;
 		this.stationVia = stationVia;
 		this.special = false; 
 		this.reward = reward;  
 		this.cargo = cargo;
 		
-        startDate = "1";
+        startDate = "1"; //initialized to 1, not yet implemented. 
 		
 		// Initiliase goal completion variables to false
 		startStationPassed = false;
 		if(stationVia == null)
-			stationViaPassed = true;
+		stationViaPassed = true; //does not exist hence always passed 
 		else
-			stationViaPassed = false;
+		stationViaPassed = false;
 		finalStationPassed = false;
 	}
 
@@ -49,12 +64,12 @@ public class Goal implements RouteListener{
 
 	public String getSStation()
 	{
-		return this.SStation.getName();
+		return this.sStation.getName();
 	}
-
+	
 	public String getFStation()
 	{
-		return this.FStation.getName();
+		return this.fStation.getName();
 	}
 
 	public int getReward()
@@ -67,6 +82,15 @@ public class Goal implements RouteListener{
 		return startDate;
 	}
 	
+	public void setActor(GoalActor actor)
+	{
+		goalActor = actor;
+	}
+	
+	/**
+	 * Returns the name of the viaStation. Returns "Any" if StationVia is null.
+	 * @return The name of the viaStation. Returns "Any" if StationVia is null.
+	 */
 	public String getVia()
 	{
 		if(stationVia == null)
@@ -82,21 +106,25 @@ public class Goal implements RouteListener{
 	/**
 	 * Assigns a goal to a train and registers listeners
 	 * @param train The train to assign to
-	 * @author Matthew Taylor <mjkt500@york.ac.uk>
+	 * 
 	 */
 	public void assignTrain(Train train)
 	{
 		this.train = train;
 		train.route.register(this);
 		
-		if(train.route.getStation() == SStation)
+		if(train.route.getStation() == sStation)
 			startStationPassed = true;
+	}
+	
+	public Train getTrain()
+	{
+		return train;
 	}
 	
 	/**
 	 * Called when the goal is successfully complete:
-	 */
-	
+	 */	
 	public void goalComplete()
 	{
 		WarningMessage.fireWarningWindow("GOAL COMPLETE!", "You've successfully complete the route: " + getSStation()
@@ -104,11 +132,21 @@ public class Goal implements RouteListener{
 		
 		train.getOwner().addGold(getReward());
 		train.route.unregister(this);
+		
+		train.getOwner().getGoals().remove(this);
+		
+		//if(goalActor != null)
+		//{
+		//	goalActor.setPlanRouteButtonVisible(false);
+		//}
+		
+		startStationPassed = false;
+		stationViaPassed = false;
+		finalStationPassed = false;
 	}
 	
 	/**
 	 * Listener trigger when a train passes a station
-	 * @author Matthew Taylor <mjkt500@york.ac.uk>
 	 */
 	@Override
 	public void stationPassed(Station station, Train train)
@@ -116,15 +154,23 @@ public class Goal implements RouteListener{
 		if(train == this.train)
 		{
 			System.out.println(train.getName() +" passed " + station.getName());
-			//WarningMessage.fireWarningWindow(train.getName(), station.getName());;
 			
-			if(station == SStation)
+			if(station.equals(sStation))
+			{
 				startStationPassed = true;
-			else if(startStationPassed && station == FStation)
+				System.out.println("start passed");
+			}
+			if(startStationPassed && station.equals(fStation))
+			{
 				finalStationPassed = true;
-			else if(startStationPassed && station == stationVia && stationVia != null)
+				System.out.println("final passed");
+			}
+			if(stationVia == null || (startStationPassed && station.equals(stationVia)))
+			{
 				stationViaPassed = true;
-			
+				System.out.println("via passed");
+			}
+						
 			if(startStationPassed && finalStationPassed && stationViaPassed)
 				goalComplete();
 		}

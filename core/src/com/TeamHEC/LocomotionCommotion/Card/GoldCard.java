@@ -6,15 +6,15 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Player.Shop;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 
-/**
+/** 
+ *   
+ * @author Callum Hewitt <ch1194@york.ac.uk> 
+ * A Card object which when used adds an amount of gold equal to: 
+ * ((Shop.cardPrice/2) + x where 0 < x < Shop.cardPrice) 
+ * to the owner's supply.
  * 
- * @author Matthew Taylor <mjkt500@york.ac.uk>
- *
  */
-
 public class GoldCard extends Card{
-
-	private static final long serialVersionUID = 1L;
 
 	public GoldCard(Player player)
 	{

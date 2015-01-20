@@ -3,9 +3,9 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -107,7 +107,7 @@ public class Game_CardHand {
 					Game_CardHand.actorManager.cardactors.get(numberofcards).setCard(player.getCards().get(i));					//give the actor the card object
 					Game_CardHand.actorManager.cardactors.get(numberofcards).refreshBounds();		
 					Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
-					GameScreen_ActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
+					GameScreenUI.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 				}
 			}
 		}
@@ -117,7 +117,7 @@ public class Game_CardHand {
 				Game_CardHand.actorManager.cardactors.get(i).setEmpty(true);	
 				Game_CardHand.actorManager.usecardbtn.setVisible(false);//sets the empty boolean to false
 			}
-			GameScreen_ActorManager.refreshResources();
+			GameScreenUI.refreshResources();
 			Game_CardHand.actorManager.numberofcards=0;
 
 		}
@@ -126,7 +126,7 @@ public class Game_CardHand {
 		public void useCard(int cardNum){						//Method useCard lets the player use their card.
 			if (cardNum !=0){												//if the the number of card is not 0
 				cardactors.get(cardNum-1).getCard().implementCard();				//Implement the card object
-				GameScreen_ActorManager.refreshResources();					//refresh the labels showing the resources
+				GameScreenUI.refreshResources();					//refresh the labels showing the resources
 				if (cardNum<Game_CardHand.actorManager.numberofcards){									//Shuffle the cards up
 					for(int i=cardNum-1;i<Game_CardHand.actorManager.numberofcards-1;i++){
 						cardactors.get(i).setTexture(cardactors.get(i+1).getTexture());
@@ -142,7 +142,7 @@ public class Game_CardHand {
 				cardactors.get(Game_CardHand.actorManager.numberofcards-1).setEmpty(true);					//Set the end slot as empty and hidden
 				cardactors.get(Game_CardHand.actorManager.numberofcards-1).setVisible(false);
 				Game_CardHand.actorManager.numberofcards-=1;											//decrement card number
-				GameScreen_ActorManager.refreshResources();
+				GameScreenUI.refreshResources();
 				Game_CardHand.actorManager.organiseDeck();
 				Game_CardHand.actorManager.usecardbtn.setVisible(false);			//hide the use card button
 			}
@@ -160,7 +160,7 @@ public class Game_CardHand {
 				Game_CardHand.actorManager.cardactors.get(numberofcards).setCard(newCard);					//give the actor the card object
 				Game_CardHand.actorManager.cardactors.get(numberofcards).refreshBounds();		
 				Game_CardHand.actorManager.numberofcards+=1;											//increment the number of cards
-				GameScreen_ActorManager.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
+				GameScreenUI.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 			}
 		}
 
@@ -221,7 +221,9 @@ public class Game_CardHand {
 		}
 
 
-
+		/**
+		 * Creates the card objects by calling createEmpties which calls createSlots.
+		 */
 		private void createEmpties() 
 		{
 			HashMap<String, CardActor> cardslots = new HashMap<String, CardActor>(); //create an Hashmap of slots
@@ -258,104 +260,5 @@ public class Game_CardHand {
 		}
 	}
 
-
-
-
-	//Hand Creator----------------------------------------------------------------------------------------------
-	public static class Game_card_HandCreator {
-		/*
-		 * @author Robert Precious <rp825@york.ac.uk>
-		 * 
-		 * This class is the hand creator. It takes an ArrayList of cards from the card factory or player and turns the card objects into card_Card objects. (name may change)
-		 * @param card1, card2, card3, card4, card5, card6,card7	holds empty classes to be filled
-		 * @param newCards 			an ArrayList that is ultimately what is returned from this class. It holds the new hand of cards.
-		 * @param numberOfCards		an integer used to hold the number of cards in the hand. I assign it the size of the given ArrayList of cards.
-		 * @param cardslots			a hashmap which is used to hold card_Cards in slots.
-		 * 
-		 * Other Points:
-		 * I have used "String a = new Integer(i).toString();	" on several occasions this turns an int into a string which we need to get things from an hashmap.
-		 */
-		public static ArrayList<CardActor> newCards;
-		public static CardActor card1, card2, card3, card4, card5, card6,card7;
-		public static int numberOfCards;
-
-		public Game_card_HandCreator(ArrayList<Card> cards)
-		{
-
-			numberOfCards = cards.size();	 	//assign the size of the give ArrayList of Cards
-
-			newCards = new ArrayList<CardActor>(); //initialise new Arraylist
-
-			if (cards.size()==0){
-				newCards=createEmpties(cards);	//if there are not given card then we need an empty hand
-			}
-			else if(cards.size()>7){
-				throw new Error("Error list has over 7 cards"); //Hand can only have a max of 7 cards, so I throw an Error.
-			}
-			else
-			{	//Otherwise we need to put the cards given to us into card slots
-				//Create slots
-				HashMap<String, CardActor> cardslots = new HashMap<String, CardActor>();	//we are using a Hashmap to hold the slots
-				cardslots = createSlots(cards); //Call Method to initialise slots.
-
-				//fill slots
-				for (int i=0;i<numberOfCards;i++)
-				{							//1. run through the cards given
-					String a = new Integer(i+1).toString();					//turn the counter in to a string for Hashmap recall
-					cardslots.get(a).setTexture(cards.get(i).getImage());	//Take the image in the card object and assign it to the actor
-					cardslots.get(a).setCard(cards.get(i));					//Give the actor the card (this is needed when trying to use the card
-					newCards.add(cardslots.get(a));							// Add it to the newcard list
-				}
-				//create empty slots
-				for (int i=numberOfCards;i<7;i++)
-				{
-					String a = new Integer(i+1).toString();
-					cardslots.get(a).setEmpty(true);						//set slot as empty which means it does not get drawn
-					newCards.add(cardslots.get(a));							//add it to the new card list
-				}	
-			}
-		}
-		private ArrayList<CardActor> createEmpties(ArrayList<Card> cards) 
-		{
-			HashMap<String, CardActor> cardslots = new HashMap<String, CardActor>(); //create an Hashmap of slots
-			cardslots = createSlots(cards);		//create slots
-
-			for (int i=numberOfCards;i<7;i++)				//run through all slots
-			{
-				String a = new Integer(i+1).toString();		//change the counter+1 to a string for recall in the hashmap 
-				cardslots.get(a).setEmpty(true);			//set slot as empty which means it does not get drawn
-				newCards.add(cardslots.get(a));				//add it to the new card list
-			}
-			return newCards;
-		}
-
-		private HashMap<String, CardActor> createSlots(ArrayList<Card> cards) {
-			int heightY = -100;
-			int x = 1130;
-			HashMap<String, CardActor> cardslots = new HashMap<String, CardActor>();
-			cardslots.put("1", card1= new CardActor(null,x,heightY,false,1));
-			x-=130;																				 //Move card across to make them overlay on each other
-			cardslots.put("2", card2= new CardActor(null,x,heightY,false,2));
-			x-=130;
-			cardslots.put("3", card3= new CardActor(null,x,heightY,false,3));
-			x-=130;
-			cardslots.put("4", card4= new CardActor(null,x,heightY,false,4));
-			x-=130;
-			cardslots.put("5", card5= new CardActor(null,x,heightY,false,5));
-			x-=130;
-			cardslots.put("6", card6= new CardActor(null,x,heightY,false,6));
-			x-=130;
-			cardslots.put("7", card7= new CardActor(null,x,heightY,false,7));
-			return cardslots;
-		}
-
-
-		public  ArrayList<CardActor>  getNewCards(){
-			return newCards; //return the result
-		}
-
-
-
-	}
 
 }

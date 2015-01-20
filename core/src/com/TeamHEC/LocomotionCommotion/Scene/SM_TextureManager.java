@@ -1,4 +1,4 @@
-package com.TeamHEC.LocomotionCommotion.Screens.StartMenu;
+package com.TeamHEC.LocomotionCommotion.Scene;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

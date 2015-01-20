@@ -1,12 +1,17 @@
 package com.TeamHEC.LocomotionCommotion.Resource;
 
+/**
+ * 
+ *  @author Matthew Taylor <mjkt500@york.ac.uk>
+ *	The object representing Nuclear fuel.
+ *
+ */
 public class Nuclear extends Fuel{
 
 	/**
-	 * 
+	 * Initialises Nuclear
+	 * @param value The initial value of the object.
 	 */
-	private static final long serialVersionUID = 1L;
-
 	public Nuclear(int value)
 	{
 		super(value, "Nuclear");

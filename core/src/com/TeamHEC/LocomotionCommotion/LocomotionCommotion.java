@@ -1,8 +1,8 @@
 package com.TeamHEC.LocomotionCommotion;
 
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
-import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.GL20;
  * This is the main class.
  * We create the the startMenu as a Scene and GameScreen as a Screen. There is no significant difference between the two.
  * 
- *
  */
 public class LocomotionCommotion extends Game {
 

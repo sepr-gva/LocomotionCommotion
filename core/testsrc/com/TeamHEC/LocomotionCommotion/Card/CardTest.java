@@ -44,7 +44,7 @@ public class CardTest {
 				new ArrayList<Train>()
 				);		
 		
-		cardName = "Name";
+		cardName = "Coal";
 		cardTexture = Game_TextureManager.getInstance().game_card_coalcard;	
 		card = new CoalCard(player); //Using CoalCard to test as Card is abstract
 	}
