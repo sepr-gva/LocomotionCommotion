@@ -2,7 +2,6 @@
 
 package com.TeamHEC.LocomotionCommotion.Goal;
 
-
 import static org.junit.Assert.*;
 
 import org.junit.After;
@@ -15,6 +14,7 @@ import com.TeamHEC.LocomotionCommotion.Goal.Graph.Node;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
+
 @RunWith(GdxTestRunner.class)
 public class DijkstraTest {
 	WorldMap wm = WorldMap.getInstance();
@@ -42,8 +42,8 @@ public class DijkstraTest {
 	@Test
 	public void testComputePaths() {
 		d.computePaths(d.lookUpNode(this.sstation));
-		assertTrue(rew != null);//[1]
-		assertThat(rew, instanceOf(double.class));  //[2]
+		//assertTrue(rew != null);//[1]
+		//assertThat(rew, instanceOf(double.class));  //[2]
 		//[1] not really sure why this is an error
 		//[2] check that ComputePaths returns a double
 		
@@ -66,7 +66,7 @@ public class DijkstraTest {
 		Node n = d.lookUpNode(fstation);
 		//[1] would be nice to have a test that asserts it is of type Node
 		assertTrue(n!=null); //test to assert that the lookup node isnotnull
-		assertThat(n, instanceOf(Node.class)); //i thought this would accomplish 1
+		//assertThat(n, instanceOf(Node.class)); //i thought this would accomplish 1
 		}
 	
 	//Again, you don't need to test it's type. 
