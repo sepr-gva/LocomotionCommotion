@@ -103,24 +103,27 @@ public class GoalActor extends Actor {
 		if(started){
 			if(this.isOwnedgoal()){ //First Checks if Owned (A Player Goal)
 
-				if(!this.isEmpty()&& (!GoalMenu.open)) //Checks that the goalActor has a Goal assigned to it and isn't a blank.
+				if(!this.isEmpty()) //Checks that the goalActor has a Goal assigned to it and isn't a blank.
 				{
 					if(this.isPlanRouteButtonVisible()){           // FOR ON EXIT: Hides the plan route button
 						PlayerGoals.planRouteBtn.setVisible(false);
 						this.setPlanRouteButtonVisible(false);
 					}
-					else
-					{	
-						PlayerGoals.selectedGoal = goal;		//FOR ON ENTER: Shows the plan route button
-						PlayerGoals.selectedGoalActor = this;
-						PlayerGoals.planRouteBtn.setVisible(true);
-						PlayerGoals.planRouteBtn.setX(this.getX()+60);
-						PlayerGoals.planRouteBtn.setY(this.getY()+75);
-						PlayerGoals.planRouteBtn.refreshBounds();
-						this.setPlanRouteButtonVisible(true);
+					else {
+						if(!this.isEmpty()&& !GoalMenu.open){
+							{	
+								PlayerGoals.selectedGoal = goal;		//FOR ON ENTER: Shows the plan route button
+								PlayerGoals.selectedGoalActor = this;
+								PlayerGoals.planRouteBtn.setVisible(true);
+								PlayerGoals.planRouteBtn.setX(this.getX()+60);
+								PlayerGoals.planRouteBtn.setY(this.getY()+75);
+								PlayerGoals.planRouteBtn.refreshBounds();
+								this.setPlanRouteButtonVisible(true);
+							}
+						}
 					}
+					started=false;
 				}
-				started=false;
 			}
 			else //If a Goal Menu Goal- Shows the Add goal button instead.
 			{
@@ -142,6 +145,7 @@ public class GoalActor extends Actor {
 				}
 				started = false;
 			}
+
 		}
 
 
@@ -151,7 +155,7 @@ public class GoalActor extends Actor {
 	public boolean isEmpty(){
 		return this.empty;
 	}
-	
+
 	/**
 	 * When we set empty we set the value AND change the texture to the relevant texture;
 	 * @param empty - Boolean for whether or not the Goal Actor has an assigned goal.

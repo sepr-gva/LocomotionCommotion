@@ -3,11 +3,9 @@ package com.TeamHEC.LocomotionCommotion.Goal;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.TeamHEC.LocomotionCommotion.Card.Card;
-import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.Goal.Graph.Dijkstra;
-import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 
 /**
  * 
@@ -19,6 +17,7 @@ public class GoalFactory{
 	private WorldMap map;                // creating world map 
 	private ArrayList<Station> stations;
 	private Random random;
+	@SuppressWarnings("unused")
 	private int turnCount;
 	
 	/**

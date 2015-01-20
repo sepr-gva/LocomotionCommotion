@@ -56,7 +56,7 @@ public class GameScreenUI {
 	LabelStyle style;
 
 	/**
-	 * Create method instantiates all Labels, Sprites and SpriteButtons in the Main game screen and then addes them to the stage.
+	 * Create method instantiates all Labels, Sprites and SpriteButtons in the Main game screen and then adds them to the stage.
 	 * Method follows simple formula throughout -
 	 * 		Sprite:
 	 * 			1.Create new Sprite - requires x , y and texture
@@ -107,9 +107,10 @@ public class GameScreenUI {
 					for(int i=Game_PauseMenu.actorManager.getStageStart(); i<=Game_PauseMenu.actorManager.getStageEnd();i++){
 						if (i > GameScreen.getStage().getActors().size-1){
 
-						}else
+						}else{
 							GameScreen.getStage().getActors().get(i).setVisible(true);
-
+							GameScreen.getStage().getActors().get(i).setTouchable(Touchable.enabled);
+						}
 					}			}
 				else
 				{	Game_PauseMenu.actorManager.open= false;
@@ -414,7 +415,7 @@ public class GameScreenUI {
 					Game_CardHand.actorManager.changeHeight(-expandedheight);
 					Game_CardHand.actorManager.organiseHand();
 
-					
+
 
 				}
 
