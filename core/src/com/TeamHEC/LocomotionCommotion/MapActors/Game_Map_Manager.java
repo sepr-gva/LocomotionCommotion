@@ -4,7 +4,7 @@ import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.TrainInfoUI;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
@@ -248,7 +248,7 @@ public class Game_Map_Manager {
 			t.getActor().setTouchable(Touchable.disabled);
 		}
 		
-		GameScreen_ActorManager.game_menuobject_endturnbutton.setVisible(false);
+		GameScreenUI.game_menuobject_endturnbutton.setVisible(false);
 		
 		planBackground.setVisible(true);
 		routingModeWindow.setVisible(true);
@@ -278,7 +278,7 @@ public class Game_Map_Manager {
 			t.getActor().setTouchable(Touchable.enabled);
 		}
 		
-		GameScreen_ActorManager.game_menuobject_endturnbutton.setVisible(true);
+		GameScreenUI.game_menuobject_endturnbutton.setVisible(true);
 		
 		planBackground.setVisible(false);
 		routingModeWindow.setVisible(false);

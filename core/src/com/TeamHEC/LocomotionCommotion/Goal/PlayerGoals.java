@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Screens.GameScreen;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreen_ActorManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
@@ -196,8 +196,8 @@ public class PlayerGoals {
 			
 		}
 		//Hide goal side menu
-		GameScreen_ActorManager.game_menuobject_ticketenclosure.setVisible(false);
-		GameScreen_ActorManager.game_menuobject_tickettoggle.setVisible(false);
+		GameScreenUI.game_menuobject_ticketenclosure.setVisible(false);
+		GameScreenUI.game_menuobject_tickettoggle.setVisible(false);
 		//Put the remove Buttons in the correct place
 		for (int i=0;i<numberofOwnedGoals; i++){
 			String a = new Integer(i+1).toString();
@@ -220,8 +220,8 @@ public class PlayerGoals {
 			removebuttons.get(a).setUndo(false);
 
 		}
-		GameScreen_ActorManager.game_menuobject_ticketenclosure.setVisible(false);
-		GameScreen_ActorManager.game_menuobject_tickettoggle.setVisible(true);
+		GameScreenUI.game_menuobject_ticketenclosure.setVisible(false);
+		GameScreenUI.game_menuobject_tickettoggle.setVisible(true);
 
 
 

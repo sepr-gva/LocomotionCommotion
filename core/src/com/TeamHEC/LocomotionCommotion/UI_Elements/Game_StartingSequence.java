@@ -83,7 +83,7 @@ public class Game_StartingSequence {
 
 	public static void startGame(){
 
-		for(int i=GameScreen_ActorManager.getStageStart(); i<=GameScreen_ActorManager.getStageEnd();i++)	
+		for(int i=GameScreenUI.getStageStart(); i<=GameScreenUI.getStageEnd();i++)	
 		{ 	
 			if (i > GameScreen.getStage().getActors().size-1)
 			{//This is just to avoid range errors
@@ -94,19 +94,19 @@ public class Game_StartingSequence {
 
 		//Handle Text within Game
 		//Score and Who's Turn it is
-		GameScreen_ActorManager.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + 0 +
+		GameScreenUI.playerScore.setText(GameScreen.game.getPlayer1().getName()+"    " + 0 +
 				"     SCORE     "+ 0+"     "+GameScreen.game.getPlayer2().getName());
-		GameScreen_ActorManager.currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
+		GameScreenUI.currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
 		//Resources
-		GameScreen_ActorManager.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
-		GameScreen_ActorManager.coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
-		GameScreen_ActorManager.oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
-		GameScreen_ActorManager.electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electric"));
-		GameScreen_ActorManager.nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
-		GameScreen_ActorManager.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
+		GameScreenUI.goldQuant.setText(""+GameScreen.game.getPlayerTurn().getGold());
+		GameScreenUI.coalQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Coal"));
+		GameScreenUI.oilQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Oil"));
+		GameScreenUI.electricityQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Electric"));
+		GameScreenUI.nuclearQuant.setText(""+GameScreen.game.getPlayerTurn().getFuel("Nuclear"));
+		GameScreenUI.cardQuant.setText(""+GameScreen.game.getPlayerTurn().getCards().size());
 
-		GameScreen_ActorManager.game_card_togglebtn.setVisible(true);
-		GameScreen_ActorManager.cardQuant.setVisible(true);
+		GameScreenUI.game_card_togglebtn.setVisible(true);
+		GameScreenUI.cardQuant.setVisible(true);
 		PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
 		fillGoalScreen();
 	}
