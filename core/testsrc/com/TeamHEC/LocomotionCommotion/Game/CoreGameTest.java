@@ -66,8 +66,8 @@ public class CoreGameTest {
 		
 		player1Name = "Alice";
 		player2Name = "Ben";
-		Player1Start = new Station("London", 100, new Coal(100), 100, line1, 100, 0.01f, 0.01f);
-		Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, line2, 200, 0.01f, 0.01f);	
+		Player1Start = WorldMap.getInstance().AMSTERDAM;
+		Player2Start = WorldMap.getInstance().ATHENS;	
 		
 		player1StationList = new ArrayList<Station>();
 		player2StationList = new ArrayList<Station>();		
@@ -260,6 +260,8 @@ public class CoreGameTest {
 		tester.getPlayer2().addGold(5000);
 		tester.getPlayer1().getShop().buyCard(true);
 		tester.getPlayer2().getShop().buyCard(true);
+		tester.getPlayer1().getTrains().get(0).route.addConnection(tester.getPlayer1().getTrains().get(0).route.getAdjacentConnections().get(0));
+		tester.getPlayer2().getTrains().get(0).route.addConnection(tester.getPlayer2().getTrains().get(0).route.getAdjacentConnections().get(0));
 		
 		tester.getPlayer1().getGoals().add(testGoal1);
 		tester.getPlayer2().getGoals().add(testGoal2);
@@ -296,6 +298,9 @@ public class CoreGameTest {
 		JSONArray player1Cards = (JSONArray) player1.get("cards");
 		JSONArray player1Trains = (JSONArray) player1.get("trains");
 		JSONObject player1Route = (JSONObject) ((JSONObject) player1Trains.get(0)).get("route");
+		JSONArray player1Connections = (JSONArray) player1Route.get("connections");
+		JSONObject player1StartMapObj = (JSONObject) ((JSONObject) player1Connections.get(0)).get("startMapObj");
+		JSONObject player1EndMapObj = (JSONObject) ((JSONObject) player1Connections.get(0)).get("endMapObj");
 		JSONArray player1Stations = (JSONArray) player1.get("stations");
 		JSONArray player1Goals = (JSONArray) player1.get("goals");
 		JSONObject player2 = (JSONObject) game.get("player2");	
@@ -303,6 +308,9 @@ public class CoreGameTest {
 		JSONArray player2Cards = (JSONArray) player2.get("cards");
 		JSONArray player2Trains = (JSONArray) player2.get("trains");
 		JSONObject player2Route = (JSONObject) ((JSONObject) player2Trains.get(0)).get("route");
+		JSONArray player2Connections = (JSONArray) player2Route.get("connections");
+		JSONObject player2StartMapObj = (JSONObject) ((JSONObject) player2Connections.get(0)).get("startMapObj");
+		JSONObject player2EndMapObj = (JSONObject) ((JSONObject) player2Connections.get(0)).get("endMapObj");
 		JSONArray player2Stations = (JSONArray) player2.get("stations");
 		JSONArray player2Goals = (JSONArray) player2.get("goals");
 		String playerTurn = (String) game.get("playerTurn");
@@ -347,14 +355,26 @@ public class CoreGameTest {
 		assertTrue(
 				"Player 1 Trains speedMod was not saved correctly",
 				tester.getPlayer1().getTrains().get(0).getSpeedMod() == (Long) ((JSONObject) player1Trains.get(0)).get("speedMod"));
+		
+		//Route 1
 		assertTrue(
 				"Player 1 Trains routeIndex was not saved correctly",
 				tester.getPlayer1().getTrains().get(0).getRoute().getRouteIndex() == (Long) player1Route.get("routeIndex"));
 		assertTrue(
 				"Player 1 Trains connectionsTravelled was not saved correctly",
 				tester.getPlayer1().getTrains().get(0).getRoute().getConnectionTravelled() == (Double) player1Route.get("connectionTravelled"));
-		
-		// No connections could be tested.
+		assertTrue(
+				"Player 1 Route Connections startMapObj x co-ordinate was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).route.getRoute().get(0).getStartMapObj().actor.actorX == (Double) player1StartMapObj.get("x"));
+		assertTrue(
+				"Player 1 Route Connections startMapObj y co-ordinate was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).route.getRoute().get(0).getStartMapObj().actor.actorY == (Double) player1StartMapObj.get("y"));
+		assertTrue(
+				"Player 1 Route Connections endMapObj x co-ordinate was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).route.getRoute().get(0).getDestination().actor.actorX == (Double) player1EndMapObj.get("x"));
+		assertTrue(
+				"Player 1 Route Connections endMapObj y co-ordinate was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).route.getRoute().get(0).getDestination().actor.actorY == (Double) player1EndMapObj.get("y"));
 		
 		//Stations 1
 		assertTrue(
@@ -411,15 +431,27 @@ public class CoreGameTest {
 				tester.getPlayer2().getTrains().get(0).isInStation() == (Boolean) ((JSONObject) player2Trains.get(0)).get("inStation"));
 		assertTrue(
 				"Player 2 Trains speedMod was not saved correctly",
-				tester.getPlayer2().getTrains().get(0).getSpeedMod() == (Long) ((JSONObject) player2Trains.get(0)).get("speedMod"));
+				tester.getPlayer2().getTrains().get(0).getSpeedMod() == (Long) ((JSONObject) player2Trains.get(0)).get("speedMod"));		
+		
+		//Route 2
 		assertTrue(
 				"Player 2 Trains routeIndex was not saved correctly",
 				tester.getPlayer2().getTrains().get(0).getRoute().getRouteIndex() == (Long) player2Route.get("routeIndex"));
 		assertTrue(
 				"Player 2 Trains connectionsTravelled was not saved correctly",
 				tester.getPlayer2().getTrains().get(0).getRoute().getConnectionTravelled() == (Double) player2Route.get("connectionTravelled"));
-		
-		// No connections could be tested.
+		assertTrue(
+				"Player 2 Route Connections startMapObj x co-ordinate was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).route.getRoute().get(0).getStartMapObj().actor.actorX == (Double) player2StartMapObj.get("x"));
+		assertTrue(
+				"Player 2 Route Connections startMapObj y co-ordinate was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).route.getRoute().get(0).getStartMapObj().actor.actorY == (Double) player2StartMapObj.get("y"));
+		assertTrue(
+				"Player 2 Route Connections endMapObj x co-ordinate was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).route.getRoute().get(0).getDestination().actor.actorX == (Double) player2EndMapObj.get("x"));
+		assertTrue(
+				"Player 2 Route Connections endMapObj y co-ordinate was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).route.getRoute().get(0).getDestination().actor.actorY == (Double) player2EndMapObj.get("y"));
 		
 		//Stations 2
 		assertTrue(

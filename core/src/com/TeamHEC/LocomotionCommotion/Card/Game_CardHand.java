@@ -19,11 +19,11 @@ public class Game_CardHand {
 	 * @author Robert Precious <rp825@york.ac.uk>
 	 * 
 	 * This class is a Manager, I use Managers in the UI to handed groups of actors. It means I can hide or show a major group of action from one action.
-	 * This Manager calls the HandCreator and then takes the result and adds them to the actor which are then added to the stage (recording where in the stage they are)
-	 * The Manager also handles add and removing from cards from the players hand.
+	 * The Manager handles the creation of the cards in the hand, 
+	 * the adding of cards and removing from cards from the players hand.
 	 * 
 	 * @param actors		Array of actors used to add to stage in one loop
-	 * @param cardactors			Array of cards  used for global use
+	 * @param cardactors	Array of cards  used for global use
 	 * @param currentHand	ArrayList of card_Card that represents the currentHand
 	 * @param newcards		ArrayList of card_Card from the HandCreator
 	 * @param open			Boolean for if the cards are visible or not
@@ -95,6 +95,11 @@ public class Game_CardHand {
 
 
 		}
+		/**
+		 * Change Player gets the cards from the new player when a turn is ended and puts the player's cards back.
+		 * This involves flushing the other players hand of CardActors.
+		 * @param player - Current Player.
+		 */
 		public static void changePlayer(Player player) {
 			Game_CardHand.actorManager.numberofcards=0;
 			flushHand();
@@ -111,6 +116,9 @@ public class Game_CardHand {
 				}
 			}
 		}
+		/**
+		 * FlushHand clears all the card Actors and sets the numberofcards to 0.
+		 */
 		public static void flushHand(){
 			for (int i=0;i<7;i++){
 				Game_CardHand.actorManager.cardactors.get(i).setVisible(false);	//sets the image
@@ -122,7 +130,10 @@ public class Game_CardHand {
 
 		}
 
-
+		/**
+		 * useCard is called from the usecard button and implements the card's action and removes it.
+		 * @param cardNum
+		 */
 		public void useCard(int cardNum){						//Method useCard lets the player use their card.
 			if (cardNum !=0){												//if the the number of card is not 0
 				cardactors.get(cardNum-1).getCard().implementCard();				//Implement the card object
@@ -143,13 +154,16 @@ public class Game_CardHand {
 				cardactors.get(Game_CardHand.actorManager.numberofcards-1).setVisible(false);
 				Game_CardHand.actorManager.numberofcards-=1;											//decrement card number
 				GameScreenUI.refreshResources();
-				Game_CardHand.actorManager.organiseDeck();
+				Game_CardHand.actorManager.organiseHand();
 				Game_CardHand.actorManager.usecardbtn.setVisible(false);			//hide the use card button
 			}
 
 
 		}
-
+		/**
+		 * Adds given card to hand if hand is not full.
+		 * @param newCard - new card passed to be put in the hand.
+		 */
 		public void addCard(Card newCard){
 			//Method adds card to the hand if not already full
 			int numberofcards=Game_CardHand.actorManager.numberofcards;
@@ -163,7 +177,11 @@ public class Game_CardHand {
 				GameScreenUI.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 			}
 		}
-
+		
+		/**
+		 * Moves the cards up or down
+		 * @param height - the pixel to which you want to increase/decrease the height of the cards 
+		 */
 		public void changeHeight(float height){  //Method to move all cards up or down at once
 			float newheight = card1.getY() +height;
 			card1.setActorY(newheight);
@@ -174,8 +192,12 @@ public class Game_CardHand {
 			card6.setActorY(newheight);
 			card7.setActorY(newheight);
 		}
-
-		public void organiseDeck()
+		
+		/**
+		 * organiseHand collapses all cards or all the cards except for the selectedCard.
+		 * 
+		 */
+		public void organiseHand()
 		{
 			if (Game_CardHand.actorManager.selectedCard == 0){		//resets the expanded boolean for all cards not selected.
 				for(CardActor b : cardactors)
@@ -187,7 +209,9 @@ public class Game_CardHand {
 			}
 		}
 
-		//CollapseCards- resets any card that is not selected to unexpanded position
+		/**
+		 * CollapseCards- resets any card that is not selected to unexpanded position
+		 */
 		public static void collapseCards(){
 			if (card1.getSlot() != Game_CardHand.actorManager.selectedCard)
 				card1.cardCollapse();
@@ -205,7 +229,10 @@ public class Game_CardHand {
 				card7.cardCollapse();
 		}
 
-		//Getter for selectedcard
+		/**
+		 * Getter for selectedcard
+		 * @return either selected card actor or null (if non are selected)
+		 */
 		public static CardActor getSelectedCard(){
 			for (CardActor c: Game_CardHand.actorManager.cardactors)
 			{
@@ -238,7 +265,10 @@ public class Game_CardHand {
 			}
 
 		}
-
+		/**
+		 * Creates blank card objects in a hashmap, returning all the available card slots.
+		 * @return - Blank Card Slots.
+		 */
 		private  HashMap<String, CardActor> createSlots() {
 			int heightY = -100;
 			int x = 1130;
