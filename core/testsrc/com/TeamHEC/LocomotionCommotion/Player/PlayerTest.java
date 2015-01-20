@@ -92,67 +92,12 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void testGetName() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetFuel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddFuel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSubFuel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetGold() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddGold() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSubGold() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testPurchaseRandomCard() {
 		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testPurchaseCard() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetNumCards() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetCards() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetNumStations() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetStations() {
 		fail("Not yet implemented");
 	}
 
@@ -201,11 +146,6 @@ public class PlayerTest {
 		assertFalse("station was sold when not owned", tester.getGold() == 1400);
 		*/		
 	}
-
-	@Test
-	public void testStationPassed() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public void testLineBonuses() {
@@ -242,25 +182,4 @@ public class PlayerTest {
 	public void testStationRewards() {
 		fail("Not yet implemented");
 	}
-
-	@Test
-	public void testAccessShop() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAccessGoals() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetGoals() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetTrains() {
-		fail("Not yet implemented");
-	}
-
 }

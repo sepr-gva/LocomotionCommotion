@@ -472,8 +472,6 @@ public class Player implements RouteListener{
 	}
 
 	//Goals
-	public void accessGoals(){}
-
 	public ArrayList<Goal> getGoals()
 	{
 		return goals;
