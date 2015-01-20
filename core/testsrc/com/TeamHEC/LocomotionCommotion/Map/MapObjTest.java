@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
+
+@RunWith(GdxTestRunner.class)
 public class MapObjTest {
 	float x;
 	float y;
