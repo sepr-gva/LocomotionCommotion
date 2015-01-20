@@ -111,6 +111,11 @@ public class Goal implements RouteListener{
 			startStationPassed = true;
 	}
 	
+	public Train getTrain()
+	{
+		return train;
+	}
+	
 	/**
 	 * Called when the goal is successfully complete:
 	 */	

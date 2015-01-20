@@ -2,60 +2,84 @@ package com.TeamHEC.LocomotionCommotion.Goal;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.TeamHEC.LocomotionCommotion.Resource.Coal;
+import com.TeamHEC.LocomotionCommotion.Resource.Electric;
+import com.TeamHEC.LocomotionCommotion.Resource.Gold;
+import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
+import com.TeamHEC.LocomotionCommotion.Resource.Oil;
+import com.TeamHEC.LocomotionCommotion.Train.OilTrain;
+import com.TeamHEC.LocomotionCommotion.Train.Route;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
 
 @RunWith(GdxTestRunner.class)
 public class GoalTest {
-	GoalFactory gf;
-	Goal newgoal;
+
+	Goal goal;
+	Train train;
 	
 	@Before
 	public void setUp() throws Exception {
-		gf = new GoalFactory();
-		newgoal = gf.CreateRandomGoal();		
-	}
-
-	@After
-	public void tearDown() throws Exception {
+		
+		GoalFactory gf = new GoalFactory();
+		goal = gf.CreateRandomGoal();
+		
+		String name = "Player 1";
+		int points = 0;
+		Gold gold = new Gold(1000);
+		Coal coal = new Coal(200);
+		Oil oil = new Oil(200);
+		Electric electric = new Electric(200);
+		Nuclear nuclear = new Nuclear(200);
+		ArrayList<Card> cards = new ArrayList<Card>();
+		ArrayList<Goal> goals = new ArrayList<Goal>();
+		ArrayList<Train> trains = new ArrayList<Train>();
+		
+		Player player = new Player(
+				name,
+				points,
+				gold,
+				coal,
+				electric,
+				nuclear,
+				oil,
+				cards,	
+				goals,
+				trains);
+		
+		
+		train = new OilTrain(0, true, new Route(WorldMap.getInstance().AMSTERDAM), player);
+		
+		goal.assignTrain(train);
+		
 	}
 
 	@Test
-	public void testGoal() {		
-		assertTrue(newgoal != null);		
-	}
-
-	@Test
-	public void testStartdate() {
+	public void testGoal() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testIsSpecial() {
+	public void testAssignTrain() {
+		assertTrue("", goal.getTrain() == train);
+	}
+
+	@Test
+	public void testGoalComplete() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testRewards() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetSStation() {
-		assertTrue(newgoal.getSStation() != null);
-	}
-
-	@Test
-	public void testGetFStation() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetMission() {
+	public void testStationPassed() {
 		fail("Not yet implemented");
 	}
 

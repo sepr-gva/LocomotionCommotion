@@ -10,10 +10,7 @@ import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Goal.Goal;
-import com.TeamHEC.LocomotionCommotion.Map.Connection;
-import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
-import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
@@ -22,10 +19,12 @@ import com.TeamHEC.LocomotionCommotion.Resource.Gold;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Oil;
 
+
 @RunWith(GdxTestRunner.class)
 public class RouteTest {
 	
 	Train train;
+	Route route;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -53,47 +52,20 @@ public class RouteTest {
 				cards,	
 				goals,
 				trains);
+				
+		//train = new CoalTrain(0, true, new Route(WorldMap.getInstance().REYKJAVIK), player);
+		//train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		
-		Game_Map_Manager gmm = new Game_Map_Manager();
-	//	gmm.create(stage);
+		//train.route.getTrainPos();
 		
-		train = new CoalTrain(0, true, new Route(WorldMap.getInstance().REYKJAVIK), player);
-		train.route.addConnection(train.route.getAdjacentConnections().get(0));
-	}
-
-	@Test
-	public void testRouteArrayListOfConnectionIntFloat() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetAdjacentConnections() {
-		assertTrue("Adjacent connection to reykjavik is OSLO", train.route.getRoute().get(0) == WorldMap.getInstance().REYKJAVIK.connections.get(0));
-	}
-
-	@Test
-	public void testAddConnection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemoveConnection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAbortRoute() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCancelRoute() {
-		fail("Not yet implemented");
+		route = new Route(WorldMap.getInstance().REYKJAVIK);
+		route.addConnection(route.getAdjacentConnections().get(0));
 	}
 
 	@Test
 	public void testGetTrainPos() {
-		fail("Not yet implemented");
+		assertTrue("Train coordinates match start of route",
+				route.getTrainPos().x == WorldMap.getInstance().REYKJAVIK.x && route.getTrainPos().y == WorldMap.getInstance().REYKJAVIK.y);
 	}
 
 	@Test
