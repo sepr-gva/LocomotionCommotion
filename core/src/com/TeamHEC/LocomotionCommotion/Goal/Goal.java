@@ -17,7 +17,7 @@ public class Goal implements RouteListener{
 	protected Station fStation;
 	protected Station stationVia;
 	private String cargo;
-	public boolean special;
+	private boolean special;
 	private int reward;
 	private String startDate;
 

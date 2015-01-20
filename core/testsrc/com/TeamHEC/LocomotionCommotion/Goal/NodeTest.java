@@ -36,6 +36,6 @@ public class NodeTest {
 		assertTrue(n.mapobj == wm.AMSTERDAM);
 		assertTrue(n.edges.size() == 0);
 		assertTrue(n.minDistance == Double.POSITIVE_INFINITY);
-		assertTrue(n.previous == null);
+		assertTrue(n.next == null);
 	}
 }
