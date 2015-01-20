@@ -1,6 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Goal.Graph;
 
-class Edge
+public class Edge
 {
     public final Node target;
     public final float weight;

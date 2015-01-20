@@ -10,11 +10,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Oil;
  */
 
 public class OilTrain extends Train{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	private static final int BASE_SPEED = 80;
 	private static final int VALUE = 350;
 
@@ -22,6 +18,6 @@ public class OilTrain extends Train{
 	{
 		super("Diesel Weasel", new Oil(200), BASE_SPEED, speedMod, VALUE, inStation,
 				route, player);
-		fuelPerTurn = 20;
+		fuelPerTurn = 15;
 	}
 }

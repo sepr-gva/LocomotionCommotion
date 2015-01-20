@@ -380,6 +380,7 @@ public class Game_Shop {
 			Game_Shop.actorManager.sell=true;
 			Texture t = Game_TextureManager.getInstance().game_shop_sellbtn;
 			Game_Shop.actorManager.carditem.buyButton.setTexture(t);
+			Game_Shop.actorManager.coalitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.oilitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.electricityitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.nuclearitem.buyButton.setTexture(t);
@@ -393,7 +394,7 @@ public class Game_Shop {
 				Game_Shop.actorManager.carditem.costLabel.setText(""+1000*Shop.cardSellPrice);
 				Game_Shop.actorManager.coalitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.coalitem.quantityLabel.getText())*Shop.coalSellPrice);
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilSellPrice);
-				Game_Shop.actorManager.electricityitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice);
+				Game_Shop.actorManager.electricityitem.costLabel.setText(""+Math.ceil((strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice)));
 				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText())*Shop.nuclearSellPrice);
 			}
 			else
@@ -586,6 +587,11 @@ public class Game_Shop {
 			public static void changeQuantity(int change){
 				int newQuantity = strToInt(Game_Shop.actorManager.coalitem.quantityLabel.getText());
 				newQuantity+=change;
+				if (Game_Shop.actorManager.sell)
+				{
+					Game_Shop.actorManager.coalitem.costLabel.setText(""+(newQuantity*Shop.coalSellPrice));
+				}
+				else
 				Game_Shop.actorManager.coalitem.costLabel.setText(""+(newQuantity*Shop.coalPrice));
 
 				String l = new Integer(newQuantity).toString();
@@ -695,6 +701,11 @@ public class Game_Shop {
 			public static void changeQuantity(int change){
 				int newQuantity = strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText());
 				newQuantity+=change;
+				if(Game_Shop.actorManager.sell)
+				{
+					Game_Shop.actorManager.oilitem.costLabel.setText(""+(newQuantity*Shop.oilSellPrice));
+				}
+				else
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+(newQuantity*Shop.oilPrice));
 
 				String l = new Integer(newQuantity).toString();
@@ -805,7 +816,12 @@ public class Game_Shop {
 			public static void changeQuantity(int change){
 				int newQuantity = strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText());
 				newQuantity+=change;
-				Game_Shop.actorManager.electricityitem.costLabel.setText(""+(newQuantity*Shop.coalPrice));
+				if(Game_Shop.actorManager.sell)
+				{
+					Game_Shop.actorManager.electricityitem.costLabel.setText(""+(Math.ceil(newQuantity*Shop.electricSellPrice)));
+				}
+				else
+				Game_Shop.actorManager.electricityitem.costLabel.setText(""+(newQuantity*Shop.electricPrice));
 
 				String l = new Integer(newQuantity).toString();
 				Game_Shop.actorManager.electricityitem.quantityLabel.setText(l);
@@ -832,7 +848,7 @@ public class Game_Shop {
 
 			public Game_shop_nuclear(){
 				this.actors = new ArrayList<Actor>();
-				Sprite nuclearitem = new Sprite(posx,posy,Game_TextureManager.getInstance().game_shop_electricityitem);
+				Sprite nuclearitem = new Sprite(posx,posy,Game_TextureManager.getInstance().game_shop_nuclearitem);
 				add = new SpriteButton(posx+75,posy+42,Game_TextureManager.getInstance().game_shop_addbtn){
 					@Override
 					protected void onClicked(){
@@ -915,6 +931,11 @@ public class Game_Shop {
 			public static void changeQuantity(int change){
 				int newQuantity = strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText());
 				newQuantity+=change;
+				if(Game_Shop.actorManager.sell)
+				{
+					Game_Shop.actorManager.nuclearitem.costLabel.setText(""+(newQuantity*Shop.nuclearSellPrice));
+				}
+				else
 				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+(newQuantity*Shop.nuclearPrice));
 
 				String l = new Integer(newQuantity).toString();

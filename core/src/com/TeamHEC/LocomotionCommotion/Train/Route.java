@@ -171,12 +171,19 @@ public class Route{
 	 */
 	public void showConnectionBlips(Connection connection)
 	{
-		Stage stage = train.getActor().getStage();
-		for(Actor a : connection.getRouteBlips())
-		{
-			a.setVisible(true);
-			stage.addActor(a);
+		if(train.getActor() == null) //Must be for testing.
+		{			
 		}
+		else
+		{
+			Stage stage = train.getActor().getStage();
+			for(Actor a : connection.getRouteBlips())
+			{
+				a.setVisible(true);
+				stage.addActor(a);
+			}
+		}
+		
 	}
 	/**
 	 * @param connection The connection to hide UI blips for
@@ -229,9 +236,11 @@ public class Route{
 			// Sets booleans to false so the train does not move and the route
 			//is not complete:
 			isComplete = false;
-			train.getActor().canMove = false;
-			
-			updateRouteText();
+			if(train.getActor() != null) //Stops problems when testing
+			{
+				train.getActor().canMove = false;			
+				updateRouteText();
+			}
 		}
 		else
 		{
@@ -456,8 +465,11 @@ public class Route{
 		float connectionLength = route.get(routeIndex).getLength();
 		
 		// If the train is still on the same connection, update conenctionTravelled:
-		if(connectionTravelled + moveBy < connectionLength)
+		if(connectionTravelled + moveBy <= connectionLength)
+		{
 			connectionTravelled += moveBy;
+			currentMapObj = route.get(routeIndex).getStartMapObj();
+		}
 		else
 		{
 			// Completes the current connection and progresses onto the next using

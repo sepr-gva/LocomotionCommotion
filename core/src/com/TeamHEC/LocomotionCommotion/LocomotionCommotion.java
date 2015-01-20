@@ -13,7 +13,6 @@ import com.badlogic.gdx.graphics.GL20;
  * This is the main class.
  * We create the the startMenu as a Scene and GameScreen as a Screen. There is no significant difference between the two.
  * 
- *
  */
 public class LocomotionCommotion extends Game {
 

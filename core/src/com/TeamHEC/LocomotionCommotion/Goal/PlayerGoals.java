@@ -44,6 +44,7 @@ public class PlayerGoals {
 	public static SpriteButton planRouteBtn;
 
 	public static Goal selectedGoal;
+	public static GoalActor selectedGoalActor;
 	public static boolean chooseTrain = false;
 
 	public PlayerGoals(){	}

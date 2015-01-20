@@ -54,12 +54,12 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	protected void onClicked()
 	{
 		super.onClicked();
+		Game_Map_StationBtn.selectedStation = this;
 		if(!highlighted)
 		{	
 			highlighted = true;
 			if(!Game_Map_Manager.routingModeWindow.isVisible())
 				showInfoBox();
-			Game_Map_StationBtn.selectedStation = this;
 		}
 		else
 		{
