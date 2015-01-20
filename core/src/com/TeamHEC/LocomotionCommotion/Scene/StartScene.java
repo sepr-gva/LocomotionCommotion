@@ -1,7 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Scene;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
-import com.TeamHEC.LocomotionCommotion.Screens.StartMenu.SM_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
@@ -168,12 +167,37 @@ public class StartScene extends Scene{
 		actors.add(preferencesButton);
 
 		howToPlayButton = new SpriteButton(590, 255, SM_TextureManager.getInstance().sm_main_howtoplaybtn){
-
 			@Override
 			public void onClicked()
 			{
-				changeCam(-1500, 0);
+				started = true;
 			}
+
+			int animationTracker1, animationTracker2;
+
+			@Override
+			public void act(float delta)
+			{
+				if(started){
+					if (animationTracker1<45){
+						changeCam(0,-15);
+						animationTracker1+=15;
+					}
+					else{
+						if(animationTracker2<1700){
+							changeCam(-50,0);
+							animationTracker2+=50;
+						}
+
+						else{
+							started = false;
+							animationTracker1=0;
+							animationTracker2=0;
+						}
+					}
+				}
+			}
+
 		};
 		actors.add(howToPlayButton);
 
@@ -470,13 +494,13 @@ public class StartScene extends Scene{
 
 		//StartMenu HowtoPlay screen
 
-		sm_howtoplay_line = new Sprite(-1290+1030,150, SM_TextureManager.getInstance().sm_howtoplay_line);
+		sm_howtoplay_line = new Sprite(-1700+1300,175, SM_TextureManager.getInstance().sm_howtoplay_line);
 		actors.add(sm_howtoplay_line);
 
-		sm_howtoplay_title = new Sprite(-1290+350,650, SM_TextureManager.getInstance().sm_howtoplay_title);
+		sm_howtoplay_title = new Sprite(-1700+350,650, SM_TextureManager.getInstance().sm_howtoplay_title);
 		actors.add(sm_howtoplay_title);
 
-		nextButton = new SpriteButton(-1290+ 590, 150, SM_TextureManager.getInstance().sm_howtoplay_nextbtn){
+		nextButton = new SpriteButton(-1700+ 590, 150, SM_TextureManager.getInstance().sm_howtoplay_nextbtn){
 
 			@Override
 			public void onClicked()
@@ -486,7 +510,7 @@ public class StartScene extends Scene{
 		};
 		actors.add(nextButton);
 
-		prevButton = new SpriteButton(-1290+ 460, 150, SM_TextureManager.getInstance().sm_howtoplay_previousbtn){
+		prevButton = new SpriteButton(-1700+ 460, 150, SM_TextureManager.getInstance().sm_howtoplay_previousbtn){
 
 			@Override
 			public void onClicked()
@@ -497,7 +521,7 @@ public class StartScene extends Scene{
 		actors.add(prevButton);
 
 
-		homeButton = new SpriteButton(-1290+ 570, 160, SM_TextureManager.getInstance().sm_howtoplay_homebtn){
+		homeButton = new SpriteButton(-1700+ 570, 160, SM_TextureManager.getInstance().sm_howtoplay_homebtn){
 
 			@Override
 			public void onClicked()
@@ -507,16 +531,41 @@ public class StartScene extends Scene{
 		};
 		actors.add(homeButton);
 
-		sm_howtoplay_frame = new Sprite(-1290+240,220, SM_TextureManager.getInstance().sm_howtoplay_frame);
+		sm_howtoplay_frame = new Sprite(-1700+240,220, SM_TextureManager.getInstance().sm_howtoplay_frame);
 		actors.add(sm_howtoplay_frame);
 
-		backButton = new SpriteButton(-1290+ 1000, 625, SM_TextureManager.getInstance().sm_newgame_BackBtn){
-
+		backButton = new SpriteButton(-1700+ 1275, 655, SM_TextureManager.getInstance().sm_newgame_BackBtn){
 			@Override
 			public void onClicked()
 			{
-				changeCam(1250, 0);
+				started = true;
 			}
+
+			int animationTracker1, animationTracker2;
+
+			@Override
+			public void act(float delta)
+			{
+				if(started){
+					if (animationTracker1<1700){
+						changeCam(50,0);
+						animationTracker1+=50;
+					}
+					else{
+						if(animationTracker2<45){
+							changeCam(0,15);
+							animationTracker2+=15;
+						}
+
+						else{
+							started = false;
+							animationTracker1=0;
+							animationTracker2=0;
+						}
+					}
+				}
+			}
+
 		};
 		actors.add(backButton);
 
