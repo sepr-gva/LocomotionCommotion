@@ -13,6 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,10 +24,7 @@ import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Resource.Coal;
-import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Train.Route;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
 /**
@@ -66,17 +64,11 @@ public class CoreGameTest {
 		
 		player1Name = "Alice";
 		player2Name = "Ben";
-		Player1Start = new Station("London", 100, new Coal(100), 100, line1, 100, 0.01f, 0.01f);
-		Player2Start = new Station("Amsterdam", 200, new Nuclear(200), 200, line2, 200, 0.01f, 0.01f);	
-		
-		player1StationList = new ArrayList<Station>();
-		player2StationList = new ArrayList<Station>();		
-		
+		Player1Start = WorldMap.getInstance().ATHENS;
+		Player2Start = WorldMap.getInstance().BERLIN;	
+
 		turnLimit = 50;	
-		
-		player1StationList.add(Player1Start);
-		player2StationList.add(Player2Start);
-		
+
 		baseGold = 1000;
 		baseCarriage = 200;
 		baseCoal = 200;
@@ -85,6 +77,12 @@ public class CoreGameTest {
 		baseNuclear = 200;
 		
 		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+	}
+	
+	@After
+	public void tearDown() {
+		WorldMap.getInstance().ATHENS.setOwner(null);
+		WorldMap.getInstance().BERLIN.setOwner(null);
 	}
 	
 	//Private Accessors
@@ -134,12 +132,12 @@ public class CoreGameTest {
 	}
 	
 	@Test
-	public void testCoreGame() throws Exception {		
+	public void testCoreGame() throws Exception {			
 		assertTrue("player1Name was incorrectly set", tester.getPlayer1().getName() == player1Name);
 		assertTrue("player2Name was incorrectly set", tester.getPlayer2().getName() == player2Name);
 		
-		assertTrue("player1's Gold was incorrectly set", tester.getPlayer1().getGold() == baseGold - Player1Start.getTotalValue());	
-		assertTrue("player2's Gold was incorrectly set", tester.getPlayer2().getGold() == baseGold - Player2Start.getTotalValue());	
+		assertTrue("player1's Gold was incorrectly set", tester.getPlayer1().getGold() == baseGold - Player1Start.getBaseValue());	
+		assertTrue("player2's Gold was incorrectly set", tester.getPlayer2().getGold() == baseGold - Player2Start.getBaseValue());	
 		if(tester.getPlayerTurn() == tester.getPlayer1())		
 			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal + Player1Start.getTotalResourceOut());
 		else
@@ -155,8 +153,8 @@ public class CoreGameTest {
 		else
 			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear);
 				
-		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().getStations().equals(player1StationList));
-		assertTrue("player2's Station list was incorrectly set", tester.getPlayer2().getStations().equals(player2StationList));
+		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().getStations().get(0) == Player1Start);
+		assertTrue("player2's Station list was incorrectly set", tester.getPlayer2().getStations().get(0) == Player2Start);
 		assertTrue("player1's Goal list was incorrectly set", tester.getPlayer1().getGoals().equals(new ArrayList<Goal>()));
 		assertTrue("player2's Goal list was incorrectly set", tester.getPlayer2().getGoals().equals(new ArrayList<Goal>()));
 		assertTrue("player1's Train list was incorrectly set", tester.getPlayer1().getTrains().size() == 1);
@@ -194,7 +192,7 @@ public class CoreGameTest {
 
 	@Test
 	public void testStartTurn() {
-		//Setup
+		//Setup		
 		if(tester.getPlayerTurn() != tester.getPlayer1())
 			tester.EndTurn();
 		int coal = tester.getPlayer1().getFuel("Coal");
@@ -260,6 +258,8 @@ public class CoreGameTest {
 		tester.getPlayer2().addGold(5000);
 		tester.getPlayer1().getShop().buyCard(true);
 		tester.getPlayer2().getShop().buyCard(true);
+		tester.getPlayer1().getTrains().get(0).route.addConnection(tester.getPlayer1().getTrains().get(0).route.getAdjacentConnections().get(0));
+		tester.getPlayer2().getTrains().get(0).route.addConnection(tester.getPlayer2().getTrains().get(0).route.getAdjacentConnections().get(0));
 		
 		tester.getPlayer1().getGoals().add(testGoal1);
 		tester.getPlayer2().getGoals().add(testGoal2);
@@ -296,6 +296,9 @@ public class CoreGameTest {
 		JSONArray player1Cards = (JSONArray) player1.get("cards");
 		JSONArray player1Trains = (JSONArray) player1.get("trains");
 		JSONObject player1Route = (JSONObject) ((JSONObject) player1Trains.get(0)).get("route");
+		JSONArray player1Connections = (JSONArray) player1Route.get("connections");
+		JSONObject player1StartMapObj = (JSONObject) ((JSONObject) player1Connections.get(0)).get("startMapObj");
+		JSONObject player1EndMapObj = (JSONObject) ((JSONObject) player1Connections.get(0)).get("endMapObj");
 		JSONArray player1Stations = (JSONArray) player1.get("stations");
 		JSONArray player1Goals = (JSONArray) player1.get("goals");
 		JSONObject player2 = (JSONObject) game.get("player2");	
@@ -303,6 +306,9 @@ public class CoreGameTest {
 		JSONArray player2Cards = (JSONArray) player2.get("cards");
 		JSONArray player2Trains = (JSONArray) player2.get("trains");
 		JSONObject player2Route = (JSONObject) ((JSONObject) player2Trains.get(0)).get("route");
+		JSONArray player2Connections = (JSONArray) player2Route.get("connections");
+		JSONObject player2StartMapObj = (JSONObject) ((JSONObject) player2Connections.get(0)).get("startMapObj");
+		JSONObject player2EndMapObj = (JSONObject) ((JSONObject) player2Connections.get(0)).get("endMapObj");
 		JSONArray player2Stations = (JSONArray) player2.get("stations");
 		JSONArray player2Goals = (JSONArray) player2.get("goals");
 		String playerTurn = (String) game.get("playerTurn");
@@ -347,14 +353,26 @@ public class CoreGameTest {
 		assertTrue(
 				"Player 1 Trains speedMod was not saved correctly",
 				tester.getPlayer1().getTrains().get(0).getSpeedMod() == (Long) ((JSONObject) player1Trains.get(0)).get("speedMod"));
+		
+		//Route 1
 		assertTrue(
 				"Player 1 Trains routeIndex was not saved correctly",
 				tester.getPlayer1().getTrains().get(0).getRoute().getRouteIndex() == (Long) player1Route.get("routeIndex"));
 		assertTrue(
 				"Player 1 Trains connectionsTravelled was not saved correctly",
 				tester.getPlayer1().getTrains().get(0).getRoute().getConnectionTravelled() == (Double) player1Route.get("connectionTravelled"));
-		
-		// No connections could be tested.
+		assertTrue(
+				"Player 1 Route Connections startMapObj x co-ordinate was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).route.getRoute().get(0).getStartMapObj().actor.actorX == (Double) player1StartMapObj.get("x"));
+		assertTrue(
+				"Player 1 Route Connections startMapObj y co-ordinate was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).route.getRoute().get(0).getStartMapObj().actor.actorY == (Double) player1StartMapObj.get("y"));
+		assertTrue(
+				"Player 1 Route Connections endMapObj x co-ordinate was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).route.getRoute().get(0).getDestination().actor.actorX == (Double) player1EndMapObj.get("x"));
+		assertTrue(
+				"Player 1 Route Connections endMapObj y co-ordinate was not saved correctly",
+				tester.getPlayer1().getTrains().get(0).route.getRoute().get(0).getDestination().actor.actorY == (Double) player1EndMapObj.get("y"));
 		
 		//Stations 1
 		assertTrue(
@@ -411,15 +429,27 @@ public class CoreGameTest {
 				tester.getPlayer2().getTrains().get(0).isInStation() == (Boolean) ((JSONObject) player2Trains.get(0)).get("inStation"));
 		assertTrue(
 				"Player 2 Trains speedMod was not saved correctly",
-				tester.getPlayer2().getTrains().get(0).getSpeedMod() == (Long) ((JSONObject) player2Trains.get(0)).get("speedMod"));
+				tester.getPlayer2().getTrains().get(0).getSpeedMod() == (Long) ((JSONObject) player2Trains.get(0)).get("speedMod"));		
+		
+		//Route 2
 		assertTrue(
 				"Player 2 Trains routeIndex was not saved correctly",
 				tester.getPlayer2().getTrains().get(0).getRoute().getRouteIndex() == (Long) player2Route.get("routeIndex"));
 		assertTrue(
 				"Player 2 Trains connectionsTravelled was not saved correctly",
 				tester.getPlayer2().getTrains().get(0).getRoute().getConnectionTravelled() == (Double) player2Route.get("connectionTravelled"));
-		
-		// No connections could be tested.
+		assertTrue(
+				"Player 2 Route Connections startMapObj x co-ordinate was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).route.getRoute().get(0).getStartMapObj().actor.actorX == (Double) player2StartMapObj.get("x"));
+		assertTrue(
+				"Player 2 Route Connections startMapObj y co-ordinate was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).route.getRoute().get(0).getStartMapObj().actor.actorY == (Double) player2StartMapObj.get("y"));
+		assertTrue(
+				"Player 2 Route Connections endMapObj x co-ordinate was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).route.getRoute().get(0).getDestination().actor.actorX == (Double) player2EndMapObj.get("x"));
+		assertTrue(
+				"Player 2 Route Connections endMapObj y co-ordinate was not saved correctly",
+				tester.getPlayer2().getTrains().get(0).route.getRoute().get(0).getDestination().actor.actorY == (Double) player2EndMapObj.get("y"));
 		
 		//Stations 2
 		assertTrue(
