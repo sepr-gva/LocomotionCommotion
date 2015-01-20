@@ -116,7 +116,6 @@ public class Game_Shop {
 			actors.add(game_shop_backbtn);
 
 			coalitem = new Game_shop_coal();
-			coalitem = new Game_shop_coal();
 			oilitem = new Game_shop_oil();
 			electricityitem = new Game_shop_electric();
 			nuclearitem = new Game_shop_nuclear();
@@ -379,7 +378,6 @@ public class Game_Shop {
 			Game_Shop.actorManager.buy=false;
 			Game_Shop.actorManager.sell=true;
 			Texture t = Game_TextureManager.getInstance().game_shop_sellbtn;
-			Game_Shop.actorManager.carditem.buyButton.setTexture(t);
 			Game_Shop.actorManager.coalitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.oilitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.electricityitem.buyButton.setTexture(t);
@@ -388,10 +386,10 @@ public class Game_Shop {
 			Game_Shop.actorManager.trainitem.costLabel.setText("Sell Trains");
 			Game_Shop.actorManager.titleLabel.setText("Sell");
 
-			//Cost is different is selling
+			//Cost is different if selling
 			if(Game_Shop.actorManager.sell && !Game_StartingSequence.inProgress)
 			{
-				Game_Shop.actorManager.carditem.costLabel.setText(""+1000*Shop.cardSellPrice);
+				Game_Shop.actorManager.carditem.costLabel.setText(""+Shop.cardSellPrice);
 				Game_Shop.actorManager.coalitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.coalitem.quantityLabel.getText())*Shop.coalSellPrice);
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilSellPrice);
 				Game_Shop.actorManager.electricityitem.costLabel.setText(""+Math.ceil((strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice)));
@@ -418,6 +416,24 @@ public class Game_Shop {
 			Game_Shop.actorManager.carditem.buyButton.setTexture(t);
 			Game_Shop.actorManager.trainitem.costLabel.setText("Buy Trains");
 			Game_Shop.actorManager.titleLabel.setText("Buy");
+			
+			//Cost is different if selling
+			if(Game_Shop.actorManager.sell && !Game_StartingSequence.inProgress)
+			{
+				Game_Shop.actorManager.carditem.costLabel.setText(""+Shop.cardSellPrice);
+				Game_Shop.actorManager.coalitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.coalitem.quantityLabel.getText())*Shop.coalSellPrice);
+				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilSellPrice);
+				Game_Shop.actorManager.electricityitem.costLabel.setText(""+Math.ceil((strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice)));
+				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText())*Shop.nuclearSellPrice);
+			}
+			else
+			{
+				Game_Shop.actorManager.carditem.costLabel.setText(""+Shop.cardPrice);
+				Game_Shop.actorManager.coalitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.coalitem.quantityLabel.getText())*Shop.coalPrice);
+				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilPrice);
+				Game_Shop.actorManager.electricityitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricPrice);
+				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText())*Shop.nuclearPrice);
+			}
 		}
 
 

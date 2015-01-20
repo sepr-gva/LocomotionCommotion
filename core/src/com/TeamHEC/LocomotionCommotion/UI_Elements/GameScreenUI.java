@@ -397,13 +397,7 @@ public class GameScreenUI {
 
 
 					GameScreenUI.resourcebarexpanded= true;
-					for(int i=GameScreenUI.resourcesStageStart; i<=GameScreenUI.resourcesStageStart +GameScreenUI.resourcesStageEnd-1;i++){
-						if (i > GameScreen.getStage().getActors().size-1){
-
-						}else
-							GameScreen.getStage().getActors().get(i).setVisible(true);
-
-					}			}
+				}
 				else
 				{	
 					GameScreenUI.resourcebarexpanded= false;
@@ -420,14 +414,7 @@ public class GameScreenUI {
 					Game_CardHand.actorManager.changeHeight(-expandedheight);
 					Game_CardHand.actorManager.organiseDeck();
 
-					for(int i=GameScreenUI.resourcesStageStart; i<=GameScreenUI.resourcesStageStart +GameScreenUI.resourcesStageEnd-1;i++){
-						if (i > GameScreen.getStage().getActors().size-1){
-
-						}
-						else
-							GameScreen.getStage().getActors().get(i).setVisible(true);
-
-					}
+					
 
 				}
 
