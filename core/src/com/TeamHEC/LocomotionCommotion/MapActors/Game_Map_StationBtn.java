@@ -82,7 +82,6 @@ public class Game_Map_StationBtn extends SpriteButton {
 			{
 				//Buy Stations in game
 				GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
-				WarningMessage.fireWarningWindow(selectedStation.getStation().getName(), GameScreen.game.getPlayerTurn().getName());
 				Game_Map_Manager.hideInfoBox();
 			}
 		}
