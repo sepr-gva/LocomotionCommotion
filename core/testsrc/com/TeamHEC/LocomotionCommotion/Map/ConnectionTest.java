@@ -54,7 +54,7 @@ public class ConnectionTest {
 		
 		//False
 		assertTrue("Connection mistakenly recognised a random connection as it's reverse", 
-				tester.isReverseOf(new Connection(
+				!tester.isReverseOf(new Connection(
 						WorldMap.getInstance().DUBLIN,
 						WorldMap.getInstance().ATHENS)));
 	}

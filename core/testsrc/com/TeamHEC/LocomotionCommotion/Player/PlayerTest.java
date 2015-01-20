@@ -82,22 +82,8 @@ public class PlayerTest {
 		tester.purchaseStation(testStation);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-	}
-	
 	@Test
 	public void testPlayer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPurchaseRandomCard() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testPurchaseCard() {
 		fail("Not yet implemented");
 	}
 

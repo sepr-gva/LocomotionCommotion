@@ -11,7 +11,7 @@ import com.TeamHEC.LocomotionCommotion.Resource.Fuel;
  * @author Matthew Taylor <mjkt500@york.ac.uk>
  */
 
-public class Train {	
+public abstract class Train {	
 	private String name;
 	private int baseSpeed, speedMod;
 	
