@@ -42,7 +42,7 @@ public class Goal implements RouteListener{
 		this.sStation = startStation;
 		this.fStation = finalStation;
 		this.stationVia = stationVia;
-		this.special = false; 
+		this.setSpecial(false); 
 		this.reward = reward;  
 		this.cargo = cargo;
 		
@@ -174,6 +174,10 @@ public class Goal implements RouteListener{
 			if(startStationPassed && finalStationPassed && stationViaPassed)
 				goalComplete();
 		}
+	}
+
+	public void setSpecial(boolean special) {
+		this.special = special;
 	}
 }
 
