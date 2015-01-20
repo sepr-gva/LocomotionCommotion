@@ -256,7 +256,7 @@ public class CoreGameTest {
 	@Test
 	public void testSaveGameJSON() throws Exception {
 		//Setup
-		GoalFactory gF = new GoalFactory();
+		GoalFactory gF = new GoalFactory(1);
 		Goal testGoal1 = gF.CreateRandomGoal();
 		Goal testGoal2 = gF.CreateRandomGoal();
 		

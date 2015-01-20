@@ -113,7 +113,7 @@ public class Game_StartingSequence {
 
 	public static void fillGoalScreen(){
 		ArrayList<Goal> goals = new ArrayList<Goal>();
-		GoalFactory factory = new GoalFactory();
+		GoalFactory factory = new GoalFactory(1);
 		
 		for (int i=0; i<9; i++){
 				goals.add(factory.CreateRandomGoal());

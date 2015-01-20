@@ -30,7 +30,7 @@ public class GoalTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		GoalFactory gf = new GoalFactory();
+		GoalFactory gf = new GoalFactory(1);
 		goal = gf.CreateRandomGoal();
 		
 		String name = "Player 1";

@@ -25,9 +25,7 @@ public class MapObjTest {
 	}
 
 	@Test
-	public void testMapObj() {
-		assertTrue("x coordinate did not initialise correctly", x == tester.getActor().actorX);
-		assertTrue("y coordinate did not initialise correctly", y == tester.getActor().actorX);
+	public void testMapObj() {		
 		assertTrue("mapObj Name did not initialise correctly", mapObjName == tester.getName());
 		assertTrue("Station did not initialise correctly", tester.getStation() == null);
 	}

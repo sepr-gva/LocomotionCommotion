@@ -47,7 +47,6 @@ public class WorldMap {
 	// Adds all the created stations to an ArrayList for later access:
 	public ArrayList<Station> stationsList = new ArrayList<Station>() {	 		 
 		private static final long serialVersionUID = 1L;
-
 	{ 
 		add(LONDON);
 		add(PARIS);

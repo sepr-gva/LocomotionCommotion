@@ -18,17 +18,17 @@ public class GoalFactory{
 
 	private WorldMap map;                // creating world map 
 	private ArrayList<Station> stations;
-	private CardFactory cardFactory;
-	public Random random;
+	private Random random;
+	private int turnCount;
 	
 	/**
 	 * Initialises the GoalFactory
 	 */
-	public GoalFactory(){   
-		map = WorldMap.getInstance(); //initializing 
+	public GoalFactory(int turnCount){   
+		map = WorldMap.getInstance(); 
 		stations = map.stationsList;  //get all the stations 
-		cardFactory = new CardFactory(null); //initialize the card factory
 		random = new Random(); //initializes random, used throughout
+		this.turnCount = turnCount;
 	}	
 	
 	/**
@@ -52,15 +52,7 @@ public class GoalFactory{
 	private Station newStation(){ 
 		Station st = stations.get(random.nextInt(stations.size())); //get a random station
 		return st;  
-	}  
-	
-	/**
-	 * Generates a card using CardFactory
-	 * @return A random card.
-	 */
-	public Card genCard(){
-		return cardFactory.createAnyCard();     
-	}
+	} 
 
 	/**
 	 * Creates a new random Goal.
