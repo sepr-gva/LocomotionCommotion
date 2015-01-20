@@ -24,7 +24,13 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.utils.Array;
-
+/**
+ * 
+ * @author Robert Precious
+ * 	Goal Menu is where the player can select new goals. 
+ *	The create method: Instantiates all goalActors and the corresponding labels. All empty to start with.
+ *
+ */
 public class GoalMenu {
 	//Arrays
 	private final static Array<Actor> actors = new Array<Actor>();
@@ -193,6 +199,7 @@ public class GoalMenu {
 
 	}
 	
+	//Create Empty Goals
 	private ArrayList<GoalActor> createEmpties() {
 		ArrayList<GoalActor> 		empties = new ArrayList< GoalActor>();
 		HashMap<String, GoalActor> 	goalslots = new HashMap<String, GoalActor>();
@@ -205,7 +212,6 @@ public class GoalMenu {
 		}
 		return empties;
 	}
-
 	private HashMap<String, GoalActor> createSlots() {
 		int row1 = 550, row2 = row1-220, row3 = row2-220;
 		int col1 = 660, col2 = col1+320, col3 = col2+320;
@@ -221,7 +227,8 @@ public class GoalMenu {
 		goalslots.put("9", newgoal9= new GoalActor(row3,col3,true,null));
 		return goalslots;
 	}
-
+	
+	
 	//Creates the blank labels
 	public static  HashMap<String, Label> createLabels(){
 		//Create the Labels in a Hashmap and run through them
@@ -307,7 +314,11 @@ public class GoalMenu {
 		}
 		return space;
 	}
-
+	
+	/**
+	 * Runs through the goals given finding them empty slots (by calling findEmptyGoalSlot) and adding them to the GoalMenu.
+	 * @param goals -ArrayList of goals to be added to the GoalMenu.
+	 */
 	public static void AddGoalToScreen(ArrayList<Goal> goals){
 		for (int i=0;i<goals.size();i++){
 			if (numberofGoalsOnScreen==9){
@@ -330,7 +341,11 @@ public class GoalMenu {
 
 
 	}
-
+	/**
+	 * 
+	 * @param newgoalLabels - the current Goal labels.
+	 * @return - An empty GoalMenu slot index
+	 */
 	public static int findEmptyGoalSlot(HashMap<String, Label> newgoalLabels){
 		for (int i=0;i<9;i++){
 			String a = new Integer(i+1).toString();
@@ -343,6 +358,9 @@ public class GoalMenu {
 
 	}
 	
+	/**
+	 * FillGoalScreen() fills the goal screen by running through 9 createRandomGoal calls and sends the array to Add Goal to Screen.
+	 */
 	public static void fillGoalScreen(){
 		ArrayList<Goal> goals = new ArrayList<Goal>();
 		GoalFactory factory = new GoalFactory(GameScreen.game.getTurnCount());

@@ -585,7 +585,7 @@ public class GameScreenUI {
 	 * @param fontsize -the size of the font style returned by method
 	 * @return returns full LabelStyle with fontsize passed
 	 */
-	public LabelStyle  getLabelStyle(int fontsize){
+	public static LabelStyle  getLabelStyle(int fontsize){
 		FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 		parameter.size = fontsize;
