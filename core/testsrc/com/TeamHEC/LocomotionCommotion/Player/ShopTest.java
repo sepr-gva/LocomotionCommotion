@@ -216,7 +216,7 @@ public class ShopTest {
 				testCustomer.getFuel("Coal") == baseFuelValue - 500);
 		assertTrue(
 				"testCustomer's Gold was not incremented by 500 * Shop.coalSellPrice",
-				testCustomer.getGold() == currentGold + 500 * Shop.coalSellPrice);
+				testCustomer.getGold() == currentGold + Math.ceil(500 * Shop.coalSellPrice));
 		
 		//Execute oil sell
 		currentGold = testCustomer.getGold();
@@ -227,7 +227,7 @@ public class ShopTest {
 				testCustomer.getFuel("Oil") == baseFuelValue - 500);
 		assertTrue(
 				"testCustomer's Gold was not incremented by 500 * Shop.oilSellPrice",
-				testCustomer.getGold() == currentGold + 500 * Shop.oilSellPrice);
+				testCustomer.getGold() == currentGold + Math.ceil(500 * Shop.oilSellPrice));
 		
 		//Execute electric sell
 		currentGold = testCustomer.getGold();
@@ -238,7 +238,7 @@ public class ShopTest {
 				testCustomer.getFuel("Electric") == baseFuelValue - 500);
 		assertTrue(
 				"testCustomer's Gold was not incremented by 500 * Shop.electricSellPrice",
-				testCustomer.getGold() == currentGold + 500 * Shop.electricSellPrice);
+				testCustomer.getGold() == currentGold + Math.ceil(500 * Shop.electricSellPrice));
 				
 		//Execute nuclear sell
 		currentGold = testCustomer.getGold();
