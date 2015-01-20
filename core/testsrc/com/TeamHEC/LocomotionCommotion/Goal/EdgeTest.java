@@ -28,9 +28,11 @@ public class EdgeTest {
 	@Test
 	public void testEdge() {
 		assertTrue(e.target != null);
-		assertThat(e.target, instanceOf(Node.class)); //agen shud werk 
-		assertThat(e.weight, instanceOf(float.class));
+		assertTrue(e.target == n); 
+		
 		assertTrue(e.weight == 37);
+		
+		
 		
 		
 	}
