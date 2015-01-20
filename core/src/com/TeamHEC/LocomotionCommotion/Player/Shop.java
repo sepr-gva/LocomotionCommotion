@@ -115,7 +115,16 @@ public class Shop {
 		else
 		{
 			if(!testCase)
-				WarningMessage.fireWarningWindow("SORRY", "You don't have enough gold!");
+			{
+				if(customer.getGold() < 1000)
+				{
+					WarningMessage.fireWarningWindow("SORRY", "You don't have enough gold!");
+				}
+				else 
+				{
+					WarningMessage.fireWarningWindow("SORRY", "You have too many cards already");
+				}
+			}
 		}
 	}
 }
