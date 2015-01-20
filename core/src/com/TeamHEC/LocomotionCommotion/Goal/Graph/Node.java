@@ -25,11 +25,15 @@ public class Node implements Comparable<Node>
      return mapobj; // not really needed as mapobj is public 
     }
     
-    
     public int compareTo(Node other)
     {
         return Double.compare(this.minDistance, other.minDistance); //compares this distance to anotdher node
     }
+ 
+
+
+	
+  
  
  
 }

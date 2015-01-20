@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
@@ -26,10 +27,11 @@ public class GoalTest {
 
 	Goal goal;
 	Train train;
-	
+	WorldMap wm;
+	Station ss,fs;
 	@Before
 	public void setUp() throws Exception {
-		
+		wm = WorldMap.getInstance();
 		GoalFactory gf = new GoalFactory(1);
 		goal = gf.CreateRandomGoal();
 		
@@ -65,22 +67,39 @@ public class GoalTest {
 
 	@Test
 	public void testGoal() {
-		fail("Not yet implemented");
+		assertTrue(compareStations(goal.getSStation()));
+		assertTrue(compareStations(goal.getFStation()));
+//		assertTrue(goal.stationPassed(ss, train);
+		
 	}
-
+ public boolean compareStations(String Sname){
+	 for (int i = 0; i < wm.stationsList.size(); i++){
+		 if (Sname == wm.stationsList.get(i).getName()){
+			 return true;
+		 }
+ 	 }
+	 return false;
+	 
+ }
 	@Test
 	public void testAssignTrain() {
 		assertTrue("", goal.getTrain() == train);
 	}
-
+	
 	@Test
-	public void testGoalComplete() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testStationPassed() {
-		fail("Not yet implemented");
+   public void testisSpecial(){
+	   assertTrue(goal.isSpecial() == false);
+	   
+   }
+	
+   public void testgetReward(){
+	   
+	   assertTrue(goal.getReward() > 0);
+	  
+   }
+	@Test 
+	public void testgetStartDate(){
+		assertTrue( goal.getStartDate() != null);
 	}
 
 }

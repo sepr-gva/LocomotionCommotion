@@ -5,47 +5,37 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.TeamHEC.LocomotionCommotion.Goal.Graph.Node;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
+@RunWith(GdxTestRunner.class)
 public class NodeTest {
-	WorldMap wm = WorldMap.getInstance();
-	Station yo = wm.AMSTERDAM;
-	Node n = new Node(yo);
+	WorldMap wm;
+	Station yo;
+	Node n;
 	
-	
+	   
 	@Before
 	public void setUp() throws Exception {
-		//wtf is this even
+		wm = WorldMap.getInstance();
+		yo = wm.AMSTERDAM;
+		n = new Node(yo);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		//y r u here teardown?
+		
 	}
 
 	@Test
 	public void testNode() {
-		
+		assertTrue(n.mapobj == wm.AMSTERDAM);
+		assertTrue(n.edges.size() == 0);
+		assertTrue(n.minDistance == Double.POSITIVE_INFINITY);
+		assertTrue(n.previous == null);
 	}
-
-	@Test
-	public void testGetMapObj() {
-		assertTrue(n.getMapObj() != null); //k this works
-		//assertThat((n.getMapObj()), instanceOf(MapObj.class)); 
-		//I found assertThat online and its suposed to work
-		//gdamniteclipseyusoshit#
-		
-		//STOP TESTING CLASS TYPES AND ADD ERROR MESSAGES.
-		
-		
-	}
-
-	@Test
-	public void testCompareTo() {
-		// not even sure how necassary it is to have compareTo anyway
-	}
-
 }

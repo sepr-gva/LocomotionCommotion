@@ -22,8 +22,7 @@ public class Goal implements RouteListener{
 	private String startDate;
 
 	// Variables used to track Goal completion:
-	private Train train;
-	
+	private Train train;	
 	private boolean startStationPassed;
 	private boolean stationViaPassed;
 	private boolean finalStationPassed;
@@ -47,14 +46,14 @@ public class Goal implements RouteListener{
 		this.reward = reward;  
 		this.cargo = cargo;
 		
-        startDate = "1";
+        startDate = "1"; //initialized to 1, not yet implemented. 
 		
 		// Initiliase goal completion variables to false
 		startStationPassed = false;
 		if(stationVia == null)
-			stationViaPassed = true;
+		stationViaPassed = true; //does not exist hence always passed 
 		else
-			stationViaPassed = false;
+		stationViaPassed = false;
 		finalStationPassed = false;
 	}
 
@@ -67,7 +66,7 @@ public class Goal implements RouteListener{
 	{
 		return this.sStation.getName();
 	}
-
+	
 	public String getFStation()
 	{
 		return this.fStation.getName();

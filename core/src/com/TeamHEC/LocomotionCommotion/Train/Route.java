@@ -17,9 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  */
 
 public class Route{
-		
-	private ArrayList<Connection> route = new ArrayList<Connection>();
 	
+	private ArrayList<Connection> path = new ArrayList<Connection>();
+
 	// Progress through route ArrayList
 	private int routeIndex = 0;
 	private float connectionTravelled = 0;	
@@ -43,15 +43,15 @@ public class Route{
 	}
 	/**
 	 * Used to reload an existing route
-	 * @param route current route of the train
+	 * @param path current route of the train
 	 * @param routeIndex The index used to track progress through an array of connections
 	 * @param connectionTravelled The distance travelled through that connection 
 	 */
-	public Route(ArrayList<Connection> route, int routeIndex, float connectionTravelled)
+	public Route(ArrayList<Connection> path, int routeIndex, float connectionTravelled)
 	{
-		this.route = route;
-		if(!route.isEmpty())
-			currentMapObj = route.get(routeIndex).getStartMapObj();
+		this.path = path;
+		if(!path.isEmpty())
+			currentMapObj = path.get(routeIndex).getStartMapObj();
 		this.routeIndex = routeIndex;
 		this.connectionTravelled = connectionTravelled;
 	}
@@ -61,7 +61,7 @@ public class Route{
 	 */
 	public ArrayList<Connection> getRoute()
 	{
-		return route;
+		return path;
 	}
 	
 	/**
@@ -120,12 +120,12 @@ public class Route{
 	 */
 	public ArrayList<Connection> getAdjacentConnections()
 	{
-		if(route.isEmpty())
+		if(path.isEmpty())
 		{
 			return currentMapObj.connections;
 		}
 		else
-			return route.get(route.size()-1).getDestination().connections;
+			return path.get(path.size()-1).getDestination().connections;
 	}
 
 	/**
@@ -215,7 +215,7 @@ public class Route{
 			}
 			
 			// Adds the connection to route ArrayList:
-			route.add(connection);
+			path.add(connection);
 			
 			// Makes the new adjacent connections clickable:
 			ArrayList<Connection> adj = getAdjacentConnections();	
@@ -252,12 +252,12 @@ public class Route{
 	 */
 	public boolean removeConnection()
 	{
-		if(!route.isEmpty())
+		if(!path.isEmpty())
 		{	
 			// If the route trying to be removed has already been traversed...
-			if((route.get(route.size() - 1) == route.get(routeIndex) && connectionTravelled == 0) || route.get(route.size() - 1) != route.get(routeIndex))
+			if((path.get(path.size() - 1) == path.get(routeIndex) && connectionTravelled == 0) || path.get(path.size() - 1) != path.get(routeIndex))
 			{
-				hideConnectionBlips(route.get(route.size() - 1));
+				hideConnectionBlips(path.get(path.size() - 1));
 				
 				ArrayList<Connection> currentConnection = getAdjacentConnections();	
 				
@@ -272,11 +272,11 @@ public class Route{
 				
 				// Refund player:
 				
-				int fuelCost = train.getFuelLengthCost(route.get(route.size() - 1).getLength());
+				int fuelCost = train.getFuelLengthCost(path.get(path.size() - 1).getLength());
 				train.getOwner().addFuel(train.getFuelType(), fuelCost);
 				
 				// Remove the connection from the route:
-				route.remove(route.size() - 1);
+				path.remove(path.size() - 1);
 				
 				updateRouteText();
 				
@@ -303,7 +303,7 @@ public class Route{
 	 */
 	public void abortRoute()
 	{	
-		currentMapObj = route.get(routeIndex).getStartMapObj();
+		currentMapObj = path.get(routeIndex).getStartMapObj();
 		hideRouteBlips();
 		updateRouteText();
 		
@@ -318,7 +318,7 @@ public class Route{
 	 */
 	public void cancelRoute()
 	{
-		if(route.isEmpty())
+		if(path.isEmpty())
 			Game_Map_Manager.exitRoutingMode();
 		
 		hideRouteBlips();
@@ -346,19 +346,19 @@ public class Route{
 	 */
 	public Vector2 getTrainPos()
 	{
-		if(route.isEmpty())
+		if(path.isEmpty())
 		{
 			return new Vector2(currentMapObj.x, currentMapObj.y);
 		}
 		else
 		{
-			MapObj startMapObj = route.get(routeIndex).getStartMapObj();
+			MapObj startMapObj = path.get(routeIndex).getStartMapObj();
 			
 			// Gets the coordinates of the starting station of the current connection:
 			Vector2 pos = new Vector2(startMapObj.x, startMapObj.y);
 			
 			// Copies the vector for the connection direction so we can scale:
-			Vector2 vect = route.get(routeIndex).getVector().cpy();
+			Vector2 vect = path.get(routeIndex).getVector().cpy();
 			
 			// Scales the vector by the connectionTravelled
 			vect.scl(connectionTravelled);
@@ -376,9 +376,9 @@ public class Route{
 	public float getTotalLength()
 	{
 		float length = 0;
-		for(int i = 0; i < route.size(); i++)
+		for(int i = 0; i < path.size(); i++)
 		{
-			length += route.get(i).getLength();
+			length += path.get(i).getLength();
 		}
 		return length;
 	}
@@ -388,18 +388,18 @@ public class Route{
 	 */
 	public float getLengthRemaining()
 	{
-		if(route.isEmpty())
+		if(path.isEmpty())
 		{
 			return 0;
 		}
 		else
 		{
-			float currentLength = route.get(routeIndex).getLength(); 
+			float currentLength = path.get(routeIndex).getLength(); 
 			float length = currentLength - connectionTravelled;
 
-			for(int i = routeIndex + 1; i < route.size(); i++)
+			for(int i = routeIndex + 1; i < path.size(); i++)
 			{
-				length += route.get(i).getLength();
+				length += path.get(i).getLength();
 			}
 			return length;
 		}
@@ -410,13 +410,13 @@ public class Route{
 	 */
 	public boolean inStation()
 	{
-		if(route.isEmpty())
+		if(path.isEmpty())
 		{
 			return true;
 		}
 		else
 		{
-			Connection currentConnection = route.get(routeIndex);
+			Connection currentConnection = path.get(routeIndex);
 			float connectionLength = currentConnection.getLength();
 			
 			if(connectionTravelled == 0 || connectionTravelled == connectionLength)
@@ -433,18 +433,18 @@ public class Route{
 	{
 		if(inStation())
 		{
-			if(route.isEmpty())
+			if(path.isEmpty())
 			{
 				return currentMapObj.getStation();
 			}
 			else
 			{
-				float connectionLength = route.get(routeIndex).getLength();
+				float connectionLength = path.get(routeIndex).getLength();
 				
 				if(connectionTravelled == 0)
-					return route.get(routeIndex).getStartMapObj().getStation();
+					return path.get(routeIndex).getStartMapObj().getStation();
 				else if(connectionTravelled == connectionLength)
-					return route.get(routeIndex).getDestination().getStation();
+					return path.get(routeIndex).getDestination().getStation();
 			}
 		}
 		return null;
@@ -457,13 +457,13 @@ public class Route{
 	public void update(float moveBy)
 	{
 		// gets the length of the current connection:
-		float connectionLength = route.get(routeIndex).getLength();
+		float connectionLength = path.get(routeIndex).getLength();
 		
 		// If the train is still on the same connection, update conenctionTravelled:
 		if(connectionTravelled + moveBy <= connectionLength)
 		{
 			connectionTravelled += moveBy;
-			currentMapObj = route.get(routeIndex).getStartMapObj();
+			currentMapObj = path.get(routeIndex).getStartMapObj();
 		}
 		else
 		{
@@ -471,7 +471,7 @@ public class Route{
 			// the route index, which then progresses the difference of that connection:
 			
 			float diff = Math.abs(connectionTravelled + moveBy - connectionLength);
-			currentMapObj = route.get(routeIndex).getDestination();
+			currentMapObj = path.get(routeIndex).getDestination();
 			
 			routeIndex++;
 			connectionTravelled = 0;
@@ -480,12 +480,12 @@ public class Route{
 			notifyStationPassed();
 			
 			// If route not complete, recursively call itself with a new distance to travel:
-			if(routeIndex < route.size())
+			if(routeIndex < path.size())
 				update(diff);
 			else
 			{
 				// ROUTE FINISHED
-				route.clear();
+				path.clear();
 				routeIndex = 0;
 				isComplete = true;
 			}
