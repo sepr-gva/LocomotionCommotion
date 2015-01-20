@@ -103,9 +103,4 @@ h3 a:hover, h3 a:active{
     width: auto;
 }
 
-iframe{
-    display: inline-block;
-    max-height: 100%;
-    max-width: 100%;
-    margin: 10px auto;
-}
+.youtube-player { display: block; margin: 10px auto; }
