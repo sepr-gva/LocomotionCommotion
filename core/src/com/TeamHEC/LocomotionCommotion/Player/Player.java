@@ -324,7 +324,7 @@ public class Player implements RouteListener{
 			this.addGold((int)(station.getBaseValue() * 0.7));
 			station.setOwner(null);
 			stations.remove(station);
-			station.purchaseStation(null);
+			station.setOwner(null);
 			this.lineBonuses();
 		}
 		 */
@@ -454,6 +454,9 @@ public class Player implements RouteListener{
 		}
 	}
 
+	/**
+	 * Generates fuel from stations.
+	 */
 	public void stationRewards()
 	{
 

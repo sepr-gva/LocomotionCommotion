@@ -5,31 +5,40 @@ import java.util.ArrayList;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 public class Node implements Comparable<Node>
 {
-  
- public final MapObj mapobj;
- 
+  /**
+   * @param mapobj refers to the instance of the station attached to this node
+   * @param edges the connections to a station are stored in array list of edges
+   * @param minDistance the tentative distance, set to infinity all the time according to dijkstras 
+   * @param next refers to the next node. 
+   */
+public final MapObj mapobj;
+public ArrayList<Edge> edges; 
+public double minDistance = Double.POSITIVE_INFINITY;
+public Node next;   
+
+ /**
+  * creates a new node for a given instance of a station/junction
+  * @param st
+  */
  public Node(MapObj st) 
     {
      this.mapobj = st;  //sets node to the station/junction passed
-       
      this.edges = new ArrayList<Edge>(); 
     } 
    
- 	public ArrayList<Edge> edges;
-    public double minDistance = Double.POSITIVE_INFINITY;
-    public Node previous;    
-    
-   
-    public MapObj getMapObj() 
-    {
-     return mapobj; // not really needed as mapobj is public 
-    }
-    
-    
-    public int compareTo(Node other)
+ 	
+    /**neccassary to compare in the compute paths class 
+     * 
+     */
+   public int compareTo(Node other)
     {
         return Double.compare(this.minDistance, other.minDistance); //compares this distance to anotdher node
     }
+ 
+
+
+	
+  
  
  
 }
