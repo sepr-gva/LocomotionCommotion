@@ -6,8 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.TeamHEC.LocomotionCommotion.Card.Card;
-
 public class GoalFactoryTest {
 	GoalFactory gf = new GoalFactory();
 	@Before

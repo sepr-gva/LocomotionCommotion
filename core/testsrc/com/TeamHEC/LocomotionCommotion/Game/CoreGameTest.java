@@ -262,8 +262,8 @@ public class CoreGameTest {
 		
 		tester.getPlayer1().addGold(5000);
 		tester.getPlayer2().addGold(5000);
-		tester.getPlayer1().getShop().buyCard();
-		tester.getPlayer2().getShop().buyCard();
+		tester.getPlayer1().getShop().buyCard(true);
+		tester.getPlayer2().getShop().buyCard(true);
 		
 		tester.getPlayer1().getGoals().add(testGoal1);
 		tester.getPlayer2().getGoals().add(testGoal2);

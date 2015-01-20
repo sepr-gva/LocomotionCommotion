@@ -94,27 +94,27 @@ public class Player implements RouteListener{
 
 	public void buyCoal(int quantity)
 	{
-		shop.buyFuel("Coal", quantity);
+		shop.buyFuel("Coal", quantity, false);
 	}
 
 	public void buyOil(int quantity)
 	{
-		shop.buyFuel("Oil", quantity);
+		shop.buyFuel("Oil", quantity, false);
 	}
 
 	public void buyElectric(int quantity)
 	{
-		shop.buyFuel("Electric", quantity);
+		shop.buyFuel("Electric", quantity, false);
 	}
 
 	public void buyNuclear(int quantity)
 	{
-		shop.buyFuel("Nuclear", quantity);
+		shop.buyFuel("Nuclear", quantity, false);
 	}
 
 	public void buyCard(int quantity)
 	{
-		shop.buyCard();
+		shop.buyCard(false);
 	}
 
 	//Fuel	

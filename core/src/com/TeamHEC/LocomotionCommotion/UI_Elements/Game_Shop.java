@@ -443,7 +443,7 @@ public class Game_Shop {
 						if (Game_Shop.actorManager.buy){						
 							if(GameScreen.game.getPlayerTurn().getCards().size()<7){
 								int newAdditionIndex = GameScreen.game.getPlayerTurn().getCards().size();
-								GameScreen.game.getPlayerTurn().getShop().buyCard();
+								GameScreen.game.getPlayerTurn().getShop().buyCard(false);
 								if(GameScreen.game.getPlayerTurn().getCards().size()>newAdditionIndex){
 									Game_CardHand.actorManager.addCard(GameScreen.game.getPlayerTurn().getCards().get(newAdditionIndex));
 									GameScreenUI.refreshResources();
@@ -531,11 +531,11 @@ public class Game_Shop {
 					protected void onClicked(){
 						if (Game_Shop.actorManager.buy){
 							int quantity = strToInt(quantityLabel.getText());
-							GameScreen.game.getPlayerTurn().getShop().buyFuel("Coal",quantity );									
+							GameScreen.game.getPlayerTurn().getShop().buyFuel("Coal",quantity, false );									
 						}
 						if (Game_Shop.actorManager.sell){						
 							int quantity = strToInt(quantityLabel.getText());
-							GameScreen.game.getPlayerTurn().getShop().sellFuel("Coal", quantity);
+							GameScreen.game.getPlayerTurn().getShop().sellFuel("Coal", quantity, false);
 						}
 						GameScreenUI.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
@@ -644,11 +644,11 @@ public class Game_Shop {
 					protected void onClicked(){
 						if (Game_Shop.actorManager.buy){
 							int quantity = strToInt(quantityLabel.getText());
-							GameScreen.game.getPlayerTurn().getShop().buyFuel("Oil",quantity );									
+							GameScreen.game.getPlayerTurn().getShop().buyFuel("Oil",quantity, false );									
 						}
 						if (Game_Shop.actorManager.sell){						
 							int quantity = strToInt(quantityLabel.getText());
-							GameScreen.game.getPlayerTurn().getShop().sellFuel("Oil", quantity);
+							GameScreen.game.getPlayerTurn().getShop().sellFuel("Oil", quantity, false);
 						}
 						GameScreenUI.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
@@ -759,11 +759,11 @@ public class Game_Shop {
 					protected void onClicked(){
 						if (Game_Shop.actorManager.buy){
 							int quantity = strToInt(quantityLabel.getText());
-							GameScreen.game.getPlayerTurn().getShop().buyFuel("Electric",quantity );									
+							GameScreen.game.getPlayerTurn().getShop().buyFuel("Electric",quantity, false );									
 						}
 						if (Game_Shop.actorManager.sell){						
 							int quantity = strToInt(quantityLabel.getText());
-							GameScreen.game.getPlayerTurn().getShop().sellFuel("Electric", quantity);
+							GameScreen.game.getPlayerTurn().getShop().sellFuel("Electric", quantity, false);
 						}
 						GameScreenUI.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
@@ -874,11 +874,11 @@ public class Game_Shop {
 					protected void onClicked(){
 						if (Game_Shop.actorManager.buy){
 							int quantity = strToInt(quantityLabel.getText());
-							GameScreen.game.getPlayerTurn().getShop().buyFuel("Nuclear",quantity );									
+							GameScreen.game.getPlayerTurn().getShop().buyFuel("Nuclear",quantity, false );									
 						}
 						if (Game_Shop.actorManager.sell){						
 							int quantity = strToInt(quantityLabel.getText());
-							GameScreen.game.getPlayerTurn().getShop().sellFuel("Nuclear", quantity);
+							GameScreen.game.getPlayerTurn().getShop().sellFuel("Nuclear", quantity, false);
 						}
 						GameScreenUI.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
