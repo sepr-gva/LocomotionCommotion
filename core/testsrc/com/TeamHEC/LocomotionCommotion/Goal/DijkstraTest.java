@@ -39,7 +39,7 @@ public class DijkstraTest {
 	public void testDijkstra() {
 		
 		assertTrue(d.nodeList.length == 22);
-		assertTrue(d.stations == wm.stationsList );
+		assertTrue(Dijkstra.stations == wm.stationsList );
 		
 	}
 
