@@ -222,8 +222,6 @@ public class GoalMenu {
 		return goalslots;
 	}
 
-
-
 	//Creates the blank labels
 	public static  HashMap<String, Label> createLabels(){
 		//Create the Labels in a Hashmap and run through them

@@ -1,5 +1,13 @@
 package com.TeamHEC.LocomotionCommotion.Goal;
-/*
+
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
+
+/**
  * @author Robert Precious <rp825@york.ac.uk>
  * This the transparent backing of the menu.
  * 
@@ -20,13 +28,6 @@ package com.TeamHEC.LocomotionCommotion.Goal;
  * act			The action taken if the listener detects interaction
  * 				Action- None
  */
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-
 public class GoalActor extends Actor {
 	boolean started = false;
 	boolean touchedDown = false;
