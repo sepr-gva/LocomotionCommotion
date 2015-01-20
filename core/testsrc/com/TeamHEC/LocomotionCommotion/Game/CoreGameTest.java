@@ -26,6 +26,7 @@ import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Resource.Coal;
 import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
+import com.TeamHEC.LocomotionCommotion.Train.Route;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
 /**
@@ -206,11 +207,6 @@ public class CoreGameTest {
 		tester.StartTurn();
 		assertTrue("Player1's coal was not the value expected after StartTurn() executed three times", tester.getPlayer1().getFuel("Coal") == coal + 3*Player1Start.getTotalResourceOut());
 	}
-	
-	@Test
-	public void testEndGame() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testGetBaseResources() {
@@ -326,7 +322,7 @@ public class CoreGameTest {
 		else
 			throw new IllegalArgumentException("turnLimit was too large to be cast to an int.");
 		
-		assertTrue("Player turn was not saved correctly", tester.getPlayerTurn().getName() == playerTurn);
+		assertTrue("Player turn was not saved correctly", tester.getPlayerTurn().getName().equals(playerTurn));
 		assertTrue("turnCount was not saved correctly", tester.getTurnCount() == turnCount);
 		assertTrue("turnLimit was not saved correctly", tester.getTurnLimit() == turnLimit);		
 		

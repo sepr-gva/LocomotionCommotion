@@ -28,8 +28,7 @@ public class RouteTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		
-		
+				
 		String name = "Player 1";
 		int points = 0;
 		Gold gold = new Gold(1000);
@@ -53,12 +52,13 @@ public class RouteTest {
 				goals,
 				trains);
 				
-		//train = new CoalTrain(0, true, new Route(WorldMap.getInstance().REYKJAVIK), player);
-		//train.route.addConnection(train.route.getAdjacentConnections().get(0));
+		train = new CoalTrain(0, true, new Route(WorldMap.getInstance().REYKJAVIK), player);
+		train.route.addConnection(train.route.getAdjacentConnections().get(0));
 		
-		//train.route.getTrainPos();
+		train.route.getTrainPos();
 		
 		route = new Route(WorldMap.getInstance().REYKJAVIK);
+		route.train = train;
 		route.addConnection(route.getAdjacentConnections().get(0));
 	}
 
