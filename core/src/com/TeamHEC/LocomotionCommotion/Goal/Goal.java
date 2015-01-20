@@ -126,6 +126,10 @@ public class Goal implements RouteListener{
 		
 		train.getOwner().addGold(getReward());
 		train.route.unregister(this);
+		
+		startStationPassed = false;
+		stationViaPassed = false;
+		finalStationPassed = false;
 	}
 	
 	/**
@@ -144,7 +148,7 @@ public class Goal implements RouteListener{
 				startStationPassed = true;
 			else if(startStationPassed && station == fStation)
 				finalStationPassed = true;
-			else if(startStationPassed && station == stationVia && stationVia != null)
+			else if(stationVia == null || (startStationPassed && station == stationVia))
 				stationViaPassed = true;
 			
 			if(startStationPassed && finalStationPassed && stationViaPassed)
