@@ -206,14 +206,13 @@ public class Player implements RouteListener{
 	}
 
 	/**
-	 * @param station purchases the station for the player
+	 * @param station purchases the station for the player and keeps track of lines owned
 	 */
 	public void purchaseStation(Station station)
 	//If the player doesn't have enough gold or if the station is owned by a player or if the player does not 
 	//have a train in that station then nothing will happen
 	//There is space to add some sort of message for the player
 	{
-		boolean validPurchase = false;
 		for (int j=0; j < trains.size(); j ++)
 		{
 			if(station.getOwner() == null)
@@ -222,78 +221,65 @@ public class Player implements RouteListener{
 				{
 					if(getGold() >= station.getBaseValue())
 					{
-						validPurchase = true;				
+						stations.add(station);
+						this.subGold(station.getBaseValue());
+						for (int i=0; i<station.getLineType().length; i++)
+						{	
+							if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
+								//Line is an array of 3 line colours, this loop will add the first line colour
+								//then if a station is on another line of a different colour it will add that
+								//hence when i > 0 (checking the second colour) AND is a different colour to the previous colour
+								//add that colour to the players lines
+							{
+								switch(station.getLineType()[i])
+								{ //keeps track of how much of a line the player owns
+								case Red:
+									lines[0] += 1;	
+									break;
+								case Blue:
+									lines[1] += 1;
+									break;
+								case Green:
+									lines[2] += 1;
+									break;
+								case Yellow:
+									lines[3] += 1;
+									break;
+								case Purple: 
+									lines[4] += 1;
+									break;
+								case Black:
+									lines[5] += 1;
+									break;
+								case Brown:
+									lines[6] += 1;
+									break;
+								case Orange:
+									lines[7] += 1;
+									break;
+								default:
+									throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
+								}
+							}
+						}
+						station.setOwner(this);
+						this.lineBonuses();				
 					}
 					else
 					{
-						//not enough gold
-						this.addFuel("Nuclear", 3);
 						//WarningMessage.fireWarningWindow("Not enough gold", "");
 					}
 				}
 				else
 				{
-					this.addFuel("Nuclear", 2);
 					//WarningMessage.fireWarningWindow("Not in station", trains.get(j).getRoute().getStation().getName());
 				}
 			}
 			else
 			{
-				this.addFuel("Nuclear", 1);
 				//WarningMessage.fireWarningWindow("Already owned", "");
 			}
 		}
-		if (validPurchase)
-		{
-			stations.add(station);
-			this.subGold(station.getBaseValue());
-			for (int i=0; i<station.getLineType().length; i++)
-			{	
-				if (((i > 0) && (station.getLineType()[i] != station.getLineType()[i-1])) || (i==0))
-					//Line is an array of 3 line colours, this loop will add the first line colour
-					//then if a station is on another line of a different colour it will add that
-					//hence when i > 0 (checking the second colour) AND is a different colour to the previous colour
-					//add that colour to the players lines
-				{
-					switch(station.getLineType()[i])
-					{ //keeps track of how much of a line the player owns
-					case Red:
-						lines[0] += 1;	
-						break;
-					case Blue:
-						lines[1] += 1;
-						break;
-					case Green:
-						lines[2] += 1;
-						break;
-					case Yellow:
-						lines[3] += 1;
-						break;
-					case Purple: 
-						lines[4] += 1;
-						break;
-					case Black:
-						lines[5] += 1;
-						break;
-					case Brown:
-						lines[6] += 1;
-						break;
-					case Orange:
-						lines[7] += 1;
-						break;
-					default:
-						throw new IllegalArgumentException("Could not find line for Station: " + station.getName() + " owned by Player " + station.getOwner().name);
-					}
-				}
-			}
-			station.setOwner(this);
-			this.lineBonuses();
-		}
-		else
-		{
-			//Station is owned by a player already
-		}
-
 	}
 
 	public void sellStation(Station station)

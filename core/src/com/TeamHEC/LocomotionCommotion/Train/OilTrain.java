@@ -18,6 +18,6 @@ public class OilTrain extends Train{
 	{
 		super("Diesel Weasel", new Oil(200), BASE_SPEED, speedMod, VALUE, inStation,
 				route, player);
-		fuelPerTurn = 20;
+		fuelPerTurn = 15;
 	}
 }

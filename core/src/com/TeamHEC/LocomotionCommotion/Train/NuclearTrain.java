@@ -18,6 +18,6 @@ public class NuclearTrain extends Train{
 	{
 		super("Atom Bomb", new Nuclear(200), BASE_SPEED, speedMod, VALUE, inStation,
 				route, player);
-		fuelPerTurn = 50;
+		fuelPerTurn = 25;
 	}
 }
