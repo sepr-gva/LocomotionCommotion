@@ -103,7 +103,7 @@ public class GoalActor extends Actor {
 		if(started){
 			if(this.isOwnedgoal()){ //First Checks if Owned (A Player Goal)
 
-				if(!this.isEmpty()) //Checks that the goalActor has a Goal assigned to it and isn't a blank.
+				if(!this.isEmpty()&& (!GoalMenu.open)) //Checks that the goalActor has a Goal assigned to it and isn't a blank.
 				{
 					if(this.isPlanRouteButtonVisible()){           // FOR ON EXIT: Hides the plan route button
 						PlayerGoals.planRouteBtn.setVisible(false);

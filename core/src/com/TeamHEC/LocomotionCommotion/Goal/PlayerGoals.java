@@ -99,7 +99,6 @@ public class PlayerGoals {
 			public void act(float delta){
 				if(started){
 					this.setVisible(true);
-					started = false;
 				}
 				if(touchedDown)
 				{
