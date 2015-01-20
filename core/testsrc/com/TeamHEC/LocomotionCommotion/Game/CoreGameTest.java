@@ -13,6 +13,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -23,10 +24,7 @@ import com.TeamHEC.LocomotionCommotion.Map.Line;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Resource.Coal;
-import com.TeamHEC.LocomotionCommotion.Resource.Nuclear;
 import com.TeamHEC.LocomotionCommotion.Resource.Resource;
-import com.TeamHEC.LocomotionCommotion.Train.Route;
 import com.TeamHEC.LocomotionCommotion.Mocking.GdxTestRunner;
 
 /**
@@ -66,17 +64,11 @@ public class CoreGameTest {
 		
 		player1Name = "Alice";
 		player2Name = "Ben";
-		Player1Start = WorldMap.getInstance().AMSTERDAM;
-		Player2Start = WorldMap.getInstance().ATHENS;	
-		
-		player1StationList = new ArrayList<Station>();
-		player2StationList = new ArrayList<Station>();		
-		
+		Player1Start = WorldMap.getInstance().ATHENS;
+		Player2Start = WorldMap.getInstance().BERLIN;	
+
 		turnLimit = 50;	
-		
-		player1StationList.add(Player1Start);
-		player2StationList.add(Player2Start);
-		
+
 		baseGold = 1000;
 		baseCarriage = 200;
 		baseCoal = 200;
@@ -85,6 +77,12 @@ public class CoreGameTest {
 		baseNuclear = 200;
 		
 		tester = new CoreGame(player1Name, player2Name, Player1Start, Player2Start, turnLimit);
+	}
+	
+	@After
+	public void tearDown() {
+		WorldMap.getInstance().ATHENS.setOwner(null);
+		WorldMap.getInstance().BERLIN.setOwner(null);
 	}
 	
 	//Private Accessors
@@ -134,12 +132,12 @@ public class CoreGameTest {
 	}
 	
 	@Test
-	public void testCoreGame() throws Exception {		
+	public void testCoreGame() throws Exception {			
 		assertTrue("player1Name was incorrectly set", tester.getPlayer1().getName() == player1Name);
 		assertTrue("player2Name was incorrectly set", tester.getPlayer2().getName() == player2Name);
 		
-		assertTrue("player1's Gold was incorrectly set", tester.getPlayer1().getGold() == baseGold - Player1Start.getTotalValue());	
-		assertTrue("player2's Gold was incorrectly set", tester.getPlayer2().getGold() == baseGold - Player2Start.getTotalValue());	
+		assertTrue("player1's Gold was incorrectly set", tester.getPlayer1().getGold() == baseGold - Player1Start.getBaseValue());	
+		assertTrue("player2's Gold was incorrectly set", tester.getPlayer2().getGold() == baseGold - Player2Start.getBaseValue());	
 		if(tester.getPlayerTurn() == tester.getPlayer1())		
 			assertTrue("player1's Coal was incorrectly set", tester.getPlayer1().getFuel("Coal") == baseCoal + Player1Start.getTotalResourceOut());
 		else
@@ -155,8 +153,8 @@ public class CoreGameTest {
 		else
 			assertTrue("player2's Nuclear was incorrectly set", tester.getPlayer2().getFuel("Nuclear") == baseNuclear);
 				
-		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().getStations().equals(player1StationList));
-		assertTrue("player2's Station list was incorrectly set", tester.getPlayer2().getStations().equals(player2StationList));
+		assertTrue("player1's Station list was incorrectly set", tester.getPlayer1().getStations().get(0) == Player1Start);
+		assertTrue("player2's Station list was incorrectly set", tester.getPlayer2().getStations().get(0) == Player2Start);
 		assertTrue("player1's Goal list was incorrectly set", tester.getPlayer1().getGoals().equals(new ArrayList<Goal>()));
 		assertTrue("player2's Goal list was incorrectly set", tester.getPlayer2().getGoals().equals(new ArrayList<Goal>()));
 		assertTrue("player1's Train list was incorrectly set", tester.getPlayer1().getTrains().size() == 1);
@@ -194,7 +192,7 @@ public class CoreGameTest {
 
 	@Test
 	public void testStartTurn() {
-		//Setup
+		//Setup		
 		if(tester.getPlayerTurn() != tester.getPlayer1())
 			tester.EndTurn();
 		int coal = tester.getPlayer1().getFuel("Coal");

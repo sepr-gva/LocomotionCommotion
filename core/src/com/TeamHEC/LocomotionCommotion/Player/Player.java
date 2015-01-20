@@ -454,6 +454,9 @@ public class Player implements RouteListener{
 		}
 	}
 
+	/**
+	 * Generates fuel from stations.
+	 */
 	public void stationRewards()
 	{
 
