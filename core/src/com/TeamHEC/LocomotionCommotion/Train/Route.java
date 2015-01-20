@@ -171,12 +171,20 @@ public class Route{
 	 */
 	public void showConnectionBlips(Connection connection)
 	{
-		Stage stage = train.getActor().getStage();
-		for(Actor a : connection.getRouteBlips())
+		if(train.getActor() == null)
 		{
-			a.setVisible(true);
-			stage.addActor(a);
+			throw new NullPointerException("train.getActor() cannot be null");
 		}
+		else
+		{
+			Stage stage = train.getActor().getStage();
+			for(Actor a : connection.getRouteBlips())
+			{
+				a.setVisible(true);
+				stage.addActor(a);
+			}
+		}
+		
 	}
 	/**
 	 * @param connection The connection to hide UI blips for

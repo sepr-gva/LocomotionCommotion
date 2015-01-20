@@ -57,6 +57,8 @@ public class Train {
 			trainActor = Game_Map_Manager.trainBlips.pop();
 			trainActor.createBlip(this);
 		}
+		else
+			throw new NullPointerException("trainActor never initialised");
 		
 		route.register(owner);
 	}
