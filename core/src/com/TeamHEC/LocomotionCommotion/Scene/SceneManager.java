@@ -2,7 +2,7 @@ package com.TeamHEC.LocomotionCommotion.Scene;
 
 public class SceneManager{
 	
-	public StartScene startScene;
+	public StartMenu startScene;
 	
 	private static SceneManager instance = new SceneManager();
 	
@@ -13,7 +13,7 @@ public class SceneManager{
 	
 	private SceneManager()
 	{
-        startScene = new StartScene();
+        startScene = new StartMenu();
         startScene.addToStage();
 	}
 }
