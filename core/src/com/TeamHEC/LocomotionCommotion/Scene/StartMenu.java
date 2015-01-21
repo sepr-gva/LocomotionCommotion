@@ -30,7 +30,7 @@ public class StartMenu extends Scene{
 	private SpriteButton loadGameBckButton, prefBackButton, settingsButton;
 
 	private SpriteButton displayButton, soundButton, controlButton;
-	private SpriteButton homeButton, nextButton, prevButton, backButton;
+	private SpriteButton homeButton, nextButton, prevButton, preferencesBackButton;
 
 	// Other stuff
 
@@ -534,7 +534,7 @@ public class StartMenu extends Scene{
 		sm_howtoplay_frame = new Sprite(-1700+240,220, SM_TextureManager.getInstance().sm_howtoplay_frame);
 		actors.add(sm_howtoplay_frame);
 
-		backButton = new SpriteButton(-1700+ 1275, 655, SM_TextureManager.getInstance().sm_newgame_BackBtn){
+		preferencesBackButton = new SpriteButton(-1700+ 1275, 655, SM_TextureManager.getInstance().sm_newgame_BackBtn){
 			@Override
 			public void onClicked()
 			{
@@ -567,7 +567,7 @@ public class StartMenu extends Scene{
 			}
 
 		};
-		actors.add(backButton);
+		actors.add(preferencesBackButton);
 
 		//Text boxes for Player 1 and 2 names
 		Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
