@@ -66,7 +66,8 @@ public class CardFactory{
 		ArrayList<Card> cardList = new ArrayList<Card>(magicCardList);
 		cardList.addAll(resourceCardList);
 		
-		return cardList.get(random.nextInt(cardList.size()));		
+		return cardList.get(random.nextInt(cardList.size()));	
+		//return cardList.get(0);
 	}
 	
 	/**
