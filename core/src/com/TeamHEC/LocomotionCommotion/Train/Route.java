@@ -120,12 +120,24 @@ public class Route{
 	 */
 	public ArrayList<Connection> getAdjacentConnections()
 	{
+		ArrayList<Connection> availableConnections = new ArrayList<Connection>();
 		if(path.isEmpty())
 		{
-			return currentMapObj.connections;
+			for (Connection connection : currentMapObj.connections){
+				if (connection.getTraversable()){
+					availableConnections.add(connection);
+				}
+			}
 		}
 		else
-			return path.get(path.size()-1).getDestination().connections;
+		{
+			for (Connection connection : path.get(path.size()-1).getDestination().connections){
+				if (connection.getTraversable()){
+					availableConnections.add(connection);
+				}
+			}
+		}
+		return availableConnections;
 	}
 
 	/**

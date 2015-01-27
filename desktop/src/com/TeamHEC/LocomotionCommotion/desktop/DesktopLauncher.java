@@ -8,8 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(LocomotionCommotion.getInstance(), config);
-		config.height= 1050;
-		config.width = 1680;
+		config.width = 1280;
+		config.height = 800;
 		config.fullscreen = false;	
 	}
 }

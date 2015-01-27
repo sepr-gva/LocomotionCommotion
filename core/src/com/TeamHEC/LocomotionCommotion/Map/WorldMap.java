@@ -95,6 +95,11 @@ public class WorldMap {
 		createConnections(junction[1], new MapObj[]{WARSAW, VILNIUS, MOSCOW, PRAGUE});
 		createConnections(junction[0], new MapObj[]{PARIS, BERLIN, PRAGUE, BERN});
 		createConnections(ATHENS, new MapObj[]{ROME, VIENNA});
+		
+		//Testing by setting the connection (in both directions) between London 
+		//and Paris to non-traversable
+		stationsList.get(1).connections.get(0).setTraversable(false);
+		stationsList.get(0).connections.get(1).setTraversable(false);
 	}
 	
 	/**

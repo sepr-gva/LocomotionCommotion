@@ -14,6 +14,8 @@ public class Connection{
 	private MapObj startMapObj, endMapObj;
 	private float length;
 	
+	private boolean traversable = true; // for broken track
+	
 	private Vector2 vector;
 	
 	// Displaying Route stuff:
@@ -149,5 +151,19 @@ public class Connection{
 			return true;
 		else
 			return false;
+	}
+	
+	/**
+	 * @return traversable (whether a route can be planned through this connection
+	 * or a train can travel across it)
+	 */
+	public boolean getTraversable(){
+		return traversable;
+	}
+	/**
+	 * @param traversable, set whether the connection is traversable
+	 */
+	public void setTraversable(boolean traversable){
+		this.traversable = traversable;
 	}
 }
