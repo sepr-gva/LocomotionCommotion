@@ -320,7 +320,7 @@ public class Game_Map_Manager {
 		stationLabelFuel.setVisible(false);
 		stationLabelCost.setVisible(false);
 	}
-
+	
 	public static void showInfoBox(){
 		stationInfo.setVisible(true);
 		Game_Map_Manager.stationSelect.setVisible(true);

@@ -82,12 +82,11 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		// Sets the labels to info from each station:
 		Game_Map_Manager.stationLabelName.setText(station.getName());
 		Game_Map_Manager.stationLabelCost.setText(String.format("%d", station.getBaseValue() ));
-		Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", station.getResourceType().getValue(), station.getResourceString()));
+		Game_Map_Manager.stationLabelFuel.setText(String.format("%d * %s", station.getTotalResourceOut(), station.getResourceString()));
 
 		Game_Map_Manager.moveInfoBox(this.actorX-180, this.actorY-80);
-
-
 	}
+	
 	public void hideInfoBox(){
 		for(int i=Game_Map_Manager.stagestart; i<=Game_Map_Manager.stagestart +Game_Map_Manager.mapActors-1;i++)	
 		{ 	
