@@ -98,8 +98,8 @@ public class WorldMap {
 		
 		//Testing by setting the connection (in both directions) between London 
 		//and Paris to non-traversable
-		stationsList.get(1).connections.get(0).setTraversable(false);
-		stationsList.get(0).connections.get(1).setTraversable(false);
+		breakConnection(stationsList.get(0), stationsList.get(1));
+		breakConnection(stationsList.get(11), junction[0]);
 	}
 	
 	/**
@@ -114,4 +114,43 @@ public class WorldMap {
 			mapObj.connections.add(new Connection(mapObj, connection[i]));
 		}
 	}
+	
+	public void breakConnection(MapObj start, MapObj end){
+		for (Station station : stationsList){
+			if (start == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == end){
+						connection.setTraversable(false);
+					}
+				}
+			}
+			else if (end == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == start){
+						connection.setTraversable(false);
+					}
+				}
+			}
+		}
+	}
+	
+	public void repairConnection(MapObj start, MapObj end){
+		for (Station station : stationsList){
+			if (start == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == end){
+						connection.setTraversable(true);
+					}
+				}
+			}
+			else if (end == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == start){
+						connection.setTraversable(true);
+					}
+				}
+			}
+		}
+	}
+	
 }
