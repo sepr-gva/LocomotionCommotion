@@ -166,15 +166,15 @@ public class Game_Map_Manager {
 				}
 			}
 		}
-		cityNames = new Sprite(100, 60, Game_Map_TextureManager.getInstance().cityNames);
-		actors.add(cityNames);
+		//cityNames = new Sprite(100, 60, Game_Map_TextureManager.getInstance().cityNames);
+		//actors.add(cityNames);
 	
-		//stationTracker=stage.getActors().size;
-		//for(int i = 0; i < WorldMap.getInstance().stationsList.size(); i++)
-		//{
-		//	actors.add(WorldMap.getInstance().stationsList.get(i).getActor());
-		//	numberOfStations++;
-		//}
+		stationTracker=stage.getActors().size;
+		for(int i = 0; i < WorldMap.getInstance().stationsList.size(); i++)
+		{
+			actors.add(WorldMap.getInstance().stationsList.get(i).getActor());
+			numberOfStations++;
+		}
 
 		junctionTracker =stage.getActors().size;
 		for(int i = 0; i < WorldMap.getInstance().junction.length; i++)
