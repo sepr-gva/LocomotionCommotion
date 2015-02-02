@@ -341,19 +341,6 @@ public class Route{
 		updateRouteText();
 	}
 	
-	public void endRouteEarly(){
-		// Refund player:
-		
-		int fuelCost = train.getFuelLengthCost(path.get(path.size() - 1).getLength());
-		train.getOwner().addFuel(train.getFuelType(), fuelCost);
-		System.out.println(train.getOwner().getName() + " was refunded " + fuelCost + " " +
-		train.getFuelType());
-		
-		currentMapObj = path.get(routeIndex).getStartMapObj();
-		path.clear();
-		routeIndex = 0;
-	}
-	
 	/**
 	 * Updates the text displaying the route information:
 	 */
@@ -501,10 +488,6 @@ public class Route{
 			routeIndex++;
 			connectionTravelled = 0;
 			
-			if (!path.get(routeIndex).getTraversable()){
-				endRouteEarly();
-			}
-			
 			// Triggers a listener so we can implement station tax and Goal completion validation:
 			notifyStationPassed();
 			
@@ -520,8 +503,6 @@ public class Route{
 			}
 		}
 	}
-	
-	
 
 	/**
 	 * Adds an object to the listener array
