@@ -100,6 +100,7 @@ public class WorldMap {
 		//and Paris to non-traversable
 		breakConnection(stationsList.get(0), stationsList.get(1));
 		breakConnection(stationsList.get(11), junction[0]);
+		breakConnection(stationsList.get(0), junction[0]);
 	}
 	
 	/**
@@ -116,11 +117,17 @@ public class WorldMap {
 	}
 	
 	public void breakConnection(MapObj start, MapObj end){
+		boolean validConnection = false;
 		for (Station station : stationsList){
 			if (start == station){
 				for (Connection connection : station.connections){
 					if (connection.getDestination() == end){
+						if (!connection.getTraversable()){
+							System.out.println("Connection between " + start.getName() +
+							" and " + end.getName() + " is already broken.");
+						}
 						connection.setTraversable(false);
+						validConnection = true;
 					}
 				}
 			}
@@ -132,14 +139,24 @@ public class WorldMap {
 				}
 			}
 		}
+		if (!validConnection){
+			System.out.println("There is no connection between " + start.getName() + 
+					" and " + end.getName() + ".");
+		}
 	}
 	
 	public void repairConnection(MapObj start, MapObj end){
+		boolean validConnection = false;
 		for (Station station : stationsList){
 			if (start == station){
 				for (Connection connection : station.connections){
 					if (connection.getDestination() == end){
+						if (connection.getTraversable()){
+							System.out.println("Connection between " + start.getName() +
+							" and " + end.getName() + " is not broken.");
+						}
 						connection.setTraversable(true);
+						validConnection = true;
 					}
 				}
 			}
@@ -150,6 +167,10 @@ public class WorldMap {
 					}
 				}
 			}
+		}
+		if (!validConnection){
+			System.out.println("There is no connection between " + start.getName() + 
+					" and " + end.getName() + ".");
 		}
 	}
 	

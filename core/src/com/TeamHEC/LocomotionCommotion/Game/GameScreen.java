@@ -5,6 +5,7 @@ import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
@@ -14,6 +15,7 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -108,6 +110,13 @@ public class GameScreen implements Screen {
 
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
+		
+		if (Gdx.input.isKeyJustPressed(Keys.B)){
+			WorldMap.getInstance().breakConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
+		}
+		if (Gdx.input.isKeyJustPressed(Keys.F)){
+			WorldMap.getInstance().repairConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
+		}
 
 	}
 
