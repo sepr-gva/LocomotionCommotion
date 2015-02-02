@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.ConnectionSprite;
+import com.TeamHEC.LocomotionCommotion.Map.MapObj;
+import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.TrainInfoUI;
@@ -154,26 +156,12 @@ public class Game_Map_Manager {
 
 		mapLines = new Sprite(100, 60, Game_Map_TextureManager.getInstance().mapLines);		
 		actors.add(mapLines);
-		for (int i = 0; i < WorldMap.getInstance().stationsList.size(); i++){
-			for (Connection connection : WorldMap.getInstance().stationsList.get(i).connections){
-				if (!connection.getTraversable()){
-					for (ConnectionSprite sprite : connectionSprites){
-						if ((connection.getStartMapObj() == sprite.getCity1() &&
-								connection.getDestination() == sprite.getCity2())){
-							actors.add(sprite);
-						}
-					}
-				}
-				else{
-					for (ConnectionSprite sprite : connectionSprites){
-						if ((connection.getStartMapObj() == sprite.getCity1() &&
-								connection.getDestination() == sprite.getCity2())){
-							actors.removeValue(sprite, true);
-						}
-					}
-				}
-			}
+		
+		for (ConnectionSprite sprite : connectionSprites){
+			sprite.setVisible(false);
+			actors.add(sprite);
 		}
+		
 //		cityNames = new Sprite(100, 60, Game_Map_TextureManager.getInstance().cityNames);
 //		actors.add(cityNames);
 	
@@ -405,6 +393,78 @@ public class Game_Map_Manager {
 					((Game_Map_Station) GameScreen.getStage().getActors().get(i)).setOwned(false);
 				}
 			}
+		}
+	}
+	
+	public void breakConnection(MapObj start, MapObj end){
+		boolean validConnection = false;
+		for (Station station : WorldMap.getInstance().stationsList){
+			if (start == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == end){
+						if (!connection.getTraversable()){
+							System.out.println("Connection between " + start.getName() +
+							" and " + end.getName() + " is already broken.");
+						}
+						connection.setTraversable(false);
+						validConnection = true;
+						for (ConnectionSprite sprite : connectionSprites){
+							if ((connection.getStartMapObj() == sprite.getCity1() &&
+									connection.getDestination() == sprite.getCity2())){
+								sprite.setVisible(true);
+							}
+						}
+					}
+				}
+			}
+			else if (end == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == start){
+						connection.setTraversable(false);
+					}
+				}
+			}
+		}
+		if (!validConnection){
+			System.out.println("There is no connection between " + start.getName() + 
+					" and " + end.getName() + ".");
+		}
+	}
+	
+	public void repairConnection(MapObj start, MapObj end){
+		boolean validConnection = false;
+		for (Station station : WorldMap.getInstance().stationsList){
+			if (start == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == end){
+						if (connection.getTraversable()){
+							System.out.println("Connection between " + start.getName() +
+							" and " + end.getName() + " is not broken.");
+						}
+						connection.setTraversable(true);
+						validConnection = true;
+						for (ConnectionSprite sprite : connectionSprites){
+							if ((connection.getStartMapObj() == sprite.getCity1() &&
+									connection.getDestination() == sprite.getCity2()) ||
+									(connection.getDestination() == sprite.getCity1() &&
+									connection.getStartMapObj() == sprite.getCity2())){
+								sprite.setVisible(false);
+							}
+						}
+					}
+				}
+			}
+			else if (end == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == start){
+						connection.setTraversable(true);
+					}
+				}
+			}
+		}
+		if (!validConnection){
+			System.out.println("There is no connection between " + start.getName() + 
+					" and " + end.getName() + ".");
 		}
 	}
 }

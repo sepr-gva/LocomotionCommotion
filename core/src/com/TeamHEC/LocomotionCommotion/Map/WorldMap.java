@@ -96,11 +96,6 @@ public class WorldMap {
 		createConnections(junction[0], new MapObj[]{PARIS, BERLIN, PRAGUE, BERN});
 		createConnections(ATHENS, new MapObj[]{ROME, VIENNA});
 		
-		//Testing by setting the connection (in both directions) between London 
-		//and Paris to non-traversable
-		breakConnection(stationsList.get(0), stationsList.get(1));
-		breakConnection(stationsList.get(11), junction[0]);
-		breakConnection(stationsList.get(0), junction[0]);
 	}
 	
 	/**
@@ -113,64 +108,6 @@ public class WorldMap {
 		for(int i = 0; i < connection.length; i++)
 		{
 			mapObj.connections.add(new Connection(mapObj, connection[i]));
-		}
-	}
-	
-	public void breakConnection(MapObj start, MapObj end){
-		boolean validConnection = false;
-		for (Station station : stationsList){
-			if (start == station){
-				for (Connection connection : station.connections){
-					if (connection.getDestination() == end){
-						if (!connection.getTraversable()){
-							System.out.println("Connection between " + start.getName() +
-							" and " + end.getName() + " is already broken.");
-						}
-						connection.setTraversable(false);
-						validConnection = true;
-					}
-				}
-			}
-			else if (end == station){
-				for (Connection connection : station.connections){
-					if (connection.getDestination() == start){
-						connection.setTraversable(false);
-					}
-				}
-			}
-		}
-		if (!validConnection){
-			System.out.println("There is no connection between " + start.getName() + 
-					" and " + end.getName() + ".");
-		}
-	}
-	
-	public void repairConnection(MapObj start, MapObj end){
-		boolean validConnection = false;
-		for (Station station : stationsList){
-			if (start == station){
-				for (Connection connection : station.connections){
-					if (connection.getDestination() == end){
-						if (connection.getTraversable()){
-							System.out.println("Connection between " + start.getName() +
-							" and " + end.getName() + " is not broken.");
-						}
-						connection.setTraversable(true);
-						validConnection = true;
-					}
-				}
-			}
-			else if (end == station){
-				for (Connection connection : station.connections){
-					if (connection.getDestination() == start){
-						connection.setTraversable(true);
-					}
-				}
-			}
-		}
-		if (!validConnection){
-			System.out.println("There is no connection between " + start.getName() + 
-					" and " + end.getName() + ".");
 		}
 	}
 	

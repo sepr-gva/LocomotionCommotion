@@ -112,10 +112,10 @@ public class GameScreen implements Screen {
 		getStage().draw();
 		
 		if (Gdx.input.isKeyJustPressed(Keys.B)){
-			WorldMap.getInstance().breakConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
+			mapManager.breakConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
 		}
 		if (Gdx.input.isKeyJustPressed(Keys.F)){
-			WorldMap.getInstance().repairConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
+			mapManager.repairConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
 		}
 
 	}
