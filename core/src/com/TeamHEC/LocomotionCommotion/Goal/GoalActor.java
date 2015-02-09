@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 
 /**
  * @author Robert Precious <rp825@york.ac.uk>
- * The Goal Actor is used in the goal menu and in playergoal's meaning it needs to keep track of which one it is. It can also be empty which mean it 
- * shows a blank texture and does nothing. 
+ * The Goal Actor is used in the goal menu and in playergoal's meaning it needs to keep track of which one it is. 
+ * It can also be empty which mean it shows a blank texture and does nothing. 
  * 
  * This is an Actor- meaning it's given texture is displayed on the stage and actions (acts) can be performed.
  * @param texture	The image used for the Actor pulled in from SM_TextureManager (see documentation)
