@@ -21,7 +21,7 @@ public class Game_Map_TextureManager{
 	//Map
 	public Texture map = new Texture(Gdx.files.internal("gameScreen/game_map/map.png"));
 	public Texture mapLines = new Texture(Gdx.files.internal("gameScreen/game_map/lines.png"));
-	public Texture cityNames = new Texture(Gdx.files.internal("gameScreen/game_map/citiesAndCircles.png"));
+	public Texture cityNames = new Texture(Gdx.files.internal("gameScreen/game_map/cities.png"));
 	public Texture mapInfo = new Texture(Gdx.files.internal("gameScreen/game_map/mapinfo.png"));
 	public Texture station = new Texture(Gdx.files.internal("gameScreen/game_map/station.png"));
 	public Texture stationx2 = new Texture(Gdx.files.internal("gameScreen/game_map/Stop.png"));
