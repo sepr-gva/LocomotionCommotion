@@ -5,7 +5,11 @@ import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.PerspectiveCamera;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * 
  * @author Robert Precious <rp825@york.ac.uk>
@@ -74,6 +78,7 @@ public class LocomotionCommotion extends Game {
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
+
 	}
 
 	@Override
