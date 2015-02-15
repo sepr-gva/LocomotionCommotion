@@ -74,24 +74,28 @@ public class Shop {
 		if(fuelType == "Coal" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * coalSellPrice)));
+			customer.addPoints((int)(Math.ceil(quantity * coalSellPrice)));
 		}
 		
 		
 		else if(fuelType == "Oil" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * oilSellPrice)));
+			customer.addPoints((int)(Math.ceil(quantity * oilSellPrice)));
 		}
 		
 		
 		else if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * electricSellPrice))); //DO NOT REMOVE MATH.CEIL IT ROUNDS WIERDLY
+			customer.addPoints((int)(Math.ceil(quantity * electricSellPrice)));
 		}
 		
 		
 		else if(fuelType == "Nuclear" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * nuclearSellPrice)));
+			customer.addPoints((int)(Math.ceil(quantity * nuclearSellPrice)));
 		}
 		else
 		{

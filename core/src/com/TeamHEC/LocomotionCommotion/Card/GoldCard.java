@@ -26,5 +26,6 @@ public class GoldCard extends Card{
 	{
 		Random random = new Random();
 		getOwner().addGold(Shop.cardPrice/2 + random.nextInt(Shop.cardPrice));
+		getOwner().addPoints(Shop.cardPrice/2 + random.nextInt(Shop.cardPrice));
 	}
 }
