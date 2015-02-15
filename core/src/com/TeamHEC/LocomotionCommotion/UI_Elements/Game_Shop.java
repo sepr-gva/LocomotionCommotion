@@ -35,8 +35,6 @@ public class Game_Shop {
 	public void create(Stage stage){
 		actorManager = new Game_ShopManager();
 		actorManager.create(stage);
-
-
 	}
 
 	//ACTOR MANAGER
@@ -59,7 +57,6 @@ public class Game_Shop {
 		public Label titleLabel;
 		public static LabelStyle style;
 
-
 		public boolean open=false;
 		public boolean start=true;
 
@@ -68,7 +65,6 @@ public class Game_Shop {
 
 		public boolean buy=false;
 		public boolean sell=false;
-
 
 		public Game_ShopManager(){	}
 
@@ -79,10 +75,7 @@ public class Game_Shop {
 			stageEnd=0;
 			startScreenStageStart=0;
 			startScreenStageEnd=0;
-
-
-
-
+			
 			game_shop_backdrop = new Sprite(-20,-15,Game_TextureManager.getInstance().game_shop_backdrop);
 			actors.add(game_shop_backdrop);
 			game_shop_title = new Sprite(170,820,Game_TextureManager.getInstance().game_shop_title);
@@ -93,26 +86,30 @@ public class Game_Shop {
 					if (Game_Shop.actorManager.start== false)
 					{
 						Game_Shop.actorManager.start= true;
+						
 						for(int i=Game_Shop.actorManager.getstartScreenStageStart(); i<=Game_Shop.actorManager.getstartScreenStageEnd();i++){
-							if (i > GameScreen.getStage().getActors().size-1){
-
-							}else
+							if (i > GameScreen.getStage().getActors().size-1){}
+							
+							else{
 								GameScreen.getStage().getActors().get(i).setVisible(true);
-
-						}			}
-					else
-					{	Game_Shop.actorManager.start= false;
-					for(int i=Game_Shop.actorManager.getstartScreenStageStart(); i<=Game_Shop.actorManager.getstartScreenStageEnd();i++){
-						if (i > GameScreen.getStage().getActors().size-1){
-
-						}else
-							GameScreen.getStage().getActors().get(i).setVisible(false);
-
+							}
+						}
 					}
-
+					
+					else{
+						Game_Shop.actorManager.start= false;
+					}
+					
+					for(int i=Game_Shop.actorManager.getstartScreenStageStart(); i<=Game_Shop.actorManager.getstartScreenStageEnd();i++){
+						if (i > GameScreen.getStage().getActors().size-1){}
+						
+						else{
+							GameScreen.getStage().getActors().get(i).setVisible(false);
+						}
 					}
 				}
 			};
+			
 			actors.add(game_shop_backbtn);
 
 			coalitem = new Game_shop_coal();
@@ -181,11 +178,6 @@ public class Game_Shop {
 				startactors.add(a);
 			}
 
-
-
-
-
-
 			stageStart= stage.getActors().size;
 			for (Actor a : actors){
 				if(open == true){
@@ -197,6 +189,7 @@ public class Game_Shop {
 				stage.addActor(a);
 				stageEnd ++;
 			}
+			
 			startScreenStageStart= stage.getActors().size;
 			startScreenStageEnd = startScreenStageStart + startactors.size-1;
 
@@ -210,9 +203,8 @@ public class Game_Shop {
 				stage.addActor(a);
 
 			}
+			
 			stageEnd= stageStart+actors.size+startactors.size-1;
-
-
 		}
 		public  int getStageStart(){
 			return stageStart;
@@ -256,13 +248,11 @@ public class Game_Shop {
 		return num;
 	}
 
-
 	//SHOP Actors
 	//Shop Object Classes
 	//SHOP HOME Screen---------------------------------------------------------------
 	public static class ShopHomeScreen {
 		ArrayList<Actor> actors ;
-
 
 		public ShopHomeScreen(){
 			this.actors = new ArrayList<Actor>();
@@ -303,26 +293,26 @@ public class Game_Shop {
 				@Override
 				protected void onClicked(){
 					setToBuy();
-					if (Game_Shop.actorManager.start== false)
-					{
+					
+					if (Game_Shop.actorManager.start== false){
 						Game_Shop.actorManager.start= true;
 						for(int i=Game_Shop.actorManager.getstartScreenStageStart(); i<=Game_Shop.actorManager.getstartScreenStageEnd();i++){
-							if (i > GameScreen.getStage().getActors().size-1){
-
-							}else
+							if (i > GameScreen.getStage().getActors().size-1){}
+							else{
 								GameScreen.getStage().getActors().get(i).setVisible(true);
-
-						}			}
-					else
-					{	Game_Shop.actorManager.start= false;
-					for(int i=Game_Shop.actorManager.getstartScreenStageStart(); i<=Game_Shop.actorManager.getstartScreenStageEnd();i++){
-						if (i > GameScreen.getStage().getActors().size-1){
-
-						}else
-							GameScreen.getStage().getActors().get(i).setVisible(false);
-
+							}
+						}
 					}
-
+					
+					else{
+						Game_Shop.actorManager.start= false;
+					}
+					
+					for(int i=Game_Shop.actorManager.getstartScreenStageStart(); i<=Game_Shop.actorManager.getstartScreenStageEnd();i++){
+						if (i > GameScreen.getStage().getActors().size-1){}
+						else{
+							GameScreen.getStage().getActors().get(i).setVisible(false);
+						}
 					}
 
 				}
@@ -333,30 +323,32 @@ public class Game_Shop {
 				@Override
 				protected void onClicked(){
 					setToSell();
+					
 					if (Game_Shop.actorManager.start== false)
 					{
 						Game_Shop.actorManager.start= true;
 						for(int i=Game_Shop.actorManager.getstartScreenStageStart(); i<=Game_Shop.actorManager.getstartScreenStageEnd();i++){
-							if (i > GameScreen.getStage().getActors().size-1){
-
-							}else
+							if (i > GameScreen.getStage().getActors().size-1){}
+							else{
 								GameScreen.getStage().getActors().get(i).setVisible(true);
-
-						}			}
-					else
-					{	Game_Shop.actorManager.start= false;
+							}
+						}			
+					}
+					
+					else{
+						Game_Shop.actorManager.start= false;
+					}
+						
 					for(int i=Game_Shop.actorManager.getstartScreenStageStart(); i<=Game_Shop.actorManager.getstartScreenStageEnd();i++){
-						if (i > GameScreen.getStage().getActors().size-1){
-
-						}else
+						if (i > GameScreen.getStage().getActors().size-1){}
+						
+						else{
 							GameScreen.getStage().getActors().get(i).setVisible(false);
-
+						}	
 					}
-
-					}
-
 				}
 			};
+			
 			this.actors.add(shopsellButton);
 			SpriteButton train = new SpriteButton(1050,350, Game_TextureManager.getInstance().game_shop_starttrain){
 				@Override
@@ -365,8 +357,6 @@ public class Game_Shop {
 
 			};
 			this.actors.add(train);
-
-
 		}
 
 		public ArrayList<Actor> getActors() {
@@ -383,7 +373,7 @@ public class Game_Shop {
 			Game_Shop.actorManager.electricityitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.nuclearitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.carditem.buyButton.setTexture(t);
-			Game_Shop.actorManager.trainitem.costLabel.setText("Sell Trains");
+			Game_Shop.actorManager.trainitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.titleLabel.setText("Sell");
 
 			//Cost is different if selling
@@ -394,6 +384,7 @@ public class Game_Shop {
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilSellPrice);
 				Game_Shop.actorManager.electricityitem.costLabel.setText(""+Math.ceil((strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice)));
 				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText())*Shop.nuclearSellPrice);
+				Game_Shop.actorManager.trainitem.costLabel.setText(""+Shop.trainSellPrice);
 			}
 			else
 			{
@@ -402,6 +393,7 @@ public class Game_Shop {
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilPrice);
 				Game_Shop.actorManager.electricityitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricPrice);
 				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText())*Shop.nuclearPrice);
+				Game_Shop.actorManager.trainitem.costLabel.setText(""+Shop.trainPrice);
 			}
 		}
 
@@ -414,7 +406,7 @@ public class Game_Shop {
 			Game_Shop.actorManager.electricityitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.nuclearitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.carditem.buyButton.setTexture(t);
-			Game_Shop.actorManager.trainitem.costLabel.setText("Buy Trains");
+			Game_Shop.actorManager.trainitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.titleLabel.setText("Buy");
 			
 			//Cost is different if selling
@@ -425,6 +417,7 @@ public class Game_Shop {
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilSellPrice);
 				Game_Shop.actorManager.electricityitem.costLabel.setText(""+Math.ceil((strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice)));
 				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText())*Shop.nuclearSellPrice);
+				Game_Shop.actorManager.trainitem.costLabel.setText(""+Shop.trainSellPrice);
 			}
 			else
 			{
@@ -433,9 +426,9 @@ public class Game_Shop {
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilPrice);
 				Game_Shop.actorManager.electricityitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricPrice);
 				Game_Shop.actorManager.nuclearitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.nuclearitem.quantityLabel.getText())*Shop.nuclearPrice);
+				Game_Shop.actorManager.trainitem.costLabel.setText(""+Shop.trainPrice);
 			}
 		}
-
 
 		//Card
 		public static class Game_shop_card {
@@ -497,10 +490,6 @@ public class Game_Shop {
 				actors.add(costLabel);
 			}
 
-
-
-
-
 			public ArrayList<Actor> getActors() {
 				return this.actors;
 			}
@@ -527,7 +516,6 @@ public class Game_Shop {
 					protected void onClicked(){
 						quantity+=100;
 						changeQuantity(100);
-
 					}
 
 				};
@@ -537,7 +525,6 @@ public class Game_Shop {
 						if(quantity!=0){
 							quantity-=100;
 							changeQuantity(-100);}
-
 					}
 
 				};
@@ -574,10 +561,7 @@ public class Game_Shop {
 				style = new LabelStyle();
 				style.font = font;
 
-				//end
-
 				quantity =100;
-
 				quantityLabel= new Label(null,style);
 				quantityLabel.setX(posx+ 145);
 				quantityLabel.setY(posy +90);
@@ -614,7 +598,6 @@ public class Game_Shop {
 				Game_Shop.actorManager.coalitem.quantityLabel.setText(l);
 			}
 
-
 			public ArrayList<Actor> getActors() {
 				return this.actors;
 			}
@@ -635,22 +618,22 @@ public class Game_Shop {
 			public Game_shop_oil(){
 				this.actors = new ArrayList<Actor>();
 				Sprite oilitem = new Sprite(posx,posy,Game_TextureManager.getInstance().game_shop_oilitem);
+				
 				add = new SpriteButton(posx+75,posy+42,Game_TextureManager.getInstance().game_shop_addbtn){
 					@Override
 					protected void onClicked(){
 						quantity+=100;
 						changeQuantity(100);
-
 					}
 
 				};
+				
 				minus = new SpriteButton(posx+220,posy+48,Game_TextureManager.getInstance().game_shop_minusbtn){
 					@Override
 					protected void onClicked(){
 						if(quantity!=0){
 							quantity-=100;
 							changeQuantity(-100);}
-
 					}
 
 				};
@@ -687,10 +670,7 @@ public class Game_Shop {
 				style = new LabelStyle();
 				style.font = font;
 
-				//end
-
 				quantity =100;
-
 				quantityLabel= new Label(null,style);
 				quantityLabel.setX(posx+ 145);
 				quantityLabel.setY(posy +90);
@@ -708,7 +688,6 @@ public class Game_Shop {
 				}
 				else
 					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.oilPrice);
-
 
 				actors.add(quantityLabel);
 				actors.add(costLabel);
@@ -728,12 +707,10 @@ public class Game_Shop {
 				Game_Shop.actorManager.oilitem.quantityLabel.setText(l);
 			}
 
-
 			public ArrayList<Actor> getActors() {
 				return this.actors;
 			}
 		}
-
 
 		//Electricity
 		public static class Game_shop_electric {
@@ -750,22 +727,22 @@ public class Game_Shop {
 			public Game_shop_electric(){
 				this.actors = new ArrayList<Actor>();
 				Sprite electricitem = new Sprite(posx,posy,Game_TextureManager.getInstance().game_shop_electricityitem);
+				
 				add = new SpriteButton(posx+75,posy+42,Game_TextureManager.getInstance().game_shop_addbtn){
 					@Override
 					protected void onClicked(){
 						quantity+=100;
 						changeQuantity(100);
-
 					}
 
 				};
+				
 				minus = new SpriteButton(posx+220,posy+48,Game_TextureManager.getInstance().game_shop_minusbtn){
 					@Override
 					protected void onClicked(){
 						if(quantity!=0){
 							quantity-=100;
 							changeQuantity(-100);}
-
 					}
 
 				};
@@ -802,10 +779,7 @@ public class Game_Shop {
 				style = new LabelStyle();
 				style.font = font;
 
-				//end
-
 				quantity =100;
-
 				quantityLabel= new Label(null,style);
 				quantityLabel.setX(posx+ 145);
 				quantityLabel.setY(posy +90);
@@ -823,7 +797,6 @@ public class Game_Shop {
 				}
 				else
 					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.electricPrice);
-
 
 				actors.add(quantityLabel);
 				actors.add(costLabel);
@@ -849,7 +822,6 @@ public class Game_Shop {
 			}
 		}
 
-
 		//Nuclear
 		public static class Game_shop_nuclear {
 			ArrayList<Actor> actors ;
@@ -865,22 +837,22 @@ public class Game_Shop {
 			public Game_shop_nuclear(){
 				this.actors = new ArrayList<Actor>();
 				Sprite nuclearitem = new Sprite(posx,posy,Game_TextureManager.getInstance().game_shop_nuclearitem);
+				
 				add = new SpriteButton(posx+75,posy+42,Game_TextureManager.getInstance().game_shop_addbtn){
 					@Override
 					protected void onClicked(){
 						quantity+=100;
 						changeQuantity(100);
-
 					}
 
 				};
+				
 				minus = new SpriteButton(posx+220,posy+48,Game_TextureManager.getInstance().game_shop_minusbtn){
 					@Override
 					protected void onClicked(){
 						if(quantity!=0){
 							quantity-=100;
 							changeQuantity(-100);}
-
 					}
 
 				};
@@ -917,10 +889,7 @@ public class Game_Shop {
 				style = new LabelStyle();
 				style.font = font;
 
-				//end
-
 				quantity =100;
-
 				quantityLabel= new Label(null,style);
 				quantityLabel.setX(posx+ 145);
 				quantityLabel.setY(posy +90);
@@ -938,7 +907,6 @@ public class Game_Shop {
 				}
 				else
 					costLabel.setText(""+strToInt(quantityLabel.getText())*Shop.nuclearPrice);
-
 
 				actors.add(quantityLabel);
 				actors.add(costLabel);
@@ -958,29 +926,43 @@ public class Game_Shop {
 				Game_Shop.actorManager.nuclearitem.quantityLabel.setText(l);
 			}
 
-
 			public ArrayList<Actor> getActors() {
 				return this.actors;
 			}
 		}
 
-
 		//Train
 		public static class Game_shop_train {
 			ArrayList<Actor> actors ;
-			public static Label quantityLabel;
+			
+			public Label quantityLabel;
 			public Label costLabel;
 			public static Label goldLabel;
 			public int quantity, cost, posx=1100, posy=100;
 			public static LabelStyle style;
-			SpriteButton buyButton;
+			SpriteButton buyButton, minus, add;
 			public Game_shop_train(){
 				this.actors = new ArrayList<Actor>();
 				Sprite trainItem = new Sprite(posx,posy,Game_TextureManager.getInstance().game_shop_trainitem);
-				buyButton = new SpriteButton(posx+75,posy+20,Game_TextureManager.getInstance().game_shop_blankbuybtn);
-				actors.add(trainItem);
-				actors.add(buyButton);
+				//buyButton = new SpriteButton(posx+75,posy+20,Game_TextureManager.getInstance().game_shop_blankbuybtn);
 
+				buyButton = new SpriteButton(posx+75,posy+20,Game_TextureManager.getInstance().game_shop_buybtn){
+					@Override
+					protected void onClicked(){
+						if (Game_Shop.actorManager.buy){
+							int quantity = strToInt(quantityLabel.getText());
+							GameScreen.game.getPlayerTurn().getShop().buyFuel("Nuclear",quantity, false );									
+						}
+						if (Game_Shop.actorManager.sell){						
+							int quantity = strToInt(quantityLabel.getText());
+							GameScreen.game.getPlayerTurn().getShop().sellFuel("Nuclear", quantity, false);
+						}
+						GameScreenUI.refreshResources();
+						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+					}
+
+				};
+				
 				//Stuff for Labels
 				FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 				FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -995,18 +977,31 @@ public class Game_Shop {
 
 				quantity =100;
 
-
-
 				costLabel= new Label(null,style);
 				costLabel.setX(posx+ 100);
 				costLabel.setY(posy +43);
 				costLabel.setColor(0,0,0,1);
 				costLabel.setText("Buy Trains");
-
-				actors.add(costLabel);
-
+				
+				actors.add(buyButton);
+				actors.add(trainItem);
 
 			}
+			
+			public static void changeQuantity(int change){
+				int newQuantity = strToInt(Game_Shop.actorManager.trainitem.quantityLabel.getText());
+				newQuantity+=change;
+				if(Game_Shop.actorManager.sell)
+				{
+					Game_Shop.actorManager.trainitem.costLabel.setText(""+(newQuantity*Shop.trainSellPrice));
+				}
+				else
+				Game_Shop.actorManager.trainitem.costLabel.setText(""+(newQuantity*Shop.trainPrice));
+
+				String l = new Integer(newQuantity).toString();
+				Game_Shop.actorManager.trainitem.quantityLabel.setText(l);
+			}
+			
 			public ArrayList<Actor> getActors() {
 				return this.actors;
 			}
