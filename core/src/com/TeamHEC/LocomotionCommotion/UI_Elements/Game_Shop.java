@@ -60,13 +60,13 @@ public class Game_Shop {
 		public boolean open=false;
 		public boolean start=true;
 
-		public static int  stageStart, stageEnd;
-		public static int  startScreenStageStart, startScreenStageEnd;
+		public static int stageStart, stageEnd;
+		public static int startScreenStageStart, startScreenStageEnd;
 
 		public boolean buy=false;
 		public boolean sell=false;
 
-		public Game_ShopManager(){	}
+		public Game_ShopManager(){}
 
 		public void create(Stage stage){
 
@@ -108,7 +108,6 @@ public class Game_Shop {
 					}
 				}
 			};
-			
 			actors.add(game_shop_backbtn);
 
 			coalitem = new Game_shop_coal();
@@ -118,6 +117,7 @@ public class Game_Shop {
 			carditem = new Game_shop_card();
 			trainitem = new Game_shop_train();
 			startpage = new ShopHomeScreen();
+			
 			//Stuff for Labels for gold
 			FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 			FreeTypeFontParameter parameter = new FreeTypeFontParameter();
@@ -128,7 +128,6 @@ public class Game_Shop {
 			style = new LabelStyle();
 			style.font = font;
 
-			//end
 			goldLabel= new Label(null,style);
 			goldLabel.setX(750);
 			goldLabel.setY(880);
@@ -145,7 +144,6 @@ public class Game_Shop {
 			style = new LabelStyle();
 			style.font = font;
 
-			//end
 			titleLabel= new Label(null,style);
 			titleLabel.setX(380);
 			titleLabel.setY(880);
@@ -202,19 +200,18 @@ public class Game_Shop {
 				stage.addActor(a);
 
 			}
-			
 			stageEnd= stageStart+actors.size+startactors.size-1;
 		}
-		public  int getStageStart(){
+		public int getStageStart(){
 			return stageStart;
 		}
-		public  int getStageEnd(){
+		public int getStageEnd(){
 			return stageEnd;
 		}
 		public int getstartScreenStageStart(){
 			return startScreenStageStart;
 		}
-		public  int getstartScreenStageEnd(){
+		public int getstartScreenStageEnd(){
 			return startScreenStageEnd;
 		}
 		public static void refreshgold(int i){
@@ -222,7 +219,6 @@ public class Game_Shop {
 			Game_Shop.actorManager.goldLabel.setText(g);
 			GameScreenUI.goldQuant.setText(g);
 		}
-
 	}
 
 	public static int strToInt( StringBuilder stringBuilder ){
@@ -251,13 +247,14 @@ public class Game_Shop {
 	//Shop Object Classes
 	//SHOP HOME Screen---------------------------------------------------------------
 	public static class ShopHomeScreen {
-		ArrayList<Actor> actors ;
+		ArrayList<Actor> actors;
 
 		public ShopHomeScreen(){
 			this.actors = new ArrayList<Actor>();
 			Sprite shopscreen = new Sprite(45, 17, Game_TextureManager.getInstance().game_shop_startscreen);
 			this.actors.add(shopscreen);
 			
+			//Also needs rearranging
 			SpriteButton back = new SpriteButton(1350,860, Game_TextureManager.getInstance().game_shop_backbtn){
 				@Override
 				protected void onClicked(){
@@ -267,22 +264,22 @@ public class Game_Shop {
 					{
 						Game_Shop.actorManager.open= true;
 						for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd();i++){
-							if (i > GameScreen.getStage().getActors().size-1){
-
-							}else
+							if (i > GameScreen.getStage().getActors().size-1){}
+							else {
 								GameScreen.getStage().getActors().get(i).setVisible(true);
-
-						}			}
-					else
-					{	Game_Shop.actorManager.open= false;
-					for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd();i++){
-						if (i > GameScreen.getStage().getActors().size-1){
-
-						}else
-							GameScreen.getStage().getActors().get(i).setVisible(false);
-
+							}
+						}			
 					}
-
+					
+					else
+					{	
+						Game_Shop.actorManager.open= false;
+						for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd();i++){
+							if (i > GameScreen.getStage().getActors().size-1){}
+							else {
+								GameScreen.getStage().getActors().get(i).setVisible(false);
+							}
+						}
 					}
 				}
 			};
@@ -347,8 +344,8 @@ public class Game_Shop {
 					}
 				}
 			};
-			
 			this.actors.add(shopsellButton);
+			
 			SpriteButton train = new SpriteButton(1050,350, Game_TextureManager.getInstance().game_shop_starttrain){
 				@Override
 				protected void onClicked(){
@@ -476,15 +473,12 @@ public class Game_Shop {
 				style = new LabelStyle();
 				style.font = font;
 
-				//end			
-
 				quantity =100;
 
 				costLabel= new Label(null,style);
 				costLabel.setX(posx+ 160);
 				costLabel.setY(posy +43);
 				costLabel.setColor(0,0,0,1);
-
 
 				actors.add(costLabel);
 			}
@@ -976,10 +970,11 @@ public class Game_Shop {
 				quantity =100;
 
 				costLabel= new Label(null,style);
-				costLabel.setX(posx+ 100);
+				costLabel.setX(posx +160);
 				costLabel.setY(posy +43);
 				costLabel.setColor(0,0,0,1);
-				costLabel.setText("Buy Trains");
+				
+				actors.add(costLabel);
 			}
 			
 			public ArrayList<Actor> getActors() {

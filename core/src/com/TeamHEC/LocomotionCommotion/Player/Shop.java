@@ -1,8 +1,11 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.Train.*;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 
 /**
@@ -74,13 +77,11 @@ public class Shop {
 		
 	public void sellFuel(String fuelType, int quantity, boolean testCase)
 	{
-		
 		if(fuelType == "Coal" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * coalSellPrice)));
 			customer.addPoints((int)(Math.ceil(quantity * coalSellPrice)));
 		}
-		
 		
 		else if(fuelType == "Oil" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
@@ -88,21 +89,19 @@ public class Shop {
 			customer.addPoints((int)(Math.ceil(quantity * oilSellPrice)));
 		}
 		
-		
 		else if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * electricSellPrice))); //DO NOT REMOVE MATH.CEIL IT ROUNDS WIERDLY
 			customer.addPoints((int)(Math.ceil(quantity * electricSellPrice)));
 		}
 		
-		
 		else if(fuelType == "Nuclear" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * nuclearSellPrice)));
 			customer.addPoints((int)(Math.ceil(quantity * nuclearSellPrice)));
 		}
-		else
-		{
+		
+		else {
 			if(!testCase)
 				WarningMessage.fireWarningWindow("SORRY", "You don't have enough "+fuelType+"!");
 		}
@@ -139,12 +138,50 @@ public class Shop {
 	public void buyTrain()
 	{
 		Train testTrain;
+		Station selectedStation = WorldMap.getInstance().stationsList.get(0);
 		if (customer.getTrains().size() < 5 && customer.getGold() >= 1500)
 		{
-			//Adds a new train to the "customer's" list of trains. Need to consider how to place trains on map. Could be a special card?
+			//Adds a new train to the "customer's" list of trains.Need to consider choosing a city.
+			Game_Shop.actorManager.buy=false;
+			Game_Shop.actorManager.sell=false;
+			if (Game_Shop.actorManager.open== false)
+			{
+				Game_Shop.actorManager.open= true;
+				for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd();i++){
+					if (i > GameScreen.getStage().getActors().size-1){}
+					else {
+						GameScreen.getStage().getActors().get(i).setVisible(true);
+					}
+				}			
+			}
 			
-			testTrain = new ElectricTrain(0, true, new Route(WorldMap.getInstance().stationsList.get(0)), customer);
+			else
+			{	
+				Game_Shop.actorManager.open= false;
+				for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd();i++){
+					if (i > GameScreen.getStage().getActors().size-1){}
+					else {
+						GameScreen.getStage().getActors().get(i).setVisible(false);
+					}
+				}
+			}
+			
+			WarningMessage.fireWarningWindow("NEW TRAIN", "Choose a station (NOT CURRENTLY FUNCTIONAL)");
+			
+			String fuelType = selectedStation.getResourceString();
+			if (fuelType.equals("Coal"))
+				testTrain = new CoalTrain(0, true, new Route(selectedStation), customer);
+			else if (fuelType.equals("Nuclear"))
+				testTrain = new NuclearTrain(0, true, new Route(selectedStation), customer);
+			else if (fuelType.equals("Electric"))
+				testTrain = new ElectricTrain(0, true, new Route(selectedStation), customer);
+			else if (fuelType.equals("Oil"))
+				testTrain = new OilTrain(0, true, new Route(selectedStation), customer);
+			else
+				testTrain = new OilTrain(0, true, new Route(selectedStation), customer);
+			
 			customer.addTrain(testTrain);
+			customer.subGold(1500);
 		}
 	}
 	

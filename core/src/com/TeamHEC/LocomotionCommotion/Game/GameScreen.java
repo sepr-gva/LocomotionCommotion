@@ -72,7 +72,6 @@ public class GameScreen implements Screen {
 		GameScreenUI actorManager = new GameScreenUI();
 		actorManager.create(getStage());
 
-
 		TrainDepotUI trainDepot = new TrainDepotUI();
 		trainDepot.create(getStage());
 
