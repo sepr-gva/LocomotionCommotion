@@ -1,6 +1,8 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
+import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.Train.*;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 
 /**
@@ -133,4 +135,17 @@ public class Shop {
 			}
 		}
 	}
+	
+	public void buyTrain()
+	{
+		Train testTrain;
+		if (customer.getTrains().size() < 5 && customer.getGold() >= 1500)
+		{
+			//Adds a new train to the "customer's" list of trains. Need to consider how to place trains on map. Could be a special card?
+			
+			testTrain = new ElectricTrain(0, true, new Route(WorldMap.getInstance().stationsList.get(0)), customer);
+			customer.addTrain(testTrain);
+		}
+	}
+	
 }

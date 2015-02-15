@@ -169,6 +169,10 @@ public class Player implements RouteListener{
 	{
 		cards.add(card);
 	}
+	
+	public void addTrain(Train train) {
+		trains.add(train);
+	}
 
 	public void discardCard(Card card)
 	{

@@ -28,7 +28,7 @@ import com.badlogic.gdx.utils.Array;
 public class Game_StartingSequence {
 
 	private final static Array<Actor> actors = new Array<Actor>();
-	public static int stagestart ;
+	public static int stagestart;
 	public static int startGameActors;
 	public static Label selectLabel;
 	public static boolean player1 = true, inProgress = true;
@@ -76,9 +76,8 @@ public class Game_StartingSequence {
 		for (Actor a : actors){
 			a.setTouchable(Touchable.enabled);
 			stage.addActor(a);
-			startGameActors ++;
+			startGameActors++;
 		}
-
 	}
 
 	public static void startGame(){

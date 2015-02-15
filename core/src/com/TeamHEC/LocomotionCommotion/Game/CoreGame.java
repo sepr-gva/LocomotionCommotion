@@ -183,7 +183,7 @@ public class CoreGame {
 	 * 
 	 */
 	public HashMap<String, Resource> getBaseResources(Station station) {
-		Gold gold = new Gold(1000);
+		Gold gold = new Gold(100000);
 		Coal coal = new Coal(200);
 		Oil oil = new Oil(200);
 		Electric electric = new Electric(200);
