@@ -21,6 +21,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 /**
  * 
  * @author Robert Precious <rp825@york.ac.uk>
@@ -53,7 +54,7 @@ public class GameScreen implements Screen {
 	 */
 	public static void create(){
 		//Set up stage camera
-		stage = new Stage(); 
+		stage = new Stage(new FitViewport(1680, 1050)); 
 		Camera camera = stage.getCamera();
 		camera.viewportHeight= Gdx.graphics.getHeight();
 		camera.viewportWidth= Gdx.graphics.getWidth();
@@ -122,9 +123,10 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		getStage().getViewport().update(width, height, true);	
-		LocomotionCommotion.screenX = width;
-		LocomotionCommotion.screenY = height;
+		//getStage().getViewport().update(width, height, true);	
+		//LocomotionCommotion.screenX = width;
+		//LocomotionCommotion.screenY = height;
+		stage.getViewport().update(width, height, true);
 	}
 
 	@Override

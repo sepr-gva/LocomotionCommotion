@@ -9,6 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * @author Matthew Taylor <mjkt500@york.ac.uk>
@@ -17,6 +19,7 @@ import com.badlogic.gdx.utils.Array;
 public class Scene implements Screen{
 	
 	public Stage stage;
+	//public Viewport viewport;
 	public static Camera camera;
 	public static int screenX = 1680;
 	public static int screenY = 1050;
@@ -25,10 +28,11 @@ public class Scene implements Screen{
 	
 	public Scene()
 	{
-		stage = new Stage();
+		stage = new Stage(new FitViewport(1680, 1050));
 		camera = stage.getCamera();
 		camera.viewportHeight= screenY;
 		camera.viewportWidth= screenX;
+		//viewport = new ExtendViewport(1680, 1050, camera);
 		camera.update();
        
 		actors = new Array<Actor>();
@@ -95,9 +99,11 @@ public class Scene implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		stage.getViewport().update(width, height, true);	
-		LocomotionCommotion.screenX = width;
-		LocomotionCommotion.screenY = height;
+		//stage.getViewport().update(width, height, true);	
+		//LocomotionCommotion.screenX = width;
+		//LocomotionCommotion.screenY = height;
+		//viewport.update(width, height);
+		stage.getViewport().update(width, height, true);
 	}
 
 	@Override
