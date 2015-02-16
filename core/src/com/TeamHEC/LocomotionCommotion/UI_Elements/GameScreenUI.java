@@ -181,23 +181,30 @@ public class GameScreenUI {
 			@Override
 			protected void onClicked()
 			{	
-				ArrayList<Train> playerTrains = GameScreen.game.getPlayerTurn().getTrains();	
-				for(Train t : playerTrains)
-				{
-					t.moveTrain();
+				//Stops a bought train from being placed (and hence owned) by the other player
+				if (LocomotionCommotion.newTrainPurchased == true){
+					WarningMessage.fireWarningWindow("WARNING", "You have not placed your new train yet!");
 				}
+				
+				else{				
+					ArrayList<Train> playerTrains = GameScreen.game.getPlayerTurn().getTrains();	
+					for(Train t : playerTrains)
+					{
+						t.moveTrain();
+					}
 
-				GameScreen.game.EndTurn();
-				GameScreenUI.refreshResources();
-				Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
-				PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
-				Game_CardHand.actorManager.changePlayer(GameScreen.game.getPlayerTurn());
-				playerScore.setText(GameScreen.game.getPlayer1().getName() + "    " + 
-						GameScreen.game.getPlayer1().getPoints() + "     SCORE     " + 
-						GameScreen.game.getPlayer2().getPoints() + "     " + GameScreen.game.getPlayer2().getName()
-						+ "     " + GameScreen.game.getPlayerTurn().getName() + " it's your turn ");
-				currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
-				GoalMenu.fillGoalScreen();
+					GameScreen.game.EndTurn();
+					GameScreenUI.refreshResources();
+					Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+					PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
+					Game_CardHand.actorManager.changePlayer(GameScreen.game.getPlayerTurn());
+					playerScore.setText(GameScreen.game.getPlayer1().getName() + "    " + 
+							GameScreen.game.getPlayer1().getPoints() + "     SCORE     " + 
+							GameScreen.game.getPlayer2().getPoints() + "     " + GameScreen.game.getPlayer2().getName()
+							+ "     " + GameScreen.game.getPlayerTurn().getName() + " it's your turn ");
+					currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
+					GoalMenu.fillGoalScreen();
+				}
 			}
 		};
 		actors.add(game_menuobject_endturnbutton);
