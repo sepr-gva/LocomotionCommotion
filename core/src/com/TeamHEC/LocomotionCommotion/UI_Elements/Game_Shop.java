@@ -285,7 +285,7 @@ public class Game_Shop {
 			};
 			this.actors.add(back);
 
-			SpriteButton shopbuyButton = new SpriteButton(250,350,Game_TextureManager.getInstance().game_shop_startbuy){
+			SpriteButton shopbuyButton = new SpriteButton(445,350,Game_TextureManager.getInstance().game_shop_startbuy){
 				@Override
 				protected void onClicked(){
 					setToBuy();
@@ -315,7 +315,7 @@ public class Game_Shop {
 			};
 			this.actors.add(shopbuyButton);
 
-			SpriteButton shopsellButton = new SpriteButton(650,350,Game_TextureManager.getInstance().game_shop_startsell){
+			SpriteButton shopsellButton = new SpriteButton(889,350,Game_TextureManager.getInstance().game_shop_startsell){
 				@Override
 				protected void onClicked(){
 					setToSell();
@@ -346,13 +346,13 @@ public class Game_Shop {
 			};
 			this.actors.add(shopsellButton);
 			
-			SpriteButton train = new SpriteButton(1050,350, Game_TextureManager.getInstance().game_shop_starttrain){
+			/*SpriteButton train = new SpriteButton(1050,350, Game_TextureManager.getInstance().game_shop_starttrain){
 				@Override
 				protected void onClicked(){
 				}
 
 			};
-			this.actors.add(train);
+			this.actors.add(train);*/
 		}
 
 		public ArrayList<Actor> getActors() {
