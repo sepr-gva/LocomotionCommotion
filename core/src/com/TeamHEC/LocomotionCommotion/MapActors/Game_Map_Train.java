@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 public class Game_Map_Train extends Actor{
 	
@@ -71,11 +72,20 @@ public class Game_Map_Train extends Actor{
 	{
 		if(clickCount == 0)
 		{	
-			if (Game_Map_Manager.sellTrain){
+			if (Game_Map_Manager.sellTrain && GameScreen.game.getPlayerTurn() == train.getOwner()){
 				train.getOwner().getTrains().remove(train);
 				train.getOwner().addGold(1000);
+				this.setVisible(false);
+				this.setTouchable(Touchable.disabled);
 				System.out.println("Train sold");
 				Game_Map_Manager.sellTrain = false;
+			}
+			else if (Game_Map_Manager.teleportTrain && GameScreen.game.getPlayerTurn() == train.getOwner()){
+				Game_Map_Manager.currentTeleportCard.train = this.train;
+				Game_Map_Manager.teleportTrain = false;
+				Game_Map_Manager.teleportCity = true;
+				WarningMessage.fireWarningWindow("CHOOSE CITY", "Choose the city you wish to teleport this train to.");
+				
 			}
 			else{
 				Game_Map_Manager.trainInfo.showLabel(train);

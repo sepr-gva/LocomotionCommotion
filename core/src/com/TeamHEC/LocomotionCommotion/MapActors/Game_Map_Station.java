@@ -55,6 +55,11 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 	{
 		super.onClicked();
 		Game_Map_StationBtn.selectedStation = this;
+		if (Game_Map_Manager.teleportCity){
+			Game_Map_Manager.currentTeleportCard.station = station;
+			Game_Map_Manager.teleportCity = false;
+			Game_Map_Manager.currentTeleportCard = null;
+		}
 		if(!highlighted)
 		{	
 			highlighted = true;

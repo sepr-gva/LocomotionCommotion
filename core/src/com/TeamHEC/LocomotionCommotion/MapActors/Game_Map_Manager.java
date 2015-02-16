@@ -2,6 +2,8 @@ package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Card.TeleportCard;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.ConnectionSprite;
@@ -44,7 +46,9 @@ public class Game_Map_Manager {
 	public static Sprite stationInfo;
 	public static Game_Map_StationBtn stationSelect;
 	
-	public static boolean sellTrain = false;
+	public static boolean sellTrain = false, teleportTrain = false, teleportCity = false;
+	
+	public static TeleportCard currentTeleportCard = null;
 	
 	public static TrainInfoUI trainInfo;
 
@@ -468,5 +472,9 @@ public class Game_Map_Manager {
 			System.out.println("There is no connection between " + start.getName() + 
 					" and " + end.getName() + ".");
 		}
+	}
+	
+	public static Array<Actor> getActors(){
+		return actors;
 	}
 }

@@ -3,10 +3,13 @@ package com.TeamHEC.LocomotionCommotion.Card;
 import java.util.Random;
 
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
+import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 
 /**
  * 
@@ -15,6 +18,9 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
  */
 
 public class TeleportCard extends Card{
+	
+	public Train train = null;
+	public Station station = null;
 	
 	/**
 	 * Initialises the card
@@ -33,18 +39,24 @@ public class TeleportCard extends Card{
 	public void implementCard()
 	{
 		// Need a way to choose the train:
-		Train train = getOwner().getTrains().get(0);
+		//Train train = getOwner().getTrains().get(0);
+		
+		Game_Map_Manager.currentTeleportCard = this;
+		WarningMessage.fireWarningWindow("CHOOSE TRAIN", "Choose the train you want Teleport.");
+		Game_Map_Manager.teleportTrain = true;
 		
 		//Randomly selects a station from the list of stations
-		Random rnd = new Random();
-		int randomIndex = rnd.nextInt(WorldMap.getInstance().stationsList.size());
+		//Random rnd = new Random();
+		//int randomIndex = rnd.nextInt(WorldMap.getInstance().stationsList.size());
 		
-		MapObj chosenLocation = WorldMap.getInstance().stationsList.get(randomIndex);
+		//MapObj chosenLocation = WorldMap.getInstance().stationsList.get(randomIndex);
+		
+		while (station == null){}
 		
 		train.route.getRoute().clear();
 		train.route.setRouteIndex(0);
 		train.route.setConnectionTravelled(0);
 		
-		train.route.setCurrentMapObj(chosenLocation);
+		train.route.setCurrentMapObj(station);
 	}
 }
