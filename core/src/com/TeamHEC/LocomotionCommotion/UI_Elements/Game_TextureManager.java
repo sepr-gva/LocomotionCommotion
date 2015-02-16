@@ -90,7 +90,6 @@ public class Game_TextureManager {
 	public Texture game_card_fixrailcard = new Texture(Gdx.files.internal("gameScreen/game_cards/FixRail.png"));
 	public Texture game_card_breakrailcard = new Texture(Gdx.files.internal("gameScreen/game_cards/BreakRail.png"));
 	
-		
 	//SHOP
 	public Texture game_shop_startscreen = new Texture(Gdx.files.internal("gameScreen/game_shop/startpage.png"));
 	public Texture game_shop_startbuy = new Texture(Gdx.files.internal("gameScreen/game_shop/startBuy.png"));

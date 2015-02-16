@@ -181,6 +181,9 @@ public class GameScreenUI {
 			@Override
 			protected void onClicked()
 			{	
+				//Stops a bought train from being placed (and hence owned) by the other player
+				LocomotionCommotion.newTrainPurchased = false;
+				
 				ArrayList<Train> playerTrains = GameScreen.game.getPlayerTurn().getTrains();	
 				for(Train t : playerTrains)
 				{
