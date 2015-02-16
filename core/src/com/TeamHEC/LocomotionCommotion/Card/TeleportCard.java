@@ -41,8 +41,8 @@ public class TeleportCard extends Card{
 		// Need a way to choose the train:
 		//Train train = getOwner().getTrains().get(0);
 		
-		Game_Map_Manager.currentTeleportCard = this;
 		WarningMessage.fireWarningWindow("CHOOSE TRAIN", "Choose the train you want Teleport.");
+		Game_Map_Manager.currentTeleportCard = this;
 		Game_Map_Manager.teleportTrain = true;
 		
 		//Randomly selects a station from the list of stations
@@ -51,12 +51,11 @@ public class TeleportCard extends Card{
 		
 		//MapObj chosenLocation = WorldMap.getInstance().stationsList.get(randomIndex);
 		
-		while (station == null){}
 		
-		train.route.getRoute().clear();
-		train.route.setRouteIndex(0);
-		train.route.setConnectionTravelled(0);
+		//train.route.getRoute().clear();
+		//train.route.setRouteIndex(0);
+		//train.route.setConnectionTravelled(0);
 		
-		train.route.setCurrentMapObj(station);
+		//train.route.setCurrentMapObj(station);
 	}
 }

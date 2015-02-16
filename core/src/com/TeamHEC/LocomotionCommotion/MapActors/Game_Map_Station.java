@@ -58,6 +58,13 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 		if (Game_Map_Manager.teleportCity){
 			Game_Map_Manager.currentTeleportCard.station = station;
 			Game_Map_Manager.teleportCity = false;
+			
+			Game_Map_Manager.currentTeleportCard.train.route.getRoute().clear();
+			Game_Map_Manager.currentTeleportCard.train.route.setRouteIndex(0);
+			Game_Map_Manager.currentTeleportCard.train.route.setConnectionTravelled(0);
+			
+			Game_Map_Manager.currentTeleportCard.train.route.setCurrentMapObj(station);
+			
 			Game_Map_Manager.currentTeleportCard = null;
 		}
 		if(!highlighted)
