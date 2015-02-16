@@ -9,7 +9,7 @@ import com.TeamHEC.LocomotionCommotion.Train.*;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 
-/**
+/*
  * 
  * @author Callum Hewitt <ch1194@york.ac.uk>
  * The shop object used by a player to buy and sell fuel and cards.
@@ -138,8 +138,6 @@ public class Shop {
 	
 	public void buyTrain()
 	{
-		Train testTrain;
-		Station selectedStation = WorldMap.getInstance().stationsList.get(0);
 		if (customer.getTrains().size() < 5 && customer.getGold() >= 1500)
 		{
 			//Adds a new train to the "customer's" list of trains.Need to consider choosing a city.
@@ -167,8 +165,8 @@ public class Shop {
 				}
 			}
 			
-			WarningMessage.fireWarningWindow("NEW TRAIN", "Choose a station (NOT CURRENTLY FUNCTIONAL)");
-			LocomotionCommotion.trainPlacement = true;
+			WarningMessage.fireWarningWindow("NEW TRAIN", "Choose a station for your new train.");
+			LocomotionCommotion.newTrainPurchased = true;
 		}
 	}
 	

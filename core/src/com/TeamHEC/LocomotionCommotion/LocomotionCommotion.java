@@ -26,8 +26,7 @@ public class LocomotionCommotion extends Game {
 	public CoreGame newGame;
 	
 	//Test for now
-	public static boolean trainPlacement = false;
-	public static Station globalSelectedStation;
+	public static boolean newTrainPurchased = false;
 
 	public static int screenX = 1680;
 	public static int screenY = 1050;

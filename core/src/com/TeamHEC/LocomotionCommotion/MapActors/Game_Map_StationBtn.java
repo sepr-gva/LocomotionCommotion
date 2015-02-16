@@ -81,7 +81,7 @@ public class Game_Map_StationBtn extends SpriteButton {
 			else
 			{
 				//Placing new train on map
-				if (LocomotionCommotion.trainPlacement == true){
+				if (LocomotionCommotion.newTrainPurchased == true){
 					Train testTrain;
 					
 					String fuelType = selectedStation.getStation().getResourceString();
@@ -98,7 +98,7 @@ public class Game_Map_StationBtn extends SpriteButton {
 					
 					GameScreen.game.getPlayerTurn().addTrain(testTrain);
 					GameScreen.game.getPlayerTurn().subGold(1500);
-					LocomotionCommotion.trainPlacement = false;
+					LocomotionCommotion.newTrainPurchased = false;
 				}
 				//Buy Stations in game
 				GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
