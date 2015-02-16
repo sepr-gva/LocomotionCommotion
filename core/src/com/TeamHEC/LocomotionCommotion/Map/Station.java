@@ -236,7 +236,7 @@ public class Station extends MapObj{
 	}
 	
 	/**
-	 * Removes object implementing StationListener so it no longer recieves updates
+	 * Removes object implementing StationListener so it no longer receives updates
 	 * @param s the object to be removed
 	 */
 	public void unregister(StationListener s)

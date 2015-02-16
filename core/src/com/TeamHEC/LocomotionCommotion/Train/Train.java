@@ -18,7 +18,7 @@ public abstract class Train {
 	private Fuel fuel;
 	public int fuelPerTurn;
 	
-	private int value; // Might need to change after updgrades
+	private int value; // Might need to change after upgrades
 	private boolean inStation;
 	private Player owner;
 	

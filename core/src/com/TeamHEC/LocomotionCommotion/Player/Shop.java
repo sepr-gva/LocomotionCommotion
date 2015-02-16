@@ -1,5 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.Player;
 
+import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
@@ -167,21 +168,7 @@ public class Shop {
 			}
 			
 			WarningMessage.fireWarningWindow("NEW TRAIN", "Choose a station (NOT CURRENTLY FUNCTIONAL)");
-			
-			String fuelType = selectedStation.getResourceString();
-			if (fuelType.equals("Coal"))
-				testTrain = new CoalTrain(0, true, new Route(selectedStation), customer);
-			else if (fuelType.equals("Nuclear"))
-				testTrain = new NuclearTrain(0, true, new Route(selectedStation), customer);
-			else if (fuelType.equals("Electric"))
-				testTrain = new ElectricTrain(0, true, new Route(selectedStation), customer);
-			else if (fuelType.equals("Oil"))
-				testTrain = new OilTrain(0, true, new Route(selectedStation), customer);
-			else
-				testTrain = new OilTrain(0, true, new Route(selectedStation), customer);
-			
-			customer.addTrain(testTrain);
-			customer.subGold(1500);
+			LocomotionCommotion.trainPlacement = true;
 		}
 	}
 	

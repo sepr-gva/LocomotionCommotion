@@ -2,6 +2,8 @@ package com.TeamHEC.LocomotionCommotion;
 
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Station;
 import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -22,6 +24,10 @@ public class LocomotionCommotion extends Game {
 
 	public GameScreen gameScreen;
 	public CoreGame newGame;
+	
+	//Test for now
+	public static boolean trainPlacement = false;
+	public static Station globalSelectedStation;
 
 	public static int screenX = 1680;
 	public static int screenY = 1050;

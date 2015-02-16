@@ -3,6 +3,7 @@ package com.TeamHEC.LocomotionCommotion.MapActors;
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
+import com.TeamHEC.LocomotionCommotion.Train.*;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
@@ -79,6 +80,26 @@ public class Game_Map_StationBtn extends SpriteButton {
 			}
 			else
 			{
+				//Placing new train on map
+				if (LocomotionCommotion.trainPlacement == true){
+					Train testTrain;
+					
+					String fuelType = selectedStation.getStation().getResourceString();
+					if (fuelType.equals("Coal"))
+						testTrain = new CoalTrain(0, true, new Route(selectedStation.getStation()), GameScreen.game.getPlayerTurn());
+					else if (fuelType.equals("Nuclear"))
+						testTrain = new NuclearTrain(0, true, new Route(selectedStation.getStation()), GameScreen.game.getPlayerTurn());
+					else if (fuelType.equals("Electric"))
+						testTrain = new ElectricTrain(0, true, new Route(selectedStation.getStation()), GameScreen.game.getPlayerTurn());
+					else if (fuelType.equals("Oil"))
+						testTrain = new OilTrain(0, true, new Route(selectedStation.getStation()), GameScreen.game.getPlayerTurn());
+					else
+						testTrain = new OilTrain(0, true, new Route(selectedStation.getStation()), GameScreen.game.getPlayerTurn());
+					
+					GameScreen.game.getPlayerTurn().addTrain(testTrain);
+					GameScreen.game.getPlayerTurn().subGold(1500);
+					LocomotionCommotion.trainPlacement = false;
+				}
 				//Buy Stations in game
 				GameScreen.game.getPlayerTurn().purchaseStation(selectedStation.getStation());
 				Game_Map_Manager.hideInfoBox();
