@@ -5,6 +5,7 @@ import com.TeamHEC.LocomotionCommotion.Card.CardFactory;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Train.*;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
@@ -167,6 +168,37 @@ public class Shop {
 			
 			WarningMessage.fireWarningWindow("NEW TRAIN", "Choose a station for your new train.");
 			LocomotionCommotion.newTrainPurchased = true;
+		}
+	}
+	
+	public void sellTrain(){
+		if (customer.getTrains().size() > 1){
+			//Adds a new train to the "customer's" list of trains.Need to consider choosing a city.
+			Game_Shop.actorManager.buy=false;
+			Game_Shop.actorManager.sell=false;
+			if (Game_Shop.actorManager.open== false)
+			{
+				Game_Shop.actorManager.open= true;
+				for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd();i++){
+					if (i > GameScreen.getStage().getActors().size-1){}
+					else {
+						GameScreen.getStage().getActors().get(i).setVisible(true);
+					}
+				}			
+			}
+			
+			else
+			{	
+				Game_Shop.actorManager.open= false;
+				for(int i=Game_Shop.actorManager.getStageStart(); i<=Game_Shop.actorManager.getStageEnd();i++){
+					if (i > GameScreen.getStage().getActors().size-1){}
+					else {
+						GameScreen.getStage().getActors().get(i).setVisible(false);
+					}
+				}
+			}
+			WarningMessage.fireWarningWindow("SELL TRAIN", "Choose a train to sell.");
+			Game_Map_Manager.sellTrain = true;
 		}
 	}
 	

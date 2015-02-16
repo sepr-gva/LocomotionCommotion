@@ -70,13 +70,20 @@ public class Game_Map_Train extends Actor{
 	public void clickedTrain()
 	{
 		if(clickCount == 0)
-		{
-			Game_Map_Manager.trainInfo.showLabel(train);
-			
-			if(Game_Map_Manager.trainInfo.train.route.inStation())
-				clickCount = 2;
-			else
-				clickCount = 1;
+		{	
+			if (Game_Map_Manager.sellTrain){
+				train.getOwner().getTrains().remove(train);
+				train.getOwner().addGold(1000);
+				System.out.println("Train sold");
+				Game_Map_Manager.sellTrain = false;
+			}
+			else{
+				Game_Map_Manager.trainInfo.showLabel(train);
+				if(Game_Map_Manager.trainInfo.train.route.inStation())
+					clickCount = 2;
+				else
+					clickCount = 1;
+			}
 		}
 		else if(clickCount == 1)
 		{

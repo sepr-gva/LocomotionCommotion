@@ -44,6 +44,8 @@ public class Game_Map_Manager {
 	public static Sprite stationInfo;
 	public static Game_Map_StationBtn stationSelect;
 	
+	public static boolean sellTrain = false;
+	
 	public static TrainInfoUI trainInfo;
 
 	public static boolean infoVisible= false;

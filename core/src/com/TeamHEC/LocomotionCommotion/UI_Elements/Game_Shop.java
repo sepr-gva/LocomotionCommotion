@@ -947,6 +947,10 @@ public class Game_Shop {
 						if (Game_Shop.actorManager.buy){
 							GameScreen.game.getPlayerTurn().getShop().buyTrain();
 						}
+						
+						else if (Game_Shop.actorManager.sell){
+							GameScreen.game.getPlayerTurn().getShop().sellTrain();;
+						}
 
 						GameScreenUI.refreshResources();
 						Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());

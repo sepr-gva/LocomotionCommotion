@@ -315,14 +315,16 @@ public class Route{
 	 */
 	public void abortRoute()
 	{	
-		currentMapObj = path.get(routeIndex).getStartMapObj();
-		hideRouteBlips();
-		updateRouteText();
-		
-		while(removeConnection()){}
-		
-		routeIndex = 0;
-		connectionTravelled = 0;
+		if (path.size() > 0){
+			currentMapObj = path.get(routeIndex).getStartMapObj();
+			hideRouteBlips();
+			updateRouteText();
+			
+			while(removeConnection()){}
+			
+			routeIndex = 0;
+			connectionTravelled = 0;
+		}
 	}
 	
 	/**
