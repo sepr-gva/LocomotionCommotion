@@ -51,7 +51,7 @@ public class Game_Map_Manager {
 	
 	public static boolean sellTrain = false, teleportTrain = false, 
 			teleportCity = false, firstBreakCity = false, secondBreakCity = false,
-			firstFixCity = false, secondFixCity = false;
+			firstFixCity = false, secondFixCity = false, goFaster = false;
 	
 	public static int brokenOffset = 0;
 	

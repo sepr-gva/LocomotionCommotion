@@ -2,6 +2,7 @@ package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
+import com.TeamHEC.LocomotionCommotion.Train.SpeedUpgrade;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.graphics.Texture;
@@ -97,6 +98,13 @@ public class Game_Map_Train extends Actor{
 				 * Move to the Game_Map_Station.onClicked() method to follow implementation
 				 */
 				
+			}
+			else if (Game_Map_Manager.goFaster && GameScreen.game.getPlayerTurn() == train.getOwner()){
+				Game_Map_Manager.goFaster = false;
+				SpeedUpgrade speedUpgrade = new SpeedUpgrade(train);
+				train.addUpgrade(speedUpgrade);
+				WarningMessage.fireWarningWindow("UPGRADE COMPLETE", "You have added go faster stripes to " +
+				train.getName());
 			}
 			else{
 				Game_Map_Manager.trainInfo.showLabel(train);
