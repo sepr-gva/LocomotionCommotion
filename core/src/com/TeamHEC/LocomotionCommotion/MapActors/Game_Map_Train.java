@@ -7,6 +7,7 @@ import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -186,6 +187,11 @@ public class Game_Map_Train extends Actor{
 	public void draw(Batch batch, float alpha){
 		setBounds(train.route.getTrainPos().x + offset, train.route.getTrainPos().y + offset, texture.getWidth(),texture.getHeight());
 		batch.draw(texture, train.route.getTrainPos().x + offset, train.route.getTrainPos().y + offset);
+	}
+	
+	public Rectangle getBounds(){
+		Rectangle bounds = new Rectangle((this.getX()), (this.getY()), (this.getWidth()), (this.getHeight()));
+		return bounds;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.Game;
 
+import java.util.ArrayList;
+
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
@@ -7,6 +9,7 @@ import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
@@ -21,6 +24,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.utils.Array;
 /**
  * 
  * @author Robert Precious <rp825@york.ac.uk>
@@ -48,6 +53,7 @@ public class GameScreen implements Screen {
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
 	public static Game_Map_Manager mapManager;
+	static boolean started = false;
 	/**
 	 * 
 	 */
@@ -98,6 +104,7 @@ public class GameScreen implements Screen {
 	{
 		game = new CoreGame(LocomotionCommotion.player1name, LocomotionCommotion.player2name, p1Station, p2Station, LocomotionCommotion.timeChoice);
 		GameScreenUI.refreshResources();
+		started = true;
 	}
 	
 	@Override
@@ -109,6 +116,50 @@ public class GameScreen implements Screen {
 
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
+		
+		
+		if (started){
+			if (game.getPlayerTurn().getTrains().size() > 0){
+				ArrayList<Train> trains = new ArrayList<Train>(game.getPlayer2().getTrains());
+				trains.addAll(game.getPlayer1().getTrains());
+				
+				for (Train train1 : trains){
+					for (Train train2 : trains){
+						if (train1 != train2){
+							if (train1.getActor().getBounds().overlaps(train2.getActor().getBounds())){
+								if (train1.route.getRoute().size() > 0 && train2.route.getRoute().size() > 0){
+									if (train1.route.getRoute().get(train1.route.getRouteIndex()) == 
+											train2.route.getRoute().get(train2.route.getRouteIndex()) ||
+											train1.route.getRoute().get(train1.route.getRouteIndex()).getDestination() == 
+											train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj()){
+										WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
+												"\n they have been destroyed.");
+										Game_Map_Manager.breakConnection(train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj(), 
+												train2.route.getRoute().get(train2.route.getRouteIndex()).getDestination());
+										train1.getOwner().getTrains().remove(train1);
+										train1.getActor().setVisible(false);
+										train2.getActor().setTouchable(Touchable.disabled);
+										train2.getOwner().getTrains().remove(train2);
+										train2.getActor().setVisible(false);
+										train2.getActor().setTouchable(Touchable.disabled);
+									}
+								}
+								else if (train1.isInStation() || train2.isInStation()){
+									train1.getOwner().getTrains().remove(train1);
+									train1.getActor().setVisible(false);
+									train2.getActor().setTouchable(Touchable.disabled);
+									train2.getOwner().getTrains().remove(train2);
+									train2.getActor().setVisible(false);
+									train2.getActor().setTouchable(Touchable.disabled);
+									WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
+											"\n they have been destroyed.");
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 		
 		if (Gdx.input.isKeyJustPressed(Keys.B)){
 			mapManager.breakConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
