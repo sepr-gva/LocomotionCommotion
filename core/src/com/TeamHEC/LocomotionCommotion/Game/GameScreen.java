@@ -22,10 +22,16 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 /**
  * 
  * @author Robert Precious <rp825@york.ac.uk>
@@ -54,20 +60,52 @@ public class GameScreen implements Screen {
 	public OrthographicCamera camera;
 	public static Game_Map_Manager mapManager;
 	static boolean started = false;
+	public static long gameStartTime, gameDuration;
+	public long gameTimeLeft;
+	public int gameSecondsLeft;
+	
+	//Attributes for rendering timer
+	private static FreeTypeFontGenerator generator;
+	private static FreeTypeFontParameter parameter;
+	private static BitmapFont timerFont;
+	private static LabelStyle timerStyle;
+	private static Label timerLabel;
+	
 	/**
-	 * 
+	 * 	
 	 */
 	public static void create(){
 		//Set up stage camera
 		stage = new Stage(); 
 		Camera camera = stage.getCamera();
-		camera.viewportHeight= Gdx.graphics.getHeight();
-		camera.viewportWidth= Gdx.graphics.getWidth();
+		camera.viewportHeight = Gdx.graphics.getHeight();
+		camera.viewportWidth = Gdx.graphics.getWidth();
 		camera.update();
-
+		
+		gameStartTime = 0;
+		gameDuration = LocomotionCommotion.timeChoice*60000;
+		
+		//Font for timer label
+		generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
+		parameter = new FreeTypeFontParameter();
+		parameter.size = 40;
+		timerFont = generator.generateFont(parameter);
+		generator.dispose();
+		
+		//Setting up timer label
+		timerStyle = new LabelStyle();
+		timerStyle.font = timerFont;
+		timerLabel = new Label(null, timerStyle);
+		timerLabel.setColor(0, 0, 0, 1);
+		timerLabel.setAlignment(Align.center);
+		timerLabel.setX(350);
+		timerLabel.setY(500);
+		timerLabel.setText("");
+		
 		//Instantiate the Managers
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
+		stage.addActor(timerLabel);
 		
 		mapManager = new Game_Map_Manager();
 		mapManager.create(getStage());
@@ -103,6 +141,7 @@ public class GameScreen implements Screen {
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
 		game = new CoreGame(LocomotionCommotion.player1name, LocomotionCommotion.player2name, p1Station, p2Station, LocomotionCommotion.timeChoice);
+		gameStartTime = System.currentTimeMillis();
 		GameScreenUI.refreshResources();
 		started = true;
 	}
@@ -116,7 +155,6 @@ public class GameScreen implements Screen {
 
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
-		
 		
 		if (started){
 			if (game.getPlayerTurn().getTrains().size() > 0){
@@ -161,13 +199,16 @@ public class GameScreen implements Screen {
 			}
 		}
 		
-		if (Gdx.input.isKeyJustPressed(Keys.B)){
-			mapManager.breakConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
+		if (gameStartTime != 0){
+			gameTimeLeft = gameDuration - (System.currentTimeMillis() - gameStartTime);
+			gameSecondsLeft = (int)(gameTimeLeft/1000);
+			timerLabel.setText(Integer.toString(gameSecondsLeft));
+			//System.out.println(LocomotionCommotion.gameFinished + ": " + gameSecondsLeft);
+			
+			if (gameSecondsLeft == 0){
+				LocomotionCommotion.gameFinished = true;
+			}
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.F)){
-			mapManager.repairConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
-		}
-
 	}
 
 	@Override

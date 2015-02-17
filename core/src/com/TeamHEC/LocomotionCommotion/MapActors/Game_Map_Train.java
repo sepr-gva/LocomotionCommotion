@@ -109,10 +109,12 @@ public class Game_Map_Train extends Actor{
 			}
 			else{
 				Game_Map_Manager.trainInfo.showLabel(train);
-				if(Game_Map_Manager.trainInfo.train.route.inStation())
+				if(Game_Map_Manager.trainInfo.train.route.inStation()){
 					clickCount = 2;
+				}
 				else
 					clickCount = 1;
+					
 			}
 		}
 		else if(clickCount == 1)

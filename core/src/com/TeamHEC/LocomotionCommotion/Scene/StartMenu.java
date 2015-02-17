@@ -37,7 +37,7 @@ public class StartMenu extends Scene{
 
 	public static String player1name, player2name;
 	//public static String gameMode;
-	public static int timeChoice;
+	public static int timeChoice = 5;
 	public static TextField textbox1, textbox2;
 
 	public StartMenu()
@@ -323,12 +323,12 @@ public class StartMenu extends Scene{
 		actors.add(stationDomButton);
 		*/
 
-		time5Button = new SpriteButton(490, 1497, SM_TextureManager.getInstance().sm_newgame_Time5_unselected_Btn){
+		time5Button = new SpriteButton(515, 1497, SM_TextureManager.getInstance().sm_newgame_Time5Btn){
 
 			@Override
 			public void onClicked()
 			{
-				StartMenu.timeChoice = 5;
+				timeChoice = 5;
 				setTexture(SM_TextureManager.getInstance().sm_newgame_Time5Btn);
 				time10Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn);
 				time15Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn);
@@ -337,12 +337,12 @@ public class StartMenu extends Scene{
 		};
 		actors.add(time5Button);
 
-		time10Button = new SpriteButton(590, 1497, SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn){
+		time10Button = new SpriteButton(615, 1497, SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn){
 
 			@Override
 			public void onClicked()
 			{
-				StartMenu.timeChoice = 10;
+				timeChoice = 10;
 				time5Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time5_unselected_Btn);
 				setTexture(SM_TextureManager.getInstance().sm_newgame_Time10Btn);
 				time15Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn);
@@ -351,7 +351,7 @@ public class StartMenu extends Scene{
 		};
 		actors.add(time10Button);
 
-		time15Button = new SpriteButton(690, 1497, SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn){
+		time15Button = new SpriteButton(715, 1497, SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn){
 
 			@Override
 			public void onClicked()
@@ -578,8 +578,8 @@ public class StartMenu extends Scene{
 		//Text boxes for Player 1 and 2 names
 		Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
 
-		textbox1 = new TextField("", skin);
 		skin.getFont("default-font").setScale(1.5f, 1.5f);
+		textbox1 = new TextField("", skin);
 		textbox1.setX(480);
 		textbox1.setY(1150+532);
 		textbox1.setSize(430, 60);

@@ -47,6 +47,10 @@ public class GameScreenUI {
 	public static Sprite game_menuobject_resourcesbar;
 	public static SpriteButton game_card_togglebtn, game_resources_togglebtn;
 
+	//Attributes to be taken by game victor
+	public static String victorName;
+	public static int victorScore;
+	
 	//Resource Actors start index and end index - used to toggle expanded resources menu
 	public static int  resourcesStageStart, resourcesStageEnd;
 	//Height value for expanded height
@@ -181,29 +185,56 @@ public class GameScreenUI {
 			@Override
 			protected void onClicked()
 			{	
-				//Stops a bought train from being placed (and hence owned) by the other player
-				if (LocomotionCommotion.newTrainPurchased == true){
-					WarningMessage.fireWarningWindow("WARNING", "You have not placed your new train yet!");
+				if (LocomotionCommotion.gameFinished == false){
+					
+					//Stops a bought train from being placed (and hence owned) by the other player
+					if (LocomotionCommotion.newTrainPurchased == true){
+						WarningMessage.fireWarningWindow("WARNING", "You have not placed your new train yet!");
+					}
+					
+					else{				
+						ArrayList<Train> playerTrains = GameScreen.game.getPlayerTurn().getTrains();	
+						for(Train t : playerTrains)
+						{
+							t.moveTrain();
+						}
+
+						GameScreen.game.EndTurn();
+						GameScreenUI.refreshResources();
+						Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+						PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
+						Game_CardHand.actorManager.changePlayer(GameScreen.game.getPlayerTurn());
+						playerScore.setText(GameScreen.game.getPlayer1().getName() + "    " + 
+								GameScreen.game.getPlayer1().getPoints() + "     SCORE     " + 
+								GameScreen.game.getPlayer2().getPoints() + "     " + GameScreen.game.getPlayer2().getName()
+								+ "     " + GameScreen.game.getPlayerTurn().getName() + " it's your turn ");
+						currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
+						GoalMenu.fillGoalScreen();
+					}
 				}
 				
-				else{				
-					ArrayList<Train> playerTrains = GameScreen.game.getPlayerTurn().getTrains();	
-					for(Train t : playerTrains)
-					{
-						t.moveTrain();
+				else{
+					if (GameScreen.game.getPlayer1().getPoints() == GameScreen.game.getPlayer2().getPoints()){
+						//Tie
+						victorScore = GameScreen.game.getPlayer1().getPoints();
+						WarningMessage.fireWarningWindow("GAME OVER", "It's a tie! Both players got " + victorScore + " points.");
 					}
-
-					GameScreen.game.EndTurn();
-					GameScreenUI.refreshResources();
-					Game_Shop.actorManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
-					PlayerGoals.changePlayer(GameScreen.game.getPlayerTurn());
-					Game_CardHand.actorManager.changePlayer(GameScreen.game.getPlayerTurn());
-					playerScore.setText(GameScreen.game.getPlayer1().getName() + "    " + 
-							GameScreen.game.getPlayer1().getPoints() + "     SCORE     " + 
-							GameScreen.game.getPlayer2().getPoints() + "     " + GameScreen.game.getPlayer2().getName()
-							+ "     " + GameScreen.game.getPlayerTurn().getName() + " it's your turn ");
-					currentPlayerName.setText(GameScreen.game.getPlayerTurn().getName()+"'s TURN");
-					GoalMenu.fillGoalScreen();
+					
+					else {
+						if (GameScreen.game.getPlayer1().getPoints() > GameScreen.game.getPlayer2().getPoints()){
+							//Player 1 victory
+							victorName = GameScreen.game.getPlayer1().getName();
+							victorScore = GameScreen.game.getPlayer1().getPoints();
+						}
+						
+						else {
+							//Player 2 victory
+							victorName = GameScreen.game.getPlayer2().getName();
+							victorScore = GameScreen.game.getPlayer2().getPoints();
+						}
+						
+						WarningMessage.fireWarningWindow("GAME OVER", victorName + " wins with " + victorScore + " points!");
+					}
 				}
 			}
 		};

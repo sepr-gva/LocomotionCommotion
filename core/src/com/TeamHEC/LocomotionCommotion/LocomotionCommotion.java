@@ -36,6 +36,7 @@ public class LocomotionCommotion extends Game {
 	public static int timeChoice;
 
 	private static LocomotionCommotion INSTANCE = new LocomotionCommotion();
+	public static boolean gameFinished = false;
 
 	public static LocomotionCommotion getInstance()
 	{
@@ -56,7 +57,7 @@ public class LocomotionCommotion extends Game {
 
 	/**
 	 * This Method sets the screen to the gameScreen, We dispose the startScene, create a new gameScreen reset the screen which resets the booleans to the start 
-	 * setting for all the relevant gamescreen objects.
+	 * setting for all the relevant gameScreen objects.
 	 * Finally we set the screen to gameScreen.
 	 */
 	public void setGameScreen()
