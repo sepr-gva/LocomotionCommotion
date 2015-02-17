@@ -55,6 +55,7 @@ public class Game_Map_Junction extends Game_Map_MapObj{
 					WarningMessage.fireWarningWindow("CONNECTION BROKEN", "Connection between " + 
 							Game_Map_Manager.currentBreakCard.firstObj.getName() + " and " + this.junction.getName() + 
 							"\nhas been broken.");
+					Game_Map_Manager.trainsTouchable();
 				}
 				else{
 					WarningMessage.fireWarningWindow("ALREADY BROKEN", "The connection you want to break is already broken, \nchoose a new starting city.");
@@ -64,6 +65,53 @@ public class Game_Map_Junction extends Game_Map_MapObj{
 			else{
 				WarningMessage.fireWarningWindow("NOT VALID CONNECTION", "That is not a valid connection, choose a new starting city.");
 				Game_Map_Manager.firstBreakCity = true;
+			}
+		}
+		//Boolean that says that a fix rail card is being implemented, and the first city is
+		//being chosen and so when a city is clicked it becomes the first city in the fix
+		else if (Game_Map_Manager.firstFixCity){
+			//First city chosen
+			Game_Map_Manager.firstFixCity = false;
+			//Cards first city is this city
+			Game_Map_Manager.currentFixCard.firstObj = this.junction;
+			//Second city is now being chosen, so when a city is clicked it becomes the second city
+			WarningMessage.fireWarningWindow("CHOOSE SECOND STATION", "Choose an ajoining station, inbetween which \nthe connection will be fixed.");
+			Game_Map_Manager.secondFixCity = true;
+		}
+		//Checking for if the second city is being chosen
+		else if (Game_Map_Manager.secondFixCity){
+			//Second city has been chosen, go back to normal city interaction
+			Game_Map_Manager.secondFixCity = false;
+			//The actual connection and whether it has been found (if it is valid or not)
+			Connection con = null;
+			boolean found = false;
+			//Checking whether a connection between the two chosen cities exists
+			for (Connection connection : Game_Map_Manager.currentFixCard.firstObj.connections){
+				if (connection.getDestination() == this.junction){
+					found = true;
+					con = connection;
+				}
+			}
+				
+			//If a connection is found, go on to check if it is already broken or not,
+			//If it is, start the implementation of the card over again
+			if (found){
+				//If the connection is not broken, break it and give a message to say what
+				//has happened
+				if (!con.getTraversable()){
+					Game_Map_Manager.repairConnection(Game_Map_Manager.currentBreakCard.firstObj, this.junction);
+					WarningMessage.fireWarningWindow("CONNECTION FIXED", "Connection between " + 
+							Game_Map_Manager.currentBreakCard.firstObj.getName() + " and " + this.junction.getName() + 
+							"\nhas been fixed.");
+					Game_Map_Manager.trainsTouchable();
+				}
+				else{
+					WarningMessage.fireWarningWindow("NOT BROKEN", "The connection you want to fix is not broken, \nchoose a new starting city.");
+					Game_Map_Manager.firstFixCity = true;						}
+			}
+			else{
+				WarningMessage.fireWarningWindow("NOT VALID CONNECTION", "That is not a valid connection, choose a new starting city.");
+				Game_Map_Manager.firstFixCity = true;
 			}
 		}
 	}

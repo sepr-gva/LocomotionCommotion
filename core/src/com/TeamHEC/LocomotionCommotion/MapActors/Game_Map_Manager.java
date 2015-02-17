@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.TeamHEC.LocomotionCommotion.Card.BreakRailCard;
 import com.TeamHEC.LocomotionCommotion.Card.Card;
+import com.TeamHEC.LocomotionCommotion.Card.FixRailCard;
 import com.TeamHEC.LocomotionCommotion.Card.TeleportCard;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
@@ -49,10 +50,14 @@ public class Game_Map_Manager {
 	public static Game_Map_StationBtn stationSelect;
 	
 	public static boolean sellTrain = false, teleportTrain = false, 
-			teleportCity = false, firstBreakCity = false,secondBreakCity = false;
+			teleportCity = false, firstBreakCity = false, secondBreakCity = false,
+			firstFixCity = false, secondFixCity = false;
+	
+	public static int brokenOffset = 0;
 	
 	public static TeleportCard currentTeleportCard = null;
 	public static BreakRailCard currentBreakCard = null;
+	public static FixRailCard currentFixCard = null;
 	
 	public static TrainInfoUI trainInfo;
 
@@ -299,15 +304,7 @@ public class Game_Map_Manager {
 	{		
 		trainInfo.train.getRoute().showRouteBlips();
 				
-		// Allows you to click on stations that are covered by trains:
-		for(Train t : GameScreen.game.getPlayer1().getTrains())
-		{
-			t.getActor().setTouchable(Touchable.disabled);
-		}
-		for(Train t : GameScreen.game.getPlayer2().getTrains())
-		{
-			t.getActor().setTouchable(Touchable.disabled);
-		}
+		trainsUntouchable();
 		
 		GameScreenUI.game_menuobject_endturnbutton.setVisible(false);
 		
@@ -329,15 +326,7 @@ public class Game_Map_Manager {
 		trainInfo.unhighlightAdjacent();
 		trainInfo.train.getRoute().hideRouteBlips();
 		
-		//Makes trains clickable again
-		for(Train t : GameScreen.game.getPlayer1().getTrains())
-		{
-			t.getActor().setTouchable(Touchable.enabled);
-		}
-		for(Train t : GameScreen.game.getPlayer2().getTrains())
-		{
-			t.getActor().setTouchable(Touchable.enabled);
-		}
+		trainsTouchable();
 		
 		GameScreenUI.game_menuobject_endturnbutton.setVisible(true);
 		
@@ -424,6 +413,7 @@ public class Game_Map_Manager {
 									connection.getDestination() == sprite.getCity1() &&
 									connection.getStartMapObj() == sprite.getCity2()){
 								sprite.setVisible(true);
+								brokenOffset += 1;
 							}
 						}
 					}
@@ -453,6 +443,7 @@ public class Game_Map_Manager {
 									connection.getDestination() == sprite.getCity1() &&
 									connection.getStartMapObj() == sprite.getCity2()){
 								sprite.setVisible(true);
+								brokenOffset -= 1;
 							}
 						}
 					}
@@ -537,6 +528,30 @@ public class Game_Map_Manager {
 			System.out.println("There is no connection between " + start.getName() + 
 					" and " + end.getName() + ".");
 		}
+	}
+	
+	public static void trainsUntouchable(){
+		// Allows you to click on stations that are covered by trains:
+				for(Train t : GameScreen.game.getPlayer1().getTrains())
+				{
+					t.getActor().setTouchable(Touchable.disabled);
+				}
+				for(Train t : GameScreen.game.getPlayer2().getTrains())
+				{
+					t.getActor().setTouchable(Touchable.disabled);
+				}
+	}
+	
+	public static void trainsTouchable(){
+		//Makes trains clickable again
+				for(Train t : GameScreen.game.getPlayer1().getTrains())
+				{
+					t.getActor().setTouchable(Touchable.enabled);
+				}
+				for(Train t : GameScreen.game.getPlayer2().getTrains())
+				{
+					t.getActor().setTouchable(Touchable.enabled);
+				}
 	}
 	
 	public static Array<Actor> getActors(){

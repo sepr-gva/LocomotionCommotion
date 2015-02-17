@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -135,27 +137,34 @@ public class Game_CardHand {
 		 * @param cardNum
 		 */
 		public void useCard(int cardNum){						//Method useCard lets the player use their card.
-			if (cardNum !=0){												//if the the number of card is not 0
-				cardactors.get(cardNum-1).getCard().implementCard();				//Implement the card object
-				GameScreenUI.refreshResources();					//refresh the labels showing the resources
-				if (cardNum<Game_CardHand.actorManager.numberofcards){									//Shuffle the cards up
-					for(int i=cardNum-1;i<Game_CardHand.actorManager.numberofcards-1;i++){
-						cardactors.get(i).setTexture(cardactors.get(i+1).getTexture());
-						cardactors.get(i).setSlot(i+1);
-						cardactors.get(i).setCard(cardactors.get(i+1).getCard());
-
+			if (cardNum !=0){									//if the the number of card is not 0
+				if (cardactors.get(cardNum-1).getCard() instanceof FixRailCard){
+					if (Game_Map_Manager.brokenOffset == 0){
+						WarningMessage.fireWarningWindow("NO BROKEN RAILS", "There are currently no broken rails to be fixed");
 					}
 				}
-
-				GameScreen.game.getPlayerTurn().getCards().remove(selectedCard-1)	;
-				System.out.println(GameScreen.game.getPlayerTurn().getCards());
-				Game_CardHand.actorManager.selectedCard = 0;											//No card is selected
-				cardactors.get(Game_CardHand.actorManager.numberofcards-1).setEmpty(true);					//Set the end slot as empty and hidden
-				cardactors.get(Game_CardHand.actorManager.numberofcards-1).setVisible(false);
-				Game_CardHand.actorManager.numberofcards-=1;											//decrement card number
-				GameScreenUI.refreshResources();
-				Game_CardHand.actorManager.organiseHand();
-				Game_CardHand.actorManager.usecardbtn.setVisible(false);			//hide the use card button
+				else{
+					cardactors.get(cardNum-1).getCard().implementCard();				//Implement the card object
+					GameScreenUI.refreshResources();					//refresh the labels showing the resources
+					if (cardNum<Game_CardHand.actorManager.numberofcards){									//Shuffle the cards up
+						for(int i=cardNum-1;i<Game_CardHand.actorManager.numberofcards-1;i++){
+							cardactors.get(i).setTexture(cardactors.get(i+1).getTexture());
+							cardactors.get(i).setSlot(i+1);
+							cardactors.get(i).setCard(cardactors.get(i+1).getCard());
+	
+						}
+					}
+	
+					GameScreen.game.getPlayerTurn().getCards().remove(selectedCard-1)	;
+					System.out.println(GameScreen.game.getPlayerTurn().getCards());
+					Game_CardHand.actorManager.selectedCard = 0;											//No card is selected
+					cardactors.get(Game_CardHand.actorManager.numberofcards-1).setEmpty(true);					//Set the end slot as empty and hidden
+					cardactors.get(Game_CardHand.actorManager.numberofcards-1).setVisible(false);
+					Game_CardHand.actorManager.numberofcards-=1;											//decrement card number
+					GameScreenUI.refreshResources();
+					Game_CardHand.actorManager.organiseHand();
+					Game_CardHand.actorManager.usecardbtn.setVisible(false);			//hide the use card button
+				}
 			}
 
 

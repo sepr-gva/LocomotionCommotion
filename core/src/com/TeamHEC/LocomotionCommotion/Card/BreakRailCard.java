@@ -1,13 +1,17 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
+import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
+import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Train;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
+import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 public class BreakRailCard extends Card {
 
@@ -25,6 +29,8 @@ public class BreakRailCard extends Card {
 		Game_Map_Manager.currentBreakCard = this;
 		
 		Game_Map_Manager.firstBreakCity = true;
+	
+		Game_Map_Manager.trainsUntouchable();
 	}
 
 }
