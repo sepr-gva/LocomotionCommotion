@@ -72,8 +72,8 @@ public class Game_Map_TextureManager{
 	public Texture obsOsloReykjavic = new Texture(Gdx.files.internal("gameScreen/game_map/obstOsloReykjavic.png"));
 	public Texture obsOsloStockholm = new Texture(Gdx.files.internal("gameScreen/game_map/obstOsloStockholm.png"));
 	public Texture obsParisJunct = new Texture(Gdx.files.internal("gameScreen/game_map/obstParisJunct.png"));
-	public Texture obsPragueRjunct = new Texture(Gdx.files.internal("gameScreen/game_map/obstPragueRjunct.png"));
-	public Texture obsPragueLjunct = new Texture(Gdx.files.internal("gameScreen/game_map/obstPragueLjunct.png"));
+	public Texture obsPragueRjunct = new Texture(Gdx.files.internal("gameScreen/game_map/obstPragueRJunct.png"));
+	public Texture obsPragueLjunct = new Texture(Gdx.files.internal("gameScreen/game_map/obstPragueLJunct.png"));
 	public Texture obsPragueVienna = new Texture(Gdx.files.internal("gameScreen/game_map/obstPragueVienna.png"));
 	public Texture obsPragueWarsaw = new Texture(Gdx.files.internal("gameScreen/game_map/obstPragueWarsaw.png"));
 	public Texture obsStockholmWarsaw = new Texture(Gdx.files.internal("gameScreen/game_map/obstStockholmWarsaw.png"));
