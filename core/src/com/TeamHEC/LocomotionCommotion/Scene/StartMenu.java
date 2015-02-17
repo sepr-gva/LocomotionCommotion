@@ -37,7 +37,7 @@ public class StartMenu extends Scene{
 
 	public static String player1name, player2name;
 	//public static String gameMode;
-	public static int timeChoice;
+	public static int timeChoice = 5;
 	public static TextField textbox1, textbox2;
 
 	public StartMenu()
@@ -323,12 +323,12 @@ public class StartMenu extends Scene{
 		actors.add(stationDomButton);
 		*/
 
-		time5Button = new SpriteButton(515, 1497, SM_TextureManager.getInstance().sm_newgame_Time5_unselected_Btn){
+		time5Button = new SpriteButton(515, 1497, SM_TextureManager.getInstance().sm_newgame_Time5Btn){
 
 			@Override
 			public void onClicked()
 			{
-				StartMenu.timeChoice = 5;
+				timeChoice = 5;
 				setTexture(SM_TextureManager.getInstance().sm_newgame_Time5Btn);
 				time10Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn);
 				time15Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn);

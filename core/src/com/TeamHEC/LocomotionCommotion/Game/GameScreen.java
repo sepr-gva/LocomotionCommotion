@@ -19,8 +19,14 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 /**
  * 
  * @author Robert Precious <rp825@york.ac.uk>
@@ -51,8 +57,16 @@ public class GameScreen implements Screen {
 	public static long gameStartTime, gameDuration;
 	public long gameTimeLeft;
 	public int gameSecondsLeft;
+	
+	//Attributes for rendering timer
+	private static FreeTypeFontGenerator generator;
+	private static FreeTypeFontParameter parameter;
+	private static BitmapFont timerFont;
+	private static LabelStyle timerStyle;
+	private static Label timerLabel;
+	
 	/**
-	 * 
+	 * 	
 	 */
 	public static void create(){
 		//Set up stage camera
@@ -64,10 +78,28 @@ public class GameScreen implements Screen {
 		
 		gameStartTime = 0;
 		gameDuration = LocomotionCommotion.timeChoice*60000;
-
+		
+		//Font for timer label
+		generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
+		parameter = new FreeTypeFontParameter();
+		parameter.size = 40;
+		timerFont = generator.generateFont(parameter);
+		generator.dispose();
+		
+		//Setting up timer label
+		timerStyle = new LabelStyle();
+		timerStyle.font = timerFont;
+		timerLabel = new Label(null, timerStyle);
+		timerLabel.setColor(0, 0, 0, 1);
+		timerLabel.setAlignment(Align.center);
+		timerLabel.setX(350);
+		timerLabel.setY(500);
+		timerLabel.setText("");
+		
 		//Instantiate the Managers
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
+		stage.addActor(timerLabel);
 		
 		mapManager = new Game_Map_Manager();
 		mapManager.create(getStage());
@@ -120,7 +152,8 @@ public class GameScreen implements Screen {
 		if (gameStartTime != 0){
 			gameTimeLeft = gameDuration - (System.currentTimeMillis() - gameStartTime);
 			gameSecondsLeft = (int)(gameTimeLeft/1000);
-			System.out.println(LocomotionCommotion.gameFinished + ": " + gameSecondsLeft);
+			timerLabel.setText(Integer.toString(gameSecondsLeft));
+			//System.out.println(LocomotionCommotion.gameFinished + ": " + gameSecondsLeft);
 			
 			if (gameSecondsLeft == 0){
 				LocomotionCommotion.gameFinished = true;

@@ -47,6 +47,10 @@ public class GameScreenUI {
 	public static Sprite game_menuobject_resourcesbar;
 	public static SpriteButton game_card_togglebtn, game_resources_togglebtn;
 
+	//Attributes to be taken by game victor
+	public static String victorName;
+	public static int victorScore;
+	
 	//Resource Actors start index and end index - used to toggle expanded resources menu
 	public static int  resourcesStageStart, resourcesStageEnd;
 	//Height value for expanded height
@@ -210,9 +214,28 @@ public class GameScreenUI {
 				}
 				
 				else{
-					WarningMessage.fireWarningWindow("GAME OVER", "The game has ended.");
+					if (GameScreen.game.getPlayer1().getPoints() == GameScreen.game.getPlayer2().getPoints()){
+						//Tie
+						victorScore = GameScreen.game.getPlayer1().getPoints();
+						WarningMessage.fireWarningWindow("GAME OVER", "It's a tie! Both players got " + victorScore + " points.");
+					}
+					
+					else {
+						if (GameScreen.game.getPlayer1().getPoints() > GameScreen.game.getPlayer2().getPoints()){
+							//Player 1 victory
+							victorName = GameScreen.game.getPlayer1().getName();
+							victorScore = GameScreen.game.getPlayer1().getPoints();
+						}
+						
+						else {
+							//Player 2 victory
+							victorName = GameScreen.game.getPlayer2().getName();
+							victorScore = GameScreen.game.getPlayer2().getPoints();
+						}
+						
+						WarningMessage.fireWarningWindow("GAME OVER", victorName + " wins with " + victorScore + " points!");
+					}
 				}
-
 			}
 		};
 		actors.add(game_menuobject_endturnbutton);
