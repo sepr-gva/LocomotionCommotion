@@ -19,6 +19,7 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -51,7 +52,7 @@ public class Game_Map_Manager {
 	
 	public static boolean sellTrain = false, teleportTrain = false, 
 			teleportCity = false, firstBreakCity = false, secondBreakCity = false,
-			firstFixCity = false, secondFixCity = false;
+			firstFixCity = false, secondFixCity = false, goFaster = false;
 	
 	public static int brokenOffset = 0;
 	
@@ -398,6 +399,7 @@ public class Game_Map_Manager {
 	
 	public static void breakConnection(MapObj start, MapObj end){
 		boolean validConnection = false;
+		Connection connection1 = null, connection2 = null;
 		for (Station station : WorldMap.getInstance().stationsList){
 			if (start == station){
 				for (Connection connection : station.connections){
@@ -406,16 +408,8 @@ public class Game_Map_Manager {
 							System.out.println("Connection between " + start.getName() +
 							" and " + end.getName() + " is already broken.");
 						}
-						connection.setTraversable(false);
-						validConnection = true;
-						for (ConnectionSprite sprite : connectionSprites){
-							if ((connection.getStartMapObj() == sprite.getCity1() &&
-									connection.getDestination() == sprite.getCity2()) ||
-									connection.getDestination() == sprite.getCity1() &&
-									connection.getStartMapObj() == sprite.getCity2()){
-								sprite.setVisible(true);
-								brokenOffset += 1;
-							}
+						else{
+							connection1 = connection;
 						}
 					}
 				}
@@ -423,7 +417,7 @@ public class Game_Map_Manager {
 			else if (end == station){
 				for (Connection connection : station.connections){
 					if (connection.getDestination() == start){
-						connection.setTraversable(false);
+						connection2 = connection;
 					}
 				}
 			}
@@ -436,25 +430,54 @@ public class Game_Map_Manager {
 							System.out.println("Connection between " + start.getName() +
 							" and " + end.getName() + " is already broken.");
 						}
-						connection.setTraversable(false);
-						validConnection = true;
-						for (ConnectionSprite sprite : connectionSprites){
-							if ((connection.getStartMapObj() == sprite.getCity1() &&
-									connection.getDestination() == sprite.getCity2()) ||
-									connection.getDestination() == sprite.getCity1() &&
-									connection.getStartMapObj() == sprite.getCity2()){
-								sprite.setVisible(true);
-								brokenOffset -= 1;
-							}
-						}
+						connection1 = connection;
 					}
 				}
 			}
 			else if (end == junction){
 				for (Connection connection : junction.connections){
 					if (connection.getDestination() == start){
-						connection.setTraversable(false);
+						connection2 = connection;
 					}
+				}
+			}
+		}
+		
+		boolean trainOnRail = false;
+		for (Train train : GameScreen.game.getPlayer1().getTrains()){
+			if (train.route.getRoute().size() > 0){
+				if (train.route.getRoute().get(train.route.getRouteIndex()) == connection1 ||
+						train.route.getRoute().get(train.route.getRouteIndex()) == connection2){
+					trainOnRail = true;
+					break;
+				}
+			}
+		}
+		if (!trainOnRail){
+			for (Train train : GameScreen.game.getPlayer2().getTrains()){
+				if (train.route.getRoute().size() > 0){
+					if (train.route.getRoute().get(train.route.getRouteIndex()) == connection1 ||
+							train.route.getRoute().get(train.route.getRouteIndex()) == connection2){
+						trainOnRail = true;
+						break;
+					}
+				}
+			}
+		}
+		if (trainOnRail){
+			WarningMessage.fireWarningWindow("DANGER", "Breaking a rail with a train on is against the \nGeneva Convention");
+		}
+		else{
+			connection1.setTraversable(false);
+			connection2.setTraversable(false);
+			validConnection = true;
+			for (ConnectionSprite sprite : connectionSprites){
+				if ((connection1.getStartMapObj() == sprite.getCity1() &&
+						connection1.getDestination() == sprite.getCity2()) ||
+						connection1.getDestination() == sprite.getCity1() &&
+						connection1.getStartMapObj() == sprite.getCity2()){
+					sprite.setVisible(true);
+					brokenOffset -= 1;
 				}
 			}
 		}

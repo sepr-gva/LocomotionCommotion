@@ -2,10 +2,12 @@ package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
+import com.TeamHEC.LocomotionCommotion.Train.SpeedUpgrade;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -98,6 +100,13 @@ public class Game_Map_Train extends Actor{
 				 */
 				
 			}
+			else if (Game_Map_Manager.goFaster && GameScreen.game.getPlayerTurn() == train.getOwner()){
+				Game_Map_Manager.goFaster = false;
+				SpeedUpgrade speedUpgrade = new SpeedUpgrade(train);
+				train.addUpgrade(speedUpgrade);
+				WarningMessage.fireWarningWindow("UPGRADE COMPLETE", "You have added go faster stripes to " +
+				train.getName());
+			}
 			else{
 				Game_Map_Manager.trainInfo.showLabel(train);
 				if(Game_Map_Manager.trainInfo.train.route.inStation()){
@@ -180,6 +189,11 @@ public class Game_Map_Train extends Actor{
 	public void draw(Batch batch, float alpha){
 		setBounds(train.route.getTrainPos().x + offset, train.route.getTrainPos().y + offset, texture.getWidth(),texture.getHeight());
 		batch.draw(texture, train.route.getTrainPos().x + offset, train.route.getTrainPos().y + offset);
+	}
+	
+	public Rectangle getBounds(){
+		Rectangle bounds = new Rectangle((this.getX()), (this.getY()), (this.getWidth()), (this.getHeight()));
+		return bounds;
 	}
 	
 }

@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
+import com.TeamHEC.LocomotionCommotion.Goal.Goal;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
@@ -73,6 +74,15 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			
 			//Move the trains current station to this station
 			Game_Map_Manager.currentTeleportCard.train.route.setCurrentMapObj(station);
+			
+			for (Goal goal : GameScreen.game.getPlayerTurn().getGoals()){
+				if (goal.getFStation() == this.station.getName()){
+					if (goal.getTrain() == Game_Map_Manager.currentTeleportCard.train){
+						goal.goalComplete();
+						break;
+					}
+				}
+			}
 			
 			//Make the currentTeleportCard null so that it is no longer accessible
 			Game_Map_Manager.currentTeleportCard = null;
