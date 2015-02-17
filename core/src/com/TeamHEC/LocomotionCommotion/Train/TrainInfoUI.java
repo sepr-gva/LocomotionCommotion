@@ -6,6 +6,7 @@ import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_TextureManager;
+import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Sprite;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.SpriteButton;
 import com.badlogic.gdx.Gdx;
@@ -104,29 +105,36 @@ public class TrainInfoUI extends Sprite{
 	
 	public void showLabel(Train train)
 	{
-		this.train = train;
 		
-		float x = train.route.getTrainPos().x + 30;
-		float y = train.route.getTrainPos().y - 50;
+		Player owner = train.getOwner();
+		ArrayList<Train> trains = owner.getTrains();
 		
-		this.setPosition(x, y);
-		planRoute.setPosition(x + 22, y + 15);
-		planRoute.refreshBounds();
-		
-		name.setPosition(x + 32, y + 142, Align.center);
-		speed.setPosition(x + 93, y + 97, Align.center);
-		routeRemaining.setPosition(x + 85, y + 57, Align.center);
-		
-		speed.setColor(Color.BLACK);
-		routeRemaining.setColor(Color.BLACK);
-		
-		name.setText(train.getName());
-		speed.setText(Integer.toString(train.getSpeed()));
-		routeRemaining.setText(String.format("%.2f", train.route.getLengthRemaining()));
-		
-		train.route.updateRouteText();
-		
-		makeVisible(true);
+		for(int i = 0; i < trains.size(); i++){
+			
+			this.train = trains.get(i);
+			
+			float x = train.route.getTrainPos().x + 30 + (i*100);
+			float y = train.route.getTrainPos().y - 50;
+			
+			this.setPosition(x, y);
+			planRoute.setPosition(x + 22, y + 15);
+			planRoute.refreshBounds();
+			
+			name.setPosition(x + 32, y + 142, Align.center);
+			speed.setPosition(x + 93, y + 97, Align.center);
+			routeRemaining.setPosition(x + 85, y + 57, Align.center);
+			
+			speed.setColor(Color.BLACK);
+			routeRemaining.setColor(Color.BLACK);
+			
+			name.setText(trains.get(i).getName());
+			speed.setText(Integer.toString(trains.get(i).getSpeed()));
+			routeRemaining.setText(String.format("%.2f", trains.get(i).route.getLengthRemaining()));
+			
+			trains.get(i).route.updateRouteText();
+			
+			makeVisible(true);	
+		}
 	}
 	
 	public void makeVisible(boolean v)
