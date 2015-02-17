@@ -80,11 +80,22 @@ public class Game_Map_Train extends Actor{
 				System.out.println("Train sold");
 				Game_Map_Manager.sellTrain = false;
 			}
+			//If teleportTrain boolean (set by the teleportCard) is true and the train belongs to the 
+			//same owner as the card
 			else if (Game_Map_Manager.teleportTrain && GameScreen.game.getPlayerTurn() == train.getOwner()){
+				//The train that the teleport card needs to teleport is this train
 				Game_Map_Manager.currentTeleportCard.train = this.train;
+				//Set teleport train back to false, so that when trains are now clicked
+				//the info box will come up as usual
 				Game_Map_Manager.teleportTrain = false;
+				//Set teleport city to true so that when a city is pressed, the teleport cards train
+				//will be moved to that city
 				Game_Map_Manager.teleportCity = true;
 				WarningMessage.fireWarningWindow("CHOOSE CITY", "Choose the city you wish to teleport this train to.");
+				
+				/**
+				 * Move to the Game_Map_Station.onClicked() method to follow implementation
+				 */
 				
 			}
 			else{

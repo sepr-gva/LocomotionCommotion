@@ -20,7 +20,6 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 public class TeleportCard extends Card{
 	
 	public Train train = null;
-	public Station station = null;
 	
 	/**
 	 * Initialises the card
@@ -42,8 +41,14 @@ public class TeleportCard extends Card{
 		//Train train = getOwner().getTrains().get(0);
 		
 		WarningMessage.fireWarningWindow("CHOOSE TRAIN", "Choose the train you want Teleport.");
+		//Allows access to this specific card from anywhere in the game through Game_Map_Manager
 		Game_Map_Manager.currentTeleportCard = this;
+		//Boolean that is used when clicking on trains to decide what to do
 		Game_Map_Manager.teleportTrain = true;
+		
+		/**
+		 * Move to the Game_Map_Station.onClicked() method to follow implementation
+		 */
 		
 		//Randomly selects a station from the list of stations
 		//Random rnd = new Random();

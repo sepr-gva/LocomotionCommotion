@@ -2,11 +2,13 @@ package com.TeamHEC.LocomotionCommotion.MapActors;
 
 import java.util.ArrayList;
 
+import com.TeamHEC.LocomotionCommotion.Card.BreakRailCard;
 import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.TeleportCard;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.ConnectionSprite;
+import com.TeamHEC.LocomotionCommotion.Map.Junction;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
@@ -46,9 +48,11 @@ public class Game_Map_Manager {
 	public static Sprite stationInfo;
 	public static Game_Map_StationBtn stationSelect;
 	
-	public static boolean sellTrain = false, teleportTrain = false, teleportCity = false;
+	public static boolean sellTrain = false, teleportTrain = false, 
+			teleportCity = false, firstBreakCity = false,secondBreakCity = false;
 	
 	public static TeleportCard currentTeleportCard = null;
+	public static BreakRailCard currentBreakCard = null;
 	
 	public static TrainInfoUI trainInfo;
 
@@ -402,7 +406,7 @@ public class Game_Map_Manager {
 		}
 	}
 	
-	public void breakConnection(MapObj start, MapObj end){
+	public static void breakConnection(MapObj start, MapObj end){
 		boolean validConnection = false;
 		for (Station station : WorldMap.getInstance().stationsList){
 			if (start == station){
@@ -416,7 +420,9 @@ public class Game_Map_Manager {
 						validConnection = true;
 						for (ConnectionSprite sprite : connectionSprites){
 							if ((connection.getStartMapObj() == sprite.getCity1() &&
-									connection.getDestination() == sprite.getCity2())){
+									connection.getDestination() == sprite.getCity2()) ||
+									connection.getDestination() == sprite.getCity1() &&
+									connection.getStartMapObj() == sprite.getCity2()){
 								sprite.setVisible(true);
 							}
 						}
@@ -431,13 +437,43 @@ public class Game_Map_Manager {
 				}
 			}
 		}
+		for (Junction junction : WorldMap.getInstance().junction){
+			if (start == junction){
+				for (Connection connection : junction.connections){
+					if (connection.getDestination() == end){
+						if (!connection.getTraversable()){
+							System.out.println("Connection between " + start.getName() +
+							" and " + end.getName() + " is already broken.");
+						}
+						connection.setTraversable(false);
+						validConnection = true;
+						for (ConnectionSprite sprite : connectionSprites){
+							if ((connection.getStartMapObj() == sprite.getCity1() &&
+									connection.getDestination() == sprite.getCity2()) ||
+									connection.getDestination() == sprite.getCity1() &&
+									connection.getStartMapObj() == sprite.getCity2()){
+								sprite.setVisible(true);
+							}
+						}
+					}
+				}
+			}
+			else if (end == junction){
+				for (Connection connection : junction.connections){
+					if (connection.getDestination() == start){
+						connection.setTraversable(false);
+					}
+				}
+			}
+		}
+		
 		if (!validConnection){
 			System.out.println("There is no connection between " + start.getName() + 
 					" and " + end.getName() + ".");
 		}
 	}
 	
-	public void repairConnection(MapObj start, MapObj end){
+	public static void repairConnection(MapObj start, MapObj end){
 		boolean validConnection = false;
 		for (Station station : WorldMap.getInstance().stationsList){
 			if (start == station){
@@ -462,6 +498,35 @@ public class Game_Map_Manager {
 			}
 			else if (end == station){
 				for (Connection connection : station.connections){
+					if (connection.getDestination() == start){
+						connection.setTraversable(true);
+					}
+				}
+			}
+		}
+		for (Junction junction : WorldMap.getInstance().junction){
+			if (start == junction){
+				for (Connection connection : junction.connections){
+					if (connection.getDestination() == end){
+						if (connection.getTraversable()){
+							System.out.println("Connection between " + start.getName() +
+							" and " + end.getName() + " is not broken.");
+						}
+						connection.setTraversable(true);
+						validConnection = true;
+						for (ConnectionSprite sprite : connectionSprites){
+							if ((connection.getStartMapObj() == sprite.getCity1() &&
+									connection.getDestination() == sprite.getCity2()) ||
+									(connection.getDestination() == sprite.getCity1() &&
+									connection.getStartMapObj() == sprite.getCity2())){
+								sprite.setVisible(false);
+							}
+						}
+					}
+				}
+			}
+			else if (end == junction){
+				for (Connection connection : junction.connections){
 					if (connection.getDestination() == start){
 						connection.setTraversable(true);
 					}
