@@ -226,6 +226,14 @@ public class Game_CardHand {
 				GameScreenUI.refreshResources();					//refresh the labels to show the change in resources (the change in card number)
 			}
 		}
+		public void removeCard(){
+			System.out.println("got to here");
+			cardactors.get(Game_CardHand.actorManager.numberofcards-1).setEmpty(true);					//Set the end slot as empty and hidden
+			cardactors.get(Game_CardHand.actorManager.numberofcards-1).setVisible(false);
+			Game_CardHand.actorManager.numberofcards-=1;											//decrement card number
+			GameScreenUI.refreshResources();
+			Game_CardHand.actorManager.organiseHand();
+		}
 		
 		/**
 		 * Moves the cards up or down

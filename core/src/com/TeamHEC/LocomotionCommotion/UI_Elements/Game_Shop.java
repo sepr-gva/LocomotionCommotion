@@ -451,11 +451,20 @@ public class Game_Shop {
 								GameScreen.game.getPlayerTurn().getShop().buyCard(false);
 								if(GameScreen.game.getPlayerTurn().getCards().size()>newAdditionIndex){
 									Game_CardHand.actorManager.addCard(GameScreen.game.getPlayerTurn().getCards().get(newAdditionIndex));
+									
 									GameScreenUI.refreshResources();
 									Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 								}
+								
 							}
 						}
+						if (Game_Shop.actorManager.sell){						
+							Game_CardHand.actorManager.removeCard();
+							
+							GameScreenUI.refreshResources();
+							Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
+						}
+						
 					}
 
 				};
