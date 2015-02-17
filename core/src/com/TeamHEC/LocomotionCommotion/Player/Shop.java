@@ -82,25 +82,21 @@ public class Shop {
 		if(fuelType == "Coal" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * coalSellPrice)));
-			customer.addPoints((int)(Math.ceil(quantity * coalSellPrice)));
 		}
 		
 		else if(fuelType == "Oil" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * oilSellPrice)));
-			customer.addPoints((int)(Math.ceil(quantity * oilSellPrice)));
 		}
 		
 		else if(fuelType == "Electric" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * electricSellPrice))); //DO NOT REMOVE MATH.CEIL IT ROUNDS WIERDLY
-			customer.addPoints((int)(Math.ceil(quantity * electricSellPrice)));
 		}
 		
 		else if(fuelType == "Nuclear" && customer.getFuel(fuelType) >= quantity) {
 			customer.subFuel(fuelType, quantity);
 			customer.addGold((int)(Math.ceil(quantity * nuclearSellPrice)));
-			customer.addPoints((int)(Math.ceil(quantity * nuclearSellPrice)));
 		}
 		
 		else {
@@ -131,7 +127,7 @@ public class Shop {
 				}
 				else 
 				{
-					WarningMessage.fireWarningWindow("SORRY", "You have too many cards already");
+					WarningMessage.fireWarningWindow("SORRY", "You have too many cards already!");
 				}
 			}
 		}
@@ -169,6 +165,14 @@ public class Shop {
 			WarningMessage.fireWarningWindow("NEW TRAIN", "Choose a station for your new train.");
 			LocomotionCommotion.newTrainPurchased = true;
 		}
+		else if (customer.getGold() < 1500)
+		{
+			WarningMessage.fireWarningWindow("SORRY", "You don't have enough gold!");
+		}
+		else if (customer.getTrains().size() >= 5)
+		{
+			WarningMessage.fireWarningWindow("SORRY", "You have too many trains already!");
+		}
 	}
 	
 	public void sellTrain(){
@@ -199,6 +203,9 @@ public class Shop {
 			}
 			WarningMessage.fireWarningWindow("SELL TRAIN", "Choose a train to sell.");
 			Game_Map_Manager.sellTrain = true;
+		}
+		else{
+			WarningMessage.fireWarningWindow("SORRY", "You cannot sell your only train!");
 		}
 	}
 	

@@ -131,7 +131,6 @@ public class Goal implements RouteListener{
 				+ " to " + getFStation() + "\n you've won " + getReward());
 		
 		train.getOwner().addGold(getReward());
-		train.getOwner().addPoints(getReward());
 		train.route.unregister(this);
 		
 		train.getOwner().getGoals().remove(this);

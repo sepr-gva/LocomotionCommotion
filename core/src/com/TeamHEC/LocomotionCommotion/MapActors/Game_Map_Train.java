@@ -74,7 +74,7 @@ public class Game_Map_Train extends Actor{
 		{	
 			if (Game_Map_Manager.sellTrain && GameScreen.game.getPlayerTurn() == train.getOwner()){
 				train.getOwner().getTrains().remove(train);
-				train.getOwner().addGold(1000);
+				train.getOwner().addGold(1050);
 				this.setVisible(false);
 				this.setTouchable(Touchable.disabled);
 				System.out.println("Train sold");
