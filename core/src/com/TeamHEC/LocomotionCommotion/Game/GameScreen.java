@@ -98,8 +98,8 @@ public class GameScreen implements Screen {
 		timerLabel = new Label(null, timerStyle);
 		timerLabel.setColor(0, 0, 0, 1);
 		timerLabel.setAlignment(Align.center);
-		timerLabel.setX(1480);
-		timerLabel.setY(350);
+		timerLabel.setX(1500);
+		timerLabel.setY(330);
 		timerLabel.setText("");
 		
 		Gdx.input.setInputProcessor(getStage());	
