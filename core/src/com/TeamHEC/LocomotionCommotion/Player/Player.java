@@ -81,17 +81,12 @@ public class Player implements RouteListener{
 
 	/**
 	 * @return returns the players points
-	 * Player points are calculated as the accumulative gold acquired (addPoints is always called with addGold)
+	 * Player points are calculated as the accumulative gold acquired (addPoints functionality is in addGold)
 	 * Player points are displayed on the main game screen either side of "Score" (see GameScreenUI.java lines 195-198)
 	 */
 	public int getPoints()
 	{
 		return points;
-	}
-
-	public void addPoints(int value)
-	{
-		points = (points + value);
 	}
 	
 	//Shop
@@ -155,6 +150,7 @@ public class Player implements RouteListener{
 		gold.setValue(gold.getValue() + value);
 		if(!Game_StartingSequence.inProgress)
 			GameScreenUI.refreshResources();
+		points = (points + value);
 	}
 
 	public void subGold(int value)
@@ -477,7 +473,6 @@ public class Player implements RouteListener{
 			if (currentStation.getResourceString() == "Gold") //Special case for Monaco which gives gold
 			{
 				this.addGold(currentStation.getBaseResourceOut());
-				this.addPoints(currentStation.getBaseResourceOut());
 			}
 			else
 			{
