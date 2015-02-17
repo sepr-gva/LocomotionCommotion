@@ -444,22 +444,26 @@ public class Game_Map_Manager {
 		}
 		
 		boolean trainOnRail = false;
-		for (Train train : GameScreen.game.getPlayer1().getTrains()){
-			if (train.route.getRoute().size() > 0){
-				if (train.route.getRoute().get(train.route.getRouteIndex()) == connection1 ||
-						train.route.getRoute().get(train.route.getRouteIndex()) == connection2){
-					trainOnRail = true;
-					break;
-				}
-			}
-		}
-		if (!trainOnRail){
-			for (Train train : GameScreen.game.getPlayer2().getTrains()){
+		if (GameScreen.game.getPlayer1().getTrains().size() > 0){
+			for (Train train : GameScreen.game.getPlayer1().getTrains()){
 				if (train.route.getRoute().size() > 0){
 					if (train.route.getRoute().get(train.route.getRouteIndex()) == connection1 ||
 							train.route.getRoute().get(train.route.getRouteIndex()) == connection2){
 						trainOnRail = true;
 						break;
+					}
+				}
+			}
+		}
+		if (!trainOnRail){
+			if (GameScreen.game.getPlayer1().getTrains().size() > 0){
+				for (Train train : GameScreen.game.getPlayer2().getTrains()){
+					if (train.route.getRoute().size() > 0){
+						if (train.route.getRoute().get(train.route.getRouteIndex()) == connection1 ||
+								train.route.getRoute().get(train.route.getRouteIndex()) == connection2){
+							trainOnRail = true;
+							break;
+						}
 					}
 				}
 			}
@@ -478,6 +482,81 @@ public class Game_Map_Manager {
 						connection1.getStartMapObj() == sprite.getCity2()){
 					sprite.setVisible(true);
 					brokenOffset -= 1;
+				}
+			}
+		}
+		
+		if (!validConnection){
+			System.out.println("There is no connection between " + start.getName() + 
+					" and " + end.getName() + ".");
+		}
+	}
+	
+	/**
+	 * Purely for testing purposes, removes the check for whether a train is on the
+	 * piece of rail as when the test is run, the game is not fully set up and causes 
+	 * a crash
+	 * @param start - start Map Object for the connection to be broken
+	 * @param end - end Map Object for the connection to be broken
+	 * @param testForOnRail - if any boolean is put in here it tells us that the test for
+	 * on rail will not be done
+	 */
+	public static void breakConnection(MapObj start, MapObj end, boolean dontTestForOnRail){
+		boolean validConnection = false;
+		Connection connection1 = null, connection2 = null;
+		for (Station station : WorldMap.getInstance().stationsList){
+			if (start == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == end){
+						if (!connection.getTraversable()){
+							System.out.println("Connection between " + start.getName() +
+							" and " + end.getName() + " is already broken.");
+						}
+						else{
+							connection1 = connection;
+						}
+					}
+				}
+			}
+			else if (end == station){
+				for (Connection connection : station.connections){
+					if (connection.getDestination() == start){
+						connection2 = connection;
+					}
+				}
+			}
+		}
+		for (Junction junction : WorldMap.getInstance().junction){
+			if (start == junction){
+				for (Connection connection : junction.connections){
+					if (connection.getDestination() == end){
+						if (!connection.getTraversable()){
+							System.out.println("Connection between " + start.getName() +
+							" and " + end.getName() + " is already broken.");
+						}
+						connection1 = connection;
+					}
+				}
+			}
+			else if (end == junction){
+				for (Connection connection : junction.connections){
+					if (connection.getDestination() == start){
+						connection2 = connection;
+					}
+				}
+			}
+		}
+		
+		if (connection1 != null && connection2 != null){
+			connection1.setTraversable(false);
+			connection2.setTraversable(false);
+			validConnection = true;
+			for (ConnectionSprite sprite : connectionSprites){
+				if ((connection1.getStartMapObj() == sprite.getCity1() &&
+					connection1.getDestination() == sprite.getCity2()) ||
+					connection1.getDestination() == sprite.getCity1() &&
+					connection1.getStartMapObj() == sprite.getCity2()){
+					sprite.setVisible(true);
 				}
 			}
 		}
