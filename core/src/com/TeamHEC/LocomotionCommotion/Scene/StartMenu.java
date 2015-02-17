@@ -15,8 +15,9 @@ public class StartMenu extends Scene{
 
 	//Start Menu NewGame Page
 	private Sprite sm_newgame_menutext;
-	private SpriteButton newGameBackButton, turnTimeOutButton, stationDomButton, newGameGoButton;
-	private SpriteButton turn50Button, turn100Button, turn150Button;
+	private SpriteButton newGameBackButton, newGameGoButton;
+	//private SpriteButton stationDomButton, turnTimeOutButton;
+	private SpriteButton time5Button, time10Button, time15Button;
 
 	//Start Menu LoadGame Page
 	private Sprite sm_loadgame_title, sm_loadgame_examples;
@@ -34,8 +35,9 @@ public class StartMenu extends Scene{
 
 	// Other stuff
 
-	public static String gameMode, player1name, player2name;
-	public static int turnChoice;
+	public static String player1name, player2name;
+	//public static String gameMode;
+	public static int timeChoice;
 	public static TextField textbox1, textbox2;
 
 	public StartMenu()
@@ -47,7 +49,7 @@ public class StartMenu extends Scene{
 		actors.add(sm_main_lines);
 
 		// Start MenuNewGame Page
-		sm_newgame_menutext =  new Sprite(80,1150+250, SM_TextureManager.getInstance().sm_newgame_MenuText);
+		sm_newgame_menutext =  new Sprite(80,1150+250, SM_TextureManager.getInstance().sm_newgame_MenuText2);
 		actors.add(sm_newgame_menutext);
 
 		newGameButton = new SpriteButton(600, 480, SM_TextureManager.getInstance().sm_main_newgamebtn){
@@ -218,8 +220,8 @@ public class StartMenu extends Scene{
 			{
 				LocomotionCommotion.player1name=textbox1.getText();
 				LocomotionCommotion.player2name=textbox2.getText();
-				LocomotionCommotion.gameMode= gameMode;
-				LocomotionCommotion.turnChoice = turnChoice;
+				//LocomotionCommotion.gameMode= gameMode;
+				LocomotionCommotion.timeChoice = timeChoice;
 				LocomotionCommotion.getInstance().setGameScreen();
 
 				resetNewGameScreen();
@@ -227,17 +229,17 @@ public class StartMenu extends Scene{
 			}
 			public void resetNewGameScreen()
 			{
-				turnTimeOutButton.setTexture(SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn);
-				stationDomButton.setTexture(SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn);
+				//turnTimeOutButton.setTexture(SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn);
+				//stationDomButton.setTexture(SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn);
 				textbox1.setText("");
 				textbox2.setText("");
-				turn50Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn);
-				turn100Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn);
-				turn150Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn);
-				gameMode=null;
+				time5Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time5_unselected_Btn);
+				time10Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn);
+				time15Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn);
+				//gameMode=null;
 				player1name= null;
 				player2name= null;
-				turnChoice=0;
+				timeChoice=0;
 			}
 		};
 		actors.add(newGameGoButton);
@@ -276,21 +278,22 @@ public class StartMenu extends Scene{
 			}
 
 			public void resetNewGameScreen(){
-				turnTimeOutButton.setTexture(SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn);
-				stationDomButton.setTexture(SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn);
+				//turnTimeOutButton.setTexture(SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn);
+				//stationDomButton.setTexture(SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn);
 				StartMenu.textbox1.setText("");
 				StartMenu.textbox2.setText("");
-				turn50Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn);
-				turn100Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn);
-				turn150Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn);
-				StartMenu.gameMode=null;
+				time5Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time5_unselected_Btn);
+				time10Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn);
+				time15Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn);
+				//StartMenu.gameMode=null;
 				StartMenu.player1name= null;
 				StartMenu.player2name= null;
-				StartMenu.turnChoice=0;
+				StartMenu.timeChoice=0;
 			}
 		};
 		actors.add(newGameBackButton);
-
+		
+		/*
 		turnTimeOutButton = new SpriteButton(400, 1680, SM_TextureManager.getInstance().sm_newgameTurnTimeOut_unselected_Btn){
 
 			@Override
@@ -303,7 +306,9 @@ public class StartMenu extends Scene{
 
 		};
 		actors.add(turnTimeOutButton);
-
+		*/
+		
+		/*
 		stationDomButton = new SpriteButton(660, 1680, SM_TextureManager.getInstance().sm_newgame_StationDom_unselected_Btn){
 
 			@Override
@@ -316,48 +321,49 @@ public class StartMenu extends Scene{
 
 		};
 		actors.add(stationDomButton);
+		*/
 
-		turn50Button = new SpriteButton(490, 1400, SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn){
-
-			@Override
-			public void onClicked()
-			{
-				StartMenu.turnChoice = 50;
-				setTexture(SM_TextureManager.getInstance().sm_newgame_Turn50Btn);
-				turn100Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn);
-				turn150Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn);
-			}
-
-		};
-		actors.add(turn50Button);
-
-		turn100Button = new SpriteButton(590, 1400, SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn){
+		time5Button = new SpriteButton(490, 1497, SM_TextureManager.getInstance().sm_newgame_Time5_unselected_Btn){
 
 			@Override
 			public void onClicked()
 			{
-				StartMenu.turnChoice = 100;
-				turn50Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn);
-				setTexture(SM_TextureManager.getInstance().sm_newgame_Turn100Btn);
-				turn150Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn);
+				StartMenu.timeChoice = 5;
+				setTexture(SM_TextureManager.getInstance().sm_newgame_Time5Btn);
+				time10Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn);
+				time15Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn);
 			}
 
 		};
-		actors.add(turn100Button);
+		actors.add(time5Button);
 
-		turn150Button = new SpriteButton(680, 1400, SM_TextureManager.getInstance().sm_newgame_Turn150_unselected_Btn){
+		time10Button = new SpriteButton(590, 1497, SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn){
 
 			@Override
 			public void onClicked()
 			{
-				turnChoice = 150;
-				turn50Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn50_unselected_Btn);
-				turn100Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Turn100_unselected_Btn);
-				setTexture(SM_TextureManager.getInstance().sm_newgame_Turn150Btn);
+				StartMenu.timeChoice = 10;
+				time5Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time5_unselected_Btn);
+				setTexture(SM_TextureManager.getInstance().sm_newgame_Time10Btn);
+				time15Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn);
 			}
 
 		};
-		actors.add(turn150Button);
+		actors.add(time10Button);
+
+		time15Button = new SpriteButton(690, 1497, SM_TextureManager.getInstance().sm_newgame_Time15_unselected_Btn){
+
+			@Override
+			public void onClicked()
+			{
+				timeChoice = 15;
+				time5Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time5_unselected_Btn);
+				time10Button.setTexture(SM_TextureManager.getInstance().sm_newgame_Time10_unselected_Btn);
+				setTexture(SM_TextureManager.getInstance().sm_newgame_Time15Btn);
+			}
+
+		};
+		actors.add(time15Button);
 
 		sm_loadgame_title = new Sprite(1680+350,665, SM_TextureManager.getInstance().sm_loadgame_Title);
 		actors.add(sm_loadgame_title);
@@ -575,7 +581,7 @@ public class StartMenu extends Scene{
 		textbox1 = new TextField("", skin);
 		skin.getFont("default-font").setScale(1.5f, 1.5f);
 		textbox1.setX(480);
-		textbox1.setY(1150+430);
+		textbox1.setY(1150+532);
 		textbox1.setSize(430, 60);
 		textbox1.setMessageText("Player 1");
 		TextFieldListener player1 = new TextFieldListener() {
@@ -588,7 +594,7 @@ public class StartMenu extends Scene{
 
 			textbox2 = new TextField("", skin);
 			textbox2.setX(480);
-			textbox2.setY(1150+350);
+			textbox2.setY(1150+447);
 			textbox2.setSize(430, 60);
 			textbox2.setMessageText("Player 2");
 			TextFieldListener player2 = new TextFieldListener() {

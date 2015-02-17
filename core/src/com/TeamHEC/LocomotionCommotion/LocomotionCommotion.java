@@ -33,7 +33,7 @@ public class LocomotionCommotion extends Game {
 
 	//StartMenuOptions
 	public static String gameMode, player1name, player2name;
-	public static int turnChoice;
+	public static int timeChoice;
 
 	private static LocomotionCommotion INSTANCE = new LocomotionCommotion();
 

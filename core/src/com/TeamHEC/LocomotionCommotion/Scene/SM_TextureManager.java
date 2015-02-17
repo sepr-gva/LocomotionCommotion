@@ -30,6 +30,7 @@ public class SM_TextureManager {
 	
 	//Start Menu NewGame Page
 	public Texture sm_newgame_MenuText = new Texture(Gdx.files.internal("startMenu/sm_newgame/newgamescreen.png"));
+	public Texture sm_newgame_MenuText2 = new Texture(Gdx.files.internal("startMenu/sm_newgame/newgamescreen_nogamemode.png"));
 	public Texture sm_newgame_BackBtn = new Texture(Gdx.files.internal("startMenu/sm_newgame/backButton.png"));
 	public Texture sm_newgame_GoBtn = new Texture(Gdx.files.internal("startMenu/sm_newgame/goBtn.png"));
 	public Texture sm_newgame_TempTextBox = new Texture(Gdx.files.internal("startMenu/sm_newgame/tempTextBox.png"));
@@ -40,9 +41,15 @@ public class SM_TextureManager {
 	public Texture sm_newgame_Turn50Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/turn50.png"));
 	public Texture sm_newgame_Turn100Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/turn100.png"));
 	public Texture sm_newgame_Turn150Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/turn150.png"));
+	public Texture sm_newgame_Time5Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/time5.png"));
+	public Texture sm_newgame_Time10Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/time10.png"));
+	public Texture sm_newgame_Time15Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/time15.png"));
 	public Texture sm_newgame_Turn50_unselected_Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/turn50_unselected.png"));
 	public Texture sm_newgame_Turn100_unselected_Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/turn100_unselected.png"));
 	public Texture sm_newgame_Turn150_unselected_Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/turn150_unselected.png"));
+	public Texture sm_newgame_Time5_unselected_Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/time5_unselected.png"));
+	public Texture sm_newgame_Time10_unselected_Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/time10_unselected.png"));
+	public Texture sm_newgame_Time15_unselected_Btn = new Texture(Gdx.files.internal("startMenu/sm_newgame/time15_unselected.png"));
 	
 	//StartMenu LoadGame Page
 	public Texture sm_loadgame_Title = new Texture(Gdx.files.internal("startMenu/sm_loadgame/loadgametitle.png"));
