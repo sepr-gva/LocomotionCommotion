@@ -1,6 +1,7 @@
 package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
@@ -75,6 +76,7 @@ public class WarningMessage {
 		actors.add(window);
 		actors.add(bodyLabel);
 		actors.add(titleLabel);
+		
 	}
 	/**
 	 * Makes the WarningWindow visible to the user 
