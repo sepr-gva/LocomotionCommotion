@@ -37,7 +37,7 @@ public class StartMenu extends Scene{
 
 	public static String player1name, player2name;
 	//public static String gameMode;
-	public static int timeChoice = 5;
+	public static int timeChoice = 1;
 	public static TextField textbox1, textbox2;
 
 	public StartMenu()

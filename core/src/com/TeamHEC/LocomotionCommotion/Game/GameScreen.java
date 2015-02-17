@@ -76,13 +76,13 @@ public class GameScreen implements Screen {
 		camera.viewportWidth = Gdx.graphics.getWidth();
 		camera.update();
 		
-		gameStartTime = 0;
+		gameStartTime = -1;
 		gameDuration = LocomotionCommotion.timeChoice*60000;
 		
 		//Font for timer label
 		generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
 		parameter = new FreeTypeFontParameter();
-		parameter.size = 40;
+		parameter.size = 32;
 		timerFont = generator.generateFont(parameter);
 		generator.dispose();
 		
@@ -92,15 +92,17 @@ public class GameScreen implements Screen {
 		timerLabel = new Label(null, timerStyle);
 		timerLabel.setColor(0, 0, 0, 1);
 		timerLabel.setAlignment(Align.center);
-		timerLabel.setX(350);
-		timerLabel.setY(500);
+		timerLabel.setX(1480);
+		timerLabel.setY(350);
 		timerLabel.setText("");
 		
-		//Instantiate the Managers
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
+		
+		//Render game timer
 		stage.addActor(timerLabel);
 		
+		//Instantiate the Managers
 		mapManager = new Game_Map_Manager();
 		mapManager.create(getStage());
 		
@@ -149,13 +151,14 @@ public class GameScreen implements Screen {
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
 		
-		if (gameStartTime != 0){
+		if (gameStartTime >= 0){
 			gameTimeLeft = gameDuration - (System.currentTimeMillis() - gameStartTime);
 			gameSecondsLeft = (int)(gameTimeLeft/1000);
-			timerLabel.setText(Integer.toString(gameSecondsLeft));
+			timerLabel.setText("Game time left: " + (Integer.toString(gameSecondsLeft)) + "s");
 			//System.out.println(LocomotionCommotion.gameFinished + ": " + gameSecondsLeft);
 			
-			if (gameSecondsLeft == 0){
+			if (gameSecondsLeft <= 0){
+				timerLabel.setText("Game time left: 0s");
 				LocomotionCommotion.gameFinished = true;
 			}
 		}
