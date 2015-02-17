@@ -48,6 +48,9 @@ public class GameScreen implements Screen {
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
 	public static Game_Map_Manager mapManager;
+	public static long gameStartTime, gameDuration;
+	public long gameTimeLeft;
+	public int gameSecondsLeft;
 	/**
 	 * 
 	 */
@@ -55,9 +58,12 @@ public class GameScreen implements Screen {
 		//Set up stage camera
 		stage = new Stage(); 
 		Camera camera = stage.getCamera();
-		camera.viewportHeight= Gdx.graphics.getHeight();
-		camera.viewportWidth= Gdx.graphics.getWidth();
+		camera.viewportHeight = Gdx.graphics.getHeight();
+		camera.viewportWidth = Gdx.graphics.getWidth();
 		camera.update();
+		
+		gameStartTime = 0;
+		gameDuration = LocomotionCommotion.timeChoice*60000;
 
 		//Instantiate the Managers
 		Gdx.input.setInputProcessor(getStage());	
@@ -97,6 +103,7 @@ public class GameScreen implements Screen {
 	public static void createCoreGame(Station p1Station, Station p2Station)
 	{
 		game = new CoreGame(LocomotionCommotion.player1name, LocomotionCommotion.player2name, p1Station, p2Station, LocomotionCommotion.timeChoice);
+		gameStartTime = System.currentTimeMillis();
 		GameScreenUI.refreshResources();
 	}
 	
@@ -110,13 +117,15 @@ public class GameScreen implements Screen {
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
 		
-		if (Gdx.input.isKeyJustPressed(Keys.B)){
-			mapManager.breakConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
+		if (gameStartTime != 0){
+			gameTimeLeft = gameDuration - (System.currentTimeMillis() - gameStartTime);
+			gameSecondsLeft = (int)(gameTimeLeft/1000);
+			System.out.println(LocomotionCommotion.gameFinished + ": " + gameSecondsLeft);
+			
+			if (gameSecondsLeft == 0){
+				LocomotionCommotion.gameFinished = true;
+			}
 		}
-		if (Gdx.input.isKeyJustPressed(Keys.F)){
-			mapManager.repairConnection(WorldMap.getInstance().stationsList.get(0), WorldMap.getInstance().stationsList.get(1));
-		}
-
 	}
 
 	@Override

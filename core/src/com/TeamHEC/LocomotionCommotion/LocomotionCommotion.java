@@ -36,6 +36,7 @@ public class LocomotionCommotion extends Game {
 	public static int timeChoice;
 
 	private static LocomotionCommotion INSTANCE = new LocomotionCommotion();
+	public static boolean gameFinished = false;
 
 	public static LocomotionCommotion getInstance()
 	{
