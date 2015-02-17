@@ -79,4 +79,5 @@ public class Game_Map_TextureManager{
 	public Texture obsStockholmWarsaw = new Texture(Gdx.files.internal("gameScreen/game_map/obstStockholmWarsaw.png"));
 	public Texture obsVilniusJunct = new Texture(Gdx.files.internal("gameScreen/game_map/obstVilniusJunct.png"));
 	public Texture obsWarsawJunct = new Texture(Gdx.files.internal("gameScreen/game_map/obstWarsawJunct.png"));
+	public Texture obsWarsawBerlin = new Texture(Gdx.files.internal("gameScreen/game_map/obstBerlinWarsaw.png"));
 }

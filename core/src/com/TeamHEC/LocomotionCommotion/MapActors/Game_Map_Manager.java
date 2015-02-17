@@ -91,6 +91,7 @@ public class Game_Map_Manager {
 		connectionSprites.add(new ConnectionSprite(100, 60, Game_Map_TextureManager.getInstance().obsAthensVienna, WorldMap.getInstance().stationsList.get(17), WorldMap.getInstance().stationsList.get(12)));
 		connectionSprites.add(new ConnectionSprite(100, 60, Game_Map_TextureManager.getInstance().obsBerlinJunct, WorldMap.getInstance().stationsList.get(18), WorldMap.getInstance().junction[0]));
 		connectionSprites.add(new ConnectionSprite(100, 60, Game_Map_TextureManager.getInstance().obsBerlinOslo, WorldMap.getInstance().stationsList.get(18), WorldMap.getInstance().stationsList.get(5)));
+		connectionSprites.add(new ConnectionSprite(100, 60, Game_Map_TextureManager.getInstance().obsWarsawBerlin, WorldMap.getInstance().stationsList.get(10), WorldMap.getInstance().stationsList.get(18)));
 		connectionSprites.add(new ConnectionSprite(100, 60, Game_Map_TextureManager.getInstance().obsBernJunct, WorldMap.getInstance().stationsList.get(19), WorldMap.getInstance().junction[0]));
 		connectionSprites.add(new ConnectionSprite(100, 60, Game_Map_TextureManager.getInstance().obsBernMonaco, WorldMap.getInstance().stationsList.get(19), WorldMap.getInstance().stationsList.get(16)));
 		connectionSprites.add(new ConnectionSprite(100, 60, Game_Map_TextureManager.getInstance().obsBernPrague, WorldMap.getInstance().stationsList.get(19), WorldMap.getInstance().stationsList.get(11)));

@@ -114,6 +114,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 							Game_Map_Manager.currentBreakCard.firstObj.getName() + " and " + this.station.getName() + 
 							"\nhas been broken.");
 					Game_Map_Manager.trainsTouchable();
+					Game_Map_Manager.currentBreakCard = null;
 				}
 				else{
 					WarningMessage.fireWarningWindow("ALREADY BROKEN", "The connection you want to break is already broken, \nchoose a new starting city.");
@@ -157,11 +158,12 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 				//If the connection is not broken, break it and give a message to say what
 				//has happened
 				if (!con.getTraversable()){
-					Game_Map_Manager.repairConnection(Game_Map_Manager.currentBreakCard.firstObj, this.station);
+					Game_Map_Manager.repairConnection(Game_Map_Manager.currentFixCard.firstObj, this.station);
 					WarningMessage.fireWarningWindow("CONNECTION FIXED", "Connection between " + 
-							Game_Map_Manager.currentBreakCard.firstObj.getName() + " and " + this.station.getName() + 
+							Game_Map_Manager.currentFixCard.firstObj.getName() + " and " + this.station.getName() + 
 							"\nhas been fixed.");
 					Game_Map_Manager.trainsTouchable();
+					Game_Map_Manager.currentFixCard = null;
 				}
 				else{
 					WarningMessage.fireWarningWindow("NOT BROKEN", "The connection you want to fix is not broken, \nchoose a new starting city.");

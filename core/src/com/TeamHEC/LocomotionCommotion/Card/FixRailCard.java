@@ -26,12 +26,11 @@ public class FixRailCard extends Card {
 	public void implementCard(){
 		
 		WarningMessage.fireWarningWindow("CHOOSE FIRST STATION", "Choose the start city of the connection you want to fix.");
-		
+			
 		Game_Map_Manager.currentFixCard = this;
 			
 		Game_Map_Manager.firstFixCity = true;
 			
 		Game_Map_Manager.trainsUntouchable();
 	}
-
 }
