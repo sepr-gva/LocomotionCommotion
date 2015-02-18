@@ -74,12 +74,16 @@ public class Game_Map_Train extends Actor{
 	{
 		if(clickCount == 0)
 		{	
+			//if a train is being sold and this train is touched, do this
 			if (Game_Map_Manager.sellTrain && GameScreen.game.getPlayerTurn() == train.getOwner()){
+				//remove the train and refund the players gold
 				train.getOwner().getTrains().remove(train);
 				train.getOwner().addGold(1050);
+				//remove the actor from the map by making it invisible and untouchable
 				this.setVisible(false);
 				this.setTouchable(Touchable.disabled);
 				System.out.println("Train sold");
+				//revert back to normal interaction with trains
 				Game_Map_Manager.sellTrain = false;
 			}
 			//If teleportTrain boolean (set by the teleportCard) is true and the train belongs to the 
@@ -100,10 +104,14 @@ public class Game_Map_Train extends Actor{
 				 */
 				
 			}
+			//if go faster stripe card being used then this is done when this train is touched
 			else if (Game_Map_Manager.goFaster && GameScreen.game.getPlayerTurn() == train.getOwner()){
+				//back to normal interaction with trains
 				Game_Map_Manager.goFaster = false;
+				//create new speed upgrade and add it to selected train
 				SpeedUpgrade speedUpgrade = new SpeedUpgrade(train);
 				train.addUpgrade(speedUpgrade);
+				//tell the user
 				WarningMessage.fireWarningWindow("UPGRADE COMPLETE", "You have added go faster stripes to " +
 				train.getName() + ".");
 			}

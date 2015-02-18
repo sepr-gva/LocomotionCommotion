@@ -24,6 +24,14 @@ public class BreakRailCard extends Card {
 		Game_Map_Manager.firstBreakCity = true;
 	
 		Game_Map_Manager.trainsUntouchable();
+		
+		/**
+		 * Set the currentBreakCard to this to keep track of the first city clicked on, set firstbreakcity to 
+		 * true to show that the next city clicked on is the first in the break sequence, make trains untouchable
+		 * so that you can click cities behind trains
+		 * 
+		 * Go to Game_Map_Station.onClicked() to follow implementation
+		 */
 	}
 
 }

@@ -395,17 +395,22 @@ public class Game_Map_Manager {
 	}
 	
 	public static void breakConnection(MapObj start, MapObj end){
+		//boolean for checking whether a valid connection is ever found between the map objects
 		boolean validConnection = false;
 		Connection connection1 = null, connection2 = null;
+		//iterate through all the stations in the world to find the one we are given
 		for (Station station : WorldMap.getInstance().stationsList){
 			if (start == station){
+				//iterate over all the stations connections to find the one correlating to the other map object
 				for (Connection connection : station.connections){
 					if (connection.getDestination() == end){
+						//if it is already broken, dont break it, print a warning
 						if (!connection.getTraversable()){
 							System.out.println("Connection between " + start.getName() +
 							" and " + end.getName() + " is already broken.");
 						}
 						else{
+							//set first connection to this connection if it isnt broken
 							connection1 = connection;
 						}
 					}
@@ -414,11 +419,13 @@ public class Game_Map_Manager {
 			else if (end == station){
 				for (Connection connection : station.connections){
 					if (connection.getDestination() == start){
+						//if the opposite connection is found set this to the second connection to be broken
 						connection2 = connection;
 					}
 				}
 			}
 		}
+		//do the exact same with junctions
 		for (Junction junction : WorldMap.getInstance().junction){
 			if (start == junction){
 				for (Connection connection : junction.connections){
@@ -440,9 +447,13 @@ public class Game_Map_Manager {
 			}
 		}
 		
+		//boolean to show whether there is a train on the rail
 		boolean trainOnRail = false;
+		//iterate over all player 1's trains if they have any
 		if (GameScreen.game.getPlayer1().getTrains().size() > 0){
 			for (Train train : GameScreen.game.getPlayer1().getTrains()){
+				//if the train is on a route, find the connection it is currently on, and if it connection1
+				//or connection2 then set trainonroute to true and break from the loop
 				if (train.route.getRoute().size() > 0){
 					if (train.route.getRoute().get(train.route.getRouteIndex()) == connection1 ||
 							train.route.getRoute().get(train.route.getRouteIndex()) == connection2){
@@ -452,6 +463,7 @@ public class Game_Map_Manager {
 				}
 			}
 		}
+		//if player 1 has no trains on the connections do the same check for player 2s trains
 		if (!trainOnRail){
 			if (GameScreen.game.getPlayer1().getTrains().size() > 0){
 				for (Train train : GameScreen.game.getPlayer2().getTrains()){
@@ -465,10 +477,12 @@ public class Game_Map_Manager {
 				}
 			}
 		}
+		//if there is a train on the rail then dont break it
 		if (trainOnRail){
 			WarningMessage.fireWarningWindow("DANGER", "Breaking a rail with a train on it is against the \nGeneva Convention.");
 		}
 		else{
+			//otherwise set both connections to untraversable and find the correct connectionSprite to draw
 			connection1.setTraversable(false);
 			connection2.setTraversable(false);
 			validConnection = true;
@@ -483,6 +497,7 @@ public class Game_Map_Manager {
 			}
 		}
 		
+		//if no valid connection is found print a warning to the console
 		if (!validConnection){
 			System.out.println("There is no connection between " + start.getName() + 
 					" and " + end.getName() + ".");
@@ -564,6 +579,8 @@ public class Game_Map_Manager {
 		}
 	}
 	
+	//done the exact same way as break rail, however as soon as a valid connection is found it is set to traversable
+	//because we dont have to worry about whether there is a train on the rail, connectionSprite also found
 	public static void repairConnection(MapObj start, MapObj end){
 		boolean validConnection = false;
 		for (Station station : WorldMap.getInstance().stationsList){

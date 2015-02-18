@@ -115,7 +115,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			//If it is, start the implementation of the card over again
 			if (found){
 				//If the connection is not broken, break it and give a message to say what
-				//has happened
+				//has happened else give message to say its already broken and start implementation again
 				if (con.getTraversable()){
 					Game_Map_Manager.breakConnection(Game_Map_Manager.currentBreakCard.firstObj, this.station);
 					WarningMessage.fireWarningWindow("CONNECTION BROKEN", "Connection between " + 
@@ -130,6 +130,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 				}
 			}
 			else{
+				//tell them its not a valid connection and start implementation again
 				WarningMessage.fireWarningWindow("NOT VALID CONNECTION", "That is not a valid connection, choose a new starting city.");
 				Game_Map_Manager.firstBreakCity = true;
 			}
@@ -164,7 +165,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			//If it is, start the implementation of the card over again
 			if (found){
 				//If the connection is not broken, break it and give a message to say what
-				//has happened
+				//has happened, if not broken give message and restart implementation
 				if (!con.getTraversable()){
 					Game_Map_Manager.repairConnection(Game_Map_Manager.currentFixCard.firstObj, this.station);
 					WarningMessage.fireWarningWindow("CONNECTION FIXED", "Connection between " + 
@@ -178,6 +179,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 					Game_Map_Manager.firstFixCity = true;						}
 			}
 			else{
+				//if not a valid connection give message and restart implemntation
 				WarningMessage.fireWarningWindow("NOT VALID CONNECTION", "That is not a valid connection, choose a new starting city.");
 				Game_Map_Manager.firstFixCity = true;
 			}

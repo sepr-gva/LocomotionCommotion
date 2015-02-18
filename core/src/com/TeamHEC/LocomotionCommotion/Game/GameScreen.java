@@ -128,52 +128,7 @@ public class GameScreen implements Screen {
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
 		
-<<<<<<< HEAD
 		checkForCollisions();
-=======
-		if (started){
-			if (game.getPlayerTurn().getTrains().size() > 0){
-				ArrayList<Train> trains = new ArrayList<Train>(game.getPlayer2().getTrains());
-				trains.addAll(game.getPlayer1().getTrains());
-				
-				for (Train train1 : trains){
-					for (Train train2 : trains){
-						if (train1 != train2){
-							if (train1.getActor().getBounds().overlaps(train2.getActor().getBounds())){
-								if (train1.route.getRoute().size() > 0 && train2.route.getRoute().size() > 0){
-									if (train1.route.getRoute().get(train1.route.getRouteIndex()) == 
-											train2.route.getRoute().get(train2.route.getRouteIndex()) ||
-											train1.route.getRoute().get(train1.route.getRouteIndex()).getDestination() == 
-											train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj()){
-										WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
-												".\n They have been destroyed.");
-										Game_Map_Manager.breakConnection(train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj(), 
-												train2.route.getRoute().get(train2.route.getRouteIndex()).getDestination());
-										train1.getOwner().getTrains().remove(train1);
-										train1.getActor().setVisible(false);
-										train2.getActor().setTouchable(Touchable.disabled);
-										train2.getOwner().getTrains().remove(train2);
-										train2.getActor().setVisible(false);
-										train2.getActor().setTouchable(Touchable.disabled);
-									}
-								}
-								else if (train1.isInStation() || train2.isInStation()){
-									train1.getOwner().getTrains().remove(train1);
-									train1.getActor().setVisible(false);
-									train2.getActor().setTouchable(Touchable.disabled);
-									train2.getOwner().getTrains().remove(train2);
-									train2.getActor().setVisible(false);
-									train2.getActor().setTouchable(Touchable.disabled);
-									WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
-											"\n they have been destroyed.");
-								}
-							}
-						}
-					}
-				}
-			}
-		}
->>>>>>> 611e77daa7cfb86406efdeed6d5c3e2a21318553
 		
 		//gameTimers.setText2("Turn time left: null");
 		
@@ -257,15 +212,21 @@ public class GameScreen implements Screen {
 	}
 	
 	public void checkForCollisions(){
+		//checks whether the game has been started, avoids null pointer exception when looking for arrays of
+		//trains
 		if (started){
+			//makes sure that the players both at least have one train
 			if (game.getPlayerTurn().getTrains().size() > 0){
 				ArrayList<Train> trains = new ArrayList<Train>(game.getPlayer2().getTrains());
 				trains.addAll(game.getPlayer1().getTrains());
-				
+				//checks for every train paired with every other train than itself, whether the rectangles
+				//they are contained within collide
 				for (Train train1 : trains){
 					for (Train train2 : trains){
 						if (train1 != train2){
 							if (train1.getActor().getBounds().overlaps(train2.getActor().getBounds())){
+								//Checks if both trains are on connections, if they are checks that they are both on
+								//the same connection (travelling either way)
 								if (train1.route.getRoute().size() > 0 && train2.route.getRoute().size() > 0){
 									if (train1.route.getRoute().get(train1.route.getRouteIndex()) == 
 											train2.route.getRoute().get(train2.route.getRouteIndex()) ||
@@ -273,8 +234,10 @@ public class GameScreen implements Screen {
 											train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj()){
 										WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
 												"\n they have been destroyed.");
+										//break the connection due to the crash
 										Game_Map_Manager.breakConnection(train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj(), 
 												train2.route.getRoute().get(train2.route.getRouteIndex()).getDestination());
+										//remove both the trains from the game
 										train1.getOwner().getTrains().remove(train1);
 										train1.getActor().setVisible(false);
 										train2.getActor().setTouchable(Touchable.disabled);
@@ -283,7 +246,10 @@ public class GameScreen implements Screen {
 										train2.getActor().setTouchable(Touchable.disabled);
 									}
 								}
+								//if one train is in a station it doesnt matter which connection the other is on
+								//as we do not break any connections
 								else if (train1.isInStation() || train2.isInStation()){
+									//remove both the trains from the game
 									train1.getOwner().getTrains().remove(train1);
 									train1.getActor().setVisible(false);
 									train2.getActor().setTouchable(Touchable.disabled);

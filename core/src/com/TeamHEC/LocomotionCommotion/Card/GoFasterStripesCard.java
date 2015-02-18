@@ -16,11 +16,9 @@ public class GoFasterStripesCard extends Card {
 	public void implementCard()
 	{
 		
+		//change gofaster attribute to true, which changes what happens when a train is clicked,
+		//when clicked now a train will recieve a speed upgrade
 		Game_Map_Manager.goFaster = true;
 		WarningMessage.fireWarningWindow("GO FASTER STRIPES", "Choose the train that you want to give go faster stripes.");
-		//Need a way to select the train to upgrade
-		//Train train = getOwner().getTrains().get(0);
-		//SpeedUpgrade speedUpgrade = new SpeedUpgrade(train);
-		//train.addUpgrade(speedUpgrade);
 	}
 }

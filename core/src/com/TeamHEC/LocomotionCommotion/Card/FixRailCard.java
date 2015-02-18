@@ -24,5 +24,13 @@ public class FixRailCard extends Card {
 		Game_Map_Manager.firstFixCity = true;
 			
 		Game_Map_Manager.trainsUntouchable();
+		
+		/**
+		 * Set the currentFixCard to this to keep track of the first city clicked on, set firstfixcity to 
+		 * true to show that the next city clicked on is the first in the fix sequence, make trains untouchable
+		 * so that you can click cities behind trains
+		 * 
+		 * Go to Game_Map_Station.onClicked() to follow implementation
+		 */
 	}
 }
