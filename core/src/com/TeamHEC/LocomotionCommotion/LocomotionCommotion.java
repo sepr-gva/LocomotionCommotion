@@ -2,16 +2,11 @@ package com.TeamHEC.LocomotionCommotion;
 
 import com.TeamHEC.LocomotionCommotion.Game.CoreGame;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
-import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Station;
 import com.TeamHEC.LocomotionCommotion.Scene.SceneManager;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
+
 /**
  * 
  * @author Robert Precious <rp825@york.ac.uk>
