@@ -34,11 +34,11 @@ public class StartMenu extends Scene{
 	private SpriteButton homeButton, nextButton, prevButton, preferencesBackButton;
 
 	// Other stuff
-
 	public static String player1name, player2name;
 	//public static String gameMode;
 	public static int timeChoice = 5;
 	public static TextField textbox1, textbox2;
+	private static boolean player1NameEntered, player2NameEntered;
 
 	public StartMenu()
 	{
@@ -218,8 +218,23 @@ public class StartMenu extends Scene{
 			@Override
 			public void onClicked()
 			{
-				LocomotionCommotion.player1name=textbox1.getText();
-				LocomotionCommotion.player2name=textbox2.getText();
+				System.out.println(textbox1.getText());
+				if (player1NameEntered){
+					LocomotionCommotion.player1name=textbox1.getText();
+				}
+				
+				else {
+					LocomotionCommotion.player1name="Blue";
+				}
+				
+				if (player2NameEntered){
+					LocomotionCommotion.player2name=textbox2.getText();
+				}
+				
+				else {
+					LocomotionCommotion.player2name="Orange";
+				}
+				
 				//LocomotionCommotion.gameMode= gameMode;
 				LocomotionCommotion.timeChoice = timeChoice;
 				LocomotionCommotion.getInstance().setGameScreen();
@@ -584,10 +599,12 @@ public class StartMenu extends Scene{
 		textbox1.setY(1150+532);
 		textbox1.setSize(430, 60);
 		textbox1.setMessageText("Player 1");
+		player1NameEntered = false;
 		TextFieldListener player1 = new TextFieldListener() {
 			public void keyTyped (TextField textbox1, char key) {
 				if (key == '\n') textbox1.getOnscreenKeyboard().show(false);
 				player1name = textbox1.getText();
+				player1NameEntered = true;
 			}};
 
 			textbox1.setTextFieldListener(player1);
@@ -597,10 +614,12 @@ public class StartMenu extends Scene{
 			textbox2.setY(1150+447);
 			textbox2.setSize(430, 60);
 			textbox2.setMessageText("Player 2");
+			player2NameEntered = false;
 			TextFieldListener player2 = new TextFieldListener() {
 				public void keyTyped (TextField textbox2, char key) {
 					if (key == '\n') textbox2.getOnscreenKeyboard().show(false);
 					player2name = textbox2.getText();
+					player2NameEntered = true;
 				}};
 				textbox2.setTextFieldListener(player2);
 
