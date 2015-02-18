@@ -93,7 +93,7 @@ public class Game_Map_Train extends Actor{
 				//Set teleport city to true so that when a city is pressed, the teleport cards train
 				//will be moved to that city
 				Game_Map_Manager.teleportCity = true;
-				WarningMessage.fireWarningWindow("CHOOSE CITY", "Choose the city you wish to teleport this train to.");
+				WarningMessage.fireWarningWindow("CHOOSE CITY", "Choose the city you wish to Teleport this train to.");
 				
 				/**
 				 * Move to the Game_Map_Station.onClicked() method to follow implementation
@@ -105,7 +105,7 @@ public class Game_Map_Train extends Actor{
 				SpeedUpgrade speedUpgrade = new SpeedUpgrade(train);
 				train.addUpgrade(speedUpgrade);
 				WarningMessage.fireWarningWindow("UPGRADE COMPLETE", "You have added go faster stripes to " +
-				train.getName());
+				train.getName() + ".");
 			}
 			else{
 				Game_Map_Manager.trainInfo.showLabel(train);

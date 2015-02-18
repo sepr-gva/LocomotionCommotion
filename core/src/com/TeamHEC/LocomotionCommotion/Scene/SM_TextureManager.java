@@ -20,7 +20,7 @@ public class SM_TextureManager {
 	
 	//Start Menu
 	//Start Menu Main Page
-	public Texture sm_main_title = new Texture(Gdx.files.internal("startMenu/sm_main/smTitle.png"));
+	public Texture sm_main_title = new Texture(Gdx.files.internal("startMenu/sm_main/smTitle1.png"));
 	public Texture sm_main_newgamebtn = new Texture(Gdx.files.internal("startMenu/sm_main/sm_newgame.png"));
 	public Texture sm_main_loadgamebtn = new Texture(Gdx.files.internal("startMenu/sm_main/sm_loadgame.png"));
 	public Texture sm_main_preferencesbtn = new Texture(Gdx.files.internal("startMenu/sm_main/sm_preferences.png"));

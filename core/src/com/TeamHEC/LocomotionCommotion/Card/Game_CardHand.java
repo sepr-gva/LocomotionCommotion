@@ -7,7 +7,6 @@ import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
 import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
-import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
@@ -136,13 +135,13 @@ public class Game_CardHand {
 		}
 
 		/**
-		 * useCard is called from the usecard button and implements the card's action and removes it.
+		 * useCard is called from the useCard button and implements the card's action and removes it.
 		 * @param cardNum
 		 */
 		public void useCard(int cardNum){						//Method useCard lets the player use their card.
 			if (cardNum !=0){									//if the the number of card is not 0
 				if (cardactors.get(cardNum-1).getCard() instanceof FixRailCard){
-					//If it is a fix rail card and there arew no broken rails, there would be
+					//If it is a fix rail card and there are no broken rails, there would be
 					//no way of getting out of the implementation of that card because it only
 					//ends when a rail is broken
 					boolean broken = false;
@@ -158,7 +157,7 @@ public class Game_CardHand {
 						}
 					}
 					if (!broken){
-						WarningMessage.fireWarningWindow("NO BROKEN RAILS", "There are currently no broken rails to be fixed");
+						WarningMessage.fireWarningWindow("NO BROKEN RAILS", "There are currently no broken rails to be fixed.");
 					}
 					else{
 						cardactors.get(cardNum-1).getCard().implementCard();				//Implement the card object

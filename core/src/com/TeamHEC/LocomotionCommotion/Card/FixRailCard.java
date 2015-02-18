@@ -1,18 +1,10 @@
 package com.TeamHEC.LocomotionCommotion.Card;
 
-import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
-import com.TeamHEC.LocomotionCommotion.Map.Connection;
-import com.TeamHEC.LocomotionCommotion.Map.Junction;
 import com.TeamHEC.LocomotionCommotion.Map.MapObj;
-import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_TextureManager;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
-import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop.Game_ShopManager;
-import com.badlogic.gdx.graphics.Texture;
 
 public class FixRailCard extends Card {
 

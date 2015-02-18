@@ -103,7 +103,7 @@ public class PlayerGoals {
 				}
 				if(touchedDown)
 				{
-					WarningMessage.fireWarningWindow("", "Please Select a Train");
+					WarningMessage.fireWarningWindow("CHOOSE A TRAIN", "Please Select a train to assign this goal to.");
 					chooseTrain = true;
 					touchedDown=false;
 					started =false;
@@ -111,11 +111,6 @@ public class PlayerGoals {
 			}
 		};
 		planRouteBtn.setVisible(false);
-
-		//^^^^^^^^^^^  added to the stage after everything else see end of method
-
-
-
 
 		//Ticket Labels
 		style = GameScreenUI.getLabelStyle(17);

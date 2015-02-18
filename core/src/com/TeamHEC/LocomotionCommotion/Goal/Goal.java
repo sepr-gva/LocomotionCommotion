@@ -127,8 +127,8 @@ public class Goal implements RouteListener{
 	 */	
 	public void goalComplete()
 	{
-		WarningMessage.fireWarningWindow("GOAL COMPLETE!", "You've successfully complete the route: " + getSStation()
-				+ " to " + getFStation() + "\n you've won " + getReward());
+		WarningMessage.fireWarningWindow("GOAL COMPLETE!", "You've successfully completed the route: " + getSStation()
+				+ " to " + getFStation() + ".\n You've won " + getReward() + " gold.");
 		
 		train.getOwner().addGold(getReward());
 		train.route.unregister(this);

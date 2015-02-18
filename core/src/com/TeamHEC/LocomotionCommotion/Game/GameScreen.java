@@ -7,7 +7,6 @@ import com.TeamHEC.LocomotionCommotion.Card.Game_CardHand;
 import com.TeamHEC.LocomotionCommotion.Goal.GoalMenu;
 import com.TeamHEC.LocomotionCommotion.Goal.PlayerGoals;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
-import com.TeamHEC.LocomotionCommotion.Map.WorldMap;
 import com.TeamHEC.LocomotionCommotion.MapActors.Game_Map_Manager;
 import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.Train.TrainDepotUI;
@@ -15,23 +14,17 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.TimerText;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
+
 /**
  * 
  * @author Robert Precious <rp825@york.ac.uk>
@@ -61,15 +54,9 @@ public class GameScreen implements Screen {
 	public static Game_Map_Manager mapManager;
 	static boolean started = false;
 	public static long gameStartTime, gameDuration;
+	public static TimerText gameTimers;
 	public long gameTimeLeft;
 	public int gameSecondsLeft;
-	
-	//Attributes for rendering timer
-	private static FreeTypeFontGenerator generator;
-	private static FreeTypeFontParameter parameter;
-	private static BitmapFont timerFont;
-	private static LabelStyle timerStyle;
-	private static Label timerLabel;
 	
 	/**
 	 * 	
@@ -84,33 +71,16 @@ public class GameScreen implements Screen {
 		
 		gameStartTime = -1;
 		gameDuration = LocomotionCommotion.timeChoice*60000;
-		
-		//Font for timer label
-		generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
-		parameter = new FreeTypeFontParameter();
-		parameter.size = 32;
-		timerFont = generator.generateFont(parameter);
-		generator.dispose();
-		
-		//Setting up timer label
-		timerStyle = new LabelStyle();
-		timerStyle.font = timerFont;
-		timerLabel = new Label(null, timerStyle);
-		timerLabel.setColor(0, 0, 0, 1);
-		timerLabel.setAlignment(Align.center);
-		timerLabel.setX(1500);
-		timerLabel.setY(330);
-		timerLabel.setText("");
-		
+
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
-		
-		//Render game timer
-		stage.addActor(timerLabel);
 		
 		//Instantiate the Managers
 		mapManager = new Game_Map_Manager();
 		mapManager.create(getStage());
+		
+		gameTimers = new TimerText();
+		gameTimers.create(getStage());
 		
 		Game_CardHand cardHand = new Game_CardHand();
 		cardHand.create(getStage());
@@ -158,16 +128,62 @@ public class GameScreen implements Screen {
 		getStage().act(Gdx.graphics.getDeltaTime());
 		getStage().draw();
 		
+<<<<<<< HEAD
 		checkForCollisions();
+=======
+		if (started){
+			if (game.getPlayerTurn().getTrains().size() > 0){
+				ArrayList<Train> trains = new ArrayList<Train>(game.getPlayer2().getTrains());
+				trains.addAll(game.getPlayer1().getTrains());
+				
+				for (Train train1 : trains){
+					for (Train train2 : trains){
+						if (train1 != train2){
+							if (train1.getActor().getBounds().overlaps(train2.getActor().getBounds())){
+								if (train1.route.getRoute().size() > 0 && train2.route.getRoute().size() > 0){
+									if (train1.route.getRoute().get(train1.route.getRouteIndex()) == 
+											train2.route.getRoute().get(train2.route.getRouteIndex()) ||
+											train1.route.getRoute().get(train1.route.getRouteIndex()).getDestination() == 
+											train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj()){
+										WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
+												".\n They have been destroyed.");
+										Game_Map_Manager.breakConnection(train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj(), 
+												train2.route.getRoute().get(train2.route.getRouteIndex()).getDestination());
+										train1.getOwner().getTrains().remove(train1);
+										train1.getActor().setVisible(false);
+										train2.getActor().setTouchable(Touchable.disabled);
+										train2.getOwner().getTrains().remove(train2);
+										train2.getActor().setVisible(false);
+										train2.getActor().setTouchable(Touchable.disabled);
+									}
+								}
+								else if (train1.isInStation() || train2.isInStation()){
+									train1.getOwner().getTrains().remove(train1);
+									train1.getActor().setVisible(false);
+									train2.getActor().setTouchable(Touchable.disabled);
+									train2.getOwner().getTrains().remove(train2);
+									train2.getActor().setVisible(false);
+									train2.getActor().setTouchable(Touchable.disabled);
+									WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
+											"\n they have been destroyed.");
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+>>>>>>> 611e77daa7cfb86406efdeed6d5c3e2a21318553
+		
+		//gameTimers.setText2("Turn time left: null");
 		
 		if (gameStartTime >= 0){
 			gameTimeLeft = gameDuration - (System.currentTimeMillis() - gameStartTime);
 			gameSecondsLeft = (int)(gameTimeLeft/1000);
-			timerLabel.setText("Game time left: " + (Integer.toString(gameSecondsLeft)) + "s");
-			//System.out.println(LocomotionCommotion.gameFinished + ": " + gameSecondsLeft);
+			gameTimers.setText1("Game time left: " + (Integer.toString(gameSecondsLeft)) + "s");
 			
 			if (gameSecondsLeft <= 0){
-				timerLabel.setText("Game time left: 0s");
+				gameTimers.setText1("Game time left: 0s");
 				LocomotionCommotion.gameFinished = true;
 			}
 		}

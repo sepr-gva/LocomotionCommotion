@@ -27,7 +27,7 @@ public class Game_Map_Junction extends Game_Map_MapObj{
 			//Cards first city is this city
 			Game_Map_Manager.currentBreakCard.firstObj = this.junction;
 			//Second city is now being chosen, so when a city is clicked it becomes the second city
-			WarningMessage.fireWarningWindow("CHOOSE SECOND STATION", "Choose an ajoining station, inbetween which \nthe connection will be broken");
+			WarningMessage.fireWarningWindow("CHOOSE SECOND STATION", "Choose an ajoining station, inbetween which \nthe connection will be broken.");
 			Game_Map_Manager.secondBreakCity = true;
 		}
 		//Checking for if the second city is being chosen
