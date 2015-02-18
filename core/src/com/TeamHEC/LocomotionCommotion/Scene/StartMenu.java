@@ -218,7 +218,6 @@ public class StartMenu extends Scene{
 			@Override
 			public void onClicked()
 			{
-				System.out.println(textbox1.getText());
 				if (player1NameEntered){
 					LocomotionCommotion.player1name=textbox1.getText();
 				}
