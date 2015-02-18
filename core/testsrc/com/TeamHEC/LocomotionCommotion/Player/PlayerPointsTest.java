@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -73,12 +74,17 @@ public class PlayerPointsTest {
 			
 		}
 		
+		/**
+		 * Tests that at least 5 points are being added on per 1000 gold 
+		 */
 		@Test
 		public void testPoints(){
-			for (int i = 5; i < 1000; i+=5){
-				tester.addGold(1000);
-				System.out.println(tester.getPoints());
-				assertTrue("Points have not been added", tester.getPoints() > i);
+			Random rand = new Random();
+			for (int i = 0; i < 1000; i++){
+				int amount = rand.nextInt(2000);
+				int oldpoints = tester.getPoints();
+				tester.addGold(amount);
+				assertTrue("Points have not been added", tester.getPoints() == oldpoints + (int)(Math.log(amount)));
 			}
 		}
 		
