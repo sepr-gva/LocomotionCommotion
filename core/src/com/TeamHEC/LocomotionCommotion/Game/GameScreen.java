@@ -138,7 +138,7 @@ public class GameScreen implements Screen {
 			gameTimers.setText1("Game time left: " + (Integer.toString(gameSecondsLeft)) + "s");
 			
 			if (gameSecondsLeft <= 0){
-				gameTimers.setText1("Game time left: 0s");
+				gameTimers.setText1("Game time left: 0s");				
 				LocomotionCommotion.gameFinished = true;
 			}
 		}
@@ -257,7 +257,7 @@ public class GameScreen implements Screen {
 									train2.getActor().setVisible(false);
 									train2.getActor().setTouchable(Touchable.disabled);
 									WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
-											"\n they have been destroyed.");
+											".\n They have been destroyed.");
 								}
 							}
 						}

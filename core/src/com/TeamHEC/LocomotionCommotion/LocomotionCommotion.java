@@ -32,6 +32,7 @@ public class LocomotionCommotion extends Game {
 
 	private static LocomotionCommotion INSTANCE = new LocomotionCommotion();
 	public static boolean gameFinished = false;
+	public static boolean victorDetermined = false;
 
 	public static LocomotionCommotion getInstance()
 	{

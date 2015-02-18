@@ -38,7 +38,7 @@ public class WarningMessage {
 			protected void onClicked(){
 				killWarningWindow();
 				
-				if (LocomotionCommotion.gameFinished == true){
+				if (LocomotionCommotion.victorDetermined == true){
 					Gdx.app.exit();
 				}
 			}

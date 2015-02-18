@@ -185,6 +185,33 @@ public class GameScreenUI {
 			@Override
 			protected void onClicked()
 			{	
+				if ((GameScreen.game.getPlayer1().getTrains().size() + GameScreen.game.getPlayer2().getTrains().size()) == 0 && (GameScreen.game.getPlayer1().getGold() < 1500 || GameScreen.game.getPlayer2().getGold() < 1500)){
+					
+					if (GameScreen.game.getPlayer1().getPoints() == GameScreen.game.getPlayer2().getPoints()){
+						//Tie
+						victorScore = GameScreen.game.getPlayer1().getPoints();
+						LocomotionCommotion.victorDetermined = true;
+						WarningMessage.fireWarningWindow("GAME OVER", "A player has run out of trains and cannot afford a new one!\nIt's a tie! Both players got " + victorScore + " points.");
+					}
+					
+					else {
+						if (GameScreen.game.getPlayer1().getPoints() > GameScreen.game.getPlayer2().getPoints()){
+							//Player 1 victory
+							victorName = GameScreen.game.getPlayer1().getName();
+							victorScore = GameScreen.game.getPlayer1().getPoints();
+						}
+						
+						else {
+							//Player 2 victory
+							victorName = GameScreen.game.getPlayer2().getName();
+							victorScore = GameScreen.game.getPlayer2().getPoints();
+						}
+						
+						LocomotionCommotion.victorDetermined = true;
+						WarningMessage.fireWarningWindow("GAME OVER", "A player has run out of trains and cannot afford a new one!\n" + victorName + " wins with " + victorScore + " points!");
+					}
+				}
+				
 				if (LocomotionCommotion.gameFinished == false){
 					
 					//Stops a bought train from being placed (and hence owned) by the other player
@@ -217,6 +244,7 @@ public class GameScreenUI {
 					if (GameScreen.game.getPlayer1().getPoints() == GameScreen.game.getPlayer2().getPoints()){
 						//Tie
 						victorScore = GameScreen.game.getPlayer1().getPoints();
+						LocomotionCommotion.victorDetermined = true;
 						WarningMessage.fireWarningWindow("GAME OVER", "It's a tie! Both players got " + victorScore + " points.");
 					}
 					
@@ -233,6 +261,7 @@ public class GameScreenUI {
 							victorScore = GameScreen.game.getPlayer2().getPoints();
 						}
 						
+						LocomotionCommotion.victorDetermined = true;
 						WarningMessage.fireWarningWindow("GAME OVER", victorName + " wins with " + victorScore + " points!");
 					}
 				}
