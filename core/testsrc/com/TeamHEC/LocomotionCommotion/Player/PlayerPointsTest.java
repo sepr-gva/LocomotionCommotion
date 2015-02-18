@@ -49,6 +49,7 @@ public class PlayerPointsTest {
 	
 		@Before
 		public void setUp() throws Exception {
+			//create a player with arbitrary starting values
 			name = "Player 1";
 			points = 0;
 			gold = new Gold(1000);

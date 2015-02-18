@@ -17,7 +17,7 @@ public class GoFasterStripesCard extends Card {
 	{
 		
 		//change gofaster attribute to true, which changes what happens when a train is clicked,
-		//when clicked now a train will recieve a speed upgrade
+		//when clicked now a train will receive a speed upgrade
 		Game_Map_Manager.goFaster = true;
 		WarningMessage.fireWarningWindow("GO FASTER STRIPES", "Choose the train that you want to give go faster stripes.");
 	}

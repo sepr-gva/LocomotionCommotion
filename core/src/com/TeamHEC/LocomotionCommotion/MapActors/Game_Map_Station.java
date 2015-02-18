@@ -73,6 +73,9 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			//Move the trains current station to this station
 			Game_Map_Manager.currentTeleportCard.train.route.setCurrentMapObj(station);
 			
+			//checks whether the train being teleported is linked to a goal,
+			//if it is it then checks whether the city its being teleported to is the goals destination
+			//if so the goal is completed and a reward is given
 			for (Goal goal : GameScreen.game.getPlayerTurn().getGoals()){
 				if (goal.getFStation() == this.station.getName()){
 					if (goal.getTrain() == Game_Map_Manager.currentTeleportCard.train){
@@ -121,6 +124,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 					WarningMessage.fireWarningWindow("CONNECTION BROKEN", "Connection between " + 
 							Game_Map_Manager.currentBreakCard.firstObj.getName() + " and " + this.station.getName() + 
 							"\nhas been broken.");
+					//set trains to touchable again
 					Game_Map_Manager.trainsTouchable();
 					Game_Map_Manager.currentBreakCard = null;
 				}
@@ -171,6 +175,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 					WarningMessage.fireWarningWindow("CONNECTION FIXED", "Connection between " + 
 							Game_Map_Manager.currentFixCard.firstObj.getName() + " and " + this.station.getName() + 
 							"\nhas been fixed.");
+					//set trains to touchable again
 					Game_Map_Manager.trainsTouchable();
 					Game_Map_Manager.currentFixCard = null;
 				}
