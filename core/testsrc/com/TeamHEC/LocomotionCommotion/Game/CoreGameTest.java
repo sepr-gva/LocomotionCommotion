@@ -68,7 +68,7 @@ public class CoreGameTest {
 
 		turnLimit = 50;	
 
-		baseGold = 1000;
+		baseGold = 2000;
 		baseCarriage = 200;
 		baseCoal = 200;
 		baseOil = 200;
