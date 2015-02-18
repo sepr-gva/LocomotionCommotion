@@ -368,14 +368,14 @@ public class Game_Shop {
 			Game_Shop.actorManager.oilitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.electricityitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.nuclearitem.buyButton.setTexture(t);
-			Game_Shop.actorManager.carditem.buyButton.setTexture(t);
+			Game_Shop.actorManager.carditem.buyButton.setTexture(Game_TextureManager.getInstance().game_shop_blankbuybtn);
 			Game_Shop.actorManager.trainitem.buyButton.setTexture(t);
 			Game_Shop.actorManager.titleLabel.setText("Sell");
 
 			//Cost is different if selling
 			if(Game_Shop.actorManager.sell && !Game_StartingSequence.inProgress)
 			{
-				Game_Shop.actorManager.carditem.costLabel.setText(""+Shop.cardSellPrice);
+				//Game_Shop.actorManager.carditem.costLabel.setText(""+Shop.cardSellPrice);
 				Game_Shop.actorManager.coalitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.coalitem.quantityLabel.getText())*Shop.coalSellPrice);
 				Game_Shop.actorManager.oilitem.costLabel.setText(""+strToInt(Game_Shop.actorManager.oilitem.quantityLabel.getText())*Shop.oilSellPrice);
 				Game_Shop.actorManager.electricityitem.costLabel.setText(""+Math.ceil((strToInt(Game_Shop.actorManager.electricityitem.quantityLabel.getText())*Shop.electricSellPrice)));
@@ -458,13 +458,14 @@ public class Game_Shop {
 								
 							}
 						}
+						/*
 						if (Game_Shop.actorManager.sell){						
 							Game_CardHand.actorManager.removeCard();
 							
 							GameScreenUI.refreshResources();
 							Game_ShopManager.refreshgold(GameScreen.game.getPlayerTurn().getGold());
 						}
-						
+						*/
 					}
 
 				};

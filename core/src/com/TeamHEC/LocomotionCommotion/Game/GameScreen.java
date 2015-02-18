@@ -143,7 +143,7 @@ public class GameScreen implements Screen {
 											train1.route.getRoute().get(train1.route.getRouteIndex()).getDestination() == 
 											train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj()){
 										WarningMessage.fireWarningWindow("CRASH", train1.getName() + " has collided with " + train2.getName() +
-												"\n they have been destroyed.");
+												".\n They have been destroyed.");
 										Game_Map_Manager.breakConnection(train2.route.getRoute().get(train2.route.getRouteIndex()).getStartMapObj(), 
 												train2.route.getRoute().get(train2.route.getRouteIndex()).getDestination());
 										train1.getOwner().getTrains().remove(train1);

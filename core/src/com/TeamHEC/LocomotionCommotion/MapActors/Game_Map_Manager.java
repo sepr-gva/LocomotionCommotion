@@ -1,9 +1,6 @@
 package com.TeamHEC.LocomotionCommotion.MapActors;
 
-import java.util.ArrayList;
-
 import com.TeamHEC.LocomotionCommotion.Card.BreakRailCard;
-import com.TeamHEC.LocomotionCommotion.Card.Card;
 import com.TeamHEC.LocomotionCommotion.Card.FixRailCard;
 import com.TeamHEC.LocomotionCommotion.Card.TeleportCard;
 import com.TeamHEC.LocomotionCommotion.Game.GameScreen;
@@ -469,7 +466,7 @@ public class Game_Map_Manager {
 			}
 		}
 		if (trainOnRail){
-			WarningMessage.fireWarningWindow("DANGER", "Breaking a rail with a train on is against the \nGeneva Convention");
+			WarningMessage.fireWarningWindow("DANGER", "Breaking a rail with a train on it is against the \nGeneva Convention.");
 		}
 		else{
 			connection1.setTraversable(false);

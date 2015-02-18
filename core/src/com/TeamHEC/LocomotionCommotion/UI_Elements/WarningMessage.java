@@ -2,7 +2,6 @@ package com.TeamHEC.LocomotionCommotion.UI_Elements;
 
 import com.TeamHEC.LocomotionCommotion.LocomotionCommotion;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;

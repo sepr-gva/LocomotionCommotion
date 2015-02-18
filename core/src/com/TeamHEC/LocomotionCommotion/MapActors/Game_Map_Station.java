@@ -6,9 +6,7 @@ import com.TeamHEC.LocomotionCommotion.Map.Connection;
 import com.TeamHEC.LocomotionCommotion.Map.Station;
 import com.TeamHEC.LocomotionCommotion.Map.StationListener;
 import com.TeamHEC.LocomotionCommotion.Player.Player;
-import com.TeamHEC.LocomotionCommotion.Train.Train;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
 
 public class Game_Map_Station extends Game_Map_MapObj implements StationListener {
 
@@ -95,7 +93,7 @@ public class Game_Map_Station extends Game_Map_MapObj implements StationListener
 			//Cards first city is this city
 			Game_Map_Manager.currentBreakCard.firstObj = this.station;
 			//Second city is now being chosen, so when a city is clicked it becomes the second city
-			WarningMessage.fireWarningWindow("CHOOSE SECOND STATION", "Choose an ajoining station, inbetween which \nthe connection will be broken");
+			WarningMessage.fireWarningWindow("CHOOSE SECOND STATION", "Choose an ajoining station, inbetween which \nthe connection will be broken.");
 			Game_Map_Manager.secondBreakCity = true;
 		}
 		//Checking for if the second city is being chosen
