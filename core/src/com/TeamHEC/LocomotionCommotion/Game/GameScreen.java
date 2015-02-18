@@ -15,6 +15,7 @@ import com.TeamHEC.LocomotionCommotion.UI_Elements.GameScreenUI;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_PauseMenu;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_Shop;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.Game_StartingSequence;
+import com.TeamHEC.LocomotionCommotion.UI_Elements.TimerText;
 import com.TeamHEC.LocomotionCommotion.UI_Elements.WarningMessage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -59,17 +60,11 @@ public class GameScreen implements Screen {
 	public static SpriteBatch sb;
 	public OrthographicCamera camera;
 	public static Game_Map_Manager mapManager;
+	public static TimerText gameTimer;
 	static boolean started = false;
 	public static long gameStartTime, gameDuration;
 	public long gameTimeLeft;
 	public int gameSecondsLeft;
-	
-	//Attributes for rendering timer
-	private static FreeTypeFontGenerator generator;
-	private static FreeTypeFontParameter parameter;
-	private static BitmapFont timerFont;
-	private static LabelStyle timerStyle;
-	private static Label timerLabel;
 	
 	/**
 	 * 	
@@ -84,33 +79,19 @@ public class GameScreen implements Screen {
 		
 		gameStartTime = -1;
 		gameDuration = LocomotionCommotion.timeChoice*60000;
-		
-		//Font for timer label
-		generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/gillsans.ttf"));
-		parameter = new FreeTypeFontParameter();
-		parameter.size = 32;
-		timerFont = generator.generateFont(parameter);
-		generator.dispose();
-		
-		//Setting up timer label
-		timerStyle = new LabelStyle();
-		timerStyle.font = timerFont;
-		timerLabel = new Label(null, timerStyle);
-		timerLabel.setColor(0, 0, 0, 1);
-		timerLabel.setAlignment(Align.center);
-		timerLabel.setX(1500);
-		timerLabel.setY(330);
-		timerLabel.setText("");
-		
+
 		Gdx.input.setInputProcessor(getStage());	
 		stage.getActors().clear();
 		
 		//Render game timer
-		stage.addActor(timerLabel);
+		//stage.addActor(timerLabel);
 		
 		//Instantiate the Managers
 		mapManager = new Game_Map_Manager();
 		mapManager.create(getStage());
+		
+		gameTimer = new TimerText();
+		gameTimer.create(getStage(), 1500, 330);
 		
 		Game_CardHand cardHand = new Game_CardHand();
 		cardHand.create(getStage());
@@ -204,11 +185,11 @@ public class GameScreen implements Screen {
 		if (gameStartTime >= 0){
 			gameTimeLeft = gameDuration - (System.currentTimeMillis() - gameStartTime);
 			gameSecondsLeft = (int)(gameTimeLeft/1000);
-			timerLabel.setText("Game time left: " + (Integer.toString(gameSecondsLeft)) + "s");
+			gameTimer.setText("Game time left: " + (Integer.toString(gameSecondsLeft)) + "s");
 			//System.out.println(LocomotionCommotion.gameFinished + ": " + gameSecondsLeft);
 			
 			if (gameSecondsLeft <= 0){
-				timerLabel.setText("Game time left: 0s");
+				gameTimer.setText("Game time left: 0s");
 				LocomotionCommotion.gameFinished = true;
 			}
 		}

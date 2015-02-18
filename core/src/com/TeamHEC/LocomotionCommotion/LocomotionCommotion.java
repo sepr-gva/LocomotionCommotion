@@ -44,7 +44,7 @@ public class LocomotionCommotion extends Game {
 	}
 
 	private LocomotionCommotion(){}
-	public static final String TITLE = "LOCOMOTION COMMOTION", VERSION = "0.0.0.1";
+	public static final String TITLE = "TRAIN THEFT AUTO: NICE CITY", VERSION = "0.0.0.1";
 
 	/**
 	 * Create sets the screen to show the start scene
